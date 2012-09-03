@@ -1,4 +1,5 @@
 training
 ========
 
-Repo for non-serious work and training at travelbasys
+Repo for some non-serious work and training at travelbasys
+
