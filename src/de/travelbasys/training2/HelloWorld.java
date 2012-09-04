@@ -10,7 +10,7 @@ public class HelloWorld {
 		HelloWorldUI ui1 = new HelloWorldUI();
 		ui1.init( b );
 		ui1.run();
-		
+			/*	
 		HelloWorldUI ui2 = new HelloWorldUI();
 		ui2.init( b );
 		ui2.run();
@@ -18,7 +18,7 @@ public class HelloWorld {
 		HelloWorldUI ui3 = new HelloWorldUI();
 		ui3.init( b );
 		ui3.run();
-		
+	
 		System.err.println( b.version );
 		b.version = "XXX";
 		System.err.println( b.version );
@@ -37,6 +37,7 @@ public class HelloWorld {
 			e.printStackTrace();
 		}
 		System.err.println( HelloWorldUI.getCounter() );
+	*/
 	}
 	
 }

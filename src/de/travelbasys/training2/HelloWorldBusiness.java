@@ -11,9 +11,9 @@ public class HelloWorldBusiness {
 	}
 
 	public String getMessage() {
-		String s = (new Date()) + " *** Hello world 8 ***";
-		// return s;
-		return "";
+		String s = ("Today is " + new Date()) + "\n" + "*** Message Function works***";
+		 return s;
+		//return "";
 	}
 
 }
