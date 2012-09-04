@@ -1,8 +1,15 @@
 package de.travelbasys.training2;
 
+import java.util.Locale;
+
 public class HelloWorld {
 	
 	public static void main( String[] args ){
+		
+		// Change language to en.
+		Locale.setDefault( new Locale("de") );
+		
+
 		
 		HelloWorldBusiness b = new HelloWorldBusiness();
 		b.init();
