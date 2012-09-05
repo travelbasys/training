@@ -19,6 +19,11 @@ import java.util.Scanner;
  */
 
 public class HelloWorldUI {
+/**
+ * Bindet den Resourcen Ordner ein, in dem die Properties der verschiedenen Sprachen liegen.
+ */
+	String baseName = "resources.HelloWorld";
+	ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 
 	/**
 	 * Das eingegebene Alter des Benutzers. Wird mit 0 (=Null) initialisiert.
@@ -45,10 +50,7 @@ public class HelloWorldUI {
 	 * Am Ende werden Name und Alter nach System.out ausgegeben.
 	 */
 	public void run() {
-
-		String baseName = "resources.HelloWorld";
 		try {
-			ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 			System.out.println(bundle.getString("UsernameFrage"));
 		} catch (MissingResourceException e) {
 			System.err.println(e);
@@ -67,8 +69,6 @@ public class HelloWorldUI {
 	 * eingegeben wird.
 	 */
 	private void run2() {
-		String baseName = "resources.HelloWorld";
-		ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 		try {
 			System.out.println(bundle.getString("AgePrompt"));
 		} catch (MissingResourceException f) {
@@ -94,18 +94,13 @@ public class HelloWorldUI {
 	 * Gibt den aktuellen Namen und das Alter nach System.out aus.
 	 */
 	private void run3() {
-		
-		String baseName = "resources.HelloWorld";
-		ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-		
-		
 		PrintStream out = System.out;
 		out.println(message + "\n");
 		System.out.println(bundle.getString("Username"));
 		out.println(username);
 		System.out.println(bundle.getString("Age"));
 		out.println(age);
-		//out.println( "\n" + "Username: " + username + " Age: " + age);
+		// out.println( "\n" + "Username: " + username + " Age: " + age);
 	}
 
 	/**

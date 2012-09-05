@@ -3,6 +3,12 @@ package de.travelbasys.training2;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+/**
+ * Diese Klasse existiert.
+ * @author tba
+ *
+ */
+
 public class HelloWorldBusiness {
 
 	public String version = "2.0";
@@ -11,6 +17,12 @@ public class HelloWorldBusiness {
 		// TODO mache mich fertig!
 	}
 
+	/**
+	 * Verwendet das eingestellte Sprachpaket und gibt einen String aus, der in den Properties festgelegt wurde.
+	 * @return der String der Funktion
+	 */
+	
+	
 	public String getMessage() {
 		
 		ResourceBundle bundle = null;
