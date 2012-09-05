@@ -15,20 +15,26 @@ import java.util.Properties;
 
 public class HelloWorld {
 
+	private static final String DEFAULT_LANGUAGE = "en";
+	private static final String LANG_KEY = "lang";
+	private static final String CONFIG_FILENAME = "HelloWorld.ini";
+	private static final String ERR_FILENOTFOUND = "HelloWorld.ini existiert nicht.";
+	private static final int EXIT_ERR_STATUS = 1;
+
 	public static void main(String[] args) {
 		Properties config = new Properties();
 
 		try {
-			config.load(new FileInputStream("HelloWorld.ini"));
+			config.load(new FileInputStream(CONFIG_FILENAME));
 		} catch (FileNotFoundException e1) {
 			// TODO Dokumentation Exit-Status.
-			System.err.println ("HelloWorld.ini existiert nicht.");
-			System.exit(1);
+			System.err.println(ERR_FILENOTFOUND);
+			System.exit(EXIT_ERR_STATUS);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String lang = config.getProperty("lang", "en");
+		String lang = config.getProperty(LANG_KEY, DEFAULT_LANGUAGE);
 
 		// Change language to en.
 		try {
