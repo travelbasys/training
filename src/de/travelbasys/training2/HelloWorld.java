@@ -14,7 +14,7 @@ public class HelloWorld {
 	public static void main( String[] args ){
 		
 		// Change language to en.
-		Locale.setDefault( new Locale("en") );
+		Locale.setDefault( new Locale("de") );
 		
 
 		/**

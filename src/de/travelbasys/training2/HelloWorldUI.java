@@ -1,6 +1,9 @@
 package de.travelbasys.training2;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -19,9 +22,10 @@ import java.util.Scanner;
  */
 
 public class HelloWorldUI {
-/**
- * Bindet den Resourcen Ordner ein, in dem die Properties der verschiedenen Sprachen liegen.
- */
+	/**
+	 * Bindet den Resourcen Ordner ein, in dem die Properties der verschiedenen
+	 * Sprachen liegen.
+	 */
 	String baseName = "resources.HelloWorld";
 	ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 
@@ -50,10 +54,13 @@ public class HelloWorldUI {
 	 * Am Ende werden Name und Alter nach System.out ausgegeben.
 	 */
 	public void run() {
+		PrintStream out = System.out;
+		PrintStream err = System.err;
+
 		try {
-			System.out.println(bundle.getString("UsernameFrage"));
+			out.println(bundle.getString("UsernamePrompt"));
 		} catch (MissingResourceException e) {
-			System.err.println(e);
+			err.println(e);
 		}
 		Scanner in = new Scanner(System.in);
 		username = in.nextLine();
@@ -69,21 +76,24 @@ public class HelloWorldUI {
 	 * eingegeben wird.
 	 */
 	private void run2() {
+		PrintStream out = System.out;
+		PrintStream err = System.err;
+
 		try {
-			System.out.println(bundle.getString("AgePrompt"));
+			out.println(bundle.getString("AgePrompt"));
 		} catch (MissingResourceException f) {
-			System.err.println(f);
+			err.println(f);
 		}
 		try {
 			Scanner in = new Scanner(System.in);
 			age = in.nextInt();
 		} catch (InputMismatchException e) {
-			System.out.println(bundle.getString("AgeNumberErr"));
+			out.println(bundle.getString("AgeNumberErr"));
 		}
 
 		finally {
 			if (age <= 0) {
-				System.out.println(bundle.getString("AgeValid"));
+				out.println(bundle.getString("AgeValid"));
 				run2();
 			}
 		}
@@ -95,12 +105,32 @@ public class HelloWorldUI {
 	 */
 	private void run3() {
 		PrintStream out = System.out;
-		out.println(message + "\n");
-		System.out.println(bundle.getString("Username"));
-		out.println(username);
-		System.out.println(bundle.getString("Age"));
-		out.println(age);
-		// out.println( "\n" + "Username: " + username + " Age: " + age);
+		// TODO Change Date to Calender
+		out.println(message + " " + new Date());
+		run4();
+	}
+
+	/**
+	 */
+	private void run4() {
+		try {
+			FileWriter writer = new FileWriter("HelloWorld.txt", true);
+			writer.write(bundle.getString("Username"));
+			writer.write(username);
+			writer.write(System.getProperty("line.separator"));
+			writer.write(bundle.getString("Age"));
+			writer.write(String.valueOf(age));
+			writer.write(System.getProperty("line.separator"));
+			writer.write(System.getProperty("line.separator"));
+
+			writer.flush();
+			writer.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
