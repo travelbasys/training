@@ -107,12 +107,12 @@ public class HelloWorldUI {
 	private void run3() {
 		PrintStream out = System.out;
 		
-		// (Intern) Liest das aktuelle Datum aus und gibt es in der
-		// eingestellten Sprache (in HelloWorld.java) aus.
-		
+		// (Intern) Lege das Datumsformat fest, welches die in HelloWorld
+		// vorgegebene Sprache (Locale) verwendet.
 		Calendar cal = Calendar.getInstance();
-		DateFormat df;
-		df = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.MEDIUM);
+		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.MEDIUM);
+
+		// Benutze das obige Datumsformat für die aktuelle Zeit.
 		out.println(message + " " + df.format(cal.getTime()));
 		run4();
 	}
