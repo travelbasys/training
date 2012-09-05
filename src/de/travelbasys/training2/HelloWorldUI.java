@@ -1,10 +1,10 @@
 package de.travelbasys.training2;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Date;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -106,8 +106,14 @@ public class HelloWorldUI {
 	 */
 	private void run3() {
 		PrintStream out = System.out;
-		// TODO Change Date to Calender
-		out.println(message + " " + new Date());
+		
+		// (Intern) Liest das aktuelle Datum aus und gibt es in der
+		// eingestellten Sprache (in HelloWorld.java) aus.
+		
+		Calendar cal = Calendar.getInstance();
+		DateFormat df;
+		df = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.MEDIUM);
+		out.println(message + " " + df.format(cal.getTime()));
 		run4();
 	}
 
