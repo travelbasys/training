@@ -1,5 +1,6 @@
 package de.travelbasys.training2;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -113,8 +114,15 @@ public class HelloWorldUI {
 	/**
 	 */
 	private void run4() {
+
 		try {
+
+			// Erzeuge einen Writer, der ein existierendes File öffnet
+			// oder ein neues anlegt um Daten hinten an das File
+			// anzuhängen.
 			FileWriter writer = new FileWriter("HelloWorld.txt", true);
+
+			// Schreibe in Datei.
 			writer.write(bundle.getString("Username"));
 			writer.write(username);
 			writer.write(System.getProperty("line.separator"));
@@ -123,7 +131,10 @@ public class HelloWorldUI {
 			writer.write(System.getProperty("line.separator"));
 			writer.write(System.getProperty("line.separator"));
 
+			// Sorge dafür, dass Ausgabe auf der Platte landet.
 			writer.flush();
+
+			// Beende den writer.
 			writer.close();
 
 		} catch (IOException e) {
