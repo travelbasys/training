@@ -3,50 +3,55 @@
  */
 package de.travelbasys.training2;
 
+
 /**
- * Die User Klasse repräsentiert einen Benutzer der Anwendung. 
+ * Die User Klasse repräsentiert einen Benutzer der Anwendung.
  * 
  * @author tba
  */
 public class User {
-	
+
 	private String name;
 	private int age;
-	
+
 	private static final String DEFAULT_NAME = "Bill";
 	private static final int DEFAULT_AGE = 15;
-	
+
 	/**
-	 * Erzeugt ein neues User Objekt mit dem angegebenen Namen
-	 * und dem angegebenen Alter.
+	 * Erzeugt ein neues User Objekt mit dem angegebenen Namen und dem
+	 * angegebenen Alter.
 	 * 
-	 * @param name Name des Users.
-	 * @param age Alter des Users.
-	 * @throws Exception 
+	 * @param name
+	 *            Name des Users.
+	 * @param age
+	 *            Alter des Users.
+	 * @throws Exception
 	 */
-	public User(String name, int age ) throws IllegalArgumentException {
+	public User(String name, int age) throws IllegalArgumentException {
 		this.name = name;
-		setAge( age );
-	}
-	
-	/**
-	 * Erzeugt ein neues User Objekt mit dem angegebenen Namen
-	 * und einem default Alter (derzeit 15).
-	 * 
-	 * @param name Name des Users.
-	 * @throws IllegalArgumentException 
-	 */
-	public User(String name) throws IllegalArgumentException {
-		this( name, DEFAULT_AGE );
+		setAge(age);
 	}
 
 	/**
-	 * Erzeugt ein neues User Objekt mit einem default Namen
-	 * (derzeit "Bill") und dem default Alter.
-	 * @throws IllegalArgumentException 
+	 * Erzeugt ein neues User Objekt mit dem angegebenen Namen und einem default
+	 * Alter (derzeit 15).
+	 * 
+	 * @param name
+	 *            Name des Users.
+	 * @throws IllegalArgumentException
+	 */
+	public User(String name) throws IllegalArgumentException {
+		this(name, DEFAULT_AGE);
+	}
+
+	/**
+	 * Erzeugt ein neues User Objekt mit einem default Namen (derzeit "Bill")
+	 * und dem default Alter.
+	 * 
+	 * @throws IllegalArgumentException
 	 */
 	public User() throws IllegalArgumentException {
-		this( DEFAULT_NAME );
+		this(DEFAULT_NAME);
 	}
 
 	/**
@@ -56,7 +61,7 @@ public class User {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * 
 	 * @param name
@@ -64,7 +69,7 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -72,18 +77,17 @@ public class User {
 	public int getAge() {
 		return age;
 	}
-	
+
 	/**
 	 * 
 	 * @param age
-	 * @throws IllegalArgumentException 
+	 * @throws IllegalArgumentException
 	 */
 	public void setAge(int age) throws IllegalArgumentException {
-		if( age > 0 ){
+		if (age > 0) {
 			this.age = age;
-		}
-		else{
-			throw new IllegalArgumentException( "Alter ungültig: " + age );
+		} else {
+			throw new IllegalArgumentException("Alter ungültig: " + age);
 		}
 	}
 
@@ -118,6 +122,21 @@ public class User {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	/**
+	 * Liest einen String ein und setzt dieses in einem User-Objekt zusammmen.
+	 * 
+	 * @param s
+	 *            der Wert des eingelesenen Strings
+	 * @return der Wert des User-Objekts
+	 */
+
+	//TODO: User-Objekt aus String zusammensetzen
+	//Constructor oder Split
+	
+	public static User parse(String s) {
+		return null;
 	}
 
 }

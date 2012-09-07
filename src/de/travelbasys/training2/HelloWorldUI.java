@@ -69,12 +69,9 @@ public class HelloWorldUI {
 
 		username = username.trim();
 
-		if (username.isEmpty())
-			try {
-				err.println(bundle.getString("EmptyFieldErr"));
-			} catch (Exception e) {
-				err.println(bundle.getString("CriticalErr"));
-			}
+		if (username.isEmpty()){
+			err.println(bundle.getString("EmptyFieldErr"));
+		}
 		else {
 			run2();
 		}
@@ -136,8 +133,8 @@ public class HelloWorldUI {
 
 		User user;
 		user = new User(username, age);
-		/* User user2 = new User(username, age);
-		 * (Experimentell) try {
+		/*
+		 * User user2 = new User(username, age); (Experimentell) try {
 		 * 
 		 * System.out.println(user); System.out.println(user.getName());
 		 * System.out.println(user.getAge());
@@ -159,22 +156,17 @@ public class HelloWorldUI {
 
 			// Erzeuge einen FileWriter, der ein existierendes File öffnet
 			// oder ein neues anlegt.
-
 			FileWriter fw = new FileWriter("HelloWorld.txt", true);
 
 			// Erzeuge einen PrintWriter, der den Speicherort der Datei ausliest
 			// aus
 			// dem vorhandenen FileWriter ausliest und Daten an das File
 			// anhängt.
-
 			PrintWriter writer = new PrintWriter(fw);
 
 			// Lese Daten aus Properties und der User-Klasse aus.
 			// Anschließend schreibe in Datei.
-			writer.write(bundle.getString("Username"));
-			writer.println(user.getName());
-			writer.write(bundle.getString("Age"));
-			writer.println(user.getAge());
+			writer.println(user);
 
 			// Sorge dafür, dass Ausgabe auf der Platte landet.
 			writer.flush();
