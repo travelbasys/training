@@ -7,10 +7,13 @@ import de.travelbasys.training2.User;
 
 public class UserList {
 
+	private static final String FILE = "HelloWorld.txt";
+
+	
 	public static void main(String[] args) {
 		
 		try {
-			FileReader fr = new FileReader("HelloWorld.txt");
+			FileReader fr = new FileReader(FILE);
 			BufferedReader br = new BufferedReader(fr);
 			String s;
 			while ((s = br.readLine()) != null) {

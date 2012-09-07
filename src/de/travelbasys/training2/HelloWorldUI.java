@@ -24,12 +24,16 @@ import java.util.Scanner;
  */
 
 public class HelloWorldUI {
+	
+	private static final boolean APPEND = true;
+	private static final String FILE = "HelloWorld.txt";
+	
 	/**
 	 * Bindet den Resourcen Ordner ein, in dem die Properties der verschiedenen
 	 * Sprachen liegen.
 	 */
-	String baseName = "resources.HelloWorld";
-	ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+	private static String baseName = "resources.HelloWorld";
+	private static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 
 	/**
 	 * Das eingegebene Alter des Benutzers. Wird mit 0 (=Null) initialisiert.
@@ -156,7 +160,7 @@ public class HelloWorldUI {
 
 			// Erzeuge einen FileWriter, der ein existierendes File öffnet
 			// oder ein neues anlegt.
-			FileWriter fw = new FileWriter("HelloWorld.txt", true);
+			FileWriter fw = new FileWriter(FILE, APPEND);
 
 			// Erzeuge einen PrintWriter, der den Speicherort der Datei ausliest
 			// aus
@@ -218,7 +222,7 @@ public class HelloWorldUI {
 		if (i % 2 == 0) {
 			counter = i;
 		} else {
-			throw new Exception("*** Nur gerade Werte erlaubt *** ");
+			throw new Exception(bundle.getString("UnevenErr"));
 		}
 	}
 

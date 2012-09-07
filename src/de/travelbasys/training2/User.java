@@ -3,6 +3,9 @@
  */
 package de.travelbasys.training2;
 
+import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Die User Klasse repr‰sentiert einen Benutzer der Anwendung.
@@ -16,6 +19,20 @@ public class User {
 
 	private static final String DEFAULT_NAME = "Bill";
 	private static final int DEFAULT_AGE = 15;
+	private static String baseName = "resources.HelloWorld";
+	private static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+
+	/*
+	 * User [name=xxx, age=nnn] oder: User[ name = xxx , age = nnn ]
+	 * 
+	 * User, dann Spaces, dann "[", dann Spaces, dann "name", dann Spaces, dann
+	 * "=", dann Spaces, dann Gruppe aus mindestens einem Zeichen non-greedy,
+	 * dann Spaces, dann Kommata, dann Spaces, dann age, dann Spaces, dann "=",
+	 * dann Spaces, dann Gruppe aus mindestens einer Ziffer, dann Spaces, dann
+	 * "]". Fertig.
+	 */
+	private static final String U = "User\\s*\\[\\s*name\\s*=\\s*(.+?)\\s*,\\s*age\\s*=\\s*(\\d+)\\s*\\]";
+	private static final Pattern USERPATTERN = Pattern.compile(U);
 
 	/**
 	 * Erzeugt ein neues User Objekt mit dem angegebenen Namen und dem
@@ -124,19 +141,53 @@ public class User {
 		return true;
 	}
 
+	/*public static User parse1(String s) {
+
+		s = s.replace("User [", "");
+		s = s.replace("]", "");
+
+		// System.out.println(s);
+
+		String[] usr = s.split(",");
+
+		// System.out.println(usr[0]);
+		// System.out.println(usr[1]);
+
+		String[] name = usr[0].split("=");
+		String[] age = usr[1].split("=");
+
+		// System.out.println(age[1]);
+
+		User user = new User();
+
+		user.setName(name[1]);
+		user.setAge(Integer.parseInt(age[1]));
+
+		return user;
+	}*/
+
 	/**
-	 * Liest einen String ein und setzt dieses in einem User-Objekt zusammmen.
-	 * 
-	 * @param s
-	 *            der Wert des eingelesenen Strings
+	 * Liest einen String ein und zerlegt ihn in Name und Alter-Gruppe.
+	 * Anschlieﬂend werden die Daten in ein User-Objekt geschrieben.
+	 * Bei falscher Syntax wird eine Exception ausgeworfen.
+	 * Die Syntax ist als globale Variable festgelegt.
+	 * @param s der Wert des eingelesenen Strings
 	 * @return der Wert des User-Objekts
 	 */
 
-	//TODO: User-Objekt aus String zusammensetzen
-	//Constructor oder Split
 	
 	public static User parse(String s) {
-		return null;
-	}
+		User user = null;
 
+		Matcher m = USERPATTERN.matcher(s);
+		if (m.matches()) {
+			user = new User(m.group(1), Integer.parseInt(m.group(2)));
+		} else {
+			// Falsche Syntax: kein User.
+			throw new IllegalArgumentException(bundle.getString("WrongUsrSyn")
+					+ s);
+		}
+
+		return user;
+	}
 }
