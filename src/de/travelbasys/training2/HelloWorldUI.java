@@ -3,6 +3,7 @@ package de.travelbasys.training2;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.InputMismatchException;
@@ -46,7 +47,7 @@ public class HelloWorldUI {
 	/**
 	 * fragt den Benutzer nach seinem Namen und seinem Alter.
 	 * 
-	 * Es ist zulässig, einen leeren Namen einzugeben. Das Alter muss eine
+	 * Es ist nicht zulässig, einen leeren Namen einzugeben. Das Alter muss eine
 	 * strikt positive ganze Zahl sein. Die Altersabfrage wird so lange
 	 * wiederholt, bis ein gültiger Wert eingegeben wird, z.B. wenn eine
 	 * negative Zahl oder Null, oder ein nicht-numerischer Textstring eingegeben
@@ -57,15 +58,26 @@ public class HelloWorldUI {
 	public void run() {
 		PrintStream out = System.out;
 		PrintStream err = System.err;
-
 		try {
 			out.println(bundle.getString("UsernamePrompt"));
 		} catch (MissingResourceException e) {
 			err.println(e);
 		}
+
 		Scanner in = new Scanner(System.in);
 		username = in.nextLine();
-		run2();
+
+		username = username.trim();
+
+		if (username.isEmpty())
+			try {
+				err.println(bundle.getString("EmptyFieldErr"));
+			} catch (Exception e) {
+				err.println(bundle.getString("CriticalErr"));
+			}
+		else {
+			run2();
+		}
 	}
 
 	/**
@@ -92,12 +104,12 @@ public class HelloWorldUI {
 			out.println(bundle.getString("AgeNumberErr"));
 		}
 
-		finally {
-			if (age <= 0) {
-				out.println(bundle.getString("AgeValid"));
-				run2();
-			}
-		}
+		// finally {
+		// if (age <= 0) {
+		// out.println(bundle.getString("AgeValid"));
+		// run2();
+		// }
+		// }
 		run3();
 	}
 
@@ -106,11 +118,12 @@ public class HelloWorldUI {
 	 */
 	private void run3() {
 		PrintStream out = System.out;
-		
+
 		// (Intern) Lege das Datumsformat fest, welches die in HelloWorld
 		// vorgegebene Sprache (Locale) verwendet.
 		Calendar cal = Calendar.getInstance();
-		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.MEDIUM);
+		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.FULL,
+				DateFormat.MEDIUM);
 
 		// Benutze das obige Datumsformat für die aktuelle Zeit.
 		out.println(message + " " + df.format(cal.getTime()));
@@ -121,21 +134,47 @@ public class HelloWorldUI {
 	 */
 	private void run4() {
 
+		User user;
+		user = new User(username, age);
+		/* User user2 = new User(username, age);
+		 * (Experimentell) try {
+		 * 
+		 * System.out.println(user); System.out.println(user.getName());
+		 * System.out.println(user.getAge());
+		 * 
+		 * System.out.println(user2); System.out.println(user2.getName());
+		 * System.out.println(user2.getAge());
+		 * 
+		 * System.out.println( user.equals( user ) ); System.out.println(
+		 * user.equals( user2 ) ); System.out.println( user2.equals( user ) );
+		 * 
+		 * System.out.println(user.hashCode());
+		 * System.out.println(user2.hashCode());
+		 * 
+		 * } catch (IllegalArgumentException e1) { // TODO Auto-generated catch
+		 * block e1.printStackTrace(); }
+		 */
+
 		try {
 
-			// Erzeuge einen Writer, der ein existierendes File öffnet
-			// oder ein neues anlegt um Daten hinten an das File
-			// anzuhängen.
-			FileWriter writer = new FileWriter("HelloWorld.txt", true);
+			// Erzeuge einen FileWriter, der ein existierendes File öffnet
+			// oder ein neues anlegt.
 
-			// Schreibe in Datei.
+			FileWriter fw = new FileWriter("HelloWorld.txt", true);
+
+			// Erzeuge einen PrintWriter, der den Speicherort der Datei ausliest
+			// aus
+			// dem vorhandenen FileWriter ausliest und Daten an das File
+			// anhängt.
+
+			PrintWriter writer = new PrintWriter(fw);
+
+			// Lese Daten aus Properties und der User-Klasse aus.
+			// Anschließend schreibe in Datei.
 			writer.write(bundle.getString("Username"));
-			writer.write(username);
-			writer.write(System.getProperty("line.separator"));
+			writer.println(user.getName());
 			writer.write(bundle.getString("Age"));
-			writer.write(String.valueOf(age));
-			writer.write(System.getProperty("line.separator"));
-			writer.write(System.getProperty("line.separator"));
+			writer.println(user.getAge());
 
 			// Sorge dafür, dass Ausgabe auf der Platte landet.
 			writer.flush();
