@@ -26,6 +26,8 @@ public class HelloWorldView extends AbstractView {
 	public JButton addButton;
 
 	public JComboBox<String> userComboBox;
+	
+	public JButton delButton;
 
 	public void init() {
 		super.init();
@@ -71,7 +73,10 @@ public class HelloWorldView extends AbstractView {
 		this.addComponent(addButton, 1, 3, 4, 1);
 
 		userComboBox = new JComboBox<String>();
-		this.addComponent(userComboBox, 1, 4, 4, 1);
+		this.addComponent(userComboBox, 1, 4, 3, 1);
+		
+		delButton = new JButton("Delete");
+		this.addComponent(delButton, 4, 4, 1, 1);
 	}
 
 	public void updateUserComboBox(UserList userList) {
@@ -79,13 +84,15 @@ public class HelloWorldView extends AbstractView {
 			String dataSource[] = new String[userList.size()];
 
 			for (int i = 0; i < dataSource.length; i++) {
-				dataSource[i] = userList.get(i).name + " - Age: " + userList.get(i).getAge();
+				int j = i+1;
+				String index = (String) ((j<10)?((j<100)?"00"+j:"0"+j):j);
+				dataSource[i] = index + ": Name" + userList.get(i).name + ", Age: " + userList.get(i).getAge();
 			}
 
+			this.stop();
 			this.remove(userComboBox);
 			userComboBox = new JComboBox<String>(dataSource);
-			this.addComponent(userComboBox, 1, 4, 4, 1);
-			this.stop();
+			this.addComponent(userComboBox, 1, 4, 3, 1);
 			this.start();
 		}
 	}

@@ -21,7 +21,8 @@ public abstract class AbstractView extends JFrame implements View {
 		
 		constr.insets = new Insets(5, 5, 5, 5);
 		constr.fill = GridBagConstraints.BOTH;
-		constr.anchor = GridBagConstraints.NORTHWEST;
+		constr.weightx = 1;
+		//constr.anchor = GridBagConstraints.NORTHWEST;
 
 		this.setLayout(layout);
 		this.setDefaultCloseOperation(defaultCloseOperation);

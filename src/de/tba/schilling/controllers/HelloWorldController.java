@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.JOptionPane;
+
 import de.tba.schilling.business.user.User;
 import de.tba.schilling.business.user.UserList;
 import de.tba.schilling.framework.AbstractController;
@@ -34,8 +36,9 @@ public class HelloWorldController extends AbstractController {
 		if (userList == null)
 			userList = new UserList();
 
-		model.setStr("dobDay",(String) view.dobDayComboBox.getSelectedItem());
-		model.setStr("dobMonth",(String) view.dobMonthComboBox.getSelectedItem());
+		model.setStr("dobDay", (String) view.dobDayComboBox.getSelectedItem());
+		model.setStr("dobMonth",
+				(String) view.dobMonthComboBox.getSelectedItem());
 		model.setStr("dobYear", (String) view.dobYearComboBox.getSelectedItem());
 
 		view.nameField.addKeyListener(new AnonymousClass() {
@@ -46,19 +49,22 @@ public class HelloWorldController extends AbstractController {
 
 		view.dobDayComboBox.addActionListener(new AnonymousClass() {
 			public void actionPerformed(ActionEvent e) {
-				model.setStr("dobDay",(String) view.dobDayComboBox.getSelectedItem());
+				model.setStr("dobDay",
+						(String) view.dobDayComboBox.getSelectedItem());
 			}
 		});
 
 		view.dobMonthComboBox.addActionListener(new AnonymousClass() {
 			public void actionPerformed(ActionEvent e) {
-				model.setStr("dobMonth",(String) view.dobMonthComboBox.getSelectedItem());
+				model.setStr("dobMonth",
+						(String) view.dobMonthComboBox.getSelectedItem());
 			}
 		});
 
 		view.dobYearComboBox.addActionListener(new AnonymousClass() {
 			public void actionPerformed(ActionEvent e) {
-				model.setStr("dobYear", (String) view.dobYearComboBox.getSelectedItem());
+				model.setStr("dobYear",
+						(String) view.dobYearComboBox.getSelectedItem());
 			}
 		});
 
@@ -71,6 +77,19 @@ public class HelloWorldController extends AbstractController {
 				user.dobYear = model.getStr("dobYear");
 				userList.add(user);
 				writeUserList();
+			}
+		});
+
+		view.delButton.addActionListener(new AnonymousClass() {
+			public void actionPerformed(ActionEvent e) {
+				int index = view.userComboBox.getSelectedIndex();
+				System.out.println(index);
+				int choice = JOptionPane.showConfirmDialog(view, "Do you really want to delete user\n" +
+						"\""+userList.get(index).name+"\" ?");
+				if(choice == 0) {
+					userList.remove(index);
+					writeUserList();
+				}
 			}
 		});
 	}
