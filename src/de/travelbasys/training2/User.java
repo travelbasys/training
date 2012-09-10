@@ -31,8 +31,8 @@ public class User {
 	 * dann Spaces, dann Gruppe aus mindestens einer Ziffer, dann Spaces, dann
 	 * "]". Fertig.
 	 */
-	private static final String U = "User\\s*\\[\\s*name\\s*=\\s*(.+?)\\s*,\\s*age\\s*=\\s*(\\d+)\\s*\\]";
-	private static final Pattern USERPATTERN = Pattern.compile(U);
+	private static final String U = "\\s*User\\s*\\[\\s*name\\s*=\\s*(.+?)\\s*,\\s*age\\s*=\\s*(\\d+)\\s*\\]";
+	private static final Pattern USERPATTERN = Pattern.compile(U, Pattern.CASE_INSENSITIVE);
 
 	/**
 	 * Erzeugt ein neues User Objekt mit dem angegebenen Namen und dem
@@ -101,11 +101,12 @@ public class User {
 	 * @throws IllegalArgumentException
 	 */
 	public void setAge(int age) throws IllegalArgumentException {
-		if (age > 0) {
-			this.age = age;
-		} else {
-			throw new IllegalArgumentException("Alter ungültig: " + age);
-		}
+		
+			if (age > 0 && age <= 150) {
+				this.age = age;
+			} else {
+				throw new IllegalArgumentException("Alter ungültig (1-150 erlaubt): " + age);
+			}
 	}
 
 	@Override

@@ -56,7 +56,7 @@ public class UserTest {
 		User u = new User();
 		u.setAge(0);
 	}
-	
+
 	@Test
 	public void testEquals() {
 		User bill1 = new User("Bill", 15);
@@ -64,15 +64,41 @@ public class UserTest {
 		assertTrue(bill1.equals(bill2));
 		// assertEquals(bill1, bill2);
 	}
-	
+
 	@Test()
 	public void testParse() {
-	User.parse("User [name=Bill, age=234]");	
+		User.parse("User [name=Bill, age=23]");
+		User.parse("User[name=Bill, age=23]");
+		User.parse("User [name=Bill,age=24]");
+		User.parse("User   [name=Bill,   age=47]");
+		User.parse("User [  name = Bill, age = 24 ]");
+		User.parse("User [name=Bill, age=66]");
+		User.parse("   User [name=Bill, age=24]");
+		User.parse("User [name=Bill, age=25]");
+		User.parse("user [Name=Bill, age=23]");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testParseEx() {
-	User.parse("User [mame=Bill, age=234]");	
+	public void testParseEx1() {
+		User.parse("user [name=Bill, age=2147483647]");
+		
+	}
+	
+	@Test(expected = NumberFormatException.class)
+	public void testParseEx2() {
+		User.parse("User [Name=Bill, age=21474836948]");
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testParseEx3() {
+		User.parse("User [13name=Bill, Age=23]");
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testParseEx4() {
+		User.parse("Xser [name=Bill, age=23]");
 	}
 
 }
