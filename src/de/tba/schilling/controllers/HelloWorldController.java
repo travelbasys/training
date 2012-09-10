@@ -75,8 +75,12 @@ public class HelloWorldController extends AbstractController {
 				user.dobDay = model.getStr("dobDay");
 				user.dobMonth = model.getStr("dobMonth");
 				user.dobYear = model.getStr("dobYear");
-				userList.add(user);
-				writeUserList();
+				if (user.getAge() < 0) {
+					JOptionPane.showMessageDialog(view, "Invalid date of birth!");
+				} else {
+					userList.add(user);
+					writeUserList();
+				}
 			}
 		});
 
@@ -84,9 +88,11 @@ public class HelloWorldController extends AbstractController {
 			public void actionPerformed(ActionEvent e) {
 				int index = view.userComboBox.getSelectedIndex();
 				System.out.println(index);
-				int choice = JOptionPane.showConfirmDialog(view, "Do you really want to delete user\n" +
-						"\""+userList.get(index).name+"\" ?");
-				if(choice == 0) {
+				int choice = JOptionPane.showConfirmDialog(
+						view,
+						"Do you really want to delete user\n" + "\""
+								+ userList.get(index).name + "\" ?");
+				if (choice == 0) {
 					userList.remove(index);
 					writeUserList();
 				}

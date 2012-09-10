@@ -40,8 +40,6 @@ public class User implements Serializable {
 							.get(Calendar.DAY_OF_MONTH)))) {
 				--age;
 			}
-			if (age < 0)
-				throw new IllegalArgumentException("Age < 0");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
