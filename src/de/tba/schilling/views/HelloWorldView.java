@@ -86,7 +86,7 @@ public class HelloWorldView extends AbstractView {
 			for (int i = 0; i < dataSource.length; i++) {
 				int j = i+1;
 				String index = (String) ((j<10)?((j<100)?"00"+j:"0"+j):j);
-				dataSource[i] = index + ": Name" + userList.get(i).name + ", Age: " + userList.get(i).getAge();
+				dataSource[i] = index + " - Name: " + userList.get(i).name + ", Age: " + userList.get(i).getAge();
 			}
 
 			this.stop();
