@@ -74,8 +74,8 @@ public class UserTest {
 		User.parse("User [  name = Bill, age = 24 ]");
 		User.parse("User [name=Bill, age=66]");
 		User.parse("   User [name=Bill, age=24]");
-		User.parse("User [name=Bill, age=25]");
-		User.parse("user [Name=Bill, age=23]");
+		User.parse("User [name=Bill, age=150]");
+		User.parse("user [Name=Bill, age=151]");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -92,7 +92,7 @@ public class UserTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testParseEx3() {
-		User.parse("User [13name=Bill, Age=23]");
+		User.parse("User [name=Bill, Age=12134]");
 		
 	}
 	

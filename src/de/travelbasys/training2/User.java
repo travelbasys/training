@@ -101,7 +101,6 @@ public class User {
 	 * @throws IllegalArgumentException
 	 */
 	public void setAge(int age) throws IllegalArgumentException {
-		
 			if (age > 0 && age <= 150) {
 				this.age = age;
 			} else {

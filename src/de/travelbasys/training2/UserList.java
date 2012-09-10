@@ -10,7 +10,7 @@ public class UserList {
 	private static final String FILE = "HelloWorld.txt";
 
 	
-	public static void list(String[] args) {
+	public static void run(String[] args) {
 		
 		try {
 			FileReader fr = new FileReader(FILE);
