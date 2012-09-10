@@ -13,6 +13,7 @@ public abstract class AbstractView extends JFrame implements View {
 	private GridBagConstraints constr;
 	
 	protected boolean packOnStart = true;
+	protected boolean resizable = false;
 	protected int defaultCloseOperation = EXIT_ON_CLOSE;
 
 	public void init() {
@@ -26,6 +27,7 @@ public abstract class AbstractView extends JFrame implements View {
 
 		this.setLayout(layout);
 		this.setDefaultCloseOperation(defaultCloseOperation);
+		this.setResizable(resizable);
 
 	}
 
