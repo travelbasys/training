@@ -69,7 +69,7 @@ public class HelloWorldMain {
 			err.println(bundle.getString("ChooseErr"));		
 		}
 
-		
+		in.close();
 		//UserList.list(args);
 		//ui.run();
 		//Rest

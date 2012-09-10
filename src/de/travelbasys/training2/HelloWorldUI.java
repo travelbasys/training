@@ -79,6 +79,7 @@ public class HelloWorldUI {
 		else {
 			run2();
 		}
+		in.close();
 	}
 
 	/**
@@ -101,6 +102,7 @@ public class HelloWorldUI {
 		try {
 			Scanner in = new Scanner(System.in);
 			age = in.nextInt();
+			in.close();
 		} catch (InputMismatchException e) {
 			out.println(bundle.getString("AgeNumberErr"));
 		}
