@@ -15,7 +15,7 @@ import java.util.Scanner;
  * ist verantwortlich für die Frage nach dem Namen und dem Alter des Benutzters
  * und gibt diese nach System.out aus.
  * 
- * Wir mit einer Message aus der Klasse HelloWorldBusiness initialisiert. Jede
+ * Wird mit einer Message aus der Klasse HelloWorldBusiness initialisiert. Jede
  * Instanz der Klasse wird gezählt; der Instanzenzähler kann abgefragt und von
  * außen verändert werden.
  * 
@@ -47,6 +47,8 @@ public class HelloWorldUI {
 
 	private String message;
 	private static int counter = 0;
+	private Scanner in;
+	private Scanner in2;
 
 	/**
 	 * fragt den Benutzer nach seinem Namen und seinem Alter.
@@ -68,7 +70,7 @@ public class HelloWorldUI {
 			err.println(e);
 		}
 
-		Scanner in = new Scanner(System.in);
+		in = new Scanner(System.in);
 		username = in.nextLine();
 
 		username = username.trim();
@@ -99,8 +101,8 @@ public class HelloWorldUI {
 			err.println(f);
 		}
 		try {
-			Scanner in = new Scanner(System.in);
-			age = in.nextInt();
+			in2 = new Scanner(System.in);
+			age = in2.nextInt();
 		} catch (InputMismatchException e) {
 			out.println(bundle.getString("AgeNumberErr"));
 		}

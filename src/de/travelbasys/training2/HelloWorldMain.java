@@ -3,25 +3,39 @@ package de.travelbasys.training2;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class HelloWorldMain {
-	
+
+	/**
+	 * Legt defaults fest.
+	 */
 	private static final String DEFAULT_LANGUAGE = "en";
 	private static final String LANG_KEY = "lang";
 	private static final String CONFIG_FILENAME = "HelloWorld.ini";
 	private static final String ERR_FILENOTFOUND = "HelloWorld.ini existiert nicht.";
 	private static final int EXIT_ERR_STATUS = 1;
-	
+
+	/**
+	 * Bindet den Resourcen Ordner ein, in dem die Properties der verschiedenen
+	 * Sprachen liegen.
+	 */
 	private static String baseName = "resources.HelloWorld";
-	private static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+	static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 	
-	
+	static Scanner in;
+
 	public static void main(String[] args) {
+		
+		/**
+		 * Lädt Konfiguration. Wenn die Konfiguration
+		 * nicht vorhanden ist wird ein Fehler ausgegeben.
+		 * Lädt sonst die Standard-Config.
+		 */
+		
 		Properties config = new Properties();
 
 		try {
@@ -42,38 +56,25 @@ public class HelloWorldMain {
 		} catch (Exception e) {
 			Locale.setDefault(new Locale(lang));
 		}
+		
+		
+		/**
+		 * 
+		 * HelloWorldUI (Schreiber) wird mit einer Message aus der Klasse HelloWorldBusiness initialisiert.
+		 * UserList (Leser) wird initalisiert.
+		 * Gibt aus ob der Schreiber oder Leser gestartet werden soll.
+		 * Nach erfolgreicher Auswahl, wird das entsprechende Programm gestartet.
+		 * Sonst: Fehler.
+		 */
+		
 		HelloWorldBusiness b = new HelloWorldBusiness();
 		b.init();
 		HelloWorldUI ui = new HelloWorldUI();
 		ui.init(b);
 		UserList ul = new UserList();
 		ul.init();
-		
-		PrintStream out = System.out;
-		PrintStream err = System.err;
-		
-		out.println(bundle.getString("Choose"));
-		out.println("1: " + bundle.getString("App1"));
-		out.println("2: " + bundle.getString("App2"));
-		
-		Scanner in = new Scanner(System.in);
-		int choice = in.nextInt();
-		
-		if(choice==1){
-			ui.run();
-		}
-		else if(choice==2){
-			UserList.list(args);
-		}
-		else{
-			err.println(bundle.getString("ChooseErr"));		
-		}
 
-		
-		//UserList.list(args);
-		//ui.run();
-		//Rest
-		
+		HelloWorldMenu.show(args, ui, ul);
 	}
 
 }
