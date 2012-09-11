@@ -1,6 +1,7 @@
 package de.travelbasys.training2;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -10,6 +11,10 @@ import java.util.Scanner;
 public class UserUpdate {
 
 	private static final String FILE = "HelloWorld.txt";
+	private static final String TEMP = "Temp.txt";
+	private static final File file = new File("HelloWorld.txt");
+	private static final File temp = new File("Temp.txt");
+
 
 	private static String baseName = "resources.HelloWorld";
 	static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
@@ -35,7 +40,9 @@ public class UserUpdate {
 				usershow = new User(username);
 				FileReader fr = new FileReader(FILE);
 				FileWriter fw = new FileWriter(FILE, true);
-				PrintWriter writer = new PrintWriter(fw);
+				FileWriter fwtmp = new FileWriter(TEMP, true);
+				PrintWriter pw = new PrintWriter(fw);
+				PrintWriter pwtmp = new PrintWriter(fwtmp);
 				BufferedReader br = new BufferedReader(fr);
 				String s;
 				while ((s = br.readLine()) != null) {
@@ -44,21 +51,23 @@ public class UserUpdate {
 						System.out.println("Geben Sie ein neues Alter ein: ");
 						int age = in.nextInt();
 						user.setAge(age);
+						usershow = user;
+						System.out.println(usershow);
 					}
-					// Hängt Daten an die Datei an.
-					// Überschreibt die Datei jedoch nicht wie vorgesehen.
-					// Es enstehen Redundanzen.
-					writer.println(user);
+					pwtmp.println(user);
 				}
 				fr.close();
-				writer.close();
-
+				pw.close();
+				pwtmp.close();
+				file.delete();
+				if(!temp.renameTo(file)){
+				    System.err.println("Fehler beim Umbenennen der Datei: " + file.getName());
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 
 			}
 		} while (true);
-
 	}
 
 }

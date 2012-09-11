@@ -45,7 +45,6 @@ public class UserShow {
 				e.printStackTrace();
 
 			}
-			System.out.println(usershow);
 		} while (true);
 	}
 }
