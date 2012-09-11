@@ -47,10 +47,10 @@ public class UserDB {
 			br.close();
 			fr.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return user;
@@ -106,11 +106,11 @@ public class UserDB {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * Überspringe den User in der Datenbank, dessen Namen mit dem Namen des
-	 * gegebenen User Objekts übereinstimmt.
-	 * Lösche dann die Datenbank und lege sie neu an 
-	 * in die der übersprungene User nicht gespeichert wird.
+	 * gegebenen User Objekts übereinstimmt. Lösche dann die Datenbank und lege
+	 * sie neu an in die der übersprungene User nicht gespeichert wird.
 	 * 
 	 * @param user
 	 *            ein User Objekt.
@@ -134,11 +134,11 @@ public class UserDB {
 				// Wenn gefunden...
 				if (temp.getName().equals(username)) {
 					br.readLine();
-					continue;
 				} else {
 					user = User.parse(s);
+					pwtmp.println(user);
 				}
-				pwtmp.println(user);
+
 			}
 			System.out.println(bundle.getString("DelOK"));
 			fr.close();
@@ -154,7 +154,8 @@ public class UserDB {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} return user;
-	} }
+		}
+		return user;
+	}
+}

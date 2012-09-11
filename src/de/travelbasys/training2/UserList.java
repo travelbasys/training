@@ -28,7 +28,7 @@ public class UserList {
 	}
 
 	public void init() {
-		// TODO Mache irgendwas
+		// TODO Mache irgendwas.
 
 	}
 }

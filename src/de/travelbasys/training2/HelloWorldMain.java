@@ -40,11 +40,11 @@ public class HelloWorldMain {
 		try {
 			config.load(new FileInputStream(CONFIG_FILENAME));
 		} catch (FileNotFoundException e1) {
-			// TODO Dokumentation Exit-Status.
+
 			System.err.println(ERR_FILENOTFOUND);
 			System.exit(EXIT_ERR_STATUS);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		}
 		String lang = config.getProperty(LANG_KEY, DEFAULT_LANGUAGE);

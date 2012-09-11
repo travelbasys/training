@@ -29,7 +29,7 @@ public class HelloWorldBusiness {
 	}
 
 	public void init() {
-		// TODO mache mich fertig!
+
 	}
 
 	/**

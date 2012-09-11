@@ -13,10 +13,11 @@ public class UserDelete {
 	// User Objekt aus Datenbank löschen.
 
 	public static void run() {
-		User user = null;
-		boolean delete = false;
-		int decision = 0;
+	
 		do {
+			User user = null;
+			boolean delete = false;
+			int decision = 0;
 			System.out.println(bundle.getString("UsernameShowPrompt"));
 
 			// Usernamen einlesen.
