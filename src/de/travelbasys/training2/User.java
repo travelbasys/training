@@ -32,7 +32,9 @@ public class User {
 	 * "]". Fertig.
 	 */
 	private static final String U = "\\s*User\\s*\\[\\s*name\\s*=\\s*(.+?)\\s*,\\s*age\\s*=\\s*(\\d+)\\s*\\]";
+	private static final String C = "(.+?);(\\d+)";
 	private static final Pattern USERPATTERN = Pattern.compile(U, Pattern.CASE_INSENSITIVE);
+	private static final Pattern USERPATTERNCSV = Pattern.compile(C, Pattern.CASE_INSENSITIVE);
 
 	/**
 	 * Erzeugt ein neues User Objekt mit dem angegebenen Namen und dem
@@ -159,6 +161,20 @@ public String toCSV() {
 		User user = null;
 
 		Matcher m = USERPATTERN.matcher(s);
+		if (m.matches()) {
+			user = new User(m.group(1), Integer.parseInt(m.group(2)));
+		} else {
+			// Falsche Syntax: kein User.
+			throw new IllegalArgumentException(bundle.getString("WrongUsrSyn")
+					+ s);
+		}
+
+		return user;
+	}
+
+	public static User parseCSV(String s) {
+		User user = null;
+		Matcher m = USERPATTERNCSV.matcher(s);
 		if (m.matches()) {
 			user = new User(m.group(1), Integer.parseInt(m.group(2)));
 		} else {

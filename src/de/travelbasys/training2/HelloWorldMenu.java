@@ -23,6 +23,8 @@ public class HelloWorldMenu {
 			out.println("4: " + bundle.getString("App4"));
 			out.println("5: " + bundle.getString("App5"));
 			out.println("6: " + bundle.getString("App6"));
+			out.println("7: " + bundle.getString("App7"));
+
 
 			// Liest die vom Benutzer getroffene Auswahl ein und führt die 
 			// entsprechende Applikation aus
@@ -51,6 +53,9 @@ public class HelloWorldMenu {
 					break;
 				case 6:
 					Export.run(args);
+					break;
+				case 7:
+					Import.run(args);
 					break;
 				default:
 					err.println(bundle.getString("ChooseErr"));
