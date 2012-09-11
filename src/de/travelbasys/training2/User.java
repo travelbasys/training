@@ -112,7 +112,10 @@ public class User {
 	public String toString() {
 		return "User [name=" + name + ", age=" + age + "]";
 	}
-
+public String toCSV() {
+		return name + ";" + age;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
