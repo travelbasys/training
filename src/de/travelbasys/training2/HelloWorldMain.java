@@ -67,7 +67,7 @@ public class HelloWorldMain {
 
 		HelloWorldBusiness b = new HelloWorldBusiness();
 		b.init();
-		HelloWorldUI ui = new HelloWorldUI();
+		UserCreate ui = new UserCreate();
 		ui.init(b);
 		UserList ul = new UserList();
 		ul.init();

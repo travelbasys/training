@@ -4,8 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -23,9 +21,8 @@ import java.util.Scanner;
  * 
  */
 
-public class HelloWorldUI {
+public class UserCreate {
 
-	private static final boolean APPEND = true;
 	private static final String FILE = "HelloWorld.txt";
 
 	/**
@@ -112,15 +109,7 @@ public class HelloWorldUI {
 	 */
 	private void run3() {
 		PrintStream out = System.out;
-
-		// (Intern) Lege das Datumsformat fest, welches die in HelloWorld
-		// vorgegebene Sprache (Locale) verwendet.
-		Calendar cal = Calendar.getInstance();
-		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.FULL,
-				DateFormat.MEDIUM);
-
-		// Benutze das obige Datumsformat für die aktuelle Zeit.
-		out.println(message + " " + df.format(cal.getTime()));
+		out.println(message + " " + HelloWorldBusiness.getDate());
 		run4();
 	}
 
@@ -135,7 +124,7 @@ public class HelloWorldUI {
 
 			// Erzeuge einen FileWriter, der ein existierendes File öffnet
 			// oder ein neues anlegt.
-			FileWriter fw = new FileWriter(FILE, APPEND);
+			FileWriter fw = new FileWriter(FILE, true);
 
 			// Erzeuge einen PrintWriter, der den Speicherort der Datei ausliest
 			// aus

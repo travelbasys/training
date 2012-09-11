@@ -1,5 +1,7 @@
 package de.travelbasys.training2;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 /**
@@ -13,6 +15,18 @@ public class HelloWorldBusiness {
 
 	String baseName = "resources.HelloWorld";
 	ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+
+	public static String getDate() {
+		
+		// (Intern) Lege das Datumsformat fest, welches die in HelloWorld
+		// vorgegebene Sprache (Locale) verwendet.
+		Calendar cal = Calendar.getInstance();
+		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.FULL,
+				DateFormat.MEDIUM);
+		// Benutze das obige Datumsformat für die aktuelle Zeit.
+
+		return df.format(cal.getTime());
+	}
 
 	public void init() {
 		// TODO mache mich fertig!

@@ -10,7 +10,7 @@ public class HelloWorldMenu {
 	static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 	private static Scanner in;
 
-	static void show(String[] args, HelloWorldUI UserCreate, UserList ul) {
+	static void show(String[] args, UserCreate UserCreate, UserList ul) {
 		PrintStream out = System.out;
 		PrintStream err = System.err;
 		do {
@@ -46,10 +46,10 @@ public class HelloWorldMenu {
 					UserList.run(args);
 					break;
 				default:
-					err.println(HelloWorldMain.bundle.getString("ChooseErr"));
+					err.println(bundle.getString("ChooseErr"));
 				}
 			} catch (NumberFormatException e) {
-				err.println(HelloWorldMain.bundle.getString("NumberErr"));
+				err.println(bundle.getString("NumberErr"));
 			}
 		} while (true);
 	}
