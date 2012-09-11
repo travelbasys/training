@@ -127,7 +127,6 @@ public class HelloWorldController extends AbstractController {
 		} catch (ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
-
 		view.updateUserComboBox(userList);
 	}
 }
