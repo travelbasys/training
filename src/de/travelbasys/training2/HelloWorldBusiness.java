@@ -14,7 +14,6 @@ public class HelloWorldBusiness {
 	String baseName = "resources.HelloWorld";
 	ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 
-
 	public void init() {
 		// TODO mache mich fertig!
 	}

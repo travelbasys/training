@@ -24,10 +24,10 @@ import java.util.Scanner;
  */
 
 public class HelloWorldUI {
-	
+
 	private static final boolean APPEND = true;
 	private static final String FILE = "HelloWorld.txt";
-	
+
 	/**
 	 * Bindet den Resourcen Ordner ein, in dem die Properties der verschiedenen
 	 * Sprachen liegen.
@@ -46,7 +46,6 @@ public class HelloWorldUI {
 	public String username = "";
 
 	private String message;
-	private static int counter = 0;
 	private Scanner in;
 	private Scanner in2;
 
@@ -75,10 +74,9 @@ public class HelloWorldUI {
 
 		username = username.trim();
 
-		if (username.isEmpty()){
+		if (username.isEmpty()) {
 			err.println(bundle.getString("EmptyFieldErr"));
-		}
-		else {
+		} else {
 			run2();
 		}
 	}
@@ -106,13 +104,6 @@ public class HelloWorldUI {
 		} catch (InputMismatchException e) {
 			out.println(bundle.getString("AgeNumberErr"));
 		}
-
-		// finally {
-		// if (age <= 0) {
-		// out.println(bundle.getString("AgeValid"));
-		// run2();
-		// }
-		// }
 		run3();
 	}
 
@@ -139,24 +130,6 @@ public class HelloWorldUI {
 
 		User user;
 		user = new User(username, age);
-		/*
-		 * User user2 = new User(username, age); (Experimentell) try {
-		 * 
-		 * System.out.println(user); System.out.println(user.getName());
-		 * System.out.println(user.getAge());
-		 * 
-		 * System.out.println(user2); System.out.println(user2.getName());
-		 * System.out.println(user2.getAge());
-		 * 
-		 * System.out.println( user.equals( user ) ); System.out.println(
-		 * user.equals( user2 ) ); System.out.println( user2.equals( user ) );
-		 * 
-		 * System.out.println(user.hashCode());
-		 * System.out.println(user2.hashCode());
-		 * 
-		 * } catch (IllegalArgumentException e1) { // TODO Auto-generated catch
-		 * block e1.printStackTrace(); }
-		 */
 
 		try {
 
@@ -199,33 +172,6 @@ public class HelloWorldUI {
 	 */
 	public void init(HelloWorldBusiness b) {
 		message = b.getMessage();
-		counter++;
-	}
-
-	/**
-	 * fragt den aktuellen Stand des Instanzenzählers ab.
-	 * 
-	 * @return der Wert des Instanzenzählers.
-	 */
-	public static int getCounter() {
-		return HelloWorldUI.counter;
-	}
-
-	/**
-	 * (Experimentell) Ändert den aktuellen Wert des Instanzenzählers.
-	 * 
-	 * @param i
-	 *            der neue Wert des Instanzenzählers; muss gerade sein!
-	 * 
-	 * @throws Exception
-	 *             wenn ein ungerader neuer Wert angegeben wird.
-	 */
-	public static void setCounter(int i) throws Exception {
-		if (i % 2 == 0) {
-			counter = i;
-		} else {
-			throw new Exception(bundle.getString("UnevenErr"));
-		}
 	}
 
 }

@@ -9,9 +9,8 @@ public class UserList {
 
 	private static final String FILE = "HelloWorld.txt";
 
-	
 	public static void run(String[] args) {
-		
+
 		try {
 			FileReader fr = new FileReader(FILE);
 			BufferedReader br = new BufferedReader(fr);
@@ -28,9 +27,8 @@ public class UserList {
 		}
 	}
 
-
 	public void init() {
 		// TODO Mache irgendwas
-		
+
 	}
 }

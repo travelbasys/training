@@ -25,17 +25,16 @@ public class HelloWorldMain {
 	 */
 	private static String baseName = "resources.HelloWorld";
 	static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-	
+
 	static Scanner in;
 
 	public static void main(String[] args) {
-		
+
 		/**
-		 * Lädt Konfiguration. Wenn die Konfiguration
-		 * nicht vorhanden ist wird ein Fehler ausgegeben.
-		 * Lädt sonst die Standard-Config.
+		 * Lädt Konfiguration. Wenn die Konfiguration nicht vorhanden ist wird
+		 * ein Fehler ausgegeben. Lädt sonst die Standard-Config.
 		 */
-		
+
 		Properties config = new Properties();
 
 		try {
@@ -56,17 +55,16 @@ public class HelloWorldMain {
 		} catch (Exception e) {
 			Locale.setDefault(new Locale(lang));
 		}
-		
-		
+
 		/**
 		 * 
-		 * HelloWorldUI (Schreiber) wird mit einer Message aus der Klasse HelloWorldBusiness initialisiert.
-		 * UserList (Leser) wird initalisiert.
-		 * Gibt aus ob der Schreiber oder Leser gestartet werden soll.
-		 * Nach erfolgreicher Auswahl, wird das entsprechende Programm gestartet.
+		 * HelloWorldUI (Schreiber) wird mit einer Message aus der Klasse
+		 * HelloWorldBusiness initialisiert. UserList (Leser) wird initalisiert.
+		 * Gibt aus ob der Schreiber oder Leser gestartet werden soll. Nach
+		 * erfolgreicher Auswahl, wird das entsprechende Programm gestartet.
 		 * Sonst: Fehler.
 		 */
-		
+
 		HelloWorldBusiness b = new HelloWorldBusiness();
 		b.init();
 		HelloWorldUI ui = new HelloWorldUI();
