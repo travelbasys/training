@@ -52,7 +52,7 @@ public class UserDelete {
 				System.out.println(bundle.getString("DelUserAbort"));
 
 			}
-			// Hier musst gelöscht werden bzw. Löschfunktion aufgerufen / gebaut
+			// Hier muss gelöscht werden bzw. Löschfunktion aufgerufen / gebaut
 			// werden, ma gucken.
 			if (user == null) {
 				// Errormeldung

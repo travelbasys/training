@@ -18,7 +18,7 @@ public class HelloWorldBusiness {
 
 	public static String getDate() {
 		
-		// (Intern) Lege das Datumsformat fest, welches die in HelloWorld
+		// Lege das Datumsformat fest, welches die in HelloWorldMain
 		// vorgegebene Sprache (Locale) verwendet.
 		Calendar cal = Calendar.getInstance();
 		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.FULL,

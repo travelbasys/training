@@ -10,7 +10,7 @@ public class UserList {
 	private static final String FILE = "HelloWorld.txt";
 
 	public static void run(String[] args) {
-
+		// Datei wird eingelesen und gibt alle User Objekte der Datenbank aus.
 		try {
 			FileReader fr = new FileReader(FILE);
 			BufferedReader br = new BufferedReader(fr);

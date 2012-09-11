@@ -13,6 +13,7 @@ public class HelloWorldMenu {
 	static void show(String[] args, UserCreate UserCreate, UserList ul) {
 		PrintStream out = System.out;
 		PrintStream err = System.err;
+		// Zeigt die verfügbaren Funktionen an und fordert zur Auswahl auf.
 		do {
 			out.println(bundle.getString("Choose"));
 			out.println("0: " + bundle.getString("ExitApp"));
@@ -22,13 +23,15 @@ public class HelloWorldMenu {
 			out.println("4: " + bundle.getString("App4"));
 			out.println("5: " + bundle.getString("App5"));
 
+			// Liest die vom Benutzer getroffene Auswahl ein und führt die 
+			// entsprechende Applikation aus
 			in = new Scanner(System.in);
 			int choice_str = in.nextInt();
 
 			try {
 				switch (choice_str) {
 				case 0:
-					System.out.println("<*>");
+					System.out.println(bundle.getString("End"));
 					System.exit(0);
 				case 1:
 					UserCreate.run();

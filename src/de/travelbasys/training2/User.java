@@ -141,30 +141,6 @@ public class User {
 		return true;
 	}
 
-	/*public static User parse1(String s) {
-
-		s = s.replace("User [", "");
-		s = s.replace("]", "");
-
-		// System.out.println(s);
-
-		String[] usr = s.split(",");
-
-		// System.out.println(usr[0]);
-		// System.out.println(usr[1]);
-
-		String[] name = usr[0].split("=");
-		String[] age = usr[1].split("=");
-
-		// System.out.println(age[1]);
-
-		User user = new User();
-
-		user.setName(name[1]);
-		user.setAge(Integer.parseInt(age[1]));
-
-		return user;
-	}*/
 
 	/**
 	 * Liest einen String ein und zerlegt ihn in Name und Alter-Gruppe.
