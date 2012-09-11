@@ -87,7 +87,6 @@ public class HelloWorldController extends AbstractController {
 		view.delButton.addActionListener(new AnonymousClass() {
 			public void actionPerformed(ActionEvent e) {
 				int index = view.userComboBox.getSelectedIndex();
-				System.out.println(index);
 				int choice = JOptionPane.showConfirmDialog(
 						view,
 						"Do you really want to delete user\n" + "\""

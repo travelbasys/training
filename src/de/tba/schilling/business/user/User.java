@@ -90,7 +90,7 @@ public class User implements Serializable {
 					field.set(user, new String(value[1]));
 				}
 			} catch (Exception e) {
-				System.out.println("Field '" + value[0] + "' doesn't exists!");
+				System.err.println("Field '" + value[0] + "' doesn't exists!");
 			}
 
 		}
