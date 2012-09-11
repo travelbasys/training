@@ -23,25 +23,29 @@ public class HelloWorldMenu {
 			out.println("5: " + bundle.getString("App5"));
 
 			in = new Scanner(System.in);
-			String choice_str = in.nextLine();
+			int choice_str = in.nextInt();
 
 			try {
-				choice_str = choice_str.trim();
-				int choice_int = Integer.parseInt(choice_str);
-				if (choice_int == 0) {
+				switch (choice_str) {
+				case 0:
 					System.out.println("<*>");
 					System.exit(0);
-				} else if (choice_int == 1) {
+				case 1:
 					UserCreate.run();
-				} else if (choice_int == 2) {
+					break;
+				case 2:
 					UserShow.run();
-				} else if (choice_int == 3) {
+					break;
+				case 3:
 					UserUpdate.run();
-				} else if (choice_int == 4) {
+					break;
+				case 4:
 					UserDelete.run();
-				} else if (choice_int == 5) {
+					break;
+				case 5:
 					UserList.run(args);
-				} else {
+					break;
+				default:
 					err.println(HelloWorldMain.bundle.getString("ChooseErr"));
 				}
 			} catch (NumberFormatException e) {

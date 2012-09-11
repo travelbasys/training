@@ -8,10 +8,14 @@ public class UserDelete {
 	private static String baseName = "resources.HelloWorld";
 	static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 
-	// Usernamen einlesen, durch UserDB prüfen, ob der Name in der Datenbank liegt.
+	// Usernamen einlesen, durch UserDB prüfen, ob der Name in der Datenbank
+	// liegt.
 	// User Objekt aus Datenbank löschen.
-	
+
 	public static void run() {
+		User user = null;
+		boolean delete = false;
+		int decision = 0;
 		do {
 			System.out.println(bundle.getString("UsernameShowPrompt"));
 
@@ -22,8 +26,34 @@ public class UserDelete {
 				return;
 
 			}
-			User user = UserDB.deleteUserByName(username);
-			//Hier musst gelöscht werden bzw. Löschfunktion aufgerufen / gebaut werden, ma gucken.
+			user = UserDB.findUserByName(username);
+			if (user != null) {
+				System.out.println(bundle.getString("UserFound") + user);
+				System.out.println(bundle.getString("DelUserQ"));
+				System.out.println("1: " + bundle.getString("Yes"));
+				System.out.println("2: " + bundle.getString("No"));
+				decision = in.nextInt();
+				switch (decision) {
+				case 1:
+					delete = true;
+					break;
+				case 2:
+					delete = false;
+					break;
+				default:
+					delete = false;
+					System.err.println(bundle.getString("ChooseErr"));
+					break;
+				}
+			}
+			if (delete) {
+				user = UserDB.deleteUserByName(username);
+			} else {
+				System.out.println(bundle.getString("DelUserAbort"));
+
+			}
+			// Hier musst gelöscht werden bzw. Löschfunktion aufgerufen / gebaut
+			// werden, ma gucken.
 			if (user == null) {
 				// Errormeldung
 				System.err.println(bundle.getString("NameNotFoundErr"));

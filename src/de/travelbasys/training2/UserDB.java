@@ -106,7 +106,15 @@ public class UserDB {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Überspringe den User in der Datenbank, dessen Namen mit dem Namen des
+	 * gegebenen User Objekts übereinstimmt.
+	 * Lösche dann die Datenbank und lege sie neu an 
+	 * in die der übersprungene User nicht gespeichert wird.
+	 * 
+	 * @param user
+	 *            ein User Objekt.
+	 */
 	public static User deleteUserByName(String username) {
 		User user = null;
 		try {
@@ -130,9 +138,9 @@ public class UserDB {
 				} else {
 					user = User.parse(s);
 				}
-				System.out.println(user);
 				pwtmp.println(user);
 			}
+			System.out.println(bundle.getString("DelOK"));
 			fr.close();
 			pw.close();
 			pwtmp.close();
