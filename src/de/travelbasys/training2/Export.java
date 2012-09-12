@@ -21,10 +21,6 @@ public class Export {
 			FileReader fr = new FileReader(FILE);
 			BufferedReader br = new BufferedReader(fr);
 
-			// wird zum schreiben in die txt Datei benötigt.
-			FileWriter fw = new FileWriter(FILE, true);
-			PrintWriter pw = new PrintWriter(fw);
-			
 			// wird zum schreiben in die csv Datei benötigt.
 			FileWriter fwcsv = new FileWriter(CSV);
 			PrintWriter pwcsv = new PrintWriter(fwcsv);
@@ -41,7 +37,6 @@ public class Export {
 			// Gibt bei erfolgreichem Import eine bestätigung aus
 			System.out.println(bundle.getString("ExportOK"));
 			fr.close();
-			pw.close();
 			pwcsv.close();
 		} catch (Exception e) {
 
