@@ -54,7 +54,7 @@ public class UserDB {
 	 *            ein User Objekt.
 	 */
 	public static void init(String db) {
-
+		FILE = db;
 		setUsers(new ArrayList<User>());
 		try {
 			FileReader fr = new FileReader(db);
@@ -67,7 +67,6 @@ public class UserDB {
 			fr.close();
 		} catch (FileNotFoundException e) {
 			System.err.println(bundle.getString("FileNotFound"));
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -75,9 +74,7 @@ public class UserDB {
 
 	public static void terminate() {
 		try {
-			if (FILE.isEmpty()) {
-				return;
-			}
+			
 			FileWriter fw = new FileWriter(FILE);
 			PrintWriter pw = new PrintWriter(fw);
 
