@@ -3,7 +3,11 @@ package de.travelbasys.training2;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
+/**
+ * Eine Klasse um die vorhanden Applikationen auf ihre Funktionalität zu testen
+ * @author tba
+ *
+ */
 public class UserTest {
 
 	@Test

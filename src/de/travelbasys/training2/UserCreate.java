@@ -1,9 +1,6 @@
 package de.travelbasys.training2;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.InputMismatchException;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -22,9 +19,6 @@ import java.util.Scanner;
  */
 
 public class UserCreate {
-
-	private static final String FILE = "HelloWorld.txt";
-
 	/**
 	 * Bindet den Resourcen Ordner ein, in dem die Properties der verschiedenen
 	 * Sprachen liegen.
@@ -116,37 +110,9 @@ public class UserCreate {
 	/**
 	 */
 	private void run4() {
-
 		User user;
 		user = new User(username, age);
-
-		try {
-
-			// Erzeuge einen FileWriter, der ein existierendes File öffnet
-			// oder ein neues anlegt.
-			FileWriter fw = new FileWriter(FILE, true);
-
-			// Erzeuge einen PrintWriter, der den Speicherort der Datei ausliest
-			// aus
-			// dem vorhandenen FileWriter ausliest und Daten an das File
-			// anhängt.
-			PrintWriter writer = new PrintWriter(fw);
-
-			// Lese Daten aus Properties und der User-Klasse aus.
-			// Anschließend schreibe in Datei.
-			writer.println(user);
-
-			// Sorge dafür, dass Ausgabe auf der Platte landet.
-			writer.flush();
-
-			// Beende den writer.
-			writer.close();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-
+		UserDB.getUsers().add(user);
 	}
 
 	/**

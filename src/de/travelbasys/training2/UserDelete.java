@@ -3,6 +3,13 @@ package de.travelbasys.training2;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+/**
+ * Diese Klasse ist für das löschen eines einzelnen Benutzers aus der
+ * HelloWorld.txt Datei zuständig.
+ * 
+ * @author tba
+ * 
+ */
 public class UserDelete {
 
 	private static String baseName = "resources.HelloWorld";
@@ -13,7 +20,7 @@ public class UserDelete {
 	// User Objekt aus Datenbank löschen.
 
 	public static void run() {
-	
+
 		do {
 			User user = null;
 			boolean delete = false;
@@ -48,7 +55,7 @@ public class UserDelete {
 				}
 			}
 			if (delete) {
-				user = UserDB.deleteUserByName(username);
+				UserDB.delUser(username);
 			} else {
 				System.out.println(bundle.getString("DelUserAbort"));
 

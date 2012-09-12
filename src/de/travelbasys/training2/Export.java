@@ -5,28 +5,36 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ResourceBundle;
-
+import java.util.Scanner;
+/**
+ * Diese Klasse wird für den Export der Daten aus der HelloWorld.txt
+ * Datei in die HelloWorld.csv Datei verwendet.
+ * @author tba
+ * */
 public class Export {
 
 	private static final String FILE = "HelloWorld.txt";
-	private static final String CSV = "HelloWorld.csv";
+	private static String CSV = null;
 
 	private static String baseName = "resources.HelloWorld";
 	static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 
 	public static void run(String[] args) {
+		
+		System.out.println(bundle.getString("ExportName"));
+		Scanner in = new Scanner(System.in);
+		CSV = in.nextLine();
+		if (CSV.isEmpty()) {
+			return;
+		}
 		try {
 
 			// Wird zum lesen aus der txt Datei benötigt.
 			FileReader fr = new FileReader(FILE);
 			BufferedReader br = new BufferedReader(fr);
 
-			// wird zum schreiben in die txt Datei benötigt.
-			FileWriter fw = new FileWriter(FILE, true);
-			PrintWriter pw = new PrintWriter(fw);
-			
 			// wird zum schreiben in die csv Datei benötigt.
-			FileWriter fwcsv = new FileWriter(CSV);
+			FileWriter fwcsv = new FileWriter(CSV + ".csv");
 			PrintWriter pwcsv = new PrintWriter(fwcsv);
 
 			String s;
@@ -41,11 +49,9 @@ public class Export {
 			// Gibt bei erfolgreichem Import eine bestätigung aus
 			System.out.println(bundle.getString("ExportOK"));
 			fr.close();
-			pw.close();
 			pwcsv.close();
 		} catch (Exception e) {
 
 		}
 	}
-
 }

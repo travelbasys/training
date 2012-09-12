@@ -2,7 +2,13 @@ package de.travelbasys.training2;
 
 import java.util.ResourceBundle;
 import java.util.Scanner;
-
+/**
+ * 
+ * Diese Klasse ändert das Alter eines anhand des Namens gesuchten User Objektes.
+ * 
+ * @author tba
+ *
+ */
 public class UserUpdate {
 
 	private static String baseName = "resources.HelloWorld";
@@ -39,9 +45,6 @@ public class UserUpdate {
 			int age = in.nextInt();
 
 			user.setAge(age);
-
-			// Datenbank wird mit neuem User upgedated.
-			UserDB.update(user);
 
 		} while (true);
 	}

@@ -3,7 +3,11 @@ package de.travelbasys.training2;
 import java.io.PrintStream;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-
+/**
+ * Diese Klasse gibt Das Hauptmenü aus und startet die Jeweiligen Funktionen.
+ * @author tba
+ *
+ */
 public class HelloWorldMenu {
 
 	private static String baseName = "resources.HelloWorld";
@@ -14,6 +18,7 @@ public class HelloWorldMenu {
 		PrintStream out = System.out;
 		PrintStream err = System.err;
 		// Zeigt die verfügbaren Funktionen an und fordert zur Auswahl auf.
+		out.println(bundle.getString("Welcome"));
 		do {
 			out.println(bundle.getString("Choose"));
 			out.println("0: " + bundle.getString("ExitApp"));
@@ -35,6 +40,7 @@ public class HelloWorldMenu {
 				switch (choice_str) {
 				case 0:
 					System.out.println(bundle.getString("End"));
+					UserDB.terminate();
 					System.exit(0);
 				case 1:
 					UserCreate.run();

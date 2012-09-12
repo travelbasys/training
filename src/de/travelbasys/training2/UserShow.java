@@ -2,7 +2,12 @@ package de.travelbasys.training2;
 
 import java.util.ResourceBundle;
 import java.util.Scanner;
-
+/**
+ * Diese Klasse wird für das anzeigen eines einzelnen Benutzers
+ * und dessen Alter verwendet.
+ * @author tba
+ *
+ */
 public class UserShow {
 
 	private static String baseName = "resources.HelloWorld";

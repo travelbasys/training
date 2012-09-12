@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.ResourceBundle;
 
 /**
- * Diese Klasse existiert.
+ * Diese Klasse ist für die Datumsformatierung in andere Sprachen zuständig.
  * 
  * @author tba
  * 
