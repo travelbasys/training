@@ -8,10 +8,9 @@ public class HelloWorld {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main( String[] args ) {
 		Controller ctrl = new HelloWorldController();
 		ctrl.init();
 		ctrl.start();
 	}
-
 }
