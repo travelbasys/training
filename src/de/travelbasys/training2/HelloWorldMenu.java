@@ -1,6 +1,5 @@
 package de.travelbasys.training2;
 
-import java.io.PrintStream;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 /**
@@ -15,21 +14,20 @@ public class HelloWorldMenu {
 	private static Scanner in;
 
 	static void show(String[] args, UserCreate UserCreate, UserList ul) {
-		PrintStream out = System.out;
-		PrintStream err = System.err;
+
 		// Zeigt die verfügbaren Funktionen an und fordert zur Auswahl auf.
-		out.println(bundle.getString("Welcome"));
+		Output.println(bundle.getString("Welcome"));
 		do {
-			out.println(bundle.getString("Choose"));
-			out.println("0: " + bundle.getString("ExitApp"));
-			out.println("1: " + bundle.getString("App1"));
-			out.println("2: " + bundle.getString("App2"));
-			out.println("3: " + bundle.getString("App3"));
-			out.println("4: " + bundle.getString("App4"));
-			out.println("5: " + bundle.getString("App5"));
-			out.println("6: " + bundle.getString("App6"));
-			out.println("7: " + bundle.getString("App7"));
-			out.println("8: " + bundle.getString("App8"));
+			Output.println(bundle.getString("Choose"));
+			Output.println("0: " + bundle.getString("ExitApp"));
+			Output.println("1: " + bundle.getString("App1"));
+			Output.println("2: " + bundle.getString("App2"));
+			Output.println("3: " + bundle.getString("App3"));
+			Output.println("4: " + bundle.getString("App4"));
+			Output.println("5: " + bundle.getString("App5"));
+			Output.println("6: " + bundle.getString("App6"));
+			Output.println("7: " + bundle.getString("App7"));
+			Output.println("8: " + bundle.getString("App8"));
 			// Liest die vom Benutzer getroffene Auswahl ein und führt die 
 			// entsprechende Applikation aus
 			in = new Scanner(System.in);
@@ -38,7 +36,7 @@ public class HelloWorldMenu {
 			try {
 				switch (choice_str) {
 				case 0:
-					System.out.println(bundle.getString("End"));
+					Output.println(bundle.getString("End"));
 					UserDB.terminate();
 					System.exit(0);
 				case 1:
@@ -66,10 +64,10 @@ public class HelloWorldMenu {
 					ChangeDB.run();
 					break;
 				default:
-					err.println(bundle.getString("ChooseErr"));
+					Output.err.println(bundle.getString("ChooseErr"));
 				}
 			} catch (NumberFormatException e) {
-				err.println(bundle.getString("NumberErr"));
+				Output.err.println(bundle.getString("NumberErr"));
 			}
 		} while (true);
 	}

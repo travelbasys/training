@@ -20,7 +20,7 @@ public class UserUpdate {
 	public static void run() {
 
 		do {
-			System.out.println(bundle.getString("UsernameShowPrompt"));
+			Output.println(bundle.getString("UsernameShowPrompt"));
 
 			// Usernamen einlesen.
 			Scanner in = new Scanner(System.in);
@@ -38,10 +38,10 @@ public class UserUpdate {
 			}
 
 			// Alten Wert zur Kontrolle ausgeben.
-			System.out.println("Alter Wert: " + user.getAge());
+			Output.println("Alter Wert: " + user.getAge());
 
 			// Nach neuem Wert fragen.
-			System.out.println("Geben Sie ein neues Alter ein: ");
+			Output.println("Geben Sie ein neues Alter ein: ");
 			int age = in.nextInt();
 
 			user.setAge(age);

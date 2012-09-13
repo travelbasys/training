@@ -107,10 +107,11 @@ public class User implements Serializable {
 	 */
 	public void setAge(int age) throws IllegalArgumentException {
 			if (age > 0 && age <= 150) {
-				this.age = age;
-			} else {
-				throw new IllegalArgumentException("Alter ungültig (1-150 erlaubt): " + age);
+				this.age = age;}
+			else{
+				Output.err.println(bundle.getString("NumberNotInRangeErr") + age);
 			}
+			
 	}
 
 	@Override

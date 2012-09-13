@@ -21,7 +21,7 @@ public class ChangeDB {
 		Properties config = new Properties();
 
 		Scanner in = new Scanner(System.in);
-		System.out.println(bundle.getString("ChangeDB"));
+		Output.println(bundle.getString("ChangeDB"));
 		String db = in.nextLine();
 		UserDB.terminate();
 		UserDB.init(db);

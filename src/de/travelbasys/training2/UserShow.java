@@ -16,7 +16,7 @@ public class UserShow {
 	public static void run() {
 
 		do {
-			System.out.println(bundle.getString("UsernameShowPrompt"));
+			Output.println(bundle.getString("UsernameShowPrompt"));
 
 			// Usernamen einlesen.
 			Scanner in = new Scanner(System.in);

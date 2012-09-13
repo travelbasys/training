@@ -20,7 +20,7 @@ public class Export {
 
 	public static void run(String[] args) {
 
-		System.out.println(bundle.getString("ExportName"));
+		Output.println(bundle.getString("ExportName"));
 		Scanner in = new Scanner(System.in);
 		CSV = in.nextLine();
 		if (CSV.isEmpty()) {
@@ -39,7 +39,7 @@ public class Export {
 				pwcsv.println(user.toCSV());
 			}
 			// Gibt bei erfolgreichem Import eine bestätigung aus
-			System.out.println(bundle.getString("ExportOK"));
+			Output.println(bundle.getString("ExportOK"));
 			pwcsv.close();
 		} catch (Exception e) {
 

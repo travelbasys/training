@@ -25,7 +25,7 @@ public class UserDelete {
 			User user = null;
 			boolean delete = false;
 			int decision = 0;
-			System.out.println(bundle.getString("UsernameShowPrompt"));
+			Output.println(bundle.getString("UsernameShowPrompt"));
 
 			// Usernamen einlesen.
 			Scanner in = new Scanner(System.in);
@@ -36,10 +36,10 @@ public class UserDelete {
 			}
 			user = UserDB.findUserByName(username);
 			if (user != null) {
-				System.out.println(bundle.getString("UserFound") + user);
-				System.out.println(bundle.getString("DelUserQ"));
-				System.out.println("1: " + bundle.getString("Yes"));
-				System.out.println("2: " + bundle.getString("No"));
+				Output.println(bundle.getString("UserFound") + user);
+				Output.println(bundle.getString("DelUserQ"));
+				Output.println("1: " + bundle.getString("Yes"));
+				Output.println("2: " + bundle.getString("No"));
 				decision = in.nextInt();
 				switch (decision) {
 				case 1:
@@ -57,7 +57,7 @@ public class UserDelete {
 			if (delete) {
 				UserDB.delUser(username);
 			} else {
-				System.out.println(bundle.getString("DelUserAbort"));
+				Output.println(bundle.getString("DelUserAbort"));
 
 			}
 			// Hier muss gelöscht werden bzw. Löschfunktion aufgerufen / gebaut

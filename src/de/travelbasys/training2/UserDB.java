@@ -36,11 +36,17 @@ public class UserDB {
 	public static User findUserByName(String username) {
 
 		// Wenn gefunden...
+		try{
 		for (User user : UserDB.getUsers()) {
 			if (user.getName().equals(username)) {
 				return user;
 			}
 		}
+		}catch(NullPointerException e){
+			setUsers(new ArrayList<User>());
+			findUserByName(username);
+		}
+		
 		return null;
 	}
 
@@ -64,8 +70,8 @@ public class UserDB {
 			@SuppressWarnings("unchecked")
 			List<User> user = (List<User>) ois.readObject();
 			try{
-			setUsers(new ArrayList<User>(user));
-			}catch(Exception e){
+				setUsers(new ArrayList<User>(user));
+			}catch(NullPointerException e){
 				setUsers(new ArrayList<User>());
 			}
 	        ois.close();

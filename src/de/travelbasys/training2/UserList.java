@@ -1,5 +1,7 @@
 package de.travelbasys.training2;
 
+import java.util.ArrayList;
+
 /**
  * Diese Klasse ist für die wiedergabe der aktuellen Daten aus der
  * HelloWorld.txt zuständig
@@ -11,9 +13,13 @@ public class UserList {
 
 	public static void run(String[] args) {
 		// Datei wird eingelesen und gibt alle User Objekte der Datenbank aus.
-
-		for (User user : UserDB.getUsers()) {
-			System.out.println(user);
+		try {
+			for (User user : UserDB.getUsers()) {
+				System.out.println(user);
+			}
+		} catch (NullPointerException e) {
+			UserDB.setUsers(new ArrayList<User>());
+			run(args);
 		}
 	}
 

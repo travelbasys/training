@@ -1,6 +1,5 @@
 package de.travelbasys.training2;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.MissingResourceException;
@@ -53,12 +52,11 @@ public class UserCreate {
 	 * Am Ende werden Name und Alter nach System.out ausgegeben.
 	 */
 	public void run() {
-		PrintStream out = System.out;
-		PrintStream err = System.err;
+
 		try {
-			out.println(bundle.getString("UsernamePrompt"));
+			Output.println(bundle.getString("UsernamePrompt"));
 		} catch (MissingResourceException e) {
-			err.println(e);
+			Output.err.println(e);
 		}
 
 		in = new Scanner(System.in);
@@ -67,7 +65,7 @@ public class UserCreate {
 		username = username.trim();
 
 		if (username.isEmpty()) {
-			err.println(bundle.getString("EmptyFieldErr"));
+			Output.err.println(bundle.getString("EmptyFieldErr"));
 		} else {
 			run2();
 		}
@@ -82,19 +80,16 @@ public class UserCreate {
 	 * eingegeben wird.
 	 */
 	private void run2() {
-		PrintStream out = Output.out;
-		PrintStream err = Output.err;
-
 		try {
-			out.println(bundle.getString("AgePrompt"));
+			Output.println(bundle.getString("AgePrompt"));
 		} catch (MissingResourceException f) {
-			err.println(f);
+			System.err.println(f);
 		}
 		try {
 			in2 = new Scanner(System.in);
 			age = in2.nextInt();
 		} catch (InputMismatchException e) {
-			out.println(bundle.getString("AgeNumberErr"));
+			Output.err.println(bundle.getString("NumberErr"));
 		}
 		run3();
 	}
@@ -103,8 +98,7 @@ public class UserCreate {
 	 * Gibt den aktuellen Namen und das Alter nach System.out aus.
 	 */
 	private void run3() {
-		PrintStream out = System.out;
-		out.println(message + " " + HelloWorldBusiness.getDate());
+		Output.println(message + " " + HelloWorldBusiness.getDate());
 		run4();
 	}
 

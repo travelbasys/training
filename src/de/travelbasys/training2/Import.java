@@ -20,7 +20,7 @@ public class Import {
 
 	public static void run(String[] args) {
 
-		System.out.println(bundle.getString("ImportName"));
+		Output.println(bundle.getString("ImportName"));
 		Scanner in = new Scanner(System.in);
 		CSV = in.nextLine();
 		if (CSV.isEmpty()) {
@@ -40,13 +40,13 @@ public class Import {
 			// Datei
 			br.readLine();
 			while ((s = br.readLine()) != null) {
-				System.out.println(s);
+				Output.println(s);
 				user = User.parseCSV(s);
 				UserDB.getUsers().add(user);
 			}
 
 			// Gibt bei erfolgreichem Import eine bestätigung aus
-			System.out.println(bundle.getString("ImportOK"));
+			Output.println(bundle.getString("ImportOK"));
 			fr.close();
 		} catch (Exception e) {
 
