@@ -17,11 +17,21 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = 904199503921232796L;
 	
-	private String name;
+	private String lastname;
+	private String firstname;
+	private String adress;
+	private String email;
+	private int userid;
 	private int age;
+	private int postalcode;
 
-	private static final String DEFAULT_NAME = "Bill";
-	private static final int DEFAULT_AGE = 15;
+	private static final String DEFAULT_LASTNAME = "default";
+	private static final String DEFAULT_FIRSTNAME = "default";
+	private static final String DEFAULT_ADRESS = "default";
+	private static final String DEFAULT_EMAIL = "default";
+	private static final int DEFAULT_AGE = 1;
+	private static final int DEFAULT_POSTALCODE = 1;
+
 	private static String baseName = "resources.HelloWorld";
 	private static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 
@@ -33,25 +43,44 @@ public class User implements Serializable {
 	 * dann Spaces, dann Kommata, dann Spaces, dann age, dann Spaces, dann "=",
 	 * dann Spaces, dann Gruppe aus mindestens einer Ziffer, dann Spaces, dann
 	 * "]". Fertig.
-	 */
-	private static final String U = "\\s*User\\s*\\[\\s*name\\s*=\\s*(.+?)\\s*,\\s*age\\s*=\\s*(\\d+)\\s*\\]";
-	private static final String C = "(.+?);(\\d+)";
+	 *///		user = new User(userid, lastname, firstname, age, adress, postalcode, email);
+	private static final String U = "\\s*User[(\\d+)]\\s*\\[\\s*lastname\\s*=\\s*(.+?)\\s*,\\s*firstname\\s*=\\s*(.+?)\\s*,\\s*age\\s*=\\s*(\\d+)\\s*\\,\\s*adress\\s*=\\s*(.+?)\\s*\\,\\s*postalcode\\s*=\\s*(\\d+)\\s*\\,\\s*email\\s*=\\s*(.+?)\\s*\\]";
+	private static final String C = "(\\d+);(.+?);(.+?);(\\d+);(.+?);(\\d+);(.+?)";
 	private static final Pattern USERPATTERN = Pattern.compile(U, Pattern.CASE_INSENSITIVE);
 	private static final Pattern USERPATTERNCSV = Pattern.compile(C, Pattern.CASE_INSENSITIVE);
 
 	/**
 	 * Erzeugt ein neues User Objekt mit dem angegebenen Namen und dem
 	 * angegebenen Alter.
+	 * @param userid 
 	 * 
 	 * @param name
 	 *            Name des Users.
+	 * @param firstname 
 	 * @param age
 	 *            Alter des Users.
+	 * @param email 
+	 * @param postalcode 
+	 * @param adress 
 	 * @throws Exception
 	 */
-	public User(String name, int age) throws IllegalArgumentException {
-		this.name = name;
+	public User(int userid, String lastname, String firstname, int age, String adress, int postalcode, String email) throws IllegalArgumentException {
+		this.userid = userid;
+		this.lastname = lastname;
+		this.firstname = firstname;
 		setAge(age);
+		this.adress = adress;
+		setPostalcode(postalcode);
+		this.email = email;		
+	}
+
+	private void setPostalcode(int postalcode) {
+		if (postalcode > 0 && postalcode <= 150) {
+			this.postalcode = postalcode;}
+		else{
+			Output.err.println(bundle.getString("PostalNotInRangeErr") + age);
+		}
+		
 	}
 
 	/**
@@ -62,26 +91,23 @@ public class User implements Serializable {
 	 *            Name des Users.
 	 * @throws IllegalArgumentException
 	 */
-	public User(String name) throws IllegalArgumentException {
-		this(name, DEFAULT_AGE);
+	public User(int userid) throws IllegalArgumentException {
+		this(userid, DEFAULT_LASTNAME, DEFAULT_FIRSTNAME, DEFAULT_AGE, DEFAULT_ADRESS, DEFAULT_POSTALCODE, DEFAULT_EMAIL);
 	}
 
 	/**
-	 * Erzeugt ein neues User Objekt mit einem default Namen (derzeit "Bill")
+	 * Erzeugt ein neues User Objekt mit einem default Namen
 	 * und dem default Alter.
 	 * 
 	 * @throws IllegalArgumentException
 	 */
-	public User() throws IllegalArgumentException {
-		this(DEFAULT_NAME);
-	}
-
+	
 	/**
 	 * 
 	 * @return
 	 */
 	public String getName() {
-		return name;
+		return lastname;
 	}
 
 	/**
@@ -89,7 +115,7 @@ public class User implements Serializable {
 	 * @param name
 	 */
 	public void setName(String name) {
-		this.name = name;
+		this.lastname = name;
 	}
 
 	/**
@@ -116,10 +142,10 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", age=" + age + "]";
+		return "User[" + userid + "] " + "[lastname=" + lastname + ", firstname=" + firstname + ", age=" + age + ", adress=" + adress + ", postalcode=" + postalcode + ", email=" + email + "]";
 	}
 public String toCSV() {
-		return name + ";" + age;
+		return lastname + ";" + age;
 	}
 	
 	@Override
@@ -127,7 +153,7 @@ public String toCSV() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + age;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
 		return result;
 	}
 
@@ -142,10 +168,10 @@ public String toCSV() {
 		User other = (User) obj;
 		if (age != other.age)
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (lastname == null) {
+			if (other.lastname != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!lastname.equals(other.lastname))
 			return false;
 		return true;
 	}
@@ -166,7 +192,7 @@ public String toCSV() {
 
 		Matcher m = USERPATTERN.matcher(s);
 		if (m.matches()) {
-			user = new User(m.group(1), Integer.parseInt(m.group(2)));
+			user = new User(Integer.parseInt(m.group(1)), m.group(2), m.group(3), Integer.parseInt(m.group(4)), m.group(5), Integer.parseInt(m.group(6)), m.group(7));
 		} else {
 			// Falsche Syntax: kein User.
 			throw new IllegalArgumentException(bundle.getString("WrongUsrSyn")
@@ -180,7 +206,7 @@ public String toCSV() {
 		User user = null;
 		Matcher m = USERPATTERNCSV.matcher(s);
 		if (m.matches()) {
-			user = new User(m.group(1), Integer.parseInt(m.group(2)));
+			user = new User(Integer.parseInt(m.group(1)), m.group(2), m.group(3), Integer.parseInt(m.group(4)), m.group(5), Integer.parseInt(m.group(6)), m.group(7));
 		} else {
 			// Falsche Syntax: kein User.
 			throw new IllegalArgumentException(bundle.getString("WrongUsrSyn")
