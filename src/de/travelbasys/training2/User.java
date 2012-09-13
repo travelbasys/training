@@ -3,6 +3,7 @@
  */
 package de.travelbasys.training2;
 
+import java.io.Serializable;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,8 +13,10 @@ import java.util.regex.Pattern;
  * 
  * @author tba
  */
-public class User {
+public class User implements Serializable {
 
+	private static final long serialVersionUID = 904199503921232796L;
+	
 	private String name;
 	private int age;
 

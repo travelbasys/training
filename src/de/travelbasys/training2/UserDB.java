@@ -1,10 +1,11 @@
 package de.travelbasys.training2;
 
-import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -55,37 +56,44 @@ public class UserDB {
 	 */
 	public static void init(String db) {
 		FILE = db;
-		setUsers(new ArrayList<User>());
+	       FileInputStream fis;
 		try {
-			FileReader fr = new FileReader(db);
-			BufferedReader br = new BufferedReader(fr);
-			String s;
-			while ((s = br.readLine()) != null) {
-				User user = User.parse(s);
-				getUsers().add(user);
+			fis = new FileInputStream(FILE);
+	        ObjectInputStream ois = new ObjectInputStream(fis);
+
+			@SuppressWarnings("unchecked")
+			List<User> user = (List<User>) ois.readObject();
+			try{
+			setUsers(new ArrayList<User>(user));
+			}catch(Exception e){
+				setUsers(new ArrayList<User>());
 			}
-			fr.close();
-		} catch (FileNotFoundException e) {
+	        ois.close();
+		} catch (FileNotFoundException e1) {
 			System.err.println(bundle.getString("FileNotFound"));
-		} catch (Exception e) {
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void terminate() {
+		
+        FileOutputStream fos;
 		try {
-			
-			FileWriter fw = new FileWriter(FILE);
-			PrintWriter pw = new PrintWriter(fw);
-
-			for (User user : getUsers()) {
-				pw.println(user);
-			}
-			pw.close();
-
-		} catch (Exception e) {
-
+			fos = new FileOutputStream(FILE);
+	        ObjectOutputStream oos = new ObjectOutputStream(fos);
+	        oos.writeObject(users);
+	        UserDB.getUsers().removeAll(users);
+	        oos.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		
+		
 	}
 
 	public static List<User> getUsers() {

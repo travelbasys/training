@@ -1,6 +1,7 @@
 package de.travelbasys.training2;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -81,8 +82,8 @@ public class UserCreate {
 	 * eingegeben wird.
 	 */
 	private void run2() {
-		PrintStream out = System.out;
-		PrintStream err = System.err;
+		PrintStream out = Output.out;
+		PrintStream err = Output.err;
 
 		try {
 			out.println(bundle.getString("AgePrompt"));
@@ -112,7 +113,12 @@ public class UserCreate {
 	private void run4() {
 		User user;
 		user = new User(username, age);
-		UserDB.getUsers().add(user);
+		try {
+			UserDB.getUsers().add(user);
+		} catch (NullPointerException e) {
+			UserDB.setUsers(new ArrayList<User>());
+			UserDB.getUsers().add(user);
+		}
 	}
 
 	/**
