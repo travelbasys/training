@@ -12,34 +12,34 @@ public class UserTest {
 
 	@Test
 	public void testGetName() {
-		User u = new User(0, "Bob", null, 15, null, 0, null);
+		User u = new User(0, "Bob", null, 15, null, null, null);
 		assertNotNull(u);
-		assertEquals("Bob", u.getName());
+		assertEquals("Bob", u.getLastName());
 	}
 
 	@Test
 	public void testGetAge() {
-		User u = new User(0, "Bob", null, 15, null, 0, null);
+		User u = new User(0, "Bob", null, 15, null, null, null);
 		assertEquals(15, u.getAge());
 	}
 
 	@Test
 	public void testGetAgeDefault() {
-		User u = new User(0, "Bob", null, 0, null, 0, null);
+		User u = new User(0, "Bob", null, 0, null, null, null);
 		assertEquals(15, u.getAge());
 	}
 
 	@Test
 	public void testGetNameDefault() {
 		User u = new User(0);
-		assertEquals("Bill", u.getName());
+		assertEquals("Bill", u.getLastName());
 	}
 
 	@Test
-	public void testSetName() {
+	public void testSetFirstName() {
 		User u = new User(0);
-		u.setName("Joe");
-		assertEquals("Joe", u.getName());
+		u.setFirstName("Joe");
+		assertEquals("Joe", u.getLastName());
 	}
 
 	@Test
@@ -63,8 +63,8 @@ public class UserTest {
 
 	@Test
 	public void testEquals() {
-		User bill1 = new User(0, "Bill", null, 15, null, 0, null);
-		User bill2 = new User(0, "Bill", null, 15, null, 0, null);
+		User bill1 = new User(0, "Bill", null, 15, null, null, null);
+		User bill2 = new User(0, "Bill", null, 15, null, null, null);
 		assertTrue(bill1.equals(bill2));
 		// assertEquals(bill1, bill2);
 	}

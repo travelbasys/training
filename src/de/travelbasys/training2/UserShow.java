@@ -26,7 +26,7 @@ public class UserShow {
 
 			}
 
-			User user = UserDB.findUserByName(username);
+			User user = UserDB.findUserByLastName(username);
 			if (user == null) {
 				// Errormeldung
 				System.err.println(bundle.getString("NameNotFoundErr"));

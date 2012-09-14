@@ -47,7 +47,7 @@ public class UserCreate {
 	private int userid;
 	private String firstname = "";
 	private String adress = "";
-	private int postalcode = 0;
+	private String postalcode = "";
 	private String email = "";
 	private String message;
 	private Scanner in = new Scanner(System.in);;
@@ -155,7 +155,7 @@ public class UserCreate {
 			System.err.println(f);
 		}
 		try {
-			postalcode = in2.nextInt();
+			postalcode = in.nextLine();
 		} catch (InputMismatchException e) {
 			Output.err.println(bundle.getString("NumberErr"));
 		}
@@ -192,30 +192,21 @@ public class UserCreate {
 	/**
 	 */
 	private void run8() {
-		//UserID steht in Konflikt mit Löschen
-		//Es wird die Liste zur Berechnung der Anzahl der neuen ID herangezogen
-		//Wird ein Datensatz gelöscht bekommt der User die gleiche ID wie der letzte User
-		//Es muss eine Wenn/Dann Bedingung eingeführt werden, dass wenn die letzte ID in der Liste
-		//der UserID entspricht, die ID um eins erhöht wird.
 		userid = 0;
 		try {
-			for (@SuppressWarnings("unused")
-			User user : UserDB.getUsers()) {
-				userid = userid +1;
+			for (User user : UserDB.getUsers()) {
+				userid = user.getUserID();
 			}
+			userid++;
+			User user;
+			user = new User(userid, lastname, firstname, age, adress,
+					postalcode, email);
+			UserDB.getUsers().add(user);
 		} catch (NullPointerException e) {
 			UserDB.setUsers(new ArrayList<User>());
 			run8();
 		}
-		User user;
-		user = new User(userid, lastname, firstname, age, adress, postalcode,
-				email);
-		try {
-			UserDB.getUsers().add(user);
-		} catch (NullPointerException e) {
-			UserDB.setUsers(new ArrayList<User>());
-			UserDB.getUsers().add(user);
-		}
+
 	}
 
 	/**

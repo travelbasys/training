@@ -34,7 +34,7 @@ public class UserDelete {
 				return;
 
 			}
-			user = UserDB.findUserByName(username);
+			user = UserDB.findUserByLastName(username);
 			if (user != null) {
 				Output.println(bundle.getString("UserFound") + user);
 				Output.println(bundle.getString("DelUserQ"));
