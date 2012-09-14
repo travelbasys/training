@@ -1,4 +1,4 @@
-package de.travelbasys.training.userlist;
+package de.travelbasys.training2.userlist;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
