@@ -34,7 +34,7 @@ public class CustomerDelete {
 				return;
 			}
 			user = CustomerDAO.findUserByID(customerid);
-			if (user != null) {
+			if (!user.isEmpty()) {
 				Console.println(Config.BUNDLE.getString("UserFound") + user);
 				Console.println(Config.BUNDLE.getString("DelUserQ"));
 				Console.println("1: " + Config.BUNDLE.getString("Yes"));
@@ -55,17 +55,14 @@ public class CustomerDelete {
 			}
 			if (delete) {
 				CustomerDAO.delUser(customerid);
-			} else {
+			}
+			else if(user.isEmpty()){
+				Console.printerr(Config.BUNDLE.getString("IDNotFoundErr"));
+				Console.println(Config.BUNDLE.getString("DelUserAbort"));
+				}
+			else {
 				Console.println(Config.BUNDLE.getString("DelUserAbort"));
 
-			}
-			// Hier muss gelöscht werden bzw. Löschfunktion aufgerufen / gebaut
-			// werden, ma gucken.
-			if (user == null) {
-				// Errormeldung
-				System.err.println(Config.BUNDLE.getString("NameNotFoundErr"));
-				// Schleife fortsetzen.
-				continue;
 			}
 
 		} while (true);

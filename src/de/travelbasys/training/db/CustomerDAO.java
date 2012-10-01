@@ -8,10 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.util.Config;
 
 /**
  * Diese Klasse ist für die verarbeitung diverser Daten aus den Applikationen
@@ -23,9 +21,6 @@ import de.travelbasys.training.util.Config;
 public class CustomerDAO {
 
 	private static String FILE;
-
-	private static ResourceBundle bundle = Config.BUNDLE;
-
 	private static List<Customer> users = null;
 	private static List<Customer> found_customers = null;
 
@@ -80,7 +75,7 @@ public class CustomerDAO {
 			}
 			ois.close();
 		} catch (FileNotFoundException e1) {
-			System.err.println(bundle.getString("FileNotFound"));
+			System.err.println("File not found");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -147,5 +142,71 @@ public class CustomerDAO {
 		}
 
 		return null;
+	}
+
+	public static void setSingleUserFirstname(int customerid, String firstname) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setFirstName(firstname);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public static void setSingleUserEmail(int customerid, String email) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setEmail(email);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public static void setSingleUserLastname(int customerid, String lastname) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setLastName(lastname);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public static void setSingleUserAge(int customerid, int age) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setAge(age);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public static void setSingleUserAdress(int customerid, String adress) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setAdress(adress);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public static void setSingleUserPostalcode(int customerid, String postalcode) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setPostalcode(postalcode);
+				}
+			}
+		} catch (Exception e) {
+		}
 	}
 }

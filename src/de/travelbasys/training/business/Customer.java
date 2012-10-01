@@ -7,8 +7,6 @@ import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.travelbasys.training.util.Console;
-
 /**
  * Die User Klasse repräsentiert einen Benutzer der Anwendung.
  * 
@@ -76,20 +74,21 @@ public class Customer implements Serializable {
 			String adress, String postalcode, String email)
 			throws IllegalArgumentException {
 		this.userid = userid;
-		this.lastname = lastname;
-		this.firstname = firstname;
+		setLastName(lastname);
+		setFirstName(firstname);
 		setAge(age);
-		this.adress = adress;
+		setAdress(adress);
 		setPostalcode(postalcode);
-		this.email = email;
+		setEmail(email);
 	}
 
-	private void setPostalcode(String postalcode) {
-		
-		if ((Integer.parseInt(postalcode) > 0 && postalcode.length() == 5 )) {
+	public void setPostalcode(String postalcode) {
+
+		if ((Integer.parseInt(postalcode) > 0 && postalcode.length() == 5)) {
 			this.postalcode = postalcode;
+			System.out.println("Postalcode accepted");
 		} else {
-			Console.err.println( Customer.POSTAL_CODE_ERROR + postalcode);
+			System.err.println(Customer.POSTAL_CODE_ERROR + postalcode);
 		}
 
 	}
@@ -128,22 +127,24 @@ public class Customer implements Serializable {
 	 */
 	public void setLastName(String lastname) {
 		this.lastname = lastname;
+		System.out.println("Lastname accepted");
 	}
 
 	public void setFirstName(String firstname) {
 		this.firstname = firstname;
+		System.out.println("Firstname accepted");
 	}
-	
+
 	public void setAdress(String adress) {
 		this.adress = adress;
+		System.out.println("Adress accepted");
 	}
-	
+
 	public void setEmail(String email) {
 		this.email = email;
+		System.out.println("Email accepted");
 	}
-	
-	
-	
+
 	public int getUserID() {
 		return userid;
 	}
@@ -163,8 +164,6 @@ public class Customer implements Serializable {
 	public String getEmail() {
 		return email;
 	}
-	
-	
 
 	/**
 	 * 
@@ -182,8 +181,9 @@ public class Customer implements Serializable {
 	public void setAge(int age) throws IllegalArgumentException {
 		if (age > 0 && age <= 150) {
 			this.age = age;
+			System.out.println("Age accepted");
 		} else {
-			Console.err.println( Customer.AGE_ERROR + age);
+			System.err.println(Customer.AGE_ERROR + age);
 		}
 
 	}
@@ -250,7 +250,7 @@ public class Customer implements Serializable {
 					m.group(6), m.group(7));
 		} else {
 			// Falsche Syntax: kein User.
-			throw new IllegalArgumentException( Customer.WRONG_SYNTAX + s);
+			throw new IllegalArgumentException(Customer.WRONG_SYNTAX + s);
 		}
 
 		return user;
@@ -265,7 +265,7 @@ public class Customer implements Serializable {
 					m.group(6), m.group(7));
 		} else {
 			// Falsche Syntax: kein User.
-			throw new IllegalArgumentException( Customer.WRONG_SYNTAX + s);
+			throw new IllegalArgumentException(Customer.WRONG_SYNTAX + s);
 		}
 
 		return user;

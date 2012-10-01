@@ -1,5 +1,6 @@
 package de.travelbasys.training.dialog.menu;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import de.travelbasys.training.db.ChangeDB;
@@ -84,7 +85,10 @@ public class MainMenu {
 				}
 			} catch (NumberFormatException e) {
 				Console.printerr(Config.BUNDLE.getString("NumberErr"));
+			} catch (InputMismatchException e) {
+				Console.printerr(Config.BUNDLE.getString("NumberErr"));
 			}
+
 		} while (true);
 	}
 
