@@ -34,7 +34,7 @@ public class Export {
 
 			// gibt die vorhandenen Daten aus und formatiert sie für die csv
 			// Datei
-			pwcsv.println("Name;Age");
+			pwcsv.println("UserID;LastName;FirstName;Age;Adress;Postalcode;eMail");
 			for (Customer user : CustomerDAO.getUsers()) {
 				System.out.println(user);
 				pwcsv.println(user.toCSV());

@@ -197,7 +197,7 @@ public class Customer implements Serializable {
 	}
 
 	public String toCSV() {
-		return lastname + ";" + age;
+		return userid + ";" + lastname + ";" + firstname + ";" + age + ";" + adress + ";" + postalcode + ";" + email;
 	}
 
 	@Override
