@@ -6,17 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Console;
 
 public class ChangeDB {
-	private static String baseName = "resources.HelloWorld";
-	private static final String DATABASE_KEY = "database";
-	static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-	
+	private static final String DATABASE_KEY = "database";	
 	private static File ini = new File(Config.CONFIG_FILENAME);
 
 	public static void run() {
@@ -24,7 +20,7 @@ public class ChangeDB {
 		Properties config = new Properties();
 
 		Scanner in = new Scanner(System.in);
-		Console.println(bundle.getString("ChangeDB"));
+		Console.println(Config.BUNDLE.getString("ChangeDB"));
 		String db = in.nextLine();
 		CustomerDAO.terminate();
 		CustomerDAO.init(db);
@@ -34,11 +30,25 @@ public class ChangeDB {
 			config.setProperty(DATABASE_KEY, db);
 			config.store(new FileOutputStream(ini), "Travelbasys User Manager - Properties");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
+		}
+		public static void run2() {
+
+			Scanner in = new Scanner(System.in);
+			Console.println(Config.BUNDLE.getString("ChangeDB"));
+			String db = in.nextLine();
+			db = db.trim();
+			if (!db.isEmpty()){
+			CustomerDAO.terminate();
+			CustomerDAO.init(db);
+			}
+			else throw new IllegalArgumentException();
+			}
+			
 	}
-}
+

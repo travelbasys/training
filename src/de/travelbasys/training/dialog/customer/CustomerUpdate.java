@@ -48,7 +48,7 @@ public class CustomerUpdate {
 		Console.println(user);
 		do {
 			Console.println(Config.BUNDLE.getString("Choose"));
-			Console.println("0: " + Config.BUNDLE.getString("ExitApp"));
+			Console.println("0: " + Config.BUNDLE.getString("Cancel"));
 			Console.println("1: " + Config.BUNDLE.getString("Update1"));
 			Console.println("2: " + Config.BUNDLE.getString("Update2"));
 			Console.println("3: " + Config.BUNDLE.getString("Update3"));

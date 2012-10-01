@@ -10,6 +10,7 @@ import de.travelbasys.training.dialog.customer.CustomerDelete;
 import de.travelbasys.training.dialog.customer.CustomerList;
 import de.travelbasys.training.dialog.customer.CustomerShow;
 import de.travelbasys.training.dialog.customer.CustomerUpdate;
+import de.travelbasys.training.dialog.other.ChangeParam;
 import de.travelbasys.training.dialog.other.Export;
 import de.travelbasys.training.dialog.other.Import;
 import de.travelbasys.training.util.Config;
@@ -27,7 +28,6 @@ public class MainMenu {
 
 	public static void show(String[] args, CustomerCreate UserCreate,
 			CustomerList ul) {
-
 		// Zeigt die verfügbaren Funktionen an und fordert zur Auswahl auf.
 		Console.println(Config.BUNDLE.getString("Welcome"));
 		do {
@@ -42,6 +42,7 @@ public class MainMenu {
 			Console.println("6: " + Config.BUNDLE.getString("App6"));
 			Console.println("7: " + Config.BUNDLE.getString("App7"));
 			Console.println("8: " + Config.BUNDLE.getString("App8"));
+			Console.println("9: " + Config.BUNDLE.getString("App9"));
 			// Liest die vom Benutzer getroffene Auswahl ein und führt die
 			// entsprechende Applikation aus
 			in = new Scanner(System.in);
@@ -79,6 +80,9 @@ public class MainMenu {
 					break;
 				case 8:
 					ChangeDB.run();
+					break;
+				case 9:
+					ChangeParam.run();
 					break;
 				default:
 					Console.printerr(Config.BUNDLE.getString("ChooseErr"));
