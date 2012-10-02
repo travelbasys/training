@@ -1,6 +1,5 @@
 package de.travelbasys.training.dialog.menu;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import de.travelbasys.training.db.ChangeDB;
@@ -27,6 +26,7 @@ public class MainMenu {
 	private static Scanner in;
 
 	public static void show() {
+		in = new Scanner(System.in);
 		// Zeigt die verfügbaren Funktionen an und fordert zur Auswahl auf.
 		do {
 			Console.println(Config.BUNDLE.getString("Choose"));
@@ -43,10 +43,8 @@ public class MainMenu {
 			Console.println("9: " + Config.BUNDLE.getString("App9"));
 			// Liest die vom Benutzer getroffene Auswahl ein und führt die
 			// entsprechende Applikation aus
-			in = new Scanner(System.in);
-			int choice_str = in.nextInt();
-
 			try {
+				int choice_str = in.nextInt();
 				switch (choice_str) {
 				case 0:
 					return;
@@ -84,13 +82,12 @@ public class MainMenu {
 					break;
 				default:
 					Console.printerr(Config.BUNDLE.getString("ChooseErr"));
+					break;
 				}
-			} catch (NumberFormatException e) {
+			} catch (Exception e) {
 				Console.printerr(Config.BUNDLE.getString("NumberErr"));
-			} catch (InputMismatchException e) {
-				Console.printerr(Config.BUNDLE.getString("NumberErr"));
+				in.next();
 			}
-
 		} while (true);
 	}
 

@@ -21,12 +21,13 @@ public class Export {
 	private static String CSV = null;
 
 	public static void run() {
+		do{
 		Console.println(Config.BUNDLE.getString("Choose"));
 		Console.println("0: " + Config.BUNDLE.getString("Back"));
 		Console.println("1: " + Config.BUNDLE.getString("Export1"));
 		Console.println("2: " + Config.BUNDLE.getString("Export2"));
-		int choice_str = Console.nextInt();
 		try {
+			int choice_str = Console.nextInt();
 			switch (choice_str) {
 			case 0:
 				return;
@@ -65,9 +66,12 @@ public class Export {
 			}
 		} catch (NumberFormatException e) {
 			Console.printerr(Config.BUNDLE.getString("NumberErr"));
+			continue;
 		} catch (InputMismatchException e) {
 			Console.printerr(Config.BUNDLE.getString("NumberErr"));
+			continue;
 		}
+	}while(true);
 
 	}
 }

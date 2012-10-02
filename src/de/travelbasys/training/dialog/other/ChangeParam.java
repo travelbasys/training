@@ -14,25 +14,27 @@ public class ChangeParam {
 			Console.println("0: " + Config.BUNDLE.getString("Back"));
 			Console.println("1: " + Config.BUNDLE.getString("Param1"));
 			Console.println("2: " + Config.BUNDLE.getString("Param2"));
-			int choice_str = Console.nextInt();
 			try {
+				int choice_str = Console.nextInt();
 				switch (choice_str) {
 				case 0:
 					return;
 				case 1:
 					ChangeLang.run();
-					break;
+					return;
 				case 2:
 					ChangeDB.run2();
-					break;
+					return;
 				default:
 					Console.printerr(Config.BUNDLE.getString("ChooseErr"));
 					break;
 				}
 			} catch (NumberFormatException e) {
 				Console.printerr(Config.BUNDLE.getString("NumberErr"));
+				continue;
 			} catch (InputMismatchException e) {
 				Console.printerr(Config.BUNDLE.getString("NumberErr"));
+				continue;
 			}
 
 		} while (true);

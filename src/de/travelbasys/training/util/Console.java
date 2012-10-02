@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 public class Console {
 	public static final PrintStream err = System.err;
-	private static Scanner SCANNER_STR = new Scanner(System.in);
-	private static Scanner SCANNER_NUB = new Scanner(System.in);
 
 	public static void println(Object obj) {
 		System.out.println(obj);
@@ -26,10 +24,12 @@ public class Console {
 	}
 
 	public static String nextLine() {
+		Scanner SCANNER_STR = new Scanner(System.in);
 		return SCANNER_STR.nextLine();
 	}
 
 	public static int nextInt() {
+		Scanner SCANNER_NUB = new Scanner(System.in);
 		return SCANNER_NUB.nextInt();
 	}
 }

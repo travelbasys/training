@@ -21,12 +21,13 @@ public class Import {
 	private static String CSV = null;
 
 	public static void run() {
+		do{
 		Console.println(Config.BUNDLE.getString("Choose"));
 		Console.println("0: " + Config.BUNDLE.getString("Back"));
 		Console.println("1: " + Config.BUNDLE.getString("Import1"));
 		Console.println("2: " + Config.BUNDLE.getString("Import2"));
-		int choice_str = Console.nextInt();
 		try {
+			int choice_str = Console.nextInt();
 			switch (choice_str) {
 			case 0:
 				return;
@@ -74,7 +75,7 @@ public class Import {
 		} catch (InputMismatchException e) {
 			Console.printerr(Config.BUNDLE.getString("NumberErr"));
 		}
-		
+		}while(true);
 		
 		
 		

@@ -9,12 +9,13 @@ import de.travelbasys.training.util.Console;
 public class ChangeLang {
 
 	public static void run() {
+		do{
 			Console.println(Config.BUNDLE.getString("Choose"));
 			Console.println("0: " + Config.BUNDLE.getString("Back"));
 			Console.println("1: " + Config.BUNDLE.getString("Lang1"));
 			Console.println("2: " + Config.BUNDLE.getString("Lang2"));
-			int choice_str = Console.nextInt();
 			try {
+			int choice_str = Console.nextInt();
 				switch (choice_str) {
 				case 0:
 					return;
@@ -30,9 +31,12 @@ public class ChangeLang {
 				}
 			} catch (NumberFormatException e) {
 				Console.printerr(Config.BUNDLE.getString("NumberErr"));
+				continue;
 			} catch (InputMismatchException e) {
 				Console.printerr(Config.BUNDLE.getString("NumberErr"));
+				continue;
 			}
+		}while(true);
 	}
 
 }
