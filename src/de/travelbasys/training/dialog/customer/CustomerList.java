@@ -15,7 +15,7 @@ import de.travelbasys.training.util.Console;
  */
 public class CustomerList {
 
-	public static void run(String[] args) {
+	public static void run() {
 		// Datei wird eingelesen und gibt alle User Objekte der Datenbank aus.
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {
@@ -23,12 +23,7 @@ public class CustomerList {
 			}
 		} catch (NullPointerException e) {
 			CustomerDAO.setUsers(new ArrayList<Customer>());
-			run(args);
+			run();
 		}
-	}
-
-	public void init() {
-		// TODO Mache irgendwas.
-
 	}
 }

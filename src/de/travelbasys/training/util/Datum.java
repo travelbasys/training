@@ -10,7 +10,7 @@ import java.util.Calendar;
  * 
  */
 
-public class Date {
+public class Datum {
 
 	public static String getDate() {
 

@@ -4,7 +4,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import de.travelbasys.training.db.ChangeDB;
-import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.customer.CustomerCreate;
 import de.travelbasys.training.dialog.customer.CustomerDelete;
 import de.travelbasys.training.dialog.customer.CustomerList;
@@ -15,6 +14,7 @@ import de.travelbasys.training.dialog.other.Export;
 import de.travelbasys.training.dialog.other.Import;
 import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Console;
+import de.travelbasys.training.util.Datum;
 
 /**
  * Diese Klasse gibt Das Hauptmenü aus und startet die Jeweiligen Funktionen.
@@ -26,10 +26,8 @@ public class MainMenu {
 
 	private static Scanner in;
 
-	public static void show(String[] args, CustomerCreate UserCreate,
-			CustomerList ul) {
+	public static void show() {
 		// Zeigt die verfügbaren Funktionen an und fordert zur Auswahl auf.
-		Console.println(Config.BUNDLE.getString("Welcome"));
 		do {
 			Console.println(Config.BUNDLE.getString("Choose"));
 			Console.println("0: " + Config.BUNDLE.getString("ExitApp"));
@@ -51,11 +49,11 @@ public class MainMenu {
 			try {
 				switch (choice_str) {
 				case 0:
-					Console.println(Config.BUNDLE.getString("End"));
-					CustomerDAO.terminate();
-					System.exit(0);
+					return;
 				case 1:
-					UserCreate.run();
+					CustomerCreate customer = new CustomerCreate();
+					customer.init(new Datum());
+					customer.run();
 					break;
 				case 21:
 					CustomerShow.run2();
@@ -70,13 +68,13 @@ public class MainMenu {
 					CustomerDelete.run();
 					break;
 				case 5:
-					CustomerList.run(args);
+					CustomerList.run();
 					break;
 				case 6:
-					Export.run(args);
+					Export.run();
 					break;
 				case 7:
-					Import.run(args);
+					Import.run();
 					break;
 				case 8:
 					ChangeDB.run();

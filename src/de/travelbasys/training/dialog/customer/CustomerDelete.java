@@ -55,6 +55,7 @@ public class CustomerDelete {
 			}
 			if (delete) {
 				CustomerDAO.delUser(customerid);
+				Console.println(Config.BUNDLE.getString("DelOK"));
 			}
 			else if(user.isEmpty()){
 				Console.printerr(Config.BUNDLE.getString("IDNotFoundErr"));

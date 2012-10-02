@@ -7,7 +7,7 @@ import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Console;
-import de.travelbasys.training.util.Date;
+import de.travelbasys.training.util.Datum;
 
 /**
  * ist verantwortlich für die Frage nach dem Namen und dem Alter des Benutzters
@@ -136,7 +136,7 @@ public class CustomerCreate {
 	 * Gibt den aktuellen Namen und das Alter nach System.out aus.
 	 */
 	private void run7() {
-		Console.println(message + " " + Date.getDate());
+		Console.println(message + " " + Datum.getDate());
 		run8();
 	}
 
@@ -170,7 +170,7 @@ public class CustomerCreate {
 	 * @param b
 	 *            ein Business Objekt.
 	 */
-	public void init(Date b) {
+	public void init(Datum b) {
 		message = b.getMessage();
 	}
 
