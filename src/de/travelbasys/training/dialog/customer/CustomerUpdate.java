@@ -5,7 +5,7 @@ import java.util.List;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.util.Config;
+import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 
 /**
@@ -30,7 +30,7 @@ public class CustomerUpdate {
 	 */
 	public static void run() {
 
-		Console.println(Config.BUNDLE.getString("IDPrompt"));
+		AppContext.getString("IDPrompt");
 
 		// Usernamen einlesen. Scanner in = new Scanner(System.in);
 		// String
@@ -41,53 +41,52 @@ public class CustomerUpdate {
 
 		List<Customer> user = CustomerDAO.findUserByID(customerid);
 		if (user.isEmpty()) { // Errormeldung
-			System.err.println(Config.BUNDLE.getString("IDNotFoundErr"));
+			AppContext.getErrString("IDNotFoundErr");
 			return;
 		}
-		Console.println(Config.BUNDLE.getString("UserFound"));
-		Console.println(user);
+		AppContext.getString("UserFound");
+		AppContext.println(user);
 		do {
-			Console.println(Config.BUNDLE.getString("Choose"));
-			Console.println("0: " + Config.BUNDLE.getString("Cancel"));
-			Console.println("1: " + Config.BUNDLE.getString("Update1"));
-			Console.println("2: " + Config.BUNDLE.getString("Update2"));
-			Console.println("3: " + Config.BUNDLE.getString("Update3"));
-			Console.println("4: " + Config.BUNDLE.getString("Update4"));
-			Console.println("5: " + Config.BUNDLE.getString("Update5"));
-			Console.println("6: " + Config.BUNDLE.getString("Update6"));
-
+			AppContext.getString("Choose");
+			AppContext.getString("Cancel");
+			AppContext.getString("Update1");
+			AppContext.getString("Update2");
+			AppContext.getString("Update3");
+			AppContext.getString("Update4");
+			AppContext.getString("Update5");
+			AppContext.getString("Update6");
 			int choice_str = Console.nextInt();
 			try {
 				switch (choice_str) {
 				case 0:
 					return;
 				case 1:
-					Console.println(Config.BUNDLE.getString("FirstNamePrompt"));
+					AppContext.getString("FirstNamePrompt");
 					firstname = Console.nextLine();
 					CustomerDAO.setSingleUserFirstname(customerid, firstname);
 					break;
 				case 2:
-					Console.println(Config.BUNDLE.getString("LastNamePrompt"));
+					AppContext.getString("LastNamePrompt");
 					lastname = Console.nextLine();
 					CustomerDAO.setSingleUserLastname(customerid, lastname);
 					break;
 				case 3:
-					Console.println(Config.BUNDLE.getString("AgePrompt"));
+					AppContext.getString("AgePrompt");
 					age = Console.nextInt();
 					CustomerDAO.setSingleUserAge(customerid, age);
 					break;
 				case 4:
-					Console.println(Config.BUNDLE.getString("AdressPrompt"));
+					AppContext.getString("AdressPrompt");
 					adress = Console.nextLine();
 					CustomerDAO.setSingleUserAdress(customerid, adress);
 					break;
 				case 5:
-					Console.println(Config.BUNDLE.getString("PostalPrompt"));
+					AppContext.getString("PostalPrompt");
 					postalcode = Console.nextLine();
 					CustomerDAO.setSingleUserPostalcode(customerid, postalcode);
 					break;
 				case 6:
-					Console.println(Config.BUNDLE.getString("eMailPrompt"));
+					AppContext.getString("eMailPrompt");
 					email = Console.nextLine();
 					CustomerDAO.setSingleUserEmail(customerid, email);
 					break;
@@ -95,9 +94,9 @@ public class CustomerUpdate {
 					break;
 				}
 			} catch (NumberFormatException e) {
-				Console.printerr(Config.BUNDLE.getString("NumberErr"));
+				AppContext.getErrString("NumberErr");
 			} catch (InputMismatchException e) {
-				Console.printerr(Config.BUNDLE.getString("NumberErr"));
+				AppContext.getErrString("NumberErr");
 			}
 
 		} while (true);

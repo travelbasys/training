@@ -4,7 +4,7 @@ import java.util.List;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.util.Config;
+import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 
 /**
@@ -21,49 +21,52 @@ public class CustomerDelete {
 	// User Objekt aus Datenbank löschen.
 
 	public static void run() {
-		Console.println(Config.BUNDLE.getString("AttentionPrompt"));
+		AppContext.getString("AttentionPrompt");
 		do {
 			List<Customer> user = null;
 			boolean delete = false;
-			int decision = 0;
-			Console.println(Config.BUNDLE.getString("IDPrompt"));
+			AppContext.getString("IDPrompt");
 
 			// Usernamen einlesen.
-			int customerid = Console.nextInt();
-			if (customerid == 0) {
-				return;
-			}
-			user = CustomerDAO.findUserByID(customerid);
-			if (!user.isEmpty()) {
-				Console.println(Config.BUNDLE.getString("UserFound") + user);
-				Console.println(Config.BUNDLE.getString("DelUserQ"));
-				Console.println("1: " + Config.BUNDLE.getString("Yes"));
-				Console.println("2: " + Config.BUNDLE.getString("No"));
-				decision = Console.nextInt();
-				switch (decision) {
-				case 1:
-					delete = true;
-					break;
-				case 2:
-					delete = false;
-					break;
-				default:
-					delete = false;
-					System.err.println(Config.BUNDLE.getString("ChooseErr"));
-					break;
+			try {
+				int customerid = Console.nextInt();
+				if (customerid == 0) {
+					return;
 				}
-			}
-			if (delete) {
-				CustomerDAO.delUser(customerid);
-				Console.println(Config.BUNDLE.getString("DelOK"));
-			}
-			else if(user.isEmpty()){
-				Console.printerr(Config.BUNDLE.getString("IDNotFoundErr"));
-				Console.println(Config.BUNDLE.getString("DelUserAbort"));
+				user = CustomerDAO.findUserByID(customerid);
+				if (!user.isEmpty()) {
+					AppContext.getString("UserFound");
+					AppContext.println(user);
+					AppContext.getString("DelUserQ");
+					AppContext.getString("Yes");
+					AppContext.getString("No");
+					int decision = Console.nextInt();
+					switch (decision) {
+					case 1:
+						delete = true;
+						break;
+					case 2:
+						delete = false;
+						break;
+					default:
+						delete = false;
+						AppContext.getErrString("ChooseErr");
+						break;
+					}
 				}
-			else {
-				Console.println(Config.BUNDLE.getString("DelUserAbort"));
 
+				if (delete) {
+					CustomerDAO.delUser(customerid);
+					AppContext.getString("DelOK");
+				} else if (user.isEmpty()) {
+					AppContext.getErrString("IDNotFoundErr");
+					AppContext.getString("DelUserAbort");
+				} else {
+					AppContext.getString("DelUserAbort");
+
+				}
+			} catch (Exception e) {
+				AppContext.getErrString("NumberErr");
 			}
 
 		} while (true);

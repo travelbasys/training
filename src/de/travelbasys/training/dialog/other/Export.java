@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.util.Config;
+import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 
 /**
@@ -21,57 +21,58 @@ public class Export {
 	private static String CSV = null;
 
 	public static void run() {
-		do{
-		Console.println(Config.BUNDLE.getString("Choose"));
-		Console.println("0: " + Config.BUNDLE.getString("Back"));
-		Console.println("1: " + Config.BUNDLE.getString("Export1"));
-		Console.println("2: " + Config.BUNDLE.getString("Export2"));
-		try {
-			int choice_str = Console.nextInt();
-			switch (choice_str) {
-			case 0:
-				return;
-			case 1:
-				Console.println(Config.BUNDLE.getString("ExportName"));
-				Scanner in = new Scanner(System.in);
-				CSV = in.nextLine();
-				if (CSV.isEmpty()) {
+		do {
+			AppContext.getString("Choose");
+			AppContext.getString("Back");
+			AppContext.getString("Export1");
+			AppContext.getString("Export2");
+			try {
+				int choice_str = Console.nextInt();
+				switch (choice_str) {
+				case 0:
 					return;
-				}
-				try {
-					// wird zum schreiben in die csv Datei benötigt.
-					FileWriter fwcsv = new FileWriter(CSV + ".csv");
-					PrintWriter pwcsv = new PrintWriter(fwcsv);
-
-					// gibt die vorhandenen Daten aus und formatiert sie für die
-					// csv
-					// Datei
-					pwcsv.println("UserID;LastName;FirstName;Age;Adress;Postalcode;eMail");
-					for (Customer user : CustomerDAO.getUsers()) {
-						System.out.println(user);
-						pwcsv.println(user.toCSV());
+				case 1:
+					AppContext.getString("ExportName");
+					Scanner in = new Scanner(System.in);
+					CSV = in.nextLine();
+					if (CSV.isEmpty()) {
+						return;
 					}
-					// Gibt bei erfolgreichem Import eine bestätigung aus
-					Console.println(Config.BUNDLE.getString("ExportOK"));
-					pwcsv.close();
-				} catch (Exception e) {
+					try {
+						// wird zum schreiben in die csv Datei benötigt.
+						FileWriter fwcsv = new FileWriter(CSV + ".csv");
+						PrintWriter pwcsv = new PrintWriter(fwcsv);
 
+						// gibt die vorhandenen Daten aus und formatiert sie für
+						// die
+						// csv
+						// Datei
+						pwcsv.println("UserID;LastName;FirstName;Age;Adress;Postalcode;eMail");
+						for (Customer user : CustomerDAO.getUsers()) {
+							AppContext.println(user);
+							pwcsv.println(user.toCSV());
+						}
+						// Gibt bei erfolgreichem Import eine bestätigung aus
+						AppContext.getString("ExportOK");
+						pwcsv.close();
+					} catch (Exception e) {
+
+					}
+					return;
+				case 2:
+					return;
+				default:
+					AppContext.getErrString("ChooseErr");
+					break;
 				}
-				return;
-			case 2:
-				return;
-			default:
-				Console.printerr(Config.BUNDLE.getString("ChooseErr"));
-				break;
+			} catch (NumberFormatException e) {
+				AppContext.getErrString("NumberErr");
+				continue;
+			} catch (InputMismatchException e) {
+				AppContext.getErrString("NumberErr");
+				continue;
 			}
-		} catch (NumberFormatException e) {
-			Console.printerr(Config.BUNDLE.getString("NumberErr"));
-			continue;
-		} catch (InputMismatchException e) {
-			Console.printerr(Config.BUNDLE.getString("NumberErr"));
-			continue;
-		}
-	}while(true);
+		} while (true);
 
 	}
 }

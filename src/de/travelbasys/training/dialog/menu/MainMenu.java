@@ -11,8 +11,7 @@ import de.travelbasys.training.dialog.customer.CustomerUpdate;
 import de.travelbasys.training.dialog.other.ChangeParam;
 import de.travelbasys.training.dialog.other.Export;
 import de.travelbasys.training.dialog.other.Import;
-import de.travelbasys.training.util.Config;
-import de.travelbasys.training.util.Console;
+import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Datum;
 
 /**
@@ -26,24 +25,24 @@ public class MainMenu {
 	private static Scanner in;
 
 	public static void show() {
-		in = new Scanner(System.in);
 		// Zeigt die verfügbaren Funktionen an und fordert zur Auswahl auf.
 		do {
-			Console.println(Config.BUNDLE.getString("Choose"));
-			Console.println("0: " + Config.BUNDLE.getString("ExitApp"));
-			Console.println("1: " + Config.BUNDLE.getString("App1"));
-			Console.println("21: " + Config.BUNDLE.getString("App2a"));
-			Console.println("22: " + Config.BUNDLE.getString("App2b"));
-			Console.println("3: " + Config.BUNDLE.getString("App3"));
-			Console.println("4: " + Config.BUNDLE.getString("App4"));
-			Console.println("5: " + Config.BUNDLE.getString("App5"));
-			Console.println("6: " + Config.BUNDLE.getString("App6"));
-			Console.println("7: " + Config.BUNDLE.getString("App7"));
-			Console.println("8: " + Config.BUNDLE.getString("App8"));
-			Console.println("9: " + Config.BUNDLE.getString("App9"));
+			AppContext.getString("Choose");
+			AppContext.getString("ExitApp");
+			AppContext.getString("App1");
+			AppContext.getString("App2a");
+			AppContext.getString("App2b");
+			AppContext.getString("App3");
+			AppContext.getString("App4");
+			AppContext.getString("App5");
+			AppContext.getString("App6");
+			AppContext.getString("App7");
+			AppContext.getString("App8");
+			AppContext.getString("App9");
 			// Liest die vom Benutzer getroffene Auswahl ein und führt die
 			// entsprechende Applikation aus
 			try {
+				in = new Scanner(System.in);
 				int choice_str = in.nextInt();
 				switch (choice_str) {
 				case 0:
@@ -81,12 +80,11 @@ public class MainMenu {
 					ChangeParam.run();
 					break;
 				default:
-					Console.printerr(Config.BUNDLE.getString("ChooseErr"));
+					AppContext.getErrString("ChooseErr");
 					break;
 				}
 			} catch (Exception e) {
-				Console.printerr(Config.BUNDLE.getString("NumberErr"));
-				in.next();
+				AppContext.getErrString("NumberErr");
 			}
 		} while (true);
 	}

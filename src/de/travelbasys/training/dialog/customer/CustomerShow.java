@@ -4,7 +4,7 @@ import java.util.List;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.util.Config;
+import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 
 /**
@@ -18,7 +18,7 @@ public class CustomerShow {
 
 	public static void run() {
 		do {
-			Console.println(Config.BUNDLE.getString("LastNamePrompt"));
+			AppContext.getString("LastNamePrompt");
 
 			// Usernamen einlesen.
 			String lastname = Console.nextLine();
@@ -30,16 +30,16 @@ public class CustomerShow {
 			@SuppressWarnings("unused")
 			List<Customer> user = CustomerDAO.findUserByLastName(lastname);
 			for (Customer customer : CustomerDAO.getCustomers()) {
-				Console.println(customer);
+				AppContext.println(customer);
 			}
 
 		} while (true);
 	}
 
 	public static void run2() {
-		Console.println(Config.BUNDLE.getString("AttentionPrompt"));
+		AppContext.getString("AttentionPrompt");
 		do {
-			Console.println(Config.BUNDLE.getString("IDPrompt"));
+			AppContext.getString("IDPrompt");
 
 			// Usernamen einlesen.
 			int customerid = Console.nextInt();
@@ -49,10 +49,10 @@ public class CustomerShow {
 			@SuppressWarnings("unused")
 			List<Customer> user = CustomerDAO.findUserByID(customerid);
 			for (Customer customer : CustomerDAO.getCustomers()) {
-				Console.println(customer);
+				AppContext.println(customer);
 			}
 			if (CustomerDAO.getCustomers().isEmpty()) {
-				System.err.println(Config.BUNDLE.getString("IDNotFoundErr"));
+				AppContext.getErrString("IDNotFoundErr");
 			}
 		} while (true);
 	}

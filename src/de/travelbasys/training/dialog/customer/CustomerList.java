@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.util.Console;
+import de.travelbasys.training.util.AppContext;
 
 /**
  * Diese Klasse ist für die wiedergabe der aktuellen Daten aus der
@@ -19,7 +19,7 @@ public class CustomerList {
 		// Datei wird eingelesen und gibt alle User Objekte der Datenbank aus.
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {
-				Console.println(user);
+				AppContext.println(user);
 			}
 		} catch (NullPointerException e) {
 			CustomerDAO.setUsers(new ArrayList<Customer>());

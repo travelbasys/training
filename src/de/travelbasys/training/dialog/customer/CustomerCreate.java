@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.Dialog;
-import de.travelbasys.training.util.Config;
-import de.travelbasys.training.util.Console;
+import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Datum;
 
 /**
@@ -68,7 +67,7 @@ public class CustomerCreate {
 		lastname = Dialog.getString("LastNamePrompt");
 		lastname.trim();
 		if (lastname.isEmpty()) {
-			Console.printerr(Config.BUNDLE.getString("EmptyFieldErr"));
+			AppContext.getErrString("EmptyFieldErr");
 		} else {
 			run2();
 		}
@@ -78,7 +77,7 @@ public class CustomerCreate {
 		firstname = Dialog.getString("FirstNamePrompt");
 		firstname.trim();
 		if (firstname.isEmpty()) {
-			Console.printerr(Config.BUNDLE.getString("EmptyFieldErr"));
+			AppContext.getErrString("EmptyFieldErr");
 
 		} else {
 			run3();
@@ -98,7 +97,7 @@ public class CustomerCreate {
 		if (age > 0) {
 			run4();
 		} else {
-			Console.printerr(Config.BUNDLE.getString("NumberNotInRangeErr"));
+			AppContext.getErrString("NumberNotInRangeErr");
 		}
 	}
 
@@ -106,7 +105,7 @@ public class CustomerCreate {
 		adress = Dialog.getString("AdressPrompt");
 		adress.trim();
 		if (adress.isEmpty()) {
-			Console.printerr(Config.BUNDLE.getString("EmptyFieldErr"));
+			AppContext.getErrString("EmptyFieldErr");
 		} else {
 			run5();
 		}
@@ -116,7 +115,7 @@ public class CustomerCreate {
 		postalcode = Dialog.getString("PostalPrompt");
 		postalcode.trim();
 		if (postalcode.isEmpty())
-			Console.printerr(Config.BUNDLE.getString("EmptyFieldErr"));
+			AppContext.getErrString("EmptyFieldErr");
 		else {
 			run6();
 		}
@@ -126,7 +125,7 @@ public class CustomerCreate {
 		email = Dialog.getString("eMailPrompt");
 		email.trim();
 		if (email.isEmpty()) {
-			Console.printerr(Config.BUNDLE.getString("EmptyFieldErr"));
+			AppContext.getErrString("EmptyFieldErr");
 		} else {
 			run7();
 		}
@@ -136,7 +135,7 @@ public class CustomerCreate {
 	 * Gibt den aktuellen Namen und das Alter nach System.out aus.
 	 */
 	private void run7() {
-		Console.println(message + " " + Datum.getDate());
+		AppContext.println(message + " " + Datum.getDate());
 		run8();
 	}
 

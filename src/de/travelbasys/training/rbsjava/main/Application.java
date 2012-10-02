@@ -1,13 +1,10 @@
 package de.travelbasys.training.rbsjava.main;
 
-import java.util.Scanner;
-
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.menu.MainMenu;
 import de.travelbasys.training.util.CommandLine;
-import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Configuration;
-import de.travelbasys.training.util.Console;
+import de.travelbasys.training.util.AppContext;
 
 /**
  * Diese Klasse repräsentiert die gesamte Anwendung. Sie enthält die main()
@@ -16,8 +13,6 @@ import de.travelbasys.training.util.Console;
  * @author tba....
  */
 public class Application {
-
-	static Scanner in;
 
 	public static void main(String[] args) {
 		init(args);
@@ -38,12 +33,16 @@ public class Application {
 	}
 
 	private static void start() {
-		Console.println(Config.BUNDLE.getString("Welcome"));
+
+		// ApplicationContext context = getContext();
+		// context.println( context.getString("Welcome"));
+
+		AppContext.getString("Welcome");
 		MainMenu.show();
 	}
 
 	private static void stop() {
-		Console.println(Config.BUNDLE.getString("End"));
+		AppContext.getString("End");
 		System.out.close();
 	}
 }
