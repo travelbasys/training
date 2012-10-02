@@ -13,7 +13,7 @@ import de.travelbasys.training.util.Date;
 /**
  * Diese Klasse lädt alle Einstellungen für die gesamte Applikation.
  * 
- * @author tba
+ * @author tba....
  * 
  */
 public class Application {
