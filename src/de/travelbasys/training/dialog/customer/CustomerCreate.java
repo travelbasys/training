@@ -1,10 +1,13 @@
-package de.travelbasys.training2;
+package de.travelbasys.training.dialog.customer;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-import java.util.Scanner;
+
+import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.util.Config;
+import de.travelbasys.training.util.Console;
+import de.travelbasys.training.util.Date;
 
 /**
  * ist verantwortlich für die Frage nach dem Namen und dem Alter des Benutzters
@@ -18,13 +21,7 @@ import java.util.Scanner;
  * 
  */
 
-public class UserCreate {
-	/**
-	 * Bindet den Resourcen Ordner ein, in dem die Properties der verschiedenen
-	 * Sprachen liegen.
-	 */
-	private static String baseName = "resources.HelloWorld";
-	private static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+public class CustomerCreate {
 
 	/**
 	 * 
@@ -43,20 +40,18 @@ public class UserCreate {
 	 * @param email
 	 *            Die eingegebene e-Mail-Adresse des Benutzers.
 	 **/
-	public String lastname = "";
-	private int userid;
+	private String lastname = "";
+	private int userid = 0;
 	private String firstname = "";
 	private String adress = "";
 	private String postalcode = "";
 	private String email = "";
 	private String message;
-	private Scanner in = new Scanner(System.in);;
-	private Scanner in2 = new Scanner(System.in);;
+	private int age = 0;
 
 	/**
 	 * Das eingegebene Alter des Benutzers. Wird mit 0 (=Null) initialisiert.
 	 */
-	public int age = 0;
 
 	/**
 	 * fragt den Benutzer nach seinem Namen und seinem Alter.
@@ -70,38 +65,21 @@ public class UserCreate {
 	 * Am Ende werden Name und Alter nach System.out ausgegeben.
 	 */
 	public void run() {
-
-		try {
-			Output.println(bundle.getString("LastNamePrompt"));
-		} catch (MissingResourceException e) {
-			Output.err.println(e);
-		}
-
-		lastname = in.nextLine();
-
-		lastname = lastname.trim();
-
+		lastname = Dialog.getString("LastNamePrompt");
+		lastname.trim();
 		if (lastname.isEmpty()) {
-			Output.err.println(bundle.getString("EmptyFieldErr"));
+			Console.printerr(Config.BUNDLE.getString("EmptyFieldErr"));
 		} else {
 			run2();
 		}
 	}
 
-	public void run2() {
-
-		try {
-			Output.println(bundle.getString("FirstNamePrompt"));
-		} catch (MissingResourceException e) {
-			Output.err.println(e);
-		}
-
-		firstname = in.nextLine();
-
-		firstname = firstname.trim();
-
+	private void run2() {
+		firstname = Dialog.getString("FirstNamePrompt");
+		firstname.trim();
 		if (firstname.isEmpty()) {
-			Output.err.println(bundle.getString("EmptyFieldErr"));
+			Console.printerr(Config.BUNDLE.getString("EmptyFieldErr"));
+
 		} else {
 			run3();
 		}
@@ -116,66 +94,39 @@ public class UserCreate {
 	 * eingegeben wird.
 	 */
 	private void run3() {
-		try {
-			Output.println(bundle.getString("AgePrompt"));
-		} catch (MissingResourceException f) {
-			System.err.println(f);
+		age = Dialog.getInt("AgePrompt");
+		if (age > 0) {
+			run4();
+		} else {
+			Console.printerr(Config.BUNDLE.getString("NumberNotInRangeErr"));
 		}
-		try {
-			age = in2.nextInt();
-		} catch (InputMismatchException e) {
-			Output.err.println(bundle.getString("NumberErr"));
-		}
-		run4();
 	}
 
-	public void run4() {
-
-		try {
-			Output.println(bundle.getString("AdressPrompt"));
-		} catch (MissingResourceException e) {
-			Output.err.println(e);
-		}
-
-		adress = in.nextLine();
-
-		adress = adress.trim();
-
+	private void run4() {
+		adress = Dialog.getString("AdressPrompt");
+		adress.trim();
 		if (adress.isEmpty()) {
-			Output.err.println(bundle.getString("EmptyFieldErr"));
+			Console.printerr(Config.BUNDLE.getString("EmptyFieldErr"));
 		} else {
 			run5();
 		}
 	}
 
 	private void run5() {
-		try {
-			Output.println(bundle.getString("PostalPrompt"));
-		} catch (MissingResourceException f) {
-			System.err.println(f);
+		postalcode = Dialog.getString("PostalPrompt");
+		postalcode.trim();
+		if (postalcode.isEmpty())
+			Console.printerr(Config.BUNDLE.getString("EmptyFieldErr"));
+		else {
+			run6();
 		}
-		try {
-			postalcode = in.nextLine();
-		} catch (InputMismatchException e) {
-			Output.err.println(bundle.getString("NumberErr"));
-		}
-		run6();
 	}
 
-	public void run6() {
-
-		try {
-			Output.println(bundle.getString("eMailPrompt"));
-		} catch (MissingResourceException e) {
-			Output.err.println(e);
-		}
-
-		email = in.nextLine();
-
-		email = email.trim();
-
+	private void run6() {
+		email = Dialog.getString("eMailPrompt");
+		email.trim();
 		if (email.isEmpty()) {
-			Output.err.println(bundle.getString("EmptyFieldErr"));
+			Console.printerr(Config.BUNDLE.getString("EmptyFieldErr"));
 		} else {
 			run7();
 		}
@@ -185,7 +136,7 @@ public class UserCreate {
 	 * Gibt den aktuellen Namen und das Alter nach System.out aus.
 	 */
 	private void run7() {
-		Output.println(message + " " + HelloWorldBusiness.getDate());
+		Console.println(message + " " + Date.getDate());
 		run8();
 	}
 
@@ -194,16 +145,16 @@ public class UserCreate {
 	private void run8() {
 		userid = 0;
 		try {
-			for (User user : UserDB.getUsers()) {
+			for (Customer user : CustomerDAO.getUsers()) {
 				userid = user.getUserID();
 			}
 			userid++;
-			User user;
-			user = new User(userid, lastname, firstname, age, adress,
+			Customer user;
+			user = new Customer(userid, lastname, firstname, age, adress,
 					postalcode, email);
-			UserDB.getUsers().add(user);
+			CustomerDAO.getUsers().add(user);
 		} catch (NullPointerException e) {
-			UserDB.setUsers(new ArrayList<User>());
+			CustomerDAO.setUsers(new ArrayList<Customer>());
 			run8();
 		}
 
@@ -219,7 +170,7 @@ public class UserCreate {
 	 * @param b
 	 *            ein Business Objekt.
 	 */
-	public void init(HelloWorldBusiness b) {
+	public void init(Date b) {
 		message = b.getMessage();
 	}
 

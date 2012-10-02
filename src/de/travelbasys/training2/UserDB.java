@@ -29,22 +29,22 @@ public class UserDB {
 	/**
 	 * Finde einen User in der Datenbank mit dem gegebenen Namen.
 	 * 
-	 * @param username
+	 * @param lastname
 	 *            der gegebene Name.
 	 * @return ein User Objekt oder null, wenn nicht gefunden.
 	 */
-	public static User findUserByName(String username) {
+	public static User findUserByLastName(String lastname) {
 
 		// Wenn gefunden...
 		try{
 		for (User user : UserDB.getUsers()) {
-			if (user.getName().equals(username)) {
+			if (user.getLastName().equals(lastname)) {
 				return user;
 			}
 		}
 		}catch(NullPointerException e){
 			setUsers(new ArrayList<User>());
-			findUserByName(username);
+			findUserByLastName(lastname);
 		}
 		
 		return null;
@@ -106,10 +106,10 @@ public class UserDB {
 		return users;
 	}
 
-	public static void delUser(String username) {
+	public static void delUser(String lastname) {
 		try {
 			for (User user : UserDB.getUsers()) {
-				if (user.getName().equals(username)) {
+				if (user.getLastName().equals(lastname)) {
 					UserDB.users.remove(user);
 				}
 			}

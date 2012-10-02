@@ -8,7 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import de.travelbasys.training.business.Customer;
 
@@ -22,33 +21,31 @@ import de.travelbasys.training.business.Customer;
 public class CustomerDAO {
 
 	private static String FILE;
-
-	private static String baseName = "resources.HelloWorld";
-	static ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-
 	private static List<Customer> users = null;
+	private static List<Customer> found_customers = null;
 
 	/**
 	 * Finde einen User in der Datenbank mit dem gegebenen Namen.
 	 * 
-	 * @param username
+	 * @param lastname
 	 *            der gegebene Name.
 	 * @return ein User Objekt oder null, wenn nicht gefunden.
 	 */
-	public static Customer findUserByName(String username) {
+	public static List<Customer> findUserByLastName(String lastname) {
 
-		// Wenn gefunden...
-		try{
-		for (Customer user : CustomerDAO.getUsers()) {
-			if (user.getName().equals(username)) {
-				return user;
+		setFoundCustomers(new ArrayList<Customer>());
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getLastName().equals(lastname)) {
+					CustomerDAO.getCustomers().add(user);
+				}
 			}
-		}
-		}catch(NullPointerException e){
+			return CustomerDAO.getCustomers();
+		} catch (NullPointerException e) {
 			setUsers(new ArrayList<Customer>());
-			findUserByName(username);
+			findUserByLastName(lastname);
 		}
-		
+
 		return null;
 	}
 
@@ -64,21 +61,21 @@ public class CustomerDAO {
 	 */
 	public static void init(String db) {
 		FILE = db;
-	       FileInputStream fis;
+		FileInputStream fis;
 		try {
 			fis = new FileInputStream(FILE);
-	        ObjectInputStream ois = new ObjectInputStream(fis);
+			ObjectInputStream ois = new ObjectInputStream(fis);
 
 			@SuppressWarnings("unchecked")
 			List<Customer> user = (List<Customer>) ois.readObject();
-			try{
+			try {
 				setUsers(new ArrayList<Customer>(user));
-			}catch(NullPointerException e){
+			} catch (NullPointerException e) {
 				setUsers(new ArrayList<Customer>());
 			}
-	        ois.close();
+			ois.close();
 		} catch (FileNotFoundException e1) {
-			System.err.println(bundle.getString("FileNotFound"));
+			System.err.println("File not found");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -87,31 +84,30 @@ public class CustomerDAO {
 	}
 
 	public static void terminate() {
-		
-        FileOutputStream fos;
+
+		FileOutputStream fos;
 		try {
 			fos = new FileOutputStream(FILE);
-	        ObjectOutputStream oos = new ObjectOutputStream(fos);
-	        oos.writeObject(users);
-	        CustomerDAO.getUsers().removeAll(users);
-	        oos.close();
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(users);
+			CustomerDAO.getUsers().removeAll(users);
+			oos.close();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 	public static List<Customer> getUsers() {
 		return users;
 	}
 
-	public static void delUser(String username) {
+	public static void delUser(int customerid) {
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getName().equals(username)) {
+				if (user.getUserID() == customerid) {
 					CustomerDAO.users.remove(user);
 				}
 			}
@@ -123,4 +119,94 @@ public class CustomerDAO {
 		CustomerDAO.users = users;
 	}
 
+	public static void setFoundCustomers(List<Customer> found_customers) {
+		CustomerDAO.found_customers = found_customers;
+	}
+
+	public static List<Customer> getCustomers() {
+		return found_customers;
+	}
+
+	public static List<Customer> findUserByID(int customerid) {
+		setFoundCustomers(new ArrayList<Customer>());
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					CustomerDAO.getCustomers().add(user);
+				}
+			}
+			return CustomerDAO.getCustomers();
+		} catch (NullPointerException e) {
+			setUsers(new ArrayList<Customer>());
+			findUserByID(customerid);
+		}
+
+		return null;
+	}
+
+	public static void setSingleUserFirstname(int customerid, String firstname) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setFirstName(firstname);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public static void setSingleUserEmail(int customerid, String email) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setEmail(email);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public static void setSingleUserLastname(int customerid, String lastname) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setLastName(lastname);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public static void setSingleUserAge(int customerid, int age) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setAge(age);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public static void setSingleUserAdress(int customerid, String adress) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setAdress(adress);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
+
+	public static void setSingleUserPostalcode(int customerid, String postalcode) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					user.setPostalcode(postalcode);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
 }
