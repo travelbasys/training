@@ -20,7 +20,7 @@ public class ChangeDB {
 		Properties config = new Properties();
 
 		Scanner in = new Scanner(System.in);
-		AppContext.getString("ChangeDB");
+		AppContext.println("ChangeDB");
 		String db = in.nextLine();
 		CustomerDAO.terminate();
 		CustomerDAO.init(db);
@@ -42,7 +42,7 @@ public class ChangeDB {
 	public static void run2() {
 
 		Scanner in = new Scanner(System.in);
-		AppContext.getString("ChangeDB");
+		AppContext.println("ChangeDB");
 		String db = in.nextLine();
 		db = db.trim();
 		if (!db.isEmpty()) {

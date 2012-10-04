@@ -3,7 +3,8 @@ package de.travelbasys.training.dialog.menu;
 import java.util.Scanner;
 
 import de.travelbasys.training.db.ChangeDB;
-import de.travelbasys.training.dialog.customer.CustomerCreate;
+import de.travelbasys.training.dialog.customer.CustomerCreateDialog;
+import de.travelbasys.training.dialog.customer.CustomerCreateView;
 import de.travelbasys.training.dialog.customer.CustomerDelete;
 import de.travelbasys.training.dialog.customer.CustomerList;
 import de.travelbasys.training.dialog.customer.CustomerShow;
@@ -12,7 +13,6 @@ import de.travelbasys.training.dialog.other.ChangeParam;
 import de.travelbasys.training.dialog.other.Export;
 import de.travelbasys.training.dialog.other.Import;
 import de.travelbasys.training.util.AppContext;
-import de.travelbasys.training.util.Datum;
 
 /**
  * Diese Klasse gibt Das Hauptmenü aus und startet die Jeweiligen Funktionen.
@@ -27,18 +27,18 @@ public class MainMenu {
 	public static void show() {
 		// Zeigt die verfügbaren Funktionen an und fordert zur Auswahl auf.
 		do {
-			AppContext.getString("Choose");
-			AppContext.getString("ExitApp");
-			AppContext.getString("App1");
-			AppContext.getString("App2a");
-			AppContext.getString("App2b");
-			AppContext.getString("App3");
-			AppContext.getString("App4");
-			AppContext.getString("App5");
-			AppContext.getString("App6");
-			AppContext.getString("App7");
-			AppContext.getString("App8");
-			AppContext.getString("App9");
+			AppContext.printMessage("Choose");
+			AppContext.printMessage("ExitApp");
+			AppContext.printMessage("App1");
+			AppContext.printMessage("App2a");
+			AppContext.printMessage("App2b");
+			AppContext.printMessage("App3");
+			AppContext.printMessage("App4");
+			AppContext.printMessage("App5");
+			AppContext.printMessage("App6");
+			AppContext.printMessage("App7");
+			AppContext.printMessage("App8");
+			AppContext.printMessage("App9");
 			// Liest die vom Benutzer getroffene Auswahl ein und führt die
 			// entsprechende Applikation aus
 			try {
@@ -48,8 +48,7 @@ public class MainMenu {
 				case 0:
 					return;
 				case 1:
-					CustomerCreate customer = new CustomerCreate();
-					customer.init(new Datum());
+					CustomerCreateDialog customer = new CustomerCreateDialog();
 					customer.run();
 					break;
 				case 21:
@@ -78,6 +77,10 @@ public class MainMenu {
 					break;
 				case 9:
 					ChangeParam.run();
+					break;
+				case 10:
+					MainMenuDialog menu = new MainMenuDialog();
+					menu.run();
 					break;
 				default:
 					AppContext.getErrString("ChooseErr");

@@ -30,7 +30,7 @@ public class CustomerUpdate {
 	 */
 	public static void run() {
 
-		AppContext.getString("IDPrompt");
+		AppContext.println("IDPrompt");
 
 		// Usernamen einlesen. Scanner in = new Scanner(System.in);
 		// String
@@ -44,49 +44,49 @@ public class CustomerUpdate {
 			AppContext.getErrString("IDNotFoundErr");
 			return;
 		}
-		AppContext.getString("UserFound");
+		AppContext.println("UserFound");
 		AppContext.println(user);
 		do {
-			AppContext.getString("Choose");
-			AppContext.getString("Cancel");
-			AppContext.getString("Update1");
-			AppContext.getString("Update2");
-			AppContext.getString("Update3");
-			AppContext.getString("Update4");
-			AppContext.getString("Update5");
-			AppContext.getString("Update6");
+			AppContext.println("Choose");
+			AppContext.println("Cancel");
+			AppContext.println("Update1");
+			AppContext.println("Update2");
+			AppContext.println("Update3");
+			AppContext.println("Update4");
+			AppContext.println("Update5");
+			AppContext.println("Update6");
 			int choice_str = Console.nextInt();
 			try {
 				switch (choice_str) {
 				case 0:
 					return;
 				case 1:
-					AppContext.getString("FirstNamePrompt");
+					AppContext.println("FirstNamePrompt");
 					firstname = Console.nextLine();
 					CustomerDAO.setSingleUserFirstname(customerid, firstname);
 					break;
 				case 2:
-					AppContext.getString("LastNamePrompt");
+					AppContext.println("LastNamePrompt");
 					lastname = Console.nextLine();
 					CustomerDAO.setSingleUserLastname(customerid, lastname);
 					break;
 				case 3:
-					AppContext.getString("AgePrompt");
+					AppContext.println("AgePrompt");
 					age = Console.nextInt();
 					CustomerDAO.setSingleUserAge(customerid, age);
 					break;
 				case 4:
-					AppContext.getString("AdressPrompt");
+					AppContext.println("AdressPrompt");
 					adress = Console.nextLine();
 					CustomerDAO.setSingleUserAdress(customerid, adress);
 					break;
 				case 5:
-					AppContext.getString("PostalPrompt");
+					AppContext.println("PostalPrompt");
 					postalcode = Console.nextLine();
 					CustomerDAO.setSingleUserPostalcode(customerid, postalcode);
 					break;
 				case 6:
-					AppContext.getString("eMailPrompt");
+					AppContext.println("eMailPrompt");
 					email = Console.nextLine();
 					CustomerDAO.setSingleUserEmail(customerid, email);
 					break;

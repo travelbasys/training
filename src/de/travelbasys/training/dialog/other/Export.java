@@ -22,17 +22,17 @@ public class Export {
 
 	public static void run() {
 		do {
-			AppContext.getString("Choose");
-			AppContext.getString("Back");
-			AppContext.getString("Export1");
-			AppContext.getString("Export2");
+			AppContext.println("Choose");
+			AppContext.println("Back");
+			AppContext.println("Export1");
+			AppContext.println("Export2");
 			try {
 				int choice_str = Console.nextInt();
 				switch (choice_str) {
 				case 0:
 					return;
 				case 1:
-					AppContext.getString("ExportName");
+					AppContext.println("ExportName");
 					Scanner in = new Scanner(System.in);
 					CSV = in.nextLine();
 					if (CSV.isEmpty()) {
@@ -53,7 +53,7 @@ public class Export {
 							pwcsv.println(user.toCSV());
 						}
 						// Gibt bei erfolgreichem Import eine bestätigung aus
-						AppContext.getString("ExportOK");
+						AppContext.println("ExportOK");
 						pwcsv.close();
 					} catch (Exception e) {
 

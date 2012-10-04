@@ -21,11 +21,11 @@ public class CustomerDelete {
 	// User Objekt aus Datenbank löschen.
 
 	public static void run() {
-		AppContext.getString("AttentionPrompt");
+		AppContext.println("AttentionPrompt");
 		do {
 			List<Customer> user = null;
 			boolean delete = false;
-			AppContext.getString("IDPrompt");
+			AppContext.println("IDPrompt");
 
 			// Usernamen einlesen.
 			try {
@@ -35,11 +35,11 @@ public class CustomerDelete {
 				}
 				user = CustomerDAO.findUserByID(customerid);
 				if (!user.isEmpty()) {
-					AppContext.getString("UserFound");
+					AppContext.println("UserFound");
 					AppContext.println(user);
-					AppContext.getString("DelUserQ");
-					AppContext.getString("Yes");
-					AppContext.getString("No");
+					AppContext.println("DelUserQ");
+					AppContext.println("Yes");
+					AppContext.println("No");
 					int decision = Console.nextInt();
 					switch (decision) {
 					case 1:
@@ -57,12 +57,12 @@ public class CustomerDelete {
 
 				if (delete) {
 					CustomerDAO.delUser(customerid);
-					AppContext.getString("DelOK");
+					AppContext.println("DelOK");
 				} else if (user.isEmpty()) {
 					AppContext.getErrString("IDNotFoundErr");
-					AppContext.getString("DelUserAbort");
+					AppContext.println("DelUserAbort");
 				} else {
-					AppContext.getString("DelUserAbort");
+					AppContext.println("DelUserAbort");
 
 				}
 			} catch (Exception e) {

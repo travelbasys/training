@@ -37,12 +37,12 @@ public class Application {
 		// ApplicationContext context = getContext();
 		// context.println( context.getString("Welcome"));
 
-		AppContext.getString("Welcome");
+		AppContext.printMessage("Welcome");
 		MainMenu.show();
 	}
 
 	private static void stop() {
-		AppContext.getString("End");
+		AppContext.printMessage("End");
 		System.out.close();
 	}
 }

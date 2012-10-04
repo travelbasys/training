@@ -9,7 +9,7 @@ public class Dialog {
 
 	public static String getString(String key) {
 		try {
-			AppContext.getString(key);
+			AppContext.println(key);
 		} catch (MissingResourceException e) {
 			Console.printerr(e);
 		}
@@ -18,7 +18,7 @@ public class Dialog {
 
 	public static int getInt(String key) {
 		try {
-			AppContext.getString(key);
+			AppContext.println(key);
 		} catch (MissingResourceException e) {
 			Console.printerr(e);
 		}

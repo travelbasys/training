@@ -18,7 +18,7 @@ public class CustomerShow {
 
 	public static void run() {
 		do {
-			AppContext.getString("LastNamePrompt");
+			AppContext.println("LastNamePrompt");
 
 			// Usernamen einlesen.
 			String lastname = Console.nextLine();
@@ -37,9 +37,9 @@ public class CustomerShow {
 	}
 
 	public static void run2() {
-		AppContext.getString("AttentionPrompt");
+		AppContext.println("AttentionPrompt");
 		do {
-			AppContext.getString("IDPrompt");
+			AppContext.println("IDPrompt");
 
 			// Usernamen einlesen.
 			int customerid = Console.nextInt();

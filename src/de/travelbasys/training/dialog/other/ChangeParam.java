@@ -10,10 +10,10 @@ public class ChangeParam {
 
 	public static void run() {
 		do {
-			AppContext.getString("Choose");
-			AppContext.getString("Back");
-			AppContext.getString("Param1");
-			AppContext.getString("Param2");
+			AppContext.println("Choose");
+			AppContext.println("Back");
+			AppContext.println("Param1");
+			AppContext.println("Param2");
 			try {
 				int choice_str = Console.nextInt();
 				switch (choice_str) {

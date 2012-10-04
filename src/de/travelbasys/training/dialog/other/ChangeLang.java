@@ -11,10 +11,10 @@ public class ChangeLang {
 
 	public static void run() {
 		do {
-			AppContext.getString("Choose");
-			AppContext.getString("Back");
-			AppContext.getString("Lang1");
-			AppContext.getString("Lang2");
+			AppContext.println("Choose");
+			AppContext.println("Back");
+			AppContext.println("Lang1");
+			AppContext.println("Lang2");
 			try {
 				int choice_str = Console.nextInt();
 				switch (choice_str) {
