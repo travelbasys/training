@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Die User Klasse repräsentiert einen Benutzer der Anwendung.
+ * Repräsentiert einen Kunden, der mit der Anwendung verwaltet wird.
  * 
  * @author tba
  */
@@ -39,8 +39,7 @@ public class Customer implements Serializable {
 	 * dann Spaces, dann Kommata, dann Spaces, dann age, dann Spaces, dann "=",
 	 * dann Spaces, dann Gruppe aus mindestens einer Ziffer, dann Spaces, dann
 	 * "]". Fertig.
-	 */// user = new User(userid, lastname, firstname, age, adress, postalcode,
-		// email);
+	 */
 	private static final String U = "\\s*User[(\\d+)]\\s*\\[\\s*lastname\\s*=\\s*(.+?)\\s*,\\s*firstname\\s*=\\s*(.+?)\\s*,\\s*age\\s*=\\s*(\\d+)\\s*\\,\\s*adress\\s*=\\s*(.+?)\\s*\\,\\s*postalcode\\s*=\\s*(.+?)\\s*\\,\\s*email\\s*=\\s*(.+?)\\s*\\]";
 	private static final String C = "(\\d+);(.+?);(.+?);(\\d+);(.+?);(.+?);(.+?)";
 	private static final Pattern USERPATTERN = Pattern.compile(U,
@@ -165,18 +164,15 @@ public class Customer implements Serializable {
 		return email;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public int getAge() {
 		return age;
 	}
 
 	/**
-	 * 
-	 * @param age
-	 * @throws IllegalArgumentException
+	 * Setzt das Alter des Kunden.
+	 * Wenn der Wert negativ oder größer als 150 ist, wird eine Exception geworfen.
+	 * @param age das Alter.
+	 * @throws IllegalArgumentException wenn Alter negativ oder größer als 150.
 	 */
 	public void setAge(int age) throws IllegalArgumentException {
 		if (age > 0 && age <= 150) {
