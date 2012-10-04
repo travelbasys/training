@@ -7,11 +7,16 @@ import de.travelbasys.training.util.AppContext;
 public class MainMenuModel extends ArrayList<String> {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Erzeugt eine Instanz der Klasse...
 	 */
 	public MainMenuModel() {
 		super();
-		
+
 		add(AppContext.getMessage("Choose"));
 		add(AppContext.getMessage("ExitApp"));
 		add(AppContext.getMessage("App1"));

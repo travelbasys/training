@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import de.travelbasys.training.util.AppContext;
 
+@SuppressWarnings("serial")
 public class CustomerCreateModel extends HashMap<String, String> {
 
 	/**

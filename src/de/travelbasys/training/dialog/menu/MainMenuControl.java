@@ -1,7 +1,5 @@
 package de.travelbasys.training.dialog.menu;
 
-import java.util.Scanner;
-
 import de.travelbasys.training.db.ChangeDB;
 import de.travelbasys.training.dialog.customer.CustomerCreateDialog;
 import de.travelbasys.training.dialog.customer.CustomerDelete;
@@ -12,29 +10,16 @@ import de.travelbasys.training.dialog.other.ChangeParam;
 import de.travelbasys.training.dialog.other.Export;
 import de.travelbasys.training.dialog.other.Import;
 import de.travelbasys.training.util.AppContext;
-import de.travelbasys.training.util.Console;
 
 public class MainMenuControl {
 
-	public MainMenuControl(MainMenuModel model) {
+	public MainMenuControl(MainMenuModel model, MainMenuView view) {
 	}
 
-	public void check(String fieldName, String value) throws Exception {
-		// TODO: Use switch-case statement
-		if (fieldName == "Age") {
-			Integer.parseInt(value);
-		}
-		if (fieldName == "PostalCode") {
-			if ((Integer.parseInt(value) > 0 && value.length() == 5)) {
-			} else {
-				throw new Exception("PostalCode error: " + value);
-			}
-		}
-	}
-
-	public void check(int choice_str) {
+	public void checkchoice(String choice_str) {
 		try {
-			switch (choice_str) {
+			int choice_int = Integer.parseInt(choice_str);
+			switch (choice_int) {
 			case 0:
 				return;
 			case 1:
@@ -68,17 +53,24 @@ public class MainMenuControl {
 			case 9:
 				ChangeParam.run();
 				break;
-			case 10:
-				MainMenuDialog menu = new MainMenuDialog();
-				menu.run();
-				break;
 			default:
 				AppContext.getErrString("ChooseErr");
 				break;
 			}
 
 		} catch (Exception e) {
+		}
+	}
+
+	public boolean checkend(String choice_str) {
+		try {
+			if (Integer.parseInt(choice_str) == 0) {
+				return false;
+			}
+		} catch (Exception e) {
 			AppContext.getErrString("NumberErr");
 		}
+
+		return true;
 	}
 }

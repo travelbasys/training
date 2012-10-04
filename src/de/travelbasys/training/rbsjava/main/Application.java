@@ -1,10 +1,10 @@
 package de.travelbasys.training.rbsjava.main;
 
 import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.dialog.menu.MainMenu;
+import de.travelbasys.training.dialog.menu.MainMenuDialog;
+import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Configuration;
-import de.travelbasys.training.util.AppContext;
 
 /**
  * Diese Klasse repräsentiert die gesamte Anwendung. Sie enthält die main()
@@ -38,7 +38,8 @@ public class Application {
 		// context.println( context.getString("Welcome"));
 
 		AppContext.printMessage("Welcome");
-		MainMenu.show();
+		MainMenuDialog menu = new MainMenuDialog();
+		menu.run();
 	}
 
 	private static void stop() {
