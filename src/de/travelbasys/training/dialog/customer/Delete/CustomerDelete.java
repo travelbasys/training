@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer;
+package de.travelbasys.training.dialog.customer.Delete;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer;
+package de.travelbasys.training.dialog.customer.Show;
 
 import java.util.List;
 

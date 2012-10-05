@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import de.travelbasys.training.dialog.Control;
 import de.travelbasys.training.dialog.Model;
-import de.travelbasys.training.dialog.customer.VTextField;
+import de.travelbasys.training.dialog.VTextField;
 
 public class ChangeDBView extends ArrayList<VTextField> {
 

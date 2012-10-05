@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer;
+package de.travelbasys.training.dialog.customer.Update;
 
 import java.util.InputMismatchException;
 import java.util.List;
