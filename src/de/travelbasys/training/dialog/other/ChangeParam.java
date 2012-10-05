@@ -2,13 +2,15 @@ package de.travelbasys.training.dialog.other;
 
 import java.util.InputMismatchException;
 
-import de.travelbasys.training.db.ChangeDB;
+import de.travelbasys.training.db.ChangeDBParamDialog;
+import de.travelbasys.training.dialog.customer.create.Dialog;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 
 public class ChangeParam {
 
 	public static void run() {
+		Dialog d;
 		do {
 			AppContext.println("Choose");
 			AppContext.println("Back");
@@ -23,7 +25,8 @@ public class ChangeParam {
 					ChangeLang.run();
 					return;
 				case 2:
-					ChangeDB.run2();
+					d = new ChangeDBParamDialog();
+					d.run();
 					return;
 				default:
 					AppContext.getErrString("ChooseErr");

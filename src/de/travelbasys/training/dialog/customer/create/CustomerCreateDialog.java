@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer;
+package de.travelbasys.training.dialog.customer.create;
 
 import java.util.ArrayList;
 
@@ -13,12 +13,16 @@ import de.travelbasys.training.util.Console;
  * @author tba
  */
 
-public class CustomerCreateDialog {
+public class CustomerCreateDialog implements Dialog {
 
 	private CustomerCreateModel model;
 	private CustomerCreateView view;
-	private CustomerCreateControl control;
+	private Control control;
 
+	/* (non-Javadoc)
+	 * @see de.travelbasys.training.dialog.customer.create.Dialog#run()
+	 */
+	@Override
 	public void run() {
 		model = new CustomerCreateModel();
 		control = new CustomerCreateControl(model);

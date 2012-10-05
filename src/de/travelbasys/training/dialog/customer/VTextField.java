@@ -1,21 +1,26 @@
 package de.travelbasys.training.dialog.customer;
 
+import de.travelbasys.training.dialog.customer.create.Control;
+import de.travelbasys.training.dialog.customer.create.Model;
 import de.travelbasys.training.util.Console;
 
 public class VTextField {
 
 	private String fieldName;
-	private CustomerCreateModel model;
-	private CustomerCreateControl control;
 
-	public VTextField(String fieldName, CustomerCreateModel model,
-			CustomerCreateControl control) {
+	private Model model;
+	private Control control;
+
+	public VTextField(String fieldName, Model model,
+			Control control) {
 		super();
 		this.fieldName = fieldName;
 		this.model = model;
 		this.control = control;
 	}
-
+	
+	
+	
 	public void run() {
 		String prompt;
 		String value;

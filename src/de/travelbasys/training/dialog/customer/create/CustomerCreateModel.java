@@ -1,12 +1,11 @@
-package de.travelbasys.training.dialog.customer;
+package de.travelbasys.training.dialog.customer.create;
 
 import java.util.HashMap;
 
 import de.travelbasys.training.util.AppContext;
 
 @SuppressWarnings("serial")
-public class CustomerCreateModel extends HashMap<String, String> {
-
+public class CustomerCreateModel extends HashMap<String, String> implements Model {
 	/**
 	 * Erzeugt eine Instanz der Klasse...
 	 */
@@ -21,6 +20,7 @@ public class CustomerCreateModel extends HashMap<String, String> {
 		put("promptEMail", AppContext.getMessage("eMailPrompt"));
 	}
 
+	@Override
 	public String getPrompt(String fieldName) {
 		return get("prompt" + fieldName);
 	}

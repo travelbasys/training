@@ -1,11 +1,12 @@
 package de.travelbasys.training.dialog.menu;
 
-import de.travelbasys.training.db.ChangeDB;
-import de.travelbasys.training.dialog.customer.CustomerCreateDialog;
+import de.travelbasys.training.db.ChangeDBDialog;
 import de.travelbasys.training.dialog.customer.CustomerDelete;
 import de.travelbasys.training.dialog.customer.CustomerList;
 import de.travelbasys.training.dialog.customer.CustomerShow;
 import de.travelbasys.training.dialog.customer.CustomerUpdate;
+import de.travelbasys.training.dialog.customer.create.CustomerCreateDialog;
+import de.travelbasys.training.dialog.customer.create.Dialog;
 import de.travelbasys.training.dialog.other.ChangeParam;
 import de.travelbasys.training.dialog.other.Export;
 import de.travelbasys.training.dialog.other.Import;
@@ -17,14 +18,16 @@ public class MainMenuControl {
 	}
 
 	public void checkchoice(String choice_str) {
+		Dialog d;
+		
 		try {
 			int choice_int = Integer.parseInt(choice_str);
 			switch (choice_int) {
 			case 0:
 				return;
 			case 1:
-				CustomerCreateDialog customer = new CustomerCreateDialog();
-				customer.run();
+				d = new CustomerCreateDialog();
+				d.run();
 				break;
 			case 21:
 				CustomerShow.run2();
@@ -48,7 +51,8 @@ public class MainMenuControl {
 				Import.run();
 				break;
 			case 8:
-				ChangeDB.run();
+				d = new ChangeDBDialog();
+				d.run();
 				break;
 			case 9:
 				ChangeParam.run();

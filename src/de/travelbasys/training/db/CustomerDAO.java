@@ -93,8 +93,10 @@ public class CustomerDAO {
 			CustomerDAO.getUsers().removeAll(users);
 			oos.close();
 		} catch (FileNotFoundException e1) {
+			setUsers(new ArrayList<Customer>());
 			e1.printStackTrace();
 		} catch (IOException e) {
+			setUsers(new ArrayList<Customer>());
 			e.printStackTrace();
 		}
 

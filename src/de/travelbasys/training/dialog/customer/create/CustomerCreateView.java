@@ -1,12 +1,14 @@
-package de.travelbasys.training.dialog.customer;
+package de.travelbasys.training.dialog.customer.create;
 
 import java.util.ArrayList;
+
+import de.travelbasys.training.dialog.customer.VTextField;
 
 public class CustomerCreateView extends ArrayList<VTextField> {
 
 	private static final long serialVersionUID = 1L;
 
-	public CustomerCreateView(CustomerCreateModel model, CustomerCreateControl control) {
+	public CustomerCreateView(Model model, Control control) {
 		super();
 		
 		add( new VTextField( "LastName", model, control ));
