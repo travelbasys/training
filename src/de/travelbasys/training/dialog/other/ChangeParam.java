@@ -3,7 +3,7 @@ package de.travelbasys.training.dialog.other;
 import java.util.InputMismatchException;
 
 import de.travelbasys.training.db.ChangeDBParamDialog;
-import de.travelbasys.training.dialog.customer.create.Dialog;
+import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 

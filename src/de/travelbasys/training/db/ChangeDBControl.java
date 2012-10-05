@@ -1,6 +1,6 @@
 package de.travelbasys.training.db;
 
-import de.travelbasys.training.dialog.customer.create.Control;
+import de.travelbasys.training.dialog.Control;
 
 public class ChangeDBControl implements Control {
 

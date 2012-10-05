@@ -2,7 +2,7 @@ package de.travelbasys.training.db;
 
 import java.io.File;
 
-import de.travelbasys.training.dialog.customer.create.Dialog;
+import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.util.Config;
 
 public class ChangeDBParamDialog implements Dialog {

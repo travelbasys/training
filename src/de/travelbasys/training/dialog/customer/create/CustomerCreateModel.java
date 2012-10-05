@@ -2,6 +2,7 @@ package de.travelbasys.training.dialog.customer.create;
 
 import java.util.HashMap;
 
+import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.util.AppContext;
 
 @SuppressWarnings("serial")

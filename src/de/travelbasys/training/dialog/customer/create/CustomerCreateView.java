@@ -2,6 +2,8 @@ package de.travelbasys.training.dialog.customer.create;
 
 import java.util.ArrayList;
 
+import de.travelbasys.training.dialog.Control;
+import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.dialog.customer.VTextField;
 
 public class CustomerCreateView extends ArrayList<VTextField> {

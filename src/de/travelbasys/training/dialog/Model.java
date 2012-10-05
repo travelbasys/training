@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.create;
+package de.travelbasys.training.dialog;
 
 import java.util.Map;
 

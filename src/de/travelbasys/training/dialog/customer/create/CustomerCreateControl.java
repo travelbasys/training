@@ -1,5 +1,7 @@
 package de.travelbasys.training.dialog.customer.create;
 
+import de.travelbasys.training.dialog.Control;
+import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.util.AppContext;
 
 public class CustomerCreateControl implements Control {

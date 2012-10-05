@@ -1,7 +1,7 @@
 package de.travelbasys.training.dialog.customer;
 
-import de.travelbasys.training.dialog.customer.create.Control;
-import de.travelbasys.training.dialog.customer.create.Model;
+import de.travelbasys.training.dialog.Control;
+import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.util.Console;
 
 public class VTextField {

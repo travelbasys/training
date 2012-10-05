@@ -2,7 +2,7 @@ package de.travelbasys.training.db;
 
 import java.util.HashMap;
 
-import de.travelbasys.training.dialog.customer.create.Model;
+import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.util.AppContext;
 
 public class ChangeDBModel extends HashMap<String, String> implements Model{

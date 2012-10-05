@@ -2,9 +2,9 @@ package de.travelbasys.training.db;
 
 import java.util.ArrayList;
 
+import de.travelbasys.training.dialog.Control;
+import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.dialog.customer.VTextField;
-import de.travelbasys.training.dialog.customer.create.Control;
-import de.travelbasys.training.dialog.customer.create.Model;
 
 public class ChangeDBView extends ArrayList<VTextField> {
 

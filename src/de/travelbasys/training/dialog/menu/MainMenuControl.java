@@ -1,12 +1,12 @@
 package de.travelbasys.training.dialog.menu;
 
 import de.travelbasys.training.db.ChangeDBDialog;
+import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.dialog.customer.CustomerDelete;
 import de.travelbasys.training.dialog.customer.CustomerList;
 import de.travelbasys.training.dialog.customer.CustomerShow;
 import de.travelbasys.training.dialog.customer.CustomerUpdate;
 import de.travelbasys.training.dialog.customer.create.CustomerCreateDialog;
-import de.travelbasys.training.dialog.customer.create.Dialog;
 import de.travelbasys.training.dialog.other.ChangeParam;
 import de.travelbasys.training.dialog.other.Export;
 import de.travelbasys.training.dialog.other.Import;
