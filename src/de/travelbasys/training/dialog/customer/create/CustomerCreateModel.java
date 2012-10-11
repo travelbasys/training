@@ -26,7 +26,7 @@ public class CustomerCreateModel extends HashMap<String, String> implements Mode
 		return get("prompt" + fieldName);
 	}
 
-	public int getAge(){
+	int getAge(){
 		return Integer.parseInt(get("Age"));
 	}
 
