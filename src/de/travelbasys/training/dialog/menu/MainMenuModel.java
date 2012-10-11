@@ -20,8 +20,7 @@ public class MainMenuModel extends ArrayList<String> {
 		add(AppContext.getMessage("Choose"));
 		add(AppContext.getMessage("ExitApp"));
 		add(AppContext.getMessage("App1"));
-		add(AppContext.getMessage("App2a"));
-		add(AppContext.getMessage("App2b"));
+		add(AppContext.getMessage("App2"));
 		add(AppContext.getMessage("App3"));
 		add(AppContext.getMessage("App4"));
 		add(AppContext.getMessage("App5"));

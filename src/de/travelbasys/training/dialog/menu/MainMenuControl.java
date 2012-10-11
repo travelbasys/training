@@ -23,8 +23,7 @@ public class MainMenuControl {
 		Dialog d;
 		try {
 			int choice_int = Integer.parseInt(choice_str);
-			if (choice_int >= 0 && choice_int <= 9 || choice_int == 21
-					|| choice_int == 22) {
+			if (choice_int >= 0 && choice_int <= 9) {
 				switch (choice_int) {
 				case 0:
 					return;
@@ -32,10 +31,7 @@ public class MainMenuControl {
 					d = new CustomerCreateDialog();
 					d.run();
 					break;
-				case 21:
-					CustomerShow.run2();
-					break;
-				case 22:
+				case 2:
 					CustomerShow.run();
 					break;
 				case 3:

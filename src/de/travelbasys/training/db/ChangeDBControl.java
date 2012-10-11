@@ -10,4 +10,3 @@ public class ChangeDBControl implements Control {
 
 	}
 }
-// test test test test test test test test test test test test test test test
