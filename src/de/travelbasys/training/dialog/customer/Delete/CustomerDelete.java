@@ -33,6 +33,7 @@ public class CustomerDelete {
 				if (customerid == 0) {
 					return;
 				}
+				// User suchen.
 				user = CustomerDAO.findUserByID(customerid);
 				if (!user.isEmpty()) {
 					AppContext.println("UserFound");
