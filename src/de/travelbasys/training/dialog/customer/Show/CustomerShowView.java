@@ -1,16 +1,30 @@
 package de.travelbasys.training.dialog.customer.Show;
 
-import de.travelbasys.training.dialog.Control;
-
+import de.travelbasys.training.util.Console;
 
 public class CustomerShowView {
 
-	public CustomerShowView(CustomerShowModel model, Control control) {
+	/**
+	 * 
+	 */
+	private CustomerShowModel model;
+	private CustomerShowControl control;
+	String choice_str;
+	int choice = 0;
+
+	public CustomerShowView(CustomerShowModel model, CustomerShowControl control) {
+		super();
+		this.model = model;
+		this.control = control;
 	}
 
 	public void run() {
-		// TODO Auto-generated method stub
-		
+		do {
+			for (String s : model) {
+				Console.println(s);
+			}
+			choice_str = Console.nextLine();
+			control.checkchoice(choice_str);
+		} while (control.checkend(choice_str));
 	}
-
 }

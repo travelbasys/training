@@ -36,7 +36,7 @@ public class CustomerDAO {
 		setFoundCustomers(new ArrayList<Customer>());
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getLastName().equals(lastname)) {
+				if (user.getLastName().equals(lastname) || user.getLastName().toLowerCase().equals(lastname) || user.getLastName().toUpperCase().equals(lastname)) {
 					CustomerDAO.getCustomers().add(user);
 				}
 			}

@@ -6,7 +6,6 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.Control;
 import de.travelbasys.training.dialog.Dialog;
-import de.travelbasys.training.util.Console;
 
 /**
  * ist verantwortlich für das erzeugen eines Customer Objekts.
@@ -20,7 +19,9 @@ public class CustomerCreateDialog implements Dialog {
 	private CustomerCreateView view;
 	private Control control;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see de.travelbasys.training.dialog.customer.create.Dialog#run()
 	 */
 	@Override
@@ -45,7 +46,6 @@ public class CustomerCreateDialog implements Dialog {
 			CustomerDAO.setUsers(new ArrayList<Customer>());
 		}
 		CustomerDAO.getUsers().add(costumer);
-		Console.println(CustomerDAO.getUsers());
 	}
 
 }
