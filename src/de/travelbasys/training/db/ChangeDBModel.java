@@ -8,7 +8,8 @@ import de.travelbasys.training.util.AppContext;
 public class ChangeDBModel extends HashMap<String, String> implements Model{
 
 	/**
-	 * 
+	 * erzeugt eine Instanz der Klasse ChangeDBDialog
+	 * und verwaltet Strings für Ausgaben
 	 */
 	private static final long serialVersionUID = 1L;
 

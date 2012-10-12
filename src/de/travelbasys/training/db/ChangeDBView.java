@@ -5,7 +5,12 @@ import java.util.ArrayList;
 import de.travelbasys.training.dialog.Control;
 import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.dialog.VTextField;
-
+/**
+ * Diese Klasse ist verantwortlich für den Dialog mit dem Benutzer um die für
+ * das ändern der Datenbank erforderlichen abzufragen
+ * @author tba
+ *
+ */
 public class ChangeDBView extends ArrayList<VTextField> {
 
 	private static final long serialVersionUID = 1L;

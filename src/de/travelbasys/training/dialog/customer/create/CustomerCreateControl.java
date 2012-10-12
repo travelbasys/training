@@ -3,7 +3,11 @@ package de.travelbasys.training.dialog.customer.create;
 import de.travelbasys.training.dialog.Control;
 import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.util.AppContext;
-
+/**
+ * Diese Klasse Kontrolliert Benutzereingaben.
+ * @author tba
+ *
+ */
 public class CustomerCreateControl implements Control {
 
 	public CustomerCreateControl(Model model) {
@@ -11,7 +15,7 @@ public class CustomerCreateControl implements Control {
 
 	@Override
 	public void check(String fieldName, String value) throws Exception {
-		// TODO: Use switch-case statement
+
 		if (fieldName == "Age") {
 			int temp = Integer.parseInt(value);
 			if (temp <= 0 || temp > 150) {

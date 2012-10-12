@@ -5,7 +5,12 @@ import java.util.ArrayList;
 import de.travelbasys.training.dialog.Control;
 import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.dialog.VTextField;
-
+/**
+ * Diese Klasse ist verantwortlich für den Dialog mit dem Benutzer um die für
+ * das löschen eines Customers aus der Datenbank
+ * @author tba
+ *
+ */
 public class CustomerDeleteView extends ArrayList<VTextField>{
 
 	

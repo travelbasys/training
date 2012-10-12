@@ -4,7 +4,12 @@ import java.io.File;
 
 import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.util.Config;
-
+/**
+ * Diese Klasse ist verantwortlich für das ändern der aktuell verwendeten Datenbank.
+ * 
+ * @author tba
+ *
+ */
 public class ChangeDBParamDialog implements Dialog {
 
 	static final String DATABASE_KEY = "database";

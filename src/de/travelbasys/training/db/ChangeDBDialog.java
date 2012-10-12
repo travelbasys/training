@@ -5,8 +5,8 @@ import java.io.FileOutputStream;
 import java.util.Properties;
 
 /**
- * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für ein
- * Customer Objekt abzufragen und das Objekt dann zu erzeugen.
+ * ist verantwortlich für das ändern der Datenbank abzufragen um diese dann
+ * in der Konfiguration zu speichern.
  * 
  * @author tba
  */

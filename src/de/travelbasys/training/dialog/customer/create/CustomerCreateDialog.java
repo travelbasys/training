@@ -9,8 +9,7 @@ import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.util.Console;
 
 /**
- * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für ein
- * Customer Objekt abzufragen und das Objekt dann zu erzeugen.
+ * ist verantwortlich für das erzeugen eines Customer Objekts.
  * 
  * @author tba
  */

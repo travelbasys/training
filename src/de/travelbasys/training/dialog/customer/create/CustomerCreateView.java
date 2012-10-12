@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import de.travelbasys.training.dialog.Control;
 import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.dialog.VTextField;
+/**
+ * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für ein
+ * Customer Objekt abzufragen
+ * @autor tba
+ */
 
 public class CustomerCreateView extends ArrayList<VTextField> {
 

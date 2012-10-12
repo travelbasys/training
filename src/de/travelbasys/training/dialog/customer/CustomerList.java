@@ -8,7 +8,7 @@ import de.travelbasys.training.util.AppContext;
 
 /**
  * Diese Klasse ist für die wiedergabe der aktuellen Daten aus der
- * HelloWorld.txt zuständig
+ * Datenbank zuständig
  * 
  * @author tba
  * 

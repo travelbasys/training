@@ -4,7 +4,10 @@ import java.util.HashMap;
 
 import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.util.AppContext;
-
+/**
+ * erzeugt eine Instanz der Klasse CustomerDeleteDialog
+ * und verwaltet Strings für Ausgaben
+ */
 @SuppressWarnings("serial")
 public class CustomerDeleteModel extends HashMap<String, String> implements
 		Model {

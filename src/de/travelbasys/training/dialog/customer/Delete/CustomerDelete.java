@@ -9,7 +9,7 @@ import de.travelbasys.training.util.Console;
 
 /**
  * Diese Klasse ist für das löschen eines einzelnen Benutzers aus der
- * HelloWorld.txt Datei zuständig.
+ * Datenbank Datei zuständig.
  * 
  * @author tba
  * 
