@@ -1,34 +1,29 @@
 package de.travelbasys.training.dialog.customer.Delete;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
-import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.util.AppContext;
+
 /**
- * erzeugt eine Instanz der Klasse CustomerDeleteDialog
- * und verwaltet Strings für Ausgaben
+ * erzeugt eine Instanz der Klasse CustomerDeleteDialog und verwaltet Strings
+ * für Ausgaben
  */
 @SuppressWarnings("serial")
-public class CustomerDeleteModel extends HashMap<String, String> implements
-		Model {
+public class CustomerDeleteModel extends ArrayList<String> {
 
 	public CustomerDeleteModel() {
 		super();
-		put("promptAttention", AppContext.getMessage("AttentionPrompt"));
-		put("promptID", AppContext.getMessage("IDPrompt"));
-		put("promptUserFound", AppContext.getMessage("UserFound"));
-		put("promptDelUserQ", AppContext.getMessage("DelUserQ"));
-		put("promptYes", AppContext.getMessage("Yes"));
-		put("promptNo", AppContext.getMessage("No"));
-		put("promptDelOK", AppContext.getMessage("ChooseErr"));
-		put("promptIDNotFoundErr", AppContext.getMessage("IDNotFoundErr"));
-		put("promptDelUserAbort", AppContext.getMessage("DelUserAbort"));
-		put("promptNumberErr", AppContext.getMessage("NumberErr"));
-	}
-
-	@Override
-	public String getPrompt(String fieldName) {
-		return get("prompt" + fieldName);
+		add(AppContext.getMessage("AttentionIntPrompt"));
+		add(AppContext.getMessage("DelOK"));
+		add(AppContext.getMessage("IDPrompt"));
+		add(AppContext.getMessage("UserFound"));
+		add(AppContext.getMessage("DelUserQ"));
+		add(AppContext.getMessage("Yes"));
+		add(AppContext.getMessage("No"));
+		add(AppContext.getMessage("ChooseErr"));
+		add(AppContext.getMessage("IDNotFoundErr"));
+		add(AppContext.getMessage("DelUserAbort"));
+		add(AppContext.getMessage("NumberErr"));
 	}
 
 }

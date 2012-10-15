@@ -2,40 +2,40 @@ package de.travelbasys.training.dialog.customer.Delete;
 
 import java.util.ArrayList;
 
-import de.travelbasys.training.dialog.Control;
-import de.travelbasys.training.dialog.Model;
 import de.travelbasys.training.dialog.VTextField;
+import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.util.Console;
+
 /**
  * Diese Klasse ist verantwortlich für den Dialog mit dem Benutzer um die für
  * das löschen eines Customers aus der Datenbank
+ * 
  * @author tba
- *
+ * 
  */
-public class CustomerDeleteView extends ArrayList<VTextField>{
+public class CustomerDeleteView extends ArrayList<VTextField> {
+	private CustomerDeleteModel model;
+	private CustomerDeleteControl control;
 
-	
 	private static final long serialVersionUID = 1L;
-	public CustomerDeleteView(Model model, Control control) {
-		
-	add( new VTextField( "AttentionPromt", model, control ));
-	
-	add(new VTextField("IDPrompt", model, control));
-	add(new VTextField("UserFound", model, control));
-	add(new VTextField("DelUserQ", model, control));
-	add(new VTextField("Yes", model, control));
-	add(new VTextField("No", model, control));
-	add(new VTextField("ChooseErr", model, control));
-	add(new VTextField("IDNotFoundErr", model, control));
-	add(new VTextField("DelUserAbort", model, control));
-	add(new VTextField("NumberErr", model, control));
-	
-	
-	}
-	public void run() {
-		for (VTextField t : this) {
-			t.run();	
-		
-		
+
+	public CustomerDeleteView(CustomerDeleteModel model,
+			CustomerDeleteControl control) {
+		super();
+		this.model = model;
+		this.control = control;
 	}
 
-}}
+	public void run() {
+		String customerid = "";
+		AppContext.printMessage("AttentionIntPrompt");
+		do {
+			AppContext.printMessage("IDPrompt");
+			customerid = Console.nextLine();
+			control.check(customerid);
+		} while (control.checkend(customerid));
+	}
+
+
+
+	}

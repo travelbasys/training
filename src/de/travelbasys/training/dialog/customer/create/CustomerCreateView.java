@@ -27,7 +27,6 @@ public class CustomerCreateView extends ArrayList<VTextField> {
 	}
 
 	public void run() {
-		
 		for (VTextField t : this) {
 			t.run();
 		}
