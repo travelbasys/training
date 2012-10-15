@@ -24,20 +24,3 @@ public class CustomerShowModel extends ArrayList<String> {
 	}
 
 }
-
-/*@SuppressWarnings("serial")
-public class CustomerShowModel extends HashMap<String, String> implements Model {
-	
-	public CustomerShowModel() {
-		super();
-
-		put("promptLastName", AppContext.getMessage("LastNamePrompt"));
-		put("promptCustomerID", AppContext.getMessage("IDPrompt"));
-	}
-
-	@Override
-	public String getPrompt(String fieldName) {
-		return get("prompt" + fieldName);
-	}
-
-}*/
