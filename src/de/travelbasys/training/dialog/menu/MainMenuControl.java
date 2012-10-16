@@ -1,7 +1,5 @@
 package de.travelbasys.training.dialog.menu;
 
-import java.util.Date;
-
 import de.travelbasys.training.db.ChangeDBDialog;
 import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.dialog.customer.CustomerList;
@@ -77,17 +75,11 @@ public class MainMenuControl extends Application {
 	public boolean checkend(String choice_str) {
 		try {
 			if (Integer.parseInt(choice_str) == 0) {
-				Date test = getDate();
-				System.out.println(test);
 				return false;
 			}
 		} catch (Exception e) {
 		}
 
 		return true;
-	}
-
-	private Date getDate() {
-		return new Date();
 	}
 }

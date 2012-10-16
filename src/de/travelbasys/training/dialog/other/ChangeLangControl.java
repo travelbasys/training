@@ -18,23 +18,23 @@ public class ChangeLangControl {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int checkchoice(String choice_str) {
+	public void checkchoice(String choice_str) {
 		try {
 			int choice_int = Integer.parseInt(choice_str);
 			if (choice_int >= 0 && choice_int <= 2) {
 				switch (choice_int) {
 				case 0:
-					return 0;
+					return;
 				case 1:
 					Config.updateLanguage(new Locale("en"));
 					MainMenuDialog d = new MainMenuDialog();
 					d.run();
-					return 1;
+					break;
 				case 2:
 					Config.updateLanguage(new Locale("de"));
 					MainMenuDialog e = new MainMenuDialog();
 					e.run();
-					return 1;
+					break;
 				default:
 					AppContext.getErrString("ChooseErr");
 					break;
@@ -45,6 +45,16 @@ public class ChangeLangControl {
 		} catch (Exception e) {
 			AppContext.getErrString("NumberErr");
 		}
-		return 0;
+	}
+
+	public boolean checkend(String choice_str) {
+		try {
+			if (Integer.parseInt(choice_str) == 0) {
+				return false;
+			}
+		} catch (Exception e) {
+		}
+
+		return true;
 	}
 }
