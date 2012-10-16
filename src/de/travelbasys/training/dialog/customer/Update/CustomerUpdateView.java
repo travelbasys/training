@@ -3,17 +3,15 @@ package de.travelbasys.training.dialog.customer.Update;
 import java.util.ArrayList;
 
 import de.travelbasys.training.dialog.VTextField;
-import de.travelbasys.training.dialog.customer.Update.CustomerUpdateControl;
-import de.travelbasys.training.dialog.customer.Update.CustomerUpdateModel;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 
 /**
  * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für das
  * ändern eins Customer Objekts abzufragen
+ * 
  * @autor tba
  */
-
 
 public class CustomerUpdateView extends ArrayList<VTextField> {
 	private CustomerUpdateModel model;
@@ -31,19 +29,20 @@ public class CustomerUpdateView extends ArrayList<VTextField> {
 	public void run() {
 		String customeridtemp = "";
 		AppContext.printMessage("AttentionIntPrompt");
-		do {
 			AppContext.printMessage("IDPrompt");
 			customeridtemp = Console.nextLine();
 			control.check(customeridtemp);
-		} while (control.checkend(customeridtemp));
+			do {
+				AppContext.printMessage("Choose");
+				AppContext.printMessage("Cancel");
+				AppContext.printMessage("Update1");
+				AppContext.printMessage("Update2");
+				AppContext.printMessage("Update3");
+				AppContext.printMessage("Update4");
+				AppContext.printMessage("Update5");
+				AppContext.printMessage("Update6");
+			} while (control.checkmenu() == 1);
+
 	}
-	public String getfirstname(){
-		AppContext.printMessage("FirstNamePrompt");
-		String firstname = Console.nextLine();
-		return firstname;
-	}
-	
-	
-	
-	
+
 }
