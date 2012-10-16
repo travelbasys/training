@@ -19,6 +19,7 @@ public class ChangeLangControl {
 	}
 
 	public void checkchoice(String choice_str) {
+		MainMenuDialog d;
 		try {
 			int choice_int = Integer.parseInt(choice_str);
 			if (choice_int >= 0 && choice_int <= 2) {
@@ -27,13 +28,13 @@ public class ChangeLangControl {
 					return;
 				case 1:
 					Config.updateLanguage(new Locale("en"));
-					MainMenuDialog d = new MainMenuDialog();
+					d = new MainMenuDialog();
 					d.run();
 					break;
 				case 2:
 					Config.updateLanguage(new Locale("de"));
-					MainMenuDialog e = new MainMenuDialog();
-					e.run();
+					d = new MainMenuDialog();
+					d.run();
 					break;
 				default:
 					AppContext.getErrString("ChooseErr");

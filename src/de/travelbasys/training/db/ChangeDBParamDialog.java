@@ -3,6 +3,7 @@ package de.travelbasys.training.db;
 import java.io.File;
 
 import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.dialog.menu.MainMenuDialog;
 import de.travelbasys.training.util.Config;
 /**
  * Diese Klasse ist verantwortlich für das ändern der aktuell verwendeten Datenbank.
@@ -34,6 +35,8 @@ public class ChangeDBParamDialog implements Dialog {
 		String db = model.get("ChangeDB");
 		CustomerDAO.terminate();
 		CustomerDAO.init(db);
+		MainMenuDialog menu = new MainMenuDialog();
+		menu.run();
 
 	}
 

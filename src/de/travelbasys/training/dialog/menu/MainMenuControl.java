@@ -57,7 +57,8 @@ public class MainMenuControl extends Application {
 					d.run();
 					break;
 				case 9:
-					ChangeParamDialog.run();
+					d = new ChangeParamDialog();
+					d.run();
 					break;
 				default:
 					AppContext.getErrString("ChooseErr");
