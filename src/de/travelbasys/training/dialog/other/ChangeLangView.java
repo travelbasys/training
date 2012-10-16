@@ -24,7 +24,6 @@ public class ChangeLangView {
 				Console.println(s);
 			}
 			choice_str = Console.nextLine();
-			control.checkchoice(choice_str);
-		} while (control.checkend(choice_str));
+		} while (control.checkchoice(choice_str) == 1);
 	}
 }
