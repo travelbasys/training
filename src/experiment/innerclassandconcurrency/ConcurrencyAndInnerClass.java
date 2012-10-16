@@ -3,6 +3,15 @@ package experiment.innerclassandconcurrency;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ ***************************************************
+ #                                                 #
+ #    Concurrency And Inner Class Example File     #
+ #             Made by Farajallah                  #
+ #                                                 #
+ ***************************************************
+ */
+
 public class ConcurrencyAndInnerClass {
 
 	private class MyRunnable implements Runnable {
