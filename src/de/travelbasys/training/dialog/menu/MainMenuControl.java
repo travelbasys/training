@@ -8,6 +8,7 @@ import de.travelbasys.training.dialog.customer.CustomerList;
 import de.travelbasys.training.dialog.customer.Delete.CustomerDeleteDialog;
 import de.travelbasys.training.dialog.customer.Show.CustomerShowDialog;
 import de.travelbasys.training.dialog.customer.Update.CustomerUpdate;
+import de.travelbasys.training.dialog.customer.Update.CustomerUpdateDialog;
 import de.travelbasys.training.dialog.customer.create.CustomerCreateDialog;
 import de.travelbasys.training.dialog.other.ChangeParam;
 import de.travelbasys.training.dialog.other.Export;
@@ -36,7 +37,8 @@ public class MainMenuControl {
 					d.run();
 					break;
 				case 3:
-					CustomerUpdate.run();
+					d = new CustomerUpdateDialog();
+					d.run();
 					break;
 				case 4:
 					d = new CustomerDeleteDialog();

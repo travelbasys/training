@@ -20,9 +20,7 @@ public class CustomerDeleteControl {
 	private CustomerDeleteModel model;
 	private CustomerDeleteView view;
 
-	public CustomerDeleteControl(Model model) {
-
-	}
+	
 
 	public CustomerDeleteControl(CustomerDeleteModel model,
 			CustomerDeleteView view) {
