@@ -5,6 +5,7 @@ import de.travelbasys.training.dialog.menu.MainMenuDialog;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Configuration;
+import de.travelbasys.training.util.Datum;
 
 /**
  * Diese Klasse repräsentiert die gesamte Anwendung. Sie enthält die main()
@@ -21,7 +22,7 @@ public class Application {
 		terminate();
 	}
 
-	private static void terminate() {
+	protected static void terminate() {
 		CustomerDAO.terminate();
 		System.exit(0);
 	}
@@ -42,7 +43,8 @@ public class Application {
 		menu.run();
 	}
 
-	private static void stop() {
+	protected static void stop() {
+		AppContext.println(Datum.getDate());
 		AppContext.printMessage("End");
 		System.out.close();
 	}

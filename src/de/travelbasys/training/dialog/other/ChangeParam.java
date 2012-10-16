@@ -12,10 +12,10 @@ public class ChangeParam {
 	public static void run() {
 		Dialog d;
 		do {
-			AppContext.println("Choose");
-			AppContext.println("Back");
-			AppContext.println("Param1");
-			AppContext.println("Param2");
+			AppContext.printMessage("Choose");
+			AppContext.printMessage("Back");
+			AppContext.printMessage("Param1");
+			AppContext.printMessage("Param2");
 			try {
 				int choice_str = Console.nextInt();
 				switch (choice_str) {
