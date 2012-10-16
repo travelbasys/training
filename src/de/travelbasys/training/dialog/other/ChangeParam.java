@@ -22,7 +22,8 @@ public class ChangeParam {
 				case 0:
 					return;
 				case 1:
-					ChangeLang.run();
+					d = new ChangeLangDialog();
+					d.run();
 					return;
 				case 2:
 					d = new ChangeDBParamDialog();

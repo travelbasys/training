@@ -1,10 +1,30 @@
 package de.travelbasys.training.dialog.other;
 
-/**
- * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für ein
- * das ändern der Sprache abzufragen.
- * @autor tba
- */
+import de.travelbasys.training.util.Console;
+
 public class ChangeLangView {
 
+	/**
+	 * 
+	 */
+	private ChangeLangModel model;
+	private ChangeLangControl control;
+	String choice_str;
+	int choice = 0;
+
+	public ChangeLangView(ChangeLangModel model, ChangeLangControl control) {
+		super();
+		this.model = model;
+		this.control = control;
+	}
+
+	public void run() {
+		do {
+			for (String s : model) {
+				Console.println(s);
+			}
+			choice_str = Console.nextLine();
+			control.checkchoice(choice_str);
+		} while (control.checkend(choice_str));
+	}
 }

@@ -9,7 +9,7 @@ import de.travelbasys.training.dialog.customer.Delete.CustomerDeleteDialog;
 import de.travelbasys.training.dialog.customer.Show.CustomerShowDialog;
 import de.travelbasys.training.dialog.customer.Update.CustomerUpdateDialog;
 import de.travelbasys.training.dialog.customer.create.CustomerCreateDialog;
-import de.travelbasys.training.dialog.other.ChangeParam;
+import de.travelbasys.training.dialog.other.ChangeParamDialog;
 import de.travelbasys.training.dialog.other.Export;
 import de.travelbasys.training.dialog.other.Import;
 import de.travelbasys.training.rbsjava.main.Application;
@@ -59,7 +59,7 @@ public class MainMenuControl extends Application {
 					d.run();
 					break;
 				case 9:
-					ChangeParam.run();
+					ChangeParamDialog.run();
 					break;
 				default:
 					AppContext.getErrString("ChooseErr");
