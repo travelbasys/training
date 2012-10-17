@@ -9,8 +9,7 @@ public class ChangeLangView {
 	 */
 	private ChangeLangModel model;
 	private ChangeLangControl control;
-	String choice_str;
-	int choice = 0;
+	String choice_str = "";
 
 	public ChangeLangView(ChangeLangModel model, ChangeLangControl control) {
 		super();
@@ -19,12 +18,13 @@ public class ChangeLangView {
 	}
 
 	public void run() {
-		do {
+		do{
 			for (String s : model) {
 				Console.println(s);
 			}
 			choice_str = Console.nextLine();
-			control.checkchoice(choice_str);
-		} while (control.checkend(choice_str));
+			model.setChoice(choice_str);
+			control.checkchoice();
+		}while(model.isCheck());
 	}
 }

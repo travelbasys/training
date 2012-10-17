@@ -2,9 +2,7 @@ package de.travelbasys.training.dialog.other;
 
 import java.util.Locale;
 
-import de.travelbasys.training.dialog.menu.MainMenuDialog;
 import de.travelbasys.training.util.AppContext;
-import de.travelbasys.training.util.Config;
 
 /**
  * Diese Klasse Kontrolliert Benutzereingaben.
@@ -14,48 +12,46 @@ import de.travelbasys.training.util.Config;
  */
 public class ChangeLangControl {
 
+	private ChangeLangModel model;
+	private ChangeLangView view;
+	int choice;
+
 	public ChangeLangControl(ChangeLangModel model, ChangeLangView view) {
-		// TODO Auto-generated constructor stub
+		this.model = model;
+		this.view = view;
 	}
 
-	public void checkchoice(String choice_str) {
-		MainMenuDialog d;
+	public void checkchoice() {
 		try {
-			int choice_int = Integer.parseInt(choice_str);
-			if (choice_int >= 0 && choice_int <= 2) {
-				switch (choice_int) {
+			choice = Integer.parseInt(model.getChoice());
+			if (choice >= 0 && choice <= 2) {
+				switch (choice) {
 				case 0:
+					model.setLocale(Locale.getDefault());
+					model.setCheck(false);
 					return;
 				case 1:
-					Config.updateLanguage(new Locale("en"));
-					d = new MainMenuDialog();
-					d.run();
-					break;
+					model.setLocale(new Locale("en"));
+					model.setCheck(false);
+					return;
 				case 2:
-					Config.updateLanguage(new Locale("de"));
-					d = new MainMenuDialog();
-					d.run();
-					break;
+					model.setLocale(new Locale("de"));
+					model.setCheck(false);
+					return;
 				default:
 					AppContext.getErrString("ChooseErr");
+					model.setCheck(true);
 					break;
 				}
 			} else {
 				AppContext.getErrString("ChooseErr");
+				model.setLocale(Locale.getDefault());
+				model.setCheck(true);
 			}
 		} catch (Exception e) {
 			AppContext.getErrString("NumberErr");
+			model.setLocale(Locale.getDefault());
+			model.setCheck(true);
 		}
-	}
-
-	public boolean checkend(String choice_str) {
-		try {
-			if (Integer.parseInt(choice_str) == 0) {
-				return false;
-			}
-		} catch (Exception e) {
-		}
-
-		return true;
 	}
 }

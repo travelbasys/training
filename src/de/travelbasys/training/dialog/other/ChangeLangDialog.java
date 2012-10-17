@@ -1,6 +1,8 @@
 package de.travelbasys.training.dialog.other;
 
 import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.dialog.menu.MainMenuDialog;
+import de.travelbasys.training.util.Config;
 
 /**
  * Diese Klasse ist für das ändern der Spracheinstellungen verantwortlich und
@@ -17,12 +19,17 @@ public class ChangeLangDialog implements Dialog {
 	private ChangeLangControl control;
 
 	public void run() {
+		MainMenuDialog d;
 		model = new ChangeLangModel();
 		control = new ChangeLangControl(model, view);
 		view = new ChangeLangView(model, control);
 
 		// Here plays the music!
 		view.run();
+		Config.updateLanguage(model.getLocale());
+		d = new MainMenuDialog();
+		d.run();
+		
 
 		// Do something with the input!
 
