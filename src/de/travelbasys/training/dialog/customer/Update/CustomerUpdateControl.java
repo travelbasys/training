@@ -36,7 +36,7 @@ public class CustomerUpdateControl {
 		customerid = Integer.parseInt(customeridtemp);
 		List<Customer> user = CustomerDAO.findUserByID(customerid);
 		if (user.isEmpty()) { // Errormeldung
-			AppContext.getErrString("IDNotFoundErr");
+			AppContext.printErrString("IDNotFoundErr");
 			return;
 		}
 		AppContext.printMessage("UserFound");
@@ -93,7 +93,7 @@ public class CustomerUpdateControl {
 				
 				return 1;
 			} catch (Exception e) {
-				AppContext.getErrString("NumberErr");
+				AppContext.printErrString("NumberErr");
 			}
 
 		} while (true);

@@ -42,18 +42,17 @@ public class ChangeLangControl {
 					model.setCheck(false);
 					return;
 				default:
-					AppContext.getErrString("ChooseErr");
+					AppContext.printErrString("ChooseErr");
 					model.setCheck(true);
 					break;
 				}
 			} else {
-				AppContext.getErrString("ChooseErr");
+				AppContext.printErrString("ChooseErr");
 				model.setLocale(Locale.getDefault());
 				model.setCheck(true);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			AppContext.getErrString("NumberErr");
+			AppContext.printErrString("NumberErr");
 			model.setLocale(Locale.getDefault());
 			model.setCheck(true);
 		}

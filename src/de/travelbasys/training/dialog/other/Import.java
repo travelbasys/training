@@ -68,13 +68,13 @@ public class Import {
 				case 2:
 					return;
 				default:
-					AppContext.getErrString("ChooseErr");
+					AppContext.printErrString("ChooseErr");
 					break;
 				}
 			} catch (NumberFormatException e) {
-				AppContext.getErrString("NumberErr");
+				AppContext.printErrString("NumberErr");
 			} catch (InputMismatchException e) {
-				AppContext.getErrString("NumberErr");
+				AppContext.printErrString("NumberErr");
 			}
 		} while (true);
 

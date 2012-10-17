@@ -52,18 +52,18 @@ public class CustomerShowControl {
 							AppContext.println(customer);
 						}
 						if (CustomerDAO.getCustomers().isEmpty()) {
-							AppContext.getErrString("IDNotFoundErr");
+							AppContext.printErrString("IDNotFoundErr");
 						}
 					} while (true);
 				default:
-					AppContext.getErrString("ChooseErr");
+					AppContext.printErrString("ChooseErr");
 					break;
 				}
 			} else {
-				AppContext.getErrString("ChooseErr");
+				AppContext.printErrString("ChooseErr");
 			}
 		} catch (Exception e) {
-			AppContext.getErrString("NumberErr");
+			AppContext.printErrString("NumberErr");
 		}
 	}
 

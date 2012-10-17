@@ -41,7 +41,7 @@ public class CustomerUpdate {
 
 		List<Customer> user = CustomerDAO.findUserByID(customerid);
 		if (user.isEmpty()) { // Errormeldung
-			AppContext.getErrString("IDNotFoundErr");
+			AppContext.printErrString("IDNotFoundErr");
 			return;
 		}
 		AppContext.println("UserFound");
@@ -94,9 +94,9 @@ public class CustomerUpdate {
 					break;
 				}
 			} catch (NumberFormatException e) {
-				AppContext.getErrString("NumberErr");
+				AppContext.printErrString("NumberErr");
 			} catch (InputMismatchException e) {
-				AppContext.getErrString("NumberErr");
+				AppContext.printErrString("NumberErr");
 			}
 
 		} while (true);

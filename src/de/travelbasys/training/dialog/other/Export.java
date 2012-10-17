@@ -62,14 +62,14 @@ public class Export {
 				case 2:
 					return;
 				default:
-					AppContext.getErrString("ChooseErr");
+					AppContext.printErrString("ChooseErr");
 					break;
 				}
 			} catch (NumberFormatException e) {
-				AppContext.getErrString("NumberErr");
+				AppContext.printErrString("NumberErr");
 				continue;
 			} catch (InputMismatchException e) {
-				AppContext.getErrString("NumberErr");
+				AppContext.printErrString("NumberErr");
 				continue;
 			}
 		} while (true);

@@ -2,18 +2,24 @@ package de.travelbasys.training.util;
 
 public class AppContext {
 
-	public static String getMessage(String key){
+	public static String getMessage(String key) {
 		return Config.BUNDLE.getString(key);
 	}
 
-	public static void printMessage(String key){
+	public static void printMessage(String key) {
 		Console.println(Config.BUNDLE.getString(key));
 	}
 
-	public static void getErrString(String key) {
+	public static String getErrString(String key) {
+		return Config.BUNDLE.getString(key);
+	}
+
+	public static void printErrString(String key) {
 		Console.printerr(Config.BUNDLE.getString(key));
 	}
-	public static void println(Object obj){
+
+	public static void println(Object obj) {
 		Console.println(obj);
 	}
+
 }

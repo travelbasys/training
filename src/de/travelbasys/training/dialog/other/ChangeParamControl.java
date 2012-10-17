@@ -35,16 +35,16 @@ public class ChangeParamControl {
 					model.setCheckFalse();
 					return;
 				default:
-					AppContext.getErrString("ChooseErr");
+					AppContext.printErrString("ChooseErr");
 					model.setCheckTrue();
 					break;
 				}
 			} else {
-				AppContext.getErrString("ChooseErr");
+				AppContext.printErrString("ChooseErr");
 				model.setCheckTrue();
 			}
 		} catch (Exception e) {
-			AppContext.getErrString("NumberErr");
+			AppContext.printErrString("NumberErr");
 			model.setCheckTrue();
 		}
 	}

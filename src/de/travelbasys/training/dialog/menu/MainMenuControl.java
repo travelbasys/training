@@ -45,6 +45,7 @@ public class MainMenuControl extends Application {
 					break;
 				case 5:
 					CustomerList.run();
+								
 					break;
 				case 6:
 					Export.run();
@@ -61,14 +62,14 @@ public class MainMenuControl extends Application {
 					d.run();
 					break;
 				default:
-					AppContext.getErrString("ChooseErr");
+					AppContext.printErrString("ChooseErr");
 					break;
 				}
 			} else {
-				AppContext.getErrString("ChooseErr");
+				AppContext.printErrString("ChooseErr");
 			}
 		} catch (Exception e) {
-			AppContext.getErrString("NumberErr");
+			AppContext.printErrString("NumberErr");
 		}
 	}
 

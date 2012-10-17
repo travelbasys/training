@@ -1,7 +1,9 @@
 package de.travelbasys.training.dialog.customer.Delete;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dialog.VTextField;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
@@ -27,15 +29,42 @@ public class CustomerDeleteView extends ArrayList<VTextField> {
 	}
 
 	public void run() {
-		String customerid = "";
+		List<Customer> userList = null;
+
 		AppContext.printMessage("AttentionIntPrompt");
+		String customeridtemp;
 		do {
 			AppContext.printMessage("IDPrompt");
-			customerid = Console.nextLine();
-			control.check(customerid);
-		} while (control.checkend(customerid));
+			customeridtemp = Console.nextLine();
+			model.setCustomeridtemp(customeridtemp);
+			try {
+				control.check(customeridtemp);
+				userList = model.getUserlist();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} while (userList == null);
 	}
 
+	public void found() {
+		AppContext.printMessage("UserFound");
+		Customer customer = model.getUserlist().get(0);
 
+		AppContext.println(customer);
+
+		return;
 
 	}
+
+	public void decision() {
+		AppContext.printMessage("DelUserQ");
+		AppContext.printMessage("Yes");
+		AppContext.printMessage("No");
+		String decisiontemp = Console.nextLine();
+		
+		model.setDecisiontemp(decisiontemp);
+		control.checkdelete();
+		
+		return;
+	}
+}

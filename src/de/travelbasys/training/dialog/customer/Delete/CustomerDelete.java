@@ -51,7 +51,7 @@ public class CustomerDelete {
 						break;
 					default:
 						delete = false;
-						AppContext.getErrString("ChooseErr");
+						AppContext.printErrString("ChooseErr");
 						break;
 					}
 				}
@@ -60,14 +60,14 @@ public class CustomerDelete {
 					CustomerDAO.delUser(customerid);
 					AppContext.println("DelOK");
 				} else if (user.isEmpty()) {
-					AppContext.getErrString("IDNotFoundErr");
+					AppContext.printErrString("IDNotFoundErr");
 					AppContext.println("DelUserAbort");
 				} else {
 					AppContext.println("DelUserAbort");
 
 				}
 			} catch (Exception e) {
-				AppContext.getErrString("NumberErr");
+				AppContext.printErrString("NumberErr");
 			}
 
 		} while (true);
