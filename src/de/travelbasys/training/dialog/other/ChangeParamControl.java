@@ -1,8 +1,6 @@
 package de.travelbasys.training.dialog.other;
 
 import de.travelbasys.training.db.ChangeDBParamDialog;
-import de.travelbasys.training.dialog.Dialog;
-import de.travelbasys.training.dialog.menu.MainMenuDialog;
 import de.travelbasys.training.util.AppContext;
 
 /**
@@ -14,12 +12,10 @@ import de.travelbasys.training.util.AppContext;
 public class ChangeParamControl {
 
 	private ChangeParamModel model;
-	private ChangeParamView view;
 	private int choice;
 
-	public ChangeParamControl(ChangeParamModel model, ChangeParamView view) {
+	public ChangeParamControl(ChangeParamModel model) {
 		this.model = model;
-		this.view = view;
 	}
 
 	public void checkchoice() {

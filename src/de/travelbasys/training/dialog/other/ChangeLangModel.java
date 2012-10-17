@@ -14,7 +14,7 @@ public class ChangeLangModel extends ArrayList<String> {
 	private String choice;
 	private Locale locale;
 	private boolean check;
-	private ChangeLangView view;
+
 	private static final String ABORT = "Abgebrochen.";
 
 	/**

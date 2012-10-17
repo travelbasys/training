@@ -17,7 +17,7 @@ public class ChangeParamDialog implements Dialog {
 
 	public void run() {
 		model = new ChangeParamModel();
-		control = new ChangeParamControl(model, view);
+		control = new ChangeParamControl(model);
 		view = new ChangeParamView(model, control);
 
 		// Here plays the music!
