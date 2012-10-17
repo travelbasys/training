@@ -5,7 +5,6 @@ import java.util.Locale;
 
 import de.travelbasys.training.util.AppContext;
 
-
 public class ChangeLangModel extends ArrayList<String> {
 
 	/**
@@ -15,6 +14,8 @@ public class ChangeLangModel extends ArrayList<String> {
 	private String choice;
 	private Locale locale;
 	private boolean check;
+	private ChangeLangView view;
+	private static final String ABORT = "Abgebrochen.";
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
@@ -50,5 +51,11 @@ public class ChangeLangModel extends ArrayList<String> {
 	public void setCheck(boolean check) {
 		this.check = check;
 	}
+
+	public String getAbort() {
+		return ABORT;
+	}
+
+
 
 }

@@ -18,13 +18,17 @@ public class ChangeLangView {
 	}
 
 	public void run() {
-		do{
+		do {
 			for (String s : model) {
 				Console.println(s);
 			}
 			choice_str = Console.nextLine();
 			model.setChoice(choice_str);
 			control.checkchoice();
-		}while(model.isCheck());
+		} while (model.isCheck());
+	}
+
+	public void print(String abort) {
+Console.println(abort);		
 	}
 }

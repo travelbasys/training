@@ -2,6 +2,7 @@ package de.travelbasys.training.dialog.other;
 
 import de.travelbasys.training.db.ChangeDBParamDialog;
 import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.dialog.menu.MainMenuDialog;
 import de.travelbasys.training.util.AppContext;
 
 /**
@@ -22,36 +23,33 @@ public class ChangeParamControl {
 	}
 
 	public void checkchoice() {
-		Dialog d;
 		try {
 			choice = Integer.parseInt(model.getChoice());
 			if (choice >= 0 && choice <= 2) {
 				switch (choice) {
 				case 0:
-					model.setCheck(false);
+					model.setCheckFalse();
 					return;
 				case 1:
-					d = new ChangeLangDialog();
-					d.run();
-					model.setCheck(false);
+					model.setDialog(new ChangeLangDialog());
+					model.setCheckFalse();
 					return;
 				case 2:
-					d = new ChangeDBParamDialog();
-					d.run();
-					model.setCheck(false);
+					model.setDialog(new ChangeDBParamDialog());
+					model.setCheckFalse();
 					return;
 				default:
 					AppContext.getErrString("ChooseErr");
-					model.setCheck(true);
+					model.setCheckTrue();
 					break;
 				}
 			} else {
 				AppContext.getErrString("ChooseErr");
-				model.setCheck(true);
+				model.setCheckTrue();
 			}
 		} catch (Exception e) {
 			AppContext.getErrString("NumberErr");
-			model.setCheck(true);
+			model.setCheckTrue();
 		}
 	}
 }

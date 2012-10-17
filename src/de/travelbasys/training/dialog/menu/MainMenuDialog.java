@@ -1,5 +1,7 @@
 package de.travelbasys.training.dialog.menu;
 
+import de.travelbasys.training.dialog.Dialog;
+
 /**
  * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für ein
  * Customer Objekt abzufragen und das Objekt dann zu erzeugen.
@@ -7,7 +9,7 @@ package de.travelbasys.training.dialog.menu;
  * @author tba
  */
 
-public class MainMenuDialog {
+public class MainMenuDialog implements Dialog {
 
 	private MainMenuModel model;
 	private MainMenuView view;

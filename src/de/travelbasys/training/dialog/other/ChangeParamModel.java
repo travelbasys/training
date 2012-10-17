@@ -1,13 +1,13 @@
 package de.travelbasys.training.dialog.other;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
+import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * erzeugt eine Instanz der Klasse ChangeParamDialog
- * und verwaltet Strings für Ausgaben.
+ * erzeugt eine Instanz der Klasse ChangeParamDialog und verwaltet Strings für
+ * Ausgaben.
  */
 
 public class ChangeParamModel extends ArrayList<String> {
@@ -18,6 +18,8 @@ public class ChangeParamModel extends ArrayList<String> {
 	private static final long serialVersionUID = 1L;
 	private String choice;
 	private boolean check;
+	private Dialog d;
+	private static final String ABORT = "Abgebrochen.";
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
@@ -29,6 +31,7 @@ public class ChangeParamModel extends ArrayList<String> {
 		add(AppContext.getMessage("Param1"));
 		add(AppContext.getMessage("Param2"));
 	}
+
 	public String getChoice() {
 		return choice;
 	}
@@ -41,8 +44,24 @@ public class ChangeParamModel extends ArrayList<String> {
 		return check;
 	}
 
-	public void setCheck(boolean check) {
-		this.check = check;
+	public void setCheckFalse() {
+		check = false;
+	}
+
+	public void setCheckTrue() {
+		check = true;
+	}
+
+	public Dialog getDialog() {
+		return d;
+	}
+
+	public void setDialog(Dialog d) {
+		this.d = d;
+	}
+
+	public Object getAbort() {
+		return ABORT;
 	}
 
 }
