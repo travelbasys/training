@@ -69,7 +69,6 @@ public class MainMenuControl extends Application {
 			}
 		} catch (Exception e) {
 			AppContext.getErrString("NumberErr");
-			e.printStackTrace();
 		}
 	}
 

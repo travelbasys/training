@@ -12,46 +12,46 @@ import de.travelbasys.training.util.AppContext;
  */
 public class ChangeParamControl {
 
+	private ChangeParamModel model;
+	private ChangeParamView view;
+	private int choice;
+
 	public ChangeParamControl(ChangeParamModel model, ChangeParamView view) {
-		// TODO Auto-generated constructor stub
+		this.model = model;
+		this.view = view;
 	}
 
-	public void checkchoice(String choice_str) {
+	public void checkchoice() {
 		Dialog d;
 		try {
-			int choice_int = Integer.parseInt(choice_str);
-			if (choice_int >= 0 && choice_int <= 2) {
-				switch (choice_int) {
+			choice = Integer.parseInt(model.getChoice());
+			if (choice >= 0 && choice <= 2) {
+				switch (choice) {
 				case 0:
+					model.setCheck(false);
 					return;
 				case 1:
 					d = new ChangeLangDialog();
 					d.run();
-					break;
+					model.setCheck(false);
+					return;
 				case 2:
 					d = new ChangeDBParamDialog();
 					d.run();
-					break;
+					model.setCheck(false);
+					return;
 				default:
 					AppContext.getErrString("ChooseErr");
+					model.setCheck(true);
 					break;
 				}
 			} else {
 				AppContext.getErrString("ChooseErr");
+				model.setCheck(true);
 			}
 		} catch (Exception e) {
 			AppContext.getErrString("NumberErr");
+			model.setCheck(true);
 		}
-	}
-
-	public boolean checkend(String choice_str) {
-		try {
-			if (Integer.parseInt(choice_str) == 0) {
-				return false;
-			}
-		} catch (Exception e) {
-		}
-
-		return true;
 	}
 }

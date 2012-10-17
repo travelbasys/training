@@ -24,13 +24,15 @@ public class ChangeParamView {
 		this.control = control;
 	}
 
-	public void run() {
-		do {
-			for (String s : model) {
-				Console.println(s);
-			}
-			choice_str = Console.nextLine();
-			control.checkchoice(choice_str);
-		} while (control.checkend(choice_str));
+		public void run() {
+			do{
+				for (String s : model) {
+					Console.println(s);
+				}
+				choice_str = Console.nextLine();
+				model.setChoice(choice_str);
+				control.checkchoice();
+			}while(model.isCheck());
+		}
 	}
-}
+
