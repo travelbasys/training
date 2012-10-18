@@ -50,4 +50,14 @@ public class ExportControl {
 			AppContext.printErrString("NumberErr");
 		}
 	}
+
+	public void checkname(String export_name) {
+		if (!export_name.isEmpty()) {
+			model.setExportName(export_name);
+			model.setCheckFalse();
+			
+		} else {
+			AppContext.printErrString("NumberErr");
+		}		
+	}
 }

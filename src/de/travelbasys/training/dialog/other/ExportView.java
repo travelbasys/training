@@ -48,15 +48,8 @@ public class ExportView extends ArrayList<VTextField> {
 		do {
 			model.setCheckTrue();
 			AppContext.printMessage("ExportName");
-			export_name = Console.nextLine();
-			if (!export_name.isEmpty()) {
-				model.setExportName(export_name);
-				model.setCheckFalse();
-				
-			} else {
-				AppContext.printErrString("NumberErr");
-			}
-
+			export_name = Console.nextLine().trim();
+			control.checkname(export_name);
 		} while (model.getCheck());
 	}
 }

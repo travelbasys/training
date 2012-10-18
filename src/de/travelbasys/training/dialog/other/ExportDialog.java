@@ -7,7 +7,6 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.util.AppContext;
-import de.travelbasys.training.util.Console;
 
 /**
  * Diese Klasse ist für das Exportieren der aktuellen Datenbank verantwortlich.
