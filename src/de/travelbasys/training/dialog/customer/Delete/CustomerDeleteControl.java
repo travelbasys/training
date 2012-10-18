@@ -58,7 +58,7 @@ public class CustomerDeleteControl {
 			return;
 		}
 		int decision = 0;
-			model.getDecision();
+			decision = model.getDecision();
 			if (decision >= 1 && decision <= 2) {
 				model.setFlagCheck();
 				switch (decision) {

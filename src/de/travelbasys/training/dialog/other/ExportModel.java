@@ -67,16 +67,16 @@ public class ExportModel extends ArrayList<String> {
 		return ExportType;
 	}
 
-	public void setExportType(String exportType) {
-		ExportType = exportType;
+	public void setExportType(String type) {
+		ExportType = type;
 	}
 
 	public String getExportName() {
 		return ExportName;
 	}
 
-	public void setExportName(String exportName) {
-		ExportName = exportName;
+	public void setExportName(String name) {
+		ExportName = name;
 	}
 
 	public String getHeader() {
