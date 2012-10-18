@@ -32,16 +32,13 @@ public class CustomerUpdateView {
 			AppContext.printMessage("IDPrompt");
 			customeridtemp = Console.nextLine();
 			model.setCustomeridtemp(customeridtemp);
-
 			control.check();
 			user = model.getUser();
-
 		} while (user == null);
 		model.getUser();
 		AppContext.println(user);
 
 	}
-
 	public void updatemenu() {
 		do {
 			AppContext.printMessage("Choose");
@@ -100,12 +97,10 @@ public class CustomerUpdateView {
 		return;
 	}
 
-	
-
 	public void abort() {
 		AppContext.printMessage("Abort");
 		return;
-		
+
 	}
 
 }

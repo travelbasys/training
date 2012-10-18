@@ -21,6 +21,7 @@ public class CustomerUpdateModel {
 	private List<Customer> user;
 	private String choice_str;
 	private int choice_int;
+	private int end= 1;
 	
 	public String getLastname() {
 		return lastname;
@@ -109,5 +110,15 @@ public class CustomerUpdateModel {
 	public void setChoice_int(int choice_int) {
 		this.choice_int = choice_int;
 	}
+	
+	public int getend() {
+		return end;
+	}
+
+	public void setend(int end) {
+		this.end = 0;
+		
+	}
+	
 
 }

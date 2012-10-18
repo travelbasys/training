@@ -26,7 +26,8 @@ public class CustomerUpdateControl {
 		try {
 			String s = model.getCustomeridtemp();
 			int customerid = Integer.parseInt(s);
-			if(customerid == 0){
+			if (customerid == 0) {
+				model.setCustomerid(customerid);
 				CustomerUpdateDialog.end();
 				return;
 			}
@@ -36,9 +37,7 @@ public class CustomerUpdateControl {
 			return;
 		}
 		int customerid = model.getCustomerid();
-		
-		
-		
+
 		List<Customer> user = CustomerDAO.findUserByID(customerid);
 		if (user.isEmpty()) { // Errormeldung
 			AppContext.printErrString("IDNotFoundErr");
@@ -82,11 +81,11 @@ public class CustomerUpdateControl {
 				default:
 					break;
 				}
-
-				return 1;
 			} catch (Exception e) {
 				AppContext.printErrString("NumberErr");
 			}
+				return 1;
+			
 
 		} while (true);
 
