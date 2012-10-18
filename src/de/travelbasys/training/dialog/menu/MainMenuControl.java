@@ -44,8 +44,7 @@ public class MainMenuControl extends Application {
 					d.run();
 					break;
 				case 5:
-					CustomerList.run();
-								
+					CustomerList.run();			
 					break;
 				case 6:
 					Export.run();

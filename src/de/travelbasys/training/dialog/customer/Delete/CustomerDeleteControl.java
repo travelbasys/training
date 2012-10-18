@@ -40,32 +40,42 @@ public class CustomerDeleteControl {
 				return;
 			}
 
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
 			throw new Exception(AppContext.getErrString("NumberErr"));
+	
 		}
-	}
+		}
+	
 
-	public void checkdelete() {
-
-		String s = model.getDecisiontemp();
-		int decision = Integer.parseInt(s);
-		model.setDecision(decision);
-		if (decision >= 1 && decision <= 2) {
-			model.setFlagCheck();
-			switch (decision) {
-			case 1:
-				model.setDeleteFlag(true);
-				break;
-			case 2:
-				model.setDeleteFlag(false);
-				break;
-			}
-		} else {
-			AppContext.printErrString("ChooseErr");
+	public void checkdelete(){
+		try{
+			String s = model.getDecisiontemp();
+			int decision = Integer.parseInt(s);
+			model.setDecision(decision);
+			
+		}catch(NumberFormatException e){
+			AppContext.printErrString("NumberErr");
 			return;
 		}
-		return;
+		int decision = 0;
+			model.getDecision();
+			if (decision >= 1 && decision <= 2) {
+				model.setFlagCheck();
+				switch (decision) {
+				case 1:
+					model.setDeleteFlag(true);
+					break;
+				case 2:
+					model.setDeleteFlag(false);
+					break;
+				}
+			} else {
+				AppContext.printErrString("ChooseErr");
+				return;
+			}
+		
+
+		}
 
 	}
 
-}
