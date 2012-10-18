@@ -75,8 +75,9 @@ public class CustomerUpdateDialog implements Dialog {
 
 	}
 
-	public static boolean end() {
-		return false;
+	public static void end() {
+		view.abort();
+		return;
 
 	}
 

@@ -100,4 +100,12 @@ public class CustomerUpdateView {
 		return;
 	}
 
+	
+
+	public void abort() {
+		AppContext.printMessage("Abort");
+		return;
+		
+	}
+
 }
