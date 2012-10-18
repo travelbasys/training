@@ -8,7 +8,7 @@ import de.travelbasys.training.dialog.customer.Show.CustomerShowDialog;
 import de.travelbasys.training.dialog.customer.Update.CustomerUpdateDialog;
 import de.travelbasys.training.dialog.customer.create.CustomerCreateDialog;
 import de.travelbasys.training.dialog.other.ChangeParamDialog;
-import de.travelbasys.training.dialog.other.Export;
+import de.travelbasys.training.dialog.other.ExportDialog;
 import de.travelbasys.training.dialog.other.Import;
 import de.travelbasys.training.rbsjava.main.Application;
 import de.travelbasys.training.util.AppContext;
@@ -44,10 +44,11 @@ public class MainMenuControl extends Application {
 					d.run();
 					break;
 				case 5:
-					CustomerList.run();			
+					CustomerList.run();
 					break;
 				case 6:
-					Export.run();
+					d = new ExportDialog();
+					d.run();
 					break;
 				case 7:
 					Import.run();
