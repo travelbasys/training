@@ -3,7 +3,6 @@ package de.travelbasys.training.dialog.other;
 import java.util.Locale;
 
 import de.travelbasys.training.util.AppContext;
-import de.travelbasys.training.util.Console;
 
 /**
  * Diese Klasse Kontrolliert Benutzereingaben.
@@ -14,12 +13,10 @@ import de.travelbasys.training.util.Console;
 public class ChangeLangControl {
 
 	private ChangeLangModel model;
-	private ChangeLangView view;
 	int choice;
 
-	public ChangeLangControl(ChangeLangModel model, ChangeLangView view) {
+	public ChangeLangControl(ChangeLangModel model) {
 		this.model = model;
-		this.view = view;
 	}
 
 	public void checkchoice() {
@@ -28,33 +25,29 @@ public class ChangeLangControl {
 			if (choice >= 0 && choice <= 2) {
 				switch (choice) {
 				case 0:
-					//Soll via View laufen, wirft aber NullPointerException.
-					Console.println(model.getAbort());
+					model.setEndFlag();
 					model.setLocale(Locale.getDefault());
-					model.setCheck(false);
+					model.setCheckFalse();
 					return;
 				case 1:
 					model.setLocale(new Locale("en"));
-					model.setCheck(false);
+					model.setCheckFalse();
 					return;
 				case 2:
 					model.setLocale(new Locale("de"));
-					model.setCheck(false);
+					model.setCheckFalse();
 					return;
 				default:
 					AppContext.printErrString("ChooseErr");
-					model.setCheck(true);
 					break;
 				}
 			} else {
 				AppContext.printErrString("ChooseErr");
 				model.setLocale(Locale.getDefault());
-				model.setCheck(true);
 			}
 		} catch (Exception e) {
 			AppContext.printErrString("NumberErr");
 			model.setLocale(Locale.getDefault());
-			model.setCheck(true);
 		}
 	}
 }

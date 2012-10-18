@@ -25,7 +25,7 @@ public class ChangeLangView {
 			choice_str = Console.nextLine();
 			model.setChoice(choice_str);
 			control.checkchoice();
-		} while (model.isCheck());
+		} while (model.getCheck());
 	}
 
 	public void print(String abort) {

@@ -24,6 +24,7 @@ public class ChangeParamControl {
 			if (choice >= 0 && choice <= 2) {
 				switch (choice) {
 				case 0:
+					model.setEndFlag();
 					model.setCheckFalse();
 					return;
 				case 1:

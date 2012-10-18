@@ -19,6 +19,7 @@ public class ChangeParamModel extends ArrayList<String> {
 	private String choice;
 	private boolean check;
 	private Dialog d;
+	private boolean EndFlag = false;
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
@@ -57,5 +58,13 @@ public class ChangeParamModel extends ArrayList<String> {
 
 	public void setDialog(Dialog d) {
 		this.d = d;
+	}
+
+	public boolean getEndFlag() {
+		return EndFlag;
+	}
+
+	public void setEndFlag() {
+		EndFlag = true;
 	}
 }

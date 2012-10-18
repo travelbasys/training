@@ -21,6 +21,9 @@ public class ChangeParamDialog implements Dialog {
 
 		// Here plays the music!
 		view.run();
+		if(model.getEndFlag()){
+			return;
+		}
 		try {
 			d = model.getDialog();
 			d.run();

@@ -29,6 +29,8 @@ public class ImportDialog implements Dialog {
 		// Here plays the music!
 		view.run();
 		if (model.getEndFlag()) {
+			return;
+		}
 			view.decision();
 			try {
 				FileReader fr = new FileReader(model.getImportName() + "."
@@ -54,4 +56,4 @@ e.printStackTrace();			}
 
 		}
 	}
-}
+

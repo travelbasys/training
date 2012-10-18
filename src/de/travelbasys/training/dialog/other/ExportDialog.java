@@ -27,6 +27,7 @@ public class ExportDialog implements Dialog {
 		// Here plays the music!
 		view.run();
 		if (model.getEndFlag()) {
+			return;}
 			view.decision();
 			try {
 				FileWriter fw = new FileWriter(model.getExportName() + "."
@@ -43,7 +44,7 @@ public class ExportDialog implements Dialog {
 				e.printStackTrace();
 			}
 		}
-	}
+	
 }
 
 // Do something with the input!

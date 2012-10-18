@@ -13,7 +13,8 @@ public class ChangeLangModel extends ArrayList<String> {
 	private static final long serialVersionUID = 1L;
 	private String choice;
 	private Locale locale;
-	private boolean check;
+	private boolean check = true;
+	private boolean EndFlag = false;
 
 	private static final String ABORT = "Abgebrochen.";
 
@@ -44,16 +45,24 @@ public class ChangeLangModel extends ArrayList<String> {
 		this.locale = locale;
 	}
 
-	public boolean isCheck() {
+	public boolean getCheck() {
 		return check;
-	}
-
-	public void setCheck(boolean check) {
-		this.check = check;
 	}
 
 	public String getAbort() {
 		return ABORT;
+	}
+
+	public boolean getEndFlag() {
+		return EndFlag;
+	}
+
+	public void setEndFlag() {
+		EndFlag = true;
+	}
+
+	public void setCheckFalse() {
+		check = false;
 	}
 
 

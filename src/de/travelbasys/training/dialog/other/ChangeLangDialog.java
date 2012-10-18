@@ -21,11 +21,14 @@ public class ChangeLangDialog implements Dialog {
 	public void run() {
 		MainMenuDialog d;
 		model = new ChangeLangModel();
-		control = new ChangeLangControl(model, view);
+		control = new ChangeLangControl(model);
 		view = new ChangeLangView(model, control);
 
 		// Here plays the music!
 		view.run();
+		if(model.getEndFlag()){
+			return;
+		}
 		Config.updateLanguage(model.getLocale());
 		d = new MainMenuDialog();
 		d.run();

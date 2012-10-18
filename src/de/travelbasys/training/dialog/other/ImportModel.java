@@ -22,7 +22,7 @@ public class ImportModel extends ArrayList<String> {
 	private String ImportType = "";
 	private String ImportName = "";
 	private String Header = "";
-	private boolean EndFlag = true;
+	private boolean EndFlag = false;
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
@@ -96,7 +96,7 @@ check = true;
 	}
 
 	public void setEndFlag() {
-		EndFlag = false;
+		EndFlag = true;
 	}
 
 }
