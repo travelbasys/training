@@ -19,6 +19,7 @@ public class CustomerDeleteModel extends ArrayList<String> {
 	private Customer user;
 	private List<Customer> userlist;
 	private boolean deleteFlag;
+	private boolean FlagCheck = true;
 
 	public CustomerDeleteModel() {
 		super();
@@ -89,6 +90,14 @@ public class CustomerDeleteModel extends ArrayList<String> {
 
 	public boolean getDeleteFlag() {
 		return deleteFlag;
+	}
+
+	public boolean getFlagCheck() {
+		return FlagCheck;
+	}
+
+	public void setFlagCheck() {
+		FlagCheck = false;
 	}
 
 }

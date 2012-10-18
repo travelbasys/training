@@ -27,34 +27,45 @@ public class CustomerDeleteControl {
 
 		// User suchen.
 		try {
+
 			model.getCustomeridtemp();
 			customerid = Integer.parseInt(customeridtemp);
 			model.setCustomerid(customerid);
 			List<Customer> user = CustomerDAO.findUserByID(customerid);
-			model.setUserlist(user);
-			return;
+			if (!user.isEmpty()) {
+				model.setUserlist(user);
+				return;
+			} else {
+				AppContext.printErrString("IDNotFoundErr");
+				return;
+			}
+
 		} catch (Exception e) {
 			throw new Exception(AppContext.getErrString("NumberErr"));
 		}
 	}
 
 	public void checkdelete() {
-		boolean delete = false;
 
 		String s = model.getDecisiontemp();
 		int decision = Integer.parseInt(s);
-		switch (decision) {
-		case 1:
-			delete = true;
-			break;
-		case 2:
-			delete = false;
-			break;
-		default:
-			delete = false;
+		model.setDecision(decision);
+		if (decision >= 1 && decision <= 2) {
+			model.setFlagCheck();
+			switch (decision) {
+			case 1:
+				model.setDeleteFlag(true);
+				break;
+			case 2:
+				model.setDeleteFlag(false);
+				break;
+			}
+		} else {
 			AppContext.printErrString("ChooseErr");
-			break;
+			return;
 		}
-		model.setDeleteFlag(delete);
+		return;
+
 	}
+
 }

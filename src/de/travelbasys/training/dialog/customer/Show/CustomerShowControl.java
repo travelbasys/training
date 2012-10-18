@@ -20,9 +20,9 @@ public class CustomerShowControl {
 				case 0:
 					return;
 				case 1:
-					AppContext.printMessage("AttentionStringPrompt");
+					AppContext.printErrString("AttentionStringPrompt");
 					do {
-						AppContext.printMessage("LastNamePrompt");
+						AppContext.printErrString("LastNamePrompt");
 
 						// Usernamen einlesen.
 						String lastname = Console.nextLine();

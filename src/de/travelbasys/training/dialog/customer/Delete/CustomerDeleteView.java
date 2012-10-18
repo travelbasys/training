@@ -41,7 +41,7 @@ public class CustomerDeleteView extends ArrayList<VTextField> {
 				control.check(customeridtemp);
 				userList = model.getUserlist();
 			} catch (Exception e) {
-				e.printStackTrace();
+				AppContext.printErrString("ChooseErr");
 			}
 		} while (userList == null);
 	}
@@ -57,14 +57,23 @@ public class CustomerDeleteView extends ArrayList<VTextField> {
 	}
 
 	public void decision() {
+		do {
 		AppContext.printMessage("DelUserQ");
 		AppContext.printMessage("Yes");
 		AppContext.printMessage("No");
 		String decisiontemp = Console.nextLine();
 		
 		model.setDecisiontemp(decisiontemp);
-		control.checkdelete();
+		try {
+			control.checkdelete();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			AppContext.printErrString("ChooseErr");
+		}
+
+		model.getDecision();
+		}while(model.getFlagCheck());
 		
-		return;
 	}
 }
