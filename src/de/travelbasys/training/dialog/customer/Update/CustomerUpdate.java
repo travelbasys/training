@@ -24,6 +24,7 @@ public class CustomerUpdate {
 	private static String postalcode = "";
 	private static String email = "";
 	private static int age = 0;
+	
 
 	/**
 	 * 

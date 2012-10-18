@@ -5,7 +5,6 @@ import java.util.List;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.util.AppContext;
-import de.travelbasys.training.util.Console;
 
 /**
  * Diese Klasse Kontrolliert Benutzereingaben.
@@ -16,81 +15,67 @@ import de.travelbasys.training.util.Console;
 
 public class CustomerUpdateControl {
 	private CustomerUpdateModel model;
-	private CustomerUpdateView view;
 
-	private static String lastname = "";
-	private static int customerid = 0;
-	private static String firstname = "";
-	private static String adress = "";
-	private static String postalcode = "";
-	private static String email = "";
-	private static int age = 0;
-
-	public CustomerUpdateControl(CustomerUpdateModel model,
-			CustomerUpdateView view) {
+	public CustomerUpdateControl(CustomerUpdateModel model) {
 		this.model = model;
-		this.view = view;
+
 	}
 
-	public void check(String customeridtemp) {
-		customerid = Integer.parseInt(customeridtemp);
+	// throw (numberformatexception)
+	public void check() {
+		try {
+			String s = model.getCustomeridtemp();
+			int customerid = Integer.parseInt(s);
+			model.setCustomerid(customerid);
+		} catch (NumberFormatException e) {
+			AppContext.printErrString("NumberErr");
+			return;
+		}
+		int customerid = model.getCustomerid();
 		List<Customer> user = CustomerDAO.findUserByID(customerid);
 		if (user.isEmpty()) { // Errormeldung
 			AppContext.printErrString("IDNotFoundErr");
 			return;
 		}
-		AppContext.printMessage("UserFound");
-		AppContext.println(user);
+		model.setUser(user);
+
 	}
 
 	public int checkmenu() {
-	
-	
-		do {
-			
 
-			
+		do {
+
 			try {
-				String choice_strtemp = Console.nextLine();
-				int choice_int = Integer.parseInt(choice_strtemp);
+				String s = model.getChoice_str();
+				int choice_int = Integer.parseInt(s);
+				model.setChoice_int(choice_int);
+
 				switch (choice_int) {
 				case 0:
 					CustomerUpdateDialog.end();
 					return 0;
 				case 1:
-					AppContext.printMessage("FirstNamePrompt");
-					firstname = Console.nextLine();
-					CustomerUpdateDialog.setFirstname(customerid, firstname);
+					CustomerUpdateDialog.setFirstname();
 					break;
 				case 2:
-					AppContext.printMessage("LastNamePrompt");
-					lastname = Console.nextLine();
-					CustomerUpdateDialog.setLastname(customerid, lastname);
+					CustomerUpdateDialog.setLastname();
 					break;
 				case 3:
-					AppContext.printMessage("AgePrompt");
-					age = Console.nextInt();
-					CustomerUpdateDialog.setAge(customerid, age);
+					CustomerUpdateDialog.setAge();
 					break;
 				case 4:
-					AppContext.printMessage("AdressPrompt");
-					adress = Console.nextLine();
-					CustomerUpdateDialog.setAdress(customerid, adress);
+					CustomerUpdateDialog.setAdress();
 					break;
 				case 5:
-					AppContext.printMessage("PostalPrompt");
-					postalcode = Console.nextLine();
-					CustomerUpdateDialog.setPostalcode(customerid, postalcode);
+					CustomerUpdateDialog.setPostalcode();
 					break;
 				case 6:
-					AppContext.printMessage("eMailPrompt");
-					email = Console.nextLine();
-					CustomerUpdateDialog.setEmail(customerid, email);
+					CustomerUpdateDialog.setEmail();
 					break;
 				default:
 					break;
 				}
-				
+
 				return 1;
 			} catch (Exception e) {
 				AppContext.printErrString("NumberErr");
@@ -103,7 +88,5 @@ public class CustomerUpdateControl {
 	public boolean checkend() {
 		return false;
 	}
-
-	
 
 }

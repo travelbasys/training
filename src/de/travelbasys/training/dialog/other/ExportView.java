@@ -52,6 +52,7 @@ public class ExportView extends ArrayList<VTextField> {
 			if (!export_name.isEmpty()) {
 				model.setExportName(export_name);
 				model.setCheckFalse();
+				
 			} else {
 				AppContext.printErrString("NumberErr");
 			}

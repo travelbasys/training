@@ -12,53 +12,72 @@ import de.travelbasys.training.dialog.Dialog;
  */
 
 public class CustomerUpdateDialog implements Dialog {
-	private CustomerUpdateModel model;
-	private CustomerUpdateView view;
+	private static CustomerUpdateModel model;
+	private static CustomerUpdateView view;
 	private static CustomerUpdateControl control;
 
 	@Override
 	public void run() {
 		model = new CustomerUpdateModel();
-		control = new CustomerUpdateControl(model, view);
+		control = new CustomerUpdateControl(model);
 		view = new CustomerUpdateView(model, control);
 
 		view.run();
+		view.updatemenu();
 
 	}
 
-	public static void setFirstname(int customerid, String firstname) {
+	public static void setFirstname() {
+		int customerid = model.getCustomerid();
+		view.firstname();
+		String firstname = model.getFirstname();
 		CustomerDAO.setSingleUserFirstname(customerid, firstname);
-		
+
 	}
 
-	public static void setLastname(int customerid, String lastname) {
+	public static void setLastname() {
+		int customerid = model.getCustomerid();
+		view.lastname();
+		String lastname = model.getLastname();
 		CustomerDAO.setSingleUserLastname(customerid, lastname);
 
 	}
 
-	public static void setAge(int customerid, int age) {
+	public static void setAge() {
+		int customerid = model.getCustomerid();
+		view.age();
+		int age = model.getAge();
 		CustomerDAO.setSingleUserAge(customerid, age);
 
 	}
 
-	public static void setAdress(int customerid, String adress) {
+	public static void setAdress() {
+		int customerid = model.getCustomerid();
+		view.adress();
+		String adress = model.getAdress();
 		CustomerDAO.setSingleUserAdress(customerid, adress);
 
 	}
 
-	public static void setPostalcode(int customerid, String postalcode) {
+	public static void setPostalcode() {
+		int customerid = model.getCustomerid();
+		view.postalcode();
+		String postalcode = model.getPostalcode();
 		CustomerDAO.setSingleUserPostalcode(customerid, postalcode);
-	
+
 	}
 
-	public static void setEmail(int customerid, String email) {
+	public static void setEmail() {
+		int customerid = model.getCustomerid();
+		view.email();
+		String email = model.getEmail();
 		CustomerDAO.setSingleUserEmail(customerid, email);
 
 	}
 
 	public static boolean end() {
 		return false;
-		
+
 	}
 
 }
