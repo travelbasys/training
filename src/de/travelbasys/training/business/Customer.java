@@ -192,8 +192,14 @@ public class Customer implements Serializable {
 				+ "]";
 	}
 
-	public String toCSV() {
-		return userid + ";" + lastname + ";" + firstname + ";" + age + ";" + adress + ";" + postalcode + ";" + email;
+	public String toFormat(String Format){
+		if(Format == "CSV"){
+			return userid + ";" + lastname + ";" + firstname + ";" + age + ";" + adress + ";" + postalcode + ";" + email;
+
+		}
+		if(Format == "ACCESS"){
+		}
+		return null;
 	}
 
 	@Override

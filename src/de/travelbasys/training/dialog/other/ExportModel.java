@@ -6,8 +6,8 @@ import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * erzeugt eine Instanz der Klasse ExportDialog
- * und verwaltet Strings für Ausgaben.
+ * erzeugt eine Instanz der Klasse ExportDialog und verwaltet Strings für
+ * Ausgaben.
  */
 public class ExportModel extends ArrayList<String> {
 
@@ -19,6 +19,10 @@ public class ExportModel extends ArrayList<String> {
 	private boolean check = true;
 	private Dialog d;
 	private static final String ABORT = "Abgebrochen.";
+	private String ExportType = "";
+	private String ExportName = "";
+	private String Header = "";
+	private boolean EndFlag = true;
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
@@ -57,6 +61,42 @@ public class ExportModel extends ArrayList<String> {
 
 	public Object getAbort() {
 		return ABORT;
+	}
+
+	public String getExportType() {
+		return ExportType;
+	}
+
+	public void setExportType(String exportType) {
+		ExportType = exportType;
+	}
+
+	public String getExportName() {
+		return ExportName;
+	}
+
+	public void setExportName(String exportName) {
+		ExportName = exportName;
+	}
+
+	public String getHeader() {
+		return Header;
+	}
+
+	public void setHeader(String header) {
+		Header = header;
+	}
+
+	public void setCheckTrue() {
+check = true;		
+	}
+
+	public boolean getEndFlag() {
+		return EndFlag;
+	}
+
+	public void setEndFlag() {
+		EndFlag = false;
 	}
 
 }

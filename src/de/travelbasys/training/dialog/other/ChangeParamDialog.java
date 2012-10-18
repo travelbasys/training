@@ -1,7 +1,6 @@
 package de.travelbasys.training.dialog.other;
 
 import de.travelbasys.training.dialog.Dialog;
-import de.travelbasys.training.util.Console;
 
 /**
  * Diese Klasse ist für das ändern der Spracheinstellungen verantwortlich.
@@ -26,7 +25,6 @@ public class ChangeParamDialog implements Dialog {
 			d = model.getDialog();
 			d.run();
 		} catch (NullPointerException e) {
-Console.println(model.getAbort());
 		}
 
 		// Do something with the input!

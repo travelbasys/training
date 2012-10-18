@@ -1,18 +1,24 @@
 package de.travelbasys.training.dialog.other;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
+import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 
 /**
-* Diese Klasse ist für das Exportieren der aktuellen Datenbank verantwortlich.
-*@author tba
-**/
+ * Diese Klasse ist für das Exportieren der aktuellen Datenbank verantwortlich.
+ * 
+ * @author tba
+ **/
 public class ExportDialog implements Dialog {
 
 	private ExportModel model;
 	private ExportView view;
 	private ExportControl control;
-	private Dialog d;
 
 	public void run() {
 		model = new ExportModel();
@@ -21,15 +27,25 @@ public class ExportDialog implements Dialog {
 
 		// Here plays the music!
 		view.run();
-		try {
-			d = model.getDialog();
-			d.run();
-		} catch (NullPointerException e) {
-Console.println(model.getAbort());
+		if (model.getEndFlag()) {
+			view.decision();
+			try {
+				FileWriter fw = new FileWriter(model.getExportName() + "."
+						+ model.getExportType());
+				PrintWriter pw = new PrintWriter(fw);
+				pw.println(model.getHeader());
+				for (Customer user : CustomerDAO.getUsers()) {
+					AppContext.println(user);
+					pw.println(user.toFormat(model.getExportType()));
+				}
+				AppContext.printMessage("ExportOK");
+				pw.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-
-		// Do something with the input!
-
 	}
-
 }
+
+// Do something with the input!
+

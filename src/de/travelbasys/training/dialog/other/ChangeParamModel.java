@@ -19,7 +19,6 @@ public class ChangeParamModel extends ArrayList<String> {
 	private String choice;
 	private boolean check;
 	private Dialog d;
-	private static final String ABORT = "Abgebrochen.";
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
@@ -59,9 +58,4 @@ public class ChangeParamModel extends ArrayList<String> {
 	public void setDialog(Dialog d) {
 		this.d = d;
 	}
-
-	public Object getAbort() {
-		return ABORT;
-	}
-
 }
