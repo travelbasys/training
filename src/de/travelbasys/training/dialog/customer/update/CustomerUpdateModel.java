@@ -5,8 +5,9 @@ import java.util.List;
 import de.travelbasys.training.business.Customer;
 
 /**
- * erzeugt eine Instanz der Klasse CustomerUpdateDialog und verwaltet Strings
- * für Ausgaben
+ * erzeugt eine Instanz der Klasse CustomerUpdateDialog und verwaltet Daten
+ * 
+ * @author
  */
 
 public class CustomerUpdateModel {

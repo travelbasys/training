@@ -3,10 +3,10 @@ package de.travelbasys.training.dialog.customer.show;
 import de.travelbasys.training.dialog.Dialog;
 
 /**
- * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für ein
- * Customer Objekt abzufragen und das Objekt dann zu erzeugen.
+ * ist verantwortlich für das anzeigen eines Benutzers aus der Datenbank
  * 
  * @author tba
+ * 
  */
 
 public class CustomerShowDialog implements Dialog {

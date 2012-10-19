@@ -5,7 +5,12 @@ import java.util.List;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.util.AppContext;
-
+/**
+ * Diese Klasse Kontrolliert Benutzereingaben.
+ * 
+ * @author tba
+ * 
+ */
 public class CustomerShowControl {
 
 	private CustomerShowModel model;

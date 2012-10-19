@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.util.AppContext;
 
 /**
@@ -13,9 +14,9 @@ import de.travelbasys.training.util.AppContext;
  * @author tba
  * 
  */
-public class CustomerList {
+public class CustomerList implements Dialog {
 
-	public static void run() {
+	public void run() {
 		// Datei wird eingelesen und gibt alle User Objekte der Datenbank aus.
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {

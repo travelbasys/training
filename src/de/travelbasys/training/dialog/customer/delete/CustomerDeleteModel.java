@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.util.AppContext;
 
 /**
- * erzeugt eine Instanz der Klasse CustomerDeleteDialog und verwaltet Strings
- * für Ausgaben
+ * erzeugt eine Instanz der Klasse CustomerDeleteDialog und verwaltet Daten
+ * 
+ * @author
  */
 @SuppressWarnings("serial")
 public class CustomerDeleteModel extends ArrayList<String> {
@@ -22,21 +22,6 @@ public class CustomerDeleteModel extends ArrayList<String> {
 	private boolean FlagCheck = true;
 	private boolean end = true;
 	private boolean gotuser = true;
-
-	public CustomerDeleteModel() {
-		super();
-		add(AppContext.getMessage("AttentionIntPrompt"));
-		add(AppContext.getMessage("DelOK"));
-		add(AppContext.getMessage("IDPrompt"));
-		add(AppContext.getMessage("UserFound"));
-		add(AppContext.getMessage("DelUserQ"));
-		add(AppContext.getMessage("Yes"));
-		add(AppContext.getMessage("No"));
-		add(AppContext.getMessage("ChooseErr"));
-		add(AppContext.getMessage("IDNotFoundErr"));
-		add(AppContext.getMessage("DelUserAbort"));
-		add(AppContext.getMessage("NumberErr"));
-	}
 
 	public String getCustomeridtemp() {
 		return customeridtemp;

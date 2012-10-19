@@ -9,7 +9,7 @@ import de.travelbasys.training.util.Console;
 
 /**
  * Diese Klasse ist verantwortlich für den Dialog mit dem Benutzer um die für
- * das löschen eines Customers aus der Datenbank
+ * das löschen eines Customers aus der Datenbank erforderlichen Daten zu erfragen.
  * 
  * @author tba
  * 

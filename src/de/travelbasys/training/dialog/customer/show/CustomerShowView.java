@@ -6,7 +6,13 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dialog.VTextField;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
-
+/**
+ * Diese Klasse ist verantwortlich für den Dialog mit dem Benutzer um die für
+ * das anzeigen eines Customers aus der Datenbank erforderlichen Daten zu erfragen.
+ * 
+ * @author tba
+ * 
+ */
 public class CustomerShowView extends ArrayList<VTextField> {
 	private CustomerShowModel model;
 	private CustomerShowControl control;
