@@ -10,7 +10,7 @@ import de.travelbasys.training.util.AppContext;
  * Diese Klasse Kontrolliert Benutzereingaben.
  * 
  * @author tba
- * asdf
+ * 
  */
 
 public class CustomerDeleteControl {
