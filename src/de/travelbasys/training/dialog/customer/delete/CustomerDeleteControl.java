@@ -29,6 +29,10 @@ public class CustomerDeleteControl {
 		try {
 
 			customerid = Integer.parseInt(model.getCustomeridtemp());
+		} catch (NumberFormatException e) {
+			AppContext.printErrString("NumberErr");
+			return;
+		}
 			if (customerid == 0) {
 				model.setCustomerid(customerid);
 				CustomerDeleteDialog.end();
@@ -47,10 +51,7 @@ public class CustomerDeleteControl {
 				return;
 			}
 
-		} catch (NumberFormatException e) {
-			AppContext.getErrString("NumberErr");
-
-		}
+		
 	}
 
 	public void checkdelete() {

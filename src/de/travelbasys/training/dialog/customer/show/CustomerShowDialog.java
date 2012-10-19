@@ -10,21 +10,26 @@ import de.travelbasys.training.dialog.Dialog;
  */
 
 public class CustomerShowDialog implements Dialog {
-
 	private CustomerShowModel model;
-	private CustomerShowView view;
+	private static CustomerShowView view;
 	private CustomerShowControl control;
 
+	@Override
 	public void run() {
 		model = new CustomerShowModel();
-		control = new CustomerShowControl(model, view);
+		control = new CustomerShowControl(model);
 		view = new CustomerShowView(model, control);
 
-		// Here plays the music!
 		view.run();
-
-		// Do something with the input!
+		if (model.isEnd() == false) {
+			return;
+		}
+		view.found();
 
 	}
 
+	public static void end() {
+		view.abort();
+
+	}
 }
