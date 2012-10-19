@@ -12,7 +12,7 @@ import de.travelbasys.training.util.AppContext;
  */
 public class CustomerDeleteDialog implements Dialog {
 	private CustomerDeleteModel model;
-	private CustomerDeleteView view;
+	private static CustomerDeleteView view;
 	private CustomerDeleteControl control;
 
 	@Override
@@ -22,14 +22,20 @@ public class CustomerDeleteDialog implements Dialog {
 		view = new CustomerDeleteView(model, control);
 
 		view.run();
+		if(model.isEnd()== false){return;}
 		view.found();
 		view.decision();
-
+		
 		boolean flag = model.getDeleteFlag();
 		if (flag) {
 			int customerid = model.getCustomerid();
 			CustomerDAO.delUser(customerid);
 			AppContext.printMessage("DelOK");
 		}
+	}
+
+	public static void end() {
+	view.abort();
+		
 	}
 }

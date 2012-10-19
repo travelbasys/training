@@ -69,7 +69,7 @@ public class MainMenuControl extends Application {
 			} else {
 				AppContext.printErrString("ChooseErr");
 			}
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
 			AppContext.printErrString("NumberErr");
 		}
 	}

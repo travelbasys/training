@@ -17,9 +17,11 @@ public class CustomerDeleteModel extends ArrayList<String> {
 	private String decisiontemp;
 	private int decision;
 	private Customer user;
-	private List<Customer> userlist;
+	private List<Customer> userlist = null;
 	private boolean deleteFlag;
 	private boolean FlagCheck = true;
+	private boolean end = true;
+	private boolean gotuser = true;
 
 	public CustomerDeleteModel() {
 		super();
@@ -98,6 +100,22 @@ public class CustomerDeleteModel extends ArrayList<String> {
 
 	public void setFlagCheck() {
 		FlagCheck = false;
+	}
+
+	public boolean isEnd() {
+		return end;
+	}
+
+	public void setEnd(boolean end) {
+		this.end = end;
+	}
+
+	public boolean isGotuser() {
+		return gotuser;
+	}
+
+	public void setGotuser(boolean gotuser) {
+		this.gotuser = gotuser;
 	}
 
 }

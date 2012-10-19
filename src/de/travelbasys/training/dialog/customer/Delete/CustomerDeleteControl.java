@@ -21,19 +21,26 @@ public class CustomerDeleteControl {
 		this.model = model;
 	}
 
-	public void check(String customeridtemp) throws Exception {
+	public void check() {
 
 		int customerid = 0;
 
 		// User suchen.
 		try {
 
-			model.getCustomeridtemp();
-			customerid = Integer.parseInt(customeridtemp);
+			customerid = Integer.parseInt(model.getCustomeridtemp());
+			if (customerid == 0) {
+				model.setCustomerid(customerid);
+				CustomerDeleteDialog.end();
+				model.setEnd(false);
+				model.setGotuser(false);
+				return;
+			}
 			model.setCustomerid(customerid);
 			List<Customer> user = CustomerDAO.findUserByID(customerid);
 			if (!user.isEmpty()) {
 				model.setUserlist(user);
+				model.setGotuser(false);
 				return;
 			} else {
 				AppContext.printErrString("IDNotFoundErr");
@@ -41,41 +48,38 @@ public class CustomerDeleteControl {
 			}
 
 		} catch (NumberFormatException e) {
-			throw new Exception(AppContext.getErrString("NumberErr"));
-	
-		}
-		}
-	
+			AppContext.getErrString("NumberErr");
 
-	public void checkdelete(){
-		try{
+		}
+	}
+
+	public void checkdelete() {
+		try {
 			String s = model.getDecisiontemp();
 			int decision = Integer.parseInt(s);
 			model.setDecision(decision);
-			
-		}catch(NumberFormatException e){
+
+		} catch (NumberFormatException e) {
 			AppContext.printErrString("NumberErr");
 			return;
 		}
 		int decision = 0;
-			decision = model.getDecision();
-			if (decision >= 1 && decision <= 2) {
-				model.setFlagCheck();
-				switch (decision) {
-				case 1:
-					model.setDeleteFlag(true);
-					break;
-				case 2:
-					model.setDeleteFlag(false);
-					break;
-				}
-			} else {
-				AppContext.printErrString("ChooseErr");
-				return;
+		decision = model.getDecision();
+		if (decision >= 1 && decision <= 2) {
+			model.setFlagCheck();
+			switch (decision) {
+			case 1:
+				model.setDeleteFlag(true);
+				break;
+			case 2:
+				model.setDeleteFlag(false);
+				break;
 			}
-		
-
+		} else {
+			AppContext.printErrString("ChooseErr");
+			return;
 		}
 
 	}
 
+}
