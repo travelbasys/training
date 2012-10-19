@@ -19,17 +19,12 @@ public class CustomerShowDialog implements Dialog {
 		model = new CustomerShowModel();
 		control = new CustomerShowControl(model);
 		view = new CustomerShowView(model, control);
-
+		
+		view.init();
 		view.run();
-		if (model.isEnd() == false) {
-			return;
-		}
-		view.found();
+		
+		System.out.println(model.getCustomer());
 
 	}
 
-	public static void end() {
-		view.abort();
-
-	}
 }
