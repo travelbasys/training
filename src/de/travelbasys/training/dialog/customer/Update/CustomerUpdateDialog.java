@@ -23,8 +23,9 @@ public class CustomerUpdateDialog implements Dialog {
 		view = new CustomerUpdateView(model, control);
 
 		view.run();
+		if(model.isCont()){
 		view.updatemenu();
-
+		}else {return;}
 	}
 
 	public static void setFirstname() {

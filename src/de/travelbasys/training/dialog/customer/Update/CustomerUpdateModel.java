@@ -21,7 +21,8 @@ public class CustomerUpdateModel {
 	private List<Customer> user;
 	private String choice_str;
 	private int choice_int;
-	private int end= 1;
+	private boolean end = true;
+	private boolean cont = true;
 	
 	public String getLastname() {
 		return lastname;
@@ -111,13 +112,21 @@ public class CustomerUpdateModel {
 		this.choice_int = choice_int;
 	}
 	
-	public int getend() {
+	public boolean getend() {
 		return end;
 	}
 
-	public void setend(int end) {
-		this.end = 0;
+	public void setend(boolean end) {
+		this.end = end;
 		
+	}
+
+	public boolean isCont() {
+		return cont;
+	}
+
+	public void setCont(boolean cont) {
+		this.cont = cont;
 	}
 	
 

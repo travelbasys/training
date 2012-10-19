@@ -29,6 +29,7 @@ public class CustomerUpdateControl {
 			if (customerid == 0) {
 				model.setCustomerid(customerid);
 				CustomerUpdateDialog.end();
+				model.setend(false);
 				return;
 			}
 			model.setCustomerid(customerid);
@@ -37,14 +38,16 @@ public class CustomerUpdateControl {
 			return;
 		}
 		int customerid = model.getCustomerid();
-
+		
 		List<Customer> user = CustomerDAO.findUserByID(customerid);
 		if (user.isEmpty()) { // Errormeldung
 			AppContext.printErrString("IDNotFoundErr");
 			return;
 		}
 		model.setUser(user);
-
+		model.setCont(true);
+		model.setend(false);
+		return;
 	}
 
 	public int checkmenu() {
@@ -79,9 +82,10 @@ public class CustomerUpdateControl {
 					CustomerUpdateDialog.setEmail();
 					break;
 				default:
-					break;
+					AppContext.printErrString("ChooseErr");
+					return 1;
 				}
-			} catch (Exception e) {
+			} catch (NumberFormatException e) {
 				AppContext.printErrString("NumberErr");
 			}
 				return 1;

@@ -27,32 +27,38 @@ public class CustomerUpdateView {
 	public void run() {
 		String customeridtemp = "";
 		AppContext.printMessage("AttentionIntPrompt");
-		List<Customer> user = null;
+
 		do {
 			AppContext.printMessage("IDPrompt");
 			customeridtemp = Console.nextLine();
 			model.setCustomeridtemp(customeridtemp);
 			control.check();
-			user = model.getUser();
-		} while (user == null);
-		model.getUser();
-		AppContext.println(user);
+
+		} while (model.getend());
 
 	}
-	public void updatemenu() {
-		do {
-			AppContext.printMessage("Choose");
-			AppContext.printMessage("Cancel");
-			AppContext.printMessage("Update1");
-			AppContext.printMessage("Update2");
-			AppContext.printMessage("Update3");
-			AppContext.printMessage("Update4");
-			AppContext.printMessage("Update5");
-			AppContext.printMessage("Update6");
-			String choice_str = Console.nextLine();
-			model.setChoice_str(choice_str);
-		} while (control.checkmenu() == 1);
 
+	public void updatemenu() {
+
+			do {
+				if(model.getend()){
+					return;
+				}
+				List<Customer> user = model.getUser();
+				AppContext.println(user);
+				AppContext.printMessage("Choose");
+				AppContext.printMessage("Cancel");
+				AppContext.printMessage("Update1");
+				AppContext.printMessage("Update2");
+				AppContext.printMessage("Update3");
+				AppContext.printMessage("Update4");
+				AppContext.printMessage("Update5");
+				AppContext.printMessage("Update6");
+				String choice_str = Console.nextLine();
+				model.setChoice_str(choice_str);
+				
+			} while (control.checkmenu() == 1);
+		
 	}
 
 	public void firstname() {
