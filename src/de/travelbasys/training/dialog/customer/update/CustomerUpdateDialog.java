@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.Update;
+package de.travelbasys.training.dialog.customer.update;
 
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.Dialog;

@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.Delete;
+package de.travelbasys.training.dialog.customer.delete;
 
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.Dialog;

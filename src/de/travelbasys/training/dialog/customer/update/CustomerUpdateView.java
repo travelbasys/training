@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.Update;
+package de.travelbasys.training.dialog.customer.update;
 
 import java.util.List;
 

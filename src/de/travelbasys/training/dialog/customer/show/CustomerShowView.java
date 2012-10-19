@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.Show;
+package de.travelbasys.training.dialog.customer.show;
 
 import de.travelbasys.training.util.Console;
 
@@ -28,3 +28,4 @@ public class CustomerShowView {
 		} while (control.checkend(choice_str));
 	}
 }
+
