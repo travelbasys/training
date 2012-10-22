@@ -9,10 +9,11 @@ import de.travelbasys.training.util.AppContext;
  * 
  */
 
-public class YesNoControl  {
+public class YesNoControl {
 	private YesNoModel model;
 
 	public YesNoControl(YesNoModel model) {
+		this.model = model;
 	}
 
 	public void checkdelete() {
@@ -28,15 +29,15 @@ public class YesNoControl  {
 		int decision = 0;
 		decision = model.getDecision();
 		if (decision >= 1 && decision <= 2) {
-			model.setFlagCheck();
+			model.setEndFlag();
 			switch (decision) {
 			case 1:
 				model.setDeleteFlag(true);
-				break;
+				return;
 			case 2:
 				model.setDeleteFlag(false);
 				AppContext.printMessage("Abort");
-				break;
+				return;
 			}
 		} else {
 			AppContext.printErrString("ChooseErr");

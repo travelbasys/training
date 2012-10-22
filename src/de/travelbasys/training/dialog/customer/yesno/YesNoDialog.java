@@ -15,6 +15,7 @@ public class YesNoDialog implements Dialog {
 
 	@Override
 	public void run() {
+
 		model = new YesNoModel();
 		control = new YesNoControl(model);
 		view = new YesNoView(model, control);

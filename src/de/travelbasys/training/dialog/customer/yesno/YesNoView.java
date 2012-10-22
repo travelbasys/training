@@ -1,8 +1,8 @@
 package de.travelbasys.training.dialog.customer.yesno;
+
 //GEHT NICHT MEHR
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
-import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 
 /**
@@ -12,29 +12,26 @@ public class YesNoView implements View {
 	private YesNoControl control;
 
 	public YesNoView(YesNoModel model, YesNoControl control) {
+		super();
+		this.model = model;
+		this.control = control;
 	}
+
+	String choice_str;
 
 	public void run() {
 		do {
-			AppContext.printMessage("DelUserQPrompt");
-			AppContext.printMessage("Yes");
-			AppContext.printMessage("No");
-			String decisiontemp = Console.nextLine();
-			model.setDecisiontemp(decisiontemp);
-			Console.println(model.getDecisiontemp());
-			try {
-				control.checkdelete();
-			} catch (Exception e) {
-				AppContext.printErrString("ChooseErr");
-
+			for (String s : model) {
+				Console.println(s);
 			}
-
-		} while (model.getFlagCheck());
+			choice_str = Console.nextLine();
+			model.setDecisiontemp(choice_str);
+			control.checkdelete();
+		} while (model.getEndFlag() == false);
 	}
 
 	@Override
 	public void init(Model model) {
-		// TODO Auto-generated method stub
 
 	}
 }

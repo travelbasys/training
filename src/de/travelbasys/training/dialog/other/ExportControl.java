@@ -22,6 +22,7 @@ public class ExportControl {
 		try {
 			choice = Integer.parseInt(model.getChoice());
 			if (choice >= 0 && choice <= 2) {
+				model.setCheckFalse();
 				switch (choice) {
 				case 0:
 					model.setEndFlag();

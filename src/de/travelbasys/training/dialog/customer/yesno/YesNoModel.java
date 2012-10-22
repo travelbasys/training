@@ -1,17 +1,31 @@
 package de.travelbasys.training.dialog.customer.yesno;
 
+import java.util.ArrayList;
+
 import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.util.AppContext;
 
 /**
  * erzeugt eine Instanz der Klasse CustomerDeleteDialog und verwaltet Daten
  * 
  * @author
  */
-public class YesNoModel implements Model {
+public class YesNoModel extends ArrayList<String> implements Model {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String decisiontemp;
 	private int decision;
 	private boolean deleteFlag;
-	private boolean FlagCheck = true;
+	private boolean EndFlag = false;
+
+	public YesNoModel() {
+		super();
+		add(AppContext.getMessage("DelUserQ"));
+		add(AppContext.getMessage("Yes"));
+		add(AppContext.getMessage("No"));
+	}
 
 	public String getDecisiontemp() {
 		return decisiontemp;
@@ -37,12 +51,12 @@ public class YesNoModel implements Model {
 		return deleteFlag;
 	}
 
-	public boolean getFlagCheck() {
-		return FlagCheck;
+	public boolean getEndFlag() {
+		return EndFlag;
 	}
 
-	public void setFlagCheck() {
-		FlagCheck = false;
+	public void setEndFlag() {
+		EndFlag = true;
 	}
 
 }
