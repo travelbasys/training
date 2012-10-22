@@ -9,7 +9,6 @@ public class MainMenuView {
 	String choice_str;
 	int choice = 0;
 
-
 	public MainMenuView(MainMenuModel model, MainMenuControl control) {
 		super();
 		this.model = model;
@@ -17,17 +16,15 @@ public class MainMenuView {
 	}
 
 	public void run() {
+		Console.println("");
 		do {
 			for (String s : model) {
 				Console.println(s);
 			}
-			
+
 			choice_str = Console.nextLine();
 			control.checkchoice(choice_str);
 		} while (control.checkend(choice_str));
-		
-		// Input lesen.
-		// Controller.check()
 
 	}
 }

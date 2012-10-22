@@ -1,71 +1,47 @@
 package de.travelbasys.training.dialog.customer.show;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import de.travelbasys.training.dialog.VTextField;
+import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.util.AppContext;
 
 /**
- * Diese Klasse ist verantwortlich für den Dialog mit dem Benutzer um die für
- * das anzeigen eines Customers aus der Datenbank erforderlichen Daten zu
- * erfragen.
- * 
- * @author tba
- * 
  */
-public class CustomerShowView extends ArrayList<VTextField> {
-	private CustomerShowModel model;
-	private CustomerShowControl control;
-
-	private static final String CUSTOMERID = "CustomerId";
-
-	private UiComponent customerIdComponent;
-
+public class CustomerShowView extends ArrayList<UiComponent> implements View {
 	private static final long serialVersionUID = 1L;
+	private static final String CUSTOMERID = "CustomerId";
+	private static final String START = "AttentionIntPrompt";
+	private UiComponent customerIdComponent;
+	private CustomerShowModel model;
 
-	private List<UiComponent> uiComponents = new ArrayList<UiComponent>();
-
-	public CustomerShowView(CustomerShowModel model, CustomerShowControl control) {
-		super();
-		this.model = model;
-		this.control = control;
+	public UiComponent getCustomerIdComponent() {
+		return customerIdComponent;
 	}
 
-	public void init() {
+	public void init(Model model) {
+		this.model = (CustomerShowModel) model;
+
 		customerIdComponent = new UiComponent();
 		customerIdComponent.setName(CUSTOMERID);
-		customerIdComponent.setValue(0);
-		EventHandler eventHandler = new EventHandler() {
-			@Override
-			public void updateModel(Object value) {
-				int intValue = Integer.parseInt((String) value);
-				model.setCustomerId(intValue);
-			}
-		};
-		customerIdComponent.setEventHandler(eventHandler);
-		Controller controller = new CustomerShowControl(model) {
-			@Override
-			public void handleInput(Object value) {
-				checkCustomerId();
-			}
-		};
-		customerIdComponent.setController(controller);
+		customerIdComponent.setValue(this.model.getCustomerId());
 		add(customerIdComponent);
 	}
 
-	private void add(UiComponent uiComponent) {
-		uiComponents.add(uiComponent);
-	}
-
 	public void run() {
-		// Vorabaktion
+		// Vorher
+		AppContext.printMessage(START);
 
 		// Standardaktion
-		for (UiComponent uiComponent : uiComponents) {
+		for (UiComponent uiComponent : this) {
 			uiComponent.run();
 		}
 
-		// Nachtrag
+		// Nachher
+		Customer customer = model.getCustomer();
+		if (null != customer)
+			AppContext.println(customer);
+		
+		AppContext.println("");
 	}
 
 }

@@ -1,14 +1,29 @@
 package de.travelbasys.training.dialog.customer.show;
 
 import de.travelbasys.training.util.AppContext;
-import de.travelbasys.training.util.Console;
 
 public class UiComponent {
 
+	private Control control;
+	private Formatter formatter;
 	private String name;
 	private Object value;
-	private EventHandler eventHandler;
-	private Controller controller;
+
+	private Control getControl() {
+		return control;
+	}
+
+	public void setControl(Control control) {
+		this.control = control;
+	}
+
+	public Formatter getFormatter() {
+		return formatter;
+	}
+
+	public void setFormatter(Formatter formatter) {
+		this.formatter = formatter;
+	}
 
 	public String getName() {
 		return name;
@@ -24,32 +39,35 @@ public class UiComponent {
 
 	public void setValue(Object value) {
 		this.value = value;
+
+		// Store a formatter depending on the type of the given value.
+		formatter = AbstractFormatter.createFormatter(value.getClass());
 	}
 
 	public void run() {
+		// Make prompt key from component name.
 		String key = getName() + "Prompt";
-		AppContext.printMessage(key);
 
-		value = Console.nextLine();
-		
-		getEventHandler().updateModel(value);
-		getController().handleInput(value);
+		while (true) {
+			// Show prompt message to the user.
+			AppContext.printMessage(key);
+
+			// Read user response.
+			String line = AppContext.nextLine();
+
+			try {
+				// Convert user response to value of proper type.
+				value = getFormatter().parse(line);
+
+				// Let controller check the input value and update model.
+				getControl().handleInput(value);
+
+				// Exit loop
+				break;
+			} catch (Exception e) {
+				AppContext
+						.println(AppContext.getMessage(e.getMessage()) + line);
+			}
+		}
 	}
-
-	private Controller getController() {
-		return controller;
-	}
-
-	public void setController(Controller controller) {
-		this.controller = controller;
-	}
-
-	private EventHandler getEventHandler() {
-		return eventHandler;
-	}
-
-	public void setEventHandler(EventHandler eventHandler) {
-		this.eventHandler = eventHandler;
-	}
-
 }

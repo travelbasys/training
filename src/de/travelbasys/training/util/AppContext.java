@@ -2,6 +2,10 @@ package de.travelbasys.training.util;
 
 public class AppContext {
 
+	public static String nextLine() {
+		return Console.nextLine();
+	}
+
 	public static String getMessage(String key) {
 		return Config.BUNDLE.getString(key);
 	}

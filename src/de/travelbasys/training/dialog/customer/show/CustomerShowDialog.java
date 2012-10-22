@@ -3,28 +3,22 @@ package de.travelbasys.training.dialog.customer.show;
 import de.travelbasys.training.dialog.Dialog;
 
 /**
- * ist verantwortlich für das anzeigen eines Benutzers aus der Datenbank
- * 
- * @author tba
- * 
  */
-
 public class CustomerShowDialog implements Dialog {
-	private CustomerShowModel model;
-	private static CustomerShowView view;
-	private CustomerShowControl control;
+	private Model model;
+	private View view;
+	private Control control;
 
 	@Override
 	public void run() {
 		model = new CustomerShowModel();
-		control = new CustomerShowControl(model);
-		view = new CustomerShowView(model, control);
+		control = new CustomerShowControl();
+		view = new CustomerShowView();
 		
-		view.init();
+		view.init(model);
+		control.init(model,view);
+		
 		view.run();
-		
-		System.out.println(model.getCustomer());
-
 	}
 
 }

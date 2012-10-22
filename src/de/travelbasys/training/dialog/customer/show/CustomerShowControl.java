@@ -4,34 +4,50 @@ import java.util.List;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.util.AppContext;
 
 /**
- * Diese Klasse Kontrolliert Benutzereingaben.
- * 
- * @author tba
- * 
  */
-public class CustomerShowControl extends Controller {
+public class CustomerShowControl extends AbstractControl {
 
 	private CustomerShowModel model;
+	private CustomerShowView view;
 
-	public CustomerShowControl(CustomerShowModel model) {
-		this.model = model;
+	public void init(Model model, View view) {
+		this.model = (CustomerShowModel) model;
+		this.view = (CustomerShowView) view;
+
+		UiComponent uic;
+		uic = this.view.getCustomerIdComponent();
+
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				checkCustomerId(value);
+			}
+		});
+
 	}
 
-	public void checkCustomerId() {
+	private void checkCustomerId(Object value) throws Exception {
 
-		// User suchen.
-		System.out.println("***** " + model.getCustomerId());
-		List<Customer> customers = CustomerDAO.findUserByID(model.getCustomerId());
-		System.out.println("***** " + customers);
-		
+		int id = (Integer) value;
+
+		// When value is zero, we return without doing anything.
+		if (0 == id)
+			return;
+
+		// Try to find customer by id.
+		List<Customer> customers = CustomerDAO.findUserByID(id);
+
+		// When found...
 		if (!customers.isEmpty()) {
+			// store customer and id in model.
 			model.setCustomer(customers.get(0));
+			model.setCustomerId(id);
 		} else {
-			AppContext.printErrString("IDNotFoundErr");
+			// or else indicate failure.
+			throw new Exception("IDNotFoundErr");
 		}
 
 	}
+
 }
