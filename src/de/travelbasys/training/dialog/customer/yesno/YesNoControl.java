@@ -1,5 +1,7 @@
 package de.travelbasys.training.dialog.customer.yesno;
 
+import de.travelbasys.training.framework.AbstractControl;
+import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.util.AppContext;
 
 /**
@@ -11,39 +13,45 @@ import de.travelbasys.training.util.AppContext;
 
 public class YesNoControl {
 	private YesNoModel model;
+	private YesNoView view;
 
 	public YesNoControl(YesNoModel model) {
 		this.model = model;
 	}
 
-	public void checkdelete() {
-		try {
-			String s = model.getDecisiontemp();
-			int decision = Integer.parseInt(s);
-			model.setDecision(decision);
+	private void checkdecision(Object value) throws Exception {
 
-		} catch (NumberFormatException e) {
-			AppContext.printErrString("NumberErr");
-			return;
-		}
-		int decision = 0;
-		decision = model.getDecision();
+		int decision = (Integer) value;
 		if (decision >= 1 && decision <= 2) {
 			model.setEndFlag();
-			switch (decision) {
-			case 1:
-				model.setDeleteFlag(true);
-				return;
-			case 2:
-				model.setDeleteFlag(false);
-				AppContext.printMessage("Abort");
-				return;
-			}
-		} else {
+		}
+		switch (decision) {
+		case 1:
+			model.setDeleteFlag(true);
+			break;
+		case 2:
+			model.setDeleteFlag(false);
+			AppContext.printMessage("Abort");
+			break;
+		default:
 			AppContext.printErrString("ChooseErr");
-			return;
+			break;
 		}
 
 	}
 
+	public void init(YesNoModel model, YesNoView view) {
+		this.model = (YesNoModel) model;
+		this.view = (YesNoView) view;
+
+		AbstractUiComponent uic;
+
+		uic = this.view.getcustomerdecisionComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				checkdecision(value);
+				YesNoControl.this.model.setDecision((Integer) value);
+			}
+		});
+	}
 }

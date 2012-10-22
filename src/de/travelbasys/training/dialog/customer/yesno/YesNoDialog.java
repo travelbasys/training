@@ -19,6 +19,8 @@ public class YesNoDialog implements Dialog {
 		model = new YesNoModel();
 		control = new YesNoControl(model);
 		view = new YesNoView(model, control);
+		view.init(model);
+		control.init(model,view);
 		view.run();
 	}
 

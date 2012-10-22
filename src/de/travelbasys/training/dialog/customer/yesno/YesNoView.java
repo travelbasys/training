@@ -1,20 +1,31 @@
 package de.travelbasys.training.dialog.customer.yesno;
 
-//GEHT NICHT MEHR
+import java.util.ArrayList;
+
+import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.UiComponent;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.Console;
 
 /**
 	 */
-public class YesNoView implements View {
+public class YesNoView extends ArrayList<UiComponent> implements View {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private YesNoModel model;
-	private YesNoControl control;
+	private static final String CUSTOMERDECISION = "Whitespace";
+	private UiComponent customerDecisionComponent;
+
+	public AbstractUiComponent getcustomerdecisionComponent() {
+		return customerDecisionComponent;
+	}
 
 	public YesNoView(YesNoModel model, YesNoControl control) {
 		super();
 		this.model = model;
-		this.control = control;
 	}
 
 	String choice_str;
@@ -24,14 +35,18 @@ public class YesNoView implements View {
 			for (String s : model) {
 				Console.println(s);
 			}
-			choice_str = Console.nextLine();
-			model.setDecisiontemp(choice_str);
-			control.checkdelete();
+			for(UiComponent uiComponent : this){
+				 uiComponent.run();
+			 }
 		} while (model.getEndFlag() == false);
 	}
 
 	@Override
 	public void init(Model model) {
-
+		this.model = (YesNoModel) model;
+		customerDecisionComponent = new UiComponent();
+		customerDecisionComponent.setName(CUSTOMERDECISION);
+		customerDecisionComponent.setValue(this.model.getDecision());
+		add(customerDecisionComponent);
 	}
 }
