@@ -6,6 +6,8 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.Control;
 import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.View;
 
 /**
  * ist verantwortlich für das erzeugen eines Customer Objekts.
@@ -15,24 +17,27 @@ import de.travelbasys.training.dialog.Dialog;
 
 public class CustomerCreateDialog implements Dialog {
 
-	private CustomerCreateModel model;
-	private CustomerCreateView view;
+	private Model model;
+	private View view;
 	private Control control;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.travelbasys.training.dialog.customer.create.Dialog#run()
-	 */
+	
 	@Override
 	public void run() {
 		model = new CustomerCreateModel();
-		control = new CustomerCreateControl(model);
-		view = new CustomerCreateView(model, control);
-
-		// Here plays the music!
+		control = new CustomerCreateControl();
+		view = new CustomerCreateView();
+		
+		view.init(model);
+		control.init(model,view);
+		
 		view.run();
 
+		
+		
+		
+		
+		
+		
 		// Do something with the input!
 		Customer costumer = null;
 		int customerid = CustomerDAO.getLastCustomerId() + 1;

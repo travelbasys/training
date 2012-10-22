@@ -1,9 +1,9 @@
-package de.travelbasys.training.dialog.customer.show;
+package de.travelbasys.training.framework;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class AbstractFormatter {
+public abstract class AbstractFormatter {
 	@SuppressWarnings("rawtypes")
 	private static Map<Class, Formatter> FORMATTERS;
 

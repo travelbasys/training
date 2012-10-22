@@ -2,7 +2,7 @@ package de.travelbasys.training.dialog.customer.create;
 
 import java.util.HashMap;
 
-import de.travelbasys.training.dialog.Model;
+import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 /**
  * erzeugt eine Instanz der Klasse CustomerCreateDialog
@@ -22,15 +22,6 @@ public class CustomerCreateModel extends HashMap<String, String> implements Mode
 		put("promptAdress", AppContext.getMessage("AdressPrompt"));
 		put("promptPostalCode", AppContext.getMessage("PostalPrompt"));
 		put("promptEMail", AppContext.getMessage("eMailPrompt"));
-	}
-
-	@Override
-	public String getPrompt(String fieldName) {
-		return get("prompt" + fieldName);
-	}
-
-	int getAge(){
-		return Integer.parseInt(get("Age"));
 	}
 
 }

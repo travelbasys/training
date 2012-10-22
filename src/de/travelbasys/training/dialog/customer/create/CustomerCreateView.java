@@ -2,35 +2,62 @@ package de.travelbasys.training.dialog.customer.create;
 
 import java.util.ArrayList;
 
-import de.travelbasys.training.dialog.Control;
-import de.travelbasys.training.dialog.Model;
-import de.travelbasys.training.dialog.VTextField;
+import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.UiComponent;
+import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AppContext;
+
 /**
- * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für ein
- * Customer Objekt abzufragen
- * @autor tba
  */
-
-public class CustomerCreateView extends ArrayList<VTextField> {
-
+public class CustomerCreateView extends ArrayList<UiComponent> implements View {
 	private static final long serialVersionUID = 1L;
+	private CustomerCreateModel model;
 
-	public CustomerCreateView(Model model, Control control) {
-		super();
+	private static final String START = "AttentionIntPrompt";
+	
+	private static final String CUSTOMERLASTNAME = "CustomerLastname";
+	private UiComponent customerLastnameComponent;
+	
+	private static final String CUSTOMERFIRSTNAME = "CustomerFirstname";
+	private UiComponent customerFirstnameComponent;
+	
+
+	public AbstractUiComponent getCustomerLastnameComponent() {
+		return customerLastnameComponent;
+	}
+
+	public AbstractUiComponent getCustomerFirstnameComponent() {
+		return customerFirstnameComponent;
+	}
+
+	public void init(Model model) {
+		this.model = (CustomerCreateModel) model;
+
+		customerLastnameComponent = new UiComponent();
+		customerLastnameComponent.setName(CUSTOMERLASTNAME);
+		customerLastnameComponent.setValue(this.model.getCustomerLastname());
+		add(customerLastnameComponent);
 		
-		add( new VTextField( "LastName", model, control ));
-		add( new VTextField( "FirstName", model, control ));
-		add( new VTextField( "Age", model, control ));
-		add( new VTextField( "Adress", model, control ));
-		add( new VTextField( "PostalCode", model, control ));
-		add( new VTextField( "EMail", model, control ));
+		customerFirstnameComponent = new UiComponent();
+		customerFirstnameComponent.setName(CUSTOMERFIRSTNAME);
+		customerFirstnameComponent.setValue(this.model.getCustomerFirstname());
+		add(customerFirstnameComponent);
+		
+		// ...
+		
 	}
 
 	public void run() {
-		for (VTextField t : this) {
-			t.run();
+		// Vorher
+
+		// Standardaktion
+		for (UiComponent uiComponent : this) {
+			uiComponent.run();
 		}
 
+		// Nachher
 	}
 
 }

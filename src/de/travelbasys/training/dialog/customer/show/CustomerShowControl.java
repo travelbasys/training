@@ -4,6 +4,10 @@ import java.util.List;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.framework.AbstractControl;
+import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.View;
 
 /**
  */
@@ -16,7 +20,7 @@ public class CustomerShowControl extends AbstractControl {
 		this.model = (CustomerShowModel) model;
 		this.view = (CustomerShowView) view;
 
-		UiComponent uic;
+		AbstractUiComponent uic;
 		uic = this.view.getCustomerIdComponent();
 
 		uic.setControl(new AbstractControl() {

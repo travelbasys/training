@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.show;
+package de.travelbasys.training.framework;
 
 public abstract class AbstractControl implements Control {
 

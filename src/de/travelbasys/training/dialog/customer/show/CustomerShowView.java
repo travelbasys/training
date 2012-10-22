@@ -3,6 +3,10 @@ package de.travelbasys.training.dialog.customer.show;
 import java.util.ArrayList;
 
 import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.UiComponent;
+import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
 
 /**
@@ -14,7 +18,7 @@ public class CustomerShowView extends ArrayList<UiComponent> implements View {
 	private UiComponent customerIdComponent;
 	private CustomerShowModel model;
 
-	public UiComponent getCustomerIdComponent() {
+	public AbstractUiComponent getCustomerIdComponent() {
 		return customerIdComponent;
 	}
 

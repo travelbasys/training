@@ -1,20 +1,21 @@
-package de.travelbasys.training.tryout;
+package experiment.scan;
 
 import java.util.Scanner;
 
 import de.travelbasys.training.util.Console;
 
-public class ScanTest {
+public class ScanTest2 {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
+
 		do {
-			if (in.hasNextInt()) {
+			try {
 				int a = in.nextInt();
 				Console.println(a);
-			} else {
+			} catch (Exception e) {
+				System.err.println(e);
 				in.next();
-				System.err.println("Kein Int");
 			}
 		} while (true);
 	}

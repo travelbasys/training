@@ -1,6 +1,7 @@
 package de.travelbasys.training.dialog.customer.show;
 
 import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.framework.Model;
 
 /**
  * Model Objekt für den CustomerShow Dialog.

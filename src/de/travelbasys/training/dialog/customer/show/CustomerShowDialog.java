@@ -1,6 +1,9 @@
 package de.travelbasys.training.dialog.customer.show;
 
 import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.framework.Control;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.View;
 
 /**
  */
