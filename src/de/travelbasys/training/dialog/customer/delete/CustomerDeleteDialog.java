@@ -1,7 +1,7 @@
 package de.travelbasys.training.dialog.customer.delete;
 
 import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
 
 /**

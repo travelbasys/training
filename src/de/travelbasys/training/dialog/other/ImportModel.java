@@ -2,7 +2,7 @@ package de.travelbasys.training.dialog.other;
 
 import java.util.ArrayList;
 
-import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
 
 /**

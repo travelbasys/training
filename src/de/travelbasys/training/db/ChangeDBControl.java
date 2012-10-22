@@ -1,12 +1,11 @@
 package de.travelbasys.training.db;
 
-import de.travelbasys.training.dialog.Control;
 /**
  * Diese Klasse Kontrolliert Benutzereingaben.
  * @author tba
  *
  */
-public class ChangeDBControl implements Control {
+public class ChangeDBControl {
 
 	public void check(String fieldName, String value) {
 		if (value.isEmpty())

@@ -1,6 +1,7 @@
 package de.travelbasys.training.framework;
 
 import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.util.Console;
 
 public class UiComponent extends AbstractUiComponent {
 
@@ -25,8 +26,7 @@ public class UiComponent extends AbstractUiComponent {
 				// Exit loop
 				break;
 			} catch (Exception e) {
-				AppContext
-						.println(AppContext.getMessage(e.getMessage()) + line);
+				Console.printerr(AppContext.getMessage(e.getMessage()) + line);
 			}
 		}
 	}

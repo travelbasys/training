@@ -1,25 +1,16 @@
 package de.travelbasys.training.dialog.other;
 
-import java.util.ArrayList;
-
-import de.travelbasys.training.dialog.VTextField;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 
 /**
- * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für das Importieren der
- * Datenbank abzufragen.
+ * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für das
+ * Importieren der Datenbank abzufragen.
+ * 
  * @autor tba
  */
-public class ImportView extends ArrayList<VTextField> {
+public class ImportView {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
 	private ImportModel model;
 	private ImportControl control;
 	String choice_str;

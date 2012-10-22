@@ -1,6 +1,6 @@
 package de.travelbasys.training.dialog.other;
 
-import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.framework.Dialog;
 
 /**
  * Diese Klasse ist für das ändern der Spracheinstellungen verantwortlich.

@@ -1,7 +1,6 @@
 package de.travelbasys.training.dialog.menu;
 
 import de.travelbasys.training.db.ChangeDBDialog;
-import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.dialog.customer.CustomerList;
 import de.travelbasys.training.dialog.customer.create.CustomerCreateDialog;
 import de.travelbasys.training.dialog.customer.delete.CustomerDeleteDialog;
@@ -10,6 +9,7 @@ import de.travelbasys.training.dialog.customer.update.CustomerUpdateDialog;
 import de.travelbasys.training.dialog.other.ChangeParamDialog;
 import de.travelbasys.training.dialog.other.ExportDialog;
 import de.travelbasys.training.dialog.other.ImportDialog;
+import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.rbsjava.main.Application;
 import de.travelbasys.training.util.AppContext;
 

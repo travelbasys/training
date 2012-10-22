@@ -1,24 +1,21 @@
 package de.travelbasys.training.dialog.customer.delete;
 
-import java.util.ArrayList;
-
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.dialog.VTextField;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 
 /**
  * Diese Klasse ist verantwortlich für den Dialog mit dem Benutzer um die für
- * das löschen eines Customers aus der Datenbank erforderlichen Daten zu erfragen.
+ * das löschen eines Customers aus der Datenbank erforderlichen Daten zu
+ * erfragen.
  * 
  * @author tba
  * 
  */
-public class CustomerDeleteView extends ArrayList<VTextField> {
+public class CustomerDeleteView {
 	private CustomerDeleteModel model;
 	private CustomerDeleteControl control;
 
-	private static final long serialVersionUID = 1L;
 
 	public CustomerDeleteView(CustomerDeleteModel model,
 			CustomerDeleteControl control) {

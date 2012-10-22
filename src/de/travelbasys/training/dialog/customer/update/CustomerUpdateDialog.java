@@ -1,7 +1,7 @@
 package de.travelbasys.training.dialog.customer.update;
 
 import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.framework.Dialog;
 
 /**
  * Diese Klasse ist für das ändern der vorhandenen Daten eines Customer Objekts

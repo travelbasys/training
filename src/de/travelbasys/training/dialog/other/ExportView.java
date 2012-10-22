@@ -1,8 +1,5 @@
 package de.travelbasys.training.dialog.other;
 
-import java.util.ArrayList;
-
-import de.travelbasys.training.dialog.VTextField;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
 
@@ -12,15 +9,8 @@ import de.travelbasys.training.util.Console;
  * 
  * @autor tba
  */
-public class ExportView extends ArrayList<VTextField> {
+public class ExportView {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
 	private ExportModel model;
 	private ExportControl control;
 	String choice_str;

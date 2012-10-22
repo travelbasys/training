@@ -2,8 +2,8 @@ package de.travelbasys.training.db;
 
 import java.io.File;
 
-import de.travelbasys.training.dialog.Dialog;
 import de.travelbasys.training.dialog.menu.MainMenuDialog;
+import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.Config;
 /**
  * Diese Klasse ist verantwortlich für das ändern der aktuell verwendeten Datenbank.
@@ -27,7 +27,7 @@ public class ChangeDBParamDialog implements Dialog {
 	public void run() {
 		model = new ChangeDBModel();
 		control = new ChangeDBControl();
-		view = new ChangeDBView(model, control);
+		//view = new ChangeDBView(model, control);
 
 		// Here plays the music!
 		view.run();

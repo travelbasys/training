@@ -1,9 +1,10 @@
 package de.travelbasys.training.dialog.customer.create;
 
-import de.travelbasys.training.dialog.Dialog;
-import de.travelbasys.training.framework.Control;
-import de.travelbasys.training.framework.Model;
-import de.travelbasys.training.framework.View;
+import java.util.ArrayList;
+
+import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.framework.Dialog;
 
 /**
  * ist verantwortlich für das erzeugen eines Customer Objekts.
@@ -13,9 +14,9 @@ import de.travelbasys.training.framework.View;
 
 public class CustomerCreateDialog implements Dialog {
 
-	private Model model;
-	private View view;
-	private Control control;
+	private CustomerCreateModel model;
+	private CustomerCreateView view;
+	private CustomerCreateControl control;
 
 	@Override
 	public void run() {
@@ -28,15 +29,22 @@ public class CustomerCreateDialog implements Dialog {
 
 		view.run();
 
-		/*
-		 * Do something with the input! Customer costumer = null; int customerid
-		 * = CustomerDAO.getLastCustomerId() + 1; try { costumer = new
-		 * Customer(customerid, model.getLastname("LastName"),
-		 * model.get("FirstName"), model.getAge(), model.get("Adress"),
-		 * model.get("PostalCode"), model.get("EMail")); } catch (Exception e) {
-		 * e.printStackTrace(); CustomerDAO.setUsers(new ArrayList<Customer>());
-		 * } CustomerDAO.getUsers().add(costumer);
-		 */
+		// Do something with the input!
+		Customer costumer = null;
+		int customerid;
+
+		customerid = CustomerDAO.getLastCustomerId() + 1;
+		try {
+			costumer = new Customer(customerid, model.getCustomerLastname(),
+					model.getCustomerFirstname(), model.getCustomerAge(),
+					model.getCustomerAdress(), model.getCustomerPostalcode(),
+					model.getCustomerEMail());
+		} catch (Exception e) {
+			e.printStackTrace();
+			CustomerDAO.setUsers(new ArrayList<Customer>());
+		}
+		CustomerDAO.getUsers().add(costumer);
+
 	}
 
 }

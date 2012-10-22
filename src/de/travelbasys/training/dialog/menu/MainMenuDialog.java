@@ -1,6 +1,6 @@
 package de.travelbasys.training.dialog.menu;
 
-import de.travelbasys.training.dialog.Dialog;
+import de.travelbasys.training.framework.Dialog;
 
 /**
  * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für ein

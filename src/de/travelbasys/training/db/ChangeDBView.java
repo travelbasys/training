@@ -1,32 +1,38 @@
 package de.travelbasys.training.db;
 
-import java.util.ArrayList;
+import de.travelbasys.training.dialog.customer.show.CustomerShowModel;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.UiComponent;
 
-import de.travelbasys.training.dialog.Control;
-import de.travelbasys.training.dialog.Model;
-import de.travelbasys.training.dialog.VTextField;
 /**
  * Diese Klasse ist verantwortlich für den Dialog mit dem Benutzer um die für
  * das ändern der Datenbank erforderlichen abzufragen
+ * 
  * @author tba
- *
+ * 
  */
-public class ChangeDBView extends ArrayList<VTextField> {
+public class ChangeDBView {
 
-	private static final long serialVersionUID = 1L;
+	private ChangeDBModel model;
+	private static final String CHANGEDB = "ChangeDB";
 
-	public ChangeDBView(Model model, Control control) {
+	
+	public void init(Model model) {
+		this.model = (ChangeDBModel) model;
+/*
+		changedbComponent = new UiComponent();
+		changedbComponent.setName(CHANGEDB);
+		changedbComponent.setValue(this.model.getDB());
+		add(changedbComponent);
+		*/
+	}
+	
+	public ChangeDBView() {
 		super();
 
-		add(new VTextField("ChangeDB", model, control));
 	}
 
 	public void run() {
-
-		for (VTextField t : this) {
-			t.run();
-		}
-
 	}
 
 }
