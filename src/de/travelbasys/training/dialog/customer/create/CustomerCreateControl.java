@@ -37,7 +37,7 @@ public class CustomerCreateControl extends AbstractControl {
 		uic = this.view.getCustomerAgeComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				checkage(value);
+				checkAge(value);
 				CustomerCreateControl.this.model
 						.setCustomerAge((Integer) value);
 			}
@@ -53,7 +53,7 @@ public class CustomerCreateControl extends AbstractControl {
 		uic = this.view.getCustomerPostalcodeComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				checkpostalcode(value);
+				checkPostalcode(value);
 				CustomerCreateControl.this.model
 						.setCustomerPostalcode((String) value);
 			}
@@ -68,21 +68,18 @@ public class CustomerCreateControl extends AbstractControl {
 		});
 	}
 
-	private void checkage(Object value) throws Exception {
-
+	private void checkAge(Object value) throws Exception {
 		int age = (Integer) value;
 		if (age < 0 || age > 150) {
 			throw new Exception("AgeNotInRangeErr");
 		}
-		model.setCustomerAge(age);
 	}
 
-	private void checkpostalcode(Object value) throws Exception {
+	private void checkPostalcode(Object value) throws Exception {
 		try {
 			String postalcode = (String) value;
 			int postalcodetemp = Integer.parseInt(postalcode);
 			if (postalcodetemp > 0 && (postalcode.length() == 5)) {
-				model.setCustomerPostalcode(postalcode);
 			} else
 				throw new Exception("PostalNotInRangeErr");
 		} catch (NumberFormatException e) {
@@ -91,12 +88,3 @@ public class CustomerCreateControl extends AbstractControl {
 
 	}
 }
-
-/*
- * public void check(String fieldName, String value) throws Exception {
- * 
- * if (fieldName == "PostalCode") { if ((Integer.parseInt(value) > 0 &&
- * value.length() == 5)) { } else {
- * 
- * } } }
- */

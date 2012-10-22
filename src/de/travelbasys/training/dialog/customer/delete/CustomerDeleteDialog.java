@@ -1,8 +1,11 @@
 package de.travelbasys.training.dialog.customer.delete;
 
-import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.dialog.customer.delete1.CustomerDelete1Dialog;
+import de.travelbasys.training.dialog.customer.find.CustomerFindDialog;
+import de.travelbasys.training.dialog.customer.show1.CustomerShow1Dialog;
+import de.travelbasys.training.dialog.customer.yesno.YesNoDialog;
 import de.travelbasys.training.framework.Dialog;
-import de.travelbasys.training.util.AppContext;
 
 /**
  * ist verantwortlich für das löschen eines Benutzers aus der Datenbank
@@ -11,31 +14,32 @@ import de.travelbasys.training.util.AppContext;
  * 
  */
 public class CustomerDeleteDialog implements Dialog {
-	private CustomerDeleteModel model;
-	private static CustomerDeleteView view;
-	private CustomerDeleteControl control;
 
 	@Override
 	public void run() {
-		model = new CustomerDeleteModel();
-		control = new CustomerDeleteControl(model);
-		view = new CustomerDeleteView(model, control);
+		{
 
-		view.run();
-		if(model.isEnd()== false){return;}
-		view.found();
-		view.decision();
-		
-		boolean flag = model.getDeleteFlag();
-		if (flag) {
-			int customerid = model.getCustomerid();
-			CustomerDAO.delUser(customerid);
-			AppContext.printMessage("DelOK");
+			CustomerFindDialog d1 = new CustomerFindDialog();
+			d1.init();
+			d1.run();
+
+			Customer customer = d1.getCustomer();
+			int customerid = d1.getCustomerID();
+
+			CustomerShow1Dialog d2 = new CustomerShow1Dialog();
+			d2.setCustomer(customer);
+			d2.init();
+			d2.run();
+
+			YesNoDialog d3 = new YesNoDialog();
+			d3.run();
+
+			if (d3.getFlag()) {
+				CustomerDelete1Dialog d4 = new CustomerDelete1Dialog();
+				d4.setCustomerID(customerid);
+				d4.init();
+				d4.run();
+			}
 		}
-	}
-
-	public static void end() {
-	view.abort();
-		
 	}
 }

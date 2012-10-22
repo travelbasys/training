@@ -30,12 +30,12 @@ public class CustomerCreateDialog implements Dialog {
 		view.run();
 
 		// Do something with the input!
-		Customer costumer = null;
+		Customer customer = null;
 		int customerid;
 
 		customerid = CustomerDAO.getLastCustomerId() + 1;
 		try {
-			costumer = new Customer(customerid, model.getCustomerLastname(),
+			customer = new Customer(customerid, model.getCustomerLastname(),
 					model.getCustomerFirstname(), model.getCustomerAge(),
 					model.getCustomerAdress(), model.getCustomerPostalcode(),
 					model.getCustomerEMail());
@@ -43,7 +43,7 @@ public class CustomerCreateDialog implements Dialog {
 			e.printStackTrace();
 			CustomerDAO.setUsers(new ArrayList<Customer>());
 		}
-		CustomerDAO.getUsers().add(costumer);
+		CustomerDAO.getUsers().add(customer);
 
 	}
 

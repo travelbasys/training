@@ -1,24 +1,26 @@
 package de.travelbasys.training.dialog.customer.show;
 
+import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.dialog.customer.find.CustomerFindDialog;
+import de.travelbasys.training.dialog.customer.show1.CustomerShow1Dialog;
 import de.travelbasys.training.framework.Dialog;
 
 /**
  */
 public class CustomerShowDialog implements Dialog {
-	private CustomerShowModel model;
-	private CustomerShowView view;
-	private CustomerShowControl control;
-
 	@Override
 	public void run() {
-		model = new CustomerShowModel();
-		control = new CustomerShowControl();
-		view = new CustomerShowView();
 
-		view.init(model);
-		control.init(model, view);
+		CustomerFindDialog d1 = new CustomerFindDialog();
+		d1.init();
+		d1.run();
 
-		view.run();
+		Customer customer = d1.getCustomer();
+
+		CustomerShow1Dialog d2 = new CustomerShow1Dialog();
+		d2.setCustomer(customer);
+		d2.init();
+		d2.run();
 	}
 
 }
