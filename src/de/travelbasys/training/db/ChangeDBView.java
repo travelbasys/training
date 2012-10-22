@@ -1,8 +1,11 @@
 package de.travelbasys.training.db;
 
-import de.travelbasys.training.dialog.customer.show.CustomerShowModel;
+import java.util.ArrayList;
+
+import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.UiComponent;
+import de.travelbasys.training.framework.View;
 
 /**
  * Diese Klasse ist verantwortlich für den Dialog mit dem Benutzer um die für
@@ -11,28 +14,34 @@ import de.travelbasys.training.framework.UiComponent;
  * @author tba
  * 
  */
-public class ChangeDBView {
+public class ChangeDBView extends ArrayList<UiComponent> implements View {
 
+	private static final long serialVersionUID = 1L;
 	private ChangeDBModel model;
+	private UiComponent changeDBComponent;
 	private static final String CHANGEDB = "ChangeDB";
 
-	
+	public AbstractUiComponent getchangeDBComponent() {
+		return changeDBComponent;
+	}
+
+	public ChangeDBView(ChangeDBModel model, ChangeDBControl control) {
+		super();
+		this.model = model;
+	}
+
 	public void init(Model model) {
 		this.model = (ChangeDBModel) model;
-/*
-		changedbComponent = new UiComponent();
-		changedbComponent.setName(CHANGEDB);
-		changedbComponent.setValue(this.model.getDB());
-		add(changedbComponent);
-		*/
-	}
-	
-	public ChangeDBView() {
-		super();
 
+		changeDBComponent = new UiComponent();
+		changeDBComponent.setName(CHANGEDB);
+		changeDBComponent.setValue(this.model.getDBkey());
+		add(changeDBComponent);
 	}
 
 	public void run() {
+		for (UiComponent uiComponent : this) {
+			uiComponent.run();
+		}
 	}
-
 }

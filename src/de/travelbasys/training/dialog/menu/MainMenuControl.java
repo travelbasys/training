@@ -1,6 +1,6 @@
 package de.travelbasys.training.dialog.menu;
 
-import de.travelbasys.training.db.ChangeDBDialog;
+import de.travelbasys.training.db.ChangeSaveDBDialog;
 import de.travelbasys.training.dialog.customer.CustomerList;
 import de.travelbasys.training.dialog.customer.create.CustomerCreateDialog;
 import de.travelbasys.training.dialog.customer.delete.CustomerDeleteDialog;
@@ -56,7 +56,7 @@ public class MainMenuControl extends Application {
 					d.run();
 					break;
 				case 8:
-					d = new ChangeDBDialog();
+					d = new ChangeSaveDBDialog();
 					d.run();
 					break;
 				case 9:

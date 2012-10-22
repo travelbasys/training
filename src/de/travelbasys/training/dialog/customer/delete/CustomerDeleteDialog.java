@@ -25,7 +25,9 @@ public class CustomerDeleteDialog implements Dialog {
 
 			Customer customer = d1.getCustomer();
 			int customerid = d1.getCustomerID();
-
+			if (customer == null) {
+				return;
+			}
 			CustomerShow1Dialog d2 = new CustomerShow1Dialog();
 			d2.setCustomer(customer);
 			d2.init();

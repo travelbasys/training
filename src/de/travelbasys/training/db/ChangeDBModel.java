@@ -1,26 +1,32 @@
 package de.travelbasys.training.db;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
-import de.travelbasys.training.dialog.Model;
-import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.framework.Model;
 
-public class ChangeDBModel extends HashMap<String, String> implements Model{
+/**
+ * erzeugt eine Instanz der Klasse CustomerDeleteDialog und verwaltet Daten
+ * 
+ * @author
+ */
+public class ChangeDBModel extends ArrayList<String> implements Model {
 
-	/**
-	 * erzeugt eine Instanz der Klasse ChangeDBDialog
-	 * und verwaltet Strings für Ausgaben
-	 */
 	private static final long serialVersionUID = 1L;
-
+	private String DBkey = "";
+	private boolean save = false;
 	public ChangeDBModel() {
 		super();
-
-		put("promptChangeDB", AppContext.getMessage("ChangeDB"));
 	}
-
-	public String getPrompt(String fieldName) {
-		return get("prompt" + fieldName);
+	public String getDBkey() {
+		return DBkey;
 	}
-
+	public void setDBkey(String key) {
+		this.DBkey = key;
+	}
+	public boolean isSave() {
+		return save;
+	}
+	public void setSave(boolean save) {
+		this.save = save;
+	}
 }

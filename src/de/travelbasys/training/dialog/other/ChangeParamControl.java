@@ -1,6 +1,6 @@
 package de.travelbasys.training.dialog.other;
 
-import de.travelbasys.training.db.ChangeDBParamDialog;
+import de.travelbasys.training.db.ChangeDBDialog;
 import de.travelbasys.training.util.AppContext;
 
 /**
@@ -32,7 +32,7 @@ public class ChangeParamControl {
 					model.setCheckFalse();
 					return;
 				case 2:
-					model.setDialog(new ChangeDBParamDialog());
+					model.setDialog(new ChangeDBDialog());
 					model.setCheckFalse();
 					return;
 				default:

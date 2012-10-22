@@ -27,16 +27,14 @@ public class YesNoView extends ArrayList<UiComponent> implements View {
 		this.model = model;
 	}
 
-	String choice_str;
-
 	public void run() {
 		do {
 			for (String s : model) {
 				Console.println(s);
 			}
-			for(UiComponent uiComponent : this){
-				 uiComponent.run2();
-			 }
+			for (UiComponent uiComponent : this) {
+				uiComponent.run2();
+			}
 		} while (model.getEndFlag() == false);
 	}
 
