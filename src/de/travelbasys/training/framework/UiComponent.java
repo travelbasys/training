@@ -30,4 +30,25 @@ public class UiComponent extends AbstractUiComponent {
 			}
 		}
 	}
+
+	public void run2() {
+		while (true) {
+			// Read user response.
+			String line = AppContext.nextLine();
+
+			try {
+				// Convert user response to value of proper type.
+				value = getFormatter().parse(line);
+
+				// Let controller check the input value and update model.
+				getControl().handleInput(value);
+
+				// Exit loop
+				break;
+			} catch (Exception e) {
+				Console.printerr(AppContext.getMessage(e.getMessage()) + line);
+				return;
+			}
+		}
+	}
 }

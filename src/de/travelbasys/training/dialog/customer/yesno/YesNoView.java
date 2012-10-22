@@ -16,7 +16,6 @@ public class YesNoView extends ArrayList<UiComponent> implements View {
 	 */
 	private static final long serialVersionUID = 1L;
 	private YesNoModel model;
-	private static final String CUSTOMERDECISION = "Whitespace";
 	private UiComponent customerDecisionComponent;
 
 	public AbstractUiComponent getcustomerdecisionComponent() {
@@ -36,7 +35,7 @@ public class YesNoView extends ArrayList<UiComponent> implements View {
 				Console.println(s);
 			}
 			for(UiComponent uiComponent : this){
-				 uiComponent.run();
+				 uiComponent.run2();
 			 }
 		} while (model.getEndFlag() == false);
 	}
@@ -45,7 +44,6 @@ public class YesNoView extends ArrayList<UiComponent> implements View {
 	public void init(Model model) {
 		this.model = (YesNoModel) model;
 		customerDecisionComponent = new UiComponent();
-		customerDecisionComponent.setName(CUSTOMERDECISION);
 		customerDecisionComponent.setValue(this.model.getDecision());
 		add(customerDecisionComponent);
 	}

@@ -34,8 +34,8 @@ public class YesNoControl {
 			AppContext.printMessage("Abort");
 			break;
 		default:
-			AppContext.printErrString("ChooseErr");
-			break;
+			// VORERST CHOOSERRCOMP ALS ALTERNATIVE FEHLERAUSGABE!!!
+			throw new Exception("ChooseErrComp");
 		}
 
 	}
