@@ -1,13 +1,9 @@
 package de.travelbasys.training.dialog.customer.create;
 
-import de.travelbasys.training.dialog.Control;
-import de.travelbasys.training.dialog.Model;
-import de.travelbasys.training.dialog.customer.Create.CustomerCreateModel;
-import de.travelbasys.training.dialog.customer.Create.CustomerCreateView;
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
-import de.travelbasys.training.util.AppContext;
 
 /**
  */
@@ -26,46 +22,73 @@ public class CustomerCreateControl extends AbstractControl {
 		uic = this.view.getCustomerLastnameComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				model.setCustomerLastname(value);
+				CustomerCreateControl.this.model.setCustomerLastname((String)value);
 			}
 		});
 
 		uic = this.view.getCustomerFirstnameComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				model.setCustomerFirstname(value);
+				CustomerCreateControl.this.model.setCustomerFirstname((String)value);
 			}
 		});
 		
 		uic = this.view.getCustomerAgeComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				if (value <= 0 || value > 150) {
-					throw new IllegalArgumentException("AgeNotInRangeErr");
-				
-				model.setCustomerAge(value);
+					checkage(value);
+					CustomerCreateControl.this.model.setCustomerAge((Integer)value);
+			}
+
+			});
+		uic = this.view.getCustomerAdressComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				CustomerCreateControl.this.model.setCustomerAdress((String)value);
 			}
 		});
-		
-		// ...
+		uic = this.view.getCustomerPostalcodeComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+					checkpostalcode(value);
+					CustomerCreateControl.this.model.setCustomerPostalcode((String)value);			
+			}
 
+			});
+		uic = this.view.getCustomerEMailComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				CustomerCreateControl.this.model.setCustomerEMail((String)value);
+			}
+		});
 	}
-	
-	
-	
-	
-	
-	
-	
-	@Override
-	public void check(String fieldName, String value) throws Exception {
+		private void checkage(Object value) throws Exception {
+
+			int age = (Integer) value;
+			if (age < 0 || age > 150){
+				throw new Exception("AgeNotInRangeErr");
+			}
+			model.setCustomerAge(age);
+		}
+		
+		private void checkpostalcode(Object value) throws Exception {
+			String postalcode = (String) value;
+			//ParseInt muss abgefangen werden bzw. catchmethode.
+			int postalcodetemp =  Integer.parseInt(postalcode);
+			if(postalcodetemp > 0 && (postalcode.length() == 5)){
+				model.setCustomerPostalcode(postalcode);
+			}else throw new Exception("PostalNotInRangeErr");
+
+			
+		}}
+		
+		
+	/*public void check(String fieldName, String value) throws Exception {
 
 		if (fieldName == "PostalCode") {
 			if ((Integer.parseInt(value) > 0 && value.length() == 5)) {
 			} else {
-				throw new Exception(
-						AppContext.getMessage("PostalNotInRangeErr") + value);
+				
 			}
 		}
-	}
-}
+	}*/

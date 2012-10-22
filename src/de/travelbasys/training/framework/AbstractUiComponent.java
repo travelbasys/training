@@ -41,9 +41,11 @@ public abstract class AbstractUiComponent {
 
 	public void setValue(Object value) {
 		this.value = value;
-	
 		// Store a formatter depending on the type of the given value.
-		formatter = AbstractFormatter.createFormatter(value.getClass());
+		if (null != value)
+			formatter = AbstractFormatter.createFormatter(value.getClass());
+		else
+			formatter = Formatter.NULL;
 	}
 
 }

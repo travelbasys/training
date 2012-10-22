@@ -1,27 +1,53 @@
 package de.travelbasys.training.dialog.customer.create;
 
-import java.util.HashMap;
-
 import de.travelbasys.training.framework.Model;
-import de.travelbasys.training.util.AppContext;
+
 /**
- * erzeugt eine Instanz der Klasse CustomerCreateDialog
- * und verwaltet Strings für Ausgaben
+ * Model Objekt für den customerShow Dialog.
  */
-@SuppressWarnings("serial")
-public class CustomerCreateModel extends HashMap<String, String> implements Model {
-	/**
-	 * Erzeugt eine Instanz der Klasse...
-	 */
-	public CustomerCreateModel() {
-		super();
+public class CustomerCreateModel implements Model {
 
-		put("promptLastName", AppContext.getMessage("LastNamePrompt"));
-		put("promptFirstName", AppContext.getMessage("FirstNamePrompt"));
-		put("promptAge", AppContext.getMessage("AgePrompt"));
-		put("promptAdress", AppContext.getMessage("AdressPrompt"));
-		put("promptPostalCode", AppContext.getMessage("PostalPrompt"));
-		put("promptEMail", AppContext.getMessage("eMailPrompt"));
+	private String customerLastname;
+	private String customerFirstname;
+	private int customerAge;
+	private String customerAdress;
+	private String customerPostalcode;
+	private String customerEMail;
+	
+	public String getCustomerLastname() {
+		return customerLastname;
 	}
-
+	public void setCustomerLastname(String customerLastname) {
+		this.customerLastname = customerLastname;
+	}
+	public String getCustomerFirstname() {
+		return customerFirstname;
+	}
+	public void setCustomerFirstname(String customerFirstname) {
+		this.customerFirstname = customerFirstname;
+	}
+	public int getCustomerAge() {
+		return customerAge;
+	}
+	public void setCustomerAge(int customerAge) {
+		this.customerAge = customerAge;
+	}
+	public String getCustomerAdress() {
+		return customerAdress;
+	}
+	public void setCustomerAdress(String customerAdress) {
+		this.customerAdress = customerAdress;
+	}
+	public String getCustomerPostalcode() {
+		return customerPostalcode;
+	}
+	public void setCustomerPostalcode(String customerPostalcode) {
+		this.customerPostalcode = customerPostalcode;
+	}
+	public String getCustomerEMail() {
+		return customerEMail;
+	}
+	public void setCustomerEMail(String customerEMail) {
+		this.customerEMail = customerEMail;
+	}
 }
