@@ -47,30 +47,12 @@ public class CustomerUpdateDialog implements Dialog {
 			adress = d2.getCustomerAdress();
 			postalcode = d2.getCustomerPostalcode();
 			email = d2.getCustomerEMail();
-
-			if (d2.getLastnameFlag()) {
-				CustomerDAO.setSingleUserLastname(customerid, lastname);
-			}
-
-			if (d2.getFirstnameFlag()) {
-				CustomerDAO.setSingleUserFirstname(customerid, firstname);
-			}
-
-			if (d2.getAgeFlag()) {
-				CustomerDAO.setSingleUserAge(customerid, age);
-			}
-
-			if (d2.getAdressFlag()) {
-				CustomerDAO.setSingleUserAdress(customerid, adress);
-			}
-
-			if (d2.getPostalcodeFlag()) {
-				CustomerDAO.setSingleUserPostalcode(customerid, postalcode);
-			}
-
-			if (d2.getEMailFlag()) {
-				CustomerDAO.setSingleUserEMail(customerid, email);
-			}
+			CustomerDAO.setSingleUserLastname(customerid, lastname);
+			CustomerDAO.setSingleUserFirstname(customerid, firstname);
+			CustomerDAO.setSingleUserAge(customerid, age);
+			CustomerDAO.setSingleUserAdress(customerid, adress);
+			CustomerDAO.setSingleUserPostalcode(customerid, postalcode);
+			CustomerDAO.setSingleUserEMail(customerid, email);
 		}
 	}
 }

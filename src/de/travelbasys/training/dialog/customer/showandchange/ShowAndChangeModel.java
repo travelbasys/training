@@ -21,12 +21,6 @@ public class ShowAndChangeModel implements Model {
 	private int index;
 	private int customerid;
 	private boolean EndFlag = false;
-	private boolean LastnameFlag = false;
-	private boolean FirstnameFlag = false;
-	private boolean AgeFlag = false;
-	private boolean AdressFlag = false;
-	private boolean PostalcodeFlag = false;
-	private boolean EMailFlag = false;
 
 	public String getCustomerLastname() {
 		return customerLastname;
@@ -84,14 +78,6 @@ public class ShowAndChangeModel implements Model {
 		this.index = index;
 	}
 
-	public boolean getEndFlag() {
-		return EndFlag;
-	}
-
-	public void setEndFlag(boolean endFlag) {
-		EndFlag = endFlag;
-	}
-
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -102,60 +88,20 @@ public class ShowAndChangeModel implements Model {
 				getCustomerPostalcode(), getCustomerEMail());
 	}
 
-	public boolean getLastnameFlag() {
-		return LastnameFlag;
-	}
-
-	public void setLastnameFlag(boolean lastnameFlag) {
-		LastnameFlag = lastnameFlag;
-	}
-
-	public boolean getFirstnameFlag() {
-		return FirstnameFlag;
-	}
-
-	public void setFirstnameFlag(boolean firstnameFlag) {
-		FirstnameFlag = firstnameFlag;
-	}
-
-	public boolean getAdressFlag() {
-		return AdressFlag;
-	}
-
-	public void setAdressFlag(boolean adressFlag) {
-		AdressFlag = adressFlag;
-	}
-
-	public boolean getAgeFlag() {
-		return AgeFlag;
-	}
-
-	public void setAgeFlag(boolean ageFlag) {
-		AgeFlag = ageFlag;
-	}
-
-	public boolean getPostalcodeFlag() {
-		return PostalcodeFlag;
-	}
-
-	public void setPostalcodeFlag(boolean postalcodeFlag) {
-		PostalcodeFlag = postalcodeFlag;
-	}
-
-	public boolean getEMailFlag() {
-		return EMailFlag;
-	}
-
-	public void setEMailFlag(boolean eMailFlag) {
-		EMailFlag = eMailFlag;
-	}
-
 	public int getCustomerid() {
 		return customerid;
 	}
 
 	public void setCustomerid(int customerid) {
 		this.customerid = customerid;
+	}
+
+	public boolean getEndFlag() {
+		return EndFlag;
+	}
+
+	public void setEndFlag(boolean endFlag) {
+		EndFlag = endFlag;
 	}
 
 }

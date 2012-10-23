@@ -87,28 +87,4 @@ public class ShowAndChangeDialog implements Dialog {
 		return model.getCustomerEMail();
 	}
 
-	public boolean getLastnameFlag() {
-		return model.getLastnameFlag();
-	}
-
-	public boolean getFirstnameFlag() {
-		return model.getFirstnameFlag();
-	}
-
-	public boolean getAgeFlag() {
-		return model.getAgeFlag();
-	}
-
-	public boolean getAdressFlag() {
-		return model.getAdressFlag();
-	}
-
-	public boolean getPostalcodeFlag() {
-		return model.getPostalcodeFlag();
-	}
-
-	public boolean getEMailFlag() {
-		return model.getEMailFlag();
-	}
-
 }

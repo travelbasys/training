@@ -20,7 +20,6 @@ public class ShowAndChangeControl extends AbstractControl {
 			public void handleInput(Object value) throws Exception {
 				ShowAndChangeControl.this.model
 						.setCustomerLastname((String) value);
-				ShowAndChangeControl.this.model.setLastnameFlag(true);
 			}
 		});
 
@@ -29,7 +28,6 @@ public class ShowAndChangeControl extends AbstractControl {
 			public void handleInput(Object value) throws Exception {
 				ShowAndChangeControl.this.model
 						.setCustomerFirstname((String) value);
-				ShowAndChangeControl.this.model.setFirstnameFlag(true);
 			}
 		});
 
@@ -38,7 +36,6 @@ public class ShowAndChangeControl extends AbstractControl {
 			public void handleInput(Object value) throws Exception {
 				checkAge(value);
 				ShowAndChangeControl.this.model.setCustomerAge((Integer) value);
-				ShowAndChangeControl.this.model.setAgeFlag(true);
 			}
 		});
 
@@ -47,7 +44,6 @@ public class ShowAndChangeControl extends AbstractControl {
 			public void handleInput(Object value) throws Exception {
 				ShowAndChangeControl.this.model
 						.setCustomerAdress((String) value);
-				ShowAndChangeControl.this.model.setAdressFlag(true);
 			}
 		});
 
@@ -57,7 +53,6 @@ public class ShowAndChangeControl extends AbstractControl {
 				checkPostalcode(value);
 				ShowAndChangeControl.this.model
 						.setCustomerPostalcode((String) value);
-				ShowAndChangeControl.this.model.setPostalcodeFlag(true);
 			}
 		});
 
@@ -66,7 +61,6 @@ public class ShowAndChangeControl extends AbstractControl {
 			public void handleInput(Object value) throws Exception {
 				ShowAndChangeControl.this.model
 						.setCustomerEMail((String) value);
-				ShowAndChangeControl.this.model.setEMailFlag(true);
 			}
 		});
 	}
