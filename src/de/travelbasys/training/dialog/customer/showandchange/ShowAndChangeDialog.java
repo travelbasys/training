@@ -14,7 +14,7 @@ import de.travelbasys.training.framework.Dialog;
 public class ShowAndChangeDialog implements Dialog {
 
 	private ShowAndChangeView view;
-	private ShowAndChangeModel model;
+	private static ShowAndChangeModel model;
 	private ShowAndChangeControl control;
 
 	private Customer customer;
@@ -63,28 +63,13 @@ public class ShowAndChangeDialog implements Dialog {
 		this.customer = customer;
 	}
 
-	public String getCustomerLastname() {
-		return model.getCustomerLastname();
+
+	public static ShowAndChangeModel getModel() {
+		return model;
 	}
 
-	public String getCustomerFirstname() {
-		return model.getCustomerFirstname();
-	}
-
-	public int getCustomerAge() {
-		return model.getCustomerAge();
-	}
-
-	public String getCustomerAdress() {
-		return model.getCustomerAdress();
-	}
-
-	public String getCustomerPostalcode() {
-		return model.getCustomerPostalcode();
-	}
-
-	public String getCustomerEMail() {
-		return model.getCustomerEMail();
+	public void setModel(ShowAndChangeModel model) {
+		ShowAndChangeDialog.model = model;
 	}
 
 }

@@ -112,6 +112,17 @@ public class CustomerDAO {
 		} catch (Exception e) {
 		}
 	}
+	
+	public static void replaceUser(int customerid, Customer customer) {
+		try {
+			for (Customer user : CustomerDAO.getUsers()) {
+				if (user.getUserID() == customerid) {
+					CustomerDAO.users.set(CustomerDAO.users.indexOf(user), customer);
+				}
+			}
+		} catch (Exception e) {
+		}
+	}
 
 	public static void setUsers(List<Customer> users) {
 		CustomerDAO.users = users;
@@ -142,7 +153,7 @@ public class CustomerDAO {
 		return null;
 	}
 
-	public static void setSingleUserFirstname(int customerid, String firstname) {
+	/*public static void setSingleUserFirstname(int customerid, String firstname) {
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {
 				if (user.getUserID() == customerid) {
@@ -206,7 +217,7 @@ public class CustomerDAO {
 			}
 		} catch (Exception e) {
 		}
-	}
+	}*/
 
 	public static int getLastCustomerId() {
 		int userid = 0;

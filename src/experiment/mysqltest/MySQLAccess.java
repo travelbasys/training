@@ -40,7 +40,7 @@ public class MySQLAccess {
 		dao.readDataBase();
 	}
 
-	@SuppressWarnings("deprecation")
+	//@SuppressWarnings("deprecation")
 	public void readDataBase() throws Exception {
 		try {
 			// This will load the MySQL driver, each DB has its own driver
