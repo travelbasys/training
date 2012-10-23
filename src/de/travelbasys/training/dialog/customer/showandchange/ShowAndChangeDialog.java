@@ -16,17 +16,17 @@ public class ShowAndChangeDialog implements Dialog {
 	private ShowAndChangeView view;
 	private ShowAndChangeModel model;
 	private ShowAndChangeControl control;
-	
+
 	private Customer customer;
-	private int customerid;
-	
+
 	private static int index;
 
 	@Override
 	public void run() {
 		do {
+			model.setCustomer();
 			CustomerShow1Dialog d2 = new CustomerShow1Dialog();
-			d2.setCustomer(customer);
+			d2.setCustomer(model.getCustomer());
 			d2.init();
 			d2.run();
 
@@ -47,9 +47,14 @@ public class ShowAndChangeDialog implements Dialog {
 		model = new ShowAndChangeModel();
 		control = new ShowAndChangeControl();
 		view = new ShowAndChangeView();
+		model.setCustomerid(customer.getUserID());
+		model.setCustomerAdress(customer.getAdress());
+		model.setCustomerAge(customer.getAge());
+		model.setCustomerFirstname(customer.getFirstname());
+		model.setCustomerLastname(customer.getLastName());
+		model.setCustomerPostalcode(customer.getPostalcode());
+		model.setCustomerEMail(customer.getEmail());
 
-		model.setCustomerid(customerid);
-		model.setCustomer(customer);
 		view.init(model);
 		control.init(model, view);
 	}
@@ -104,10 +109,6 @@ public class ShowAndChangeDialog implements Dialog {
 
 	public boolean getEMailFlag() {
 		return model.getEMailFlag();
-	}
-
-	public void setCustomerID(int userID) {
-		this.customerid = userID;
 	}
 
 }

@@ -32,7 +32,6 @@ public class CustomerUpdateDialog implements Dialog {
 		}
 		ShowAndChangeDialog d2 = new ShowAndChangeDialog();
 		d2.setCustomer(customer);
-		d2.setCustomerID(customer.getUserID());
 		d2.init();
 		d2.run();
 

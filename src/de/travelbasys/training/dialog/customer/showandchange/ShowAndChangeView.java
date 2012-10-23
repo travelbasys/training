@@ -105,15 +105,12 @@ public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 	 * Andernfalls führe die run Methode der UiComponent mit diesem Index aus.
 	 */
 	public void run() {
-		if (model.getIndex() == -1) {
-			model.setEndFlag(true);
-			return;
-		}
 		try {
 			UiComponent uic = get(model.getIndex());
 			uic.run();
 		} catch (IndexOutOfBoundsException e) {
 			AppContext.printErrString("ChooseErr");
+			return;
 		}
 	}
 }

@@ -12,12 +12,12 @@ public class ShowAndChangeModel implements Model {
 	 * 
 	 */
 	private Customer customer;
-	private String customerLastname;
-	private String customerFirstname;
-	private int customerAge;
-	private String customerAdress;
-	private String customerPostalcode;
-	private String customerEMail;
+	private String customerLastname = "";
+	private String customerFirstname = "";
+	private int customerAge = 0;
+	private String customerAdress = "";
+	private String customerPostalcode = "";
+	private String customerEMail = "";
 	private int index;
 	private int customerid;
 	private boolean EndFlag = false;
@@ -96,8 +96,10 @@ public class ShowAndChangeModel implements Model {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomer() {
+		customer = new Customer(getCustomerid(), getCustomerLastname(),
+				getCustomerFirstname(), getCustomerAge(), getCustomerAdress(),
+				getCustomerPostalcode(), getCustomerEMail());
 	}
 
 	public boolean getLastnameFlag() {
@@ -155,4 +157,5 @@ public class ShowAndChangeModel implements Model {
 	public void setCustomerid(int customerid) {
 		this.customerid = customerid;
 	}
+
 }
