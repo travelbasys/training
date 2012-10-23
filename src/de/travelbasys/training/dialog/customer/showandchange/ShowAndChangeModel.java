@@ -74,6 +74,9 @@ public class ShowAndChangeModel implements Model {
 		return index;
 	}
 
+	//Die Subtraktion von 1 ist notwendig, da die ArrayList der UIComponents von 0-5 (Zulässiger Eingabebereich 1-6) reicht.
+	//Bei der Eingabe von 0 soll allerdings beendet werden, somit muss erst geprüft werden, ob tatsächlich eine 0 eingegeben wurde.
+	//Wurde eine gültige Eingabe getätigt wird der Wert um 1 verringert um keine IndexOutOfBoundsException zu werfen.
 	public void setIndex(int index) {
 		this.index = index -1;
 	}
