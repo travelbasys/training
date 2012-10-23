@@ -6,6 +6,8 @@ import org.junit.Test;
 
 /**
  * Eine Klasse um die vorhanden Applikationen auf ihre Funktionalität zu testen
+ * 
+ * 
  * @author tba
  *
  */
