@@ -1,11 +1,7 @@
 package de.travelbasys.training.db;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.Properties;
 
-import de.travelbasys.training.dialog.menu.MainMenuDialog;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.Config;
 
@@ -25,10 +21,6 @@ public class ChangeDBDialog implements Dialog {
 	ChangeDBView view;
 	ChangeDBControl control;
 
-	public ChangeDBDialog(ChangeDBModel model) {
-		this.model = model;
-	}
-
 	public ChangeDBDialog() {
 		model = new ChangeDBModel();
 	}
@@ -44,17 +36,6 @@ public class ChangeDBDialog implements Dialog {
 		String db = model.getDBkey();
 		CustomerDAO.terminate();
 		CustomerDAO.init(db);
-		if (model.isSave() == true) {
-			try {
-				Properties config = new Properties();
-				config.load(new FileInputStream(ini));
-				config.setProperty(DATABASE_KEY, db);
-				config.store(new FileOutputStream(ini),
-						"Travelbasys User Manager - Properties");
-			} catch (Exception e) {
-			}
-		}
-		MainMenuDialog menu = new MainMenuDialog();
-		menu.run();
+		return;
 	}
 }

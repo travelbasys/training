@@ -97,4 +97,10 @@ public class ShowAndChange1View extends ArrayList<UiComponent> implements View {
 		uic.run();
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

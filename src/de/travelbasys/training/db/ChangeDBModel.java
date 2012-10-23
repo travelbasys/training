@@ -11,9 +11,11 @@ import de.travelbasys.training.framework.Model;
  */
 public class ChangeDBModel extends ArrayList<String> implements Model {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private String DBkey = "";
-	private boolean save = false;
 	public ChangeDBModel() {
 		super();
 	}
@@ -22,11 +24,5 @@ public class ChangeDBModel extends ArrayList<String> implements Model {
 	}
 	public void setDBkey(String key) {
 		this.DBkey = key;
-	}
-	public boolean isSave() {
-		return save;
-	}
-	public void setSave(boolean save) {
-		this.save = save;
 	}
 }
