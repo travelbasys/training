@@ -36,6 +36,5 @@ public class ChangeDBDialog implements Dialog {
 		String db = model.getDBkey();
 		CustomerDAO.terminate();
 		CustomerDAO.init(db);
-		return;
 	}
 }
