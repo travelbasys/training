@@ -33,7 +33,7 @@ public class ShowAndChangeDialog implements Dialog {
 			d3.init();
 			d3.run();
 			index = d3.getIndex();
-			if (index == -1) {
+			if (index == 0) {
 				model.setEndFlag(true);
 				return;
 			}

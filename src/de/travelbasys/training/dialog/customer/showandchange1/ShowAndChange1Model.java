@@ -33,6 +33,6 @@ public class ShowAndChange1Model extends ArrayList<String> implements Model {
 	}
 
 	public void setIndex(int index) {
-		this.index = (index - 1);
+		this.index = index;
 	}
 }

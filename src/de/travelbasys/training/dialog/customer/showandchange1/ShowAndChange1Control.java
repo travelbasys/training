@@ -28,7 +28,7 @@ public class ShowAndChange1Control extends AbstractControl {
 	}
 
 	private void checkchoice(Object value) throws Exception {
-			int choice = Integer.parseInt((String) value);
+			int choice = ((Integer) value);
 			model.setIndex(choice);
 	}
 }

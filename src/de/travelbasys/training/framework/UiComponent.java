@@ -47,7 +47,6 @@ public class UiComponent extends AbstractUiComponent {
 				break;
 			} catch (Exception e) {
 				Console.printerr(AppContext.getMessage(e.getMessage()) + line);
-				break;
 			}
 		}
 	}

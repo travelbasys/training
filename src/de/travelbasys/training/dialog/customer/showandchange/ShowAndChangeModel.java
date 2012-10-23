@@ -75,7 +75,7 @@ public class ShowAndChangeModel implements Model {
 	}
 
 	public void setIndex(int index) {
-		this.index = index;
+		this.index = index -1;
 	}
 
 	public Customer getCustomer() {
