@@ -3,11 +3,7 @@ package de.travelbasys.training.dialog.customer.showandchange1;
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * ist verantwortlich für das erzeugen eines Customer Objekts.
- * 
- * @author tba
  */
-
 public class ShowAndChange1Dialog implements Dialog {
 
 	private ShowAndChange1Model model;
@@ -17,7 +13,6 @@ public class ShowAndChange1Dialog implements Dialog {
 	@Override
 	public void run() {
 		view.run();
-
 	}
 
 	public int getIndex() {

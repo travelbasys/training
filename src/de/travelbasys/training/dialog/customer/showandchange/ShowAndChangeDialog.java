@@ -16,8 +16,10 @@ public class ShowAndChangeDialog implements Dialog {
 	private ShowAndChangeView view;
 	private ShowAndChangeModel model;
 	private ShowAndChangeControl control;
+	
 	private Customer customer;
 	private int customerid;
+	
 	private static int index;
 
 	@Override
@@ -45,11 +47,11 @@ public class ShowAndChangeDialog implements Dialog {
 		model = new ShowAndChangeModel();
 		control = new ShowAndChangeControl();
 		view = new ShowAndChangeView();
+
 		model.setCustomerid(customerid);
 		model.setCustomer(customer);
 		view.init(model);
 		control.init(model, view);
-
 	}
 
 	public void setCustomer(Customer customer) {
@@ -105,7 +107,7 @@ public class ShowAndChangeDialog implements Dialog {
 	}
 
 	public void setCustomerID(int userID) {
-this.customerid = userID;		
+		this.customerid = userID;
 	}
 
 }

@@ -31,8 +31,8 @@ public class ShowAndChangeControl extends AbstractControl {
 						.setCustomerLastname((String) value);
 				tempcustomer.setLastName((String) value);
 				ShowAndChangeControl.this.model.setLastnameFlag(true);
-System.out.println(tempcustomer);
-System.out.println(customertemplist);
+				System.out.println(tempcustomer);
+				System.out.println(customertemplist);
 			}
 		});
 
@@ -43,7 +43,6 @@ System.out.println(customertemplist);
 						.setCustomerFirstname((String) value);
 				tempcustomer.setFirstName((String) value);
 				ShowAndChangeControl.this.model.setFirstnameFlag(true);
-
 			}
 		});
 
@@ -54,10 +53,9 @@ System.out.println(customertemplist);
 				ShowAndChangeControl.this.model.setCustomerAge((Integer) value);
 				tempcustomer.setAge((Integer) value);
 				ShowAndChangeControl.this.model.setAgeFlag(true);
-
 			}
-
 		});
+		
 		uic = this.view.getCustomerAdressComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
@@ -65,9 +63,9 @@ System.out.println(customertemplist);
 						.setCustomerAdress((String) value);
 				tempcustomer.setAdress((String) value);
 				ShowAndChangeControl.this.model.setAdressFlag(true);
-
 			}
 		});
+		
 		uic = this.view.getCustomerPostalcodeComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
@@ -76,10 +74,9 @@ System.out.println(customertemplist);
 						.setCustomerPostalcode((String) value);
 				tempcustomer.setPostalcode((String) value);
 				ShowAndChangeControl.this.model.setPostalcodeFlag(true);
-
 			}
-
 		});
+		
 		uic = this.view.getCustomerEMailComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {

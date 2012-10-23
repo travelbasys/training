@@ -54,6 +54,14 @@ public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 		return customerEMailComponent;
 	}
 
+	/**
+	 * Initialisiert den aktuellen View.
+	 * 
+	 * Speichert das gegebene Model Objekt.
+	 * 
+	 * Erzeugt UiComponents für alle Attribute des Customer Typs:
+	 * Lastname, Firstname, Age, usw.
+	 */
 	public void init(Model model) {
 		this.model = (ShowAndChangeModel) model;
 
@@ -90,6 +98,12 @@ public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 
 	}
 
+	/**
+	 * Wenn Index im Model den Wert -1 hat, setze EndFlag im Model auf true 
+	 * und return.
+	 * 
+	 * Andernfalls führe die run Methode der UiComponent mit diesem Index aus.
+	 */
 	public void run() {
 		if (model.getIndex() == -1) {
 			model.setEndFlag(true);
