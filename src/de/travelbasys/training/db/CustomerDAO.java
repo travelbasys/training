@@ -153,11 +153,11 @@ public class CustomerDAO {
 		}
 	}
 
-	public static void setSingleUserEmail(int customerid, String email) {
+	public static void setSingleUserEMail(int customerid, String email) {
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {
 				if (user.getUserID() == customerid) {
-					user.setEmail(email);
+					user.setEMail(email);
 				}
 			}
 		} catch (Exception e) {

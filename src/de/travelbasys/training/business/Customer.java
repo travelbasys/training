@@ -78,7 +78,7 @@ public class Customer implements Serializable {
 		setAge(age);
 		setAdress(adress);
 		setPostalcode(postalcode);
-		setEmail(email);
+		setEMail(email);
 	}
 
 	public void setPostalcode(String postalcode) {
@@ -139,7 +139,7 @@ public class Customer implements Serializable {
 		System.out.println("Adress accepted");
 	}
 
-	public void setEmail(String email) {
+	public void setEMail(String email) {
 		this.email = email;
 		System.out.println("Email accepted");
 	}

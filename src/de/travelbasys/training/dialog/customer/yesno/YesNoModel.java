@@ -17,7 +17,7 @@ public class YesNoModel extends ArrayList<String> implements Model {
 	private static final long serialVersionUID = 1L;
 	private String decisiontemp;
 	private int decision;
-	private boolean qFlag;
+	private boolean qFlag = false;
 	private boolean EndFlag = false;
 
 	public YesNoModel(String key) {

@@ -23,9 +23,11 @@ public class CustomerUpdateDialog implements Dialog {
 		view = new CustomerUpdateView(model, control);
 
 		view.run();
-		if(model.isCont()){
-		view.updatemenu();
-		}else {return;}
+		if (model.isCont()) {
+			view.updatemenu();
+		} else {
+			return;
+		}
 	}
 
 	public static void setFirstname() {
@@ -33,7 +35,6 @@ public class CustomerUpdateDialog implements Dialog {
 		view.firstname();
 		String firstname = model.getFirstname();
 		CustomerDAO.setSingleUserFirstname(customerid, firstname);
-
 	}
 
 	public static void setLastname() {
@@ -72,13 +73,12 @@ public class CustomerUpdateDialog implements Dialog {
 		int customerid = model.getCustomerid();
 		view.email();
 		String email = model.getEmail();
-		CustomerDAO.setSingleUserEmail(customerid, email);
+		CustomerDAO.setSingleUserEMail(customerid, email);
 
 	}
 
 	public static void end() {
 		view.abort();
-		
 
 	}
 
