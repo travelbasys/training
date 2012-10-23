@@ -24,10 +24,11 @@ public class ShowAndChange1Control extends AbstractControl {
 				checkchoice(value);
 			}
 		});
+
 	}
 
-	private void checkchoice(Object value) {
-		int choice = (Integer) value;
-		model.setIndex(choice);
+	private void checkchoice(Object value) throws Exception {
+			int choice = Integer.parseInt((String) value);
+			model.setIndex(choice);
 	}
 }

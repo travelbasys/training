@@ -29,7 +29,6 @@ public class ShowAndChangeDialog implements Dialog {
 			d2.setCustomer(model.getCustomer());
 			d2.init();
 			d2.run();
-
 			ShowAndChange1Dialog d3 = new ShowAndChange1Dialog();
 			d3.init();
 			d3.run();
