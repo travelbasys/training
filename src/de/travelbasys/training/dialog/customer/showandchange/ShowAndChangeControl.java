@@ -83,4 +83,8 @@ public class ShowAndChangeControl extends AbstractControl {
 			throw new Exception("IllegalNumberFormat");
 		}
 	}
+
+	public void fix() {
+		model.setIndex(model.getIndex() - 1);
+	}
 }

@@ -45,7 +45,7 @@ public class ShowAndChangeDialog implements Dialog {
 	public void init() {
 		model = new ShowAndChangeModel();
 		control = new ShowAndChangeControl();
-		view = new ShowAndChangeView();
+		view = new ShowAndChangeView(model, control);
 		model.setCustomerid(customer.getUserID());
 		model.setCustomerAdress(customer.getAdress());
 		model.setCustomerAge(customer.getAge());

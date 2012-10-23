@@ -12,6 +12,7 @@ import de.travelbasys.training.util.AppContext;
 public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 
 	private ShowAndChangeModel model;
+	private ShowAndChangeControl control;
 	private static final String CUSTOMERLASTNAME = "LastName";
 	private UiComponent customerLastnameComponent;
 
@@ -59,12 +60,12 @@ public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 	 * 
 	 * Speichert das gegebene Model Objekt.
 	 * 
-	 * Erzeugt UiComponents für alle Attribute des Customer Typs:
-	 * Lastname, Firstname, Age, usw.
+	 * Erzeugt UiComponents für alle Attribute des Customer Typs: Lastname,
+	 * Firstname, Age, usw.
 	 */
 	public void init(Model model) {
 		this.model = (ShowAndChangeModel) model;
-
+		this.control = (ShowAndChangeControl) control;
 		customerFirstnameComponent = new UiComponent();
 		customerFirstnameComponent.setName(CUSTOMERFIRSTNAME);
 		customerFirstnameComponent.setValue(this.model.getCustomerFirstname());
@@ -99,13 +100,24 @@ public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 	}
 
 	/**
-	 * Wenn Index im Model den Wert -1 hat, setze EndFlag im Model auf true 
-	 * und return.
-	 * 
-	 * Andernfalls führe die run Methode der UiComponent mit diesem Index aus.
+	 * FühreMethode der UiComponent mit diesem Index aus.
 	 */
+	public ShowAndChangeView(ShowAndChangeModel model,
+			ShowAndChangeControl control) {
+		super();
+		this.model = model;
+		this.control = control;
+	}
+
 	public void run() {
+
 		try {
+			// Control.fix() führt für den Index eine Subtraktion von 1 durch.
+			// Die Subtraktion ist notwendig, da die ArrayList der UIComponents
+			// von 0-5 (Zulässiger Eingabebereich 1-6) reicht.
+			// Wurde eine gültige Eingabe getätigt wird der Wert um 1 verringert
+			// um keine IndexOutOfBoundsException zu werfen.
+			control.fix();
 			UiComponent uic = get(model.getIndex());
 			uic.run();
 		} catch (IndexOutOfBoundsException e) {
@@ -113,4 +125,5 @@ public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 			return;
 		}
 	}
+
 }
