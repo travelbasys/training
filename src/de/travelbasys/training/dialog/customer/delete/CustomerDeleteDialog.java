@@ -17,31 +17,31 @@ public class CustomerDeleteDialog implements Dialog {
 
 	@Override
 	public void run() {
-		{
+		final String key = "DelUserQ";
 
-			CustomerFindDialog d1 = new CustomerFindDialog();
-			d1.init();
-			d1.run();
+		CustomerFindDialog d1 = new CustomerFindDialog();
+		d1.init();
+		d1.run();
 
-			Customer customer = d1.getCustomer();
-			int customerid = d1.getCustomerID();
-			if (customer == null) {
-				return;
-			}
-			CustomerShow1Dialog d2 = new CustomerShow1Dialog();
-			d2.setCustomer(customer);
-			d2.init();
-			d2.run();
+		Customer customer = d1.getCustomer();
+		int customerid = d1.getCustomerID();
+		if (customer == null) {
+			return;
+		}
+		CustomerShow1Dialog d2 = new CustomerShow1Dialog();
+		d2.setCustomer(customer);
+		d2.init();
+		d2.run();
 
-			YesNoDialog d3 = new YesNoDialog();
-			d3.run();
+		YesNoDialog d3 = new YesNoDialog();
+		d3.init(key);
+		d3.run();
 
-			if (d3.getFlag()) {
-				CustomerDelete1Dialog d4 = new CustomerDelete1Dialog();
-				d4.setCustomerID(customerid);
-				d4.init();
-				d4.run();
-			}
+		if (d3.getFlag()) {
+			CustomerDelete1Dialog d4 = new CustomerDelete1Dialog();
+			d4.setCustomerID(customerid);
+			d4.init();
+			d4.run();
 		}
 	}
 }

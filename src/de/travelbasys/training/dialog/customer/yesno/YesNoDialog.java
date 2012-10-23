@@ -15,16 +15,18 @@ public class YesNoDialog implements Dialog {
 
 	@Override
 	public void run() {
-
-		model = new YesNoModel();
+		view.run();
+	}
+//KEY MUSS VORHANDEN SEIN (FRAGESTELLUNG DES PROGRAMMES AN USER)
+	public void init(String key) {
+		model = new YesNoModel(key);
 		control = new YesNoControl(model);
 		view = new YesNoView(model, control);
 		view.init(model);
-		control.init(model,view);
-		view.run();
+		control.init(model, view);
 	}
 
 	public boolean getFlag() {
-		return model.getDeleteFlag();
+		return model.getFlag();
 	}
 }

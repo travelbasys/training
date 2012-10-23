@@ -17,12 +17,12 @@ public class YesNoModel extends ArrayList<String> implements Model {
 	private static final long serialVersionUID = 1L;
 	private String decisiontemp;
 	private int decision;
-	private boolean deleteFlag;
+	private boolean qFlag;
 	private boolean EndFlag = false;
 
-	public YesNoModel() {
+	public YesNoModel(String key) {
 		super();
-		add(AppContext.getMessage("DelUserQ"));
+		add(AppContext.getMessage(key));
 		add(AppContext.getMessage("Yes"));
 		add(AppContext.getMessage("No"));
 	}
@@ -44,11 +44,11 @@ public class YesNoModel extends ArrayList<String> implements Model {
 	}
 
 	public void setDeleteFlag(boolean deleteFlag) {
-		this.deleteFlag = deleteFlag;
+		this.qFlag = deleteFlag;
 	}
 
-	public boolean getDeleteFlag() {
-		return deleteFlag;
+	public boolean getFlag() {
+		return qFlag;
 	}
 
 	public boolean getEndFlag() {
@@ -58,5 +58,4 @@ public class YesNoModel extends ArrayList<String> implements Model {
 	public void setEndFlag() {
 		EndFlag = true;
 	}
-
 }
