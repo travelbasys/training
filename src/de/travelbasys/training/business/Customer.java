@@ -85,7 +85,6 @@ public class Customer implements Serializable {
 
 		if ((Integer.parseInt(postalcode) > 0 && postalcode.length() == 5)) {
 			this.postalcode = postalcode;
-			System.out.println("Postalcode accepted");
 		} else {
 			System.err.println(Customer.POSTAL_CODE_ERROR + postalcode);
 		}
@@ -126,22 +125,18 @@ public class Customer implements Serializable {
 	 */
 	public void setLastName(String lastname) {
 		this.lastname = lastname;
-		System.out.println("Lastname accepted");
 	}
 
 	public void setFirstName(String firstname) {
 		this.firstname = firstname;
-		System.out.println("Firstname accepted");
 	}
 
 	public void setAdress(String adress) {
 		this.adress = adress;
-		System.out.println("Adress accepted");
 	}
 
 	public void setEMail(String email) {
 		this.email = email;
-		System.out.println("Email accepted");
 	}
 
 	public int getUserID() {
@@ -177,7 +172,6 @@ public class Customer implements Serializable {
 	public void setAge(int age) throws IllegalArgumentException {
 		if (age > 0 && age <= 150) {
 			this.age = age;
-			System.out.println("Age accepted");
 		} else {
 			System.err.println(Customer.AGE_ERROR + age);
 		}
