@@ -9,11 +9,15 @@ import de.travelbasys.training.dialog.customer.yesno.YesNoDialog;
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * 
+ * hat die Aufgabe ein vorhandenes Customer Objekt aus der Datenbank zu ändern.
+ * Der Dialog kann optional auch ohne Änderung beendet werden.
  */
 public class CustomerUpdateDialog implements Dialog {
 	private ShowAndChangeModel model;
 
+	/**
+	 * führt den Dialog aus.
+	 */
 	@Override
 	public void run() {
 		final String key = "SaveQ";
@@ -36,7 +40,7 @@ public class CustomerUpdateDialog implements Dialog {
 		d3.run();
 
 		if (d3.getFlag() == true) {
-			this.model=ShowAndChangeDialog.getModel();
+			this.model = ShowAndChangeDialog.getModel();
 			int customerid = customer.getUserID();
 			customer = model.getCustomer();
 			CustomerDAO.replaceUser(customerid, customer);
