@@ -4,6 +4,7 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Dialog;
 
 /**
+ * hat die Aufgabe ein Customer Objekt aus der Datenbank anzuzeigen.
  */
 public class CustomerShow1Dialog implements Dialog {
 	private CustomerShow1Model model;

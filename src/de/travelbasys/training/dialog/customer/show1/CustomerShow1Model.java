@@ -4,7 +4,7 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Model;
 
 /**
- * Model Objekt für den CustomerShow Dialog.
+ * Model Objekt für den CustomerShow1 Dialog.
  */
 public class CustomerShow1Model implements Model {
 	private Customer customer;

@@ -6,6 +6,8 @@ import de.travelbasys.training.dialog.customer.show1.CustomerShow1Dialog;
 import de.travelbasys.training.framework.Dialog;
 
 /**
+ * hat die Aufgabe ein vorhandenes Customer Objekt aus der Datenbank zu finden
+ * und anzuzeigen.
  */
 public class CustomerShowDialog implements Dialog {
 	@Override

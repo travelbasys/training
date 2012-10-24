@@ -7,6 +7,9 @@ import de.travelbasys.training.util.AppContext;
 
 
 /**
+ * stellt einen View innerhalb des CustomerShow1 Dialoges dar.
+ * 
+ * Die aktuelle Implementierung zeigt ein customer Objekt an.
  */
 public class CustomerShow1View implements View {
 	private CustomerShow1Model model;
