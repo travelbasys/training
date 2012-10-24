@@ -7,10 +7,10 @@ import de.travelbasys.training.framework.View;
 //TODO muss überarbeitet werden
 
 /**
- * hat die Aufgabe, einen View innerhalb des CustomerUpdate Dialoges zu steuern.
+ * hat die Aufgabe, einen View innerhalb des ShowAndChange Dialoges zu steuern.
  * 
- * Die aktuelle Implementierung führt Dialoge aus die den Wert der vom Benutzer
- * ausgewählten Funktion abfragen, außerdem wird geprüft ob es sich um gültige
+ * Die aktuelle Implementierung führt Dialoge aus die die vom Benutzer
+ * ausgewählten Werte abfragt, außerdem wird geprüft ob es sich um gültige
  * eingaben handelt.
  * 
  */

@@ -6,6 +6,12 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 
 /**
+ * hat die Aufgabe, einen View innerhalb des ShowAndChange Dialoges zu steuern.
+ * 
+ * Die aktuelle Implementierung führt Dialoge aus die den Wert der gewünschten
+ *  Funktion abfragt, außerdem wird geprüft ob es sich um gültige
+ * eingaben handelt.
+ * 
  */
 public class ShowAndChange1Control extends AbstractControl {
 

@@ -6,7 +6,10 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * Model Objekt für den customerShow Dialog.
+ * hat die Aufgabe, ein Model für den ShowAndChange1 Dialog zu verwalten.
+ * 
+ * Die aktuelle Implementierung enthält alle Daten um eine abrage der
+ * gewünschten Funktion auszuführen.
  */
 public class ShowAndChange1Model extends ArrayList<String> implements Model {
 

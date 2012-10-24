@@ -9,13 +9,19 @@ import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.Console;
 
 /**
+ * stellt einen View innerhalb des ShowAndChange1 Dialoges dar.
+ * 
  */
 public class ShowAndChange1View extends ArrayList<UiComponent> implements View {
 	private static final long serialVersionUID = 1L;
 	private ShowAndChange1Model model;
 
 	private UiComponent choiceComponent;
-
+	/**
+	 * Erfragt die gewünscht funktion und setzt die fest.
+	 * 
+	 * @return
+	 */
 	public AbstractUiComponent getchoiceComponent() {
 		return choiceComponent;
 	}
