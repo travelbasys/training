@@ -8,10 +8,8 @@ import de.travelbasys.training.dialog.customer.yesno.YesNoDialog;
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * ist verantwortlich für das löschen eines Benutzers aus der Datenbank
- * 
- * @author tba
- * 
+ * hat die Aufgabe Werte an andere Klassen weiterzureichen. Bildet eine
+ * CustomerDelete Funktion.
  */
 public class CustomerDeleteDialog implements Dialog {
 
