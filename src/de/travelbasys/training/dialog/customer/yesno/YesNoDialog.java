@@ -3,21 +3,29 @@ package de.travelbasys.training.dialog.customer.yesno;
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * ist verantwortlich für das löschen eines Benutzers aus der Datenbank
+ * Hat die Aufgabe einen Ja/Nein Dialog mit dem Benutzer zu führen.
  * 
- * @author tba
- * 
+ * Die Implementierung muss eine Fragestellung zugewiesen bekommen.
  */
 public class YesNoDialog implements Dialog {
 	private YesNoModel model;
 	private YesNoView view;
 	private YesNoControl control;
 
+	/**
+	 * Führt den initalisierten View aus.
+	 */
 	@Override
 	public void run() {
 		view.run();
 	}
-//KEY MUSS VORHANDEN SEIN (FRAGESTELLUNG DES PROGRAMMES AN USER)
+
+	/**
+	 * Initalisiert die MVC-Komponenten des Ja/Nein-Dialoges.
+	 * 
+	 * @param key
+	 *            Der Schlüssel für die Fragestellung.
+	 */
 	public void init(String key) {
 		model = new YesNoModel(key);
 		control = new YesNoControl(model);
@@ -26,6 +34,11 @@ public class YesNoDialog implements Dialog {
 		control.init(model, view);
 	}
 
+	/**
+	 * Holt die eingegebene Wahl des Users aus dem Model.
+	 * 
+	 * @return Die eingegebene Wahl des Users.
+	 */
 	public boolean getFlag() {
 		return model.getFlag();
 	}
