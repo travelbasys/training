@@ -109,9 +109,11 @@ public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 		this.model = model;
 		this.control = control;
 	}
+
 	/**
-	 * Diese Methode ist für die Ausgabe eines Menüs die alle änderbaren Werte angibt,
-	 * und den Benutzer zur Auswahl einer vorhandenen Funktion auffordert.
+	 * Diese Methode stellt einen View innerhalb des ShowAndChange Dialogs dar.
+	 * Sie übergibt einer internen Komponente die Aufgabe den Benutzer
+	 * nach dem zu ändernden Wert z.B. Vorname abzufragen.
 	 */
 	public void run() {
 

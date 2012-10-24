@@ -6,11 +6,8 @@ import de.travelbasys.training.dialog.customer.showandchange1.ShowAndChange1Dial
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * ist verantwortlich für das anzeigen und eines Benutzers aus der Datenbank, um
+ * ist verantwortlich für das anzeigen eines Benutzers aus der Datenbank, um
  * dessen Werte anschließend zu ändern.
- * 
- * 
- * 
  */
 public class ShowAndChangeDialog implements Dialog {
 
