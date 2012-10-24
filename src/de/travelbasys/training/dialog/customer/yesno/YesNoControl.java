@@ -5,16 +5,19 @@ import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * Diese Klasse Kontrolliert Benutzereingaben.
- * 
- * @author tba
- * 
+ * hat die Aufgabe, einen View innerhalb des Ja/Nein-Dialoges zu steuern.
  */
 
 public class YesNoControl {
 	private YesNoModel model;
 	private YesNoView view;
 
+	/**
+	 * Weißt der Klasse ein Model zu.
+	 * 
+	 * @param model
+	 *            Das Model des Packages.
+	 */
 	public YesNoControl(YesNoModel model) {
 		this.model = model;
 	}
@@ -40,6 +43,9 @@ public class YesNoControl {
 
 	}
 
+	/**
+	 * Weißt einer Komponente eine Methode zur Prüfung des Inhaltes zu.
+	 */
 	public void init(YesNoModel model, YesNoView view) {
 		this.model = (YesNoModel) model;
 		this.view = (YesNoView) view;
@@ -48,6 +54,10 @@ public class YesNoControl {
 
 		uic = this.view.getcustomerdecisionComponent();
 		uic.setControl(new AbstractControl() {
+			/**
+			 * Prüft den Wert den eine Komponente liefert und schreibt in ins
+			 * Model.
+			 */
 			public void handleInput(Object value) throws Exception {
 				checkdecision(value);
 				YesNoControl.this.model.setDecision((Integer) value);

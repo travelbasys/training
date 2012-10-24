@@ -6,20 +6,22 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * erzeugt eine Instanz der Klasse CustomerDeleteDialog und verwaltet Daten
- * 
- * @author
+ * hat die Aufgabe, ein Model für den Ja/Nein-Dialog zu verwalten.
  */
 public class YesNoModel extends ArrayList<String> implements Model {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String decisiontemp;
 	private int decision;
 	private boolean qFlag = false;
 	private boolean EndFlag = false;
 
+	/**
+	 * Erzeugt eine Liste welche eine Frage anhand des Keys ausgibt. Die
+	 * Implementierung setzt eine Ja/Nein-Frage vorraus.
+	 * 
+	 * @param key
+	 *            Der Schlüssel für die Fragestellung.
+	 */
 	public YesNoModel(String key) {
 		super();
 		add(AppContext.getMessage(key));

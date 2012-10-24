@@ -9,11 +9,9 @@ import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.Console;
 
 /**
-	 */
+ * stellt einen View innerhalb des Ja/Nein-Dialoges dar.
+ */
 public class YesNoView extends ArrayList<UiComponent> implements View {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private YesNoModel model;
 	private UiComponent customerDecisionComponent;
@@ -22,11 +20,23 @@ public class YesNoView extends ArrayList<UiComponent> implements View {
 		return customerDecisionComponent;
 	}
 
+	/**
+	 * Weißt der Klasse ein Model und einen Controller zu.
+	 * 
+	 * @param model
+	 *            Das Model des Packages.
+	 * @param control
+	 *            Der Controller des Packages.
+	 */
 	public YesNoView(YesNoModel model, YesNoControl control) {
 		super();
 		this.model = model;
 	}
 
+	/**
+	 * Gibt die Liste aus dem Model aus und ruft jede Komponente aus einer Liste
+	 * von Komponenten.
+	 */
 	public void run() {
 		do {
 			for (String s : model) {
@@ -38,6 +48,10 @@ public class YesNoView extends ArrayList<UiComponent> implements View {
 		} while (model.getEndFlag() == false);
 	}
 
+	/**
+	 * Erzeugt und initalisiert eine Komponente mit dem Model, welche einer
+	 * Liste hinzugefügt wird.
+	 */
 	@Override
 	public void init(Model model) {
 		this.model = (YesNoModel) model;
