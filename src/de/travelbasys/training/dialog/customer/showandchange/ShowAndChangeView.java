@@ -9,8 +9,7 @@ import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * stellt einen View innerhalb des ShowAndChange Dialoges dar.
- * 
+ * Fragt den Anwender nach dem gewünschten Attribut.
  */
 @SuppressWarnings("serial")
 public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
@@ -60,12 +59,9 @@ public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 	}
 
 	/**
-	 * Initialisiert den aktuellen View.
-	 * 
-	 * Speichert das gegebene Model Objekt.
-	 * 
-	 * Erzeugt UiComponents für alle Attribute des Customer Typs: Lastname,
-	 * Firstname, Age, usw.
+	 * Speichert das gegebene Model Objekt. Speichert das gegebene Controller
+	 * Objekt. Erzeugt einen Wert für die UiComponents Eigenschaft mit
+	 * bestimmten Typen die es vom Model erhält.
 	 */
 	public void init(Model model) {
 		this.model = (ShowAndChangeModel) model;
@@ -112,9 +108,9 @@ public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 
 	/**
 	 * Diese Methode stellt einen View innerhalb des ShowAndChange Dialogs dar.
-	 * Sie übergibt einer internen Komponente die Aufgabe den Benutzer
-	 * nach dem zu ändernden Wert z.B. Vorname abzufragen.
-	 */
+	 * Sie übergibt einer internen Komponente die Aufgabe den Benutzer nach dem
+	 * zu ändernden Wert z.B. Vorname abzufragen.
+	 * */
 	public void run() {
 
 		try {

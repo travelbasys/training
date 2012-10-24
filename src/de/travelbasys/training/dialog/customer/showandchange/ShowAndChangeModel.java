@@ -5,9 +5,7 @@ import de.travelbasys.training.framework.Model;
 
 /**
  * hat die Aufgabe, ein Model für den ShowAndChange Dialog zu verwalten.
- * 
- * Die aktuelle Implementierung enthält alle Daten um ein Customer Objekt zu
- * verändern.
+ * Die aktuelle Implementierung enthält alle Attribute eines Customer Objektes.
  */
 public class ShowAndChangeModel implements Model {
 
