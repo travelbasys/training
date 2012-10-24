@@ -4,10 +4,8 @@ import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * ist verantwortlich für das löschen eines Benutzers aus der Datenbank
- * 
- * @author tba
- * 
+ * hat die Aufgabe ein vorhandenes Customer Objekt aus der Datenbank zu löschen.
+ * Gibt Rückmeldung über den Erfolg des Löschvorgangs.
  */
 public class CustomerDelete1Dialog implements Dialog {
 	private CustomerDelete1Model model;
@@ -16,6 +14,9 @@ public class CustomerDelete1Dialog implements Dialog {
 	private CustomerDelete1Control control;
 	private CustomerDelete1View view;
 
+	/**
+	 * Löscht den Customer. Führt den Dialog aus.
+	 */
 	@Override
 	public void run() {
 		CustomerDAO.delUser(model.getCustomerid());
