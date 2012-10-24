@@ -9,6 +9,7 @@ import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
 
 /**
+ * stellt einen View innerhalb des Find-Dialoges dar.
  */
 public class CustomerFindView extends ArrayList<UiComponent> implements View {
 	private static final long serialVersionUID = 1L;
@@ -21,6 +22,13 @@ public class CustomerFindView extends ArrayList<UiComponent> implements View {
 		return customerIdComponent;
 	}
 
+	/**
+	 * Erzeugt und initalisiert eine Komponente mit dem Model. Die Komponente
+	 * wird einer Liste von Komponenten hinzugefügt.
+	 * 
+	 * @param model
+	 *            Das Model des Packages.
+	 */
 	public void init(Model model) {
 		this.model = (CustomerFindModel) model;
 
@@ -30,6 +38,12 @@ public class CustomerFindView extends ArrayList<UiComponent> implements View {
 		add(customerIdComponent);
 	}
 
+	/**
+	 * Gibt einen Warnhinweis aus und ruft jede Komponente aus einer Liste von
+	 * Komponenten auf.
+	 * 
+	 */
+	@Override
 	public void run() {
 		// Vorher
 		AppContext.printMessage(START);

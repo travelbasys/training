@@ -21,21 +21,19 @@ public class YesNoView extends ArrayList<UiComponent> implements View {
 	}
 
 	/**
-	 * Weiﬂt der Klasse ein Model und einen Controller zu.
+	 * Weiﬂt der Klasse ein Model zu.
 	 * 
 	 * @param model
 	 *            Das Model des Packages.
-	 * @param control
-	 *            Der Controller des Packages.
 	 */
-	public YesNoView(YesNoModel model, YesNoControl control) {
+	public YesNoView(YesNoModel model) {
 		super();
 		this.model = model;
 	}
 
 	/**
 	 * Gibt die Liste aus dem Model aus und ruft jede Komponente aus einer Liste
-	 * von Komponenten.
+	 * von Komponenten auf.
 	 */
 	public void run() {
 		do {

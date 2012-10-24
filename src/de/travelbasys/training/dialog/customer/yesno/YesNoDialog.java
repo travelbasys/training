@@ -29,7 +29,7 @@ public class YesNoDialog implements Dialog {
 	public void init(String key) {
 		model = new YesNoModel(key);
 		control = new YesNoControl(model);
-		view = new YesNoView(model, control);
+		view = new YesNoView(model);
 		view.init(model);
 		control.init(model, view);
 	}

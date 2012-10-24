@@ -55,7 +55,7 @@ public class YesNoControl {
 		uic = this.view.getcustomerdecisionComponent();
 		uic.setControl(new AbstractControl() {
 			/**
-			 * Prüft den Wert den eine Komponente liefert und schreibt in ins
+			 * Ruft eine Methode zur Prüfung des Wertes einer Komponente und schreibt ihn ins
 			 * Model.
 			 */
 			public void handleInput(Object value) throws Exception {

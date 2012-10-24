@@ -10,12 +10,17 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 
 /**
+ * hat die Aufgabe, einen View innerhalb des Find-Dialoges zu steuern.
  */
 public class CustomerFindControl extends AbstractControl {
 
 	private CustomerFindModel model;
 	private CustomerFindView view;
-
+	/**
+	 * Initialisiert den Controller mit Model und View des Packages.
+	 * 
+	 * Weißt einer Komponente eine Methode zur Behandlung des Inhaltes zu.
+	 */
 	public void init(Model model, View view) {
 		this.model = (CustomerFindModel) model;
 		this.view = (CustomerFindView) view;
@@ -24,6 +29,9 @@ public class CustomerFindControl extends AbstractControl {
 		uic = this.view.getCustomerIdComponent();
 
 		uic.setControl(new AbstractControl() {
+			/**
+			 * Ruft eine Methode zur Prüfung des Wertes einer Komponente.
+			 */
 			public void handleInput(Object value) throws Exception {
 				checkCustomerId(value);
 			}

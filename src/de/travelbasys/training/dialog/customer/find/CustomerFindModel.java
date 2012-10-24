@@ -4,7 +4,7 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Model;
 
 /**
- * Model Objekt für den CustomerShow Dialog.
+ * hat die Aufgabe, ein Model für den Find-Dialog zu verwalten.
  */
 public class CustomerFindModel implements Model {
 	private Customer customer;
