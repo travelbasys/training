@@ -1,6 +1,6 @@
 package de.travelbasys.training.dialog.customer.delete;
 /**
- * hat die Aufgabe, ein Model für den CustomerUpdate Dialog zu verwalten.
+ * hat die Aufgabe, ein Model für den CustomerDelete Dialog zu verwalten.
  * 
  * Die aktuelle Implementierung ist LEER!
  */
