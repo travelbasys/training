@@ -6,9 +6,10 @@ import de.travelbasys.training.dialog.customer.showandchange1.ShowAndChange1Dial
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * ist verantwortlich für das löschen eines Benutzers aus der Datenbank
+ * ist verantwortlich für das anzeigen und eines Benutzers aus der Datenbank, um
+ * dessen Werte anschließend zu ändern.
  * 
- * @author tba
+ * 
  * 
  */
 public class ShowAndChangeDialog implements Dialog {
@@ -20,7 +21,9 @@ public class ShowAndChangeDialog implements Dialog {
 	private Customer customer;
 
 	private static int index;
-
+	/**
+	 * führt den Dialog aus.
+	 */
 	@Override
 	public void run() {
 		do {
@@ -61,7 +64,6 @@ public class ShowAndChangeDialog implements Dialog {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
 
 	public static ShowAndChangeModel getModel() {
 		return model;

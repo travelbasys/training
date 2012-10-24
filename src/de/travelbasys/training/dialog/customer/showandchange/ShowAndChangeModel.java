@@ -4,13 +4,14 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Model;
 
 /**
- * Model Objekt für den customerShow Dialog.
+ * hat die Aufgabe, ein Model für den ShowAndChange Dialog zu verwalten.
+ * 
+ * Die aktuelle Implementierung enthält alle Daten um ein Customer Objekt zu
+ * verändern.
  */
 public class ShowAndChangeModel implements Model {
 
-	/**
-	 * 
-	 */
+	
 	private Customer customer;
 	private String customerLastname = "";
 	private String customerFirstname = "";

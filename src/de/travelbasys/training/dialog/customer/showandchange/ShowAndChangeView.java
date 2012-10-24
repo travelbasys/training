@@ -8,6 +8,10 @@ import de.travelbasys.training.framework.UiComponent;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
 
+/**
+ * stellt einen View innerhalb des ShowAndChange Dialoges dar.
+ * 
+ */
 @SuppressWarnings("serial")
 public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 
@@ -99,16 +103,16 @@ public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 
 	}
 
-	/**
-	 * FühreMethode der UiComponent mit diesem Index aus.
-	 */
 	public ShowAndChangeView(ShowAndChangeModel model,
 			ShowAndChangeControl control) {
 		super();
 		this.model = model;
 		this.control = control;
 	}
-
+	/**
+	 * Diese Methode ist für die Ausgabe eines Menüs die alle änderbaren Werte angibt,
+	 * und den Benutzer zur Auswahl einer vorhandenen Funktion auffordert.
+	 */
 	public void run() {
 
 		try {

@@ -4,12 +4,26 @@ import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+//TODO muss überarbeitet werden
+
+/**
+ * hat die Aufgabe, einen View innerhalb des CustomerUpdate Dialoges zu steuern.
+ * 
+ * Die aktuelle Implementierung führt Dialoge aus die den Wert der vom Benutzer
+ * ausgewählten Funktion abfragen, außerdem wird geprüft ob es sich um gültige
+ * eingaben handelt.
+ * 
+ */
 
 public class ShowAndChangeControl extends AbstractControl {
 
 	private ShowAndChangeModel model;
 	private ShowAndChangeView view;
 
+	/**
+	 * Diese Methode Initialisiert die eingegebenen Werte die anschließend
+	 * überprüft werden.
+	 */
 	public void init(Model model, View view) {
 		this.model = (ShowAndChangeModel) model;
 		this.view = (ShowAndChangeView) view;
@@ -83,7 +97,9 @@ public class ShowAndChangeControl extends AbstractControl {
 			throw new Exception("IllegalNumberFormat");
 		}
 	}
-
+/**
+ * subtraiert den aktuellen Index mit 1
+ */
 	public void fix() {
 		model.setIndex(model.getIndex() - 1);
 	}
