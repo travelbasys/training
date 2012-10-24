@@ -6,16 +6,12 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * hat die Aufgabe, ein Model für den ShowAndChange1 Dialog zu verwalten.
- * 
- * Die aktuelle Implementierung enthält alle Daten um eine abrage der
- * gewünschten Funktion auszuführen.
+ * repräsentiert ein Menü aus einzelnen Menüpunkten (Strings) und besitzt
+ * zusätzlich ein Integer Attribut namens "Index", welches den vom Benutzer
+ * gewünschten Menüpunkt auswählt.
  */
 public class ShowAndChange1Model extends ArrayList<String> implements Model {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int index;
 
@@ -31,10 +27,20 @@ public class ShowAndChange1Model extends ArrayList<String> implements Model {
 		add(AppContext.getMessage("Update6"));
 	}
 
+	/**
+	 * Hole den Index des vom Benutzer gewünschten Menüpunktes.
+	 * 
+	 * @return dito.
+	 */
 	public int getIndex() {
 		return index;
 	}
 
+	/**
+	 * Setze den Index des vom Benutzer gewünschten Menüpunktes.
+	 * 
+	 * @param index
+	 */
 	public void setIndex(int index) {
 		this.index = index;
 	}

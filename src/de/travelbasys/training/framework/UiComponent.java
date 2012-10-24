@@ -50,4 +50,5 @@ public class UiComponent extends AbstractUiComponent {
 			}
 		}
 	}
+
 }

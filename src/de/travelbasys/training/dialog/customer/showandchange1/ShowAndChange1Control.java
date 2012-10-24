@@ -6,35 +6,22 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 
 /**
- * hat die Aufgabe, einen View innerhalb des ShowAndChange Dialoges zu steuern.
- * 
- * Die aktuelle Implementierung führt Dialoge aus die den Wert der gewünschten
- *  Funktion abfragt, außerdem wird geprüft ob es sich um gültige
- * eingaben handelt.
- * 
+ * steuert den Dialog mit dem Benutzer zur Auswahl eines Menüpunktes.
  */
 public class ShowAndChange1Control extends AbstractControl {
 
-	private ShowAndChange1Model model;
-	private ShowAndChange1View view;
-
-	public void init(Model model, View view) {
-		this.model = (ShowAndChange1Model) model;
-		this.view = (ShowAndChange1View) view;
-
+	/**
+	 * setzt den Input Handler in der ChoiceComponent des View, so dass das
+	 * Index Attribut des Model den eingebenen Wert bekommt.
+	 */
+	public void init(final Model model, View view) {
 		AbstractUiComponent uic;
-
-		uic = this.view.getchoiceComponent();
+		uic = ((ShowAndChange1View) view).getChoiceComponent();
 		uic.setControl(new AbstractControl() {
-			public void handleInput(Object value) throws Exception {
-				checkchoice(value);
+			// Speichere den gegebenen Wert als Index im Model.
+			public void handleInput(Object value) {
+				((ShowAndChange1Model) model).setIndex((Integer) value);
 			}
 		});
-
-	}
-
-	private void checkchoice(Object value) throws Exception {
-			int choice = ((Integer) value);
-			model.setIndex(choice);
 	}
 }
