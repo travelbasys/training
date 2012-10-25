@@ -22,7 +22,7 @@ public class ShowAndChange1Dialog implements Dialog {
 
 	/**
 	 * Gibt den Index des vom Benutzer gewünschten Menüpunktes zurück.
-	 * Vorher muss die {@link run} Methode ausgeführt werden, damit der
+	 * Vorher muss die {@see #run} Methode ausgeführt werden, damit der
 	 * Benutzer einen Menüpunkt auswählen kann.
 	 * 
 	 * @return der Index.

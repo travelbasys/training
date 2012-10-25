@@ -3,9 +3,8 @@ package de.travelbasys.training.dialog.customer.yesno;
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * Hat die Aufgabe einen Ja/Nein Dialog mit dem Benutzer zu führen.
- * 
- * Die Implementierung muss eine Fragestellung zugewiesen bekommen.
+ * zeigt dem Benutzer ein Auswahlmenü und lässt ihn darin einen Menüpunkt
+ * auswählen.
  */
 public class YesNoDialog implements Dialog {
 	private YesNoModel model;
@@ -13,7 +12,8 @@ public class YesNoDialog implements Dialog {
 	private YesNoControl control;
 
 	/**
-	 * Führt den initalisierten View aus.
+	 * führt den Dialog aus. Am Ende kann durch die {@see #getFlag} Methode
+	 * festgestellt werden, ob der Benutzer Ja oder Nein ausgewählt hat.
 	 */
 	@Override
 	public void run() {
@@ -21,10 +21,8 @@ public class YesNoDialog implements Dialog {
 	}
 
 	/**
-	 * Initalisiert die MVC-Komponenten des Ja/Nein-Dialoges.
-	 * 
-	 * @param key
-	 *            Der Schlüssel für die Fragestellung.
+	 * Erzeugt interne Model, View und Control Instanzen und initialisiert
+	 * diese.
 	 */
 	public void init(String key) {
 		model = new YesNoModel(key);
@@ -35,9 +33,11 @@ public class YesNoDialog implements Dialog {
 	}
 
 	/**
-	 * Holt die eingegebene Wahl des Users aus dem Model.
+	 * Gibt die Entscheidung des vom Benutzer gewählten Menüpunktes zurück.
+	 * Vorher muss die {@see #run} Methode ausgeführt werden, damit die
+	 * Entscheidung geprüft werden kann.
 	 * 
-	 * @return Die eingegebene Wahl des Users.
+	 * @return die Entscheidung des Benutzers.
 	 */
 	public boolean getFlag() {
 		return model.getFlag();

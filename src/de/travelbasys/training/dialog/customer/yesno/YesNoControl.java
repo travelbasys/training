@@ -5,7 +5,7 @@ import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * hat die Aufgabe, einen View innerhalb des Ja/Nein-Dialoges zu steuern.
+ * steuert den Dialog mit dem Benutzer zur Auswahl eines Menüpunktes.
  */
 
 public class YesNoControl {
@@ -30,10 +30,10 @@ public class YesNoControl {
 		}
 		switch (decision) {
 		case 1:
-			model.setDeleteFlag(true);
+			model.setFlag(true);
 			break;
 		case 2:
-			model.setDeleteFlag(false);
+			model.setFlag(false);
 			AppContext.printMessage("Abort");
 			break;
 		default:
@@ -44,7 +44,8 @@ public class YesNoControl {
 	}
 
 	/**
-	 * Weißt einer Komponente eine Methode zur Prüfung des Inhaltes zu.
+	 * setzt den Input Handler in der DecisionComponent des View, so dass das
+	 * Decision Attribut des Model den eingebenen Wert bekommt.
 	 */
 	public void init(YesNoModel model, YesNoView view) {
 		this.model = (YesNoModel) model;
@@ -54,10 +55,6 @@ public class YesNoControl {
 
 		uic = this.view.getcustomerdecisionComponent();
 		uic.setControl(new AbstractControl() {
-			/**
-			 * Ruft eine Methode zur Prüfung des Wertes einer Komponente und schreibt ihn ins
-			 * Model.
-			 */
 			public void handleInput(Object value) throws Exception {
 				checkdecision(value);
 				YesNoControl.this.model.setDecision((Integer) value);

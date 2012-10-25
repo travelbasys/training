@@ -9,7 +9,8 @@ import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.Console;
 
 /**
- * stellt einen View innerhalb des Ja/Nein-Dialoges dar.
+ * zeigt ein Auswahlmenü bestehend aus im Model abgelegten Menüpunkten und fragt
+ * den Anwender nach der gewünschten Alternative.
  */
 public class YesNoView extends ArrayList<UiComponent> implements View {
 	private static final long serialVersionUID = 1L;
@@ -32,29 +33,29 @@ public class YesNoView extends ArrayList<UiComponent> implements View {
 	}
 
 	/**
-	 * Gibt die Liste aus dem Model aus und ruft jede Komponente aus einer Liste
-	 * von Komponenten auf.
+	 * Schreibt das Menü aus allen im Model gespeicherten Strings und führt dann
+	 * die gespeicherte UiComponent aus, welche den Benutzer nach der
+	 * gewünschten Auswahl fragt.
 	 */
 	public void run() {
 		do {
 			for (String s : model) {
 				Console.println(s);
 			}
-			for (UiComponent uiComponent : this) {
-				uiComponent.run2();
-			}
+			customerDecisionComponent.run2();
 		} while (model.getEndFlag() == false);
 	}
 
 	/**
-	 * Erzeugt und initalisiert eine Komponente mit dem Model, welche einer
-	 * Liste hinzugefügt wird.
+	 * Speichert das gegebene Model Objekt.
+	 * 
+	 * Erzeugt einen Wert für die DecisionComponent Eigenschaft mit
+	 * Integer.class als Typ.
 	 */
 	@Override
 	public void init(Model model) {
 		this.model = (YesNoModel) model;
 		customerDecisionComponent = new UiComponent();
 		customerDecisionComponent.setValue(this.model.getDecision());
-		add(customerDecisionComponent);
 	}
 }

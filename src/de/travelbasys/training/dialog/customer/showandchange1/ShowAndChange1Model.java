@@ -15,6 +15,9 @@ public class ShowAndChange1Model extends ArrayList<String> implements Model {
 	private static final long serialVersionUID = 1L;
 	private int index;
 
+	/**
+	 * Erzeugt eine Liste welche ein Auswahlmenü ausgibt.
+	 */
 	public ShowAndChange1Model() {
 		super();
 		add(AppContext.getMessage("Choose"));

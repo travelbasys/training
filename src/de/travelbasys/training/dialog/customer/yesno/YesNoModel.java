@@ -6,11 +6,12 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * hat die Aufgabe, ein Model für den Ja/Nein-Dialog zu verwalten.
+ * repräsentiert ein Menü aus einzelnen Menüpunkten (Strings) und besitzt
+ * zusätzlich ein Integer Attribut namens "Decision", welches die vom Benutzer
+ * getroffene Entscheidung wiedergibt.
  */
 public class YesNoModel extends ArrayList<String> implements Model {
 	private static final long serialVersionUID = 1L;
-	private String decisiontemp;
 	private int decision;
 	private boolean qFlag = false;
 	private boolean EndFlag = false;
@@ -29,14 +30,6 @@ public class YesNoModel extends ArrayList<String> implements Model {
 		add(AppContext.getMessage("No"));
 	}
 
-	public String getDecisiontemp() {
-		return decisiontemp;
-	}
-
-	public void setDecisiontemp(String temp) {
-		decisiontemp = temp;
-	}
-
 	public int getDecision() {
 		return decision;
 	}
@@ -45,10 +38,20 @@ public class YesNoModel extends ArrayList<String> implements Model {
 		this.decision = decision;
 	}
 
-	public void setDeleteFlag(boolean deleteFlag) {
+	/**
+	 * Setze die vom Benutzer getroffene Entscheidung.
+	 * 
+	 * @param qFlag
+	 */
+	public void setFlag(boolean deleteFlag) {
 		this.qFlag = deleteFlag;
 	}
 
+	/**
+	 * Hole die vom Benutzer getroffene Entscheidung.
+	 * 
+	 * @return dito.
+	 */
 	public boolean getFlag() {
 		return qFlag;
 	}
