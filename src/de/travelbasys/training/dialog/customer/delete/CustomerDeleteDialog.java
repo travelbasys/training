@@ -8,11 +8,13 @@ import de.travelbasys.training.dialog.customer.yesno.YesNoDialog;
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * hat die Aufgabe Werte an andere Klassen weiterzureichen. Bildet eine
- * CustomerDelete Funktion.
+ * hat die Aufgabe ein vorhandenes Customer Objekt aus der Datenbank zu entfernen.
+ * Der Dialog kann optional auch ohne Änderung beendet werden.
  */
 public class CustomerDeleteDialog implements Dialog {
-
+	/**
+	 * führt den Dialog aus.
+	 */
 	@Override
 	public void run() {
 		final String key = "DelUserQ";
