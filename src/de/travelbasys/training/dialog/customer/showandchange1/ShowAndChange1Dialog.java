@@ -3,29 +3,36 @@ package de.travelbasys.training.dialog.customer.showandchange1;
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * führt einen Dialog mit dem Benutzer der nach der gewünschten Funktion gefragt wird.
+ * zeigt dem Benutzer ein Menü und lässt ihn darin einen Menüpunkt auswählen.
  */
 public class ShowAndChange1Dialog implements Dialog {
 
 	private ShowAndChange1Model model;
 	private ShowAndChange1View view;
 	private ShowAndChange1Control control;
-	
+
 	/**
-	 * führt den Dialog aus.
+	 * führt den Dialog aus. Am Ende kann durch die {@see #getIndex} Methode
+	 * festgestellt werden, welchen Menüpunkt der Benutzer ausgewählt hat.
 	 */
 	@Override
 	public void run() {
 		view.run();
 	}
+
 	/**
-	 * @return Die ausgewählte Funktion des Benutzers
+	 * Gibt den Index des vom Benutzer gewünschten Menüpunktes zurück.
+	 * Vorher muss die {@link run} Methode ausgeführt werden, damit der
+	 * Benutzer einen Menüpunkt auswählen kann.
+	 * 
+	 * @return der Index.
 	 */
 	public int getIndex() {
 		return model.getIndex();
 	}
+
 	/**
-	 * Initialisiert die benötigten Componenten für den Dialog.
+	 * Erzeugt interne Model, View und Control Instanzen und initialisiert diese.
 	 */
 	public void init() {
 		model = new ShowAndChange1Model();

@@ -6,8 +6,9 @@ import de.travelbasys.training.dialog.customer.showandchange1.ShowAndChange1Dial
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * ist verantwortlich für das anzeigen eines Benutzers aus der Datenbank, um
- * dessen Werte anschließend zu ändern.
+ * 
+ * ist verantwortlich für das Anzeigen eines Benutzers aus der Datenbank, um
+ * dessen Werte anschließend an einem temporären Customer Objekt zu ändern.
  */
 public class ShowAndChangeDialog implements Dialog {
 
@@ -18,8 +19,12 @@ public class ShowAndChangeDialog implements Dialog {
 	private Customer customer;
 
 	private static int index;
+
 	/**
-	 * führt den Dialog aus.
+	 * Führt mehrere Dialoge aus und erhält dabei Rückgabewerte. Prüft ob der
+	 * vom Benutzer eingegebene Index = 0 ist und reagiert entsprechend.
+	 * 
+	 * @return Springt aus der Schleife wenn Index = 0.
 	 */
 	@Override
 	public void run() {
@@ -42,6 +47,11 @@ public class ShowAndChangeDialog implements Dialog {
 		} while (model.getEndFlag() == false);
 	}
 
+	/**
+	 * Erzeugt interne Model, View und Control Instanzen und initialisiert
+	 * diese. Das Model erhält bei der Initialisierung Werte eines Customer
+	 * Objekts.
+	 */
 	public void init() {
 		model = new ShowAndChangeModel();
 		control = new ShowAndChangeControl();
@@ -58,14 +68,25 @@ public class ShowAndChangeDialog implements Dialog {
 		control.init(model, view);
 	}
 
+	/**
+	 * Setzt den Customer.
+	 */
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
+	/**
+	 * Repräsentiert das Model der aktuellen Instanz.
+	 * 
+	 * @return Die Instanz des Models.
+	 */
 	public static ShowAndChangeModel getModel() {
 		return model;
 	}
 
+	/**
+	 * Setzt das Model dem Model des ShowAndChangeDialogs gleich.
+	 */
 	public void setModel(ShowAndChangeModel model) {
 		ShowAndChangeDialog.model = model;
 	}
