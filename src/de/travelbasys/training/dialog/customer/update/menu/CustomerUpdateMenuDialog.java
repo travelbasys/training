@@ -1,15 +1,15 @@
-package de.travelbasys.training.dialog.customer.showandchange1;
+package de.travelbasys.training.dialog.customer.update.menu;
 
 import de.travelbasys.training.framework.Dialog;
 
 /**
  * zeigt dem Benutzer ein Menü und lässt ihn darin einen Menüpunkt auswählen.
  */
-public class ShowAndChange1Dialog implements Dialog {
+public class CustomerUpdateMenuDialog implements Dialog {
 
-	private ShowAndChange1Model model;
-	private ShowAndChange1View view;
-	private ShowAndChange1Control control;
+	private CustomerUpdateMenuModel model;
+	private CustomerUpdateMenuView view;
+	private CustomerUpdateMenuControl control;
 
 	/**
 	 * führt den Dialog aus. Am Ende kann durch die {@see #getIndex} Methode
@@ -35,9 +35,9 @@ public class ShowAndChange1Dialog implements Dialog {
 	 * Erzeugt interne Model, View und Control Instanzen und initialisiert diese.
 	 */
 	public void init() {
-		model = new ShowAndChange1Model();
-		control = new ShowAndChange1Control();
-		view = new ShowAndChange1View();
+		model = new CustomerUpdateMenuModel();
+		control = new CustomerUpdateMenuControl();
+		view = new CustomerUpdateMenuView();
 
 		view.init(model);
 		control.init(model, view);

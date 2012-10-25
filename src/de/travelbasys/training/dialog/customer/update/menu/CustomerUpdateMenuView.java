@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.showandchange1;
+package de.travelbasys.training.dialog.customer.update.menu;
 
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
@@ -10,8 +10,8 @@ import de.travelbasys.training.util.Console;
  * zeigt ein Menü bestehend aus im Model abgelegten Menüpunkten und fragt den
  * Anwender nach der gewünschten Alternative.
  */
-public class ShowAndChange1View implements View {
-	private ShowAndChange1Model model;
+public class CustomerUpdateMenuView implements View {
+	private CustomerUpdateMenuModel model;
 
 	private UiComponent choiceComponent;
 
@@ -26,7 +26,7 @@ public class ShowAndChange1View implements View {
 	 * als Typ.
 	 */
 	public void init(Model model) {
-		this.model = (ShowAndChange1Model) model;
+		this.model = (CustomerUpdateMenuModel) model;
 
 		choiceComponent = new UiComponent();
 		choiceComponent.setType(Integer.class);

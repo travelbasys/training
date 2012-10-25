@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.showandchange1;
+package de.travelbasys.training.dialog.customer.update.menu;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import de.travelbasys.training.util.AppContext;
  * zusätzlich ein Integer Attribut namens "Index", welches den vom Benutzer
  * gewünschten Menüpunkt auswählt.
  */
-public class ShowAndChange1Model extends ArrayList<String> implements Model {
+public class CustomerUpdateMenuModel extends ArrayList<String> implements Model {
 
 	private static final long serialVersionUID = 1L;
 	private int index;
@@ -18,7 +18,7 @@ public class ShowAndChange1Model extends ArrayList<String> implements Model {
 	/**
 	 * Erzeugt eine Liste welche ein Auswahlmenü ausgibt.
 	 */
-	public ShowAndChange1Model() {
+	public CustomerUpdateMenuModel() {
 		super();
 		add(AppContext.getMessage("Choose"));
 		add(AppContext.getMessage("EndScndApp"));

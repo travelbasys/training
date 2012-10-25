@@ -36,11 +36,13 @@ public class CustomerDAO {
 		setFoundCustomers(new ArrayList<Customer>());
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getLastName().equals(lastname) || user.getLastName().toLowerCase().equals(lastname) || user.getLastName().toUpperCase().equals(lastname)) {
-					CustomerDAO.getCustomers().add(user);
+				if (user.getLastName().equals(lastname)
+						|| user.getLastName().toLowerCase().equals(lastname)
+						|| user.getLastName().toUpperCase().equals(lastname)) {
+					CustomerDAO.getFoundCustomers().add(user);
 				}
 			}
-			return CustomerDAO.getCustomers();
+			return CustomerDAO.getFoundCustomers();
 		} catch (NullPointerException e) {
 			setUsers(new ArrayList<Customer>());
 			findUserByLastName(lastname);
@@ -116,12 +118,13 @@ public class CustomerDAO {
 		} catch (Exception e) {
 		}
 	}
-	
+
 	public static void replaceUser(int customerid, Customer customer) {
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {
 				if (user.getId() == customerid) {
-					CustomerDAO.users.set(CustomerDAO.users.indexOf(user), customer);
+					CustomerDAO.users.set(CustomerDAO.users.indexOf(user),
+							customer);
 				}
 			}
 		} catch (Exception e) {
@@ -136,93 +139,27 @@ public class CustomerDAO {
 		CustomerDAO.found_customers = found_customers;
 	}
 
-	public static List<Customer> getCustomers() {
+	public static List<Customer> getFoundCustomers() {
 		return found_customers;
 	}
 
-	public static List<Customer> findUserByID(int customerid) {
+	public static List<Customer> findCustomerById(int id) {
 		setFoundCustomers(new ArrayList<Customer>());
 		try {
-			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getId() == customerid) {
-					
-					CustomerDAO.getCustomers().add(user.clone());
+			for (Customer customer : CustomerDAO.getUsers()) {
+				if (customer.getId() == id) {
+
+					CustomerDAO.getFoundCustomers().add(customer.clone());
 				}
 			}
-			return CustomerDAO.getCustomers();
+			return CustomerDAO.getFoundCustomers();
 		} catch (NullPointerException e) {
 			setUsers(new ArrayList<Customer>());
-			findUserByID(customerid);
+			findCustomerById(id);
 		}
 
 		return null;
 	}
-
-	/*public static void setSingleUserFirstname(int customerid, String firstname) {
-		try {
-			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getUserID() == customerid) {
-					user.setFirstName(firstname);
-				}
-			}
-		} catch (Exception e) {
-		}
-	}
-
-	public static void setSingleUserEMail(int customerid, String email) {
-		try {
-			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getUserID() == customerid) {
-					user.setEMail(email);
-				}
-			}
-		} catch (Exception e) {
-		}
-	}
-
-	public static void setSingleUserLastname(int customerid, String lastname) {
-		try {
-			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getUserID() == customerid) {
-					user.setLastName(lastname);
-				}
-			}
-		} catch (Exception e) {
-		}
-	}
-
-	public static void setSingleUserAge(int customerid, int age) {
-		try {
-			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getUserID() == customerid) {
-					user.setAge(age);
-				}
-			}
-		} catch (Exception e) {
-		}
-	}
-
-	public static void setSingleUserAdress(int customerid, String adress) {
-		try {
-			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getUserID() == customerid) {
-					user.setAdress(adress);
-				}
-			}
-		} catch (Exception e) {
-		}
-	}
-
-	public static void setSingleUserPostalcode(int customerid, String postalcode) {
-		try {
-			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getUserID() == customerid) {
-					user.setPostalcode(postalcode);
-				}
-			}
-		} catch (Exception e) {
-		}
-	}*/
 
 	public static int getLastCustomerId() {
 		int userid = 0;

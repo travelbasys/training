@@ -48,7 +48,7 @@ public class CustomerFindControl extends AbstractControl {
 			return;
 
 		// Try to find customer by id.
-		List<Customer> customers = CustomerDAO.findUserByID(id);
+		List<Customer> customers = CustomerDAO.findCustomerById(id);
 
 		// When found...
 		if (!customers.isEmpty()) {

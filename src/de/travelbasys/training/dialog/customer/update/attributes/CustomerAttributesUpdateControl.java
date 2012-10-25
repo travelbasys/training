@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.showandchange;
+package de.travelbasys.training.dialog.customer.update.attributes;
 
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
@@ -11,72 +11,72 @@ import de.travelbasys.training.framework.View;
  * steuert den Dialog mit dem Benutzer und ändert ein temporäres Customer Objekt.
  */
 
-public class ShowAndChangeControl extends AbstractControl {
+public class CustomerAttributesUpdateControl extends AbstractControl {
 
-	private ShowAndChangeModel model;
-	private ShowAndChangeView view;
+	private CustomerAttributesUpdateModel model;
+	private CustomerAttributesUpdateView view;
 
 	/**
 	 * setzt den InputHandler in den UiComponents des Views, so dass temporär
 	 * ein Customer Objekt des Models die eingegebenen Attribute bekommt.
 	 */
 	public void init(Model model, View view) {
-		this.model = (ShowAndChangeModel) model;
-		this.view = (ShowAndChangeView) view;
+		this.model = (CustomerAttributesUpdateModel) model;
+		this.view = (CustomerAttributesUpdateView) view;
 		
 		AbstractUiComponent uic;
 
-		uic = this.view.getCustomerLastnameComponent();
+		uic = this.view.getLastnameComponent();
 		uic.setControl(new AbstractControl() {
 			// Speichert den gegebenen Wert als Lastname im Model.
 			public void handleInput(Object value) throws Exception {
-				ShowAndChangeControl.this.model
+				CustomerAttributesUpdateControl.this.model
 						.setLastName((String) value);
 			}
 		});
 
-		uic = this.view.getCustomerFirstnameComponent();
+		uic = this.view.getFirstnameComponent();
 		uic.setControl(new AbstractControl() {
 			// Speichert den gegebenen Wert als Firstname im Model.
 			public void handleInput(Object value) throws Exception {
-				ShowAndChangeControl.this.model
+				CustomerAttributesUpdateControl.this.model
 						.setFirstName((String) value);
 			}
 		});
 
-		uic = this.view.getCustomerAgeComponent();
+		uic = this.view.getAgeComponent();
 		uic.setControl(new AbstractControl() {
 			// Speichert den gegebenen Wert als Age im Model.
 			public void handleInput(Object value) throws Exception {
 				checkAge(value);
-				ShowAndChangeControl.this.model.setAge((Integer) value);
+				CustomerAttributesUpdateControl.this.model.setAge((Integer) value);
 			}
 		});
 
-		uic = this.view.getCustomerAdressComponent();
+		uic = this.view.getAdressComponent();
 		uic.setControl(new AbstractControl() {
 			// Speichert den gegebenen Wert als Adress im Model.
 			public void handleInput(Object value) throws Exception {
-				ShowAndChangeControl.this.model
+				CustomerAttributesUpdateControl.this.model
 						.setAdress((String) value);
 			}
 		});
 
-		uic = this.view.getCustomerPostalcodeComponent();
+		uic = this.view.getPostalcodeComponent();
 		uic.setControl(new AbstractControl() {
 			// Speichert den gegebenen Wert als Postalcode im Model.
 			public void handleInput(Object value) throws Exception {
 				checkPostalcode(value);
-				ShowAndChangeControl.this.model
+				CustomerAttributesUpdateControl.this.model
 						.setPostalcode((String) value);
 			}
 		});
 
-		uic = this.view.getCustomerEMailComponent();
+		uic = this.view.getEMailComponent();
 		uic.setControl(new AbstractControl() {
 			// Speichert den gegebenen Wert als EMail im Model.
 			public void handleInput(Object value) throws Exception {
-				ShowAndChangeControl.this.model
+				CustomerAttributesUpdateControl.this.model
 						.setEMail((String) value);
 			}
 		});
@@ -99,12 +99,5 @@ public class ShowAndChangeControl extends AbstractControl {
 		} catch (NumberFormatException e) {
 			throw new Exception("IllegalNumberFormat");
 		}
-	}
-
-	/**
-	 * subtraiert den aktuellen Index mit 1
-	 */
-	public void fix() {
-		model.setComponentIndex(model.getIndex() - 1);
 	}
 }
