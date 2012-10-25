@@ -7,9 +7,9 @@ import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * ist verantwortlich für das erzeugen eines Customer Objekts.
+ * ist verantwortlich für das erzeugen eines Customer Objekts, um dieses in eine
+ * Datenbank zu speichern.
  * 
- * @author tba
  */
 
 public class CustomerCreateDialog implements Dialog {
@@ -17,7 +17,11 @@ public class CustomerCreateDialog implements Dialog {
 	private CustomerCreateModel model;
 	private CustomerCreateView view;
 	private CustomerCreateControl control;
-
+	
+	/**
+	 * führt den Dialog aus.
+	 */
+	
 	@Override
 	public void run() {
 		model = new CustomerCreateModel();

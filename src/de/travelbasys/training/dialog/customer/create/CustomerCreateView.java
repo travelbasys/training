@@ -8,6 +8,10 @@ import de.travelbasys.training.framework.UiComponent;
 import de.travelbasys.training.framework.View;
 
 /**
+ * stellt einen View innerhalb des CustomerCreate Dialoges dar.
+ * 
+ * Die aktuelle Implementierung fragt nach den Werten der verschiedenen
+ * Attribute eines Customer Objekts.
  */
 public class CustomerCreateView extends ArrayList<UiComponent> implements View {
 	private static final long serialVersionUID = 1L;
@@ -54,7 +58,14 @@ public class CustomerCreateView extends ArrayList<UiComponent> implements View {
 	public AbstractUiComponent getCustomerEMailComponent() {
 		return customerEMailComponent;
 	}
-
+	/**
+	 * Initialisiert den aktuellen View.
+	 * 
+	 * Speichert das gegebene Model Objekt.
+	 * 
+	 * Erzeugt UiComponents für alle Attribute des Customer Typs: Lastname,
+	 * Firstname, Age, usw.
+	 */
 	public void init(Model model) {
 		this.model = (CustomerCreateModel) model;
 

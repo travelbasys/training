@@ -3,7 +3,10 @@ package de.travelbasys.training.dialog.customer.create;
 import de.travelbasys.training.framework.Model;
 
 /**
- * Model Objekt für den customerShow Dialog.
+ * hat die Aufgabe, ein Model für den CustomerCreate Dialog zu verwalten.
+ * 
+ * Die aktuelle Implementierung enthält alle Daten um ein Customer Objekt zu
+ * erstellen.
  */
 public class CustomerCreateModel implements Model {
 

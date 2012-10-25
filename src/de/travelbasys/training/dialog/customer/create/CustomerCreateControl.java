@@ -6,11 +6,23 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 
 /**
+ * hat die Aufgabe, einen View innerhalb des ShowAndChange Dialoges zu steuern.
+ * 
+ * Die aktuelle Implementierung führt Dialoge aus die die Attribute eines
+ * Customer Objekts abfragt, außerdem wird geprüft ob es sich um gültige
+ * eingaben handelt.
+ * 
  */
 public class CustomerCreateControl extends AbstractControl {
 
 	private CustomerCreateModel model;
 	private CustomerCreateView view;
+
+	/**
+	 * Initialisiert den Controller mit Model und View des Packages.
+	 * 
+	 * Weißt einer Komponente eine Methode zur Behandlung des Inhaltes zu.
+	 */
 
 	public void init(Model model, View view) {
 		this.model = (CustomerCreateModel) model;
