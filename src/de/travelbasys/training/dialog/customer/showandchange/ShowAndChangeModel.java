@@ -1,71 +1,68 @@
 package de.travelbasys.training.dialog.customer.showandchange;
 
-import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Model;
 
 /**
- * hat die Aufgabe, ein Model für den ShowAndChange Dialog zu verwalten.
- * Die aktuelle Implementierung enthält alle Attribute eines Customer Objektes.
+ * hat die Aufgabe, ein Model für den ShowAndChange Dialog zu verwalten. Die
+ * aktuelle Implementierung enthält alle Attribute eines Customer Objektes.
  */
 public class ShowAndChangeModel implements Model {
 
-	
-	private Customer customer;
-	private String customerLastname = "";
-	private String customerFirstname = "";
-	private int customerAge = 0;
-	private String customerAdress = "";
-	private String customerPostalcode = "";
-	private String customerEMail = "";
-	private int index;
 	private int customerid;
-	private boolean EndFlag = false;
+	private String customerLastname;
+	private String customerFirstname;
+	private int customerAge;
+	private String customerAdress;
+	private String customerPostalcode;
+	private String customerEMail;
 
-	public String getCustomerLastname() {
+	private int index;
+
+	public String getLastName() {
 		return customerLastname;
 	}
 
-	public void setCustomerLastname(String customerLastname) {
+	public void setLastName(String customerLastname) {
 		this.customerLastname = customerLastname;
 	}
 
-	public String getCustomerFirstname() {
+	public String getFirstName() {
 		return customerFirstname;
 	}
 
-	public void setCustomerFirstname(String customerFirstname) {
+	public void setFirstName(String customerFirstname) {
 		this.customerFirstname = customerFirstname;
 	}
 
-	public int getCustomerAge() {
+	public int getAge() {
 		return customerAge;
 	}
 
-	public void setCustomerAge(int customerAge) {
+	public void setAge(int customerAge) {
 		this.customerAge = customerAge;
 	}
 
-	public String getCustomerAdress() {
+	public String getAdress() {
 		return customerAdress;
 	}
 
-	public void setCustomerAdress(String customerAdress) {
+	public void setAdress(String customerAdress) {
 		this.customerAdress = customerAdress;
 	}
 
-	public String getCustomerPostalcode() {
+	public String getPostalcode() {
 		return customerPostalcode;
 	}
 
-	public void setCustomerPostalcode(String customerPostalcode) {
+	public void setPostalcode(String customerPostalcode) {
 		this.customerPostalcode = customerPostalcode;
 	}
 
-	public String getCustomerEMail() {
+	public String getEMail() {
 		return customerEMail;
 	}
 
-	public void setCustomerEMail(String customerEMail) {
+	public void setEMail(String customerEMail) {
 		this.customerEMail = customerEMail;
 	}
 
@@ -73,34 +70,16 @@ public class ShowAndChangeModel implements Model {
 		return index;
 	}
 
-	public void setIndex(int index) {
+	public void setComponentIndex(int index) {
 		this.index = index;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer() {
-		customer = new Customer(getCustomerid(), getCustomerLastname(),
-				getCustomerFirstname(), getCustomerAge(), getCustomerAdress(),
-				getCustomerPostalcode(), getCustomerEMail());
 	}
 
 	public int getCustomerid() {
 		return customerid;
 	}
 
-	public void setCustomerid(int customerid) {
+	public void setId(int customerid) {
 		this.customerid = customerid;
-	}
-
-	public boolean getEndFlag() {
-		return EndFlag;
-	}
-
-	public void setEndFlag(boolean endFlag) {
-		EndFlag = endFlag;
 	}
 
 }

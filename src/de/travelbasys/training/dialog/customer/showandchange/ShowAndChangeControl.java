@@ -23,6 +23,7 @@ public class ShowAndChangeControl extends AbstractControl {
 	public void init(Model model, View view) {
 		this.model = (ShowAndChangeModel) model;
 		this.view = (ShowAndChangeView) view;
+		
 		AbstractUiComponent uic;
 
 		uic = this.view.getCustomerLastnameComponent();
@@ -30,7 +31,7 @@ public class ShowAndChangeControl extends AbstractControl {
 			// Speichert den gegebenen Wert als Lastname im Model.
 			public void handleInput(Object value) throws Exception {
 				ShowAndChangeControl.this.model
-						.setCustomerLastname((String) value);
+						.setLastName((String) value);
 			}
 		});
 
@@ -39,7 +40,7 @@ public class ShowAndChangeControl extends AbstractControl {
 			// Speichert den gegebenen Wert als Firstname im Model.
 			public void handleInput(Object value) throws Exception {
 				ShowAndChangeControl.this.model
-						.setCustomerFirstname((String) value);
+						.setFirstName((String) value);
 			}
 		});
 
@@ -48,7 +49,7 @@ public class ShowAndChangeControl extends AbstractControl {
 			// Speichert den gegebenen Wert als Age im Model.
 			public void handleInput(Object value) throws Exception {
 				checkAge(value);
-				ShowAndChangeControl.this.model.setCustomerAge((Integer) value);
+				ShowAndChangeControl.this.model.setAge((Integer) value);
 			}
 		});
 
@@ -57,7 +58,7 @@ public class ShowAndChangeControl extends AbstractControl {
 			// Speichert den gegebenen Wert als Adress im Model.
 			public void handleInput(Object value) throws Exception {
 				ShowAndChangeControl.this.model
-						.setCustomerAdress((String) value);
+						.setAdress((String) value);
 			}
 		});
 
@@ -67,7 +68,7 @@ public class ShowAndChangeControl extends AbstractControl {
 			public void handleInput(Object value) throws Exception {
 				checkPostalcode(value);
 				ShowAndChangeControl.this.model
-						.setCustomerPostalcode((String) value);
+						.setPostalcode((String) value);
 			}
 		});
 
@@ -76,7 +77,7 @@ public class ShowAndChangeControl extends AbstractControl {
 			// Speichert den gegebenen Wert als EMail im Model.
 			public void handleInput(Object value) throws Exception {
 				ShowAndChangeControl.this.model
-						.setCustomerEMail((String) value);
+						.setEMail((String) value);
 			}
 		});
 	}
@@ -104,6 +105,6 @@ public class ShowAndChangeControl extends AbstractControl {
 	 * subtraiert den aktuellen Index mit 1
 	 */
 	public void fix() {
-		model.setIndex(model.getIndex() - 1);
+		model.setComponentIndex(model.getIndex() - 1);
 	}
 }

@@ -37,7 +37,7 @@ public class CustomerDeleteDialog implements Dialog {
 		d3.init(key);
 		d3.run();
 
-		if (d3.getFlag()) {
+		if (d3.isYes()) {
 			CustomerDelete1Dialog d4 = new CustomerDelete1Dialog();
 			d4.setCustomerID(customerid);
 			d4.init();

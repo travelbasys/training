@@ -39,7 +39,7 @@ public class YesNoDialog implements Dialog {
 	 * 
 	 * @return die Entscheidung des Benutzers.
 	 */
-	public boolean getFlag() {
+	public boolean isYes() {
 		return model.getFlag();
 	}
 }

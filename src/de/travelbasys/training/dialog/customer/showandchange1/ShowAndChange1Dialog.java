@@ -27,7 +27,7 @@ public class ShowAndChange1Dialog implements Dialog {
 	 * 
 	 * @return der Index.
 	 */
-	public int getIndex() {
+	public int getSelectedIndex() {
 		return model.getIndex();
 	}
 

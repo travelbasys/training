@@ -6,89 +6,101 @@ import de.travelbasys.training.dialog.customer.showandchange1.ShowAndChange1Dial
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * 
- * ist verantwortlich für das Anzeigen eines Benutzers aus der Datenbank, um
- * dessen Werte anschließend an einem temporären Customer Objekt zu ändern.
+ * zeigt ein {@see Customer} Objekt an und erlaubt dem Benutzer anschließend,
+ * dessen Attribute zu ändern.
  */
 public class ShowAndChangeDialog implements Dialog {
 
 	private ShowAndChangeView view;
-	private static ShowAndChangeModel model;
+	private ShowAndChangeModel model;
 	private ShowAndChangeControl control;
 
 	private Customer customer;
 
-	private static int index;
+	private int index;
 
 	/**
-	 * Führt mehrere Dialoge aus und erhält dabei Rückgabewerte. Prüft ob der
-	 * vom Benutzer eingegebene Index = 0 ist und reagiert entsprechend.
+	 * führt den Dialog aus.
 	 * 
-	 * @return Springt aus der Schleife wenn Index = 0.
+	 * <p>
+	 * Die aktuelle Implementierung benutzt folgende Schritte:
+	 * </p>
+	 * 
+	 * <ol>
+	 * <li>{@see CustomerShow1Dialog} zeigt das {@see Customer} Objekt.
+	 * <li>{@see ShowAndChange1Dialog} zeigt ein Menü mit dem alle einzelnen
+	 * Attribute geändert werden können.
+	 * <li>...?
+	 * </ol>
 	 */
 	@Override
 	public void run() {
+		CustomerShow1Dialog d2 = new CustomerShow1Dialog();
+		d2.setCustomer(customer);
+		d2.init();
+		
 		do {
-			model.setCustomer();
-			CustomerShow1Dialog d2 = new CustomerShow1Dialog();
-			d2.setCustomer(model.getCustomer());
-			d2.init();
 			d2.run();
+			
+			// Menü
 			ShowAndChange1Dialog d3 = new ShowAndChange1Dialog();
 			d3.init();
 			d3.run();
-			index = d3.getIndex();
+			
+			index = d3.getSelectedIndex();
 			if (index == 0) {
-				model.setEndFlag(true);
 				return;
 			}
-			model.setIndex(index);
+			model.setComponentIndex(index);
 			view.run();
-		} while (model.getEndFlag() == false);
+			
+			// Customer mit den aktuellen Modelattributen aktualisieren.
+			customer.setAdress( model.getAdress());
+			customer.setAge( model.getAge());
+			customer.setFirstName(model.getFirstName());
+			customer.setLastName( model.getLastName());
+			customer.setPostalcode( model.getPostalcode());
+			customer.setEMail( model.getEMail());
+		} while (true);
 	}
 
 	/**
 	 * Erzeugt interne Model, View und Control Instanzen und initialisiert
-	 * diese. Das Model erhält bei der Initialisierung Werte eines Customer
-	 * Objekts.
+	 * diese.
+	 * 
+	 * <p>
+	 * Das Model erhält bei der Initialisierung die Attribute eines {@see
+	 * Customer} Objekts. Voraussetzung ist, dass die Methode {@see
+	 * #setCustomer(Customer)} bereits ausgeführt wurde.
+	 * </p>
 	 */
 	public void init() {
+		if( null == customer ){
+			throw new IllegalStateException("Customer attribute is null");
+		}
 		model = new ShowAndChangeModel();
 		control = new ShowAndChangeControl();
 		view = new ShowAndChangeView(model, control);
-		model.setCustomerid(customer.getUserID());
-		model.setCustomerAdress(customer.getAdress());
-		model.setCustomerAge(customer.getAge());
-		model.setCustomerFirstname(customer.getFirstname());
-		model.setCustomerLastname(customer.getLastName());
-		model.setCustomerPostalcode(customer.getPostalcode());
-		model.setCustomerEMail(customer.getEmail());
+
+		// Model mit den Customerattributen initialisieren.
+		model.setId(customer.getId());
+		model.setAdress(customer.getAdress());
+		model.setAge(customer.getAge());
+		model.setFirstName(customer.getFirstName());
+		model.setLastName(customer.getLastName());
+		model.setPostalcode(customer.getPostalcode());
+		model.setEMail(customer.getEmail());
 
 		view.init(model);
 		control.init(model, view);
 	}
 
 	/**
-	 * Setzt den Customer.
+	 * Setzt den aktuellen Wert des {@see Customer} Attributs dieses
+	 * Dialogs.
 	 */
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
-
-	/**
-	 * Repräsentiert das Model der aktuellen Instanz.
-	 * 
-	 * @return Die Instanz des Models.
-	 */
-	public static ShowAndChangeModel getModel() {
-		return model;
-	}
-
-	/**
-	 * Setzt das Model dem Model des ShowAndChangeDialogs gleich.
-	 */
-	public void setModel(ShowAndChangeModel model) {
-		ShowAndChangeDialog.model = model;
 	}
 
 }

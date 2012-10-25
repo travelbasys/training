@@ -66,35 +66,36 @@ public class ShowAndChangeView extends ArrayList<UiComponent> implements View {
 	public void init(Model model) {
 		this.model = (ShowAndChangeModel) model;
 		this.control = (ShowAndChangeControl) control;
+		
 		customerFirstnameComponent = new UiComponent();
 		customerFirstnameComponent.setName(CUSTOMERFIRSTNAME);
-		customerFirstnameComponent.setValue(this.model.getCustomerFirstname());
+		customerFirstnameComponent.setValue(this.model.getFirstName());
 		add(customerFirstnameComponent);
 
 		customerLastnameComponent = new UiComponent();
 		customerLastnameComponent.setName(CUSTOMERLASTNAME);
-		customerLastnameComponent.setValue(this.model.getCustomerLastname());
+		customerLastnameComponent.setValue(this.model.getLastName());
 		add(customerLastnameComponent);
 
 		customerAgeComponent = new UiComponent();
 		customerAgeComponent.setName(CUSTOMERAGE);
-		customerAgeComponent.setValue(this.model.getCustomerAge());
+		customerAgeComponent.setValue(this.model.getAge());
 		add(customerAgeComponent);
 
 		customerAdressComponent = new UiComponent();
 		customerAdressComponent.setName(CUSTOMERADRESS);
-		customerAdressComponent.setValue(this.model.getCustomerAdress());
+		customerAdressComponent.setValue(this.model.getAdress());
 		add(customerAdressComponent);
 
 		customerPostalcodeComponent = new UiComponent();
 		customerPostalcodeComponent.setName(CUSTOMERPOSTALCODE);
 		customerPostalcodeComponent
-				.setValue(this.model.getCustomerPostalcode());
+				.setValue(this.model.getPostalcode());
 		add(customerPostalcodeComponent);
 
 		customerEMailComponent = new UiComponent();
 		customerEMailComponent.setName(CUSTOMEREMAIL);
-		customerEMailComponent.setValue(this.model.getCustomerEMail());
+		customerEMailComponent.setValue(this.model.getEMail());
 		add(customerEMailComponent);
 
 	}

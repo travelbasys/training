@@ -99,13 +99,17 @@ public class CustomerDAO {
 	}
 
 	public static List<Customer> getUsers() {
-		return users;
+		List<Customer> result = new ArrayList<Customer>();
+		for (Customer customer : users) {
+			result.add(customer.clone());
+		}
+		return result;
 	}
 
 	public static void delUser(int customerid) {
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getUserID() == customerid) {
+				if (user.getId() == customerid) {
 					CustomerDAO.users.remove(user);
 				}
 			}
@@ -116,7 +120,7 @@ public class CustomerDAO {
 	public static void replaceUser(int customerid, Customer customer) {
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getUserID() == customerid) {
+				if (user.getId() == customerid) {
 					CustomerDAO.users.set(CustomerDAO.users.indexOf(user), customer);
 				}
 			}
@@ -140,8 +144,9 @@ public class CustomerDAO {
 		setFoundCustomers(new ArrayList<Customer>());
 		try {
 			for (Customer user : CustomerDAO.getUsers()) {
-				if (user.getUserID() == customerid) {
-					CustomerDAO.getCustomers().add(user);
+				if (user.getId() == customerid) {
+					
+					CustomerDAO.getCustomers().add(user.clone());
 				}
 			}
 			return CustomerDAO.getCustomers();
@@ -222,7 +227,7 @@ public class CustomerDAO {
 	public static int getLastCustomerId() {
 		int userid = 0;
 		for (Customer user : getUsers()) {
-			userid = user.getUserID();
+			userid = user.getId();
 		}
 		return userid;
 	}

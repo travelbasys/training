@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * 
  * @author tba
  */
-public class Customer implements Serializable {
+public class Customer implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 904199503921232796L;
 
@@ -139,7 +139,7 @@ public class Customer implements Serializable {
 		this.email = email;
 	}
 
-	public int getUserID() {
+	public int getId() {
 		return userid;
 	}
 
@@ -151,7 +151,7 @@ public class Customer implements Serializable {
 		return adress;
 	}
 
-	public String getFirstname() {
+	public String getFirstName() {
 		return firstname;
 	}
 
@@ -265,5 +265,9 @@ public class Customer implements Serializable {
 		}
 
 		return user;
+	}
+	
+	public Customer clone() {
+		return new Customer(userid, lastname, firstname, age, adress, postalcode, email);
 	}
 }
