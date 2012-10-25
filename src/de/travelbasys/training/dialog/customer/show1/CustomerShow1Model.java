@@ -4,7 +4,8 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Model;
 
 /**
- * Model Objekt für den CustomerShow1 Dialog.
+ * hat die Aufgabe, ein Model für den Show1 Dialog zu verwalten. Die aktuelle
+ * Implementierung enthält ein Customer Objekt.
  */
 public class CustomerShow1Model implements Model {
 	private Customer customer;

@@ -4,7 +4,7 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * hat die Aufgabe ein Customer Objekt aus der Datenbank anzuzeigen.
+ * zeigt dem Benutzer ein gesuchtes Customer Objekt.
  */
 public class CustomerShow1Dialog implements Dialog {
 	private CustomerShow1Model model;
@@ -13,6 +13,9 @@ public class CustomerShow1Dialog implements Dialog {
 	@SuppressWarnings("unused")
 	private CustomerShow1Control control;
 
+	/**
+	 * führt den Dialog aus.
+	 */
 	@Override
 	public void run() {
 		view.run();
@@ -22,6 +25,11 @@ public class CustomerShow1Dialog implements Dialog {
 		this.customer = customer;
 	}
 
+	/**
+	 * Erzeugt interne Model, View und Control Instanzen und initialisiert
+	 * diese. Das Model erhält bei der Initialisierung Werte eines Customer
+	 * Objekts.
+	 */
 	public void init() {
 		model = new CustomerShow1Model();
 		control = new CustomerShow1Control();
