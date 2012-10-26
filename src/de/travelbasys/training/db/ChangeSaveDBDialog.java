@@ -19,7 +19,7 @@ public class ChangeSaveDBDialog extends ChangeDBDialog {
 		try {
 			Properties config = new Properties();
 			config.load(new FileInputStream(ini));
-			config.setProperty(DATABASE_KEY, model.getDBkey());
+			config.setProperty(DATABASE_KEY, getModel().getDBkey());
 			config.store(new FileOutputStream(ini),
 					"Travelbasys User Manager - Properties");
 		} catch (Exception e) {

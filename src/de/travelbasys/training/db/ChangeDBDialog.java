@@ -17,24 +17,23 @@ public class ChangeDBDialog implements Dialog {
 	static final String DATABASE_KEY = "database";
 	static File ini = new File(Config.CONFIG_FILENAME);
 
-	ChangeDBModel model;
-	ChangeDBView view;
-	ChangeDBControl control;
-
-	public ChangeDBDialog() {
-		model = new ChangeDBModel();
-	}
+	private ChangeDBModel model;
+	private ChangeDBView view;
+	@SuppressWarnings("unused")
+	private ChangeDBControl control;
 
 	@Override
 	public void run() {
-		control = new ChangeDBControl(model);
-		view = new ChangeDBView(model, control);
-		view.init(model);
-		control.init(model, view);
+		model = new ChangeDBModel();
+		view = new ChangeDBView(model);
+		control = new ChangeDBControl(model, view);
 		view.run();
 
 		String db = model.getDBkey();
 		CustomerDAO.terminate();
 		CustomerDAO.init(db);
+	}
+	public ChangeDBModel getModel(){
+		return model;
 	}
 }

@@ -3,7 +3,6 @@ package de.travelbasys.training.db;
 import java.util.ArrayList;
 
 import de.travelbasys.training.framework.AbstractUiComponent;
-import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.UiComponent;
 import de.travelbasys.training.framework.View;
 
@@ -17,7 +16,6 @@ import de.travelbasys.training.framework.View;
 public class ChangeDBView extends ArrayList<UiComponent> implements View {
 
 	private static final long serialVersionUID = 1L;
-	private ChangeDBModel model;
 	private UiComponent changeDBComponent;
 	private static final String CHANGEDB = "ChangeDB";
 
@@ -25,17 +23,11 @@ public class ChangeDBView extends ArrayList<UiComponent> implements View {
 		return changeDBComponent;
 	}
 
-	public ChangeDBView(ChangeDBModel model, ChangeDBControl control) {
-		super();
-		this.model = model;
-	}
-
-	public void init(Model model) {
-		this.model = (ChangeDBModel) model;
+	public ChangeDBView(ChangeDBModel model) {
 
 		changeDBComponent = new UiComponent();
 		changeDBComponent.setName(CHANGEDB);
-		changeDBComponent.setValue(this.model.getDBkey());
+		changeDBComponent.setValue(model.getDBkey());
 		add(changeDBComponent);
 	}
 

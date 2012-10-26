@@ -11,12 +11,6 @@ import de.travelbasys.training.framework.AbstractUiComponent;
  */
 public class ChangeDBControl {
 
-	private ChangeDBModel model;
-	private ChangeDBView view;
-
-	public ChangeDBControl(ChangeDBModel model) {
-		this.model = model;
-	}
 
 	public void check(Object value) throws Exception {
 		if (((String) value).isEmpty())
@@ -24,17 +18,15 @@ public class ChangeDBControl {
 
 	}
 
-	public void init(ChangeDBModel model, ChangeDBView view) {
-		this.model = (ChangeDBModel) model;
-		this.view = (ChangeDBView) view;
+	public ChangeDBControl(final ChangeDBModel model, ChangeDBView view) {
 
 		AbstractUiComponent uic;
 
-		uic = this.view.getchangeDBComponent();
+		uic = view.getchangeDBComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
 				check(value);
-				ChangeDBControl.this.model.setDBkey((String) value);
+				model.setDBkey((String) value);
 			}
 		});
 	}
