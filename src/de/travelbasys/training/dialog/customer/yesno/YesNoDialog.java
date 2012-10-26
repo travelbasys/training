@@ -9,13 +9,19 @@ import de.travelbasys.training.framework.Dialog;
 public class YesNoDialog implements Dialog {
 	private YesNoModel model;
 	private YesNoView view;
+	@SuppressWarnings("unused")
 	private YesNoControl control;
 	
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param key
+	 */
 	public YesNoDialog(String key){
 		model = new YesNoModel(key);
 		view = new YesNoView(model);
-		control = new YesNoControl(model);
-		
+		control = new YesNoControl(model,view);
 	}
 
 	/**
@@ -35,6 +41,6 @@ public class YesNoDialog implements Dialog {
 	 * @return die Entscheidung des Benutzers.
 	 */
 	public boolean isYes() {
-		return model.getFlag();
+		return model.isYes();
 	}
 }

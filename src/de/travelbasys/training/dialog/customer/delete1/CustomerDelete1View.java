@@ -9,22 +9,24 @@ import de.travelbasys.training.util.AppContext;
  * 
  */
 public class CustomerDelete1View implements View {
-	@SuppressWarnings("unused")
 	private CustomerDelete1Model model;
 
 	/**
 	 * Initialisiert das Model.
 	 */
-	public void init(Model model) {
+	public CustomerDelete1View(Model model) {
 		this.model = (CustomerDelete1Model) model;
 	}
 
 	/**
-	 * Gibt eine Meldung zurück, wenn der Löschvorgang erfolgreich war.
+	 * Gibt eine Meldung zurück, ob der Löschvorgang erfolgreich oder fehlerhaft
+	 * war.
 	 */
 	public void run() {
-		AppContext.printMessage("DelOK");
-
+		if (model.isSuccess()) {
+			AppContext.printMessage("DelOK");
+		} else {
+			AppContext.printErrString("DelERR");
+		}
 	}
-
 }

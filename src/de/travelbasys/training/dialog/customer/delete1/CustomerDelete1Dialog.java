@@ -1,6 +1,5 @@
 package de.travelbasys.training.dialog.customer.delete1;
 
-import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.framework.Dialog;
 
 /**
@@ -9,31 +8,23 @@ import de.travelbasys.training.framework.Dialog;
  */
 public class CustomerDelete1Dialog implements Dialog {
 	private CustomerDelete1Model model;
-	private int customerid;
 	@SuppressWarnings("unused")
 	private CustomerDelete1Control control;
 	private CustomerDelete1View view;
+
+	public CustomerDelete1Dialog(boolean success) {
+		model = new CustomerDelete1Model();
+		model.setSuccess(success);
+
+		view = new CustomerDelete1View(model);
+	}
 
 	/**
 	 * Löscht den Customer. Führt den Dialog aus.
 	 */
 	@Override
 	public void run() {
-		CustomerDAO.delUser(model.getCustomerid());
 		view.run();
 	}
 
-	public void setCustomerID(int customerid) {
-		this.customerid = customerid;
-	}
-
-	public void init() {
-		model = new CustomerDelete1Model();
-		control = new CustomerDelete1Control();
-		view = new CustomerDelete1View();
-
-		view.init(model);
-		model.setCustomerid(customerid);
-
-	}
 }

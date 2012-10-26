@@ -4,7 +4,6 @@ import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
-import de.travelbasys.training.util.AppContext;
 
 /**
  * steuert den Dialog mit dem Benutzer zur Auswahl eines Menüpunktes.
@@ -13,37 +12,6 @@ import de.travelbasys.training.util.AppContext;
 public class YesNoControl {
 	private YesNoModel model;
 	private YesNoView view;
-
-	/**
-	 * Weißt der Klasse ein Model zu.
-	 * 
-	 * @param model
-	 *            Das Model des Packages.
-	 */
-	public YesNoControl(YesNoModel model) {
-		this.model = model;
-	}
-
-	private void checkdecision(Object value) throws Exception {
-
-		int decision = (Integer) value;
-		if (decision >= 1 && decision <= 2) {
-			model.setEndFlag();
-		}
-		switch (decision) {
-		case 1:
-			model.setFlag(true);
-			break;
-		case 2:
-			model.setFlag(false);
-			AppContext.printMessage("Abort");
-			break;
-		default:
-			// VORERST CHOOSERRCOMP ALS ALTERNATIVE FEHLERAUSGABE!!!
-			throw new Exception("ChooseErrComp");
-		}
-
-	}
 
 	/**
 	 * setzt den Input Handler in der DecisionComponent des View, so dass das
@@ -58,9 +26,19 @@ public class YesNoControl {
 		uic = this.view.getcustomerdecisionComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				checkdecision(value);
-				YesNoControl.this.model.setDecision((Integer) value);
+				int intValue = (Integer) value;
+				switch (intValue) {
+				case 1:
+					YesNoControl.this.model.setYes(true);
+					break;
+				case 2:
+					YesNoControl.this.model.setYes(false);
+					break;
+				default:
+					throw new Exception("ChooseErr");
+				}
 			}
 		});
 	}
+
 }

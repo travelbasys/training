@@ -24,6 +24,7 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 
 	private CustomerAttributesUpdateView view;
 	private CustomerAttributesUpdateModel model;
+	@SuppressWarnings("unused")
 	private CustomerAttributesUpdateControl control;
 
 	private Customer customer;

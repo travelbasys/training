@@ -9,6 +9,7 @@ public class CustomerUpdateMenuDialog implements Dialog {
 
 	private CustomerUpdateMenuModel model;
 	private CustomerUpdateMenuView view;
+	@SuppressWarnings("unused")
 	private CustomerUpdateMenuControl control;
 	
 	/**

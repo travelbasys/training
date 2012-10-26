@@ -9,6 +9,7 @@ import de.travelbasys.training.framework.Dialog;
 public class CustomerShow1Dialog implements Dialog {
 	private CustomerShow1Model model;
 	private CustomerShow1View view;
+	@SuppressWarnings("unused")
 	private Customer customer;
 	@SuppressWarnings("unused")
 	private CustomerShow1Control control;

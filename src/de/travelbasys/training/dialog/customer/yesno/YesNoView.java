@@ -17,35 +17,6 @@ public class YesNoView extends ArrayList<UiComponent> implements View {
 	private YesNoModel model;
 	private UiComponent customerDecisionComponent;
 
-	public AbstractUiComponent getcustomerdecisionComponent() {
-		return customerDecisionComponent;
-	}
-
-	/**
-	 * Weißt der Klasse ein Model zu.
-	 * 
-	 * @param model
-	 *            Das Model des Packages.
-	 */
-	public YesNoView(YesNoModel model) {
-		super();
-		this.model = model;
-	}
-
-	/**
-	 * Schreibt das Menü aus allen im Model gespeicherten Strings und führt dann
-	 * die gespeicherte UiComponent aus, welche den Benutzer nach der
-	 * gewünschten Auswahl fragt.
-	 */
-	public void run() {
-		do {
-			for (String s : model) {
-				Console.println(s);
-			}
-			customerDecisionComponent.run2();
-		} while (model.getEndFlag() == false);
-	}
-
 	/**
 	 * Speichert das gegebene Model Objekt.
 	 * 
@@ -55,6 +26,23 @@ public class YesNoView extends ArrayList<UiComponent> implements View {
 	public YesNoView(Model model) {
 		this.model = (YesNoModel) model;
 		customerDecisionComponent = new UiComponent();
-		customerDecisionComponent.setValue(this.model.getDecision());
+		customerDecisionComponent.setType(Integer.class);
 	}
+
+	public AbstractUiComponent getcustomerdecisionComponent() {
+		return customerDecisionComponent;
+	}
+
+	/**
+	 * Schreibt das Menü aus allen im Model gespeicherten Strings und führt dann
+	 * die gespeicherte UiComponent aus, welche den Benutzer nach der
+	 * gewünschten Auswahl fragt.
+	 */
+	public void run() {
+		for (String s : model) {
+			Console.println(s);
+		}
+		customerDecisionComponent.run2();
+	}
+
 }

@@ -29,7 +29,7 @@ public class CustomerFindView extends ArrayList<UiComponent> implements View {
 	 * @param model
 	 *            Das Model des Packages.
 	 */
-	public void init(Model model) {
+	public CustomerFindView(Model model) {
 		this.model = (CustomerFindModel) model;
 
 		customerIdComponent = new UiComponent();

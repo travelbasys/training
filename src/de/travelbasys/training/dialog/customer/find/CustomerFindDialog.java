@@ -10,6 +10,7 @@ import de.travelbasys.training.framework.Dialog;
 public class CustomerFindDialog implements Dialog {
 	private CustomerFindModel model;
 	private CustomerFindView view;
+	@SuppressWarnings("unused")
 	private CustomerFindControl control;
 	
 	/**
@@ -18,11 +19,9 @@ public class CustomerFindDialog implements Dialog {
 	 */
 	public CustomerFindDialog() {
 		model = new CustomerFindModel();
-		control = new CustomerFindControl();
-		view = new CustomerFindView();
+		view = new CustomerFindView(model);
+		control = new CustomerFindControl(model, view);
 
-		view.init(model);
-		control.init(model, view);
 	}
 	/**
 	 * Führt den initalisierten View aus.

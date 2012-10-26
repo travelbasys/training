@@ -1,15 +1,17 @@
 package de.travelbasys.training.dialog.customer.delete;
 
 import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.customer.delete1.CustomerDelete1Dialog;
 import de.travelbasys.training.dialog.customer.find.CustomerFindDialog;
 import de.travelbasys.training.dialog.customer.show1.CustomerShow1Dialog;
 import de.travelbasys.training.dialog.customer.yesno.YesNoDialog;
 import de.travelbasys.training.framework.Dialog;
+import de.travelbasys.training.util.AppContext;
 
 /**
- * hat die Aufgabe ein vorhandenes Customer Objekt aus der Datenbank zu entfernen.
- * Der Dialog kann optional auch ohne Änderung beendet werden.
+ * hat die Aufgabe ein vorhandenes Customer Objekt aus der Datenbank zu
+ * entfernen. Der Dialog kann optional auch ohne Änderung beendet werden.
  */
 public class CustomerDeleteDialog implements Dialog {
 	/**
@@ -17,13 +19,12 @@ public class CustomerDeleteDialog implements Dialog {
 	 */
 	@Override
 	public void run() {
-		final String key = "DelUserQ";
+		final String KEY = "DelUserQ";
 
 		CustomerFindDialog d1 = new CustomerFindDialog();
 		d1.run();
 
 		Customer customer = d1.getCustomer();
-		int customerid = d1.getCustomerID();
 		if (customer == null) {
 			return;
 		}
@@ -31,14 +32,24 @@ public class CustomerDeleteDialog implements Dialog {
 
 		d2.run();
 
-		YesNoDialog d3 = new YesNoDialog(key);
+		YesNoDialog d3 = new YesNoDialog(KEY);
 		d3.run();
+		
 
 		if (d3.isYes()) {
-			CustomerDelete1Dialog d4 = new CustomerDelete1Dialog();
-			d4.setCustomerID(customerid);
-			d4.init();
+			int customerid = d1.getCustomerID();
+			boolean success;
+			try {
+				CustomerDAO.delUser(customerid);
+				success = true;
+			} catch (Exception e) {
+				success = false;
+			}
+			CustomerDelete1Dialog d4 = new CustomerDelete1Dialog(success);
 			d4.run();
+		}else{
+			AppContext.printMessage("Abort");
 		}
+		
 	}
 }

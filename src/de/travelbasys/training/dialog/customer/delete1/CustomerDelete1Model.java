@@ -8,15 +8,16 @@ import de.travelbasys.training.framework.Model;
  * entfernt werden soll.
  */
 public class CustomerDelete1Model implements Model {
-	private int customerid;
+	private boolean success;
 
-	public int getCustomerid() {
-		return customerid;
+	public boolean isSuccess() {
+		return success;
 	}
 
-	public void setCustomerid(int customerid) {
-		this.customerid = customerid;
-
+	public void setSuccess(boolean success) {
+		this.success = success;
 	}
+
+	
 
 }

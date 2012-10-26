@@ -6,6 +6,5 @@ package de.travelbasys.training.dialog.customer.delete1;
  * Die aktuelle Implementierung ist LEER!
  */
 public class CustomerDelete1Control {
-	public CustomerDelete1Control() {
-	}
+	
 }

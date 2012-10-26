@@ -41,7 +41,10 @@ public class UiComponent extends AbstractUiComponent {
 				value = getFormatter().parse(line);
 
 				// Let controller check the input value and update model.
-				getControl().handleInput(value);
+				Control control = getControl();
+				if (null != control) {
+					control.handleInput(value);
+				}
 
 				// Exit loop
 				break;

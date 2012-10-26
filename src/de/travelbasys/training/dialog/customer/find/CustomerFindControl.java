@@ -21,7 +21,7 @@ public class CustomerFindControl extends AbstractControl {
 	 * 
 	 * Weiﬂt einer Komponente eine Methode zur Behandlung des Inhaltes zu.
 	 */
-	public void init(Model model, View view) {
+	public CustomerFindControl(Model model, View view) {
 		this.model = (CustomerFindModel) model;
 		this.view = (CustomerFindView) view;
 

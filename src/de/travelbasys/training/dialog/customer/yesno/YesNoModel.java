@@ -12,9 +12,8 @@ import de.travelbasys.training.util.AppContext;
  */
 public class YesNoModel extends ArrayList<String> implements Model {
 	private static final long serialVersionUID = 1L;
-	private int decision;
-	private boolean qFlag = false;
-	private boolean EndFlag = false;
+	
+	private boolean yes;
 
 	/**
 	 * Erzeugt eine Liste welche eine Frage anhand des Keys ausgibt. Die
@@ -30,37 +29,12 @@ public class YesNoModel extends ArrayList<String> implements Model {
 		add(AppContext.getMessage("No"));
 	}
 
-	public int getDecision() {
-		return decision;
+	public boolean isYes() {
+		return yes;
 	}
 
-	public void setDecision(int decision) {
-		this.decision = decision;
+	public void setYes(boolean yes) {
+		this.yes = yes;
 	}
 
-	/**
-	 * Setze die vom Benutzer getroffene Entscheidung.
-	 * 
-	 * @param qFlag
-	 */
-	public void setFlag(boolean deleteFlag) {
-		this.qFlag = deleteFlag;
-	}
-
-	/**
-	 * Hole die vom Benutzer getroffene Entscheidung.
-	 * 
-	 * @return dito.
-	 */
-	public boolean getFlag() {
-		return qFlag;
-	}
-
-	public boolean getEndFlag() {
-		return EndFlag;
-	}
-
-	public void setEndFlag() {
-		EndFlag = true;
-	}
 }
