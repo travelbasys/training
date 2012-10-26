@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.delete1;
+package de.travelbasys.training.dialog.customer.delete.action;
 
 import de.travelbasys.training.framework.Model;
 
@@ -7,7 +7,7 @@ import de.travelbasys.training.framework.Model;
  * beinhaltet die Customer ID des Customer Objekts das aus der Datenbank
  * entfernt werden soll.
  */
-public class CustomerDelete1Model implements Model {
+public class CustomerDeleteActionModel implements Model {
 	private boolean success;
 
 	public boolean isSuccess() {
