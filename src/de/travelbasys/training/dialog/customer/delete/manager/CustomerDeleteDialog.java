@@ -2,7 +2,7 @@ package de.travelbasys.training.dialog.customer.delete.manager;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.dialog.customer.delete.action.CustomerDeleteActionDialog;
+import de.travelbasys.training.dialog.customer.delete.action.CustomerDeleteMenuDialog;
 import de.travelbasys.training.dialog.customer.find.CustomerFindDialog;
 import de.travelbasys.training.dialog.customer.show1.CustomerShow1Dialog;
 import de.travelbasys.training.dialog.customer.yesno.YesNoDialog;
@@ -45,7 +45,7 @@ public class CustomerDeleteDialog implements Dialog {
 			} catch (Exception e) {
 				success = false;
 			}
-			CustomerDeleteActionDialog d4 = new CustomerDeleteActionDialog(success);
+			CustomerDeleteMenuDialog d4 = new CustomerDeleteMenuDialog(success);
 			d4.run();
 		}else{
 			AppContext.printMessage("Abort");
