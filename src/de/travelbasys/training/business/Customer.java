@@ -270,4 +270,6 @@ public class Customer implements Serializable, Cloneable {
 	public Customer clone() {
 		return new Customer(userid, lastname, firstname, age, adress, postalcode, email);
 	}
+
+	
 }

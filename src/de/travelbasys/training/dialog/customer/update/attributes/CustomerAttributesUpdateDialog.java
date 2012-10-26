@@ -1,7 +1,7 @@
 package de.travelbasys.training.dialog.customer.update.attributes;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.dialog.customer.show1.CustomerShow1Dialog;
+import de.travelbasys.training.dialog.customer.common.show1.CustomerShow1Dialog;
 import de.travelbasys.training.dialog.customer.update.menu.CustomerUpdateMenuDialog;
 import de.travelbasys.training.framework.Dialog;
 

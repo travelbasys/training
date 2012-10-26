@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.yesno;
+package de.travelbasys.training.dialog.customer.common.yesno;
 
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;

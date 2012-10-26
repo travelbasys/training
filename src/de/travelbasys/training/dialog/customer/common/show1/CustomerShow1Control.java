@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.show1;
+package de.travelbasys.training.dialog.customer.common.show1;
 
 /**
  * hat die Aufgabe, einen View innerhalb des CustomerShow1 Dialoges zu steuern.

@@ -39,12 +39,12 @@ public class ImportDialog implements Dialog {
 				CustomerDAO.terminate();
 				String s;
 				Customer user = null;
-				CustomerDAO.getUsers().clear();
+				CustomerDAO.getCustomers().clear();
 				br.readLine();
 				while ((s = br.readLine()) != null) {
 					AppContext.println(s);
 					user = Customer.parseCSV(s);
-					CustomerDAO.getUsers().add(user);
+					CustomerDAO.getCustomers().add(user);
 				}
 				AppContext.println("ImportOK");
 				fr.close();

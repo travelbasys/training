@@ -1,9 +1,9 @@
 package de.travelbasys.training.dialog.menu;
 
 import de.travelbasys.training.db.ChangeSaveDBDialog;
-import de.travelbasys.training.dialog.customer.CustomerList;
 import de.travelbasys.training.dialog.customer.create.CustomerCreateDialog;
 import de.travelbasys.training.dialog.customer.delete.manager.CustomerDeleteDialog;
+import de.travelbasys.training.dialog.customer.list.CustomerList;
 import de.travelbasys.training.dialog.customer.show.manager.CustomerShowDialog;
 import de.travelbasys.training.dialog.customer.update.manager.CustomerUpdateDialog;
 import de.travelbasys.training.dialog.other.ChangeParamDialog;

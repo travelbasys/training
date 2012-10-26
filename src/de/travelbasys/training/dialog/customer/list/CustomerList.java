@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer;
+package de.travelbasys.training.dialog.customer.list;
 
 import java.util.ArrayList;
 
@@ -19,11 +19,11 @@ public class CustomerList implements Dialog {
 	public void run() {
 		// Datei wird eingelesen und gibt alle User Objekte der Datenbank aus.
 		try {
-			for (Customer user : CustomerDAO.getUsers()) {
+			for (Customer user : CustomerDAO.getCustomers()) {
 				AppContext.println(user);
 			}
 		} catch (NullPointerException e) {
-			CustomerDAO.setUsers(new ArrayList<Customer>());
+			CustomerDAO.setCustomers(new ArrayList<Customer>());
 			run();
 		}
 	}

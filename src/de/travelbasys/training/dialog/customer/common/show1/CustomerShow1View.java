@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.show1;
+package de.travelbasys.training.dialog.customer.common.show1;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Model;

@@ -2,10 +2,10 @@ package de.travelbasys.training.dialog.customer.delete.manager;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.dialog.customer.common.find.CustomerFindDialog;
+import de.travelbasys.training.dialog.customer.common.show1.CustomerShow1Dialog;
+import de.travelbasys.training.dialog.customer.common.yesno.YesNoDialog;
 import de.travelbasys.training.dialog.customer.delete.action.CustomerDeleteMenuDialog;
-import de.travelbasys.training.dialog.customer.find.CustomerFindDialog;
-import de.travelbasys.training.dialog.customer.show1.CustomerShow1Dialog;
-import de.travelbasys.training.dialog.customer.yesno.YesNoDialog;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
 

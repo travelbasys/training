@@ -24,7 +24,7 @@ public class CustomerCreateControl extends AbstractControl {
 	 * Weiﬂt einer Komponente eine Methode zur Behandlung des Inhaltes zu.
 	 */
 
-	public void init(Model model, View view) {
+	public CustomerCreateControl(Model model, View view) {
 		this.model = (CustomerCreateModel) model;
 		this.view = (CustomerCreateView) view;
 
@@ -33,16 +33,14 @@ public class CustomerCreateControl extends AbstractControl {
 		uic = this.view.getCustomerLastnameComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				CustomerCreateControl.this.model
-						.setCustomerLastname((String) value);
+				CustomerCreateControl.this.model.setLastname((String) value);
 			}
 		});
 
 		uic = this.view.getCustomerFirstnameComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				CustomerCreateControl.this.model
-						.setCustomerFirstname((String) value);
+				CustomerCreateControl.this.model.setFirstname((String) value);
 			}
 		});
 
@@ -50,32 +48,28 @@ public class CustomerCreateControl extends AbstractControl {
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
 				checkAge(value);
-				CustomerCreateControl.this.model
-						.setCustomerAge((Integer) value);
+				CustomerCreateControl.this.model.setAge((Integer) value);
 			}
 
 		});
 		uic = this.view.getCustomerAdressComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				CustomerCreateControl.this.model
-						.setCustomerAdress((String) value);
+				CustomerCreateControl.this.model.setAdress((String) value);
 			}
 		});
 		uic = this.view.getCustomerPostalcodeComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
 				checkPostalcode(value);
-				CustomerCreateControl.this.model
-						.setCustomerPostalcode((String) value);
+				CustomerCreateControl.this.model.setPostalcode((String) value);
 			}
 
 		});
 		uic = this.view.getCustomerEMailComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				CustomerCreateControl.this.model
-						.setCustomerEMail((String) value);
+				CustomerCreateControl.this.model.setEMail((String) value);
 			}
 		});
 	}

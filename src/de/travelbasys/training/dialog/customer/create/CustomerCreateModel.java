@@ -10,58 +10,58 @@ import de.travelbasys.training.framework.Model;
  */
 public class CustomerCreateModel implements Model {
 
-	private String customerLastname;
-	private String customerFirstname;
-	private int customerAge;
-	private String customerAdress;
-	private String customerPostalcode;
-	private String customerEMail;
+	private String Lastname;
+	private String Firstname;
+	private int Age;
+	private String Adress;
+	private String Postalcode;
+	private String EMail;
 
-	public String getCustomerLastname() {
-		return customerLastname;
+	public String getLastname() {
+		return Lastname;
 	}
 
-	public void setCustomerLastname(String customerLastname) {
-		this.customerLastname = customerLastname;
+	public void setLastname(String Lastname) {
+		this.Lastname = Lastname;
 	}
 
-	public String getCustomerFirstname() {
-		return customerFirstname;
+	public String getFirstname() {
+		return Firstname;
 	}
 
-	public void setCustomerFirstname(String customerFirstname) {
-		this.customerFirstname = customerFirstname;
+	public void setFirstname(String Firstname) {
+		this.Firstname = Firstname;
 	}
 
-	public int getCustomerAge() {
-		return customerAge;
+	public int getAge() {
+		return Age;
 	}
 
-	public void setCustomerAge(int customerAge) {
-		this.customerAge = customerAge;
+	public void setAge(int Age) {
+		this.Age = Age;
 	}
 
-	public String getCustomerAdress() {
-		return customerAdress;
+	public String getAdress() {
+		return Adress;
 	}
 
-	public void setCustomerAdress(String customerAdress) {
-		this.customerAdress = customerAdress;
+	public void setAdress(String Adress) {
+		this.Adress = Adress;
 	}
 
-	public String getCustomerPostalcode() {
-		return customerPostalcode;
+	public String getPostalcode() {
+		return Postalcode;
 	}
 
-	public void setCustomerPostalcode(String customerPostalcode) {
-		this.customerPostalcode = customerPostalcode;
+	public void setPostalcode(String Postalcode) {
+		this.Postalcode = Postalcode;
 	}
 
-	public String getCustomerEMail() {
-		return customerEMail;
+	public String getEMail() {
+		return EMail;
 	}
 
-	public void setCustomerEMail(String customerEMail) {
-		this.customerEMail = customerEMail;
+	public void setEMail(String EMail) {
+		this.EMail = EMail;
 	}
 }

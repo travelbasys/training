@@ -21,7 +21,7 @@ import de.travelbasys.training.business.Customer;
 public class CustomerDAO {
 
 	private static String FILE;
-	private static List<Customer> users = null;
+	private static List<Customer> customers = null;
 	private static List<Customer> found_customers = null;
 
 	/**
@@ -35,7 +35,7 @@ public class CustomerDAO {
 
 		setFoundCustomers(new ArrayList<Customer>());
 		try {
-			for (Customer user : CustomerDAO.getUsers()) {
+			for (Customer user : CustomerDAO.getCustomers()) {
 				if (user.getLastName().equals(lastname)
 						|| user.getLastName().toLowerCase().equals(lastname)
 						|| user.getLastName().toUpperCase().equals(lastname)) {
@@ -44,7 +44,7 @@ public class CustomerDAO {
 			}
 			return CustomerDAO.getFoundCustomers();
 		} catch (NullPointerException e) {
-			setUsers(new ArrayList<Customer>());
+			setCustomers(new ArrayList<Customer>());
 			findUserByLastName(lastname);
 		}
 
@@ -71,9 +71,9 @@ public class CustomerDAO {
 			@SuppressWarnings("unchecked")
 			List<Customer> user = (List<Customer>) ois.readObject();
 			try {
-				setUsers(new ArrayList<Customer>(user));
+				setCustomers(new ArrayList<Customer>(user));
 			} catch (NullPointerException e) {
-				setUsers(new ArrayList<Customer>());
+				setCustomers(new ArrayList<Customer>());
 			}
 			ois.close();
 		} catch (FileNotFoundException e1) {
@@ -91,18 +91,18 @@ public class CustomerDAO {
 		try {
 			fos = new FileOutputStream(FILE);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(users);
-			CustomerDAO.getUsers().removeAll(users);
+			oos.writeObject(customers);
+			CustomerDAO.getCustomers().removeAll(customers);
 			oos.close();
 		} catch (Exception e) {
-			setUsers(new ArrayList<Customer>());
+			setCustomers(new ArrayList<Customer>());
 		}
 
 	}
 
-	public static List<Customer> getUsers() {
+	public static List<Customer> getCustomers() {
 		List<Customer> result = new ArrayList<Customer>();
-		for (Customer customer : users) {
+		for (Customer customer : customers) {
 			result.add(customer.clone());
 		}
 		return result;
@@ -110,9 +110,9 @@ public class CustomerDAO {
 
 	public static void delUser(int customerid) {
 		try {
-			for (Customer user : CustomerDAO.getUsers()) {
+			for (Customer user : CustomerDAO.getCustomers()) {
 				if (user.getId() == customerid) {
-					CustomerDAO.users.remove(user);
+					CustomerDAO.customers.remove(user);
 				}
 			}
 		} catch (Exception e) {
@@ -121,9 +121,9 @@ public class CustomerDAO {
 
 	public static void replaceUser(int customerid, Customer customer) {
 		try {
-			for (Customer user : CustomerDAO.getUsers()) {
+			for (Customer user : CustomerDAO.getCustomers()) {
 				if (user.getId() == customerid) {
-					CustomerDAO.users.set(CustomerDAO.users.indexOf(user),
+					CustomerDAO.customers.set(CustomerDAO.customers.indexOf(user),
 							customer);
 				}
 			}
@@ -131,8 +131,8 @@ public class CustomerDAO {
 		}
 	}
 
-	public static void setUsers(List<Customer> users) {
-		CustomerDAO.users = users;
+	public static void setCustomers(List<Customer> customers) {
+		CustomerDAO.customers = customers;
 	}
 
 	public static void setFoundCustomers(List<Customer> found_customers) {
@@ -146,7 +146,7 @@ public class CustomerDAO {
 	public static List<Customer> findCustomerById(int id) {
 		setFoundCustomers(new ArrayList<Customer>());
 		try {
-			for (Customer customer : CustomerDAO.getUsers()) {
+			for (Customer customer : CustomerDAO.getCustomers()) {
 				if (customer.getId() == id) {
 
 					CustomerDAO.getFoundCustomers().add(customer.clone());
@@ -154,7 +154,7 @@ public class CustomerDAO {
 			}
 			return CustomerDAO.getFoundCustomers();
 		} catch (NullPointerException e) {
-			setUsers(new ArrayList<Customer>());
+			setCustomers(new ArrayList<Customer>());
 			findCustomerById(id);
 		}
 
@@ -163,9 +163,10 @@ public class CustomerDAO {
 
 	public static int getLastCustomerId() {
 		int userid = 0;
-		for (Customer user : getUsers()) {
+		for (Customer user : getCustomers()) {
 			userid = user.getId();
 		}
 		return userid;
 	}
+	
 }

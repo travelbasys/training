@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.find;
+package de.travelbasys.training.dialog.customer.common.find;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Dialog;

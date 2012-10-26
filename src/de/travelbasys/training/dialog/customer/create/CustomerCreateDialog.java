@@ -16,6 +16,7 @@ public class CustomerCreateDialog implements Dialog {
 
 	private CustomerCreateModel model;
 	private CustomerCreateView view;
+	@SuppressWarnings("unused")
 	private CustomerCreateControl control;
 	
 	/**
@@ -25,11 +26,10 @@ public class CustomerCreateDialog implements Dialog {
 	@Override
 	public void run() {
 		model = new CustomerCreateModel();
-		control = new CustomerCreateControl();
-		view = new CustomerCreateView();
+		view = new CustomerCreateView(model);
+		control = new CustomerCreateControl(model, view);
 
-		view.init(model);
-		control.init(model, view);
+
 
 		view.run();
 
@@ -39,15 +39,15 @@ public class CustomerCreateDialog implements Dialog {
 
 		customerid = CustomerDAO.getLastCustomerId() + 1;
 		try {
-			customer = new Customer(customerid, model.getCustomerLastname(),
-					model.getCustomerFirstname(), model.getCustomerAge(),
-					model.getCustomerAdress(), model.getCustomerPostalcode(),
-					model.getCustomerEMail());
+			customer = new Customer(customerid, model.getLastname(),
+					model.getFirstname(), model.getAge(),
+					model.getAdress(), model.getPostalcode(),
+					model.getEMail());
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomerDAO.setUsers(new ArrayList<Customer>());
+			CustomerDAO.setCustomers(new ArrayList<Customer>());
 		}
-		CustomerDAO.getUsers().add(customer);
+		CustomerDAO.getCustomers().add(customer);
 
 	}
 
