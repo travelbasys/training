@@ -19,41 +19,45 @@ public class ImportDialog implements Dialog {
 
 	private ImportModel model;
 	private ImportView view;
+	@SuppressWarnings("unused")
 	private ImportControl control;
 
-	public void run() {
+	public ImportDialog() {
 		model = new ImportModel();
-		control = new ImportControl(model);
-		view = new ImportView(model, control);
+		view = new ImportView(model);
+		control = new ImportControl(model, view);
+	}
+
+	@Override
+	public void run() {
 
 		// Here plays the music!
 		view.run();
-		if (model.getEndFlag()) {
+		if (model.getEnd()) {
 			return;
 		}
-			view.decision();
-			try {
-				FileReader fr = new FileReader(model.getImportName() + "."
-						+ model.getImportType());
-				BufferedReader br = new BufferedReader(fr);
-				CustomerDAO.terminate();
-				String s;
-				Customer user = null;
-				CustomerDAO.getCustomers().clear();
-				br.readLine();
-				while ((s = br.readLine()) != null) {
-					AppContext.println(s);
-					user = Customer.parseCSV(s);
-					CustomerDAO.getCustomers().add(user);
-				}
-				AppContext.println("ImportOK");
-				fr.close();
-			} catch (FileNotFoundException e) {
-				AppContext.printErrString("FileNotFoundException");
-				run();
-			} catch (IOException e) {
-e.printStackTrace();			}
-
+		try {
+			FileReader fr = new FileReader(model.getImportName() + "."
+					+ model.getImportType());
+			BufferedReader br = new BufferedReader(fr);
+			CustomerDAO.terminate();
+			String s;
+			Customer user = null;
+			CustomerDAO.getCustomers().clear();
+			br.readLine();
+			while ((s = br.readLine()) != null) {
+				AppContext.println(s);
+				user = Customer.parseCSV(s);
+				CustomerDAO.getCustomers().add(user);
+			}
+			AppContext.println("ImportOK");
+			fr.close();
+		} catch (FileNotFoundException e) {
+			AppContext.printErrString("FileNotFoundException");
+			run();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	}
 
+	}
+}

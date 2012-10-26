@@ -1,62 +1,58 @@
 package de.travelbasys.training.dialog.other;
 
-import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.framework.AbstractControl;
+import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.View;
 
 /**
  * Diese Klasse Kontrolliert Benutzereingaben.
+ * 
  * @author tba
- *
+ * 
  */
 public class ImportControl {
 
 	private ImportModel model;
-	private int choice;
+	private ImportView view;
+	private String Import = "";
 
-	public ImportControl(ImportModel model) {
-		this.model = model;
-	}
+	public ImportControl(Model model, View view) {
+		this.model = (ImportModel) model;
+		this.view = (ImportView) view;
+		AbstractUiComponent uic;
 
-	public void checkchoice() {
-		String Import = "";
-		try {
-			choice = Integer.parseInt(model.getChoice());
-			if (choice >= 0 && choice <= 2) {
-				switch (choice) {
+		uic = this.view.getcustomerDecisionComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				int intValue = (Integer) value;
+				switch (intValue) {
 				case 0:
-					model.setEndFlag();
-					model.setCheckFalse();
+					ImportControl.this.model.setEnd();
 					return;
 				case 1:
 					Import = "CSV";
-					model.setImportType(Import);
-					model.setHeader("UserID;LastName;FirstName;Age;Adress;Postalcode;eMail");
-					model.setCheckFalse();
-					return;
+					ImportControl.this.model.setImportType(Import);
+					ImportControl.this.model
+							.setHeader("UserID;LastName;FirstName;Age;Adress;Postalcode;eMail");
+					break;
 				case 2:
 					Import = "ACCESS";
-					model.setImportType(Import);
-					model.setHeader("");
-					model.setCheckFalse();
-					return;
-				default:
-					AppContext.printErrString("ChooseErr");
+					ImportControl.this.model.setImportType(Import);
+					ImportControl.this.model.setHeader("");
 					break;
+				default:
+					throw new Exception("ChooseErr");
 				}
-			} else {
-				AppContext.printErrString("ChooseErr");
 			}
-		} catch (Exception e) {
-			AppContext.printErrString("NumberErr");
-		}
+		});
+		uic = this.view.getimportNameComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				ImportControl.this.model.setImportName((String) value);
+			}
+		});
+
 	}
 
-	public void checkname(String Import_name) {
-		if (!Import_name.isEmpty()) {
-			model.setImportName(Import_name);
-			model.setCheckFalse();
-			
-		} else {
-			AppContext.printErrString("NumberErr");
-		}		
-	}
 }
