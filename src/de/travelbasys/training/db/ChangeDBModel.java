@@ -16,12 +16,11 @@ public class ChangeDBModel extends ArrayList<String> implements Model {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String DBkey = "";
-	public ChangeDBModel() {
-		super();
-	}
+
 	public String getDBkey() {
 		return DBkey;
 	}
+
 	public void setDBkey(String key) {
 		this.DBkey = key;
 	}

@@ -21,16 +21,11 @@ public class ChangeDBDialog implements Dialog {
 	ChangeDBView view;
 	ChangeDBControl control;
 
-	public ChangeDBDialog() {
-		model = new ChangeDBModel();
-	}
-
 	@Override
 	public void run() {
-		control = new ChangeDBControl(model);
-		view = new ChangeDBView(model, control);
-		view.init(model);
-		control.init(model, view);
+		model = new ChangeDBModel();
+		view = new ChangeDBView(model);
+		control = new ChangeDBControl(model, view);
 		view.run();
 
 		String db = model.getDBkey();
