@@ -17,9 +17,10 @@ public class ChangeDBDialog implements Dialog {
 	static final String DATABASE_KEY = "database";
 	static File ini = new File(Config.CONFIG_FILENAME);
 
-	ChangeDBModel model;
-	ChangeDBView view;
-	ChangeDBControl control;
+	private ChangeDBModel model;
+	private ChangeDBView view;
+	@SuppressWarnings("unused")
+	private ChangeDBControl control;
 
 	@Override
 	public void run() {
@@ -31,5 +32,8 @@ public class ChangeDBDialog implements Dialog {
 		String db = model.getDBkey();
 		CustomerDAO.terminate();
 		CustomerDAO.init(db);
+	}
+	public ChangeDBModel getModel(){
+		return model;
 	}
 }
