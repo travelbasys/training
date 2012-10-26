@@ -18,9 +18,7 @@ public class CustomerShowDialog implements Dialog {
 
 		Customer customer = d1.getCustomer();
 
-		CustomerShow1Dialog d2 = new CustomerShow1Dialog();
-		d2.setCustomer(customer);
-		d2.init();
+		CustomerShow1Dialog d2 = new CustomerShow1Dialog(customer);
 		d2.run();
 	}
 

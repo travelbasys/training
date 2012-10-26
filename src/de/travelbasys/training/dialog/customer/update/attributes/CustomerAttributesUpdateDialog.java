@@ -57,10 +57,7 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 	 */
 	@Override
 	public void run() {
-		CustomerShow1Dialog d1 = new CustomerShow1Dialog();
-		d1.setCustomer(customer);
-		d1.init();
-
+		CustomerShow1Dialog d1 = new CustomerShow1Dialog(customer);
 		do {
 			d1.run();
 

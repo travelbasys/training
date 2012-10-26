@@ -29,13 +29,13 @@ public class CustomerShow1Dialog implements Dialog {
 	 * Erzeugt interne Model, View und Control Instanzen und initialisiert
 	 * diese. Das Model erhält bei der Initialisierung Werte eines Customer
 	 * Objekts.
+	 * @param customer 
 	 */
-	public void init() {
+	public CustomerShow1Dialog(Customer customer) {
 		model = new CustomerShow1Model();
 		control = new CustomerShow1Control();
-		view = new CustomerShow1View();
+		view = new CustomerShow1View(model);
 
-		view.init(model);
 		model.setCustomer(customer);
 	}
 

@@ -14,7 +14,7 @@ public class CustomerShow1View implements View {
 	/**
 	 * Speichert das gegebene Model Objekt.
 	 */
-	public void init(Model model) {
+	public CustomerShow1View(Model model) {
 		this.model = (CustomerShow1Model) model;
 	}
 

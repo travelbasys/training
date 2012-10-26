@@ -27,9 +27,8 @@ public class CustomerDeleteDialog implements Dialog {
 		if (customer == null) {
 			return;
 		}
-		CustomerShow1Dialog d2 = new CustomerShow1Dialog();
-		d2.setCustomer(customer);
-		d2.init();
+		CustomerShow1Dialog d2 = new CustomerShow1Dialog(customer);
+
 		d2.run();
 
 		YesNoDialog d3 = new YesNoDialog(key);
