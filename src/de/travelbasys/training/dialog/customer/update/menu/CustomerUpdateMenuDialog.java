@@ -10,6 +10,15 @@ public class CustomerUpdateMenuDialog implements Dialog {
 	private CustomerUpdateMenuModel model;
 	private CustomerUpdateMenuView view;
 	private CustomerUpdateMenuControl control;
+	
+	/**
+	 * Erzeugt interne Model, View und Control Instanzen und initialisiert diese.
+	 */
+	public CustomerUpdateMenuDialog() {
+		model = new CustomerUpdateMenuModel();
+		view = new CustomerUpdateMenuView(model);
+		control = new CustomerUpdateMenuControl(model,view);
+	}
 
 	/**
 	 * führt den Dialog aus. Am Ende kann durch die {@see #getIndex} Methode
@@ -31,16 +40,5 @@ public class CustomerUpdateMenuDialog implements Dialog {
 		return model.getIndex();
 	}
 
-	/**
-	 * Erzeugt interne Model, View und Control Instanzen und initialisiert diese.
-	 */
-	public void init() {
-		model = new CustomerUpdateMenuModel();
-		control = new CustomerUpdateMenuControl();
-		view = new CustomerUpdateMenuView();
-
-		view.init(model);
-		control.init(model, view);
-	}
 
 }

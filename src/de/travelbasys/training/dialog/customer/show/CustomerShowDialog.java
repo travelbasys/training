@@ -14,7 +14,6 @@ public class CustomerShowDialog implements Dialog {
 	public void run() {
 
 		CustomerFindDialog d1 = new CustomerFindDialog();
-		d1.init();
 		d1.run();
 
 		Customer customer = d1.getCustomer();

@@ -25,7 +25,7 @@ public class CustomerUpdateMenuView implements View {
 	 * Erzeugt einen Wert für die ChoiceComponent Eigenschaft mit Integer.class
 	 * als Typ.
 	 */
-	public void init(Model model) {
+	public CustomerUpdateMenuView(Model model) {
 		this.model = (CustomerUpdateMenuModel) model;
 
 		choiceComponent = new UiComponent();

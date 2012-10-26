@@ -64,7 +64,7 @@ public class CustomerAttributesUpdateView extends ArrayList<UiComponent>
 	 * Objekt. Erzeugt einen Wert für die UiComponents Eigenschaft mit
 	 * bestimmten Typen die es vom Model erhält.
 	 */
-	public void init(Model model1) {
+	public CustomerAttributesUpdateView(Model model1) {
 		model = (CustomerAttributesUpdateModel) model1;
 		
 		firstnameComponent = new UiComponent();

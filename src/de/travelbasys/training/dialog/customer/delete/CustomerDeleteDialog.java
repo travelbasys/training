@@ -20,7 +20,6 @@ public class CustomerDeleteDialog implements Dialog {
 		final String key = "DelUserQ";
 
 		CustomerFindDialog d1 = new CustomerFindDialog();
-		d1.init();
 		d1.run();
 
 		Customer customer = d1.getCustomer();
@@ -33,8 +32,7 @@ public class CustomerDeleteDialog implements Dialog {
 		d2.init();
 		d2.run();
 
-		YesNoDialog d3 = new YesNoDialog();
-		d3.init(key);
+		YesNoDialog d3 = new YesNoDialog(key);
 		d3.run();
 
 		if (d3.isYes()) {

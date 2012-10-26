@@ -20,7 +20,7 @@ public class CustomerAttributesUpdateControl extends AbstractControl {
 	 * setzt den InputHandler in den UiComponents des Views, so dass temporär
 	 * ein Customer Objekt des Models die eingegebenen Attribute bekommt.
 	 */
-	public void init(Model model, View view) {
+	public CustomerAttributesUpdateControl(Model model, View view) {
 		this.model = (CustomerAttributesUpdateModel) model;
 		this.view = (CustomerAttributesUpdateView) view;
 		

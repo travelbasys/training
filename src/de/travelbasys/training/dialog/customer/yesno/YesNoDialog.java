@@ -10,6 +10,13 @@ public class YesNoDialog implements Dialog {
 	private YesNoModel model;
 	private YesNoView view;
 	private YesNoControl control;
+	
+	public YesNoDialog(String key){
+		model = new YesNoModel(key);
+		view = new YesNoView(model);
+		control = new YesNoControl(model);
+		
+	}
 
 	/**
 	 * führt den Dialog aus. Am Ende kann durch die {@see #getFlag} Methode
@@ -18,18 +25,6 @@ public class YesNoDialog implements Dialog {
 	@Override
 	public void run() {
 		view.run();
-	}
-
-	/**
-	 * Erzeugt interne Model, View und Control Instanzen und initialisiert
-	 * diese.
-	 */
-	public void init(String key) {
-		model = new YesNoModel(key);
-		control = new YesNoControl(model);
-		view = new YesNoView(model);
-		view.init(model);
-		control.init(model, view);
 	}
 
 	/**

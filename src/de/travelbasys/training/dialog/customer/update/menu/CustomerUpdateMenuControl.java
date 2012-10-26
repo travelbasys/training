@@ -14,7 +14,7 @@ public class CustomerUpdateMenuControl extends AbstractControl {
 	 * setzt den Input Handler in der ChoiceComponent des View, so dass das
 	 * Index Attribut des Model den eingebenen Wert bekommt.
 	 */
-	public void init(final Model model, View view) {
+	public CustomerUpdateMenuControl(final Model model, View view) {
 		AbstractUiComponent uic;
 		uic = ((CustomerUpdateMenuView) view).getChoiceComponent();
 		uic.setControl(new AbstractControl() {

@@ -28,7 +28,6 @@ public class CustomerUpdateDialog implements Dialog {
 	public void run() {
 		//Find
 		CustomerFindDialog d1 = new CustomerFindDialog();
-		d1.init();
 		d1.run();
 
 		Customer customer = d1.getCustomer();
@@ -37,14 +36,11 @@ public class CustomerUpdateDialog implements Dialog {
 		}
 		
 		// Show and Change
-		CustomerAttributesUpdateDialog d2 = new CustomerAttributesUpdateDialog();
-		d2.setCustomer(customer);
-		d2.init();
+		CustomerAttributesUpdateDialog d2 = new CustomerAttributesUpdateDialog(customer);
 		d2.run();
 
 		// Yes or No
-		YesNoDialog d3 = new YesNoDialog();
-		d3.init(KEY);
+		YesNoDialog d3 = new YesNoDialog(KEY);
 		d3.run();
 
 		if (d3.isYes() == true) {

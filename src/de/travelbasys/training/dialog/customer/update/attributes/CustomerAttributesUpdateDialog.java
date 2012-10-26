@@ -31,6 +31,28 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 	private int index;
 
 	/**
+	 * erzeugt eine Instanz des Dialoges und speichert das gegebene
+	 * {@see Customer} Objekt.
+	 * 
+	 * @param customer
+	 */
+	public CustomerAttributesUpdateDialog(Customer customer) {
+		this.customer = customer;
+
+		model = new CustomerAttributesUpdateModel();
+		// Model mit den Customerattributen initialisieren.
+		model.setAdress(customer.getAdress());
+		model.setAge(customer.getAge());
+		model.setFirstName(customer.getFirstName());
+		model.setLastName(customer.getLastName());
+		model.setPostalcode(customer.getPostalcode());
+		model.setEMail(customer.getEmail());
+		
+		view = new CustomerAttributesUpdateView(model);
+		control = new CustomerAttributesUpdateControl(model,view);
+	}
+
+	/**
 	 * führt den Dialog aus.
 	 */
 	@Override
@@ -44,7 +66,6 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 
 			// Menü
 			CustomerUpdateMenuDialog md = new CustomerUpdateMenuDialog();
-			md.init();
 			md.run();
 
 			index = md.getSelectedIndex();
@@ -70,42 +91,4 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 			customer.setEMail(model.getEMail());
 		} while (true);
 	}
-
-	/**
-	 * Erzeugt interne Model, View und Control Instanzen und initialisiert
-	 * diese.
-	 * 
-	 * <p>
-	 * Das Model erhält bei der Initialisierung die Attribute eines {@see
-	 * Customer} Objekts. Voraussetzung ist, dass die Methode {@see
-	 * #setCustomer(Customer)} bereits ausgeführt wurde.
-	 * </p>
-	 */
-	public void init() {
-		if (null == customer) {
-			throw new IllegalStateException("Customer attribute is null");
-		}
-		model = new CustomerAttributesUpdateModel();
-		control = new CustomerAttributesUpdateControl();
-		view = new CustomerAttributesUpdateView();
-
-		// Model mit den Customerattributen initialisieren.
-		model.setAdress(customer.getAdress());
-		model.setAge(customer.getAge());
-		model.setFirstName(customer.getFirstName());
-		model.setLastName(customer.getLastName());
-		model.setPostalcode(customer.getPostalcode());
-		model.setEMail(customer.getEmail());
-
-		view.init(model);
-		control.init(model, view);
-	}
-
-	/**
-	 * Setzt den aktuellen Wert des {@see Customer} Attributs dieses Dialogs.
-	 */
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
 }

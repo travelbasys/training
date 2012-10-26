@@ -16,7 +16,7 @@ public class CustomerFindDialog implements Dialog {
 	 * Initalisiert die MVC-Komponenten des Find-Dialoges.
 	 * 
 	 */
-	public void init() {
+	public CustomerFindDialog() {
 		model = new CustomerFindModel();
 		control = new CustomerFindControl();
 		view = new CustomerFindView();

@@ -52,8 +52,7 @@ public class YesNoView extends ArrayList<UiComponent> implements View {
 	 * Erzeugt einen Wert für die DecisionComponent Eigenschaft mit
 	 * Integer.class als Typ.
 	 */
-	@Override
-	public void init(Model model) {
+	public YesNoView(Model model) {
 		this.model = (YesNoModel) model;
 		customerDecisionComponent = new UiComponent();
 		customerDecisionComponent.setValue(this.model.getDecision());
