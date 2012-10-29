@@ -24,6 +24,12 @@ public class CustomerDAO {
 	private static List<Customer> found_customers = null;
 	private static Customer customer1;
 
+	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
+	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
+	// erscheint.
+	private CustomerDAO() {
+	}
+
 	/**
 	 * Diese Methode liest alle Customer-Ojekte aus der Datenbank aus und
 	 * schreibt diese in eine Temporäre Liste vom Typ Customer. Diese ist zur
@@ -83,7 +89,7 @@ public class CustomerDAO {
 	 * 
 	 * @return ein temporärer Klon eines vorhandenen Customers
 	 */
-	public static List<Customer> getCustomersClone() {
+	private static List<Customer> getCustomersClone() {
 		List<Customer> result = new ArrayList<Customer>();
 		for (Customer customer : customers) {
 			result.add(customer.clone());
@@ -96,9 +102,9 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode löscht ein Customer-Objekt aus der Datenbank. Anhand einer
-	 * customerid wird entschieden um welchen eintrag in der Datenbank es sich
-	 * handelt.
+	 * Diese Methode löscht ein Customer-Objekt aus der customers Liste. Anhand
+	 * einer customerid wird entschieden um welchen eintrag in der Datenbank es
+	 * sich handelt.
 	 * 
 	 * @param customerid
 	 *            (dieser Wert wird benötigt um bei verwendung dieser Methode
@@ -116,10 +122,11 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode ändert einen Customer der sich in der Datenbank befindet,
-	 * mit einem vorher festgelegtem Customer. Anhand der customerid wird
-	 * entschieden welcher eintrag der Datenbank geändert werden soll, um
-	 * anschließend die Daten anhand eines Customer-Objekts zu ändern.
+	 * Diese Methode ändert einen Customer der sich in der customers Liste
+	 * befindet. Mit einem vorher festgelegtem Customer, wird Anhand der
+	 * customerid entschieden welcher eintrag der customers Liste geändert
+	 * werden soll, um anschließend die Daten anhand eines Customer-Objekts zu
+	 * ändern.
 	 * 
 	 * @param customerid
 	 * @param customer
@@ -149,10 +156,10 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode sucht einen Customer in der Datenbank anhand seiner
+	 * Diese Methode sucht einen Customer in der customers Liste anhand seiner
 	 * customerid.
 	 * 
-	 * @param id
+	 * @param id "PRIMARY KEY" (Die eindeutige Ziffer die den Customer identifiziert)
 	 * @return eine Kopie dieses Customers wird anschließend zurückgegeben.
 	 */
 	public static List<Customer> findCustomerById(int id) {
@@ -174,10 +181,10 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode sucht in der Datenbank nach dem letzten Customer und gibt
+	 * Diese Methode sucht in der Customers Liste nach dem letzten Customer und gibt
 	 * dessen customerid zurück
 	 * 
-	 * @return
+	 * @return customerid "PRIMARY KEY" (Die eindeutige Ziffer die den Customer identifiziert)
 	 */
 	public static int getLastCustomerId() {
 		int customerid = 0;
@@ -188,7 +195,7 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode prüft ob ein Customer-Objekt bereits in der Datenbank
+	 * Diese Methode prüft ob ein Customer-Objekt bereits in der customers Liste
 	 * vorhanden ist. Wenn das Customer-Objekt bereits vorhanden ist dann wird
 	 * true zurückgegeben, wenn nicht dann false
 	 * 
