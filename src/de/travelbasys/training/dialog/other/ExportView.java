@@ -1,6 +1,11 @@
 package de.travelbasys.training.dialog.other;
 
-import de.travelbasys.training.util.AppContext;
+import java.util.ArrayList;
+
+import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.UiComponent;
+import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.Console;
 
 /**
@@ -9,37 +14,44 @@ import de.travelbasys.training.util.Console;
  * 
  * @autor tba
  */
-public class ExportView {
+public class ExportView extends ArrayList<UiComponent> implements View {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ExportModel model;
-	private ExportControl control;
-	String choice_str;
-	int choice = 0;
-	private String export_name;
+	private UiComponent customerDecisionComponent;
+	private UiComponent exportNameComponent;
 
-	public ExportView(ExportModel model, ExportControl control) {
-		super();
-		this.model = model;
-		this.control = control;
+	public ExportView(Model model) {
+		this.model = (ExportModel) model;
+		customerDecisionComponent = new UiComponent();
+		customerDecisionComponent.setType(Integer.class);
+		add(customerDecisionComponent);
+		exportNameComponent = new UiComponent();
+		exportNameComponent.setName("ExportName");
+		exportNameComponent.setType(String.class);
+		add(exportNameComponent);
+	}
+
+	public AbstractUiComponent getcustomerDecisionComponent() {
+		return customerDecisionComponent;
+	}
+
+	public AbstractUiComponent getExportNameComponent() {
+		return exportNameComponent;
 	}
 
 	public void run() {
-		do {
-			for (String s : model) {
-				Console.println(s);
-			}
-			choice_str = Console.nextLine();
-			model.setChoice(choice_str);
-			control.checkchoice();
-		} while (model.getCheck());
-	}
 
-	public void decision() {
-		do {
-			model.setCheckTrue();
-			AppContext.printMessage("ExportName");
-			export_name = Console.nextLine().trim();
-			control.checkname(export_name);
-		} while (model.getCheck());
+		for (String s : model) {
+			Console.println(s);
+		}
+		customerDecisionComponent.run2();
+		if (model.getEnd()) {
+			return;
+		}
+		exportNameComponent.run();
 	}
 }

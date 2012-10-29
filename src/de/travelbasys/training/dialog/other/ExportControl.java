@@ -1,6 +1,9 @@
 package de.travelbasys.training.dialog.other;
 
-import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.framework.AbstractControl;
+import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.View;
 
 /**
  * Diese Klasse Kontrolliert Benutzereingaben.
@@ -11,54 +14,45 @@ import de.travelbasys.training.util.AppContext;
 public class ExportControl {
 
 	private ExportModel model;
-	private int choice;
+	private ExportView view;
+	private String Export = "";
 
-	public ExportControl(ExportModel model) {
-		this.model = model;
-	}
+	public ExportControl(Model model, View view) {
+		this.model = (ExportModel) model;
+		this.view = (ExportView) view;
+		AbstractUiComponent uic;
 
-	public void checkchoice() {
-		String Export = "";
-		try {
-			choice = Integer.parseInt(model.getChoice());
-			if (choice >= 0 && choice <= 2) {
-				model.setCheckFalse();
-				switch (choice) {
+		uic = this.view.getcustomerDecisionComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				int intValue = (Integer) value;
+				switch (intValue) {
 				case 0:
-					model.setEndFlag();
-					model.setCheckFalse();
+					ExportControl.this.model.setEnd();
 					return;
 				case 1:
 					Export = "CSV";
-					model.setExportType(Export);
-					model.setHeader("CustomerID;LastName;FirstName;Age;Adress;Postalcode;eMail");
-					model.setCheckFalse();
-					return;
+					ExportControl.this.model.setExportType(Export);
+					ExportControl.this.model
+							.setHeader("CustomerID;LastName;FirstName;Age;Adress;Postalcode;eMail");
+					break;
 				case 2:
 					Export = "ACCESS";
-					model.setExportType(Export);
-					model.setHeader("");
-					model.setCheckFalse();
-					return;
-				default:
-					AppContext.printErrString("ChooseErr");
+					ExportControl.this.model.setExportType(Export);
+					ExportControl.this.model.setHeader("");
 					break;
+				default:
+					throw new Exception("ChooseErr");
 				}
-			} else {
-				AppContext.printErrString("ChooseErr");
 			}
-		} catch (Exception e) {
-			AppContext.printErrString("NumberErr");
-		}
+		});
+		uic = this.view.getExportNameComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				ExportControl.this.model.setExportName((String) value);
+			}
+		});
+
 	}
 
-	public void checkname(String export_name) {
-		if (!export_name.isEmpty()) {
-			model.setExportName(export_name);
-			model.setCheckFalse();
-			
-		} else {
-			AppContext.printErrString("NumberErr");
-		}		
-	}
 }

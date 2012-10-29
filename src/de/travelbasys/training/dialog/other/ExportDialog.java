@@ -17,35 +17,36 @@ public class ExportDialog implements Dialog {
 
 	private ExportModel model;
 	private ExportView view;
+	@SuppressWarnings("unused")
 	private ExportControl control;
 
-	public void run() {
+	public ExportDialog() {
 		model = new ExportModel();
-		control = new ExportControl(model);
-		view = new ExportView(model, control);
+		view = new ExportView(model);
+		control = new ExportControl(model, view);
+	}
+
+	@Override
+	public void run() {
 
 		// Here plays the music!
 		view.run();
-		if (model.getEndFlag()) {
-			return;}
-			view.decision();
-			try {
-				FileWriter fw = new FileWriter(model.getExportName() + "."
-						+ model.getExportType());
-				PrintWriter pw = new PrintWriter(fw);
-				pw.println(model.getHeader());
-				for (Customer user : CustomerDAO.getCustomers()) {
-					AppContext.println(user);
-					pw.println(user.toFormat(model.getExportType()));
-				}
-				AppContext.printMessage("ExportOK");
-				pw.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		if (model.getEnd()) {
+			return;
 		}
-	
+		try {
+			FileWriter fw = new FileWriter(model.getExportName() + "."
+					+ model.getExportType());
+			PrintWriter pw = new PrintWriter(fw);
+			pw.println(model.getHeader());
+			for (Customer customer : CustomerDAO.getCustomers()) {
+				AppContext.println(customer);
+				pw.println(customer.toFormat(model.getExportType()));
+			}
+			AppContext.printMessage("ExportOK");
+			pw.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
-
-// Do something with the input!
-
