@@ -35,11 +35,13 @@ public class CustomerDAO {
 
 		setFoundCustomers(new ArrayList<Customer>());
 		try {
-			for (Customer user : CustomerDAO.getCustomers()) {
-				if (user.getLastName().equals(lastname)
-						|| user.getLastName().toLowerCase().equals(lastname)
-						|| user.getLastName().toUpperCase().equals(lastname)) {
-					CustomerDAO.getFoundCustomers().add(user);
+			for (Customer customer : CustomerDAO.getCustomers()) {
+				if (customer.getLastName().equals(lastname)
+						|| customer.getLastName().toLowerCase()
+								.equals(lastname)
+						|| customer.getLastName().toUpperCase()
+								.equals(lastname)) {
+					CustomerDAO.getFoundCustomers().add(customer);
 				}
 			}
 			return CustomerDAO.getFoundCustomers();
@@ -69,9 +71,9 @@ public class CustomerDAO {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
 			@SuppressWarnings("unchecked")
-			List<Customer> user = (List<Customer>) ois.readObject();
+			List<Customer> customer = (List<Customer>) ois.readObject();
 			try {
-				setCustomers(new ArrayList<Customer>(user));
+				setCustomers(new ArrayList<Customer>(customer));
 			} catch (NullPointerException e) {
 				setCustomers(new ArrayList<Customer>());
 			}
@@ -100,7 +102,7 @@ public class CustomerDAO {
 
 	}
 
-	public static List<Customer> getCustomers() {
+	public static List<Customer> getCustomersClone() {
 		List<Customer> result = new ArrayList<Customer>();
 		for (Customer customer : customers) {
 			result.add(customer.clone());
@@ -108,11 +110,15 @@ public class CustomerDAO {
 		return result;
 	}
 
+	public static List<Customer> getCustomers() {
+		return customers;
+	}
+
 	public static void delUser(int customerid) {
 		try {
-			for (Customer user : CustomerDAO.getCustomers()) {
-				if (user.getId() == customerid) {
-					CustomerDAO.customers.remove(user);
+			for (Customer customer : CustomerDAO.getCustomers()) {
+				if (customer.getId() == customerid) {
+					CustomerDAO.customers.remove(customer);
 				}
 			}
 		} catch (Exception e) {
@@ -121,10 +127,9 @@ public class CustomerDAO {
 
 	public static void replaceUser(int customerid, Customer customer) {
 		try {
-			for (Customer user : CustomerDAO.getCustomers()) {
-				if (user.getId() == customerid) {
-					CustomerDAO.customers.set(CustomerDAO.customers.indexOf(user),
-							customer);
+			for (Customer customer1 : CustomerDAO.getCustomersClone()) {
+				if (customer1.getId() == customerid) {
+					CustomerDAO.customers.set(CustomerDAO.customers.indexOf(customer1), customer);
 				}
 			}
 		} catch (Exception e) {
@@ -162,11 +167,11 @@ public class CustomerDAO {
 	}
 
 	public static int getLastCustomerId() {
-		int userid = 0;
-		for (Customer user : getCustomers()) {
-			userid = user.getId();
+		int customerid = 0;
+		for (Customer customer : getCustomers()) {
+			customerid = customer.getId();
 		}
-		return userid;
+		return customerid;
 	}
-	
+
 }

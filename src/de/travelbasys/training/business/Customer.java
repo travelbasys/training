@@ -20,7 +20,7 @@ public class Customer implements Serializable, Cloneable {
 	private String firstname;
 	private String adress;
 	private String email;
-	private int userid;
+	private int customerid;
 	private int age;
 	private String postalcode;
 
@@ -40,11 +40,11 @@ public class Customer implements Serializable, Cloneable {
 	 * dann Spaces, dann Gruppe aus mindestens einer Ziffer, dann Spaces, dann
 	 * "]". Fertig.
 	 */
-	private static final String U = "\\s*User[(\\d+)]\\s*\\[\\s*lastname\\s*=\\s*(.+?)\\s*,\\s*firstname\\s*=\\s*(.+?)\\s*,\\s*age\\s*=\\s*(\\d+)\\s*\\,\\s*adress\\s*=\\s*(.+?)\\s*\\,\\s*postalcode\\s*=\\s*(.+?)\\s*\\,\\s*email\\s*=\\s*(.+?)\\s*\\]";
+	private static final String U = "\\s*Customer[(\\d+)]\\s*\\[\\s*lastname\\s*=\\s*(.+?)\\s*,\\s*firstname\\s*=\\s*(.+?)\\s*,\\s*age\\s*=\\s*(\\d+)\\s*\\,\\s*adress\\s*=\\s*(.+?)\\s*\\,\\s*postalcode\\s*=\\s*(.+?)\\s*\\,\\s*email\\s*=\\s*(.+?)\\s*\\]";
 	private static final String C = "(\\d+);(.+?);(.+?);(\\d+);(.+?);(.+?);(.+?)";
-	private static final Pattern USERPATTERN = Pattern.compile(U,
+	private static final Pattern CUSTOMERPATTERN = Pattern.compile(U,
 			Pattern.CASE_INSENSITIVE);
-	private static final Pattern USERPATTERNCSV = Pattern.compile(C,
+	private static final Pattern CUSTOMERPATTERNCSV = Pattern.compile(C,
 			Pattern.CASE_INSENSITIVE);
 
 	private static final String WRONG_SYNTAX = "Wrong syntax: ";
@@ -57,7 +57,7 @@ public class Customer implements Serializable, Cloneable {
 	 * Erzeugt ein neues User Objekt mit dem angegebenen Namen und dem
 	 * angegebenen Alter.
 	 * 
-	 * @param userid
+	 * @param customerid
 	 * 
 	 * @param name
 	 *            Name des Users.
@@ -69,10 +69,10 @@ public class Customer implements Serializable, Cloneable {
 	 * @param adress
 	 * @throws Exception
 	 */
-	public Customer(int userid, String lastname, String firstname, int age,
+	public Customer(int customerid, String lastname, String firstname, int age,
 			String adress, String postalcode, String email)
 			throws IllegalArgumentException {
-		this.userid = userid;
+		this.customerid = customerid;
 		setLastName(lastname);
 		setFirstName(firstname);
 		setAge(age);
@@ -99,8 +99,8 @@ public class Customer implements Serializable, Cloneable {
 	 *            Name des Users.
 	 * @throws IllegalArgumentException
 	 */
-	public Customer(int userid) throws IllegalArgumentException {
-		this(userid, DEFAULT_LASTNAME, DEFAULT_FIRSTNAME, DEFAULT_AGE,
+	public Customer(int customerid) throws IllegalArgumentException {
+		this(customerid, DEFAULT_LASTNAME, DEFAULT_FIRSTNAME, DEFAULT_AGE,
 				DEFAULT_ADRESS, DEFAULT_POSTALCODE, DEFAULT_EMAIL);
 	}
 
@@ -140,7 +140,7 @@ public class Customer implements Serializable, Cloneable {
 	}
 
 	public int getId() {
-		return userid;
+		return customerid;
 	}
 
 	public String getPostalcode() {
@@ -180,7 +180,7 @@ public class Customer implements Serializable, Cloneable {
 
 	@Override
 	public String toString() {
-		return "User[" + userid + "] " + "[lastname=" + lastname
+		return "Customer[" + customerid + "] " + "[lastname=" + lastname
 				+ ", firstname=" + firstname + ", age=" + age + ", adress="
 				+ adress + ", postalcode=" + postalcode + ", email=" + email
 				+ "]";
@@ -188,7 +188,7 @@ public class Customer implements Serializable, Cloneable {
 
 	public String toFormat(String Format){
 		if(Format == "CSV"){
-			return userid + ";" + lastname + ";" + firstname + ";" + age + ";" + adress + ";" + postalcode + ";" + email;
+			return customerid + ";" + lastname + ";" + firstname + ";" + age + ";" + adress + ";" + postalcode + ";" + email;
 
 		}
 		if(Format == "ACCESS"){
@@ -196,13 +196,21 @@ public class Customer implements Serializable, Cloneable {
 		return null;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((adress == null) ? 0 : adress.hashCode());
 		result = prime * result + age;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result
+				+ ((firstname == null) ? 0 : firstname.hashCode());
 		result = prime * result
 				+ ((lastname == null) ? 0 : lastname.hashCode());
+		result = prime * result
+				+ ((postalcode == null) ? 0 : postalcode.hashCode());
 		return result;
 	}
 
@@ -215,12 +223,32 @@ public class Customer implements Serializable, Cloneable {
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
+		if (adress == null) {
+			if (other.adress != null)
+				return false;
+		} else if (!adress.equals(other.adress))
+			return false;
 		if (age != other.age)
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (firstname == null) {
+			if (other.firstname != null)
+				return false;
+		} else if (!firstname.equals(other.firstname))
 			return false;
 		if (lastname == null) {
 			if (other.lastname != null)
 				return false;
 		} else if (!lastname.equals(other.lastname))
+			return false;
+		if (postalcode == null) {
+			if (other.postalcode != null)
+				return false;
+		} else if (!postalcode.equals(other.postalcode))
 			return false;
 		return true;
 	}
@@ -237,11 +265,11 @@ public class Customer implements Serializable, Cloneable {
 	 */
 
 	public static Customer parse(String s) {
-		Customer user = null;
+		Customer customer = null;
 
-		Matcher m = USERPATTERN.matcher(s);
+		Matcher m = CUSTOMERPATTERN.matcher(s);
 		if (m.matches()) {
-			user = new Customer(Integer.parseInt(m.group(1)), m.group(2),
+			customer = new Customer(Integer.parseInt(m.group(1)), m.group(2),
 					m.group(3), Integer.parseInt(m.group(4)), m.group(5),
 					m.group(6), m.group(7));
 		} else {
@@ -249,14 +277,14 @@ public class Customer implements Serializable, Cloneable {
 			throw new IllegalArgumentException(Customer.WRONG_SYNTAX + s);
 		}
 
-		return user;
+		return customer;
 	}
 
 	public static Customer parseCSV(String s) {
-		Customer user = null;
-		Matcher m = USERPATTERNCSV.matcher(s);
+		Customer customer = null;
+		Matcher m = CUSTOMERPATTERNCSV.matcher(s);
 		if (m.matches()) {
-			user = new Customer(Integer.parseInt(m.group(1)), m.group(2),
+			customer = new Customer(Integer.parseInt(m.group(1)), m.group(2),
 					m.group(3), Integer.parseInt(m.group(4)), m.group(5),
 					m.group(6), m.group(7));
 		} else {
@@ -264,11 +292,11 @@ public class Customer implements Serializable, Cloneable {
 			throw new IllegalArgumentException(Customer.WRONG_SYNTAX + s);
 		}
 
-		return user;
+		return customer;
 	}
 	
 	public Customer clone() {
-		return new Customer(userid, lastname, firstname, age, adress, postalcode, email);
+		return new Customer(customerid, lastname, firstname, age, adress, postalcode, email);
 	}
 
 	
