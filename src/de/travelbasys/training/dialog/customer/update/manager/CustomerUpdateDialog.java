@@ -59,7 +59,7 @@ public class CustomerUpdateDialog implements Dialog {
 			d3 = new YesNoDialog(KEY);
 			d3.run();
 			if (d3.isYes()) {
-				CustomerDAO.replaceUser(customerid, customer);
+				CustomerDAO.replaceCustomer(customerid, customer);
 			}
 		}
 

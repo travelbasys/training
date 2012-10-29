@@ -97,7 +97,7 @@ public class CustomerDAO {
 		}
 	}
 
-	public static void replaceUser(int customerid, Customer customer) {
+	public static void replaceCustomer(int customerid, Customer customer) {
 		try {
 			for (Customer customer1 : CustomerDAO.getCustomersClone()) {
 				if (customer1.getId() == customerid) {
