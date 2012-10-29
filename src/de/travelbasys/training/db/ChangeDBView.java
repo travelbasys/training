@@ -27,7 +27,7 @@ public class ChangeDBView extends ArrayList<UiComponent> implements View {
 
 		changeDBComponent = new UiComponent();
 		changeDBComponent.setName(CHANGEDB);
-		changeDBComponent.setValue(model.getDBkey());
+		changeDBComponent.setValue(model.getDBKey());
 		add(changeDBComponent);
 	}
 

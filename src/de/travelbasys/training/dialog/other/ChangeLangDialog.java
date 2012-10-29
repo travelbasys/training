@@ -1,6 +1,5 @@
 package de.travelbasys.training.dialog.other;
 
-import de.travelbasys.training.dialog.menu.MainMenuDialog;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.Config;
 
@@ -24,7 +23,6 @@ public class ChangeLangDialog implements Dialog {
 
 	@Override
 	public void run() {
-		MainMenuDialog d;
 
 		// Here plays the music!
 		view.run();
@@ -32,8 +30,10 @@ public class ChangeLangDialog implements Dialog {
 			return;
 		}
 		Config.updateLanguage(model.getLocale());
-		d = new MainMenuDialog();
-		d.run();
-
 	}
+
+	public String getLangKey() {
+		return model.getLangKey();
+	}
+	
 }

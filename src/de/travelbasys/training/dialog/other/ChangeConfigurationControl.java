@@ -1,7 +1,6 @@
 package de.travelbasys.training.dialog.other;
 
-import java.util.Locale;
-
+import de.travelbasys.training.db.ChangeDBSaveDialog;
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
@@ -13,14 +12,14 @@ import de.travelbasys.training.framework.View;
  * @author tba
  * 
  */
-public class ChangeLangControl {
+public class ChangeConfigurationControl {
 
-	private ChangeLangModel model;
-	private ChangeLangView view;
+	private ChangeConfigurationModel model;
+	private ChangeConfigurationView view;
 
-	public ChangeLangControl(Model model, View view) {
-		this.model = (ChangeLangModel) model;
-		this.view = (ChangeLangView) view;
+	public ChangeConfigurationControl(Model model, View view) {
+		this.model = (ChangeConfigurationModel) model;
+		this.view = (ChangeConfigurationView) view;
 		AbstractUiComponent uic;
 
 		uic = this.view.getcustomerDecisionComponent();
@@ -29,16 +28,15 @@ public class ChangeLangControl {
 				int intValue = (Integer) value;
 				switch (intValue) {
 				case 0:
-					ChangeLangControl.this.model.setEnd();
-					ChangeLangControl.this.model.setLocale(Locale.getDefault());
+					ChangeConfigurationControl.this.model.setEnd();
 					return;
 				case 1:
-					ChangeLangControl.this.model.setLocale(new Locale("en"));
-
+					ChangeConfigurationControl.this.model
+							.setDialog(new ChangeLangSaveDialog());
 					break;
 				case 2:
-					ChangeLangControl.this.model.setLocale(new Locale("de"));
-
+					ChangeConfigurationControl.this.model
+							.setDialog(new ChangeDBSaveDialog());
 					break;
 				default:
 					throw new Exception("ChooseErrComp");

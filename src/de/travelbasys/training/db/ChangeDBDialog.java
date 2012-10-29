@@ -29,11 +29,11 @@ public class ChangeDBDialog implements Dialog {
 		control = new ChangeDBControl(model, view);
 		view.run();
 
-		String db = model.getDBkey();
+		String db = model.getDBKey();
 		CustomerDAO.terminate();
 		CustomerDAO.init(db);
 	}
-	public ChangeDBModel getModel(){
-		return model;
+	public String getDBKey(){
+		return model.getDBKey();
 	}
 }

@@ -12,14 +12,14 @@ import java.util.Properties;
  * @author tba
  */
 
-public class ChangeSaveDBDialog extends ChangeDBDialog {
+public class ChangeDBSaveDialog extends ChangeDBDialog {
 
 	public void run() {
 		super.run();
 		try {
 			Properties config = new Properties();
 			config.load(new FileInputStream(ini));
-			config.setProperty(DATABASE_KEY, getModel().getDBkey());
+			config.setProperty(DATABASE_KEY, getDBKey());
 			config.store(new FileOutputStream(ini),
 					"Travelbasys User Manager - Properties");
 		} catch (Exception e) {

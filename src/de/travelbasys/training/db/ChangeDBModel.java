@@ -17,7 +17,7 @@ public class ChangeDBModel extends ArrayList<String> implements Model {
 	private static final long serialVersionUID = 1L;
 	private String DBkey = "";
 
-	public String getDBkey() {
+	public String getDBKey() {
 		return DBkey;
 	}
 

@@ -1,33 +1,33 @@
 package de.travelbasys.training.dialog.other;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
+import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * erzeugt eine Instanz der Klasse ChangeLangDialog und verwaltet Strings für
+ * erzeugt eine Instanz der Klasse ChangeConfigurationDialog und verwaltet Strings für
  * Ausgaben.
  */
-public class ChangeLangModel extends ArrayList<String> implements Model {
+public class ChangeConfigurationModel extends ArrayList<String> implements Model {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private boolean end = false;
-	private Locale locale;
+	Dialog d;
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
 	 */
-	public ChangeLangModel() {
+	public ChangeConfigurationModel() {
 		super();
 		add(AppContext.getMessage("Choose"));
 		add(AppContext.getMessage("Back"));
-		add(AppContext.getMessage("Lang1"));
-		add(AppContext.getMessage("Lang2"));
+		add(AppContext.getMessage("Param1"));
+		add(AppContext.getMessage("Param2"));
 	}
 
 	public void setEnd() {
@@ -38,15 +38,11 @@ public class ChangeLangModel extends ArrayList<String> implements Model {
 		return end;
 	}
 
-	public Locale getLocale() {
-		return locale;
+	public Dialog getDialog() {
+		return d;
 	}
 
-	public String getLangKey() {
-		return Locale.getDefault().toString();
-	}
-
-	public void setLocale(Locale locale) {
-		this.locale = locale;
+	public void setDialog(Dialog d) {
+		this.d = d;
 	}
 }

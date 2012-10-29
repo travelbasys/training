@@ -8,32 +8,33 @@ import de.travelbasys.training.framework.Dialog;
  * 
  * @author tba
  **/
-public class ChangeParamDialog implements Dialog {
+public class ChangeConfigurationDialog implements Dialog {
 
-	private ChangeParamModel model;
-	private ChangeParamView view;
+	private ChangeConfigurationModel model;
+	private ChangeConfigurationView view;
 	@SuppressWarnings("unused")
-	private ChangeParamControl control;
+	private ChangeConfigurationControl control;
 
-	public ChangeParamDialog() {
-		model = new ChangeParamModel();
-		view = new ChangeParamView(model);
-		control = new ChangeParamControl(model, view);
+	public ChangeConfigurationDialog() {
+		model = new ChangeConfigurationModel();
+		view = new ChangeConfigurationView(model);
+		control = new ChangeConfigurationControl(model, view);
 	}
 
 	@Override
 	public void run() {
+		Dialog d = null;
 		// Here plays the music!
 		view.run();
 		if (model.getEnd()) {
 			return;
 		}
 		try {
-			Dialog d = model.getDialog();
+			d = model.getDialog();
 			d.run();
 		} catch (NullPointerException e) {
 		}
 		MainMenuDialog d2 = new MainMenuDialog();
 		d2.run();
-	}
+		}
 }
