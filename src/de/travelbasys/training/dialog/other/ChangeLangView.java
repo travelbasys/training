@@ -1,34 +1,47 @@
 package de.travelbasys.training.dialog.other;
 
+import java.util.ArrayList;
+
+import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.UiComponent;
+import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.Console;
 
-public class ChangeLangView {
+/**
+ * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für das
+ * changelangieren der Datenbank abzufragen.
+ * 
+ * @autor tba
+ */
+public class ChangeLangView extends ArrayList<UiComponent> implements View {
 
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 1L;
 	private ChangeLangModel model;
-	private ChangeLangControl control;
-	String choice_str = "";
+	private UiComponent customerDecisionComponent;
 
-	public ChangeLangView(ChangeLangModel model, ChangeLangControl control) {
-		super();
-		this.model = model;
-		this.control = control;
+	public ChangeLangView(Model model) {
+		this.model = (ChangeLangModel) model;
+		customerDecisionComponent = new UiComponent();
+		customerDecisionComponent.setType(Integer.class);
+		add(customerDecisionComponent);
+	}
+
+	public AbstractUiComponent getcustomerDecisionComponent() {
+		return customerDecisionComponent;
 	}
 
 	public void run() {
-		do {
-			for (String s : model) {
-				Console.println(s);
-			}
-			choice_str = Console.nextLine();
-			model.setChoice(choice_str);
-			control.checkchoice();
-		} while (model.getCheck());
-	}
 
-	public void print(String abort) {
-Console.println(abort);		
+		for (String s : model) {
+			Console.println(s);
+		}
+		customerDecisionComponent.run2();
+		if (model.getEnd()) {
+			return;
+		}
 	}
 }

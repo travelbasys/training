@@ -2,7 +2,10 @@ package de.travelbasys.training.dialog.other;
 
 import java.util.Locale;
 
-import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.framework.AbstractControl;
+import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.View;
 
 /**
  * Diese Klasse Kontrolliert Benutzereingaben.
@@ -13,41 +16,37 @@ import de.travelbasys.training.util.AppContext;
 public class ChangeLangControl {
 
 	private ChangeLangModel model;
-	int choice;
+	private ChangeLangView view;
 
-	public ChangeLangControl(ChangeLangModel model) {
-		this.model = model;
-	}
+	public ChangeLangControl(Model model, View view) {
+		this.model = (ChangeLangModel) model;
+		this.view = (ChangeLangView) view;
+		AbstractUiComponent uic;
 
-	public void checkchoice() {
-		try {
-			choice = Integer.parseInt(model.getChoice());
-			if (choice >= 0 && choice <= 2) {
-				switch (choice) {
+		uic = this.view.getcustomerDecisionComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				int intValue = (Integer) value;
+				switch (intValue) {
 				case 0:
-					model.setEndFlag();
-					model.setLocale(Locale.getDefault());
-					model.setCheckFalse();
+					ChangeLangControl.this.model.setEnd();
+					ChangeLangControl.this.model.setLocale(Locale.getDefault());
+
 					return;
 				case 1:
-					model.setLocale(new Locale("en"));
-					model.setCheckFalse();
-					return;
-				case 2:
-					model.setLocale(new Locale("de"));
-					model.setCheckFalse();
-					return;
-				default:
-					AppContext.printErrString("ChooseErr");
+					ChangeLangControl.this.model.setLocale(new Locale("en"));
+
 					break;
+				case 2:
+					ChangeLangControl.this.model.setLocale(new Locale("de"));
+
+					break;
+				default:
+					throw new Exception("ChooseErrComp");
 				}
-			} else {
-				AppContext.printErrString("ChooseErr");
-				model.setLocale(Locale.getDefault());
 			}
-		} catch (Exception e) {
-			AppContext.printErrString("NumberErr");
-			model.setLocale(Locale.getDefault());
-		}
+		});
+
 	}
+
 }
