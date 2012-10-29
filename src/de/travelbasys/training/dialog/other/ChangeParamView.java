@@ -1,38 +1,47 @@
 package de.travelbasys.training.dialog.other;
 
+import java.util.ArrayList;
+
+import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.UiComponent;
+import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.Console;
 
 /**
  * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für das
- * ändern der aktuellen Sprche abzufragen.
- * @param <ChangeParamControl>
+ * changeparamieren der Datenbank abzufragen.
+ * 
  * @autor tba
  */
-public class ChangeParamView {
+public class ChangeParamView extends ArrayList<UiComponent> implements View {
 
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 1L;
 	private ChangeParamModel model;
-	private ChangeParamControl control;
-	String choice_str;
-	int choice = 0;
+	private UiComponent customerDecisionComponent;
 
-	public ChangeParamView(ChangeParamModel model, ChangeParamControl control) {
-		super();
-		this.model = model;
-		this.control = control;
+	public ChangeParamView(Model model) {
+		this.model = (ChangeParamModel) model;
+		customerDecisionComponent = new UiComponent();
+		customerDecisionComponent.setType(Integer.class);
+		add(customerDecisionComponent);
 	}
 
-		public void run() {
-			do{
-				for (String s : model) {
-					Console.println(s);
-				}
-				choice_str = Console.nextLine();
-				model.setChoice(choice_str);
-				control.checkchoice();
-			}while(model.isCheck());
+	public AbstractUiComponent getcustomerDecisionComponent() {
+		return customerDecisionComponent;
+	}
+
+	public void run() {
+
+		for (String s : model) {
+			Console.println(s);
+		}
+		customerDecisionComponent.run2();
+		if (model.getEnd()) {
+			return;
 		}
 	}
-
+}

@@ -42,7 +42,7 @@ public class ImportControl {
 					ImportControl.this.model.setHeader("");
 					break;
 				default:
-					throw new Exception("ChooseErr");
+					throw new Exception("ChooseErrComp");
 				}
 			}
 		});

@@ -1,7 +1,10 @@
 package de.travelbasys.training.dialog.other;
 
 import de.travelbasys.training.db.ChangeDBDialog;
-import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.framework.AbstractControl;
+import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.View;
 
 /**
  * Diese Klasse Kontrolliert Benutzereingaben.
@@ -12,41 +15,35 @@ import de.travelbasys.training.util.AppContext;
 public class ChangeParamControl {
 
 	private ChangeParamModel model;
-	private int choice;
+	private ChangeParamView view;
 
-	public ChangeParamControl(ChangeParamModel model) {
-		this.model = model;
-	}
+	public ChangeParamControl(Model model, View view) {
+		this.model = (ChangeParamModel) model;
+		this.view = (ChangeParamView) view;
+		AbstractUiComponent uic;
 
-	public void checkchoice() {
-		try {
-			choice = Integer.parseInt(model.getChoice());
-			if (choice >= 0 && choice <= 2) {
-				switch (choice) {
+		uic = this.view.getcustomerDecisionComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				int intValue = (Integer) value;
+				switch (intValue) {
 				case 0:
-					model.setEndFlag();
-					model.setCheckFalse();
+					ChangeParamControl.this.model.setEnd();
 					return;
 				case 1:
-					model.setDialog(new ChangeLangDialog());
-					model.setCheckFalse();
-					return;
-				case 2:
-					model.setDialog(new ChangeDBDialog());
-					model.setCheckFalse();
-					return;
-				default:
-					AppContext.printErrString("ChooseErr");
-					model.setCheckTrue();
+					ChangeParamControl.this.model
+							.setDialog(new ChangeLangDialog());
 					break;
+				case 2:
+					ChangeParamControl.this.model
+							.setDialog(new ChangeDBDialog());
+					break;
+				default:
+					throw new Exception("ChooseErrComp");
 				}
-			} else {
-				AppContext.printErrString("ChooseErr");
-				model.setCheckTrue();
 			}
-		} catch (Exception e) {
-			AppContext.printErrString("NumberErr");
-			model.setCheckTrue();
-		}
+		});
+
 	}
+
 }

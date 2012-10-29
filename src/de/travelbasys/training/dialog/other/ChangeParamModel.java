@@ -3,23 +3,21 @@ package de.travelbasys.training.dialog.other;
 import java.util.ArrayList;
 
 import de.travelbasys.training.framework.Dialog;
+import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
 /**
  * erzeugt eine Instanz der Klasse ChangeParamDialog und verwaltet Strings für
  * Ausgaben.
  */
-
-public class ChangeParamModel extends ArrayList<String> {
+public class ChangeParamModel extends ArrayList<String> implements Model {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String choice;
-	private boolean check;
-	private Dialog d;
-	private boolean EndFlag = false;
+	private boolean end = false;
+	Dialog d;
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
@@ -32,24 +30,12 @@ public class ChangeParamModel extends ArrayList<String> {
 		add(AppContext.getMessage("Param2"));
 	}
 
-	public String getChoice() {
-		return choice;
+	public void setEnd() {
+		end = true;
 	}
 
-	public void setChoice(String choice_str) {
-		this.choice = choice_str;
-	}
-
-	public boolean isCheck() {
-		return check;
-	}
-
-	public void setCheckFalse() {
-		check = false;
-	}
-
-	public void setCheckTrue() {
-		check = true;
+	public boolean getEnd() {
+		return end;
 	}
 
 	public Dialog getDialog() {
@@ -58,13 +44,5 @@ public class ChangeParamModel extends ArrayList<String> {
 
 	public void setDialog(Dialog d) {
 		this.d = d;
-	}
-
-	public boolean getEndFlag() {
-		return EndFlag;
-	}
-
-	public void setEndFlag() {
-		EndFlag = true;
 	}
 }
