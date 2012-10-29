@@ -29,7 +29,8 @@ public class CustomerDAO {
 	 * schreibt diese in eine Temporäre Liste vom Typ Customer. Diese ist zur
 	 * verwendung während der ganzen Laufzeit des Programms gedacht.
 	 * 
-	 * @param db (der Name der Datenbank)
+	 * @param db
+	 *            (der Name der Datenbank)
 	 */
 	public static void init(String db) {
 		FILE = db;

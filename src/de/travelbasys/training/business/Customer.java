@@ -32,9 +32,9 @@ public class Customer implements Serializable, Cloneable {
 	private static final String DEFAULT_POSTALCODE = "default";
 
 	/*
-	 * User [name=xxx, age=nnn] oder: User[ name = xxx , age = nnn ]
+	 * Customer [name=xxx, age=nnn] oder: Customer[ name = xxx , age = nnn ]
 	 * 
-	 * User, dann Spaces, dann "[", dann Spaces, dann "name", dann Spaces, dann
+	 * Customer, dann Spaces, dann "[", dann Spaces, dann "name", dann Spaces, dann
 	 * "=", dann Spaces, dann Gruppe aus mindestens einem Zeichen non-greedy,
 	 * dann Spaces, dann Kommata, dann Spaces, dann age, dann Spaces, dann "=",
 	 * dann Spaces, dann Gruppe aus mindestens einer Ziffer, dann Spaces, dann
@@ -54,16 +54,16 @@ public class Customer implements Serializable, Cloneable {
 	private static final String AGE_ERROR = "Wrong age: ";
 
 	/**
-	 * Erzeugt ein neues User Objekt mit dem angegebenen Namen und dem
+	 * Erzeugt ein neues Customer Objekt mit dem angegebenen Namen und dem
 	 * angegebenen Alter.
 	 * 
 	 * @param customerid
 	 * 
 	 * @param name
-	 *            Name des Users.
+	 *            Name des Customers.
 	 * @param firstname
 	 * @param age
-	 *            Alter des Users.
+	 *            Alter des Customers.
 	 * @param email
 	 * @param postalcode
 	 * @param adress
@@ -92,11 +92,11 @@ public class Customer implements Serializable, Cloneable {
 	}
 
 	/**
-	 * Erzeugt ein neues User Objekt mit dem angegebenen Namen und einem default
+	 * Erzeugt ein neues Customer Objekt mit dem angegebenen Namen und einem default
 	 * Alter (derzeit 15).
 	 * 
 	 * @param name
-	 *            Name des Users.
+	 *            Name des Customers.
 	 * @throws IllegalArgumentException
 	 */
 	public Customer(int customerid) throws IllegalArgumentException {
@@ -105,7 +105,7 @@ public class Customer implements Serializable, Cloneable {
 	}
 
 	/**
-	 * Erzeugt ein neues User Objekt mit einem default Namen und dem default
+	 * Erzeugt ein neues Customer Objekt mit einem default Namen und dem default
 	 * Alter.
 	 * 
 	 * @throws IllegalArgumentException
@@ -250,13 +250,13 @@ public class Customer implements Serializable, Cloneable {
 
 	/**
 	 * Liest einen String ein und zerlegt ihn in Name und Alter-Gruppe.
-	 * Anschlieﬂend werden die Daten in ein User-Objekt geschrieben. Bei
+	 * Anschlieﬂend werden die Daten in ein Customer-Objekt geschrieben. Bei
 	 * falscher Syntax wird eine Exception ausgeworfen. Die Syntax ist als
 	 * globale Variable festgelegt.
 	 * 
 	 * @param s
 	 *            der Wert des eingelesenen Strings
-	 * @return der Wert des User-Objekts
+	 * @return der Wert des Customer-Objekts
 	 */
 
 	public static Customer parse(String s) {
@@ -268,7 +268,7 @@ public class Customer implements Serializable, Cloneable {
 					m.group(3), Integer.parseInt(m.group(4)), m.group(5),
 					m.group(6), m.group(7));
 		} else {
-			// Falsche Syntax: kein User.
+			// Falsche Syntax: kein Customer.
 			throw new IllegalArgumentException(Customer.WRONG_SYNTAX + s);
 		}
 
@@ -283,7 +283,7 @@ public class Customer implements Serializable, Cloneable {
 					m.group(3), Integer.parseInt(m.group(4)), m.group(5),
 					m.group(6), m.group(7));
 		} else {
-			// Falsche Syntax: kein User.
+			// Falsche Syntax: kein Customer.
 			throw new IllegalArgumentException(Customer.WRONG_SYNTAX + s);
 		}
 
