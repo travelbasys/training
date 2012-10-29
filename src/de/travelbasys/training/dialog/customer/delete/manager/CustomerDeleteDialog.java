@@ -40,7 +40,7 @@ public class CustomerDeleteDialog implements Dialog {
 			int customerid = d1.getCustomerID();
 			boolean success;
 			try {
-				CustomerDAO.delUser(customerid);
+				CustomerDAO.delCustomer(customerid);
 				success = true;
 			} catch (Exception e) {
 				success = false;

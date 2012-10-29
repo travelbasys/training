@@ -86,7 +86,7 @@ public class CustomerDAO {
 		return customers;
 	}
 
-	public static void delUser(int customerid) {
+	public static void delCustomer(int customerid) {
 		try {
 			for (Customer customer : CustomerDAO.getCustomers()) {
 				if (customer.getId() == customerid) {
