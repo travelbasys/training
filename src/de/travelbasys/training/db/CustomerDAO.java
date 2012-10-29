@@ -23,6 +23,7 @@ public class CustomerDAO {
 	private static String FILE;
 	private static List<Customer> customers = null;
 	private static List<Customer> found_customers = null;
+	private static Customer customer1;
 
 	/**
 	 * Finde einen User in der Datenbank mit dem gegebenen Namen.
@@ -129,7 +130,8 @@ public class CustomerDAO {
 		try {
 			for (Customer customer1 : CustomerDAO.getCustomersClone()) {
 				if (customer1.getId() == customerid) {
-					CustomerDAO.customers.set(CustomerDAO.customers.indexOf(customer1), customer);
+					CustomerDAO.customers.set(
+							CustomerDAO.customers.indexOf(customer1), customer);
 				}
 			}
 		} catch (Exception e) {
@@ -172,6 +174,23 @@ public class CustomerDAO {
 			customerid = customer.getId();
 		}
 		return customerid;
+	}
+
+	public static boolean checkExistenceOfCustomer(Customer customer) {
+		
+		for (Customer customertemp : CustomerDAO.getCustomers()) {
+			if (customertemp.equals(customer)) {
+				System.err.println("Customer already exists: " + customertemp);
+				customer1 = customertemp;
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	public static Customer getExistentCustomer() {
+		return customer1;
 	}
 
 }

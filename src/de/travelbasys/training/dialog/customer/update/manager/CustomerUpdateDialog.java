@@ -12,21 +12,25 @@ import de.travelbasys.training.framework.Dialog;
  * Der Dialog kann optional auch ohne Änderung beendet werden.
  * 
  * <ol>
- * 	<li>{@see CustomerFindDialog} findet ein {@see Customer} Objekt.
- * 	<li>{@see ShowAndChangeDialog} gibt {@see Customer} Objekt aus und lässt seine Attribute ändern.
- * 	<li>{@see YesNoDialog} fragt ob {@see Customer} in die Datenbank geschrieben werden soll.
+ * <li>{@see CustomerFindDialog} findet ein {@see Customer} Objekt.
+ * <li>{@see ShowAndChangeDialog} gibt {@see Customer} Objekt aus und lässt
+ * seine Attribute ändern.
+ * <li>{@see YesNoDialog} fragt ob {@see Customer} in die Datenbank geschrieben
+ * werden soll.
  * </ol>
  */
 public class CustomerUpdateDialog implements Dialog {
 
-	private static final String KEY = "SaveQ";
+	private static String KEY;
+	private int customerid;
 
 	/**
 	 * führt den Dialog aus.
 	 */
 	@Override
 	public void run() {
-		//Find
+		YesNoDialog d3;
+		// Find
 		CustomerFindDialog d1 = new CustomerFindDialog();
 		d1.run();
 
@@ -34,18 +38,32 @@ public class CustomerUpdateDialog implements Dialog {
 		if (customer == null) {
 			return;
 		}
-		
 		// Show and Change
-		CustomerAttributesUpdateDialog d2 = new CustomerAttributesUpdateDialog(customer);
+		CustomerAttributesUpdateDialog d2 = new CustomerAttributesUpdateDialog(
+				customer);
 		d2.run();
 
-		// Yes or No
-		YesNoDialog d3 = new YesNoDialog(KEY);
-		d3.run();
+		do {
+			// User already exists.
+			if (CustomerDAO.checkExistenceOfCustomer(customer)) {
+				customerid = CustomerDAO.getExistentCustomer().getId();
+				KEY = "ExistQ";
+				d3 = new YesNoDialog(KEY);
+				d3.run();
+				if (d3.isYes()) {
+					CustomerDAO.delUser(customer.getId());
+				}
+				break;
+			}
+			// Yes or No
+			customerid = customer.getId();
+			KEY = "SaveQ";
+			d3 = new YesNoDialog(KEY);
+			d3.run();
+			break;
+		} while (true);
 
-		if (d3.isYes() == true) {
-			// Replace customer
-			int customerid = customer.getId();
+		if (d3.isYes()) {
 			CustomerDAO.replaceUser(customerid, customer);
 		}
 

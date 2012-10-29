@@ -230,11 +230,6 @@ public class Customer implements Serializable, Cloneable {
 			return false;
 		if (age != other.age)
 			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
 		if (firstname == null) {
 			if (other.firstname != null)
 				return false;
@@ -298,6 +293,4 @@ public class Customer implements Serializable, Cloneable {
 	public Customer clone() {
 		return new Customer(customerid, lastname, firstname, age, adress, postalcode, email);
 	}
-
-	
 }
