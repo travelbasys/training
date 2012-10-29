@@ -31,7 +31,7 @@ public class ExportControl {
 				case 1:
 					Export = "CSV";
 					model.setExportType(Export);
-					model.setHeader("UserID;LastName;FirstName;Age;Adress;Postalcode;eMail");
+					model.setHeader("CustomerID;LastName;FirstName;Age;Adress;Postalcode;eMail");
 					model.setCheckFalse();
 					return;
 				case 2:

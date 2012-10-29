@@ -32,8 +32,8 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 	private int index;
 
 	/**
-	 * erzeugt eine Instanz des Dialoges und speichert das gegebene
-	 * {@see Customer} Objekt.
+	 * erzeugt eine Instanz des Dialoges und speichert das gegebene {@see
+	 * Customer} Objekt.
 	 * 
 	 * @param customer
 	 */
@@ -48,9 +48,9 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 		model.setLastName(customer.getLastName());
 		model.setPostalcode(customer.getPostalcode());
 		model.setEMail(customer.getEmail());
-		
+
 		view = new CustomerAttributesUpdateView(model);
-		control = new CustomerAttributesUpdateControl(model,view);
+		control = new CustomerAttributesUpdateControl(model, view);
 	}
 
 	/**
@@ -71,6 +71,8 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 				return;
 			}
 
+			//model.initDirtyFlag();
+
 			// Ausgewähltes Attribut ändern.
 			// Der Wert von Index ist 0 für "Beenden" und 1 bis 6 für
 			// das zu ändernde Attribut.
@@ -88,5 +90,8 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 			customer.setPostalcode(model.getPostalcode());
 			customer.setEMail(model.getEMail());
 		} while (true);
+	}
+	public boolean getDirtyFlag(){
+		return model.getDirtyFlag();
 	}
 }

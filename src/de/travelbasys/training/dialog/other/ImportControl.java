@@ -34,7 +34,7 @@ public class ImportControl {
 					Import = "CSV";
 					ImportControl.this.model.setImportType(Import);
 					ImportControl.this.model
-							.setHeader("UserID;LastName;FirstName;Age;Adress;Postalcode;eMail");
+							.setHeader("CustomerID;LastName;FirstName;Age;Adress;Postalcode;eMail");
 					break;
 				case 2:
 					Import = "ACCESS";

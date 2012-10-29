@@ -6,6 +6,8 @@ import de.travelbasys.training.dialog.customer.common.find.CustomerFindDialog;
 import de.travelbasys.training.dialog.customer.common.yesno.YesNoDialog;
 import de.travelbasys.training.dialog.customer.update.attributes.CustomerAttributesUpdateDialog;
 import de.travelbasys.training.framework.Dialog;
+import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.util.Console;
 
 /**
  * hat die Aufgabe ein vorhandenes Customer Objekt aus der Datenbank zu ändern.
@@ -43,28 +45,22 @@ public class CustomerUpdateDialog implements Dialog {
 				customer);
 		d2.run();
 
-		do {
+		if (d2.getDirtyFlag()) {
 			// User already exists.
 			if (CustomerDAO.checkExistenceOfCustomer(customer)) {
-				customerid = CustomerDAO.getExistentCustomer().getId();
-				KEY = "ExistQ";
-				d3 = new YesNoDialog(KEY);
-				d3.run();
-				if (d3.isYes()) {
-					CustomerDAO.delUser(customer.getId());
-				}
-				break;
+				Console.printerr(AppContext.getMessage("ExistErr")
+						+ CustomerDAO.getExistentCustomer());
+				return;
+
 			}
-			// Yes or No
 			customerid = customer.getId();
+			// Yes or No
 			KEY = "SaveQ";
 			d3 = new YesNoDialog(KEY);
 			d3.run();
-			break;
-		} while (true);
-
-		if (d3.isYes()) {
-			CustomerDAO.replaceUser(customerid, customer);
+			if (d3.isYes()) {
+				CustomerDAO.replaceUser(customerid, customer);
+			}
 		}
 
 	}

@@ -14,6 +14,7 @@ public class CustomerAttributesUpdateModel implements Model {
 	private String adress;
 	private String postalcode;
 	private String eMail;
+	private boolean dirtyflag = false;
 
 	private int componentIndex;
 
@@ -71,6 +72,14 @@ public class CustomerAttributesUpdateModel implements Model {
 
 	public void setComponentIndex(int componentIndex) {
 		this.componentIndex = componentIndex;
+	}
+
+	public void setDirtyFlag() {
+		dirtyflag = true;
+	}
+
+	public boolean getDirtyFlag() {
+		return dirtyflag;
 	}
 
 }

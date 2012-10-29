@@ -26,35 +26,6 @@ public class CustomerDAO {
 	private static Customer customer1;
 
 	/**
-	 * Finde einen User in der Datenbank mit dem gegebenen Namen.
-	 * 
-	 * @param lastname
-	 *            der gegebene Name.
-	 * @return ein User Objekt oder null, wenn nicht gefunden.
-	 */
-	public static List<Customer> findUserByLastName(String lastname) {
-
-		setFoundCustomers(new ArrayList<Customer>());
-		try {
-			for (Customer customer : CustomerDAO.getCustomers()) {
-				if (customer.getLastName().equals(lastname)
-						|| customer.getLastName().toLowerCase()
-								.equals(lastname)
-						|| customer.getLastName().toUpperCase()
-								.equals(lastname)) {
-					CustomerDAO.getFoundCustomers().add(customer);
-				}
-			}
-			return CustomerDAO.getFoundCustomers();
-		} catch (NullPointerException e) {
-			setCustomers(new ArrayList<Customer>());
-			findUserByLastName(lastname);
-		}
-
-		return null;
-	}
-
-	/**
 	 * Überspringe den User in der Datenbank, dessen Namen mit dem Namen des
 	 * gegebenen User Objekts übereinstimmt. Lösche dann die Datenbank und lege
 	 * sie neu an in die der übersprungene User nicht gespeichert wird.
@@ -177,10 +148,9 @@ public class CustomerDAO {
 	}
 
 	public static boolean checkExistenceOfCustomer(Customer customer) {
-		
+
 		for (Customer customertemp : CustomerDAO.getCustomers()) {
 			if (customertemp.equals(customer)) {
-				System.err.println("Customer already exists: " + customertemp);
 				customer1 = customertemp;
 				return true;
 			}

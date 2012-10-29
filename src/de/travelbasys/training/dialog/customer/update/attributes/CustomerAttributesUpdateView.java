@@ -109,6 +109,7 @@ public class CustomerAttributesUpdateView extends ArrayList<UiComponent>
 		try {
 			UiComponent uic = get(model.getComponentIndex());
 			uic.run();
+			model.setDirtyFlag();
 		} catch (IndexOutOfBoundsException e) {
 			AppContext.printErrString("ChooseErr");
 			return;
