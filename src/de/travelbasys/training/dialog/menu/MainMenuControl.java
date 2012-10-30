@@ -2,8 +2,8 @@ package de.travelbasys.training.dialog.menu;
 
 import de.travelbasys.training.dialog.customer.create.CustomerCreateDialog;
 import de.travelbasys.training.dialog.customer.delete.manager.CustomerDeleteDialog;
-import de.travelbasys.training.dialog.customer.list.CustomerList;
-import de.travelbasys.training.dialog.customer.show.manager.CustomerShowDialog;
+import de.travelbasys.training.dialog.customer.list.CustomerListDialog;
+import de.travelbasys.training.dialog.customer.show.CustomerShowDialog;
 import de.travelbasys.training.dialog.customer.update.manager.CustomerUpdateDialog;
 import de.travelbasys.training.dialog.other.configuration.manager.ChangeConfigurationDialog;
 import de.travelbasys.training.dialog.other.exporting.ExportDialog;
@@ -55,7 +55,7 @@ public class MainMenuControl extends Application {
 							.setDialog(new CustomerDeleteDialog());
 					break;
 				case 5:
-					MainMenuControl.this.model.setDialog(new CustomerList());
+					MainMenuControl.this.model.setDialog(new CustomerListDialog());
 					break;
 				case 6:
 					MainMenuControl.this.model.setDialog(new ExportDialog());

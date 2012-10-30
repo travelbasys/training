@@ -12,7 +12,7 @@ import de.travelbasys.training.util.AppContext;
  * @author tba
  * 
  */
-public class CustomerList implements Dialog {
+public class CustomerListDialog implements Dialog {
 
 	public void run() {
 		for (Customer customer : CustomerDAO.findAll()) {

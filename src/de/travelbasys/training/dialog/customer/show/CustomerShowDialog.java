@@ -1,8 +1,8 @@
-package de.travelbasys.training.dialog.customer.show.manager;
+package de.travelbasys.training.dialog.customer.show;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dialog.customer.common.find.CustomerFindDialog;
-import de.travelbasys.training.dialog.customer.common.show1.CustomerShow1Dialog;
+import de.travelbasys.training.dialog.customer.common.print.CustomerPrintDialog;
 import de.travelbasys.training.framework.Dialog;
 
 /**
@@ -18,7 +18,7 @@ public class CustomerShowDialog implements Dialog {
 
 		Customer customer = d1.getCustomer();
 
-		CustomerShow1Dialog d2 = new CustomerShow1Dialog(customer);
+		CustomerPrintDialog d2 = new CustomerPrintDialog(customer);
 		d2.run();
 	}
 

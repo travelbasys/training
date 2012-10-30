@@ -3,7 +3,7 @@ package de.travelbasys.training.dialog.customer.delete.manager;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.customer.common.find.CustomerFindDialog;
-import de.travelbasys.training.dialog.customer.common.show1.CustomerShow1Dialog;
+import de.travelbasys.training.dialog.customer.common.print.CustomerPrintDialog;
 import de.travelbasys.training.dialog.customer.common.yesno.YesNoDialog;
 import de.travelbasys.training.dialog.customer.delete.action.CustomerDeleteMenuDialog;
 import de.travelbasys.training.framework.Dialog;
@@ -28,7 +28,7 @@ public class CustomerDeleteDialog implements Dialog {
 		if (customer == null) {
 			return;
 		}
-		CustomerShow1Dialog d2 = new CustomerShow1Dialog(customer);
+		CustomerPrintDialog d2 = new CustomerPrintDialog(customer);
 
 		d2.run();
 

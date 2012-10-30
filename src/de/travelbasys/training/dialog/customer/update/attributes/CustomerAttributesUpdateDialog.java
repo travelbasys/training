@@ -1,7 +1,7 @@
 package de.travelbasys.training.dialog.customer.update.attributes;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.dialog.customer.common.show1.CustomerShow1Dialog;
+import de.travelbasys.training.dialog.customer.common.print.CustomerPrintDialog;
 import de.travelbasys.training.dialog.customer.update.menu.CustomerUpdateMenuDialog;
 import de.travelbasys.training.framework.Dialog;
 
@@ -58,7 +58,7 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 	 */
 	@Override
 	public void run() {
-		CustomerShow1Dialog d1 = new CustomerShow1Dialog(customer);
+		CustomerPrintDialog d1 = new CustomerPrintDialog(customer);
 		do {
 			d1.run();
 

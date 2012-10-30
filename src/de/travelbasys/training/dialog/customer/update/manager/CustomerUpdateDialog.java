@@ -40,6 +40,7 @@ public class CustomerUpdateDialog implements Dialog {
 		if (customer == null) {
 			return;
 		}
+		
 		// Show and Change
 		CustomerAttributesUpdateDialog d2 = new CustomerAttributesUpdateDialog(
 				customer);

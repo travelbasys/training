@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.customer.common.show1;
+package de.travelbasys.training.dialog.customer.common.print;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Dialog;
@@ -6,13 +6,13 @@ import de.travelbasys.training.framework.Dialog;
 /**
  * zeigt dem Benutzer ein gesuchtes Customer Objekt.
  */
-public class CustomerShow1Dialog implements Dialog {
-	private CustomerShow1Model model;
-	private CustomerShow1View view;
+public class CustomerPrintDialog implements Dialog {
+	private CustomerPrintModel model;
+	private CustomerPrintView view;
 	@SuppressWarnings("unused")
 	private Customer customer;
 	@SuppressWarnings("unused")
-	private CustomerShow1Control control;
+	private CustomerPrintControl control;
 
 	/**
 	 * führt den Dialog aus.
@@ -32,10 +32,10 @@ public class CustomerShow1Dialog implements Dialog {
 	 * Objekts.
 	 * @param customer 
 	 */
-	public CustomerShow1Dialog(Customer customer) {
-		model = new CustomerShow1Model();
-		control = new CustomerShow1Control();
-		view = new CustomerShow1View(model);
+	public CustomerPrintDialog(Customer customer) {
+		model = new CustomerPrintModel();
+		control = new CustomerPrintControl();
+		view = new CustomerPrintView(model);
 
 		model.setCustomer(customer);
 	}
