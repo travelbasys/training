@@ -1,7 +1,5 @@
 package de.travelbasys.training.dialog.customer.create;
 
-import java.util.ArrayList;
-
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.framework.Dialog;
@@ -49,9 +47,8 @@ public class CustomerCreateDialog implements Dialog {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomerDAO.setCustomers(new ArrayList<Customer>());
 		}
-		CustomerDAO.getCustomers().add(customer);
+		CustomerDAO.createCustomer(customer);
 
 	}
 

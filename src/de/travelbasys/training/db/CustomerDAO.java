@@ -11,16 +11,28 @@ import java.util.List;
 import de.travelbasys.training.business.Customer;
 
 /**
- * Diese Klasse ist für die verarbeitung diverser Daten aus den Applikationen
- * verantwortlich.
+ * Diese Klasse repräsentiert eine "Datenbank" von {@see Customer} Objekten.
  * 
- * @author tba
- * 
+ * <p>
+ * Sie stellt Operation zum
+ * </p>
+ * <ol>
+ * <li>Erzeugen (Create)</li>
+ * <li>Auslesen (Read)</li>
+ * <li>Aktualisieren (Update)</li>
+ * <li>Löschen (Delete)</li>
+ * </ol>
+ * <p>
+ * von {@see Customer} Objekten bereit.
+ * </p>
+ * <p>
+ * Damit besitzt sie den Standard CRUD Funktionsumfang für Datenbanken.
+ * </p>
  */
 public class CustomerDAO {
 
 	private static String FILE;
-	private static List<Customer> customers = null;
+	private static List<Customer> InternalCustomers = null;
 	private static List<Customer> found_customers = null;
 	private static Customer customer1;
 
@@ -31,12 +43,22 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode liest alle Customer-Ojekte aus der Datenbank aus und
-	 * schreibt diese in eine Temporäre Liste vom Typ Customer. Diese ist zur
-	 * verwendung während der ganzen Laufzeit des Programms gedacht.
+	 * initialisiert den internen Zustand von <tt>CustomerDao</tt>.
+	 * 
+	 * <p>
+	 * Diese Implementierung benutzt eine Textdatei als Datenbank. Sie liest
+	 * sämtliche Datensätze der Datenbank aus der Datei und speichert sie intern
+	 * ab. Der Name der Datei wird als Parameter angegeben und ebenfalls
+	 * gespeichert.
+	 * </p>
+	 * 
+	 * <p>
+	 * Beim Programmende muss die {@see #terminate()} Methode aufgerufen werden,
+	 * um die Daten in die Datei zurückzuschreiben; sonst gehen sie verloren.
 	 * 
 	 * @param db
-	 *            (der Name der Datenbank)
+	 *            Name der Datenbank, momentan der Name der Textdatei, in dem
+	 *            die Datensätze gespeichert sind.
 	 */
 	public static void init(String db) {
 		FILE = db;
@@ -61,9 +83,13 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode Schreibt alle Customer-Daten aus der temporären Customer
-	 * Liste in eine textbasierte Datenbank
+	 * schreibt alle intern gespeicherten Datensätze zurück in die Textdatei,
+	 * aus der sie ursprünglich stammen.
 	 * 
+	 * <p>
+	 * Der Name der Textdatei ist derjenige, der von der {@see #init(String)}
+	 * Methode gespeichert wurde.
+	 * </p>
 	 */
 
 	public static void terminate() {
@@ -72,8 +98,8 @@ public class CustomerDAO {
 		try {
 			fos = new FileOutputStream(FILE);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(customers);
-			CustomerDAO.getCustomers().removeAll(customers);
+			oos.writeObject(InternalCustomers);
+			CustomerDAO.findAll().removeAll(InternalCustomers);
 			oos.close();
 		} catch (Exception e) {
 			setCustomers(new ArrayList<Customer>());
@@ -89,17 +115,16 @@ public class CustomerDAO {
 	 * 
 	 * @return ein temporärer Klon eines vorhandenen Customers
 	 */
-	private static List<Customer> getCustomersClone() {
+	public static List<Customer> findAll() {
 		List<Customer> result = new ArrayList<Customer>();
-		for (Customer customer : customers) {
+		for (Customer customer : InternalCustomers) {
 			result.add(customer.clone());
 		}
 		return result;
 	}
 
-	public static List<Customer> getCustomers() {
-		return customers;
-	}
+
+	
 
 	/**
 	 * Diese Methode löscht ein Customer-Objekt aus der customers Liste. Anhand
@@ -112,9 +137,9 @@ public class CustomerDAO {
 	 */
 	public static void delCustomer(int customerid) {
 		try {
-			for (Customer customer : CustomerDAO.getCustomers()) {
+			for (Customer customer : CustomerDAO.findAll()) {
 				if (customer.getId() == customerid) {
-					CustomerDAO.customers.remove(customer);
+					CustomerDAO.InternalCustomers.remove(customer);
 				}
 			}
 		} catch (Exception e) {
@@ -133,18 +158,19 @@ public class CustomerDAO {
 	 */
 	public static void replaceCustomer(int customerid, Customer customer) {
 		try {
-			for (Customer customer1 : CustomerDAO.getCustomersClone()) {
+			for (Customer customer1 : CustomerDAO.findAll()) {
 				if (customer1.getId() == customerid) {
-					CustomerDAO.customers.set(
-							CustomerDAO.customers.indexOf(customer1), customer);
+					CustomerDAO.InternalCustomers.set(
+							CustomerDAO.InternalCustomers.indexOf(customer1),
+							customer);
 				}
 			}
 		} catch (Exception e) {
 		}
 	}
 
-	public static void setCustomers(List<Customer> customers) {
-		CustomerDAO.customers = customers;
+	private static void setCustomers(List<Customer> customers) {
+		CustomerDAO.InternalCustomers = customers;
 	}
 
 	public static void setFoundCustomers(List<Customer> found_customers) {
@@ -159,13 +185,15 @@ public class CustomerDAO {
 	 * Diese Methode sucht einen Customer in der customers Liste anhand seiner
 	 * customerid.
 	 * 
-	 * @param id "PRIMARY KEY" (Die eindeutige Ziffer die den Customer identifiziert)
+	 * @param id
+	 *            "PRIMARY KEY" (Die eindeutige Ziffer die den Customer
+	 *            identifiziert)
 	 * @return eine Kopie dieses Customers wird anschließend zurückgegeben.
 	 */
 	public static List<Customer> findCustomerById(int id) {
 		setFoundCustomers(new ArrayList<Customer>());
 		try {
-			for (Customer customer : CustomerDAO.getCustomers()) {
+			for (Customer customer : CustomerDAO.findAll()) {
 				if (customer.getId() == id) {
 
 					CustomerDAO.getFoundCustomers().add(customer.clone());
@@ -181,14 +209,15 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode sucht in der Customers Liste nach dem letzten Customer und gibt
-	 * dessen customerid zurück
+	 * Diese Methode sucht in der Customers Liste nach dem letzten Customer und
+	 * gibt dessen customerid zurück
 	 * 
-	 * @return customerid "PRIMARY KEY" (Die eindeutige Ziffer die den Customer identifiziert)
+	 * @return customerid "PRIMARY KEY" (Die eindeutige Ziffer die den Customer
+	 *         identifiziert)
 	 */
 	public static int getLastCustomerId() {
 		int customerid = 0;
-		for (Customer customer : getCustomers()) {
+		for (Customer customer : findAll()) {
 			customerid = customer.getId();
 		}
 		return customerid;
@@ -203,7 +232,7 @@ public class CustomerDAO {
 	 */
 	public static boolean checkExistenceOfCustomer(Customer customer) {
 
-		for (Customer customertemp : CustomerDAO.getCustomers()) {
+		for (Customer customertemp : CustomerDAO.findAll()) {
 			if (customertemp.equals(customer)) {
 				customer1 = customertemp;
 				return true;
@@ -217,4 +246,12 @@ public class CustomerDAO {
 		return customer1;
 	}
 
+	public static void createCustomer(Customer customer1) {
+				InternalCustomers.add(customer1);
+	}
+
+	public static void DBrepair(){
+		CustomerDAO.setCustomers(new ArrayList<Customer>());
+	}
+	
 }

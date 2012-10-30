@@ -39,7 +39,7 @@ public class ExportDialog implements Dialog {
 					+ model.getExportType());
 			PrintWriter pw = new PrintWriter(fw);
 			pw.println(model.getHeader());
-			for (Customer customer : CustomerDAO.getCustomers()) {
+			for (Customer customer : CustomerDAO.findAll()) {
 				AppContext.println(customer);
 				pw.println(customer.toFormat(model.getExportType()));
 			}
