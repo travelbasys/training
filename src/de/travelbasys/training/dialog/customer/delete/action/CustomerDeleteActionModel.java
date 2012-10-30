@@ -7,7 +7,7 @@ import de.travelbasys.training.framework.Model;
  * beinhaltet die Customer ID des Customer Objekts das aus der Datenbank
  * entfernt werden soll.
  */
-public class CustomerDeleteMenuModel implements Model {
+public class CustomerDeleteActionModel implements Model {
 	private boolean success;
 
 	public boolean isSuccess() {

@@ -6,17 +6,17 @@ import de.travelbasys.training.framework.Dialog;
  * hat die Aufgabe ein vorhandenes Customer Objekt aus der Datenbank zu löschen.
  * Gibt Rückmeldung über den Erfolg des Löschvorgangs.
  */
-public class CustomerDeleteMenuDialog implements Dialog {
-	private CustomerDeleteMenuModel model;
+public class CustomerDeleteActionDialog implements Dialog {
+	private CustomerDeleteActionModel model;
 	@SuppressWarnings("unused")
-	private CustomerDeleteMenuControl control;
-	private CustomerDeleteMenuView view;
+	private CustomerDeleteActionControl control;
+	private CustomerDeleteActionView view;
 
-	public CustomerDeleteMenuDialog(boolean success) {
-		model = new CustomerDeleteMenuModel();
+	public CustomerDeleteActionDialog(boolean success) {
+		model = new CustomerDeleteActionModel();
 		model.setSuccess(success);
 
-		view = new CustomerDeleteMenuView(model);
+		view = new CustomerDeleteActionView(model);
 	}
 
 	/**

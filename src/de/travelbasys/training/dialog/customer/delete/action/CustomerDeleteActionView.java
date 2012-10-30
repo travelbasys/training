@@ -8,14 +8,14 @@ import de.travelbasys.training.util.AppContext;
  * stellt einen View innerhalb des Customer Delete Dialoges dar.
  * 
  */
-public class CustomerDeleteMenuView implements View {
-	private CustomerDeleteMenuModel model;
+public class CustomerDeleteActionView implements View {
+	private CustomerDeleteActionModel model;
 
 	/**
 	 * Initialisiert das Model.
 	 */
-	public CustomerDeleteMenuView(Model model) {
-		this.model = (CustomerDeleteMenuModel) model;
+	public CustomerDeleteActionView(Model model) {
+		this.model = (CustomerDeleteActionModel) model;
 	}
 
 	/**

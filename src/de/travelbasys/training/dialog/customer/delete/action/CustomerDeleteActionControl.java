@@ -5,6 +5,6 @@ package de.travelbasys.training.dialog.customer.delete.action;
  * 
  * Die aktuelle Implementierung ist LEER!
  */
-public class CustomerDeleteMenuControl {
+public class CustomerDeleteActionControl {
 	
 }
