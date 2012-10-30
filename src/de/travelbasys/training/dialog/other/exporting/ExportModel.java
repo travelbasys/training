@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.other;
+package de.travelbasys.training.dialog.other.exporting;
 
 import java.util.ArrayList;
 
@@ -6,45 +6,45 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * erzeugt eine Instanz der Klasse ImportDialog und verwaltet Strings für
+ * erzeugt eine Instanz der Klasse ExportDialog und verwaltet Strings für
  * Ausgaben.
  */
-public class ImportModel extends ArrayList<String> implements Model {
+public class ExportModel extends ArrayList<String> implements Model {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String ImportType = "";
-	private String ImportName = "";
+	private String ExportType = "";
+	private String ExportName = "";
 	private String Header = "";
 	private boolean end = false;
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
 	 */
-	public ImportModel() {
+	public ExportModel() {
 		super();
 		add(AppContext.getMessage("Choose"));
 		add(AppContext.getMessage("Back"));
-		add(AppContext.getMessage("Import1"));
-		add(AppContext.getMessage("Import2"));
+		add(AppContext.getMessage("Export1"));
+		add(AppContext.getMessage("Export2"));
 	}
 
-	public String getImportType() {
-		return ImportType;
+	public String getExportType() {
+		return ExportType;
 	}
 
-	public void setImportType(String type) {
-		ImportType = type;
+	public void setExportType(String type) {
+		ExportType = type;
 	}
 
-	public String getImportName() {
-		return ImportName;
+	public String getExportName() {
+		return ExportName;
 	}
 
-	public void setImportName(String name) {
-		ImportName = name;
+	public void setExportName(String name) {
+		ExportName = name;
 	}
 
 	public String getHeader() {

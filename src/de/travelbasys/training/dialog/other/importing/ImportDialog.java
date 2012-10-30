@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.other;
+package de.travelbasys.training.dialog.other.importing;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.other;
+package de.travelbasys.training.dialog.other.exporting;
 
 import java.util.ArrayList;
 
@@ -10,37 +10,37 @@ import de.travelbasys.training.util.Console;
 
 /**
  * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für das
- * Importieren der Datenbank abzufragen.
+ * Exportieren der Datenbank abzufragen.
  * 
  * @autor tba
  */
-public class ImportView extends ArrayList<UiComponent> implements View {
+public class ExportView extends ArrayList<UiComponent> implements View {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ImportModel model;
+	private ExportModel model;
 	private UiComponent customerDecisionComponent;
-	private UiComponent importNameComponent;
+	private UiComponent exportNameComponent;
 
-	public ImportView(Model model) {
-		this.model = (ImportModel) model;
+	public ExportView(Model model) {
+		this.model = (ExportModel) model;
 		customerDecisionComponent = new UiComponent();
 		customerDecisionComponent.setType(Integer.class);
 		add(customerDecisionComponent);
-		importNameComponent = new UiComponent();
-		importNameComponent.setName("ImportName");
-		importNameComponent.setType(String.class);
-		add(importNameComponent);
+		exportNameComponent = new UiComponent();
+		exportNameComponent.setName("ExportName");
+		exportNameComponent.setType(String.class);
+		add(exportNameComponent);
 	}
 
 	public AbstractUiComponent getcustomerDecisionComponent() {
 		return customerDecisionComponent;
 	}
 
-	public AbstractUiComponent getimportNameComponent() {
-		return importNameComponent;
+	public AbstractUiComponent getExportNameComponent() {
+		return exportNameComponent;
 	}
 
 	public void run() {
@@ -52,6 +52,6 @@ public class ImportView extends ArrayList<UiComponent> implements View {
 		if (model.getEnd()) {
 			return;
 		}
-		importNameComponent.run();
+		exportNameComponent.run();
 	}
 }

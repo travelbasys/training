@@ -1,4 +1,4 @@
-package de.travelbasys.training.db;
+package de.travelbasys.training.dialog.other.parameters.database;
 
 import java.util.ArrayList;
 

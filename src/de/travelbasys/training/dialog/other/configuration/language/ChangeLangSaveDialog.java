@@ -1,10 +1,11 @@
-package de.travelbasys.training.dialog.other;
+package de.travelbasys.training.dialog.other.configuration.language;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
 
+import de.travelbasys.training.dialog.other.parameters.language.ChangeLangDialog;
 import de.travelbasys.training.util.Config;
 
 /**

@@ -5,10 +5,10 @@ import de.travelbasys.training.dialog.customer.delete.manager.CustomerDeleteDial
 import de.travelbasys.training.dialog.customer.list.CustomerList;
 import de.travelbasys.training.dialog.customer.show.manager.CustomerShowDialog;
 import de.travelbasys.training.dialog.customer.update.manager.CustomerUpdateDialog;
-import de.travelbasys.training.dialog.other.ChangeConfigurationDialog;
-import de.travelbasys.training.dialog.other.ChangeParamDialog;
-import de.travelbasys.training.dialog.other.ExportDialog;
-import de.travelbasys.training.dialog.other.ImportDialog;
+import de.travelbasys.training.dialog.other.configuration.manager.ChangeConfigurationDialog;
+import de.travelbasys.training.dialog.other.exporting.ExportDialog;
+import de.travelbasys.training.dialog.other.importing.ImportDialog;
+import de.travelbasys.training.dialog.other.parameters.manager.ChangeParamDialog;
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;

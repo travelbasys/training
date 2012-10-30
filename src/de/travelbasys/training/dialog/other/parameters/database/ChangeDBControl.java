@@ -1,4 +1,4 @@
-package de.travelbasys.training.db;
+package de.travelbasys.training.dialog.other.parameters.database;
 
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;

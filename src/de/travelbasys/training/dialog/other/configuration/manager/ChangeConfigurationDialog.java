@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.other;
+package de.travelbasys.training.dialog.other.configuration.manager;
 
 import de.travelbasys.training.framework.Dialog;
 

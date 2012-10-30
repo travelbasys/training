@@ -1,6 +1,7 @@
-package de.travelbasys.training.dialog.other;
+package de.travelbasys.training.dialog.other.configuration.manager;
 
-import de.travelbasys.training.db.ChangeDBSaveDialog;
+import de.travelbasys.training.dialog.other.configuration.database.ChangeDBSaveDialog;
+import de.travelbasys.training.dialog.other.configuration.language.ChangeLangSaveDialog;
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;

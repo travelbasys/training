@@ -1,8 +1,10 @@
-package de.travelbasys.training.db;
+package de.travelbasys.training.dialog.other.configuration.database;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
+
+import de.travelbasys.training.dialog.other.parameters.database.ChangeDBDialog;
 
 /**
  * ist verantwortlich für das ändern der Datenbank abzufragen um einen Boolean

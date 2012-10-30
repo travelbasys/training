@@ -1,4 +1,4 @@
-package de.travelbasys.training.dialog.other;
+package de.travelbasys.training.dialog.other.importing;
 
 import java.util.ArrayList;
 
@@ -10,28 +10,37 @@ import de.travelbasys.training.util.Console;
 
 /**
  * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für das
- * changeconfigurationieren der Datenbank abzufragen.
+ * Importieren der Datenbank abzufragen.
  * 
  * @autor tba
  */
-public class ChangeConfigurationView extends ArrayList<UiComponent> implements View {
+public class ImportView extends ArrayList<UiComponent> implements View {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ChangeConfigurationModel model;
+	private ImportModel model;
 	private UiComponent customerDecisionComponent;
+	private UiComponent importNameComponent;
 
-	public ChangeConfigurationView(Model model) {
-		this.model = (ChangeConfigurationModel) model;
+	public ImportView(Model model) {
+		this.model = (ImportModel) model;
 		customerDecisionComponent = new UiComponent();
 		customerDecisionComponent.setType(Integer.class);
 		add(customerDecisionComponent);
+		importNameComponent = new UiComponent();
+		importNameComponent.setName("ImportName");
+		importNameComponent.setType(String.class);
+		add(importNameComponent);
 	}
 
 	public AbstractUiComponent getcustomerDecisionComponent() {
 		return customerDecisionComponent;
+	}
+
+	public AbstractUiComponent getimportNameComponent() {
+		return importNameComponent;
 	}
 
 	public void run() {
@@ -40,5 +49,9 @@ public class ChangeConfigurationView extends ArrayList<UiComponent> implements V
 			Console.println(s);
 		}
 		customerDecisionComponent.run2();
+		if (model.getEnd()) {
+			return;
+		}
+		importNameComponent.run();
 	}
 }

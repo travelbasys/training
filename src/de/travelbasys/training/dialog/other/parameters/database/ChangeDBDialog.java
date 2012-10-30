@@ -1,7 +1,8 @@
-package de.travelbasys.training.db;
+package de.travelbasys.training.dialog.other.parameters.database;
 
 import java.io.File;
 
+import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.Config;
 
@@ -14,8 +15,8 @@ import de.travelbasys.training.util.Config;
  */
 public class ChangeDBDialog implements Dialog {
 
-	static final String DATABASE_KEY = "database";
-	static File ini = new File(Config.CONFIG_FILENAME);
+	protected static final String DATABASE_KEY = "database";
+	protected static File ini = new File(Config.CONFIG_FILENAME);
 
 	private ChangeDBModel model;
 	private ChangeDBView view;
