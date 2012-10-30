@@ -15,14 +15,8 @@ import de.travelbasys.training.util.AppContext;
 public class CustomerList implements Dialog {
 
 	public void run() {
-		// Datei wird eingelesen und gibt alle User Objekte der Datenbank aus.
-		try {
-			for (Customer customer : CustomerDAO.findAll()) {
-				AppContext.println(customer);
-			}
-		} catch (NullPointerException e) {
-			CustomerDAO.DBrepair();
-			run();
+		for (Customer customer : CustomerDAO.findAll()) {
+			AppContext.println(customer);
 		}
 	}
 }

@@ -1,11 +1,7 @@
 package de.travelbasys.training.dialog.other.importing;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
-import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
@@ -36,28 +32,13 @@ public class ImportDialog implements Dialog {
 		if (model.getEnd()) {
 			return;
 		}
+
 		try {
-			FileReader fr = new FileReader(model.getImportName() + "."
+			CustomerDAO.importCSV(model.getImportName() + "."
 					+ model.getImportType());
-			BufferedReader br = new BufferedReader(fr);
-			CustomerDAO.terminate();
-			String s;
-			Customer user = null;
-			CustomerDAO.findAll().clear();
-			br.readLine();
-			while ((s = br.readLine()) != null) {
-				AppContext.println(s);
-				user = Customer.parseCSV(s);
-				CustomerDAO.findAll().add(user);
-			}
 			AppContext.println("ImportOK");
-			fr.close();
-		} catch (FileNotFoundException e) {
-			AppContext.printErrString("FileNotFoundException");
-			run();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 }

@@ -49,6 +49,7 @@ public class ExportView extends ArrayList<UiComponent> implements View {
 			Console.println(s);
 		}
 		customerDecisionComponent.run2();
+		//TODO: Ende der Funktion auslagern -> Controller/Dialog(?).
 		if (model.getEnd()) {
 			return;
 		}

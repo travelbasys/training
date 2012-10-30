@@ -1,8 +1,11 @@
 package de.travelbasys.training.db;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -28,13 +31,15 @@ import de.travelbasys.training.business.Customer;
  * <p>
  * Damit besitzt sie den Standard CRUD Funktionsumfang für Datenbanken.
  * </p>
+ * 
+ * <p>
+ * TODO: Behandlung von eindeutigen Id's und Verhalten beim Löschen.
+ * </p>
  */
 public class CustomerDAO {
 
 	private static String FILE;
-	private static List<Customer> InternalCustomers = null;
-	private static List<Customer> found_customers = null;
-	private static Customer customer1;
+	private static List<Customer> internalCustomers;
 
 	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
 	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
@@ -60,6 +65,7 @@ public class CustomerDAO {
 	 *            Name der Datenbank, momentan der Name der Textdatei, in dem
 	 *            die Datensätze gespeichert sind.
 	 */
+	@SuppressWarnings("unchecked")
 	public static void init(String db) {
 		FILE = db;
 		FileInputStream fis;
@@ -67,13 +73,8 @@ public class CustomerDAO {
 			fis = new FileInputStream(FILE);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
-			@SuppressWarnings("unchecked")
-			List<Customer> customer = (List<Customer>) ois.readObject();
-			try {
-				setCustomers(new ArrayList<Customer>(customer));
-			} catch (NullPointerException e) {
-				setCustomers(new ArrayList<Customer>());
-			}
+			internalCustomers = (List<Customer>) ois.readObject();
+
 			ois.close();
 		} catch (FileNotFoundException e1) {
 			System.err.println("File not found");
@@ -91,59 +92,82 @@ public class CustomerDAO {
 	 * Methode gespeichert wurde.
 	 * </p>
 	 */
-
 	public static void terminate() {
 
 		FileOutputStream fos;
+		ObjectOutputStream oos;
 		try {
 			fos = new FileOutputStream(FILE);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(InternalCustomers);
-			CustomerDAO.findAll().removeAll(InternalCustomers);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(internalCustomers);
+
+			internalCustomers.removeAll(internalCustomers);
 			oos.close();
 		} catch (Exception e) {
-			setCustomers(new ArrayList<Customer>());
+			e.printStackTrace();
 		}
-
 	}
 
 	/**
-	 * Diese Methode erzeugt eine neue Liste vom typ Customer welche einen
-	 * vorhandenen Customer enthält. Man erhält eine "Kopie" eines vorhandenen
-	 * Customer-Objekts um diese beliebig zu ändern, ohne einträge in die
+	 * Diese Methode erzeugt eine neue Liste vom typ Customer welche die
+	 * vorhandenen Customer enthält. Man erhält eine "Kopie" der vorhandenen
+	 * Customer-Objekte um diese beliebig zu ändern, ohne einträge in die
 	 * Datenbank zu tätigen
 	 * 
-	 * @return ein temporärer Klon eines vorhandenen Customers
+	 * @return eine temporärere Kopie eines vorhandenen Customers
 	 */
 	public static List<Customer> findAll() {
 		List<Customer> result = new ArrayList<Customer>();
-		for (Customer customer : InternalCustomers) {
+		for (Customer customer : internalCustomers) {
 			result.add(customer.clone());
 		}
 		return result;
 	}
 
-
-	
+	/**
+	 * Fügt den gegebenen <tt>Customer</tt> der Datenbank hinzu.
+	 * 
+	 * <p>
+	 * Der <tt>Customer</tt> darf noch nicht in der Datenbank enthalten sein,
+	 * was mittels der <tt>equals</tt> Methode überprüft wird.
+	 * </p>
+	 * 
+	 * @param customer
+	 *            das <tt>Customer</tt> Objekt, welches der Datenbank
+	 *            hinzugefügt wird.
+	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
+	 *         Objekt schon in der Datenbank vorhanden ist.
+	 */
+	public static void create(Customer customer) throws CustomerDaoException {
+		if (getExisting(customer) != null) {
+			// TODO: Welche Exception???
+			throw new CustomerDaoException("...");
+		} else {
+			int customerid = CustomerDAO.getLastCustomerId() + 1;
+			Customer c = new Customer(customerid, customer.getLastName(),
+					customer.getFirstName(), customer.getAge(),
+					customer.getAdress(), customer.getPostalcode(),
+					customer.getEmail());
+			internalCustomers.add(c);
+		}
+	}
 
 	/**
-	 * Diese Methode löscht ein Customer-Objekt aus der customers Liste. Anhand
-	 * einer customerid wird entschieden um welchen eintrag in der Datenbank es
-	 * sich handelt.
+	 * gibt eine Kopie des <tt>Customer</tt> Objekts mit der gegebenen
+	 * <tt>id</tt> zurück.
 	 * 
-	 * @param customerid
-	 *            (dieser Wert wird benötigt um bei verwendung dieser Methode
-	 *            ein ergebnis zu erhalten)
+	 * @param id
+	 *            die <tt>Id</tt>.
+	 * @return Kopie des <tt>Customer</tt> Objekts mit der gegebenen <tt>id</tt>
+	 *         oder <tt>null</tt>, wenn kein solches Objekt existiert.
 	 */
-	public static void delCustomer(int customerid) {
-		try {
-			for (Customer customer : CustomerDAO.findAll()) {
-				if (customer.getId() == customerid) {
-					CustomerDAO.InternalCustomers.remove(customer);
-				}
+	public static Customer findById(int id) {
+		for (Customer customer : internalCustomers) {
+			if (customer.getId() == id) {
+				return customer.clone();
 			}
-		} catch (Exception e) {
 		}
+		return null;
 	}
 
 	/**
@@ -153,74 +177,53 @@ public class CustomerDAO {
 	 * werden soll, um anschließend die Daten anhand eines Customer-Objekts zu
 	 * ändern.
 	 * 
-	 * @param customerid
 	 * @param customer
+	 * @throws CustomerDaoException
 	 */
-	public static void replaceCustomer(int customerid, Customer customer) {
-		try {
-			for (Customer customer1 : CustomerDAO.findAll()) {
-				if (customer1.getId() == customerid) {
-					CustomerDAO.InternalCustomers.set(
-							CustomerDAO.InternalCustomers.indexOf(customer1),
-							customer);
-				}
+	public static void update(Customer customer) throws CustomerDaoException {
+		int id = customer.getId();
+		for (Customer c : internalCustomers) {
+			if (c.getId() == id) {
+				internalCustomers.set(internalCustomers.indexOf(c),
+						customer.clone());
+				return;
 			}
-		} catch (Exception e) {
 		}
-	}
-
-	private static void setCustomers(List<Customer> customers) {
-		CustomerDAO.InternalCustomers = customers;
-	}
-
-	public static void setFoundCustomers(List<Customer> found_customers) {
-		CustomerDAO.found_customers = found_customers;
-	}
-
-	public static List<Customer> getFoundCustomers() {
-		return found_customers;
+		throw new CustomerDaoException("...");
 	}
 
 	/**
-	 * Diese Methode sucht einen Customer in der customers Liste anhand seiner
-	 * customerid.
+	 * Diese Methode löscht ein Customer-Objekt aus der InternalCustomers Liste.
+	 * Anhand einer customerid wird entschieden um welchen eintrag in der
+	 * Datenbank es sich handelt.
 	 * 
-	 * @param id
-	 *            "PRIMARY KEY" (Die eindeutige Ziffer die den Customer
-	 *            identifiziert)
-	 * @return eine Kopie dieses Customers wird anschließend zurückgegeben.
+	 * @param customerid
+	 *            (dieser Wert wird benötigt um bei verwendung dieser Methode
+	 *            ein ergebnis zu erhalten)
 	 */
-	public static List<Customer> findCustomerById(int id) {
-		setFoundCustomers(new ArrayList<Customer>());
-		try {
-			for (Customer customer : CustomerDAO.findAll()) {
-				if (customer.getId() == id) {
-
-					CustomerDAO.getFoundCustomers().add(customer.clone());
-				}
+	public static void delete(Customer customer) throws CustomerDaoException {
+		int id = customer.getId();
+		for (Customer c : internalCustomers) {
+			if (c.getId() == id) {
+				internalCustomers.remove(internalCustomers.indexOf(c));
+				return;
 			}
-			return CustomerDAO.getFoundCustomers();
-		} catch (NullPointerException e) {
-			setCustomers(new ArrayList<Customer>());
-			findCustomerById(id);
 		}
-
-		return null;
+		throw new CustomerDaoException("...");
 	}
 
 	/**
-	 * Diese Methode sucht in der Customers Liste nach dem letzten Customer und
-	 * gibt dessen customerid zurück
+	 * sucht in der Customer Liste nach dem letzten Customer und gibt dessen Id
+	 * zurück.
 	 * 
-	 * @return customerid "PRIMARY KEY" (Die eindeutige Ziffer die den Customer
-	 *         identifiziert)
+	 * @return id
 	 */
-	public static int getLastCustomerId() {
-		int customerid = 0;
-		for (Customer customer : findAll()) {
-			customerid = customer.getId();
-		}
-		return customerid;
+	private static int getLastCustomerId() {
+		if (internalCustomers.size() == 0)
+			return 0;
+
+		Customer c = internalCustomers.get(internalCustomers.size() - 1);
+		return c.getId();
 	}
 
 	/**
@@ -229,29 +232,35 @@ public class CustomerDAO {
 	 * true zurückgegeben, wenn nicht dann false
 	 * 
 	 * @param customer
+	 *            TODO: Besseren Namen finden!!!
 	 */
-	public static boolean checkExistenceOfCustomer(Customer customer) {
+	public static Customer getExisting(Customer customer) {
 
-		for (Customer customertemp : CustomerDAO.findAll()) {
-			if (customertemp.equals(customer)) {
-				customer1 = customertemp;
-				return true;
+		for (Customer c : internalCustomers) {
+			if (c.equals(customer)) {
+				return c;
 			}
-
 		}
-		return false;
+		return null;
 	}
 
-	public static Customer getExistentCustomer() {
-		return customer1;
+	public static void importCSV(String name) throws IOException {
+		// Alte Daten speichern.
+		CustomerDAO.terminate();
+
+		FileReader fr = new FileReader(name);
+		BufferedReader br = new BufferedReader(fr);
+
+		// Erste Zeile überspringen, in der die Spaltennamen stehen.
+		br.readLine();
+
+		internalCustomers.clear();
+
+		String s;
+		while ((s = br.readLine()) != null) {
+			internalCustomers.add(Customer.parseCSV(s));
+		}
+		fr.close();
 	}
 
-	public static void createCustomer(Customer customer1) {
-				InternalCustomers.add(customer1);
-	}
-
-	public static void DBrepair(){
-		CustomerDAO.setCustomers(new ArrayList<Customer>());
-	}
-	
 }

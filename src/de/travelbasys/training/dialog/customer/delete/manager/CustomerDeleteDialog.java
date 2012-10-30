@@ -37,10 +37,9 @@ public class CustomerDeleteDialog implements Dialog {
 		
 
 		if (d3.isYes()) {
-			int customerid = d1.getCustomerID();
 			boolean success;
 			try {
-				CustomerDAO.delCustomer(customerid);
+				CustomerDAO.delete(customer);
 				success = true;
 			} catch (Exception e) {
 				success = false;

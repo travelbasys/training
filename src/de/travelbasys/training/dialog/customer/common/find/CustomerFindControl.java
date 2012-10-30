@@ -1,7 +1,5 @@
 package de.travelbasys.training.dialog.customer.common.find;
 
-import java.util.List;
-
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.framework.AbstractControl;
@@ -16,6 +14,7 @@ public class CustomerFindControl extends AbstractControl {
 
 	private CustomerFindModel model;
 	private CustomerFindView view;
+
 	/**
 	 * Initialisiert den Controller mit Model und View des Packages.
 	 * 
@@ -44,22 +43,19 @@ public class CustomerFindControl extends AbstractControl {
 		int id = (Integer) value;
 
 		// When value is zero, we return without doing anything.
-		if (0 == id)
+		if (id == 0)
 			return;
 
 		// Try to find customer by id.
-		List<Customer> customers = CustomerDAO.findCustomerById(id);
+		Customer customer = CustomerDAO.findById(id);
 
-		// When found...
-		if (!customers.isEmpty()) {
-			// store customer and id in model.
-			model.setCustomer(customers.get(0));
-			model.setCustomerId(id);
-		} else {
-			// or else indicate failure.
+		if (customer == null) {
 			throw new Exception("IDNotFoundErr");
 		}
 
+		// store customer and id in model.
+		model.setCustomer(customer);
+		model.setCustomerId(id);
 	}
 
 }

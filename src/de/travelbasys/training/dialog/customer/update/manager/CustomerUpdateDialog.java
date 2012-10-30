@@ -2,6 +2,7 @@ package de.travelbasys.training.dialog.customer.update.manager;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.db.CustomerDaoException;
 import de.travelbasys.training.dialog.customer.common.find.CustomerFindDialog;
 import de.travelbasys.training.dialog.customer.common.yesno.YesNoDialog;
 import de.travelbasys.training.dialog.customer.update.attributes.CustomerAttributesUpdateDialog;
@@ -24,7 +25,6 @@ import de.travelbasys.training.util.Console;
 public class CustomerUpdateDialog implements Dialog {
 
 	private static String KEY;
-	private int customerid;
 
 	/**
 	 * führt den Dialog aus.
@@ -46,20 +46,25 @@ public class CustomerUpdateDialog implements Dialog {
 		d2.run();
 
 		if (d2.getDirtyFlag()) {
-			// User already exists.
-			if (CustomerDAO.checkExistenceOfCustomer(customer)) {
-				Console.printerr(AppContext.getMessage("ExistErr")
-						+ CustomerDAO.getExistentCustomer());
+			Customer c = CustomerDAO.getExisting(customer);
+			if (c != null) {
+				// User already exists.
+				Console.printerr(AppContext.getMessage("ExistErr") + c);
 				return;
-
 			}
-			customerid = customer.getId();
+			
 			// Yes or No
 			KEY = "SaveQ";
 			d3 = new YesNoDialog(KEY);
 			d3.run();
 			if (d3.isYes()) {
-				CustomerDAO.replaceCustomer(customerid, customer);
+				try {
+					CustomerDAO.update(customer);
+				} catch (CustomerDaoException e) {
+					// Dieser Fall KANN eigentlich NICHT eintreten.
+					// Grund: ...
+					e.printStackTrace();
+				}
 			}
 		}
 
