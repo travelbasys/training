@@ -9,81 +9,74 @@ import de.travelbasys.training.dialog.other.ChangeConfigurationDialog;
 import de.travelbasys.training.dialog.other.ChangeParamDialog;
 import de.travelbasys.training.dialog.other.ExportDialog;
 import de.travelbasys.training.dialog.other.ImportDialog;
-import de.travelbasys.training.framework.Dialog;
+import de.travelbasys.training.framework.AbstractControl;
+import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.View;
 import de.travelbasys.training.rbsjava.main.Application;
-import de.travelbasys.training.util.AppContext;
 
+/**
+ * Diese Klasse Kontrolliert Benutzereingaben.
+ * 
+ * @author tba
+ * 
+ */
 public class MainMenuControl extends Application {
 
-	public MainMenuControl(MainMenuModel model, MainMenuView view) {
-	}
+	private MainMenuModel model;
+	private MainMenuView view;
 
-	public void checkchoice(String choice_str) {
-		Dialog d;
-		try {
-			int choice_int = Integer.parseInt(choice_str);
-			if (choice_int >= 0 && choice_int <= 9) {
-				switch (choice_int) {
+	public MainMenuControl(Model model, View view) {
+		this.model = (MainMenuModel) model;
+		this.view = (MainMenuView) view;
+		AbstractUiComponent uic;
+		uic = this.view.getcustomerDecisionComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				int intValue = (Integer) value;
+				switch (intValue) {
 				case 0:
 					stop();
 					terminate();
 				case 1:
-					d = new CustomerCreateDialog();
-					d.run();
+					MainMenuControl.this.model
+							.setDialog(new CustomerCreateDialog());
 					break;
 				case 2:
-					d = new CustomerShowDialog();
-					d.run();
+					MainMenuControl.this.model
+							.setDialog(new CustomerShowDialog());
 					break;
 				case 3:
-					d = new CustomerUpdateDialog();
-					d.run();
+					MainMenuControl.this.model
+							.setDialog(new CustomerUpdateDialog());
 					break;
 				case 4:
-					d = new CustomerDeleteDialog();
-					d.run();
+					MainMenuControl.this.model
+							.setDialog(new CustomerDeleteDialog());
 					break;
 				case 5:
-					d = new CustomerList();
-					d.run();
+					MainMenuControl.this.model.setDialog(new CustomerList());
 					break;
 				case 6:
-					d = new ExportDialog();
-					d.run();
+					MainMenuControl.this.model.setDialog(new ExportDialog());
 					break;
 				case 7:
-					d = new ImportDialog();
-					d.run();
+					MainMenuControl.this.model.setDialog(new ImportDialog());
 					break;
 				case 8:
-					d = new ChangeConfigurationDialog();
-					d.run();
-					
+					MainMenuControl.this.model
+							.setDialog(new ChangeConfigurationDialog());
 					break;
 				case 9:
-					d = new ChangeParamDialog();
-					d.run();
+					MainMenuControl.this.model
+							.setDialog(new ChangeParamDialog());
 					break;
 				default:
-					AppContext.printErrString("ChooseErr");
-					break;
+					throw new Exception("ChooseErrComp");
 				}
-			} else {
-				AppContext.printErrString("ChooseErr");
 			}
-		} catch (NumberFormatException e) {
-			AppContext.printErrString("NumberErr");
-		}
+		});
+
 	}
 
-	public boolean checkend(String choice_str) {
-		try {
-			if (Integer.parseInt(choice_str) == 0) {
-				return false;
-			}
-		} catch (Exception e) {
-		}
-
-		return true;
-	}
 }

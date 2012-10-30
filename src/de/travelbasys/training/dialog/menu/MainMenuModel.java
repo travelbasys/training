@@ -2,21 +2,28 @@ package de.travelbasys.training.dialog.menu;
 
 import java.util.ArrayList;
 
+import de.travelbasys.training.framework.Dialog;
+import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
-public class MainMenuModel extends ArrayList<String> {
+/**
+ * erzeugt eine Instanz der Klasse MainMenuDialog und verwaltet Strings für
+ * Ausgaben.
+ */
+public class MainMenuModel extends ArrayList<String> implements Model {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private boolean end = false;
+	Dialog d;
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
 	 */
 	public MainMenuModel() {
 		super();
-
 		add(AppContext.getMessage("Choose"));
 		add(AppContext.getMessage("ExitApp"));
 		add(AppContext.getMessage("App1"));
@@ -30,4 +37,19 @@ public class MainMenuModel extends ArrayList<String> {
 		add(AppContext.getMessage("App9"));
 	}
 
+	public void setEnd() {
+		end = true;
+	}
+
+	public boolean getEnd() {
+		return end;
+	}
+
+	public Dialog getDialog() {
+		return d;
+	}
+
+	public void setDialog(Dialog d) {
+		this.d = d;
+	}
 }

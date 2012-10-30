@@ -40,8 +40,5 @@ public class ChangeParamView extends ArrayList<UiComponent> implements View {
 			Console.println(s);
 		}
 		customerDecisionComponent.run2();
-		if (model.getEnd()) {
-			return;
-		}
 	}
 }

@@ -2,29 +2,30 @@ package de.travelbasys.training.dialog.menu;
 
 import de.travelbasys.training.framework.Dialog;
 
-/**
- * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für ein
- * Customer Objekt abzufragen und das Objekt dann zu erzeugen.
- * 
- * @author tba
- */
-
 public class MainMenuDialog implements Dialog {
 
 	private MainMenuModel model;
 	private MainMenuView view;
+	@SuppressWarnings("unused")
 	private MainMenuControl control;
 
-	public void run() {
-		model = new MainMenuModel();
-		control = new MainMenuControl(model, view);
-		view = new MainMenuView(model, control);
-
-		// Here plays the music!
-		view.run();
-
-		// Do something with the input!
+	public MainMenuDialog() {
 
 	}
 
+	@Override
+	public void run() {
+		do {
+			model = new MainMenuModel();
+			view = new MainMenuView(model);
+			control = new MainMenuControl(model, view);
+			Dialog d;
+			view.run();
+			try {
+				d = model.getDialog();
+				d.run();
+			} catch (NullPointerException e) {
+			}
+		} while (model.getEnd() == false);
+	}
 }

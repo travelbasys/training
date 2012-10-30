@@ -1,6 +1,5 @@
 package de.travelbasys.training.dialog.other;
 
-import de.travelbasys.training.dialog.menu.MainMenuDialog;
 import de.travelbasys.training.framework.Dialog;
 
 /**
@@ -34,7 +33,5 @@ public class ChangeConfigurationDialog implements Dialog {
 			d.run();
 		} catch (NullPointerException e) {
 		}
-		MainMenuDialog d2 = new MainMenuDialog();
-		d2.run();
-		}
+	}
 }

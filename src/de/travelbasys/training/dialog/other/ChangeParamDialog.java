@@ -1,6 +1,5 @@
 package de.travelbasys.training.dialog.other;
 
-import de.travelbasys.training.dialog.menu.MainMenuDialog;
 import de.travelbasys.training.framework.Dialog;
 
 /**
@@ -23,7 +22,6 @@ public class ChangeParamDialog implements Dialog {
 
 	@Override
 	public void run() {
-		// Here plays the music!
 		view.run();
 		if (model.getEnd()) {
 			return;
@@ -33,7 +31,5 @@ public class ChangeParamDialog implements Dialog {
 			d.run();
 		} catch (NullPointerException e) {
 		}
-		MainMenuDialog d2 = new MainMenuDialog();
-		d2.run();
 	}
 }

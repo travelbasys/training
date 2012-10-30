@@ -40,8 +40,5 @@ public class ChangeConfigurationView extends ArrayList<UiComponent> implements V
 			Console.println(s);
 		}
 		customerDecisionComponent.run2();
-		if (model.getEnd()) {
-			return;
-		}
 	}
 }
