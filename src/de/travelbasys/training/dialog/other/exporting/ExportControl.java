@@ -26,9 +26,9 @@ public class ExportControl {
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
 				int intValue = (Integer) value;
+				ExportControl.this.model.setExportType(null);
 				switch (intValue) {
 				case 0:
-					ExportControl.this.model.setEnd();
 					return;
 				case 1:
 					Export = "CSV";

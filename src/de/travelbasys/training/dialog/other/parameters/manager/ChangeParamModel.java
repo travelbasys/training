@@ -16,7 +16,6 @@ public class ChangeParamModel extends ArrayList<String> implements Model {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private boolean end = false;
 	Dialog d;
 
 	/**
@@ -28,14 +27,6 @@ public class ChangeParamModel extends ArrayList<String> implements Model {
 		add(AppContext.getMessage("Back"));
 		add(AppContext.getMessage("Param1"));
 		add(AppContext.getMessage("Param2"));
-	}
-
-	public void setEnd() {
-		end = true;
-	}
-
-	public boolean getEnd() {
-		return end;
 	}
 
 	public Dialog getDialog() {

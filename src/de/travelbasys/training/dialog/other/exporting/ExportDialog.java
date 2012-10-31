@@ -31,7 +31,7 @@ public class ExportDialog implements Dialog {
 
 		// Here plays the music!
 		view.run();
-		if (model.getEnd()) {
+		if (model.getExportType() == null) {
 			return;
 		}
 		try {
