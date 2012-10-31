@@ -90,9 +90,6 @@ public class CustomerDAO {
 				internalDB.put("customers", new ArrayList<Customer>());
 			}
 			internalCustomers = (List<Customer>) internalDB.get("customers");
-			if (internalCustomers == null) {
-				internalCustomers = new ArrayList<Customer>();
-			}
 		}
 	}
 
@@ -113,7 +110,6 @@ public class CustomerDAO {
 			fos = new FileOutputStream(FILE);
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(internalDB);
-
 			internalCustomers.clear();
 			internalDB.clear();
 
@@ -123,12 +119,10 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode erzeugt eine neue Liste vom typ Customer welche die
-	 * vorhandenen Customer enthält. Man erhält eine "Kopie" der vorhandenen
-	 * Customer-Objekte um diese beliebig zu ändern, ohne einträge in die
-	 * Datenbank zu tätigen
+	 * gibt eine Kopie der <tt>internalCustomers</tt> Liste die alle Datensätze
+	 * der Datenbank enthält zurück.
 	 * 
-	 * @return eine temporärere Kopie eines vorhandenen Customers
+	 * @return Kopie der <tt>internalCustomers</tt> Liste
 	 */
 	public static List<Customer> findAll() {
 		List<Customer> result = new ArrayList<Customer>();
@@ -213,11 +207,6 @@ public class CustomerDAO {
 	/**
 	 * Entfernt den gegebenen <tt>Customer</tt> aus der Datenbank.
 	 * 
-	 * <p>
-	 * Der <tt>Customer</tt> darf noch nicht in der Datenbank enthalten sein,
-	 * was mittels der <tt>equals</tt> Methode überprüft wird.
-	 * </p>
-	 * 
 	 * @param customer
 	 *            das <tt>Customer</tt> Objekt, welches aus der Datenbank
 	 *            entfernt wird.
@@ -236,10 +225,10 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * sucht in der Customer Liste nach dem letzten Customer und gibt dessen Id
-	 * zurück.
+	 * sucht in der internalDB nach der als letztes vergebenen Id, addiert diese
+	 * mit 1 und gibt sie zurück.
 	 * 
-	 * @return id
+	 * @return id die schon um den wert 1 erhöhte id
 	 */
 	private static int createNewId() {
 		int id = (Integer) internalDB.get("id") + 1;
@@ -248,9 +237,9 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode prüft ob ein Customer-Objekt bereits in der customers Liste
+	 * Diese Methode prüft ob ein Customer-Objekt bereits in der Datenbank
 	 * vorhanden ist. Wenn das Customer-Objekt bereits vorhanden ist dann wird
-	 * true zurückgegeben, wenn nicht dann false
+	 * true zurückgegeben, wenn nicht false
 	 * 
 	 * @param customer
 	 *            TODO: Besseren Namen finden!!!
@@ -265,22 +254,35 @@ public class CustomerDAO {
 		return null;
 	}
 
+	/**
+	 * Diese Methode ist dafür verantwortlich, die alte Datenbank speichern und
+	 * leeren zu lassen, um dann zeilenweise eine CSV Datei einzulesen und jedes
+	 * geparste Customerobjekt durch die Methode {@see parseCSV} der internen
+	 * Datenbank hinzuzufügen.
+	 * 
+	 * @param name
+	 *            Name der Datei.
+	 * @throws IOException
+	 *             Dieser Fehler tritt auf, wenn die Datei nicht vorhanden oder
+	 *             schreibgeschützt ist.
+	 */
 	public static void importCSV(String name) throws IOException {
-		int id = 0;
 		// Alte Daten speichern.
 		CustomerDAO.terminate();
+
+		internalDB.put("customers", internalCustomers);
 
 		FileReader fr = new FileReader(name);
 		BufferedReader br = new BufferedReader(fr);
 
 		// Erste Zeile überspringen, in der die Spaltennamen stehen.
 		br.readLine();
-		internalCustomers.clear();
-
 		String s;
 		while ((s = br.readLine()) != null) {
 			internalCustomers.add(Customer.parseCSV(s));
 		}
+
+		int id = 0;
 		for (Customer customer : internalCustomers) {
 			if (customer.getId() > id) {
 				id = customer.getId();

@@ -44,7 +44,10 @@ public class ImportView implements View {
 			Console.println(s);
 		}
 		customerDecisionComponent.run2();
-		if (model.getImportType() == null) {
+		// Die Importmethode für Access-Datenbanken ist geplant allerdings noch
+		// nicht implementiert
+		// da die Formatierung noch nicht geklärt ist (Header). Daher return.
+		if (model.getImportType() == null || model.getImportType() == "ACCESS") {
 			return;
 		}
 		importNameComponent.run();

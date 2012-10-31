@@ -34,11 +34,26 @@ public class ImportDialog implements Dialog {
 			return;
 		}
 		try {
-			CustomerDAO.importCSV(model.getImportName() + "."
-					+ model.getImportType());
-			AppContext.println("ImportOK");
+			if (model.getImportType() == "CSV") {
+
+				CustomerDAO.importCSV(model.getImportName() + "."
+						+ model.getImportType());
+				AppContext.println("ImportOK");
+
+			}
+			// Die Importmethode für Access-Datenbanken ist geplant allerdings
+			// noch
+			// nicht implementiert
+			// da die Formatierung noch nicht geklärt ist (Header). Daher
+			// tue nichts.
+			if (model.getImportType() == "ACCESS") {
+				/*
+				 * CustomerDAO.importMDB(model.getImportName() + "." +
+				 * model.getImportType()); AppContext.println("ImportOK");
+				 */}
 		} catch (IOException e) {
 			Console.printerr(AppContext.getMessage("FileNotFoundException"));
 		}
+
 	}
 }
