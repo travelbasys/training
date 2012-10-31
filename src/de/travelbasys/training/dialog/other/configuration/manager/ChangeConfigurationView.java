@@ -1,7 +1,5 @@
 package de.travelbasys.training.dialog.other.configuration.manager;
 
-import java.util.ArrayList;
-
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.UiComponent;
@@ -14,12 +12,11 @@ import de.travelbasys.training.util.Console;
  * 
  * @autor tba
  */
-public class ChangeConfigurationView extends ArrayList<UiComponent> implements View {
+public class ChangeConfigurationView implements View {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private ChangeConfigurationModel model;
 	private UiComponent customerDecisionComponent;
 
@@ -27,7 +24,6 @@ public class ChangeConfigurationView extends ArrayList<UiComponent> implements V
 		this.model = (ChangeConfigurationModel) model;
 		customerDecisionComponent = new UiComponent();
 		customerDecisionComponent.setType(Integer.class);
-		add(customerDecisionComponent);
 	}
 
 	public AbstractUiComponent getcustomerDecisionComponent() {

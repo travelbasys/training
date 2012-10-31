@@ -1,7 +1,5 @@
 package de.travelbasys.training.dialog.customer.common.find;
 
-import java.util.ArrayList;
-
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.UiComponent;
@@ -11,8 +9,7 @@ import de.travelbasys.training.util.AppContext;
 /**
  * stellt einen View innerhalb des Find-Dialoges dar.
  */
-public class CustomerFindView extends ArrayList<UiComponent> implements View {
-	private static final long serialVersionUID = 1L;
+public class CustomerFindView implements View {
 	private static final String CUSTOMERID = "CustomerId";
 	private static final String START = "AttentionIntPrompt";
 	private UiComponent customerIdComponent;
@@ -35,7 +32,6 @@ public class CustomerFindView extends ArrayList<UiComponent> implements View {
 		customerIdComponent = new UiComponent();
 		customerIdComponent.setName(CUSTOMERID);
 		customerIdComponent.setValue(this.model.getCustomerId());
-		add(customerIdComponent);
 	}
 
 	/**
@@ -49,10 +45,7 @@ public class CustomerFindView extends ArrayList<UiComponent> implements View {
 		AppContext.printMessage(START);
 
 		// Standardaktion
-		for (UiComponent uiComponent : this) {
-			uiComponent.run();
-		}
-
+		customerIdComponent.run();
 		// Nachher
 	}
 

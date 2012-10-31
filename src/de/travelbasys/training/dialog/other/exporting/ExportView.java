@@ -1,7 +1,5 @@
 package de.travelbasys.training.dialog.other.exporting;
 
-import java.util.ArrayList;
-
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.UiComponent;
@@ -14,12 +12,11 @@ import de.travelbasys.training.util.Console;
  * 
  * @autor tba
  */
-public class ExportView extends ArrayList<UiComponent> implements View {
+public class ExportView implements View {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private ExportModel model;
 	private UiComponent customerDecisionComponent;
 	private UiComponent exportNameComponent;
@@ -28,11 +25,9 @@ public class ExportView extends ArrayList<UiComponent> implements View {
 		this.model = (ExportModel) model;
 		customerDecisionComponent = new UiComponent();
 		customerDecisionComponent.setType(Integer.class);
-		add(customerDecisionComponent);
 		exportNameComponent = new UiComponent();
 		exportNameComponent.setName("ExportName");
 		exportNameComponent.setType(String.class);
-		add(exportNameComponent);
 	}
 
 	public AbstractUiComponent getcustomerDecisionComponent() {

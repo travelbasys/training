@@ -25,7 +25,7 @@ public class YesNoDialog implements Dialog {
 	}
 
 	/**
-	 * führt den Dialog aus. Am Ende kann durch die {@see #getFlag} Methode
+	 * führt den Dialog aus. Am Ende kann durch die {@see #isYes} Methode
 	 * festgestellt werden, ob der Benutzer Ja oder Nein ausgewählt hat.
 	 */
 	@Override

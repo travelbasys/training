@@ -27,9 +27,9 @@ public class ChangeConfigurationControl {
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
 				int intValue = (Integer) value;
+				ChangeConfigurationControl.this.model.setDialog(null);
 				switch (intValue) {
 				case 0:
-					ChangeConfigurationControl.this.model.setEnd();
 					return;
 				case 1:
 					ChangeConfigurationControl.this.model

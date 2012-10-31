@@ -22,16 +22,12 @@ public class ChangeConfigurationDialog implements Dialog {
 
 	@Override
 	public void run() {
-		Dialog d = null;
 		// Here plays the music!
 		view.run();
-		if (model.getEnd()) {
+		if (model.getDialog() == null) {
 			return;
 		}
-		try {
-			d = model.getDialog();
-			d.run();
-		} catch (NullPointerException e) {
-		}
+		Dialog d = model.getDialog();
+		d.run();
 	}
 }

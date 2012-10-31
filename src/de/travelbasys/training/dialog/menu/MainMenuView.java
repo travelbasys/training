@@ -1,7 +1,5 @@
 package de.travelbasys.training.dialog.menu;
 
-import java.util.ArrayList;
-
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.UiComponent;
@@ -14,12 +12,11 @@ import de.travelbasys.training.util.Console;
  * 
  * @autor tba
  */
-public class MainMenuView extends ArrayList<UiComponent> implements View {
+public class MainMenuView implements View {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private MainMenuModel model;
 	private UiComponent customerDecisionComponent;
 
@@ -27,7 +24,6 @@ public class MainMenuView extends ArrayList<UiComponent> implements View {
 		this.model = (MainMenuModel) model;
 		customerDecisionComponent = new UiComponent();
 		customerDecisionComponent.setType(Integer.class);
-		add(customerDecisionComponent);
 	}
 
 	public AbstractUiComponent getcustomerDecisionComponent() {
@@ -35,10 +31,10 @@ public class MainMenuView extends ArrayList<UiComponent> implements View {
 	}
 
 	public void run() {
-		if( model.isLanguageChanged()){
+		if (model.isLanguageChanged()) {
 			model.init();
 		}
-		
+
 		for (String s : model) {
 			Console.println(s);
 		}
