@@ -43,7 +43,13 @@ public class Application {
 			Dialog d = menu.getDialog();
 			if (d == null)
 				return;
-			d.run();
+			try {
+				d.run();
+			} catch (Exception e) {
+				e.printStackTrace();
+				stop();
+				terminate();
+			}
 		} while (true);
 	}
 

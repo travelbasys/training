@@ -29,12 +29,9 @@ public class ChangeLangControl {
 				int intValue = (Integer) value;
 				switch (intValue) {
 				case 0:
-					ChangeLangControl.this.model.setEnd();
-					ChangeLangControl.this.model.setLocale(Locale.getDefault());
 					return;
 				case 1:
 					ChangeLangControl.this.model.setLocale(new Locale("en"));
-
 					break;
 				case 2:
 					ChangeLangControl.this.model.setLocale(new Locale("de"));

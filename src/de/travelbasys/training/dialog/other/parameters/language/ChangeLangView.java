@@ -1,7 +1,5 @@
 package de.travelbasys.training.dialog.other.parameters.language;
 
-import java.util.ArrayList;
-
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.UiComponent;
@@ -14,12 +12,11 @@ import de.travelbasys.training.util.Console;
  * 
  * @autor tba
  */
-public class ChangeLangView extends ArrayList<UiComponent> implements View {
+public class ChangeLangView implements View {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private ChangeLangModel model;
 	private UiComponent customerDecisionComponent;
 
@@ -27,7 +24,6 @@ public class ChangeLangView extends ArrayList<UiComponent> implements View {
 		this.model = (ChangeLangModel) model;
 		customerDecisionComponent = new UiComponent();
 		customerDecisionComponent.setType(Integer.class);
-		add(customerDecisionComponent);
 	}
 
 	public AbstractUiComponent getcustomerDecisionComponent() {
@@ -40,8 +36,5 @@ public class ChangeLangView extends ArrayList<UiComponent> implements View {
 			Console.println(s);
 		}
 		customerDecisionComponent.run2();
-		if (model.getEnd()) {
-			return;
-		}
 	}
 }

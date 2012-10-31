@@ -26,9 +26,9 @@ public class ImportControl {
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
 				int intValue = (Integer) value;
+				ImportControl.this.model.setImportType(null);
 				switch (intValue) {
 				case 0:
-					ImportControl.this.model.setEnd();
 					return;
 				case 1:
 					Import = "CSV";

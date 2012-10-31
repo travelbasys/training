@@ -27,9 +27,9 @@ public class ChangeParamControl {
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
 				int intValue = (Integer) value;
+				ChangeParamControl.this.model.setDialog(null);
 				switch (intValue) {
 				case 0:
-					ChangeParamControl.this.model.setEnd();
 					return;
 				case 1:
 					ChangeParamControl.this.model

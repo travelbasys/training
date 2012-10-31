@@ -49,7 +49,7 @@ public class ImportView extends ArrayList<UiComponent> implements View {
 			Console.println(s);
 		}
 		customerDecisionComponent.run2();
-		if (model.getEnd()) {
+		if (model.getImportType() == null) {
 			return;
 		}
 		importNameComponent.run();

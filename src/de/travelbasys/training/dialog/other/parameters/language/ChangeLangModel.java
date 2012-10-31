@@ -16,7 +16,6 @@ public class ChangeLangModel extends ArrayList<String> implements Model {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private boolean end = false;
 	private Locale locale;
 
 	/**
@@ -28,14 +27,6 @@ public class ChangeLangModel extends ArrayList<String> implements Model {
 		add(AppContext.getMessage("Back"));
 		add(AppContext.getMessage("Lang1"));
 		add(AppContext.getMessage("Lang2"));
-	}
-
-	public void setEnd() {
-		end = true;
-	}
-
-	public boolean getEnd() {
-		return end;
 	}
 
 	public Locale getLocale() {

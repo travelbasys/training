@@ -5,6 +5,7 @@ import java.io.IOException;
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.util.Console;
 
 /**
  * Diese Klasse ist für das Importieren der aktuellen Datenbank verantwortlich.
@@ -29,16 +30,15 @@ public class ImportDialog implements Dialog {
 
 		// Here plays the music!
 		view.run();
-		if (model.getEnd()) {
+		if (model.getImportType() == null) {
 			return;
 		}
-
 		try {
 			CustomerDAO.importCSV(model.getImportName() + "."
 					+ model.getImportType());
 			AppContext.println("ImportOK");
 		} catch (IOException e) {
-			e.printStackTrace();
+			Console.printerr(AppContext.getMessage("FileNotFoundException"));
 		}
 	}
 }

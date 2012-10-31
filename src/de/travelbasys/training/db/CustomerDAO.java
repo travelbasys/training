@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.travelbasys.training.business.Customer;
 
@@ -41,6 +43,8 @@ public class CustomerDAO {
 	private static String FILE;
 	private static List<Customer> internalCustomers;
 
+	private static Map<String, Object> internalDB;
+
 	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
 	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
 	// erscheint.
@@ -69,19 +73,26 @@ public class CustomerDAO {
 	public static void init(String db) {
 		FILE = db;
 		FileInputStream fis;
+		internalDB = null;
 		try {
 			fis = new FileInputStream(FILE);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-
-			internalCustomers = (List<Customer>) ois.readObject();
-			if (internalCustomers == null) {
-				internalCustomers = new ArrayList<Customer>();
-			}
+			internalDB = (Map<String, Object>) ois.readObject();
 			ois.close();
 		} catch (FileNotFoundException e1) {
 			System.err.println("File not found");
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (internalDB == null) {
+				internalDB = new HashMap<String, Object>();
+				internalDB.put("id", 0);
+				internalDB.put("customers", new ArrayList<Customer>());
+			}
+			internalCustomers = (List<Customer>) internalDB.get("customers");
+			if (internalCustomers == null) {
+				internalCustomers = new ArrayList<Customer>();
+			}
 		}
 	}
 
@@ -101,12 +112,13 @@ public class CustomerDAO {
 		try {
 			fos = new FileOutputStream(FILE);
 			oos = new ObjectOutputStream(fos);
-			oos.writeObject(internalCustomers);
+			oos.writeObject(internalDB);
 
-			internalCustomers.removeAll(internalCustomers);
+			internalCustomers.clear();
+			internalDB.clear();
+
 			oos.close();
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -145,7 +157,7 @@ public class CustomerDAO {
 			// TODO: Welche Exception???
 			throw new CustomerDaoException("...");
 		} else {
-			int customerid = CustomerDAO.getLastCustomerId() + 1;
+			int customerid = CustomerDAO.createNewId();
 			Customer c = new Customer(customerid, customer.getLastName(),
 					customer.getFirstName(), customer.getAge(),
 					customer.getAdress(), customer.getPostalcode(),
@@ -229,12 +241,10 @@ public class CustomerDAO {
 	 * 
 	 * @return id
 	 */
-	private static int getLastCustomerId() {
-		if (internalCustomers.size() == 0)
-			return 0;
-
-		Customer c = internalCustomers.get(internalCustomers.size() - 1);
-		return c.getId();
+	private static int createNewId() {
+		int id = (Integer) internalDB.get("id") + 1;
+		internalDB.put("id", id);
+		return id;
 	}
 
 	/**
@@ -256,6 +266,7 @@ public class CustomerDAO {
 	}
 
 	public static void importCSV(String name) throws IOException {
+		int id = 0;
 		// Alte Daten speichern.
 		CustomerDAO.terminate();
 
@@ -264,13 +275,18 @@ public class CustomerDAO {
 
 		// Erste Zeile überspringen, in der die Spaltennamen stehen.
 		br.readLine();
-
 		internalCustomers.clear();
 
 		String s;
 		while ((s = br.readLine()) != null) {
 			internalCustomers.add(Customer.parseCSV(s));
 		}
+		for (Customer customer : internalCustomers) {
+			if (customer.getId() > id) {
+				id = customer.getId();
+			}
+		}
+		internalDB.put("id", id);
 		fr.close();
 	}
 

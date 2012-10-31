@@ -18,7 +18,6 @@ public class ImportModel extends ArrayList<String> implements Model {
 	private String ImportType = "";
 	private String ImportName = "";
 	private String Header = "";
-	private boolean end = false;
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
@@ -53,14 +52,6 @@ public class ImportModel extends ArrayList<String> implements Model {
 
 	public void setHeader(String header) {
 		Header = header;
-	}
-
-	public void setEnd() {
-		end = true;
-	}
-
-	public boolean getEnd() {
-		return end;
 	}
 
 }

@@ -23,13 +23,10 @@ public class ChangeParamDialog implements Dialog {
 	@Override
 	public void run() {
 		view.run();
-		if (model.getEnd()) {
+		if (model.getDialog() == null) {
 			return;
 		}
-		try {
 			Dialog d = model.getDialog();
 			d.run();
-		} catch (NullPointerException e) {
-		}
 	}
 }

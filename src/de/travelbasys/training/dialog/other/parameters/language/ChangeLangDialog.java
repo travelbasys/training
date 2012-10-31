@@ -1,5 +1,7 @@
 package de.travelbasys.training.dialog.other.parameters.language;
 
+import java.util.Locale;
+
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.Config;
 
@@ -26,7 +28,7 @@ public class ChangeLangDialog implements Dialog {
 
 		// Here plays the music!
 		view.run();
-		if (model.getEnd()) {
+		if(model.getLocale() == Locale.getDefault()){
 			return;
 		}
 		Config.updateLanguage(model.getLocale());
