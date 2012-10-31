@@ -35,6 +35,10 @@ public class MainMenuView extends ArrayList<UiComponent> implements View {
 	}
 
 	public void run() {
+		if( model.isLanguageChanged()){
+			model.init();
+		}
+		
 		for (String s : model) {
 			Console.println(s);
 		}

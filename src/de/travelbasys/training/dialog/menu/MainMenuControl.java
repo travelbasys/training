@@ -13,7 +13,6 @@ import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
-import de.travelbasys.training.rbsjava.main.Application;
 
 /**
  * Diese Klasse Kontrolliert Benutzereingaben.
@@ -21,23 +20,31 @@ import de.travelbasys.training.rbsjava.main.Application;
  * @author tba
  * 
  */
-public class MainMenuControl extends Application {
+public class MainMenuControl {
 
 	private MainMenuModel model;
 	private MainMenuView view;
 
+	/**
+	 * 
+	 * @param model
+	 * @param view
+	 */
 	public MainMenuControl(Model model, View view) {
 		this.model = (MainMenuModel) model;
 		this.view = (MainMenuView) view;
+		
 		AbstractUiComponent uic;
 		uic = this.view.getcustomerDecisionComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
+				
 				int intValue = (Integer) value;
+				MainMenuControl.this.model.setDialog(null);
+
 				switch (intValue) {
 				case 0:
-					stop();
-					terminate();
+					return;
 				case 1:
 					MainMenuControl.this.model
 							.setDialog(new CustomerCreateDialog());
@@ -55,7 +62,8 @@ public class MainMenuControl extends Application {
 							.setDialog(new CustomerDeleteDialog());
 					break;
 				case 5:
-					MainMenuControl.this.model.setDialog(new CustomerListDialog());
+					MainMenuControl.this.model
+							.setDialog(new CustomerListDialog());
 					break;
 				case 6:
 					MainMenuControl.this.model.setDialog(new ExportDialog());

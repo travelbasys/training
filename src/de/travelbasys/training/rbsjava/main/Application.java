@@ -2,6 +2,7 @@ package de.travelbasys.training.rbsjava.main;
 
 import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.menu.MainMenuDialog;
+import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Configuration;
@@ -35,12 +36,15 @@ public class Application {
 
 	private static void start() {
 
-		// ApplicationContext context = getContext();
-		// context.println( context.getString("Welcome"));
-
 		AppContext.printMessage("Welcome");
 		MainMenuDialog menu = new MainMenuDialog();
-		menu.run();
+		do {
+			menu.run();
+			Dialog d = menu.getDialog();
+			if (d == null)
+				return;
+			d.run();
+		} while (true);
 	}
 
 	protected static void stop() {

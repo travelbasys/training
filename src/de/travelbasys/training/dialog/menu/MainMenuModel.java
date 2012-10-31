@@ -1,6 +1,7 @@
 package de.travelbasys.training.dialog.menu;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.framework.Model;
@@ -16,14 +17,19 @@ public class MainMenuModel extends ArrayList<String> implements Model {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private boolean end = false;
-	Dialog d;
+	private Dialog d;
+	private Locale lang;
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
 	 */
 	public MainMenuModel() {
 		super();
+		init();
+	}
+
+	public void init() {
+		clear();
 		add(AppContext.getMessage("Choose"));
 		add(AppContext.getMessage("ExitApp"));
 		add(AppContext.getMessage("App1"));
@@ -35,16 +41,17 @@ public class MainMenuModel extends ArrayList<String> implements Model {
 		add(AppContext.getMessage("App7"));
 		add(AppContext.getMessage("App8"));
 		add(AppContext.getMessage("App9"));
+		setLang();
 	}
 
-	public void setEnd() {
-		end = true;
+	public void setLang(){
+		lang = Locale.getDefault();
 	}
-
-	public boolean getEnd() {
-		return end;
+	
+	public Locale getLang(){
+		return lang;
 	}
-
+	
 	public Dialog getDialog() {
 		return d;
 	}
@@ -52,4 +59,13 @@ public class MainMenuModel extends ArrayList<String> implements Model {
 	public void setDialog(Dialog d) {
 		this.d = d;
 	}
+
+	public boolean isLanguageChanged() {
+		if (Locale.getDefault() == getLang()) {
+			return false;
+		}
+
+		return true;
+	}
+
 }

@@ -74,7 +74,9 @@ public class CustomerDAO {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
 			internalCustomers = (List<Customer>) ois.readObject();
-
+			if (internalCustomers == null) {
+				internalCustomers = new ArrayList<Customer>();
+			}
 			ois.close();
 		} catch (FileNotFoundException e1) {
 			System.err.println("File not found");
@@ -171,14 +173,18 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode ändert einen Customer der sich in der customers Liste
-	 * befindet. Mit einem vorher festgelegtem Customer, wird Anhand der
-	 * customerid entschieden welcher eintrag der customers Liste geändert
-	 * werden soll, um anschließend die Daten anhand eines Customer-Objekts zu
-	 * ändern.
+	 * Ändert die Attribute des gegebenen <tt>Customer</tt> der Datenbank.
+	 * 
+	 * <p>
+	 * Der <tt>Customer</tt> darf noch nicht in der Datenbank enthalten sein,
+	 * was mittels der <tt>equals</tt> Methode überprüft wird.
+	 * </p>
 	 * 
 	 * @param customer
-	 * @throws CustomerDaoException
+	 *            das <tt>Customer</tt> Objekt, welches in der Datenbank
+	 *            geändert wird.
+	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
+	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
 	public static void update(Customer customer) throws CustomerDaoException {
 		int id = customer.getId();
@@ -193,13 +199,18 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode löscht ein Customer-Objekt aus der InternalCustomers Liste.
-	 * Anhand einer customerid wird entschieden um welchen eintrag in der
-	 * Datenbank es sich handelt.
+	 * Entfernt den gegebenen <tt>Customer</tt> aus der Datenbank.
 	 * 
-	 * @param customerid
-	 *            (dieser Wert wird benötigt um bei verwendung dieser Methode
-	 *            ein ergebnis zu erhalten)
+	 * <p>
+	 * Der <tt>Customer</tt> darf noch nicht in der Datenbank enthalten sein,
+	 * was mittels der <tt>equals</tt> Methode überprüft wird.
+	 * </p>
+	 * 
+	 * @param customer
+	 *            das <tt>Customer</tt> Objekt, welches aus der Datenbank
+	 *            entfernt wird.
+	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
+	 *         Objekt nicht gelöscht werden kann.
 	 */
 	public static void delete(Customer customer) throws CustomerDaoException {
 		int id = customer.getId();
