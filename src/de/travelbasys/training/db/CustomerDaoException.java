@@ -11,7 +11,6 @@ public class CustomerDaoException extends Exception {
 
 	public CustomerDaoException(String string) {
 		error = string;
-		System.err.println(AppContext.getMessage(string));
 	}
 
 	public CustomerDaoException(String string, Customer customer) {
@@ -33,6 +32,10 @@ public class CustomerDaoException extends Exception {
 		} else {
 			System.err.println(AppContext.getMessage("CriticalErr"));
 		}
+	}
+
+	public void printerr() {
+		System.err.println(AppContext.getMessage(error));		
 	}
 
 }

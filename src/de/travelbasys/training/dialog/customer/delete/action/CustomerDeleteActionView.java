@@ -9,13 +9,13 @@ import de.travelbasys.training.util.AppContext;
  * 
  */
 public class CustomerDeleteActionView implements View {
-	private CustomerDeleteActionModel model;
+	
 
 	/**
 	 * Initialisiert das Model.
 	 */
 	public CustomerDeleteActionView(Model model) {
-		this.model = (CustomerDeleteActionModel) model;
+		
 	}
 
 	/**
@@ -23,10 +23,8 @@ public class CustomerDeleteActionView implements View {
 	 * war.
 	 */
 	public void run() {
-		if (model.isSuccess()) {
+	
 			AppContext.printMessage("DelOK");
-		} else {
-			AppContext.printErrString("DelERR");
+	
 		}
 	}
-}

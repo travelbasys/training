@@ -12,9 +12,9 @@ public class CustomerDeleteActionDialog implements Dialog {
 	private CustomerDeleteActionControl control;
 	private CustomerDeleteActionView view;
 
-	public CustomerDeleteActionDialog(boolean success) {
+	public CustomerDeleteActionDialog() {
 		model = new CustomerDeleteActionModel();
-		model.setSuccess(success);
+		
 
 		view = new CustomerDeleteActionView(model);
 	}

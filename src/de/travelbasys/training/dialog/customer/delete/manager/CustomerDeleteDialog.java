@@ -5,7 +5,6 @@ import de.travelbasys.training.db.CustomerDAO;
 import de.travelbasys.training.dialog.customer.common.find.CustomerFindDialog;
 import de.travelbasys.training.dialog.customer.common.print.CustomerPrintDialog;
 import de.travelbasys.training.dialog.customer.common.yesno.YesNoDialog;
-import de.travelbasys.training.dialog.customer.delete.action.CustomerDeleteActionDialog;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
 
@@ -34,21 +33,16 @@ public class CustomerDeleteDialog implements Dialog {
 
 		YesNoDialog d3 = new YesNoDialog(KEY);
 		d3.run();
-		
 
 		if (d3.isYes()) {
-			boolean success;
-			try {
-				CustomerDAO.delete(customer);
-				success = true;
-			} catch (Exception e) {
-				success = false;
-			}
-			CustomerDeleteActionDialog d4 = new CustomerDeleteActionDialog(success);
-			d4.run();
-		}else{
+			// Löscht den gesuchten Customer.
+			// Anmerkung: Es wird keine Exception erzeugt, da der Customer an
+			// dieser Stelle 100% feststeht.
+			CustomerDAO.delete(customer);
+			AppContext.printMessage("DelOK");
+		} else {
 			AppContext.printMessage("Abort");
 		}
-		
+
 	}
 }

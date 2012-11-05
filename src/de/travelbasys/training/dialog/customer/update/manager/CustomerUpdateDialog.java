@@ -58,13 +58,7 @@ public class CustomerUpdateDialog implements Dialog {
 		d3 = new YesNoDialog(KEY);
 		d3.run();
 		if (d3.isYes()) {
-			try {
-				CustomerDAO.update(customer);
-			} catch (CustomerDaoException e) {
-				// Dieser Fall KANN eigentlich NICHT eintreten.
-				// Grund: ...
-				e.printStackTrace();
-			}
+			CustomerDAO.update(customer);
 		}
 	}
 

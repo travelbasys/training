@@ -148,15 +148,14 @@ public class CustomerDAO {
 	 */
 	public static void create(Customer customer) throws CustomerDaoException {
 		CustomerDAO.getExisting(customer);
-		
-			int customerid = CustomerDAO.createNewId();
-			Customer c = new Customer(customerid, customer.getLastName(),
-					customer.getFirstName(), customer.getAge(),
-					customer.getAdress(), customer.getPostalcode(),
-					customer.getEmail());
-			internalCustomers.add(c);
-		}
-	
+
+		int customerid = CustomerDAO.createNewId();
+		Customer c = new Customer(customerid, customer.getLastName(),
+				customer.getFirstName(), customer.getAge(),
+				customer.getAdress(), customer.getPostalcode(),
+				customer.getEmail());
+		internalCustomers.add(c);
+	}
 
 	/**
 	 * gibt eine Kopie des <tt>Customer</tt> Objekts mit der gegebenen
@@ -190,7 +189,7 @@ public class CustomerDAO {
 	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
-	public static void update(Customer customer) throws CustomerDaoException {
+	public static void update(Customer customer){
 		int id = customer.getId();
 		for (Customer c : internalCustomers) {
 			if (c.getId() == id) {
@@ -199,7 +198,6 @@ public class CustomerDAO {
 				return;
 			}
 		}
-		throw new CustomerDaoException("...");
 	}
 
 	/**
@@ -211,7 +209,7 @@ public class CustomerDAO {
 	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
 	 *         Objekt nicht gelöscht werden kann.
 	 */
-	public static void delete(Customer customer) throws CustomerDaoException {
+	public static void delete(Customer customer) {
 		int id = customer.getId();
 		for (Customer c : internalCustomers) {
 			if (c.getId() == id) {
@@ -219,7 +217,6 @@ public class CustomerDAO {
 				return;
 			}
 		}
-		throw new CustomerDaoException("...");
 	}
 
 	/**
@@ -245,9 +242,10 @@ public class CustomerDAO {
 	 * 
 	 * @param customer
 	 *            TODO: Besseren Namen finden!!!
-	 * @throws CustomerDaoException 
+	 * @throws CustomerDaoException
 	 */
-	public static Customer getExisting(Customer customer) throws CustomerDaoException {
+	public static Customer getExisting(Customer customer)
+			throws CustomerDaoException {
 
 		for (Customer c : internalCustomers) {
 			if (c.equals(customer)) {
