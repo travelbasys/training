@@ -147,10 +147,8 @@ public class CustomerDAO {
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
 	public static void create(Customer customer) throws CustomerDaoException {
-		if (getExisting(customer) != null) {
-			// TODO: Welche Exception???
-			throw new CustomerDaoException("...");
-		} else {
+		CustomerDAO.getExisting(customer);
+		
 			int customerid = CustomerDAO.createNewId();
 			Customer c = new Customer(customerid, customer.getLastName(),
 					customer.getFirstName(), customer.getAge(),
@@ -158,7 +156,7 @@ public class CustomerDAO {
 					customer.getEmail());
 			internalCustomers.add(c);
 		}
-	}
+	
 
 	/**
 	 * gibt eine Kopie des <tt>Customer</tt> Objekts mit der gegebenen
@@ -231,9 +229,13 @@ public class CustomerDAO {
 	 * @return id die schon um den wert 1 erhöhte id
 	 */
 	private static int createNewId() {
-		int id = (Integer) internalDB.get("id") + 1;
-		internalDB.put("id", id);
-		return id;
+		try {
+			int id = (Integer) internalDB.get("id") + 1;
+			internalDB.put("id", id);
+			return id;
+		} catch (Exception e) {
+			return 1;
+		}
 	}
 
 	/**
@@ -243,12 +245,13 @@ public class CustomerDAO {
 	 * 
 	 * @param customer
 	 *            TODO: Besseren Namen finden!!!
+	 * @throws CustomerDaoException 
 	 */
-	public static Customer getExisting(Customer customer) {
+	public static Customer getExisting(Customer customer) throws CustomerDaoException {
 
 		for (Customer c : internalCustomers) {
 			if (c.equals(customer)) {
-				return c;
+				throw new CustomerDaoException("ExistErr", c);
 			}
 		}
 		return null;

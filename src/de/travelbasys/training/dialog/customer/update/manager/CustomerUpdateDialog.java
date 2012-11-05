@@ -7,8 +7,6 @@ import de.travelbasys.training.dialog.customer.common.find.CustomerFindDialog;
 import de.travelbasys.training.dialog.customer.common.yesno.YesNoDialog;
 import de.travelbasys.training.dialog.customer.update.attributes.CustomerAttributesUpdateDialog;
 import de.travelbasys.training.framework.Dialog;
-import de.travelbasys.training.util.AppContext;
-import de.travelbasys.training.util.Console;
 
 /**
  * hat die Aufgabe ein vorhandenes Customer Objekt aus der Datenbank zu ändern.
@@ -40,34 +38,34 @@ public class CustomerUpdateDialog implements Dialog {
 		if (customer == null) {
 			return;
 		}
-		
+
 		// Show and Change
 		CustomerAttributesUpdateDialog d2 = new CustomerAttributesUpdateDialog(
 				customer);
 		d2.run();
 
 		if (d2.getDirtyFlag()) {
-			Customer c = CustomerDAO.getExisting(customer);
-			if (c != null) {
-				// User already exists.
-				Console.printerr(AppContext.getMessage("ExistErr") + c);
+			try {
+				CustomerDAO.getExisting(customer);
+			} catch (CustomerDaoException e) {
+				e.printcustomererr();
 				return;
-			}
-			
-			// Yes or No
-			KEY = "SaveQ";
-			d3 = new YesNoDialog(KEY);
-			d3.run();
-			if (d3.isYes()) {
-				try {
-					CustomerDAO.update(customer);
-				} catch (CustomerDaoException e) {
-					// Dieser Fall KANN eigentlich NICHT eintreten.
-					// Grund: ...
-					e.printStackTrace();
-				}
 			}
 		}
 
+		// Yes or No
+		KEY = "SaveQ";
+		d3 = new YesNoDialog(KEY);
+		d3.run();
+		if (d3.isYes()) {
+			try {
+				CustomerDAO.update(customer);
+			} catch (CustomerDaoException e) {
+				// Dieser Fall KANN eigentlich NICHT eintreten.
+				// Grund: ...
+				e.printStackTrace();
+			}
+		}
 	}
+
 }

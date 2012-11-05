@@ -2,6 +2,7 @@ package de.travelbasys.training.dialog.customer.create;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.db.CustomerDaoException;
 import de.travelbasys.training.framework.Dialog;
 
 /**
@@ -28,16 +29,14 @@ public class CustomerCreateDialog implements Dialog {
 		control = new CustomerCreateControl(model, view);
 
 		view.run();
-
 		try {
 			int dummyId = 0;
 			Customer customer = new Customer(dummyId, model.getLastname(),
 					model.getFirstname(), model.getAge(), model.getAdress(),
 					model.getPostalcode(), model.getEMail());
 			CustomerDAO.create(customer);
-		}
-		catch(Exception e){
-			e.printStackTrace();
+		} catch (CustomerDaoException e) {
+			e.printcustomererr();
 		}
 
 	}
