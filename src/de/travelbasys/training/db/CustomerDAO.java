@@ -75,6 +75,7 @@ public class CustomerDAO {
 		FileInputStream fis;
 		internalDB = null;
 		try {
+			Class.forName("com.mysql.jdbc.Driver");
 			fis = new FileInputStream(FILE);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			internalDB = (Map<String, Object>) ois.readObject();
