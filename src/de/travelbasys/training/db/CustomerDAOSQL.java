@@ -37,7 +37,7 @@ import de.travelbasys.training.business.Customer;
  * TODO: Behandlung von eindeutigen Id's und Verhalten beim Löschen.
  * </p>
  */
-public class CustomerDAO {
+public class CustomerDAOSQL {
 
 	private static String FILE;
 	private static String TABLE;
@@ -51,7 +51,7 @@ public class CustomerDAO {
 	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
 	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
 	// erscheint.
-	private CustomerDAO() {
+	private CustomerDAOSQL() {
 	}
 
 	/**
@@ -306,7 +306,7 @@ public class CustomerDAO {
 	 */
 	public static void importCSV(String name) throws IOException {
 		// Alte Daten speichern.
-		CustomerDAO.terminate();
+		CustomerDAOSQL.terminate();
 
 		FileReader fr = new FileReader(name);
 		BufferedReader br = new BufferedReader(fr);
