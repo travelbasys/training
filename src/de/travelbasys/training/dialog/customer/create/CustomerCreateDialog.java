@@ -1,8 +1,8 @@
 package de.travelbasys.training.dialog.customer.create;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.db.CustomerDaoException;
+import de.travelbasys.training.dao.CustomerDAO;
+import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.framework.Dialog;
 
 /**

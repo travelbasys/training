@@ -1,19 +1,19 @@
-package de.travelbasys.training.db;
+package de.travelbasys.training.dao.mysql;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.dao.CustomerDaoException;
 
 /**
  * Diese Klasse repräsentiert eine "Datenbank" von {@see Customer} Objekten.
@@ -38,17 +38,21 @@ import de.travelbasys.training.business.Customer;
  * TODO: Behandlung von eindeutigen Id's und Verhalten beim Löschen.
  * </p>
  */
-public class CustomerDAO_old {
+public class MySqlCustomerDAO {
 
 	private static String FILE;
+	private static String TABLE;
 	private static List<Customer> internalCustomers;
 
-	private static Map<String, Object> internalDB;
+	private static Connection connect = null;
+	private static Statement statement = null;
+	private static PreparedStatement preparedStatement = null;
+	private static ResultSet resultSet = null;
 
 	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
 	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
 	// erscheint.
-	private CustomerDAO_old() {
+	private MySqlCustomerDAO() {
 	}
 
 	/**
@@ -69,27 +73,37 @@ public class CustomerDAO_old {
 	 *            Name der Datenbank, momentan der Name der Textdatei, in dem
 	 *            die Datensätze gespeichert sind.
 	 */
-	@SuppressWarnings("unchecked")
 	public static void init(String db) {
 		FILE = db;
-		FileInputStream fis;
-		internalDB = null;
+		TABLE = "tb_customer";
 		try {
-			fis = new FileInputStream(FILE);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			internalDB = (Map<String, Object>) ois.readObject();
-			ois.close();
-		} catch (FileNotFoundException e1) {
-			System.err.println("File not found");
+			Class.forName("com.mysql.jdbc.Driver");
+			connect = DriverManager
+					.getConnection("jdbc:mysql://localhost:8080/" + db + "?"
+							+ "user=sqluser&password=sqluserpw");
+			statement = connect.createStatement();
+			preparedStatement = connect
+					.prepareStatement("CREATE TABLE "
+							+ TABLE
+							+ " (customerid INT NOT NULL AUTO_INCREMENT, lastname VARCHAR(30) NOT NULL, firstname VARCHAR(30), age INT NOT NULL, adress VARCHAR(30) , postalcode VARCHAR(30), email VARCHAR(30),PRIMARY KEY (customerid));");
+			try {
+				preparedStatement.executeUpdate();
+			} catch (Exception e) {
+			}
+			// Result set get the result of the SQL query
+			resultSet = statement.executeQuery("select * from " + db + "."
+					+ TABLE);
+			internalCustomers = new ArrayList<Customer>();
+			while (resultSet.next()) {
+				Customer c = new Customer(resultSet.getInt(1),
+						resultSet.getString(2), resultSet.getString(3),
+						resultSet.getInt(4), resultSet.getString(5),
+						resultSet.getString(6), resultSet.getString(7));
+				System.out.println(c);
+				internalCustomers.add(c);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			if (internalDB == null) {
-				internalDB = new HashMap<String, Object>();
-				internalDB.put("id", 0);
-				internalDB.put("customers", new ArrayList<Customer>());
-			}
-			internalCustomers = (List<Customer>) internalDB.get("customers");
 		}
 	}
 
@@ -103,19 +117,7 @@ public class CustomerDAO_old {
 	 * </p>
 	 */
 	public static void terminate() {
-
-		FileOutputStream fos;
-		ObjectOutputStream oos;
-		try {
-			fos = new FileOutputStream(FILE);
-			oos = new ObjectOutputStream(fos);
-			oos.writeObject(internalDB);
-			internalCustomers.clear();
-			internalDB.clear();
-
-			oos.close();
-		} catch (Exception e) {
-		}
+		internalCustomers.clear();
 	}
 
 	/**
@@ -147,14 +149,41 @@ public class CustomerDAO_old {
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
 	public static void create(Customer customer) throws CustomerDaoException {
-		CustomerDAO_old.getExisting(customer);
+		getExisting(customer);
+		try {
+			int customerid = 0;
+			preparedStatement = connect.prepareStatement("INSERT INTO " + FILE
+					+ "." + TABLE + " VALUES (default, ?, ?, ?, ? , ?, ?);");
+			preparedStatement.setString(1, customer.getLastName());
+			preparedStatement.setString(2, customer.getFirstName());
+			preparedStatement.setInt(3, customer.getAge());
+			preparedStatement.setString(4, customer.getAdress());
+			preparedStatement.setString(5, customer.getPostalcode());
+			preparedStatement.setString(6, customer.getEmail());
+			preparedStatement.executeUpdate();
+			// Neu über ResultSet iterieren??
+			customerid = createNewId();
+			Customer c = new Customer(customerid, customer.getLastName(),
+					customer.getFirstName(), customer.getAge(),
+					customer.getAdress(), customer.getPostalcode(),
+					customer.getEmail());
+			internalCustomers.add(c);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
-		int customerid = CustomerDAO_old.createNewId();
-		Customer c = new Customer(customerid, customer.getLastName(),
-				customer.getFirstName(), customer.getAge(),
-				customer.getAdress(), customer.getPostalcode(),
-				customer.getEmail());
-		internalCustomers.add(c);
+	private static int createNewId() {
+		try {
+			resultSet.beforeFirst();
+			int id = 0;
+			while (resultSet.next()) {
+				id = resultSet.getInt(1) + 1;
+			}
+			return id;
+		} catch (Exception e) {
+			return 1;
+		}
 	}
 
 	/**
@@ -189,12 +218,29 @@ public class CustomerDAO_old {
 	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
-	public static void update(Customer customer){
+	public static void update(Customer customer) {
 		int id = customer.getId();
 		for (Customer c : internalCustomers) {
 			if (c.getId() == id) {
-				internalCustomers.set(internalCustomers.indexOf(c),
-						customer.clone());
+				try {
+					preparedStatement = connect
+							.prepareStatement("UPDATE "
+									+ TABLE
+									+ " SET lastname = ?, firstname = ?, age = ?, adress = ?, postalcode = ?, email = ? WHERE customerid = ?;");
+					preparedStatement.setString(1, customer.getLastName());
+					preparedStatement.setString(2, customer.getFirstName());
+					preparedStatement.setInt(3, customer.getAge());
+					preparedStatement.setString(4, customer.getAdress());
+					preparedStatement.setString(5, customer.getPostalcode());
+					preparedStatement.setString(6, customer.getEmail());
+					preparedStatement.setInt(7, customer.getId());
+					preparedStatement.executeUpdate();
+					internalCustomers.set(internalCustomers.indexOf(c),
+							customer.clone());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				;
 				return;
 			}
 		}
@@ -213,25 +259,17 @@ public class CustomerDAO_old {
 		int id = customer.getId();
 		for (Customer c : internalCustomers) {
 			if (c.getId() == id) {
-				internalCustomers.remove(internalCustomers.indexOf(c));
+				try {
+					preparedStatement = connect
+							.prepareStatement("DELETE FROM tb_customer WHERE customerid = ? ;");
+					preparedStatement.setInt(1, customer.getId());
+					preparedStatement.executeUpdate();
+					internalCustomers.remove(internalCustomers.indexOf(c));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				return;
 			}
-		}
-	}
-
-	/**
-	 * sucht in der internalDB nach der als letztes vergebenen Id, addiert diese
-	 * mit 1 und gibt sie zurück.
-	 * 
-	 * @return id die schon um den wert 1 erhöhte id
-	 */
-	private static int createNewId() {
-		try {
-			int id = (Integer) internalDB.get("id") + 1;
-			internalDB.put("id", id);
-			return id;
-		} catch (Exception e) {
-			return 1;
 		}
 	}
 
@@ -269,9 +307,7 @@ public class CustomerDAO_old {
 	 */
 	public static void importCSV(String name) throws IOException {
 		// Alte Daten speichern.
-		CustomerDAO_old.terminate();
-
-		internalDB.put("customers", internalCustomers);
+		MySqlCustomerDAO.terminate();
 
 		FileReader fr = new FileReader(name);
 		BufferedReader br = new BufferedReader(fr);
@@ -289,7 +325,6 @@ public class CustomerDAO_old {
 				id = customer.getId();
 			}
 		}
-		internalDB.put("id", id);
 		fr.close();
 	}
 

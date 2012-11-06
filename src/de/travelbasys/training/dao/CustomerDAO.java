@@ -1,10 +1,9 @@
-package de.travelbasys.training.db;
+package de.travelbasys.training.dao;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.db.MySqlConnection;
 
 /**
  * Diese Klasse repräsentiert eine "Datenbank" von {@see Customer} Objekten.
@@ -51,7 +51,7 @@ public class CustomerDAO {
 	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
 	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
 	// erscheint.
-	private CustomerDAO() {
+	public CustomerDAO() {
 	}
 
 	/**
@@ -76,10 +76,7 @@ public class CustomerDAO {
 		FILE = db;
 		TABLE = "tb_customer";
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager
-					.getConnection("jdbc:mysql://localhost:8080/" + db + "?"
-							+ "user=sqluser&password=sqluserpw");
+			connect = MySqlConnection.getInstance();
 			statement = connect.createStatement();
 			preparedStatement = connect
 					.prepareStatement("CREATE TABLE "
@@ -98,7 +95,6 @@ public class CustomerDAO {
 						resultSet.getString(2), resultSet.getString(3),
 						resultSet.getInt(4), resultSet.getString(5),
 						resultSet.getString(6), resultSet.getString(7));
-				System.out.println(c);
 				internalCustomers.add(c);
 			}
 		} catch (Exception e) {

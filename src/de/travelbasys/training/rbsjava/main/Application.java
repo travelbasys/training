@@ -1,6 +1,6 @@
 package de.travelbasys.training.rbsjava.main;
 
-import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.dialog.menu.MainMenuDialog;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;

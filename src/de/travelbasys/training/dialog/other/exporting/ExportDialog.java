@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
 

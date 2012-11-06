@@ -1,8 +1,8 @@
 package de.travelbasys.training.dialog.customer.update.manager;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.db.CustomerDAO;
-import de.travelbasys.training.db.CustomerDaoException;
+import de.travelbasys.training.dao.CustomerDAO;
+import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dialog.customer.common.find.CustomerFindDialog;
 import de.travelbasys.training.dialog.customer.common.yesno.YesNoDialog;
 import de.travelbasys.training.dialog.customer.update.attributes.CustomerAttributesUpdateDialog;

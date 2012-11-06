@@ -1,7 +1,7 @@
 package de.travelbasys.training.dialog.customer.delete.manager;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.dialog.customer.common.find.CustomerFindDialog;
 import de.travelbasys.training.dialog.customer.common.print.CustomerPrintDialog;
 import de.travelbasys.training.dialog.customer.common.yesno.YesNoDialog;

@@ -2,7 +2,7 @@ package de.travelbasys.training.dialog.other.parameters.database;
 
 import java.io.File;
 
-import de.travelbasys.training.db.CustomerDAO;
+import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.Config;
 
