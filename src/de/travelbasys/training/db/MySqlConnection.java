@@ -1,14 +1,13 @@
 package de.travelbasys.training.db;
 
-import java.sql.DriverManager;
-
 import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class MySqlConnection {
 	public static Connection conn;
 
 	private static String dbHost = "localhost";
-	private static String dbPort = "8080";
+	private static String dbPort = "3306";
 	private static String dbUser = "sqluser";
 	private static String dbPassword = "sqluserpw";
 
@@ -17,10 +16,10 @@ public class MySqlConnection {
 	private MySqlConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager
-					.getConnection("jdbc:mysql://"+dbHost+":"+dbPort+"/" + dbName + "?"
-							+ "user="+dbUser+"&password="+dbPassword);
-		} catch(Exception e) {
+			conn = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":"
+					+ dbPort + "/" + dbName + "?" + "user=" + dbUser
+					+ "&password=" + dbPassword);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
