@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class MySqlConnection {
-	public static Connection conn;
+	public static Connection conn = null;
 
 	private static String dbHost = "localhost";
 	private static String dbPort = "3306";

@@ -33,6 +33,7 @@ public class CustomerCreateControl extends AbstractControl {
 		uic = this.view.getCustomerLastnameComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
+				checkString(value);
 				CustomerCreateControl.this.model.setLastname((String) value);
 			}
 		});
@@ -40,6 +41,7 @@ public class CustomerCreateControl extends AbstractControl {
 		uic = this.view.getCustomerFirstnameComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
+				checkString(value);
 				CustomerCreateControl.this.model.setFirstname((String) value);
 			}
 		});
@@ -55,6 +57,7 @@ public class CustomerCreateControl extends AbstractControl {
 		uic = this.view.getCustomerAdressComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
+				checkString(value);
 				CustomerCreateControl.this.model.setAdress((String) value);
 			}
 		});
@@ -69,6 +72,7 @@ public class CustomerCreateControl extends AbstractControl {
 		uic = this.view.getCustomerEMailComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
+				checkString(value);
 				CustomerCreateControl.this.model.setEMail((String) value);
 			}
 		});
@@ -90,6 +94,15 @@ public class CustomerCreateControl extends AbstractControl {
 				throw new Exception("PostalNotInRangeErr");
 		} catch (NumberFormatException e) {
 			throw new Exception("IllegalNumberFormat");
+		}
+
+	}
+
+	private void checkString(Object value) throws Exception {
+
+		String s = (String) value;
+		if (s.isEmpty()) {
+			throw new Exception("EmptyFieldErr");
 		}
 
 	}

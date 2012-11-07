@@ -112,6 +112,11 @@ public class CustomerDAO {
 	 */
 	public static void terminate() {
 		internalCustomers.clear();
+		try {
+			connect.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -161,6 +166,7 @@ public class CustomerDAO {
 					customer.getAdress(), customer.getPostalcode(),
 					customer.getEmail());
 			internalCustomers.add(c);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

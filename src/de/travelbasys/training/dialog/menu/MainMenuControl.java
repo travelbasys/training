@@ -39,6 +39,7 @@ public class MainMenuControl {
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
 				
+				
 				int intValue = (Integer) value;
 				MainMenuControl.this.model.setDialog(null);
 
