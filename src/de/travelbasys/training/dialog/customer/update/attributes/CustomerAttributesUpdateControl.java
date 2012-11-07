@@ -8,7 +8,8 @@ import de.travelbasys.training.framework.View;
 //TODO muss überarbeitet werden
 
 /**
- * steuert den Dialog mit dem Benutzer und ändert ein temporäres Customer Objekt.
+ * steuert den Dialog mit dem Benutzer und ändert ein temporäres Customer
+ * Objekt.
  */
 
 public class CustomerAttributesUpdateControl extends AbstractControl {
@@ -23,13 +24,14 @@ public class CustomerAttributesUpdateControl extends AbstractControl {
 	public CustomerAttributesUpdateControl(Model model, View view) {
 		this.model = (CustomerAttributesUpdateModel) model;
 		this.view = (CustomerAttributesUpdateView) view;
-		
+
 		AbstractUiComponent uic;
 
 		uic = this.view.getLastnameComponent();
 		uic.setControl(new AbstractControl() {
 			// Speichert den gegebenen Wert als Lastname im Model.
 			public void handleInput(Object value) throws Exception {
+				checkString(value);
 				CustomerAttributesUpdateControl.this.model
 						.setLastName((String) value);
 			}
@@ -39,6 +41,7 @@ public class CustomerAttributesUpdateControl extends AbstractControl {
 		uic.setControl(new AbstractControl() {
 			// Speichert den gegebenen Wert als Firstname im Model.
 			public void handleInput(Object value) throws Exception {
+				checkString(value);
 				CustomerAttributesUpdateControl.this.model
 						.setFirstName((String) value);
 			}
@@ -49,7 +52,8 @@ public class CustomerAttributesUpdateControl extends AbstractControl {
 			// Speichert den gegebenen Wert als Age im Model.
 			public void handleInput(Object value) throws Exception {
 				checkAge(value);
-				CustomerAttributesUpdateControl.this.model.setAge((Integer) value);
+				CustomerAttributesUpdateControl.this.model
+						.setAge((Integer) value);
 			}
 		});
 
@@ -57,6 +61,7 @@ public class CustomerAttributesUpdateControl extends AbstractControl {
 		uic.setControl(new AbstractControl() {
 			// Speichert den gegebenen Wert als Adress im Model.
 			public void handleInput(Object value) throws Exception {
+				checkString(value);
 				CustomerAttributesUpdateControl.this.model
 						.setAdress((String) value);
 			}
@@ -76,6 +81,7 @@ public class CustomerAttributesUpdateControl extends AbstractControl {
 		uic.setControl(new AbstractControl() {
 			// Speichert den gegebenen Wert als EMail im Model.
 			public void handleInput(Object value) throws Exception {
+				checkString(value);
 				CustomerAttributesUpdateControl.this.model
 						.setEMail((String) value);
 			}
@@ -99,5 +105,14 @@ public class CustomerAttributesUpdateControl extends AbstractControl {
 		} catch (NumberFormatException e) {
 			throw new Exception("IllegalNumberFormat");
 		}
+	}
+
+	private void checkString(Object value) throws Exception {
+
+		String s = (String) value;
+		if (s.isEmpty()) {
+			throw new Exception("EmptyFieldErr");
+		}
+
 	}
 }
