@@ -87,8 +87,7 @@ public class CustomerDAO {
 			} catch (Exception e) {
 			}
 			// Result set get the result of the SQL query
-			resultSet = statement.executeQuery("select * from " + db + "."
-					+ TABLE);
+			resultSet = statement.executeQuery("select * from " + TABLE + ";");
 			internalCustomers = new ArrayList<Customer>();
 			while (resultSet.next()) {
 				Customer c = new Customer(resultSet.getInt(1),
@@ -156,7 +155,6 @@ public class CustomerDAO {
 			preparedStatement.setString(5, customer.getPostalcode());
 			preparedStatement.setString(6, customer.getEmail());
 			preparedStatement.executeUpdate();
-			// Neu über ResultSet iterieren??
 			customerid = createNewId();
 			Customer c = new Customer(customerid, customer.getLastName(),
 					customer.getFirstName(), customer.getAge(),
@@ -169,14 +167,17 @@ public class CustomerDAO {
 	}
 
 	private static int createNewId() {
+		int id = 0;
 		try {
-			resultSet.beforeFirst();
-			int id = 0;
+			resultSet = statement.executeQuery("select * from " + TABLE + ";");
 			while (resultSet.next()) {
-				id = resultSet.getInt(1) + 1;
+				id = resultSet.getInt(1);
 			}
-			return id;
-		} catch (Exception e) {
+			if (id != 0) {
+				return id;
+			} else
+				return 1;
+		} catch (SQLException e) {
 			return 1;
 		}
 	}
