@@ -76,7 +76,7 @@ public class CustomerDAO {
 		FILE = db;
 		TABLE = "tb_customer";
 		try {
-			connect = MySqlConnection.getInstance();
+			OpenConnection();
 			statement = connect.createStatement();
 			preparedStatement = connect
 					.prepareStatement("CREATE TABLE "
@@ -87,7 +87,7 @@ public class CustomerDAO {
 			} catch (Exception e) {
 			}
 			// Result set get the result of the SQL query
-			resultSet = statement.executeQuery("select * from " + TABLE + ";");
+			resultSet = statement.executeQuery("SELECT * FROM " + TABLE + ";");
 			internalCustomers = new ArrayList<Customer>();
 			while (resultSet.next()) {
 				Customer c = new Customer(resultSet.getInt(1),
@@ -95,6 +95,24 @@ public class CustomerDAO {
 						resultSet.getInt(4), resultSet.getString(5),
 						resultSet.getString(6), resultSet.getString(7));
 				internalCustomers.add(c);
+			}
+		} catch (Exception e) {
+		}
+		CloseCurrentConnection();
+	}
+
+	private static void CloseCurrentConnection() {
+		try {
+			if (resultSet != null) {
+				resultSet.close();
+			}
+
+			if (statement != null) {
+				statement.close();
+			}
+
+			if (connect != null) {
+				connect.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -112,11 +130,7 @@ public class CustomerDAO {
 	 */
 	public static void terminate() {
 		internalCustomers.clear();
-		try {
-			connect.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		CloseCurrentConnection();
 	}
 
 	/**
@@ -148,8 +162,10 @@ public class CustomerDAO {
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
 	public static void create(Customer customer) throws CustomerDaoException {
+		OpenConnection();
 		getExisting(customer);
 		try {
+			statement = connect.createStatement();
 			int customerid = 0;
 			preparedStatement = connect.prepareStatement("INSERT INTO " + FILE
 					+ "." + TABLE + " VALUES (default, ?, ?, ?, ? , ?, ?);");
@@ -170,12 +186,13 @@ public class CustomerDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		CloseCurrentConnection();
 	}
 
 	private static int createNewId() {
 		int id = 0;
 		try {
-			resultSet = statement.executeQuery("select * from " + TABLE + ";");
+			resultSet = statement.executeQuery("SELECT * FROM " + TABLE + ";");
 			while (resultSet.next()) {
 				id = resultSet.getInt(1);
 			}
@@ -222,6 +239,7 @@ public class CustomerDAO {
 	 */
 	public static void update(Customer customer) {
 		int id = customer.getId();
+		OpenConnection();
 		for (Customer c : internalCustomers) {
 			if (c.getId() == id) {
 				try {
@@ -242,7 +260,7 @@ public class CustomerDAO {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				;
+				CloseCurrentConnection();
 				return;
 			}
 		}
@@ -259,6 +277,7 @@ public class CustomerDAO {
 	 */
 	public static void delete(Customer customer) {
 		int id = customer.getId();
+		OpenConnection();
 		for (Customer c : internalCustomers) {
 			if (c.getId() == id) {
 				try {
@@ -270,9 +289,14 @@ public class CustomerDAO {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				CloseCurrentConnection();
 				return;
 			}
 		}
+	}
+
+	private static void OpenConnection() {
+		connect = MySqlConnection.getNewInstance();
 	}
 
 	/**

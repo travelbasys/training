@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class MySqlConnection {
+	
 	public static Connection conn = null;
-
-	private static String dbHost = "localhost";
+	private static String dbHost = "10.151.16.61";
 	private static String dbPort = "3306";
 	private static String dbUser = "sqluser";
 	private static String dbPassword = "sqluserpw";
@@ -24,9 +24,9 @@ public class MySqlConnection {
 		}
 	}
 
-	public static Connection getInstance() {
-		if (conn == null)
+	public static Connection getNewInstance() {
 			new MySqlConnection();
 		return conn;
 	}
+
 }
