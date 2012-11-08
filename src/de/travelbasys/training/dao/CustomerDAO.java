@@ -47,6 +47,7 @@ public class CustomerDAO {
 	private static Statement statement = null;
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
+	private static int localupdateid = 0;
 
 	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
 	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
@@ -78,14 +79,21 @@ public class CustomerDAO {
 		try {
 			OpenConnection();
 			statement = connect.createStatement();
-			preparedStatement = connect
-					.prepareStatement("CREATE TABLE "
-							+ TABLE
-							+ " (customerid INT NOT NULL AUTO_INCREMENT, lastname VARCHAR(30) NOT NULL, firstname VARCHAR(30), age INT NOT NULL, adress VARCHAR(30) , postalcode VARCHAR(30), email VARCHAR(30), updateid BIGINT UNSIGNED NOT NULL DEFAULT '0' ,PRIMARY KEY (customerid));");
-			try {
-				preparedStatement.executeUpdate();
-			} catch (Exception e) {
-			}
+
+			// Legt eine neue Tabelle in der Datenbank an, wenn diese nicht
+			// vorhanden ist.
+			// Da aktuell diese Tabelle in der Datenbank vorliegt, wird diese
+			// Funktion nicht genutzt.
+			// Es ist noch nicht exakt bedacht worden (Konzept) ob die Tabelle
+			// von einem Admin angelegt werden muss, oder die Anwendung darüber
+			// entscheidet.
+			/*
+			 * preparedStatement = connect .prepareStatement("CREATE TABLE " +
+			 * TABLE +
+			 * " (customerid INT NOT NULL AUTO_INCREMENT, lastname VARCHAR(30) NOT NULL, firstname VARCHAR(30), age INT NOT NULL, adress VARCHAR(30) , postalcode VARCHAR(30), email VARCHAR(30), updateid BIGINT UNSIGNED NOT NULL DEFAULT '0' ,PRIMARY KEY (customerid));"
+			 * ); try { preparedStatement.executeUpdate(); } catch (Exception e)
+			 * { }
+			 */
 			// Result set get the result of the SQL query
 			resultSet = statement.executeQuery("SELECT * FROM " + TABLE + ";");
 			internalCustomers = new ArrayList<Customer>();
@@ -170,7 +178,8 @@ public class CustomerDAO {
 			statement = connect.createStatement();
 			int customerid = 0;
 			preparedStatement = connect.prepareStatement("INSERT INTO " + FILE
-					+ "." + TABLE + " VALUES (default, ?, ?, ?, ? , ?, ?, default);");
+					+ "." + TABLE
+					+ " VALUES (default, ?, ?, ?, ? , ?, ?, default);");
 			preparedStatement.setString(1, customer.getLastName());
 			preparedStatement.setString(2, customer.getFirstName());
 			preparedStatement.setInt(3, customer.getAge());
@@ -217,6 +226,17 @@ public class CustomerDAO {
 	 *         oder <tt>null</tt>, wenn kein solches Objekt existiert.
 	 */
 	public static Customer findById(int id) {
+		init(FILE);
+		OpenConnection();
+		try {
+			statement = connect.createStatement();
+			resultSet = statement.executeQuery("SELECT * FROM " + TABLE
+					+ " WHERE customerid = " + id + ";");
+			resultSet.next();
+			localupdateid = resultSet.getInt(8);
+		} catch (SQLException e) {
+		}
+		CloseCurrentConnection();
 		for (Customer customer : internalCustomers) {
 			if (customer.getId() == id) {
 				return customer.clone();
@@ -240,31 +260,37 @@ public class CustomerDAO {
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
 	public static void update(Customer customer) {
-		int id = customer.getId();
 		OpenConnection();
-		for (Customer c : internalCustomers) {
-			if (c.getId() == id) {
-				try {
-					preparedStatement = connect
-							.prepareStatement("UPDATE "
-									+ TABLE
-									+ " SET lastname = ?, firstname = ?, age = ?, adress = ?, postalcode = ?, email = ? WHERE customerid = ?;");
-					preparedStatement.setString(1, customer.getLastName());
-					preparedStatement.setString(2, customer.getFirstName());
-					preparedStatement.setInt(3, customer.getAge());
-					preparedStatement.setString(4, customer.getAdress());
-					preparedStatement.setString(5, customer.getPostalcode());
-					preparedStatement.setString(6, customer.getEmail());
-					preparedStatement.setInt(7, customer.getId());
-					preparedStatement.executeUpdate();
-					internalCustomers.set(internalCustomers.indexOf(c),
-							customer.clone());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		try {
+			statement = connect.createStatement();
+			resultSet = statement.executeQuery("SELECT * FROM " + TABLE
+					+ " WHERE customerid = " + customer.getId() + ";");
+			resultSet.next();
+			if (resultSet.getRow() == 0) {
+				System.err.println("Customer had been killed.");
+				return;
+			}
+			if (resultSet.getInt(8) == localupdateid) {
+				preparedStatement = connect
+						.prepareStatement("UPDATE "
+								+ TABLE
+								+ " SET lastname = ?, firstname = ?, age = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;");
+				preparedStatement.setString(1, customer.getLastName());
+				preparedStatement.setString(2, customer.getFirstName());
+				preparedStatement.setInt(3, customer.getAge());
+				preparedStatement.setString(4, customer.getAdress());
+				preparedStatement.setString(5, customer.getPostalcode());
+				preparedStatement.setString(6, customer.getEmail());
+				preparedStatement.setInt(7, (resultSet.getInt(8) + 1));
+				preparedStatement.setInt(8, customer.getId());
+				preparedStatement.executeUpdate();
+			} else {
+				System.err.println("Customer has been changed another user.");
 				CloseCurrentConnection();
 				return;
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -334,8 +360,12 @@ public class CustomerDAO {
 	 *             schreibgeschützt ist.
 	 */
 	public static void importCSV(String name) throws IOException {
-		// Alte Daten speichern.
 		CustomerDAO.terminate();
+		// Import ersetzt aktuell nur die vorhandene CustomerListe, nicht jedoch
+		// die Tabelle der Datenbank aus Sicherheitsgründen.
+		// Implementierung von Import ist im Konzept (Umstellung auf MySQL) z.Z.
+		// nicht berücksichtig.
+		System.out.println("Hinweis: Ersetzt nur die lokale Liste.");
 
 		FileReader fr = new FileReader(name);
 		BufferedReader br = new BufferedReader(fr);
