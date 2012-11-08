@@ -81,7 +81,7 @@ public class CustomerDAO {
 			preparedStatement = connect
 					.prepareStatement("CREATE TABLE "
 							+ TABLE
-							+ " (customerid INT NOT NULL AUTO_INCREMENT, lastname VARCHAR(30) NOT NULL, firstname VARCHAR(30), age INT NOT NULL, adress VARCHAR(30) , postalcode VARCHAR(30), email VARCHAR(30),PRIMARY KEY (customerid));");
+							+ " (customerid INT NOT NULL AUTO_INCREMENT, lastname VARCHAR(30) NOT NULL, firstname VARCHAR(30), age INT NOT NULL, adress VARCHAR(30) , postalcode VARCHAR(30), email VARCHAR(30), updateid BIGINT UNSIGNED NOT NULL DEFAULT '0' ,PRIMARY KEY (customerid));");
 			try {
 				preparedStatement.executeUpdate();
 			} catch (Exception e) {
@@ -140,6 +140,8 @@ public class CustomerDAO {
 	 * @return Kopie der <tt>internalCustomers</tt> Liste
 	 */
 	public static List<Customer> findAll() {
+		terminate();
+		init(FILE);
 		List<Customer> result = new ArrayList<Customer>();
 		for (Customer customer : internalCustomers) {
 			result.add(customer.clone());
@@ -168,7 +170,7 @@ public class CustomerDAO {
 			statement = connect.createStatement();
 			int customerid = 0;
 			preparedStatement = connect.prepareStatement("INSERT INTO " + FILE
-					+ "." + TABLE + " VALUES (default, ?, ?, ?, ? , ?, ?);");
+					+ "." + TABLE + " VALUES (default, ?, ?, ?, ? , ?, ?, default);");
 			preparedStatement.setString(1, customer.getLastName());
 			preparedStatement.setString(2, customer.getFirstName());
 			preparedStatement.setInt(3, customer.getAge());
