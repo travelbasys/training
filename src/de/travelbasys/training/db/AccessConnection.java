@@ -6,25 +6,24 @@ import java.sql.DriverManager;
 public class AccessConnection {
 
 	public static Connection conn = null;
-	private static String dbHost = "localhost";
-	private static String dbPort = "3306";
+	@SuppressWarnings("unused")
 	private static String dbUser = "sqluser";
+	@SuppressWarnings("unused")
 	private static String dbPassword = "sqluserpw";
-
 	private static String dbName = "testdb";
 
 	private AccessConnection() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":"
-					+ dbPort + "/" + dbName + "?" + "user=" + dbUser
-					+ "&password=" + dbPassword);
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+
+			conn = DriverManager.getConnection("jdbc:odbc:" + dbName);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static Connection getNewInstance() {
+	public static Connection getInstance() {
 		new AccessConnection();
 		return conn;
 	}

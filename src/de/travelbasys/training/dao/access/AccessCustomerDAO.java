@@ -13,7 +13,7 @@ import java.util.List;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDaoException;
-import de.travelbasys.training.db.MySqlConnection;
+import de.travelbasys.training.db.AccessConnection;
 
 /**
  * Diese Klasse repräsentiert eine "Datenbank" von {@see Customer} Objekten.
@@ -113,7 +113,7 @@ public class AccessCustomerDAO {
 	private static void CloseCurrentConnection() {
 		try {
 			if (resultSet != null) {
-				resultSet.close();
+				// resultSet.close();
 			}
 
 			if (statement != null) {
@@ -180,7 +180,8 @@ public class AccessCustomerDAO {
 			int customerid = 0;
 			preparedStatement = connect.prepareStatement("INSERT INTO " + FILE
 					+ "." + TABLE
-					+ " VALUES (default, ?, ?, ?, ? , ?, ?, default);");
+					+ "(lastname, firstname, age, adress, postalcode, email)"
+					+ " VALUES (?, ?, ?, ?, ?, ?);");
 			preparedStatement.setString(1, customer.getLastName());
 			preparedStatement.setString(2, customer.getFirstName());
 			preparedStatement.setInt(3, customer.getAge());
@@ -264,16 +265,19 @@ public class AccessCustomerDAO {
 		OpenConnection();
 		try {
 			statement = connect.createStatement();
-			resultSet = statement.executeQuery("SELECT * FROM " + TABLE
-					+ " WHERE customerid = " + customer.getId() + ";");
+			resultSet = statement.executeQuery("SELECT * FROM " + FILE + "."
+					+ TABLE + " WHERE customerid = " + customer.getId() + ";");
 			resultSet.next();
 			if (resultSet.getRow() == 0) {
 				System.err.println("Customer had been killed.");
 				return;
 			}
-			if (resultSet.getInt(8) == localupdateid) {
+			int updateid = resultSet.getInt(8);
+			if (updateid == localupdateid) {
 				preparedStatement = connect
 						.prepareStatement("UPDATE "
+								+ FILE
+								+ "."
 								+ TABLE
 								+ " SET lastname = ?, firstname = ?, age = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;");
 				preparedStatement.setString(1, customer.getLastName());
@@ -282,7 +286,7 @@ public class AccessCustomerDAO {
 				preparedStatement.setString(4, customer.getAdress());
 				preparedStatement.setString(5, customer.getPostalcode());
 				preparedStatement.setString(6, customer.getEmail());
-				preparedStatement.setInt(7, (resultSet.getInt(8) + 1));
+				preparedStatement.setInt(7, updateid++);
 				preparedStatement.setInt(8, customer.getId());
 				preparedStatement.executeUpdate();
 			} else {
@@ -325,7 +329,7 @@ public class AccessCustomerDAO {
 	}
 
 	private static void OpenConnection() {
-		connect = MySqlConnection.getNewInstance();
+		connect = AccessConnection.getInstance();
 	}
 
 	/**
