@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class MySqlConnection {
 	
 	public static Connection conn = null;
-	private static String dbHost = "10.151.16.61";
+	private static String dbHost = "localhost";
 	private static String dbPort = "3306";
 	private static String dbUser = "sqluser";
 	private static String dbPassword = "sqluserpw";

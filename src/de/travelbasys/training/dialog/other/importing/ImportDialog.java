@@ -2,7 +2,7 @@ package de.travelbasys.training.dialog.other.importing;
 
 import java.io.IOException;
 
-import de.travelbasys.training.dao.CustomerDAO;
+import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Console;
@@ -36,8 +36,8 @@ public class ImportDialog implements Dialog {
 		try {
 			if (model.getImportType() == "CSV") {
 
-				CustomerDAO.importCSV(model.getImportName() + "."
-						+ model.getImportType());
+				Dao.getDAO().importCSV(
+						model.getImportName() + "." + model.getImportType());
 				AppContext.println("ImportOK");
 
 			}

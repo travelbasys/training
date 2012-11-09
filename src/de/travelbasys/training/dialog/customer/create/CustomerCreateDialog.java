@@ -1,8 +1,8 @@
 package de.travelbasys.training.dialog.customer.create;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.dao.CustomerDaoException;
+import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Dialog;
 
 /**
@@ -34,7 +34,7 @@ public class CustomerCreateDialog implements Dialog {
 			Customer customer = new Customer(dummyId, model.getLastname(),
 					model.getFirstname(), model.getAge(), model.getAdress(),
 					model.getPostalcode(), model.getEMail());
-			CustomerDAO.create(customer);
+			Dao.getDAO().create(customer);
 		} catch (CustomerDaoException e) {
 			e.printcustomererr();
 		}

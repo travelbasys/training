@@ -2,7 +2,7 @@ package de.travelbasys.training.dialog.other.parameters.database;
 
 import java.io.File;
 
-import de.travelbasys.training.dao.CustomerDAO;
+import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.Config;
 
@@ -31,10 +31,11 @@ public class ChangeDBDialog implements Dialog {
 		view.run();
 
 		String db = model.getDBKey();
-		CustomerDAO.terminate();
-		CustomerDAO.init(db);
+		Dao.getDAO().terminate();
+		Dao.getDAO().init(db);
 	}
-	public String getDBKey(){
+
+	public String getDBKey() {
 		return model.getDBKey();
 	}
 }

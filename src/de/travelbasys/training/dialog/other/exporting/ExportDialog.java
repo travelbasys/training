@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.dao.CustomerDAO;
+import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
 
@@ -39,7 +39,7 @@ public class ExportDialog implements Dialog {
 					+ model.getExportType());
 			PrintWriter pw = new PrintWriter(fw);
 			pw.println(model.getHeader());
-			for (Customer customer : CustomerDAO.findAll()) {
+			for (Customer customer : Dao.getDAO().findAll()) {
 				AppContext.println(customer);
 				pw.println(customer.toFormat(model.getExportType()));
 			}

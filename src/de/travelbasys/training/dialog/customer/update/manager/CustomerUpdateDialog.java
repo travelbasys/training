@@ -1,8 +1,8 @@
 package de.travelbasys.training.dialog.customer.update.manager;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.dao.CustomerDaoException;
+import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.dialog.customer.common.find.CustomerFindDialog;
 import de.travelbasys.training.dialog.customer.common.yesno.YesNoDialog;
 import de.travelbasys.training.dialog.customer.update.attributes.CustomerAttributesUpdateDialog;
@@ -46,7 +46,7 @@ public class CustomerUpdateDialog implements Dialog {
 
 		if (d2.getDirtyFlag()) {
 			try {
-				CustomerDAO.getExisting(customer);
+				Dao.getDAO().getExisting(customer);
 			} catch (CustomerDaoException e) {
 				e.printcustomererr();
 				return;
@@ -58,7 +58,7 @@ public class CustomerUpdateDialog implements Dialog {
 		d3 = new YesNoDialog(KEY);
 		d3.run();
 		if (d3.isYes()) {
-			CustomerDAO.update(customer);
+			Dao.getDAO().update(customer);
 		}
 	}
 

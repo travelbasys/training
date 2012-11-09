@@ -1,7 +1,7 @@
 package de.travelbasys.training.dialog.customer.delete.manager;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.dao.CustomerDAO;
+import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.dialog.customer.common.find.CustomerFindDialog;
 import de.travelbasys.training.dialog.customer.common.print.CustomerPrintDialog;
 import de.travelbasys.training.dialog.customer.common.yesno.YesNoDialog;
@@ -38,7 +38,7 @@ public class CustomerDeleteDialog implements Dialog {
 			// Löscht den gesuchten Customer.
 			// Anmerkung: Es wird keine Exception erzeugt, da der Customer an
 			// dieser Stelle 100% feststeht.
-			CustomerDAO.delete(customer);
+			Dao.getDAO().delete(customer);
 			AppContext.printMessage("DelOK");
 		} else {
 			AppContext.printMessage("Abort");

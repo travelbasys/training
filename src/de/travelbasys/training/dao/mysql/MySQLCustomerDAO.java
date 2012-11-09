@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.db.MySqlConnection;
 
@@ -38,7 +39,7 @@ import de.travelbasys.training.db.MySqlConnection;
  * TODO: Behandlung von eindeutigen Id's und Verhalten beim Löschen.
  * </p>
  */
-public class MySQLCustomerDAO {
+public class MySQLCustomerDAO implements CustomerDAO {
 
 	private static String FILE;
 	private static String TABLE;
@@ -74,7 +75,7 @@ public class MySQLCustomerDAO {
 	 *            Name der Datenbank, momentan der Name der Textdatei, in dem
 	 *            die Datensätze gespeichert sind.
 	 */
-	public static void init(String db) {
+	public void init(String db) {
 		FILE = db;
 		TABLE = "tb_customer";
 		try {
@@ -110,7 +111,7 @@ public class MySQLCustomerDAO {
 		CloseCurrentConnection();
 	}
 
-	private static void CloseCurrentConnection() {
+	public void CloseCurrentConnection() {
 		try {
 			if (resultSet != null) {
 				resultSet.close();
@@ -137,7 +138,7 @@ public class MySQLCustomerDAO {
 	 * Methode gespeichert wurde.
 	 * </p>
 	 */
-	public static void terminate() {
+	public void terminate() {
 		internalCustomers.clear();
 		CloseCurrentConnection();
 	}
@@ -148,7 +149,7 @@ public class MySQLCustomerDAO {
 	 * 
 	 * @return Kopie der <tt>internalCustomers</tt> Liste
 	 */
-	public static List<Customer> findAll() {
+	public List<Customer> findAll() {
 		terminate();
 		init(FILE);
 		List<Customer> result = new ArrayList<Customer>();
@@ -172,7 +173,7 @@ public class MySQLCustomerDAO {
 	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
-	public static void create(Customer customer) throws CustomerDaoException {
+	public void create(Customer customer) throws CustomerDaoException {
 		OpenConnection();
 		getExisting(customer);
 		try {
@@ -201,7 +202,7 @@ public class MySQLCustomerDAO {
 		CloseCurrentConnection();
 	}
 
-	private static int createNewId() {
+	public int createNewId() {
 		int id = 0;
 		try {
 			resultSet = statement.executeQuery("SELECT * FROM " + TABLE + ";");
@@ -226,7 +227,7 @@ public class MySQLCustomerDAO {
 	 * @return Kopie des <tt>Customer</tt> Objekts mit der gegebenen <tt>id</tt>
 	 *         oder <tt>null</tt>, wenn kein solches Objekt existiert.
 	 */
-	public static Customer findById(int id) {
+	public Customer findById(int id) {
 		init(FILE);
 		OpenConnection();
 		try {
@@ -260,7 +261,7 @@ public class MySQLCustomerDAO {
 	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
-	public static void update(Customer customer) {
+	public void update(Customer customer) {
 		OpenConnection();
 		try {
 			statement = connect.createStatement();
@@ -304,7 +305,7 @@ public class MySQLCustomerDAO {
 	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
 	 *         Objekt nicht gelöscht werden kann.
 	 */
-	public static void delete(Customer customer) {
+	public void delete(Customer customer) {
 		int id = customer.getId();
 		OpenConnection();
 		for (Customer c : internalCustomers) {
@@ -324,7 +325,7 @@ public class MySQLCustomerDAO {
 		}
 	}
 
-	private static void OpenConnection() {
+	public void OpenConnection() {
 		connect = MySqlConnection.getNewInstance();
 	}
 
@@ -337,8 +338,7 @@ public class MySQLCustomerDAO {
 	 *            TODO: Besseren Namen finden!!!
 	 * @throws CustomerDaoException
 	 */
-	public static Customer getExisting(Customer customer)
-			throws CustomerDaoException {
+	public Customer getExisting(Customer customer) throws CustomerDaoException {
 
 		for (Customer c : internalCustomers) {
 			if (c.equals(customer)) {
@@ -360,8 +360,8 @@ public class MySQLCustomerDAO {
 	 *             Dieser Fehler tritt auf, wenn die Datei nicht vorhanden oder
 	 *             schreibgeschützt ist.
 	 */
-	public static void importCSV(String name) throws IOException {
-		MySQLCustomerDAO.terminate();
+	public void importCSV(String name) throws IOException {
+		terminate();
 		// Import ersetzt aktuell nur die vorhandene CustomerListe, nicht jedoch
 		// die Tabelle der Datenbank aus Sicherheitsgründen.
 		// Implementierung von Import ist im Konzept (Umstellung auf MySQL) z.Z.

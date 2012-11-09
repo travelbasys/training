@@ -1,6 +1,6 @@
 package de.travelbasys.training.rbsjava.main;
 
-import de.travelbasys.training.dao.CustomerDAO;
+import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.dialog.menu.MainMenuDialog;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
@@ -24,14 +24,14 @@ public class Application_old {
 	}
 
 	protected static void terminate() {
-		CustomerDAO.terminate();
+		Dao.getDAO().terminate();
 		System.exit(0);
 	}
 
 	private static void init(String[] args) {
 		CommandLine.parse(args);
 		Configuration.init(CommandLine.getOptions());
-		CustomerDAO.init((String) Configuration.get("db"));
+		Dao.getDAO().init((String) Configuration.get("db"));
 	}
 
 	private static void start() {

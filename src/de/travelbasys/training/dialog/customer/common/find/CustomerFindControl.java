@@ -1,7 +1,7 @@
 package de.travelbasys.training.dialog.customer.common.find;
 
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.dao.CustomerDAO;
+import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
@@ -47,7 +47,7 @@ public class CustomerFindControl extends AbstractControl {
 			return;
 
 		// Try to find customer by id.
-		Customer customer = CustomerDAO.findById(id);
+		Customer customer = Dao.getDAO().findById(id);
 
 		if (customer == null) {
 			throw new Exception("IDNotFoundErr");

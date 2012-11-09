@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.dao.CustomerDaoException;
 
 /**
@@ -39,7 +40,7 @@ import de.travelbasys.training.dao.CustomerDaoException;
  * TODO: Behandlung von eindeutigen Id's und Verhalten beim Löschen.
  * </p>
  */
-public class TxtCustomerDAO {
+public class TxtCustomerDAO implements CustomerDAO {
 
 	private static String FILE;
 	private static List<Customer> internalCustomers;
@@ -49,7 +50,7 @@ public class TxtCustomerDAO {
 	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
 	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
 	// erscheint.
-	private TxtCustomerDAO() {
+	public TxtCustomerDAO() {
 	}
 
 	/**
@@ -71,7 +72,8 @@ public class TxtCustomerDAO {
 	 *            die Datensätze gespeichert sind.
 	 */
 	@SuppressWarnings("unchecked")
-	public static void init(String db) {
+	@Override
+	public void init(String db) {
 		FILE = db;
 		FileInputStream fis;
 		internalDB = null;
@@ -103,7 +105,8 @@ public class TxtCustomerDAO {
 	 * Methode gespeichert wurde.
 	 * </p>
 	 */
-	public static void terminate() {
+	@Override
+	public void terminate() {
 
 		FileOutputStream fos;
 		ObjectOutputStream oos;
@@ -125,7 +128,8 @@ public class TxtCustomerDAO {
 	 * 
 	 * @return Kopie der <tt>internalCustomers</tt> Liste
 	 */
-	public static List<Customer> findAll() {
+	@Override
+	public List<Customer> findAll() {
 		List<Customer> result = new ArrayList<Customer>();
 		for (Customer customer : internalCustomers) {
 			result.add(customer.clone());
@@ -147,10 +151,11 @@ public class TxtCustomerDAO {
 	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
-	public static void create(Customer customer) throws CustomerDaoException {
-		TxtCustomerDAO.getExisting(customer);
+	@Override
+	public void create(Customer customer) throws CustomerDaoException {
+		getExisting(customer);
 
-		int customerid = TxtCustomerDAO.createNewId();
+		int customerid = createNewId();
 		Customer c = new Customer(customerid, customer.getLastName(),
 				customer.getFirstName(), customer.getAge(),
 				customer.getAdress(), customer.getPostalcode(),
@@ -167,7 +172,8 @@ public class TxtCustomerDAO {
 	 * @return Kopie des <tt>Customer</tt> Objekts mit der gegebenen <tt>id</tt>
 	 *         oder <tt>null</tt>, wenn kein solches Objekt existiert.
 	 */
-	public static Customer findById(int id) {
+	@Override
+	public Customer findById(int id) {
 		for (Customer customer : internalCustomers) {
 			if (customer.getId() == id) {
 				return customer.clone();
@@ -190,7 +196,8 @@ public class TxtCustomerDAO {
 	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
-	public static void update(Customer customer){
+	@Override
+	public void update(Customer customer) {
 		int id = customer.getId();
 		for (Customer c : internalCustomers) {
 			if (c.getId() == id) {
@@ -210,7 +217,8 @@ public class TxtCustomerDAO {
 	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
 	 *         Objekt nicht gelöscht werden kann.
 	 */
-	public static void delete(Customer customer) {
+	@Override
+	public void delete(Customer customer) {
 		int id = customer.getId();
 		for (Customer c : internalCustomers) {
 			if (c.getId() == id) {
@@ -226,7 +234,8 @@ public class TxtCustomerDAO {
 	 * 
 	 * @return id die schon um den wert 1 erhöhte id
 	 */
-	private static int createNewId() {
+	@Override
+	public int createNewId() {
 		try {
 			int id = (Integer) internalDB.get("id") + 1;
 			internalDB.put("id", id);
@@ -245,8 +254,8 @@ public class TxtCustomerDAO {
 	 *            TODO: Besseren Namen finden!!!
 	 * @throws CustomerDaoException
 	 */
-	public static Customer getExisting(Customer customer)
-			throws CustomerDaoException {
+	@Override
+	public Customer getExisting(Customer customer) throws CustomerDaoException {
 
 		for (Customer c : internalCustomers) {
 			if (c.equals(customer)) {
@@ -268,9 +277,10 @@ public class TxtCustomerDAO {
 	 *             Dieser Fehler tritt auf, wenn die Datei nicht vorhanden oder
 	 *             schreibgeschützt ist.
 	 */
-	public static void importCSV(String name) throws IOException {
+	@Override
+	public void importCSV(String name) throws IOException {
 		// Alte Daten speichern.
-		TxtCustomerDAO.terminate();
+		terminate();
 
 		internalDB.put("customers", internalCustomers);
 
@@ -292,6 +302,14 @@ public class TxtCustomerDAO {
 		}
 		internalDB.put("id", id);
 		fr.close();
+	}
+
+	@Override
+	public void CloseCurrentConnection() {
+	}
+
+	@Override
+	public void OpenConnection() {
 	}
 
 }

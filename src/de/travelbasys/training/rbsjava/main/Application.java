@@ -1,7 +1,8 @@
 package de.travelbasys.training.rbsjava.main;
 
-import de.travelbasys.training.dao.CustomerDAO;
+import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.dialog.menu.MainMenuDialog;
+import de.travelbasys.training.dialog.menu.dbtype.ChooseDatabaseTypeDialog;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.CommandLine;
@@ -25,7 +26,7 @@ public class Application {
 	}
 
 	protected static void terminate() {
-		CustomerDAO.terminate();
+		Dao.getDAO().terminate();
 		System.exit(0);
 	}
 
@@ -34,11 +35,16 @@ public class Application {
 		Configuration.init(CommandLine.getOptions());
 	}
 
-	private static void initDatabase(){
-		CustomerDAO.init((String) Configuration.get("db"));
+	private static void initDatabase() {
+		ChooseDatabaseTypeDialog menu = new ChooseDatabaseTypeDialog();
+		menu.run();
+		Dao.setDAO(menu.getDAO());
+		if (Dao.getDAO() == null) {
+			System.exit(0);
+		}
+		Dao.getDAO().init((String) Configuration.get("db"));
 	}
-	
-	
+
 	private static void start() {
 
 		AppContext.printMessage("Welcome");
