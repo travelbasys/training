@@ -17,7 +17,8 @@ import de.travelbasys.training.util.Datum;
 public class Application {
 
 	public static void main(String[] args) {
-		init(args);
+		initApplication(args);
+		initDatabase();
 		start();
 		stop();
 		terminate();
@@ -28,12 +29,16 @@ public class Application {
 		System.exit(0);
 	}
 
-	private static void init(String[] args) {
+	private static void initApplication(String[] args) {
 		CommandLine.parse(args);
 		Configuration.init(CommandLine.getOptions());
-		CustomerDAO.init((String) Configuration.get("db"));
 	}
 
+	private static void initDatabase(){
+		CustomerDAO.init((String) Configuration.get("db"));
+	}
+	
+	
 	private static void start() {
 
 		AppContext.printMessage("Welcome");
