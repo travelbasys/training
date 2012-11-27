@@ -16,6 +16,8 @@ public class LotteryNumbersControl implements ProgressEventListener {
 
 	private LotteryNumbersModel model;
 	private LotteryNumbersView view;
+	private Thread thread;
+	private boolean isCancelled = false;
 
 	/**
 	 * @param model
@@ -27,16 +29,34 @@ public class LotteryNumbersControl implements ProgressEventListener {
 	}
 
 	public void execute() {
-		Lottery service = new Lottery();
-		service.addProgressListener(this);
-		service.execute();
-		model.setNumbers(service.getNumbers());
+		thread = new Thread() {
+			public void run() {
+				Lottery service = new Lottery();
+				service.addProgressListener(LotteryNumbersControl.this);
+				service.execute();
+			}
+		};
+		thread.start();
 	}
 
 	@Override
 	public void handleProgressEvent(ProgressEvent pe) {
 		model.setPercent(pe.getPercent());
 		view.showProgress();
+		if( isCancelled ){
+			pe.setCancelled(true);
+		}
+	}
+
+	@Override
+	public void handleOperationFinished(ProgressEvent pe) {
+		Lottery service = (Lottery)pe.getSource();
+		model.setNumbers(service.getNumbers());
+		view.showResult();
+	}
+
+	public void cancel() {
+		this.isCancelled = true;
 	}
 
 }

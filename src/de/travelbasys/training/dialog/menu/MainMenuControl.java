@@ -12,6 +12,7 @@ import de.travelbasys.training.dialog.other.lottery.LotteryNumbersDialog;
 import de.travelbasys.training.dialog.other.parameters.manager.ChangeParamDialog;
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
+import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 
@@ -26,6 +27,8 @@ public class MainMenuControl {
 	private MainMenuModel model;
 	private MainMenuView view;
 
+	private Dialog lotteryDialog = null;
+
 	/**
 	 * 
 	 * @param model
@@ -34,16 +37,16 @@ public class MainMenuControl {
 	public MainMenuControl(Model model, View view) {
 		this.model = (MainMenuModel) model;
 		this.view = (MainMenuView) view;
-		
+
 		AbstractUiComponent uic;
 		uic = this.view.getcustomerDecisionComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				
-				
+
 				int intValue = (Integer) value;
 				MainMenuControl.this.model.setDialog(null);
 
+				// set hintergrundoperation = null;
 				switch (intValue) {
 				case 0:
 					return;
@@ -81,8 +84,13 @@ public class MainMenuControl {
 					MainMenuControl.this.model
 							.setDialog(new ChangeParamDialog());
 				case 10:
-					MainMenuControl.this.model
-							.setDialog(new LotteryNumbersDialog());
+					lotteryDialog = new LotteryNumbersDialog();
+					MainMenuControl.this.model.setDialog(lotteryDialog);
+					break;
+				case 99:
+					if (lotteryDialog != null) {
+						((LotteryNumbersDialog) lotteryDialog).cancel();
+					}
 					break;
 				default:
 					throw new Exception("ChooseErrComp");

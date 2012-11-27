@@ -35,10 +35,6 @@ import de.travelbasys.training.dao.CustomerDaoException;
  * <p>
  * Damit besitzt sie den Standard CRUD Funktionsumfang für Datenbanken.
  * </p>
- * 
- * <p>
- * TODO: Behandlung von eindeutigen Id's und Verhalten beim Löschen.
- * </p>
  */
 public class TxtCustomerDAO implements CustomerDAO {
 
@@ -251,9 +247,10 @@ public class TxtCustomerDAO implements CustomerDAO {
 	 * true zurückgegeben, wenn nicht false
 	 * 
 	 * @param customer
-	 *            TODO: Besseren Namen finden!!!
+	 *            
 	 * @throws CustomerDaoException
 	 */
+	// TODO: Besseren Namen finden!!!
 	@Override
 	public Customer getExisting(Customer customer) throws CustomerDaoException {
 

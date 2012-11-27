@@ -10,6 +10,7 @@ public class Lottery {
 
 	private Set<Integer> numbers;
 	List<ProgressEventListener> listeners = new ArrayList<ProgressEventListener>();
+	private boolean isCancelled = false;
 
 	@SuppressWarnings("static-access")
 	public void execute() {
@@ -21,6 +22,7 @@ public class Lottery {
 				e.printStackTrace();
 			}
 			fireProgressEvent(i / 10.0);
+			if( isCancelled ) return;
 		}
 
 		Random rand = new Random();
@@ -28,6 +30,7 @@ public class Lottery {
 		while (numbers.size() < 6) {
 			numbers.add(rand.nextInt(49));
 		}
+		fireOperationFinished();
 	}
 
 	public Set<Integer> getNumbers() {
@@ -38,6 +41,16 @@ public class Lottery {
 		ProgressEvent pe = new ProgressEvent(this, percent);
 		for (ProgressEventListener listener: listeners ) {
 			listener.handleProgressEvent(pe);
+			if( pe.isCancelled() ){
+				isCancelled = true;
+			}
+		}
+	}
+
+	private void fireOperationFinished() {
+		ProgressEvent pe = new ProgressEvent(this);
+		for (ProgressEventListener listener: listeners ) {
+			listener.handleOperationFinished(pe);
 		}
 	}
 
