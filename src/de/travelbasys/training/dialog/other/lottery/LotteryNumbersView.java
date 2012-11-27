@@ -23,4 +23,12 @@ public class LotteryNumbersView implements View {
 			Console.println(s);
 		}
 	}
+
+	public void showProgress() {
+		System.out.println((model.getPercent()*100) + "%");
+	}
+
+	public void showResult() {
+		System.out.println(model.getNumbers());
+	}
 }

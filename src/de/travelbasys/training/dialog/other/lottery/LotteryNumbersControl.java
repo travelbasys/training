@@ -2,7 +2,9 @@ package de.travelbasys.training.dialog.other.lottery;
 
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
-import de.travelbasys.training.util.Console;
+import de.travelbasys.training.service.Lottery;
+import de.travelbasys.training.service.ProgressEvent;
+import de.travelbasys.training.service.ProgressEventListener;
 
 /**
  * Diese Klasse Kontrolliert Benutzereingaben.
@@ -10,51 +12,31 @@ import de.travelbasys.training.util.Console;
  * @author tba
  * 
  */
-public class LotteryNumbersControl {
+public class LotteryNumbersControl implements ProgressEventListener {
 
-	@SuppressWarnings("unused")
 	private LotteryNumbersModel model;
-	@SuppressWarnings("unused")
 	private LotteryNumbersView view;
-	Thread thread = null;
 
 	/**
-	 * 
 	 * @param model
 	 * @param view
 	 */
 	public LotteryNumbersControl(Model model, View view) {
 		this.model = (LotteryNumbersModel) model;
 		this.view = (LotteryNumbersView) view;
-
 	}
 
 	public void execute() {
-		thread = new Thread() {
-			public void run() {
-				for (int i = 1; i <= 10; i++) {
-					actionperform(i);
-				}
-			}
-		};
-		thread.start();
-		try {
-			thread.join();
-			return;
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Lottery service = new Lottery();
+		service.addProgressListener(this);
+		service.execute();
+		model.setNumbers(service.getNumbers());
 	}
 
-	private void actionperform(int wert) {
-		wert = (wert * 10);
-		Console.println(wert + "%");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
+	@Override
+	public void handleProgressEvent(ProgressEvent pe) {
+		model.setPercent(pe.getPercent());
+		view.showProgress();
 	}
 
 }
