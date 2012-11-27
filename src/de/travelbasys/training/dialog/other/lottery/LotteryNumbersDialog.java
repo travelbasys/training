@@ -4,10 +4,19 @@ import de.travelbasys.training.framework.Dialog;
 
 public class LotteryNumbersDialog implements Dialog {
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
+	private LotteryNumbersModel model;
+	private LotteryNumbersView view;
+	private LotteryNumbersControl control;
+
+	public LotteryNumbersDialog() {
+		model = new LotteryNumbersModel();
+		view = new LotteryNumbersView(model);
+		control = new LotteryNumbersControl(model, view);
 	}
 
+	@Override
+	public void run() {
+		view.run();
+		control.execute();
+	}
 }
