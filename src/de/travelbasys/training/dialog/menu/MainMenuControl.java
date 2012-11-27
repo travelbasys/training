@@ -8,6 +8,7 @@ import de.travelbasys.training.dialog.customer.update.manager.CustomerUpdateDial
 import de.travelbasys.training.dialog.other.configuration.manager.ChangeConfigurationDialog;
 import de.travelbasys.training.dialog.other.exporting.ExportDialog;
 import de.travelbasys.training.dialog.other.importing.ImportDialog;
+import de.travelbasys.training.dialog.other.lottery.LotteryNumbersDialog;
 import de.travelbasys.training.dialog.other.parameters.manager.ChangeParamDialog;
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
@@ -79,6 +80,9 @@ public class MainMenuControl {
 				case 9:
 					MainMenuControl.this.model
 							.setDialog(new ChangeParamDialog());
+				case 10:
+					MainMenuControl.this.model
+							.setDialog(new LotteryNumbersDialog());
 					break;
 				default:
 					throw new Exception("ChooseErrComp");

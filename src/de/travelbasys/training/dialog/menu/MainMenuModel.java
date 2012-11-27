@@ -41,6 +41,7 @@ public class MainMenuModel extends ArrayList<String> implements Model {
 		add(AppContext.getMessage("App7"));
 		add(AppContext.getMessage("App8"));
 		add(AppContext.getMessage("App9"));
+		add(AppContext.getMessage("App10"));
 		setLang();
 	}
 
