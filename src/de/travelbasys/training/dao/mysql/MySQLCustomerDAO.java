@@ -34,15 +34,11 @@ import de.travelbasys.training.db.MySqlConnection;
  * <p>
  * Damit besitzt sie den Standard CRUD Funktionsumfang für Datenbanken.
  * </p>
- * 
- * <p>
- * TODO: Behandlung von eindeutigen Id's und Verhalten beim Löschen.
- * </p>
  */
 public class MySQLCustomerDAO implements CustomerDAO {
 
 	private static String FILE;
-	private static String TABLE;
+	private static String TABLE = "tb_customer";
 	private static List<Customer> internalCustomers;
 
 	private static Connection connect = null;
@@ -50,6 +46,12 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
 	private static int localupdateid = 0;
+	private final String INSERT = "INSERT INTO ";
+	private final String VALUES = " VALUES (default, ?, ?, ?, ? , ?, ?, default);";
+	private final String SELECT = "SELECT * FROM ";
+	private final String WHERECUSTOMERID = " WHERE customerid = ";
+	private final String UPDATEATTRIBUTES = " SET lastname = ?, firstname = ?, age = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;";
+	private final String DELETE = "DELETE FROM ";
 
 	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
 	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
@@ -97,7 +99,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 			 * { }
 			 */
 			// Result set get the result of the SQL query
-			resultSet = statement.executeQuery("SELECT * FROM " + TABLE + ";");
+			resultSet = statement.executeQuery(SELECT + TABLE + ";");
 			internalCustomers = new ArrayList<Customer>();
 			while (resultSet.next()) {
 				Customer c = new Customer(resultSet.getInt(1),
@@ -175,13 +177,16 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	 */
 	public void create(Customer customer) throws CustomerDaoException {
 		OpenConnection();
+
+		// prüft ob das Customer-Objekt schon vorhanden ist und reagiert
+		// entsprechend
 		getExisting(customer);
+
 		try {
 			statement = connect.createStatement();
 			int customerid = 0;
-			preparedStatement = connect.prepareStatement("INSERT INTO " + FILE
-					+ "." + TABLE
-					+ " VALUES (default, ?, ?, ?, ? , ?, ?, default);");
+			preparedStatement = connect.prepareStatement(INSERT + FILE + "."
+					+ TABLE + VALUES);
 			preparedStatement.setString(1, customer.getLastName());
 			preparedStatement.setString(2, customer.getFirstName());
 			preparedStatement.setInt(3, customer.getAge());
@@ -205,7 +210,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	public int createNewId() {
 		int id = 0;
 		try {
-			resultSet = statement.executeQuery("SELECT * FROM " + TABLE + ";");
+			resultSet = statement.executeQuery(SELECT + TABLE + ";");
 			while (resultSet.next()) {
 				id = resultSet.getInt(1);
 			}
@@ -232,8 +237,8 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		OpenConnection();
 		try {
 			statement = connect.createStatement();
-			resultSet = statement.executeQuery("SELECT * FROM " + TABLE
-					+ " WHERE customerid = " + id + ";");
+			resultSet = statement.executeQuery(SELECT + TABLE + WHERECUSTOMERID
+					+ id + ";");
 			resultSet.next();
 			localupdateid = resultSet.getInt(8);
 		} catch (SQLException e) {
@@ -265,18 +270,16 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		OpenConnection();
 		try {
 			statement = connect.createStatement();
-			resultSet = statement.executeQuery("SELECT * FROM " + TABLE
-					+ " WHERE customerid = " + customer.getId() + ";");
+			resultSet = statement.executeQuery(SELECT + TABLE + WHERECUSTOMERID
+					+ customer.getId() + ";");
 			resultSet.next();
 			if (resultSet.getRow() == 0) {
 				System.err.println("Customer had been killed.");
 				return;
 			}
 			if (resultSet.getInt(8) == localupdateid) {
-				preparedStatement = connect
-						.prepareStatement("UPDATE "
-								+ TABLE
-								+ " SET lastname = ?, firstname = ?, age = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;");
+				preparedStatement = connect.prepareStatement("UPDATE " + TABLE
+						+ UPDATEATTRIBUTES);
 				preparedStatement.setString(1, customer.getLastName());
 				preparedStatement.setString(2, customer.getFirstName());
 				preparedStatement.setInt(3, customer.getAge());
@@ -311,8 +314,8 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		for (Customer c : internalCustomers) {
 			if (c.getId() == id) {
 				try {
-					preparedStatement = connect
-							.prepareStatement("DELETE FROM tb_customer WHERE customerid = ? ;");
+					preparedStatement = connect.prepareStatement(DELETE + TABLE
+							+ WHERECUSTOMERID + "? ;");
 					preparedStatement.setInt(1, customer.getId());
 					preparedStatement.executeUpdate();
 					internalCustomers.remove(internalCustomers.indexOf(c));
@@ -335,9 +338,11 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	 * true zurückgegeben, wenn nicht false
 	 * 
 	 * @param customer
-	 *            TODO: Besseren Namen finden!!!
+	 * 
 	 * @throws CustomerDaoException
 	 */
+
+	// TODO: Besseren Namen finden!!!
 	public Customer getExisting(Customer customer) throws CustomerDaoException {
 
 		for (Customer c : internalCustomers) {
