@@ -19,7 +19,7 @@ public class MainMenuModel extends ArrayList<String> implements Model {
 	private static final long serialVersionUID = 1L;
 	private Dialog d;
 	private Locale lang;
-	private boolean iscancelled = false;
+	private boolean isFinished = false;
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
@@ -62,12 +62,12 @@ public class MainMenuModel extends ArrayList<String> implements Model {
 		this.d = d;
 	}
 	
-	public boolean isCancelled(){
-return iscancelled;
+	public boolean isFinished(){
+return isFinished;
 	}
 
-	public void setCancelled(){
-		iscancelled = true;
+	public void setFinished(boolean flag){
+		isFinished = flag;
 	}
 	
 	public boolean isLanguageChanged() {

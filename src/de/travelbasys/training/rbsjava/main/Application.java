@@ -47,20 +47,40 @@ public class Application {
 
 	private static void start() {
 
+		// Willkommensmessage zeigen.
 		AppContext.printMessage("Welcome");
+
+		// Dialogobjekt für das Hauptmenü erzeugen.
 		MainMenuDialog menu = new MainMenuDialog();
+
+		// Wiederholt den Benutzer im Hauptmenü wählen lassen.
+		// Wenn der Benutzer das Programm beenden will,
+		// dann wird im Menu Dialog das Finished Flag gesetzt.
 		do {
 			menu.run();
+
+			// Welchen Dialog hat der Benutzer gewählt?
 			Dialog d = menu.getDialog();
-			if (d != null){
+
+			// Unter bestimmten Umständen bekommen wir null.
+			// Dann nächsten Schleifendurchlauf.
+			if (d == null)
+				continue;
+
+			// Wir führen den gewählten Dialog nun aus.
+			// Sollte eine (unvorhergesehen) Exception auftreten,
+			// so ist das ein Programmfehler.
+			// Aber wir fangen sie hier ab.
 			try {
 				d.run();
 			} catch (Exception e) {
+				// Eigentlich sieht nur der Entwickler diesen Stack Trace.
 				e.printStackTrace();
 				stop();
 				terminate();
-			}}
-		} while (!menu.isCancelled());
+			}
+			// Nachsehen ob Programm beendet werden soll.
+		} while (!menu.isFinished());
 	}
 
 	protected static void stop() {

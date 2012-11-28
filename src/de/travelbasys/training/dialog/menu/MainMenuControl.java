@@ -41,14 +41,37 @@ public class MainMenuControl {
 		AbstractUiComponent uic;
 		uic = this.view.getcustomerDecisionComponent();
 		uic.setControl(new AbstractControl() {
+			// Vorbedingung: der gegebenen Parameter "value" ist numerisch.
+			//
+			// Wandelt den gegebenen Eingabewert, welcher vom Benutzer
+			// eingegeben wurde, in ein Dialogobjekt um (sofern
+			// erkennbar ist, welches Dialog der Benutzer meinte)
+			// und speichert das Objekt im Model.
+			// Beim Wert 0 (=Programmende) wird das Finished Flag
+			// im Model gesetzt.
+			// Beim Wert 99 ...
+			// Wenn der Wert nicht erkennbar ist, wird eine Exception
+			// geworfen.
+			// Nebeneffekt: Wenn Value==10, dann wird das Feld lotteryDialog
+			// verändert.
 			public void handleInput(Object value) throws Exception {
-
-				int intValue = (Integer) value;
+				
+				int intValue;
+				try {
+					intValue = (Integer) value;
+				}
+				catch( Exception e){
+					throw new IllegalArgumentException( "Input value not numeric" );
+				}
+				
 				MainMenuControl.this.model.setDialog(null);
+
+				// Es ist garantiert, dass der Eingabewert tatsächlich
+				// numerisch ist!!!
 				switch (intValue) {
 				case 0:
-					MainMenuControl.this.model.setCancelled();
-					return;
+					MainMenuControl.this.model.setFinished(true);
+					break;
 				case 1:
 					MainMenuControl.this.model
 							.setDialog(new CustomerCreateDialog());
@@ -83,12 +106,16 @@ public class MainMenuControl {
 					MainMenuControl.this.model
 							.setDialog(new ChangeParamDialog());
 				case 10:
+					// Wir müssen das Dialogobjekt lokal speichern, 
+					// d.h. nicht nur im Model,
+					// weil wir es u. U. später einmal canceln wollen.
 					lotteryDialog = new LotteryNumbersDialog();
 					MainMenuControl.this.model.setDialog(lotteryDialog);
 					break;
 				case 99:
 					if (lotteryDialog != null) {
 						((LotteryNumbersDialog) lotteryDialog).cancel();
+						lotteryDialog = null;
 					}
 					break;
 				default:
