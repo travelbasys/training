@@ -44,11 +44,11 @@ public class MainMenuControl {
 			public void handleInput(Object value) throws Exception {
 
 				int intValue = (Integer) value;
-				MainMenuControl.this.model.setDialog(null);
 
 				// set hintergrundoperation = null;
 				switch (intValue) {
 				case 0:
+					MainMenuControl.this.model.setDialog(null);
 					return;
 				case 1:
 					MainMenuControl.this.model

@@ -7,9 +7,8 @@ import java.util.Properties;
 import de.travelbasys.training.dialog.other.parameters.database.ChangeDBDialog;
 
 /**
- * ist verantwortlich für das ändern der Datenbank abzufragen um einen Boolean
- * zu setzen der dann in der ChangeDBParamDialog sagt, dass die Konfiguration zu
- * speichern ist.
+ * ist verantwortlich für das ändern der Datenbank. Führt ihre Superklasse aus
+ * & erweitert diese um eine Speichern-Funktion.
  * 
  * @author tba
  */

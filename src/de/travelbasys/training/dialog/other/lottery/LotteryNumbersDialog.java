@@ -2,6 +2,12 @@ package de.travelbasys.training.dialog.other.lottery;
 
 import de.travelbasys.training.framework.Dialog;
 
+/**
+ * ist verantwortlich für das Ausgeben von Lottozahlen. Der Dialog kann durch
+ * das Hauptmenü abgebrochen werden.
+ * 
+ */
+
 public class LotteryNumbersDialog implements Dialog {
 
 	private LotteryNumbersModel model;
@@ -15,6 +21,9 @@ public class LotteryNumbersDialog implements Dialog {
 
 	}
 
+	/**
+	 * Führt den Dialog aus.
+	 */
 	@Override
 	public void run() {
 		view.run();

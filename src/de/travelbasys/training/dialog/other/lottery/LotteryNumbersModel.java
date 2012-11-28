@@ -7,6 +7,15 @@ import java.util.Set;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
+/**
+ * hat die Aufgabe, ein Model für den LotteryNumbersDialog zu verwalten.
+ * 
+ * Die aktuelle Implementierung enthält alle Daten um Prozentwerte (Den
+ * Anwendungsfortschritt) und (Die Lottozahlen) ein Set von Ganzzahlen zu
+ * speichern. Außerdem stellt das Model eine ArrayList zur Verfügung, in der
+ * Strings hinzugefügt werden.
+ */
+
 public class LotteryNumbersModel extends ArrayList<String> implements Model {
 
 	private static final long serialVersionUID = 1L;
@@ -19,11 +28,11 @@ public class LotteryNumbersModel extends ArrayList<String> implements Model {
 		add(AppContext.getMessage("LotteryNumbersStart"));
 	}
 
-	public void setNumbers (Set<Integer> numbers) {
+	public void setNumbers(Set<Integer> numbers) {
 		this.numbers = numbers;
 	}
 
-	public Set<Integer> getNumbers () {
+	public Set<Integer> getNumbers() {
 		return numbers;
 	}
 
