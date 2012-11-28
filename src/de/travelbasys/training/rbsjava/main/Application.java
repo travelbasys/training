@@ -52,16 +52,15 @@ public class Application {
 		do {
 			menu.run();
 			Dialog d = menu.getDialog();
-			if (d == null)
-				return;
+			if (d != null){
 			try {
 				d.run();
 			} catch (Exception e) {
 				e.printStackTrace();
 				stop();
 				terminate();
-			}
-		} while (true);
+			}}
+		} while (!menu.isCancelled());
 	}
 
 	protected static void stop() {

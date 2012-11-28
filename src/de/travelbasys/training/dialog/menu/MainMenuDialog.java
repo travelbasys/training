@@ -35,4 +35,8 @@ public class MainMenuDialog implements Dialog {
 	public Dialog getDialog(){
 		return model.getDialog();
 	}
+
+	public boolean isCancelled() {
+		return model.isCancelled();
+	}
 }
