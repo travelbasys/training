@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -140,7 +142,7 @@ public class Main extends Application {
 
 		// Dem Exit-Menüpunkt wird eine Grafik zugewiesen
 
-		// exit.setGraphic(new ImageView(new Image("exit.png")));
+		exit.setGraphic(new ImageView(new Image("exit.png")));
 
 		// Füge Items den Menüpunkten hinzu.
 
