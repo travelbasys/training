@@ -142,7 +142,7 @@ public class Main extends Application {
 
 		// Dem Exit-Menüpunkt wird eine Grafik zugewiesen
 
-		exit.setGraphic(new ImageView(new Image("exit.png")));
+		exit.setGraphic(new ImageView(new Image("./resources./exit.png")));
 
 		// Füge Items den Menüpunkten hinzu.
 
