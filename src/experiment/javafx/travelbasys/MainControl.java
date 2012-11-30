@@ -8,10 +8,8 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -176,7 +174,7 @@ public class MainControl implements Control {
 					public void handle(ActionEvent arg0) {
 						// Erstelle Referenz zu Tabelle und fülle mit Daten
 						TableView table;
-						table = createCustomerTableView();
+						table = new CreateCustomerTableView().getTable();
 						table.setItems(getData());
 						// Erstellen Node (VBox) für Platzierung der Tabelle
 						final VBox vbox = new VBox();
@@ -192,65 +190,15 @@ public class MainControl implements Control {
 						data = FXCollections.observableArrayList(dao.findAll());
 						return data;
 					}
-
-					@SuppressWarnings({ "rawtypes", "unchecked" })
-					private TableView<Customer> createCustomerTableView() {
-						TableView<Customer> table = new TableView<Customer>();
-
-						table.setEditable(true);
-
-						TableColumn lastNameCol = new TableColumn("Lastname");
-						lastNameCol.setMinWidth(100);
-						lastNameCol
-								.setCellValueFactory(new PropertyValueFactory<Customer, String>(
-										"lastName"));
-
-						TableColumn firstNameCol = new TableColumn("Firstname");
-						firstNameCol.setMinWidth(100);
-						firstNameCol
-								.setCellValueFactory(new PropertyValueFactory<Customer, String>(
-										"firstName"));
-
-						TableColumn ageCol = new TableColumn("Age");
-						ageCol.setMinWidth(100);
-						ageCol.setCellValueFactory(new PropertyValueFactory<Customer, String>(
-								"age"));
-
-						TableColumn adressCol = new TableColumn("Adress");
-						adressCol.setMinWidth(100);
-						adressCol
-								.setCellValueFactory(new PropertyValueFactory<Customer, String>(
-										"adress"));
-
-						TableColumn postalcodeCol = new TableColumn(
-								"Postalcode");
-						postalcodeCol.setMinWidth(100);
-						postalcodeCol
-								.setCellValueFactory(new PropertyValueFactory<Customer, String>(
-										"postalcode"));
-
-						TableColumn emailCol = new TableColumn("Email");
-						emailCol.setMinWidth(100);
-						emailCol.setCellValueFactory(new PropertyValueFactory<Customer, String>(
-								"email"));
-
-						table.getColumns().addAll(lastNameCol, firstNameCol,
-								ageCol, adressCol, postalcodeCol, emailCol);
-						return table;
-					}
 				});
 	}
 
 	@Override
 	public void init(Model model, View view) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void handleInput(Object value) throws Exception {
-		// TODO Auto-generated method stub
-
 	}
 
 }
