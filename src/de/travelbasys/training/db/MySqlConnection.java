@@ -8,8 +8,8 @@ public class MySqlConnection {
 	public static Connection conn = null;
 	private static String dbHost = "localhost";
 	private static String dbPort = "3306";
-	private static String dbUser = "sqluser";
-	private static String dbPassword = "sqluserpw";
+	private static String dbUser = "root";
+	private static String dbPassword = "root";
 
 	private static String dbName = "testdb";
 
@@ -18,7 +18,7 @@ public class MySqlConnection {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":"
 					+ dbPort + "/" + dbName + "?" + "user=" + dbUser
-					+ "&password=" + dbPassword);
+					+ "&" +"password=" + dbPassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

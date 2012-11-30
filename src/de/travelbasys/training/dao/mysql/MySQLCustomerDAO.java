@@ -338,6 +338,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	 * true zurückgegeben, wenn nicht false
 	 * 
 	 * @param customer
+	 * @return 
 	 * 
 	 * @throws CustomerDaoException
 	 */
@@ -350,7 +351,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 				throw new CustomerDaoException("ExistErr", c);
 			}
 		}
-		return null;
+		return customer;
 	}
 
 	/**

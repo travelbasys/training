@@ -114,7 +114,7 @@ public class MainView implements View {
 		// Label mit Willkommensnachricht anlegen
 		Label welcome = new Label("Willkommen zum Travelbasys Customer Manager");
 
-		// Dem Hauptpanel die MenuBar & das Label hinzufügen
+		// Dem Hauptpanel die Elemente hinzufügen
 		root.setTop(menuBar);
 		root.setCenter(welcome);
 
