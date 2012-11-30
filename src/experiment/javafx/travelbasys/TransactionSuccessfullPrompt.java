@@ -19,8 +19,8 @@ public class TransactionSuccessfullPrompt {
 		Button btn = new Button("OK");
 		grid.setVgap(5);
 		grid.setHgap(5);
-		GridPane.setConstraints(btn, 0, 20);
-		GridPane.setConstraints(label, 2, 20);
+		GridPane.setConstraints(btn, 30, 34);
+		GridPane.setConstraints(label, 16, 18);
 //		GridPane.setValignment(btn, VPos.BOTTOM);
 //		GridPane.setValignment(label, VPos.BOTTOM);
 		grid.getChildren().addAll(label, btn);
