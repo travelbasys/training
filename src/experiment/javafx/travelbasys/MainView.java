@@ -1,7 +1,5 @@
 package experiment.javafx.travelbasys;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -22,12 +20,22 @@ public class MainView implements View {
 	private MainModel model;
 
 	private MenuItem exitItem;
+	private MenuItem exportingItem;
+	private MenuItem importingItem;
 	private MenuItem customerCreateItem;
 	private MenuItem customerShowItem;
 	private MenuItem customerEditItem;
 	private MenuItem customerShowAllItem;
 	private MenuItem customerDeleteItem;
 	private MenuItem aboutItem;
+
+	public MenuItem getExportingItem() {
+		return exportingItem;
+	}
+
+	public MenuItem getImportingItem() {
+		return importingItem;
+	}
 
 	public MenuItem getExitItem() {
 		return exitItem;
@@ -73,19 +81,8 @@ public class MainView implements View {
 
 		// Erstelle File-Menu-Items
 
-		MenuItem exporting = new MenuItem("Exportieren nach...");
-		exporting.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-			}
-		});
-		MenuItem importing = new MenuItem("Importieren nach...");
-		importing.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-			}
-		});
-
+		exportingItem = new MenuItem("Exportieren nach...");
+		importingItem = new MenuItem("Importieren nach...");
 		exitItem = new MenuItem("Exit");
 		customerCreateItem = new MenuItem("New Customer");
 		customerShowItem = new MenuItem("Show Customer");
@@ -100,7 +97,7 @@ public class MainView implements View {
 
 		// Füge Items den Menüpunkten hinzu.
 
-		menu1.getItems().addAll(exporting, importing, exitItem);
+		menu1.getItems().addAll(exportingItem, importingItem, exitItem);
 		menu2.getItems().addAll(customerCreateItem, customerShowItem,
 				customerEditItem, customerDeleteItem, customerShowAllItem);
 		menu5.getItems().addAll(aboutItem);
