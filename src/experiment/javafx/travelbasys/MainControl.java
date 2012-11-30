@@ -132,16 +132,19 @@ public class MainControl implements Control {
 		this.view.getCustomerShowAllItem().setOnAction(
 				new EventHandler<ActionEvent>() {
 
+					@SuppressWarnings({ "rawtypes", "unchecked" })
 					@Override
 					public void handle(ActionEvent arg0) {
-						// Erstelle Tabelle und fülle mit Daten
-						createCustomerTableView().setItems(getData());
+						// Erstelle Referenz zu Tabelle und fülle mit Daten
+						TableView table;
+						table = createCustomerTableView();
+						table.setItems(getData());
 						// Erstellen Node (VBox) für Platzierung der Tabelle
 						final VBox vbox = new VBox();
 						vbox.setSpacing(5);
 						vbox.setPadding(new Insets(10, 10, 10, 10));
 						// Platziere Tabelle in der VBox
-						vbox.getChildren().addAll(createCustomerTableView());
+						vbox.getChildren().addAll(table);
 						// Aktualisiere Bildbereich mit der VBox
 						MainControl.this.view.getRoot().setCenter(vbox);
 					}
