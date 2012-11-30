@@ -64,7 +64,6 @@ public class MainControl implements Control {
 						final TextField txt_adress = new TextField();
 						final TextField txt_postalcode = new TextField();
 						final TextField txt_email = new TextField();
-						txt_lastname.setEditable(true);
 
 						Label lbl_lastname = new Label("Lastname:");
 						Label lbl_firstname = new Label("Firstname:");
@@ -122,6 +121,52 @@ public class MainControl implements Control {
 							}
 
 						});
+					}
+				});
+
+		this.view.getCustomerShowItem().setOnAction(
+				new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent arg0) {
+						final TextField txt_kundennr = new TextField();
+						Label lbl_kundennr = new Label("Kundennummer:");
+
+						GridPane grid = new GridPane();
+						Button btn = new Button("Suchen");
+
+						btn.setOnAction(new EventHandler<ActionEvent>() {
+
+							@SuppressWarnings({ "unchecked", "rawtypes" })
+							@Override
+							public void handle(ActionEvent e) {
+								TableView table;
+								table = new CreateCustomerTableView()
+										.getTable();
+								table.setItems(getData());
+								table.setMaxHeight(240);
+								MainControl.this.view.getRoot()
+										.setBottom(table);
+							}
+
+							private ObservableList<Customer> getData() {
+								data = FXCollections.observableArrayList(dao
+										.findById(Integer.parseInt(txt_kundennr
+												.getText())));
+								return data;
+							}
+						});
+
+						grid.setPadding(new Insets(10, 10, 10, 10));
+						grid.setVgap(5);
+						grid.setHgap(5);
+						GridPane.setConstraints(lbl_kundennr, 0, 0);
+						GridPane.setConstraints(txt_kundennr, 3, 0);
+						GridPane.setConstraints(btn, 10, 10);
+						grid.getChildren().addAll(lbl_kundennr, txt_kundennr,
+								btn);
+
+						MainControl.this.view.getRoot().setCenter(grid);
 					}
 				});
 

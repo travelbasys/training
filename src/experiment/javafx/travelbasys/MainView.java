@@ -1,6 +1,7 @@
 package experiment.javafx.travelbasys;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -130,6 +131,10 @@ public class MainView implements View {
 	@Override
 	public void run() {
 		primaryStage.show();
+		// Dialogs-Klasse eingebunden.
+		// Zeigt schöne informative Fenster.
+		Dialogs.showInformationDialog(primaryStage, "Test1", "Test2", "Test3");
+
 	}
 
 	public BorderPane getRoot() {
