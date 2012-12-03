@@ -233,7 +233,7 @@ public class MainControl implements Control {
 						grid.setHgap(5);
 						GridPane.setConstraints(lbl_menu, 0, 0);
 						GridPane.setConstraints(lbl_kundennr, 0, 1);
-						GridPane.setConstraints(txt_kundennr, 3, 2);
+						GridPane.setConstraints(txt_kundennr, 3, 1);
 						GridPane.setConstraints(btn, 10, 10);
 						grid.getChildren().addAll(lbl_menu, lbl_kundennr,
 								txt_kundennr, btn);
@@ -315,6 +315,10 @@ public class MainControl implements Control {
 										case YES:
 											try {
 												dao.delete(getData().get(0));
+												Dialogs.showInformationDialog((Stage) MainControl.this.view
+																.getRoot()
+																.getScene()
+																.getWindow(), "", "Process successfully completed", "Travelbasys Customer Manager");
 											} catch (Exception f) {
 												Dialogs.showErrorDialog(
 														(Stage) MainControl.this.view
@@ -332,7 +336,7 @@ public class MainControl implements Control {
 															.getRoot()
 															.getScene()
 															.getWindow(), "",
-													"Vorgang abgebrochen.",
+													"Process terminated.",
 													"Travelbasys Customer Manager");
 											break;
 										default:
@@ -375,7 +379,7 @@ public class MainControl implements Control {
 						grid.setHgap(5);
 						GridPane.setConstraints(lbl_menu, 0, 0);
 						GridPane.setConstraints(lbl_kundennr, 0, 1);
-						GridPane.setConstraints(txt_kundennr, 3, 2);
+						GridPane.setConstraints(txt_kundennr, 3, 1);
 						GridPane.setConstraints(btn, 10, 10);
 						grid.getChildren().addAll(lbl_menu, lbl_kundennr,
 								txt_kundennr, btn);
@@ -447,7 +451,6 @@ public class MainControl implements Control {
 
 					private ObservableList<Customer> getData() {
 						data = FXCollections.observableArrayList(dao.findAll());
-						System.out.println(data);
 						return data;
 					}
 				});
