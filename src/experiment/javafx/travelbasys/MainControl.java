@@ -8,11 +8,14 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialogs;
+import javafx.scene.control.Dialogs.DialogOptions;
+import javafx.scene.control.Dialogs.DialogResponse;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDAO;
@@ -31,6 +34,7 @@ public class MainControl implements Control {
 	private MainModel model;
 	private ObservableList<Customer> data;
 	private CustomerDAO dao;
+	private Label lbl_menu = new Label();
 
 	public MainControl(Model model, View view) {
 		this.model = (MainModel) model;
@@ -39,6 +43,9 @@ public class MainControl implements Control {
 		dao = new MySQLCustomerDAO();
 		Configuration.init(CommandLine.getOptions());
 		dao.init((String) Configuration.get("db"));
+
+		// Setzte Schrift für Menüüberschrift
+		lbl_menu.setFont(new Font("Arial", 30));
 
 		// Setze EventHandler für Exit-Menüpunkt
 		this.view.getExitItem().setOnAction(new EventHandler<ActionEvent>() {
@@ -66,6 +73,7 @@ public class MainControl implements Control {
 						final TextField txt_postalcode = new TextField();
 						final TextField txt_email = new TextField();
 
+						lbl_menu.setText("Customer Create");
 						Label lbl_lastname = new Label("Lastname:");
 						Label lbl_firstname = new Label("Firstname:");
 						Label lbl_age = new Label("Age:");
@@ -74,28 +82,30 @@ public class MainControl implements Control {
 						Label lbl_email = new Label("EMail:");
 
 						GridPane grid = new GridPane();
-						Button btn = new Button("Senden");
+						Button btn = new Button("Send");
 
 						grid.setPadding(new Insets(10, 10, 10, 10));
 						grid.setVgap(5);
 						grid.setHgap(5);
-						GridPane.setConstraints(lbl_lastname, 0, 0);
-						GridPane.setConstraints(lbl_firstname, 0, 1);
-						GridPane.setConstraints(lbl_age, 0, 2);
-						GridPane.setConstraints(lbl_adress, 0, 3);
-						GridPane.setConstraints(lbl_postalcode, 0, 4);
-						GridPane.setConstraints(lbl_email, 0, 5);
-						GridPane.setConstraints(txt_lastname, 1, 0);
-						GridPane.setConstraints(txt_firstname, 1, 1);
-						GridPane.setConstraints(txt_age, 1, 2);
-						GridPane.setConstraints(txt_adress, 1, 3);
-						GridPane.setConstraints(txt_postalcode, 1, 4);
-						GridPane.setConstraints(txt_email, 1, 5);
+						GridPane.setConstraints(lbl_menu, 0, 0);
+						GridPane.setConstraints(lbl_lastname, 0, 1);
+						GridPane.setConstraints(lbl_firstname, 0, 2);
+						GridPane.setConstraints(lbl_age, 0, 3);
+						GridPane.setConstraints(lbl_adress, 0, 4);
+						GridPane.setConstraints(lbl_postalcode, 0, 5);
+						GridPane.setConstraints(lbl_email, 0, 6);
+						GridPane.setConstraints(txt_lastname, 1, 1);
+						GridPane.setConstraints(txt_firstname, 1, 2);
+						GridPane.setConstraints(txt_age, 1, 3);
+						GridPane.setConstraints(txt_adress, 1, 4);
+						GridPane.setConstraints(txt_postalcode, 1, 5);
+						GridPane.setConstraints(txt_email, 1, 6);
 						GridPane.setConstraints(btn, 10, 10);
-						grid.getChildren().addAll(lbl_lastname, lbl_firstname,
-								lbl_age, lbl_adress, lbl_postalcode, lbl_email,
-								txt_lastname, txt_firstname, txt_age,
-								txt_adress, txt_postalcode, txt_email, btn);
+						grid.getChildren().addAll(lbl_menu, lbl_lastname,
+								lbl_firstname, lbl_age, lbl_adress,
+								lbl_postalcode, lbl_email, txt_lastname,
+								txt_firstname, txt_age, txt_adress,
+								txt_postalcode, txt_email, btn);
 						MainControl.this.view.getRoot().setCenter(grid);
 
 						btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -104,7 +114,6 @@ public class MainControl implements Control {
 							public void handle(ActionEvent e) {
 
 								int dummyId = 0;
-
 								try {
 									Customer customer = new Customer(
 											dummyId,
@@ -119,14 +128,23 @@ public class MainControl implements Control {
 											(Stage) MainControl.this.view
 													.getRoot().getScene()
 													.getWindow(),
-											"Transaction Successfull");
+											"Transaction successful.",
+											"Information",
+											"Travelbasys Customer Manager");
 								} catch (CustomerDaoException d) {
 									Dialogs.showErrorDialog(
 											(Stage) MainControl.this.view
 													.getRoot().getScene()
 													.getWindow(),
-											"Transaction Failed");
-
+											"Transaction failed.", "Error",
+											"Travelbasys Customer Manager");
+								} catch (NumberFormatException d) {
+									Dialogs.showErrorDialog(
+											(Stage) MainControl.this.view
+													.getRoot().getScene()
+													.getWindow(),
+											"Wrong syntax.", "Error",
+											"Travelbasys Customer Manager");
 								}
 							}
 
@@ -140,10 +158,10 @@ public class MainControl implements Control {
 					@Override
 					public void handle(ActionEvent arg0) {
 						final TextField txt_kundennr = new TextField();
-						Label lbl_kundennr = new Label("Kundennummer:");
-
+						Label lbl_kundennr = new Label("CustomerID:");
+						lbl_menu.setText("Customer Show");
 						GridPane grid = new GridPane();
-						Button btn = new Button("Suchen");
+						Button btn = new Button("Search");
 
 						btn.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -174,7 +192,7 @@ public class MainControl implements Control {
 														+ "\neMail: "
 														+ getData().get(0)
 																.getEmail(),
-												"Customer gefunden: "
+												"Customer found: "
 														+ txt_kundennr
 																.getText(),
 												"Travelbasys Customer Manager");
@@ -183,17 +201,21 @@ public class MainControl implements Control {
 												(Stage) MainControl.this.view
 														.getRoot().getScene()
 														.getWindow(),
-												"Customer nicht gefunden: "
+												"Customer not found: "
 														+ txt_kundennr
 																.getText(),
-												"Fehler",
+												"Error",
 												"Travelbasys Customer Manager");
 									}
 								} catch (NumberFormatException d) {
 									Dialogs.showErrorDialog(
 											(Stage) MainControl.this.view
 													.getRoot().getScene()
-													.getWindow(), "Falsche Eingabe: " + txt_kundennr.getText(), "Fehler", "Travelbasys Customer Manager");
+													.getWindow(),
+											"Wrong syntax: "
+													+ txt_kundennr.getText(),
+											"Error",
+											"Travelbasys Customer Manager");
 								}
 
 							}
@@ -209,11 +231,154 @@ public class MainControl implements Control {
 						grid.setPadding(new Insets(10, 10, 10, 10));
 						grid.setVgap(5);
 						grid.setHgap(5);
-						GridPane.setConstraints(lbl_kundennr, 0, 0);
-						GridPane.setConstraints(txt_kundennr, 3, 0);
+						GridPane.setConstraints(lbl_menu, 0, 0);
+						GridPane.setConstraints(lbl_kundennr, 0, 1);
+						GridPane.setConstraints(txt_kundennr, 3, 2);
 						GridPane.setConstraints(btn, 10, 10);
-						grid.getChildren().addAll(lbl_kundennr, txt_kundennr,
-								btn);
+						grid.getChildren().addAll(lbl_menu, lbl_kundennr,
+								txt_kundennr, btn);
+
+						MainControl.this.view.getRoot().setCenter(grid);
+					}
+				});
+
+		this.view.getCustomerDeleteItem().setOnAction(
+				new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent arg0) {
+						final TextField txt_kundennr = new TextField();
+						Label lbl_kundennr = new Label("CustomerID:");
+						lbl_menu.setText("Customer Delete");
+
+						GridPane grid = new GridPane();
+						Button btn = new Button("Search");
+
+						btn.setOnAction(new EventHandler<ActionEvent>() {
+
+							@Override
+							public void handle(ActionEvent e) {
+								try {
+
+									// Erzeuge Dialog-Options-Objekt
+
+									DialogOptions options = DialogOptions.YES_NO;
+									if (getData().get(0) != null) {
+
+										// Übergebe Rückgabewert des
+										// ConfirmDialoges an
+										// Dialog-Response-Objekt
+										// Optionen werden ans zu zeigende
+										// Dialog-Objekt weitergegeben (letztes
+										// Feld)
+
+										DialogResponse response = Dialogs
+												.showConfirmDialog(
+														(Stage) MainControl.this.view
+																.getRoot()
+																.getScene()
+																.getWindow(),
+														"Lastname: "
+																+ getData()
+																		.get(0)
+																		.getLastName()
+																+ "\nFirstname: "
+																+ getData()
+																		.get(0)
+																		.getFirstName()
+																+ "\nAge: "
+																+ getData()
+																		.get(0)
+																		.getAge()
+																+ "\nAdress: "
+																+ getData()
+																		.get(0)
+																		.getAdress()
+																+ "\nPostalcode: "
+																+ getData()
+																		.get(0)
+																		.getPostalcode()
+																+ "\neMail: "
+																+ getData()
+																		.get(0)
+																		.getEmail()
+																+ "\nDelete?",
+														"Customer found: "
+																+ txt_kundennr
+																		.getText(),
+														"Travelbasys Customer Manager",
+														options);
+										// Anhand des Responses vom Dialog wird
+										// eine Aktion ausgeführt
+
+										switch (response) {
+										case YES:
+											try {
+												dao.delete(getData().get(0));
+											} catch (Exception f) {
+												Dialogs.showErrorDialog(
+														(Stage) MainControl.this.view
+																.getRoot()
+																.getScene()
+																.getWindow(),
+														"Unknown Error",
+														"Error",
+														"Travelbasys Customer Manager");
+											}
+											break;
+										case NO:
+											Dialogs.showInformationDialog(
+													(Stage) MainControl.this.view
+															.getRoot()
+															.getScene()
+															.getWindow(), "",
+													"Vorgang abgebrochen.",
+													"Travelbasys Customer Manager");
+											break;
+										default:
+											break;
+										}
+									} else {
+										Dialogs.showErrorDialog(
+												(Stage) MainControl.this.view
+														.getRoot().getScene()
+														.getWindow(),
+												"Customer not found: "
+														+ txt_kundennr
+																.getText(),
+												"Error",
+												"Travelbasys Customer Manager");
+									}
+								} catch (NumberFormatException d) {
+									Dialogs.showErrorDialog(
+											(Stage) MainControl.this.view
+													.getRoot().getScene()
+													.getWindow(),
+											"Wrong syntax: "
+													+ txt_kundennr.getText(),
+											"Error",
+											"Travelbasys Customer Manager");
+								}
+
+							}
+
+							private ObservableList<Customer> getData() {
+								data = FXCollections.observableArrayList(dao
+										.findById(Integer.parseInt(txt_kundennr
+												.getText())));
+								return data;
+							}
+						});
+
+						grid.setPadding(new Insets(10, 10, 10, 10));
+						grid.setVgap(5);
+						grid.setHgap(5);
+						GridPane.setConstraints(lbl_menu, 0, 0);
+						GridPane.setConstraints(lbl_kundennr, 0, 1);
+						GridPane.setConstraints(txt_kundennr, 3, 2);
+						GridPane.setConstraints(btn, 10, 10);
+						grid.getChildren().addAll(lbl_menu, lbl_kundennr,
+								txt_kundennr, btn);
 
 						MainControl.this.view.getRoot().setCenter(grid);
 					}
