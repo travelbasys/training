@@ -147,16 +147,55 @@ public class MainControl implements Control {
 
 						btn.setOnAction(new EventHandler<ActionEvent>() {
 
-							@SuppressWarnings({ "unchecked", "rawtypes" })
 							@Override
 							public void handle(ActionEvent e) {
-								TableView table;
-								table = new CreateCustomerTableView()
-										.getTable();
-								table.setItems(getData());
-								table.setMaxHeight(240);
-								MainControl.this.view.getRoot()
-										.setBottom(table);
+								try {
+									if (getData().get(0) != null) {
+										Dialogs.showInformationDialog(
+												(Stage) MainControl.this.view
+														.getRoot().getScene()
+														.getWindow(),
+												"Lastname: "
+														+ getData().get(0)
+																.getLastName()
+														+ "\nFirstname: "
+														+ getData().get(0)
+																.getFirstName()
+														+ "\nAge: "
+														+ getData().get(0)
+																.getAge()
+														+ "\nAdress: "
+														+ getData().get(0)
+																.getAdress()
+														+ "\nPostalcode: "
+														+ getData()
+																.get(0)
+																.getPostalcode()
+														+ "\neMail: "
+														+ getData().get(0)
+																.getEmail(),
+												"Customer gefunden: "
+														+ txt_kundennr
+																.getText(),
+												"Travelbasys Customer Manager");
+									} else {
+										Dialogs.showErrorDialog(
+												(Stage) MainControl.this.view
+														.getRoot().getScene()
+														.getWindow(),
+												"Customer nicht gefunden: "
+														+ txt_kundennr
+																.getText(),
+												"Fehler",
+												"Travelbasys Customer Manager");
+									}
+								} catch (NumberFormatException d) {
+									Dialogs.showErrorDialog(
+											(Stage) MainControl.this.view
+													.getRoot().getScene()
+													.getWindow(), "Falsche Eingabe: " + txt_kundennr.getText(), "Fehler", "Travelbasys Customer Manager");
+								}
+
 							}
 
 							private ObservableList<Customer> getData() {
