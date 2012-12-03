@@ -274,7 +274,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 					+ customer.getId() + ";");
 			resultSet.next();
 			if (resultSet.getRow() == 0) {
-				System.err.println("Customer had been killed.");
+				System.err.println("Customer has been deleted by another user.");
 				return;
 			}
 			if (resultSet.getInt(8) == localupdateid) {
@@ -290,7 +290,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 				preparedStatement.setInt(8, customer.getId());
 				preparedStatement.executeUpdate();
 			} else {
-				System.err.println("Customer has been changed another user.");
+				System.err.println("Customer has been changed by another user.");
 				CloseCurrentConnection();
 				return;
 			}

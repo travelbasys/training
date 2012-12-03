@@ -15,6 +15,12 @@ public class CreateCustomerTableView extends TableView {
 
 		table.setEditable(true);
 
+		TableColumn customerIDCol = new TableColumn("CustomerID");
+		customerIDCol.setMinWidth(100);
+		customerIDCol
+				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
+						"id"));
+
 		TableColumn lastNameCol = new TableColumn("Lastname");
 		lastNameCol.setMinWidth(100);
 		lastNameCol
@@ -49,8 +55,8 @@ public class CreateCustomerTableView extends TableView {
 		emailCol.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 				"email"));
 
-		table.getColumns().addAll(lastNameCol, firstNameCol, ageCol, adressCol,
-				postalcodeCol, emailCol);
+		table.getColumns().addAll(customerIDCol, lastNameCol, firstNameCol,
+				ageCol, adressCol, postalcodeCol, emailCol);
 	}
 
 	public TableView getTable() {

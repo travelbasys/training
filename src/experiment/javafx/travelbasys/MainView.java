@@ -56,6 +56,10 @@ public class MainView implements View {
 		return changeDB3Item;
 	}
 
+	public MenuItem getLotteryItem() {
+		return lotteryItem;
+	}
+
 	public MenuItem getConfigurationItem() {
 		return configurationItem;
 	}
@@ -173,7 +177,7 @@ public class MainView implements View {
 		root.setCenter(welcome);
 
 		// Größe des Hauptfensters festlegen
-		Scene mainframe = new Scene(root, 640, 480);
+		Scene mainframe = new Scene(root, 800, 600);
 		primaryStage.setScene(mainframe);
 
 		// Größe der MenuBar auf die Länge des Hauptfensters anpassen

@@ -34,11 +34,11 @@ public class Customer implements Serializable, Cloneable {
 	/*
 	 * Customer [name=xxx, age=nnn] oder: Customer[ name = xxx , age = nnn ]
 	 * 
-	 * Customer, dann Spaces, dann "[", dann Spaces, dann "name", dann Spaces, dann
-	 * "=", dann Spaces, dann Gruppe aus mindestens einem Zeichen non-greedy,
-	 * dann Spaces, dann Kommata, dann Spaces, dann age, dann Spaces, dann "=",
-	 * dann Spaces, dann Gruppe aus mindestens einer Ziffer, dann Spaces, dann
-	 * "]". Fertig.
+	 * Customer, dann Spaces, dann "[", dann Spaces, dann "name", dann Spaces,
+	 * dann "=", dann Spaces, dann Gruppe aus mindestens einem Zeichen
+	 * non-greedy, dann Spaces, dann Kommata, dann Spaces, dann age, dann
+	 * Spaces, dann "=", dann Spaces, dann Gruppe aus mindestens einer Ziffer,
+	 * dann Spaces, dann "]". Fertig.
 	 */
 	private static final String U = "\\s*Customer[(\\d+)]\\s*\\[\\s*lastname\\s*=\\s*(.+?)\\s*,\\s*firstname\\s*=\\s*(.+?)\\s*,\\s*age\\s*=\\s*(\\d+)\\s*\\,\\s*adress\\s*=\\s*(.+?)\\s*\\,\\s*postalcode\\s*=\\s*(.+?)\\s*\\,\\s*email\\s*=\\s*(.+?)\\s*\\]";
 	private static final String C = "(\\d+);(.+?);(.+?);(\\d+);(.+?);(.+?);(.+?)";
@@ -81,19 +81,19 @@ public class Customer implements Serializable, Cloneable {
 		setEMail(email);
 	}
 
-	public void setPostalcode(String postalcode) {
+	public void setPostalcode(String postalcode) throws IllegalArgumentException {
 
 		if ((Integer.parseInt(postalcode) > 0 && postalcode.length() == 5)) {
 			this.postalcode = postalcode;
 		} else {
-			System.err.println(Customer.POSTAL_CODE_ERROR + postalcode);
+			throw new IllegalArgumentException(POSTAL_CODE_ERROR);
 		}
 
 	}
 
 	/**
-	 * Erzeugt ein neues Customer Objekt mit dem angegebenen Namen und einem default
-	 * Alter (derzeit 15).
+	 * Erzeugt ein neues Customer Objekt mit dem angegebenen Namen und einem
+	 * default Alter (derzeit 15).
 	 * 
 	 * @param name
 	 *            Name des Customers.
@@ -164,16 +164,19 @@ public class Customer implements Serializable, Cloneable {
 	}
 
 	/**
-	 * Setzt das Alter des Kunden.
-	 * Wenn der Wert negativ oder größer als 150 ist, wird eine Exception geworfen.
-	 * @param age das Alter.
-	 * @throws IllegalArgumentException wenn Alter negativ oder größer als 150.
+	 * Setzt das Alter des Kunden. Wenn der Wert negativ oder größer als 150
+	 * ist, wird eine Exception geworfen.
+	 * 
+	 * @param age
+	 *            das Alter.
+	 * @throws IllegalArgumentException
+	 *             wenn Alter negativ oder größer als 150.
 	 */
 	public void setAge(int age) throws IllegalArgumentException {
 		if (age > 0 && age <= 150) {
 			this.age = age;
 		} else {
-			System.err.println(Customer.AGE_ERROR + age);
+			throw new IllegalArgumentException(AGE_ERROR);
 		}
 
 	}
@@ -186,17 +189,16 @@ public class Customer implements Serializable, Cloneable {
 				+ "]";
 	}
 
-	public String toFormat(String Format){
-		if(Format == "CSV"){
-			return customerid + ";" + lastname + ";" + firstname + ";" + age + ";" + adress + ";" + postalcode + ";" + email;
+	public String toFormat(String Format) {
+		if (Format == "CSV") {
+			return customerid + ";" + lastname + ";" + firstname + ";" + age
+					+ ";" + adress + ";" + postalcode + ";" + email;
 
 		}
-		if(Format == "ACCESS"){
+		if (Format == "ACCESS") {
 		}
 		return null;
 	}
-
-	
 
 	@Override
 	public int hashCode() {
@@ -289,8 +291,9 @@ public class Customer implements Serializable, Cloneable {
 
 		return customer;
 	}
-	
+
 	public Customer clone() {
-		return new Customer(customerid, lastname, firstname, age, adress, postalcode, email);
+		return new Customer(customerid, lastname, firstname, age, adress,
+				postalcode, email);
 	}
 }
