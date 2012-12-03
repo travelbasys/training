@@ -28,6 +28,37 @@ public class MainView implements View {
 	private MenuItem customerShowAllItem;
 	private MenuItem customerDeleteItem;
 	private MenuItem aboutItem;
+	private MenuItem changeDB1Item;
+	private MenuItem changeDB2Item;
+	private MenuItem changeDB3Item;
+	private MenuItem configurationItem;
+	private MenuItem changeLanguage1Item;
+	private MenuItem changeLanguage2Item;
+	private MenuItem lotteryItem;
+
+	public MenuItem getChangeLanguage1Item() {
+		return changeLanguage1Item;
+	}
+
+	public MenuItem getChangeLanguage2Item() {
+		return changeLanguage2Item;
+	}
+
+	public MenuItem getChangeDB1Item() {
+		return changeDB1Item;
+	}
+
+	public MenuItem getChangeDB2Item() {
+		return changeDB2Item;
+	}
+
+	public MenuItem getChangeDB3Item() {
+		return changeDB3Item;
+	}
+
+	public MenuItem getConfigurationItem() {
+		return configurationItem;
+	}
 
 	public MenuItem getExportingItem() {
 		return exportingItem;
@@ -74,12 +105,18 @@ public class MainView implements View {
 
 		// Erstelle einzelne Menüs
 		final Menu menu1 = new Menu("File");
-		final Menu menu2 = new Menu("Customer");
-		final Menu menu3 = new Menu("Edit");
+		final Menu menu2 = new Menu("Edit");
+		final Menu menu3 = new Menu("Customer");
 		final Menu menu4 = new Menu("Options");
-		final Menu menu5 = new Menu("Help");
+		final Menu menu5 = new Menu("Extras");
+		final Menu menu6 = new Menu("Help");
 
-		// Erstelle File-Menu-Items
+		// Submenü
+
+		final Menu changeDB = new Menu("Change Database");
+		final Menu changeLanguage = new Menu("Change Language");
+
+		// Erstelle Menu-Items
 
 		exportingItem = new MenuItem("Exportieren nach...");
 		importingItem = new MenuItem("Importieren nach...");
@@ -89,24 +126,41 @@ public class MainView implements View {
 		customerEditItem = new MenuItem("Edit Customer");
 		customerDeleteItem = new MenuItem("Delete Customer");
 		customerShowAllItem = new MenuItem("Show all Customers");
+		configurationItem = new MenuItem("Configuration...");
+		lotteryItem = new MenuItem("Determine Lottery Numbers...");
 		aboutItem = new MenuItem("About");
+
+		changeDB1Item = new MenuItem("Access database");
+		changeDB2Item = new MenuItem("MySQl database");
+		changeDB3Item = new MenuItem("Text database");
+
+		changeLanguage1Item = new MenuItem("Deutsch");
+		changeLanguage2Item = new MenuItem("English");
 
 		// Dem Exit-Menüpunkt wird eine Grafik zugewiesen
 
 		exitItem.setGraphic(new ImageView(new Image("./resources./exit.png")));
 
-		// Füge Items den Menüpunkten hinzu.
+		// Dem Submenü Items hinzufügen
+
+		changeLanguage.getItems().addAll(changeLanguage1Item,
+				changeLanguage2Item);
+		changeDB.getItems().addAll(changeDB1Item, changeDB2Item, changeDB3Item);
+
+		// Füge Items (auch Submenüs) den Menüpunkten hinzu.
 
 		menu1.getItems().addAll(exportingItem, importingItem, exitItem);
-		menu2.getItems().addAll(customerCreateItem, customerShowItem,
+		menu3.getItems().addAll(customerCreateItem, customerShowItem,
 				customerEditItem, customerDeleteItem, customerShowAllItem);
-		menu5.getItems().addAll(aboutItem);
+		menu4.getItems().addAll(changeLanguage, changeDB, configurationItem);
+		menu5.getItems().addAll(lotteryItem);
+		menu6.getItems().addAll(aboutItem);
 
 		// MenuBar erstellen
 		MenuBar menuBar = new MenuBar();
 
 		// Der MenuBar eine Collection von Menu-Objekten hinzufügen
-		menuBar.getMenus().addAll(menu1, menu2, menu3, menu4, menu5);
+		menuBar.getMenus().addAll(menu1, menu2, menu3, menu4, menu5, menu6);
 
 		// Hauptpanel erstellen
 		root = new BorderPane();
