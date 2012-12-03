@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -114,9 +115,18 @@ public class MainControl implements Control {
 											txt_postalcode.getText(), txt_email
 													.getText());
 									dao.create(customer);
-									new TransactionSuccessfullPrompt();
+									Dialogs.showInformationDialog(
+											(Stage) MainControl.this.view
+													.getRoot().getScene()
+													.getWindow(),
+											"Transaction Successfull");
 								} catch (CustomerDaoException d) {
-									new TransactionFailedPrompt();
+									Dialogs.showErrorDialog(
+											(Stage) MainControl.this.view
+													.getRoot().getScene()
+													.getWindow(),
+											"Transaction Failed");
+
 								}
 							}
 
@@ -222,7 +232,7 @@ public class MainControl implements Control {
 						table = new CreateCustomerTableView().getTable();
 						table.setItems(getData());
 						// Erstellen Node (VBox) für Platzierung der Tabelle
-						final VBox vbox = new VBox();
+						VBox vbox = new VBox();
 						vbox.setSpacing(5);
 						vbox.setPadding(new Insets(10, 10, 10, 10));
 						// Platziere Tabelle in der VBox
@@ -233,6 +243,7 @@ public class MainControl implements Control {
 
 					private ObservableList<Customer> getData() {
 						data = FXCollections.observableArrayList(dao.findAll());
+						System.out.println(data);
 						return data;
 					}
 				});
