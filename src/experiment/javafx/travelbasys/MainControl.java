@@ -2,11 +2,6 @@ package experiment.javafx.travelbasys;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.dao.mysql.MySQLCustomerDAO;
 import de.travelbasys.training.framework.Control;
@@ -15,6 +10,7 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Configuration;
+import experiment.javafx.travelbasys.dialog.about.AboutDialogGUI;
 import experiment.javafx.travelbasys.dialog.customer.create.CustomerCreateDialogGUI;
 import experiment.javafx.travelbasys.dialog.customer.delete.CustomerDeleteDialogGUI;
 import experiment.javafx.travelbasys.dialog.customer.list.CustomerListDialogGUI;
@@ -96,42 +92,10 @@ public class MainControl implements Control {
 
 		this.view.getAboutItem().setOnAction(new EventHandler<ActionEvent>() {
 
-			// Behandelt einen Klick auf das About-Item
-			// Legt ein neues Fenster an, in welchem Name & Jahr innerhalb einer
-			// (unsichtbaren) Tabelle angezeigt
-			// werden.
-
-			private Stage buildabout() {
-				Stage aboutwindow = new Stage();
-				aboutwindow.setTitle("About");
-
-				Label name = new Label("Name: Daniel Rowlin");
-				Label year = new Label("Year: 2012");
-
-				// Erzeugt ein TabellenPanel.
-				GridPane grid = new GridPane();
-				// Setzt alle Ränder auf 10 Pixel.
-				grid.setPadding(new Insets(10, 10, 10, 10));
-				// Setzt den Abstand innerhalb der Tabelle auf 5 Pixel.
-				grid.setVgap(5);
-				grid.setHgap(5);
-				// Setzt Zeilen/Spaltenposition der Elemente fest.
-				// (Objekt, Spalte, Zeile)
-				GridPane.setConstraints(name, 0, 0);
-				GridPane.setConstraints(year, 0, 1);
-
-				grid.getChildren().addAll(name, year);
-
-				aboutwindow.setScene(new Scene(grid, 320, 240));
-				aboutwindow.setResizable(false);
-				return aboutwindow;
-			}
-
-			// Zeigt das Fenster
-
 			@Override
 			public void handle(ActionEvent e) {
-				buildabout().show();
+				Dialog d = new AboutDialogGUI();
+				d.run();
 			}
 		});
 
