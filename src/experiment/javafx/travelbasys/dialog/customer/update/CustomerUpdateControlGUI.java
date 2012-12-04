@@ -96,6 +96,8 @@ public class CustomerUpdateControlGUI implements Control {
 							activateNewSearch();
 						case NO:
 							break;
+						default:
+							break;
 						}
 					} else {
 						Dialogs.showErrorDialog((Stage) model.getRoot()
