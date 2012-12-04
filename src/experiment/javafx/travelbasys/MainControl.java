@@ -26,6 +26,7 @@ public class MainControl implements Control {
 	public MainControl(Model model, View view) {
 		this.model = (MainModel) model;
 		this.view = (MainView) view;
+		
 		// Initialisiere MySQl Verbindung(& Funktionen)
 		Dao.setDAO(new MySQLCustomerDAO());
 		Configuration.init(CommandLine.getOptions());

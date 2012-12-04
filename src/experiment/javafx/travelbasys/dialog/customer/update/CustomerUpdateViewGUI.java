@@ -55,11 +55,11 @@ public class CustomerUpdateViewGUI implements View {
 				"Valid Postalcode: Must contain 5 digits");
 
 		GridPane grid = new GridPane();
-		final Button btn = new Button("Send");
-		btn.setDisable(true);
-		final Button btn2 = new Button("Search");
-		final Button btn3 = new Button("New Search");
-		btn3.setDisable(true);
+		final Button sendButton = new Button("Send");
+		sendButton.setDisable(true);
+		final Button searchButton = new Button("Search");
+		final Button newSearchButton = new Button("New Search");
+		newSearchButton.setDisable(true);
 
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.setVgap(5);
@@ -81,14 +81,14 @@ public class CustomerUpdateViewGUI implements View {
 		GridPane.setConstraints(txt_email, 1, 8);
 		GridPane.setConstraints(lbl_age_hint, 3, 5);
 		GridPane.setConstraints(lbl_postalcode_hint, 3, 7);
-		GridPane.setConstraints(btn, 3, 10);
-		GridPane.setConstraints(btn2, 3, 1);
-		GridPane.setConstraints(btn3, 4, 1);
+		GridPane.setConstraints(sendButton, 3, 10);
+		GridPane.setConstraints(searchButton, 3, 1);
+		GridPane.setConstraints(newSearchButton, 4, 1);
 		grid.getChildren().addAll(lbl_menu, lbl_customerid, lbl_lastname,
 				lbl_firstname, lbl_age, lbl_adress, lbl_postalcode, lbl_email,
 				lbl_age_hint, lbl_postalcode_hint, txt_customerid,
 				txt_lastname, txt_firstname, txt_age, txt_adress,
-				txt_postalcode, txt_email, btn, btn2, btn3);
+				txt_postalcode, txt_email, sendButton, searchButton, newSearchButton);
 		model.setTxt_customerid(txt_customerid);
 		model.setTxt_lastname(txt_lastname);
 		model.setTxt_firstname(txt_firstname);
@@ -96,12 +96,12 @@ public class CustomerUpdateViewGUI implements View {
 		model.setTxt_adress(txt_adress);
 		model.setTxt_postalcode(txt_postalcode);
 		model.setTxt_email(txt_email);
-		model.setBtn(btn);
-		model.setBtn2(btn2);
-		model.setBtn3(btn3);
+		model.setBtn(sendButton);
+		model.setBtn2(searchButton);
+		model.setBtn3(newSearchButton);
 		model.setWindow(grid);
 
-		btn3.setOnAction(new EventHandler<ActionEvent>() {
+		newSearchButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -113,7 +113,7 @@ public class CustomerUpdateViewGUI implements View {
 			}
 
 			private void deactivateNewSearch() {
-				btn3.setDisable(true);
+				newSearchButton.setDisable(true);
 			}
 
 			private void deactivateEdit() {
@@ -123,13 +123,13 @@ public class CustomerUpdateViewGUI implements View {
 				txt_adress.setEditable(false);
 				txt_postalcode.setEditable(false);
 				txt_email.setEditable(false);
-				btn.setDisable(true);
+				sendButton.setDisable(true);
 			}
 
 			private void activateSearch() {
 				txt_customerid.setEditable(true);
 				txt_customerid.clear();
-				btn2.setDisable(false);
+				searchButton.setDisable(false);
 			}
 
 			private void clear() {

@@ -27,7 +27,32 @@ public class CustomerCreateControlGUI implements Control {
 	public void handleInput(Object value) throws Exception {
 	}
 
-	public void buildEventHandler() {
+	public void init() {
+		// TODO: Aufruf eines Feldes über den View (nicht Model)
+		// TODO: HandleFocus, wenn ein Feld verlassen wird z.B. Validate-Prüfung
+		// & Set im Model.
+		// TODO: Namen der Felder eindeutiger machen z.B. getFirstNameField  oder SendButton etc.
+		// statt getTxt_firstname
+		// TODO: Root an View Constructor
+		// TODO: Falsche Eingaben verbieten z.B. durch Feldeigenschaften/anderer
+		// FeldTyp
+		// TODO: Boolean im Model, ob alle Daten validiert eingegeben wurden.
+		// TODO: Grafisch darstellen ob ein Inhalt korrekt ist z.B. Haken/Kreuz oder rote/gründe Umrandung.
+		//TODO: Vielleicht User im Feld fangen (unsicher) solange Wert inkorrekt.
+
+		// view.getFirstnameField().setOnFocus(new FocusHandler<FocusEvent>() {
+		// @Override
+		// public void handleFocusLost(FocusEvent arg0) {
+		// String value = arg0.getSource().getText();
+		// if( validate( value ) ){
+		// model.setFirstname( value );
+		// }
+		// else {
+		// //
+		// }
+		// }
+		// });
+
 		model.getBtn().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -40,7 +65,9 @@ public class CustomerCreateControlGUI implements Control {
 							.getTxt_adress().getText(), model
 							.getTxt_postalcode().getText(), model
 							.getTxt_email().getText());
+
 					Dao.getDAO().create(customer);
+
 					Dialogs.showInformationDialog((Stage) model.getRoot()
 							.getScene().getWindow(), "Transaction successful.",
 							"Information", "Travelbasys Customer Manager");
