@@ -10,7 +10,7 @@ public class CreateCustomerTableView extends TableView {
 
 	private TableView table;
 
-	CreateCustomerTableView() {
+	public CreateCustomerTableView() {
 		table = new TableView<Customer>();
 
 		table.setEditable(true);

@@ -21,6 +21,7 @@ import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Configuration;
 import experiment.javafx.travelbasys.dialog.customer.create.CustomerCreateDialogGUI;
+import experiment.javafx.travelbasys.dialog.customer.delete.CustomerDeleteDialogGUI;
 import experiment.javafx.travelbasys.dialog.customer.show.CustomerShowDialogGUI;
 import experiment.javafx.travelbasys.dialog.customer.update.CustomerUpdateDialogGUI;
 
@@ -85,6 +86,9 @@ public class MainControl implements Control {
 
 					@Override
 					public void handle(ActionEvent e) {
+						Dialog d = new CustomerDeleteDialogGUI(
+								MainControl.this.view.getRoot());
+						d.run();
 					}
 				});
 
