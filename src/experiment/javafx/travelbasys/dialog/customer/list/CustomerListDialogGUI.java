@@ -16,7 +16,9 @@ public class CustomerListDialogGUI implements Dialog {
 
 	@Override
 	public void run() {
-view.run();
+		view.run();
+		control.buildEventHandler();
+		view.show();
 	}
 
 }

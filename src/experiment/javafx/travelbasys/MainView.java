@@ -88,7 +88,7 @@ public class MainView implements View {
 		return customerEditItem;
 	}
 
-	public MenuItem getCustomerShowAllItem() {
+	public MenuItem getCustomerListItem() {
 		return customerShowAllItem;
 	}
 

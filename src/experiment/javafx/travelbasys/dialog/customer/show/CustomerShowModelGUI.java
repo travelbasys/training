@@ -1,13 +1,11 @@
 package experiment.javafx.travelbasys.dialog.customer.show;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Model;
 
 public class CustomerShowModelGUI implements Model {
@@ -43,8 +41,6 @@ public class CustomerShowModelGUI implements Model {
 	}
 
 	public ObservableList<Customer> getData() {
-		data = FXCollections.observableArrayList(Dao.getDAO().findById(
-				Integer.parseInt(txt_customerid.getText())));
 		return data;
 	}
 
@@ -54,6 +50,10 @@ public class CustomerShowModelGUI implements Model {
 
 	public Button getBtn() {
 		return btn;
+	}
+
+	public void setData(ObservableList<Customer> data) {
+		this.data = data;
 	}
 
 }

@@ -1,11 +1,14 @@
 package experiment.javafx.travelbasys.dialog.customer.delete;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
 import javafx.scene.control.Dialogs.DialogOptions;
 import javafx.scene.control.Dialogs.DialogResponse;
 import javafx.stage.Stage;
+import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
@@ -33,7 +36,14 @@ public class CustomerDeleteControlGUI implements Control {
 
 			@Override
 			public void handle(ActionEvent e) {
+
 				try {
+
+					ObservableList<Customer> data = FXCollections
+							.observableArrayList(Dao.getDAO().findById(
+									Integer.parseInt(model.getTxt_customerid()
+											.getText())));
+					model.setData(data);
 
 					// Erzeuge Dialog-Options-Objekt
 

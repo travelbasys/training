@@ -1,22 +1,21 @@
 package experiment.javafx.travelbasys.dialog.customer.delete;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Model;
 
-public class CustomerDeleteModelGUI implements Model{
+public class CustomerDeleteModelGUI implements Model {
 
 	private BorderPane root;
 	private GridPane grid;
 	private ObservableList<Customer> data;
 	private TextField txt_customerid;
 	private Button btn;
+
 	public CustomerDeleteModelGUI(BorderPane root) {
 		this.root = root;
 	}
@@ -32,6 +31,7 @@ public class CustomerDeleteModelGUI implements Model{
 	public GridPane getWindow() {
 		return grid;
 	}
+
 	public TextField getTxt_customerid() {
 		return txt_customerid;
 	}
@@ -41,8 +41,6 @@ public class CustomerDeleteModelGUI implements Model{
 	}
 
 	public ObservableList<Customer> getData() {
-		data = FXCollections.observableArrayList(Dao.getDAO().findById(
-				Integer.parseInt(txt_customerid.getText())));
 		return data;
 	}
 
@@ -52,5 +50,9 @@ public class CustomerDeleteModelGUI implements Model{
 
 	public void setBtn(Button btn) {
 		this.btn = btn;
+	}
+
+	public void setData(ObservableList<Customer> data) {
+		this.data = data;
 	}
 }

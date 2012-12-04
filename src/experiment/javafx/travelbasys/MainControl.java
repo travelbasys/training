@@ -1,17 +1,12 @@
 package experiment.javafx.travelbasys;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.dao.mysql.MySQLCustomerDAO;
 import de.travelbasys.training.framework.Control;
@@ -22,6 +17,7 @@ import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Configuration;
 import experiment.javafx.travelbasys.dialog.customer.create.CustomerCreateDialogGUI;
 import experiment.javafx.travelbasys.dialog.customer.delete.CustomerDeleteDialogGUI;
+import experiment.javafx.travelbasys.dialog.customer.list.CustomerListDialogGUI;
 import experiment.javafx.travelbasys.dialog.customer.show.CustomerShowDialogGUI;
 import experiment.javafx.travelbasys.dialog.customer.update.CustomerUpdateDialogGUI;
 
@@ -30,7 +26,6 @@ public class MainControl implements Control {
 	private MainView view;
 	@SuppressWarnings("unused")
 	private MainModel model;
-	private ObservableList<Customer> data;
 
 	public MainControl(Model model, View view) {
 		this.model = (MainModel) model;
@@ -62,7 +57,7 @@ public class MainControl implements Control {
 				new EventHandler<ActionEvent>() {
 
 					@Override
-					public void handle(ActionEvent arg0) {
+					public void handle(ActionEvent e) {
 
 						Dialog d = new CustomerShowDialogGUI(
 								MainControl.this.view.getRoot());
@@ -94,12 +89,8 @@ public class MainControl implements Control {
 
 		this.view.getLotteryItem().setOnAction(new EventHandler<ActionEvent>() {
 
-			private void buildlottery() {
-			}
-
 			@Override
-			public void handle(ActionEvent arg0) {
-				buildlottery();
+			public void handle(ActionEvent e) {
 			}
 		});
 
@@ -139,35 +130,19 @@ public class MainControl implements Control {
 			// Zeigt das Fenster
 
 			@Override
-			public void handle(ActionEvent arg0) {
+			public void handle(ActionEvent e) {
 				buildabout().show();
 			}
 		});
 
-		this.view.getCustomerShowAllItem().setOnAction(
+		this.view.getCustomerListItem().setOnAction(
 				new EventHandler<ActionEvent>() {
 
-					@SuppressWarnings({ "rawtypes", "unchecked" })
 					@Override
-					public void handle(ActionEvent arg0) {
-						// Erstelle Referenz zu Tabelle und fülle mit Daten
-						TableView table;
-						table = new CreateCustomerTableView().getTable();
-						table.setItems(getData());
-						// Erstellen Node (VBox) für Platzierung der Tabelle
-						VBox vbox = new VBox();
-						vbox.setSpacing(5);
-						vbox.setPadding(new Insets(10, 10, 10, 10));
-						// Platziere Tabelle in der VBox
-						vbox.getChildren().addAll(table);
-						// Aktualisiere Bildbereich mit der VBox
-						MainControl.this.view.getRoot().setCenter(vbox);
-					}
-
-					private ObservableList<Customer> getData() {
-						data = FXCollections.observableArrayList(Dao.getDAO()
-								.findAll());
-						return data;
+					public void handle(ActionEvent e) {
+						Dialog d = new CustomerListDialogGUI(
+								MainControl.this.view.getRoot());
+						d.run();
 					}
 				});
 	}

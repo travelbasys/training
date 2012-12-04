@@ -1,5 +1,7 @@
 package experiment.javafx.travelbasys.dialog.customer.update;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
@@ -70,6 +72,13 @@ public class CustomerUpdateControlGUI implements Control {
 			@Override
 			public void handle(ActionEvent e) {
 				try {
+
+					ObservableList<Customer> data = FXCollections
+							.observableArrayList(Dao.getDAO().findById(
+									Integer.parseInt(model.getTxt_customerid()
+											.getText())));
+					model.setData(data);
+
 					if (model.getData().get(0) != null) {
 						DialogOptions options = DialogOptions.YES_NO;
 						DialogResponse response = Dialogs.showConfirmDialog(

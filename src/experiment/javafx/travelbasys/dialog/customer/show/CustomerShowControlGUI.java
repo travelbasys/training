@@ -1,9 +1,13 @@
 package experiment.javafx.travelbasys.dialog.customer.show;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
 import javafx.stage.Stage;
+import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
@@ -29,6 +33,13 @@ public class CustomerShowControlGUI implements Control {
 			@Override
 			public void handle(ActionEvent e) {
 				try {
+
+					ObservableList<Customer> data = FXCollections
+							.observableArrayList(Dao.getDAO().findById(
+									Integer.parseInt(model.getTxt_customerid()
+											.getText())));
+					model.setData(data);
+
 					if (model.getData().get(0) != null) {
 						Dialogs.showInformationDialog((Stage) model.getRoot()
 								.getScene().getWindow(), "Lastname: "
