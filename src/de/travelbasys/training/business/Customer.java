@@ -176,7 +176,7 @@ public class Customer implements Serializable, Cloneable {
 		if (age > 0 && age <= 150) {
 			this.age = age;
 		} else {
-			throw new IllegalArgumentException(AGE_ERROR);
+			throw new IllegalArgumentException(AGE_ERROR + age);
 		}
 
 	}

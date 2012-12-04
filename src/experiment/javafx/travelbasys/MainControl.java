@@ -18,14 +18,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import de.travelbasys.training.business.Customer;
-import de.travelbasys.training.dao.CustomerDAO;
-import de.travelbasys.training.dao.CustomerDaoException;
+import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.dao.mysql.MySQLCustomerDAO;
 import de.travelbasys.training.framework.Control;
+import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Configuration;
+import experiment.javafx.travelbasys.dialog.customer.create.CustomerCreateDialogGUI;
+import experiment.javafx.travelbasys.dialog.customer.show.CustomerShowDialogGUI;
 
 public class MainControl implements Control {
 
@@ -33,19 +35,14 @@ public class MainControl implements Control {
 	@SuppressWarnings("unused")
 	private MainModel model;
 	private ObservableList<Customer> data;
-	private CustomerDAO dao;
-	private Label lbl_menu = new Label();
 
 	public MainControl(Model model, View view) {
 		this.model = (MainModel) model;
 		this.view = (MainView) view;
 		// Initialisiere MySQl Verbindung(& Funktionen)
-		dao = new MySQLCustomerDAO();
+		Dao.setDAO(new MySQLCustomerDAO());
 		Configuration.init(CommandLine.getOptions());
-		dao.init((String) Configuration.get("db"));
-
-		// Setzte Schrift für Menüüberschrift
-		lbl_menu.setFont(new Font("Arial", 30));
+		Dao.getDAO().init((String) Configuration.get("db"));
 
 		// Setze EventHandler für Exit-Menüpunkt
 		this.view.getExitItem().setOnAction(new EventHandler<ActionEvent>() {
@@ -59,102 +56,9 @@ public class MainControl implements Control {
 				new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent e) {
-
-						// (Experimentell) Erstellen einer Tabelle in welcher
-						// Labels &
-						// Textfelder angelegt werden für das Anlegen eines
-						// neuen
-						// Customers
-
-						final TextField txt_lastname = new TextField();
-						final TextField txt_firstname = new TextField();
-						final TextField txt_age = new TextField();
-						final TextField txt_adress = new TextField();
-						final TextField txt_postalcode = new TextField();
-						final TextField txt_email = new TextField();
-
-						lbl_menu.setText("Customer Create");
-						Label lbl_lastname = new Label("Lastname:");
-						Label lbl_firstname = new Label("Firstname:");
-						Label lbl_age = new Label("Age:");
-						Label lbl_adress = new Label("Adress:");
-						Label lbl_postalcode = new Label("Postalcode:");
-						Label lbl_email = new Label("EMail:");
-						Label lbl_age_hint = new Label("Valid age: 1-150");
-						Label lbl_postalcode_hint = new Label(
-								"Valid Postalcode: Must contain 5 digits");
-
-						GridPane grid = new GridPane();
-						Button btn = new Button("Send");
-
-						grid.setPadding(new Insets(10, 10, 10, 10));
-						grid.setVgap(5);
-						grid.setHgap(5);
-						GridPane.setConstraints(lbl_menu, 0, 0);
-						GridPane.setConstraints(lbl_lastname, 0, 1);
-						GridPane.setConstraints(lbl_firstname, 0, 2);
-						GridPane.setConstraints(lbl_age, 0, 3);
-						GridPane.setConstraints(lbl_adress, 0, 4);
-						GridPane.setConstraints(lbl_postalcode, 0, 5);
-						GridPane.setConstraints(lbl_email, 0, 6);
-						GridPane.setConstraints(txt_lastname, 1, 1);
-						GridPane.setConstraints(txt_firstname, 1, 2);
-						GridPane.setConstraints(txt_age, 1, 3);
-						GridPane.setConstraints(txt_adress, 1, 4);
-						GridPane.setConstraints(txt_postalcode, 1, 5);
-						GridPane.setConstraints(txt_email, 1, 6);
-						GridPane.setConstraints(lbl_age_hint, 2, 3);
-						GridPane.setConstraints(lbl_postalcode_hint, 2, 5);
-						GridPane.setConstraints(btn, 10, 10);
-						grid.getChildren().addAll(lbl_menu, lbl_lastname,
-								lbl_firstname, lbl_age, lbl_adress,
-								lbl_postalcode, lbl_email, lbl_age_hint,
-								lbl_postalcode_hint, txt_lastname,
-								txt_firstname, txt_age, txt_adress,
-								txt_postalcode, txt_email, btn);
-						MainControl.this.view.getRoot().setCenter(grid);
-
-						btn.setOnAction(new EventHandler<ActionEvent>() {
-
-							@Override
-							public void handle(ActionEvent e) {
-
-								int dummyId = 0;
-								try {
-									Customer customer = new Customer(
-											dummyId,
-											txt_lastname.getText(),
-											txt_firstname.getText(),
-											Integer.parseInt(txt_age.getText()),
-											txt_adress.getText(),
-											txt_postalcode.getText(), txt_email
-													.getText());
-									dao.create(customer);
-									Dialogs.showInformationDialog(
-											(Stage) MainControl.this.view
-													.getRoot().getScene()
-													.getWindow(),
-											"Transaction successful.",
-											"Information",
-											"Travelbasys Customer Manager");
-								} catch (CustomerDaoException d) {
-									Dialogs.showErrorDialog(
-											(Stage) MainControl.this.view
-													.getRoot().getScene()
-													.getWindow(),
-											"Transaction failed.", "Error",
-											"Travelbasys Customer Manager");
-								} catch (NumberFormatException d) {
-									Dialogs.showErrorDialog(
-											(Stage) MainControl.this.view
-													.getRoot().getScene()
-													.getWindow(),
-											"Wrong syntax.", "Error",
-											"Travelbasys Customer Manager");
-								}
-							}
-
-						});
+						Dialog d = new CustomerCreateDialogGUI(
+								MainControl.this.view.getRoot());
+						d.run();
 					}
 				});
 
@@ -163,91 +67,11 @@ public class MainControl implements Control {
 
 					@Override
 					public void handle(ActionEvent arg0) {
-						final TextField txt_customerid = new TextField();
-						Label lbl_customerid = new Label("CustomerID:");
-						lbl_menu.setText("Customer Show");
-						GridPane grid = new GridPane();
-						Button btn = new Button("Search");
-
-						btn.setOnAction(new EventHandler<ActionEvent>() {
-
-							@Override
-							public void handle(ActionEvent e) {
-								try {
-									if (getData().get(0) != null) {
-										Dialogs.showInformationDialog(
-												(Stage) MainControl.this.view
-														.getRoot().getScene()
-														.getWindow(),
-												"Lastname: "
-														+ getData().get(0)
-																.getLastName()
-														+ "\nFirstname: "
-														+ getData().get(0)
-																.getFirstName()
-														+ "\nAge: "
-														+ getData().get(0)
-																.getAge()
-														+ "\nAdress: "
-														+ getData().get(0)
-																.getAdress()
-														+ "\nPostalcode: "
-														+ getData()
-																.get(0)
-																.getPostalcode()
-														+ "\neMail: "
-														+ getData().get(0)
-																.getEmail(),
-												"Customer found: "
-														+ txt_customerid
-																.getText(),
-												"Travelbasys Customer Manager");
-									} else {
-										Dialogs.showErrorDialog(
-												(Stage) MainControl.this.view
-														.getRoot().getScene()
-														.getWindow(),
-												"Customer not found: "
-														+ txt_customerid
-																.getText(),
-												"Error",
-												"Travelbasys Customer Manager");
-									}
-								} catch (NumberFormatException d) {
-									Dialogs.showErrorDialog(
-											(Stage) MainControl.this.view
-													.getRoot().getScene()
-													.getWindow(),
-											"Wrong syntax: "
-													+ txt_customerid.getText(),
-											"Error",
-											"Travelbasys Customer Manager");
-								}
-
-							}
-
-							private ObservableList<Customer> getData() {
-								data = FXCollections.observableArrayList(dao
-										.findById(Integer
-												.parseInt(txt_customerid
-														.getText())));
-								return data;
-							}
-						});
-
-						grid.setPadding(new Insets(10, 10, 10, 10));
-						grid.setVgap(5);
-						grid.setHgap(5);
-						GridPane.setConstraints(lbl_menu, 0, 0);
-						GridPane.setConstraints(lbl_customerid, 0, 1);
-						GridPane.setConstraints(txt_customerid, 3, 1);
-						GridPane.setConstraints(btn, 10, 10);
-						grid.getChildren().addAll(lbl_menu, lbl_customerid,
-								txt_customerid, btn);
-
-						MainControl.this.view.getRoot().setCenter(grid);
-					}
-				});
+						
+						Dialog d = new CustomerShowDialogGUI(MainControl.this.view.getRoot());
+						d.run();
+						
+					}});
 
 		this.view.getCustomerEditItem().setOnAction(
 				new EventHandler<ActionEvent>() {
@@ -280,7 +104,8 @@ public class MainControl implements Control {
 						final TextField txt_email = new TextField();
 						txt_email.setEditable(false);
 
-						lbl_menu.setText("Customer Edit");
+						Label lbl_menu = new Label("Customer Edit");
+						lbl_menu.setFont(new Font("Arial", 30));
 						Label lbl_customerid = new Label("CustomerID:");
 						Label lbl_lastname = new Label("Lastname:");
 						Label lbl_firstname = new Label("Firstname:");
@@ -346,7 +171,7 @@ public class MainControl implements Control {
 											txt_adress.getText(),
 											txt_postalcode.getText(), txt_email
 													.getText());
-									dao.update(customer);
+									Dao.getDAO().update(customer);
 									Dialogs.showInformationDialog(
 											(Stage) MainControl.this.view
 													.getRoot().getScene()
@@ -489,9 +314,9 @@ public class MainControl implements Control {
 							}
 
 							private ObservableList<Customer> getData() {
-								data = FXCollections.observableArrayList(dao
-										.findById(Integer
-												.parseInt(txt_customerid
+								data = FXCollections.observableArrayList(Dao
+										.getDAO().findById(
+												Integer.parseInt(txt_customerid
 														.getText())));
 								return data;
 							}
@@ -550,7 +375,8 @@ public class MainControl implements Control {
 					public void handle(ActionEvent arg0) {
 						final TextField txt_customerid = new TextField();
 						Label lbl_customerid = new Label("CustomerID:");
-						lbl_menu.setText("Customer Delete");
+						Label lbl_menu = new Label("Customer Delete");
+						lbl_menu.setFont(new Font("Arial", 30));
 
 						GridPane grid = new GridPane();
 						Button btn = new Button("Search");
@@ -615,7 +441,8 @@ public class MainControl implements Control {
 										switch (response) {
 										case YES:
 											try {
-												dao.delete(getData().get(0));
+												Dao.getDAO().delete(
+														getData().get(0));
 												Dialogs.showInformationDialog(
 														(Stage) MainControl.this.view
 																.getRoot()
@@ -672,9 +499,9 @@ public class MainControl implements Control {
 							}
 
 							private ObservableList<Customer> getData() {
-								data = FXCollections.observableArrayList(dao
-										.findById(Integer
-												.parseInt(txt_customerid
+								data = FXCollections.observableArrayList(Dao
+										.getDAO().findById(
+												Integer.parseInt(txt_customerid
 														.getText())));
 								return data;
 							}
@@ -767,7 +594,8 @@ public class MainControl implements Control {
 					}
 
 					private ObservableList<Customer> getData() {
-						data = FXCollections.observableArrayList(dao.findAll());
+						data = FXCollections.observableArrayList(Dao.getDAO()
+								.findAll());
 						return data;
 					}
 				});
