@@ -11,6 +11,7 @@ import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AppContext;
 
 public class CustomerShowControlGUI implements Control {
 
@@ -36,7 +37,7 @@ public class CustomerShowControlGUI implements Control {
 									.getDAO()
 									.findById(
 											Integer.parseInt(CustomerShowControlGUI.this.view
-													.getCustomeridTextField()
+													.getCustomerIDField()
 													.getText())));
 							CustomerShowControlGUI.this.model.setData(data);
 
@@ -46,55 +47,61 @@ public class CustomerShowControlGUI implements Control {
 										(Stage) CustomerShowControlGUI.this.view
 												.getRoot().getScene()
 												.getWindow(),
-										"Lastname: "
-												+ CustomerShowControlGUI.this.view
+										AppContext.getMessage("Lastname")
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getLastName()
-												+ "\nFirstname: "
-												+ CustomerShowControlGUI.this.view
+												+ "\n"+AppContext.getMessage("Firstname")
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getFirstName()
-												+ "\nAge: "
-												+ CustomerShowControlGUI.this.view
+												+ "\n"+AppContext.getMessage("Age")
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getAge()
-												+ "\nAdress: "
-												+ CustomerShowControlGUI.this.view
+												+ " \n"+AppContext.getMessage("Adress")
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getAdress()
-												+ "\nPostalcode: "
-												+ CustomerShowControlGUI.this.view
+												+ "\n"+AppContext.getMessage("Postalcode")
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getPostalcode()
-												+ "\neMail: "
-												+ CustomerShowControlGUI.this.view
+												+ "\n"+AppContext.getMessage("Email")
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getEmail(),
-										"Customer found: "
-												+ CustomerShowControlGUI.this.view
-														.getCustomeridTextField()
-														.getText(),
-										"Travelbasys Customer Manager");
+										AppContext.getMessage("CustomerWithID") +
+												 CustomerShowControlGUI.this.view
+														.getCustomerIDField()
+														.getText() +" "+ AppContext.getMessage("Found"),
+														AppContext.getMessage("TravelbasysManager"));
+								CustomerShowControlGUI.this.view
+								.clear();
 							} else {
 								Dialogs.showErrorDialog(
 										(Stage) CustomerShowControlGUI.this.view
 												.getRoot().getScene()
 												.getWindow(),
-										"Customer not found: "
+										"Customer with CustomerID "
 												+ CustomerShowControlGUI.this.view
-														.getCustomeridTextField()
-														.getText(), "Error",
+														.getCustomerIDField()
+														.getText()+" does not exsist!\nPlease enter an exsisting CustomerID.", "Error",
 										"Travelbasys Customer Manager");
+								CustomerShowControlGUI.this.view
+								.clear();
 							}
 						} catch (NumberFormatException d) {
 							Dialogs.showErrorDialog(
 									(Stage) CustomerShowControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-									"Wrong syntax: "
+									"Wrong syntax for input: "
 											+ CustomerShowControlGUI.this.view
-													.getCustomeridTextField()
-													.getText(), "Error",
+													.getCustomerIDField()
+													.getText()+"\nThe CustomerID should be a number.", "Error",
 									"Travelbasys Customer Manager");
+							CustomerShowControlGUI.this.view
+							.clear();
 						}
 					}
 				});
