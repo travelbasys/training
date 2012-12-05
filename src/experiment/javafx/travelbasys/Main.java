@@ -3,6 +3,8 @@ package experiment.javafx.travelbasys;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import de.travelbasys.training.framework.Dialog;
+import de.travelbasys.training.util.CommandLine;
+import de.travelbasys.training.util.Configuration;
 
 
 
@@ -27,8 +29,13 @@ public class Main extends Application {
 	 */
 
 	public static void main(String[] args) {
+		//lädt Konfiguration
+		CommandLine.parse(args);
+		Configuration.init(CommandLine.getOptions());
+		
 		// Starte die grafische Oberfläche
 		launch(args);
+		
 	}
 
 	// Startmethode der GUI.

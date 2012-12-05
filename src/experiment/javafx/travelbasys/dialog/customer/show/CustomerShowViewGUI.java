@@ -10,7 +10,6 @@ import javafx.scene.text.Font;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
-import experiment.javafx.travelbasys.dialog.customer.update.CustomerUpdateControlGUI;
 
 public class CustomerShowViewGUI implements View {
 

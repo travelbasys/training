@@ -12,7 +12,7 @@ import de.travelbasys.training.framework.View;
 
 public class CustomerCreateViewGUI implements View {
 
-	@SuppressWarnings("unused")
+
 	private CustomerCreateModelGUI model;
 	private Button sendButton;
 	private TextField lastNameField;
@@ -27,6 +27,10 @@ public class CustomerCreateViewGUI implements View {
 	public CustomerCreateViewGUI(Model model, BorderPane root) {
 		this.model = (CustomerCreateModelGUI) model;
 		this.root = root;
+	}
+	
+	public void update(){
+		sendButton.setDisable(model.isInvalid());
 	}
 
 	@Override

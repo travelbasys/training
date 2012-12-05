@@ -14,6 +14,7 @@ import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AppContext;
 
 public class CustomerUpdateControlGUI implements Control {
 
@@ -55,7 +56,8 @@ public class CustomerUpdateControlGUI implements Control {
 							Dialogs.showInformationDialog(
 									(Stage) CustomerUpdateControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-									"Transaction successful.", "Information",
+											//TODO gvreg
+									"Transaction successful.", AppContext.getMessage("TransactionSuccess"),
 									"Travelbasys Customer Manager");
 							deactivateSend();
 						} catch (NumberFormatException d) {
@@ -193,6 +195,10 @@ public class CustomerUpdateControlGUI implements Control {
 					}
 
 					private void activateEdit() {
+						
+						
+						
+						
 						CustomerUpdateControlGUI.this.view.getLastNameField()
 								.setEditable(true);
 						CustomerUpdateControlGUI.this.view

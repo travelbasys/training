@@ -60,10 +60,9 @@ public class CustomerCreateControlGUI implements Control {
 						TextField field = CustomerCreateControlGUI.this.view
 								.getLastNameField();
 						if ((boolean) arg1 == true) {
-							if (!field.getText().isEmpty()) {
-								CustomerCreateControlGUI.this.model
-										.setLastname(field.getText());
-							}
+							CustomerCreateControlGUI.this.model
+									.setLastname(field.getText());
+							CustomerCreateControlGUI.this.view.update();
 						}
 					}
 				});
@@ -77,23 +76,25 @@ public class CustomerCreateControlGUI implements Control {
 						TextField field = CustomerCreateControlGUI.this.view
 								.getFirstNameField();
 						if ((boolean) arg1 == true) {
-							if (!field.getText().isEmpty()) {
-								CustomerCreateControlGUI.this.model
-										.setFirstname(field.getText());
-							}
+							CustomerCreateControlGUI.this.model
+									.setFirstname(field.getText());
+							CustomerCreateControlGUI.this.view.update();
 						}
 					}
 				});
 
 		this.view.getAgeField().focusedProperty()
-				.addListener(new ChangeListener() {
+				.addListener(new ChangeListener<Boolean>() {
 
 					@Override
-					public void changed(ObservableValue arg0, Object arg1,
-							Object arg2) {
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
 						TextField field = CustomerCreateControlGUI.this.view
 								.getAgeField();
-						if ((boolean) arg1 == true) {
+
+						// Wenn Cursor das Feld verlässt...
+						if (oldValue) {
 							if (!field.getText().isEmpty()) {
 								try {
 									int age = Integer.parseInt(field.getText());
@@ -175,10 +176,9 @@ public class CustomerCreateControlGUI implements Control {
 						TextField field = CustomerCreateControlGUI.this.view
 								.getEmailField();
 						if ((boolean) arg1 == true) {
-							if (!field.getText().isEmpty()) {
-								CustomerCreateControlGUI.this.model
-										.setEmail(field.getText());
-							}
+							CustomerCreateControlGUI.this.model.setEmail(field
+									.getText());
+							CustomerCreateControlGUI.this.view.update();
 						}
 					}
 				});

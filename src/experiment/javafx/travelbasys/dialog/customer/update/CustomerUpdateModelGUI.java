@@ -15,4 +15,6 @@ public class CustomerUpdateModelGUI implements Model {
 	public ObservableList<Customer> getData() {
 		return data;
 	}
+	
+	
 }
