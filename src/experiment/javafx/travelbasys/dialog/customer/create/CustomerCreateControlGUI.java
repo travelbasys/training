@@ -20,6 +20,34 @@ public class CustomerCreateControlGUI implements Control {
 	public CustomerCreateControlGUI() {
 	}
 
+	// TODO: Aufruf eines Feldes über den View (nicht Model)
+			// TODO: HandleFocus, wenn ein Feld verlassen wird z.B. Validate-Prüfung
+			// & Set im Model.
+			// TODO: Namen der Felder eindeutiger machen z.B. getFirstNameField oder
+			// SendButton etc.
+			// statt getTxt_firstname
+			// TODO: Root an View Constructor
+			// TODO: Falsche Eingaben verbieten z.B. durch Feldeigenschaften/anderer
+			// FeldTyp
+			// TODO: Boolean im Model, ob alle Daten validiert eingegeben wurden.
+			// TODO: Grafisch darstellen ob ein Inhalt korrekt ist z.B. Haken/Kreuz
+			// oder rote/gründe Umrandung.
+			// TODO: Vielleicht User im Feld fangen (unsicher) solange Wert
+			// inkorrekt.
+
+			// view.getFirstnameField().setOnFocus(new FocusHandler<FocusEvent>() {
+			// @Override
+			// public void handleFocusLost(FocusEvent arg0) {
+			// String value = arg0.getSource().getText();
+			// if( validate( value ) ){
+			// model.setFirstname( value );
+			// }
+			// else {
+			// //
+			// }
+			// }
+			// });
+	
 	@Override
 	public void init(Model model, View view) {
 		this.model = (CustomerCreateModelGUI) model;
@@ -79,35 +107,5 @@ public class CustomerCreateControlGUI implements Control {
 
 	@Override
 	public void handleInput(Object value) throws Exception {
-	}
-
-	public void init() {
-		// TODO: Aufruf eines Feldes über den View (nicht Model)
-		// TODO: HandleFocus, wenn ein Feld verlassen wird z.B. Validate-Prüfung
-		// & Set im Model.
-		// TODO: Namen der Felder eindeutiger machen z.B. getFirstNameField oder
-		// SendButton etc.
-		// statt getTxt_firstname
-		// TODO: Root an View Constructor
-		// TODO: Falsche Eingaben verbieten z.B. durch Feldeigenschaften/anderer
-		// FeldTyp
-		// TODO: Boolean im Model, ob alle Daten validiert eingegeben wurden.
-		// TODO: Grafisch darstellen ob ein Inhalt korrekt ist z.B. Haken/Kreuz
-		// oder rote/gründe Umrandung.
-		// TODO: Vielleicht User im Feld fangen (unsicher) solange Wert
-		// inkorrekt.
-
-		// view.getFirstnameField().setOnFocus(new FocusHandler<FocusEvent>() {
-		// @Override
-		// public void handleFocusLost(FocusEvent arg0) {
-		// String value = arg0.getSource().getText();
-		// if( validate( value ) ){
-		// model.setFirstname( value );
-		// }
-		// else {
-		// //
-		// }
-		// }
-		// });
 	}
 }
