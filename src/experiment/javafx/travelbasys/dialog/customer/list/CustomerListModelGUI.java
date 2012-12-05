@@ -9,6 +9,7 @@ public class CustomerListModelGUI implements Model {
 	private ObservableList<Customer> data;
 
 	public void setData(ObservableList<Customer> data) {
+		this.data = data;
 	}
 
 	public ObservableList<Customer> getData() {

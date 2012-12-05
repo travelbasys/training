@@ -22,6 +22,7 @@ public class CustomerDeleteModelGUI implements Model {
 	}
 
 	public void setData(ObservableList<Customer> data) {
+		this.data = data;
 	}
 
 	public ObservableList<Customer> getData() {
