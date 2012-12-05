@@ -21,6 +21,10 @@ public class CustomerCreateModelGUI implements Model {
 		return customerid;
 	}
 
+	public void setCustomerID(int customerid) {
+		this.customerid = customerid;
+	}
+
 	public String getLastname() {
 		return lastname;
 	}

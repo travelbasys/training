@@ -10,15 +10,15 @@ public class CustomerDeleteDialogGUI implements Dialog {
 	private CustomerDeleteControlGUI control;
 
 	public CustomerDeleteDialogGUI(BorderPane root) {
-		model = new CustomerDeleteModelGUI(root);
-		view = new CustomerDeleteViewGUI(model);
-		control = new CustomerDeleteControlGUI(model);
+		model = new CustomerDeleteModelGUI();
+		view = new CustomerDeleteViewGUI(model, root);
+		control = new CustomerDeleteControlGUI();
 	}
 
 	@Override
 	public void run() {
 		view.run();
-		control.buildEventHandler();
+		control.init(model, view);
 		view.show();
 	}
 
