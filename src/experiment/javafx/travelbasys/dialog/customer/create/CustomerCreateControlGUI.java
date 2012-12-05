@@ -1,8 +1,11 @@
 package experiment.javafx.travelbasys.dialog.customer.create;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDaoException;
@@ -13,57 +16,120 @@ import de.travelbasys.training.framework.View;
 
 public class CustomerCreateControlGUI implements Control {
 
-	@SuppressWarnings("unused")
 	private CustomerCreateModelGUI model;
 	private CustomerCreateViewGUI view;
 
 	public CustomerCreateControlGUI() {
 	}
 
-			// TODO: HandleFocus, wenn ein Feld verlassen wird z.B. Validate-Prüfung
-			// & Set im Model.
-			// TODO: Falsche Eingaben verbieten z.B. durch Feldeigenschaften/anderer
-			// FeldTyp
-			// TODO: Boolean im Model, ob alle Daten validiert eingegeben wurden.
-			// TODO: Grafisch darstellen ob ein Inhalt korrekt ist z.B. Haken/Kreuz
-			// oder rote/gründe Umrandung.
-			// TODO: Vielleicht User im Feld fangen (unsicher) solange Wert
-			// inkorrekt.
+	// TODO: HandleFocus, wenn ein Feld verlassen wird z.B. Validate-Prüfung
+	// & Set im Model.
+	// TODO: Falsche Eingaben verbieten z.B. durch Feldeigenschaften/anderer
+	// FeldTyp
+	// TODO: Boolean im Model, ob alle Daten validiert eingegeben wurden.
+	// TODO: Grafisch darstellen ob ein Inhalt korrekt ist z.B. Haken/Kreuz
+	// oder rote/gründe Umrandung.
+	// TODO: Vielleicht User im Feld fangen (unsicher) solange Wert
+	// inkorrekt.
 
-			// view.getFirstnameField().setOnFocus(new FocusHandler<FocusEvent>() {
-			// @Override
-			// public void handleFocusLost(FocusEvent arg0) {
-			// String value = arg0.getSource().getText();
-			// if( validate( value ) ){
-			// model.setFirstname( value );
-			// }
-			// else {
-			// //
-			// }
-			// }
-			// });
-	
+	// view.getFirstnameField().setOnFocus(new FocusHandler<FocusEvent>() {
+	// @Override
+	// public void handleFocusLost(FocusEvent arg0) {
+	// String value = arg0.getSource().getText();
+	// if( validate( value ) ){
+	// model.setFirstname( value );
+	// }
+	// else {
+	// //
+	// }
+	// }
+	// });
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void init(Model model, View view) {
 		this.model = (CustomerCreateModelGUI) model;
 		this.view = (CustomerCreateViewGUI) view;
+
+		this.view.getAgeField().focusedProperty()
+				.addListener(new ChangeListener() {
+
+					@Override
+					public void changed(ObservableValue arg0, Object arg1,
+							Object arg2) {
+						TextField field = CustomerCreateControlGUI.this.view
+								.getAgeField();
+						if ((boolean) arg1 == true) {
+							if (!field.getText().isEmpty()) {
+								try {
+									int age = Integer.parseInt(field.getText());
+									if (age > 0 && age <= 150) {
+										CustomerCreateControlGUI.this.model
+												.setAge(age);
+									} else
+										throw new NumberFormatException();
+								} catch (NumberFormatException e) {
+									field.clear();
+									Dialogs.showErrorDialog(
+											(Stage) CustomerCreateControlGUI.this.view
+													.getRoot().getScene()
+													.getWindow(),
+											"You've entered a non-valid Age.",
+											"Error",
+											"Travelbasys Customer Manager");
+								}
+							}
+						}
+					}
+				});
+
+		this.view.getPostalcodeField().focusedProperty()
+				.addListener(new ChangeListener() {
+
+					@Override
+					public void changed(ObservableValue arg0, Object arg1,
+							Object arg2) {
+						TextField field = CustomerCreateControlGUI.this.view
+								.getPostalcodeField();
+						if ((boolean) arg1 == true) {
+							if (!field.getText().isEmpty()) {
+								try {
+									if (Integer.parseInt(field.getText()) > 0
+											&& field.getText().length() == 5) {
+										CustomerCreateControlGUI.this.model
+												.setPostalcode(field.getText());
+									} else
+										throw new NumberFormatException();
+								} catch (NumberFormatException e) {
+									field.clear();
+									Dialogs.showErrorDialog(
+											(Stage) CustomerCreateControlGUI.this.view
+													.getRoot().getScene()
+													.getWindow(),
+											"You've entered a non-valid Postalcode.",
+											"Error",
+											"Travelbasys Customer Manager");
+								}
+							}
+						}
+					}
+				});
 
 		this.view.getSendButton().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
 				int dummyId = 0;
 				try {
-					Customer customer = new Customer(dummyId,
+					Customer customer = new Customer(
+							dummyId,
 							CustomerCreateControlGUI.this.view
 									.getLastNameField().getText(),
 							CustomerCreateControlGUI.this.view
 									.getFirstNameField().getText(),
-							Integer.parseInt(CustomerCreateControlGUI.this.view
-									.getAgeField().getText()),
+							CustomerCreateControlGUI.this.model.getAge(),
 							CustomerCreateControlGUI.this.view.getAdressField()
 									.getText(),
-							CustomerCreateControlGUI.this.view
-									.getPostalcodeField().getText(),
+							CustomerCreateControlGUI.this.model.getPostalcode(),
 							CustomerCreateControlGUI.this.view.getEmailField()
 									.getText());
 
