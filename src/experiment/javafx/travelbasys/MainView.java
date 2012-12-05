@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AppContext;
 
 public class MainView implements View {
 
@@ -105,41 +106,42 @@ public class MainView implements View {
 		primaryStage = stage;
 
 		// Titel festlegen
-		primaryStage.setTitle("Travelbasys Customer Manager");
+		primaryStage.setTitle(AppContext
+				.getMessage("TravelbasysManager"));
 
 		// Erstelle einzelne Menüs
-		final Menu menu1 = new Menu("File");
-		final Menu menu2 = new Menu("Edit");
-		final Menu menu3 = new Menu("Customer");
-		final Menu menu4 = new Menu("Options");
-		final Menu menu5 = new Menu("Extras");
-		final Menu menu6 = new Menu("Help");
+		final Menu menu1 = new Menu(AppContext.getMessage("File"));
+		final Menu menu2 = new Menu(AppContext.getMessage("Edit"));
+		final Menu menu3 = new Menu(AppContext.getMessage("Customer"));
+		final Menu menu4 = new Menu(AppContext.getMessage("Options"));
+		final Menu menu5 = new Menu(AppContext.getMessage("Extras"));
+		final Menu menu6 = new Menu(AppContext.getMessage("Help"));
 
 		// Submenü
 
-		final Menu changeDB = new Menu("Change Database");
-		final Menu changeLanguage = new Menu("Change Language");
+		final Menu changeDB = new Menu(AppContext.getMessage("ChangeDatabase"));
+		final Menu changeLanguage = new Menu(AppContext.getMessage("ChangeLanguage"));
 
 		// Erstelle Menu-Items
 
-		exportingItem = new MenuItem("Exportieren nach...");
-		importingItem = new MenuItem("Importieren nach...");
-		exitItem = new MenuItem("Exit");
-		customerCreateItem = new MenuItem("New Customer");
-		customerShowItem = new MenuItem("Show Customer");
-		customerEditItem = new MenuItem("Edit Customer");
-		customerDeleteItem = new MenuItem("Delete Customer");
-		customerShowAllItem = new MenuItem("Show all Customers");
-		configurationItem = new MenuItem("Configuration...");
-		lotteryItem = new MenuItem("Determine Lottery Numbers...");
-		aboutItem = new MenuItem("About");
+		exportingItem = new MenuItem(AppContext.getMessage("ExportTo"));
+		importingItem = new MenuItem(AppContext.getMessage("ImportFrom"));
+		exitItem = new MenuItem(AppContext.getMessage("Exit"));
+		customerCreateItem = new MenuItem(AppContext.getMessage("NewCustomer"));
+		customerShowItem = new MenuItem(AppContext.getMessage("ShowCustomer"));
+		customerEditItem = new MenuItem(AppContext.getMessage("EditCustomer"));
+		customerDeleteItem = new MenuItem(AppContext.getMessage("DeleteCustomer"));
+		customerShowAllItem = new MenuItem(AppContext.getMessage("ShowAllCustomers"));
+		configurationItem = new MenuItem(AppContext.getMessage("Configuration"));
+		lotteryItem = new MenuItem(AppContext.getMessage("DetermineLotteryNumbers"));
+		aboutItem = new MenuItem(AppContext.getMessage("About"));
+		
+		changeDB1Item = new MenuItem(AppContext.getMessage("DatabaseType1"));
+		changeDB2Item = new MenuItem(AppContext.getMessage("DatabaseType2"));
+		changeDB3Item = new MenuItem(AppContext.getMessage("DatabaseType3"));
 
-		changeDB1Item = new MenuItem("Access database");
-		changeDB2Item = new MenuItem("MySQl database");
-		changeDB3Item = new MenuItem("Text database");
-
-		changeLanguage1Item = new MenuItem("Deutsch");
-		changeLanguage2Item = new MenuItem("English");
+		changeLanguage1Item = new MenuItem(AppContext.getMessage("German"));
+		changeLanguage2Item = new MenuItem(AppContext.getMessage("English"));
 
 		// Dem Exit-Menüpunkt wird eine Grafik zugewiesen
 
@@ -170,7 +172,7 @@ public class MainView implements View {
 		root = new BorderPane();
 
 		// Label mit Willkommensnachricht anlegen
-		Label welcome = new Label("Willkommen zum Travelbasys Customer Manager");
+		Label welcome = new Label(AppContext.getMessage("Welcome"));
 
 		// Dem Hauptpanel die Elemente hinzufügen
 		root.setTop(menuBar);

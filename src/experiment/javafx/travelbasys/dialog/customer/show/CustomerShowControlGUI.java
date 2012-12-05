@@ -51,57 +51,80 @@ public class CustomerShowControlGUI implements Control {
 												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getLastName()
-												+ "\n"+AppContext.getMessage("Firstname")
+												+ "\n"
+												+ AppContext
+														.getMessage("Firstname")
 												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getFirstName()
-												+ "\n"+AppContext.getMessage("Age")
+												+ "\n"
+												+ AppContext.getMessage("Age")
 												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getAge()
-												+ " \n"+AppContext.getMessage("Adress")
+												+ " \n"
+												+ AppContext
+														.getMessage("Adress")
 												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getAdress()
-												+ "\n"+AppContext.getMessage("Postalcode")
+												+ "\n"
+												+ AppContext
+														.getMessage("Postalcode")
 												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getPostalcode()
-												+ "\n"+AppContext.getMessage("Email")
+												+ "\n"
+												+ AppContext
+														.getMessage("Email")
 												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getEmail(),
-										AppContext.getMessage("CustomerWithID") +
-												 CustomerShowControlGUI.this.view
+										AppContext.getMessage("CustomerWithID")
+												+ CustomerShowControlGUI.this.view
 														.getCustomerIDField()
-														.getText() +" "+ AppContext.getMessage("Found"),
-														AppContext.getMessage("TravelbasysManager"));
-								CustomerShowControlGUI.this.view
-								.clear();
+														.getText()
+												+ " "
+												+ AppContext
+														.getMessage("Found"),
+										AppContext
+												.getMessage("TravelbasysManager"));
+								CustomerShowControlGUI.this.view.clear();
 							} else {
 								Dialogs.showErrorDialog(
 										(Stage) CustomerShowControlGUI.this.view
 												.getRoot().getScene()
 												.getWindow(),
-										"Customer with CustomerID "
+										AppContext.getMessage("CustomerWithID")
 												+ CustomerShowControlGUI.this.view
 														.getCustomerIDField()
-														.getText()+" does not exsist!\nPlease enter an exsisting CustomerID.", "Error",
-										"Travelbasys Customer Manager");
-								CustomerShowControlGUI.this.view
-								.clear();
+														.getText()
+												+ " "
+												+ AppContext
+														.getMessage("NotFound")
+												+ "\n"
+												+ AppContext
+														.getMessage("EnterExsistingID"),
+										AppContext.getMessage("Error"),
+										AppContext
+												.getMessage("TravelbasysManager"));
+								CustomerShowControlGUI.this.view.clear();
 							}
 						} catch (NumberFormatException d) {
 							Dialogs.showErrorDialog(
 									(Stage) CustomerShowControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-									"Wrong syntax for input: "
+											AppContext
+											.getMessage("SyntaxError")
 											+ CustomerShowControlGUI.this.view
 													.getCustomerIDField()
-													.getText()+"\nThe CustomerID should be a number.", "Error",
-									"Travelbasys Customer Manager");
-							CustomerShowControlGUI.this.view
-							.clear();
+													.getText()
+											+ "\n"
+											+ AppContext
+													.getMessage("CustomerIDError"),
+									AppContext.getMessage("Error"), AppContext
+											.getMessage("TravelbasysManager"));
+							CustomerShowControlGUI.this.view.clear();
 						}
 					}
 				});
