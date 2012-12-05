@@ -36,7 +36,7 @@ public class CustomerShowControlGUI implements Control {
 									.getDAO()
 									.findById(
 											Integer.parseInt(CustomerShowControlGUI.this.view
-													.getCustomeridTextField()
+													.getCustomerIDField()
 													.getText())));
 							CustomerShowControlGUI.this.model.setData(data);
 
@@ -47,33 +47,33 @@ public class CustomerShowControlGUI implements Control {
 												.getRoot().getScene()
 												.getWindow(),
 										"Lastname: "
-												+ CustomerShowControlGUI.this.view
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getLastName()
 												+ "\nFirstname: "
-												+ CustomerShowControlGUI.this.view
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getFirstName()
 												+ "\nAge: "
-												+ CustomerShowControlGUI.this.view
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getAge()
 												+ "\nAdress: "
-												+ CustomerShowControlGUI.this.view
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getAdress()
 												+ "\nPostalcode: "
-												+ CustomerShowControlGUI.this.view
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getPostalcode()
 												+ "\neMail: "
-												+ CustomerShowControlGUI.this.view
+												+ CustomerShowControlGUI.this.model
 														.getData().get(0)
 														.getEmail(),
-										"Customer found: "
-												+ CustomerShowControlGUI.this.view
-														.getCustomeridTextField()
-														.getText(),
+										"Customer with CustomerID " +
+												 CustomerShowControlGUI.this.view
+														.getCustomerIDField()
+														.getText() + " found",
 										"Travelbasys Customer Manager");
 							} else {
 								Dialogs.showErrorDialog(
@@ -82,7 +82,7 @@ public class CustomerShowControlGUI implements Control {
 												.getWindow(),
 										"Customer not found: "
 												+ CustomerShowControlGUI.this.view
-														.getCustomeridTextField()
+														.getCustomerIDField()
 														.getText(), "Error",
 										"Travelbasys Customer Manager");
 							}
@@ -92,7 +92,7 @@ public class CustomerShowControlGUI implements Control {
 											.getRoot().getScene().getWindow(),
 									"Wrong syntax: "
 											+ CustomerShowControlGUI.this.view
-													.getCustomeridTextField()
+													.getCustomerIDField()
 													.getText(), "Error",
 									"Travelbasys Customer Manager");
 						}
