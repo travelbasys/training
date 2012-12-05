@@ -13,6 +13,7 @@ import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AppContext;
 
 public class CustomerDeleteControlGUI implements Control {
 
@@ -63,34 +64,52 @@ public class CustomerDeleteControlGUI implements Control {
 												(Stage) CustomerDeleteControlGUI.this.view
 														.getRoot().getScene()
 														.getWindow(),
-												"Lastname: "
+												AppContext
+														.getMessage("Lastname")
 														+ data.get(0)
 																.getLastName()
-														+ "\nFirstname: "
+														+ "\n"
+														+ AppContext
+																.getMessage("Firstname")
 														+ data.get(0)
 																.getFirstName()
-														+ "\nAge: "
+														+ "\n"
+														+ AppContext
+																.getMessage("Age")
 														+ data.get(0).getAge()
-														+ "\nAdress: "
+														+ "\n"
+														+ AppContext
+																.getMessage("Adress")
 														+ data.get(0)
 																.getAdress()
-														+ "\nPostalcode: "
+														+ "\n"
+														+ AppContext
+																.getMessage("Postalcode")
 														+ data.get(0)
 																.getPostalcode()
-														+ "\neMail: "
+														+ "\n"
+														+ AppContext
+																.getMessage("Email")
 														+ data.get(0)
 																.getEmail()
-														+ "\nDelete?",
-												"Customer found: "
+														+ "\n\n"
+														+ AppContext
+																.getMessage("DeleteQuestion"),
+												AppContext
+														.getMessage("CustomerWithID")
 														+ CustomerDeleteControlGUI.this.view
 																.getCustomerIDField()
-																.getText(),
-												"Travelbasys Customer Manager",
+																.getText()
+														+ "\n"
+														+ AppContext
+																.getMessage("Found"),
+												AppContext
+														.getMessage("TravelbasysManager"),
 												options);
 
 								// Anhand des Responses vom Dialog wird
 								// eine Aktion ausgeführt
-
+//TODO internationalisierung
 								switch (response) {
 								case YES:
 									try {

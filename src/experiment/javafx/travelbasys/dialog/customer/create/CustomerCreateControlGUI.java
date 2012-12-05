@@ -13,6 +13,7 @@ import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AppContext;
 
 public class CustomerCreateControlGUI implements Control {
 
@@ -95,6 +96,7 @@ public class CustomerCreateControlGUI implements Control {
 
 						// Wenn Cursor das Feld verlässt...
 						if (oldValue) {
+							String input = field.getText();
 							if (!field.getText().isEmpty()) {
 								try {
 									int age = Integer.parseInt(field.getText());
@@ -109,9 +111,11 @@ public class CustomerCreateControlGUI implements Control {
 											(Stage) CustomerCreateControlGUI.this.view
 													.getRoot().getScene()
 													.getWindow(),
-											"You've entered a non-valid Age.",
-											"Error",
-											"Travelbasys Customer Manager");
+											AppContext.getMessage("InvalidAge")
+													+ input,
+											AppContext.getMessage("Error"),
+											AppContext
+													.getMessage("TravelbasysManager"));
 								}
 							}
 						}
@@ -144,6 +148,7 @@ public class CustomerCreateControlGUI implements Control {
 						TextField field = CustomerCreateControlGUI.this.view
 								.getPostalcodeField();
 						if ((boolean) arg1 == true) {
+							String input = field.getText();
 							if (!field.getText().isEmpty()) {
 								try {
 									if (Integer.parseInt(field.getText()) > 0
@@ -158,9 +163,12 @@ public class CustomerCreateControlGUI implements Control {
 											(Stage) CustomerCreateControlGUI.this.view
 													.getRoot().getScene()
 													.getWindow(),
-											"You've entered a non-valid Postalcode.",
-											"Error",
-											"Travelbasys Customer Manager");
+											AppContext
+													.getMessage("InvalidPostalcode")
+													+ input,
+											AppContext.getMessage("Error"),
+											AppContext
+													.getMessage("TravelbasysManager"));
 								}
 							}
 						}
@@ -202,27 +210,32 @@ public class CustomerCreateControlGUI implements Control {
 					Dialogs.showInformationDialog(
 							(Stage) CustomerCreateControlGUI.this.view
 									.getRoot().getScene().getWindow(),
-							"Transaction successful.", "Information",
-							"Travelbasys Customer Manager");
+							AppContext.getMessage("CustomerCreated"),
+							AppContext.getMessage("TransactionSuccess"),
+							AppContext.getMessage("TravelbasysManager"));
 				} catch (CustomerDaoException d) {
 					Dialogs.showErrorDialog(
 							(Stage) CustomerCreateControlGUI.this.view
 									.getRoot().getScene().getWindow(),
-							"Transaction failed.", "Error",
-							"Travelbasys Customer Manager");
+							AppContext.getMessage("CustomerNotCreated"),
+							AppContext.getMessage("Error")
+									+ AppContext.getMessage("TransactionFail"),
+							AppContext.getMessage("TravelbasysManager"));
 				} catch (NumberFormatException d) {
 					Dialogs.showErrorDialog(
 							(Stage) CustomerCreateControlGUI.this.view
 									.getRoot().getScene().getWindow(),
-							"Wrong syntax.", "Error",
-							"Travelbasys Customer Manager");
+							AppContext.getMessage("WrongSyntax."),
+							AppContext.getMessage("Error"),
+							AppContext.getMessage("TravelbasysManager"));
 
 				} catch (IllegalArgumentException d) {
 					Dialogs.showErrorDialog(
 							(Stage) CustomerCreateControlGUI.this.view
 									.getRoot().getScene().getWindow(),
-							"Wrong input. Check your values.", "Error",
-							"Travelbasys Customer Manager");
+							AppContext.getMessage("WrongInput"),
+							AppContext.getMessage("Error"),
+							AppContext.getMessage("TravelbasysManager"));
 				}
 			}
 
