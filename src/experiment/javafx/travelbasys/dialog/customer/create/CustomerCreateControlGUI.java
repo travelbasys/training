@@ -51,6 +51,40 @@ public class CustomerCreateControlGUI implements Control {
 		this.model = (CustomerCreateModelGUI) model;
 		this.view = (CustomerCreateViewGUI) view;
 
+		this.view.getLastNameField().focusedProperty()
+				.addListener(new ChangeListener() {
+
+					@Override
+					public void changed(ObservableValue arg0, Object arg1,
+							Object arg2) {
+						TextField field = CustomerCreateControlGUI.this.view
+								.getLastNameField();
+						if ((boolean) arg1 == true) {
+							if (!field.getText().isEmpty()) {
+								CustomerCreateControlGUI.this.model
+										.setLastname(field.getText());
+							}
+						}
+					}
+				});
+
+		this.view.getFirstNameField().focusedProperty()
+				.addListener(new ChangeListener() {
+
+					@Override
+					public void changed(ObservableValue arg0, Object arg1,
+							Object arg2) {
+						TextField field = CustomerCreateControlGUI.this.view
+								.getFirstNameField();
+						if ((boolean) arg1 == true) {
+							if (!field.getText().isEmpty()) {
+								CustomerCreateControlGUI.this.model
+										.setFirstname(field.getText());
+							}
+						}
+					}
+				});
+
 		this.view.getAgeField().focusedProperty()
 				.addListener(new ChangeListener() {
 
@@ -78,6 +112,23 @@ public class CustomerCreateControlGUI implements Control {
 											"Error",
 											"Travelbasys Customer Manager");
 								}
+							}
+						}
+					}
+				});
+
+		this.view.getAdressField().focusedProperty()
+				.addListener(new ChangeListener() {
+
+					@Override
+					public void changed(ObservableValue arg0, Object arg1,
+							Object arg2) {
+						TextField field = CustomerCreateControlGUI.this.view
+								.getAdressField();
+						if ((boolean) arg1 == true) {
+							if (!field.getText().isEmpty()) {
+								CustomerCreateControlGUI.this.model
+										.setAdress(field.getText());
 							}
 						}
 					}
@@ -115,6 +166,23 @@ public class CustomerCreateControlGUI implements Control {
 					}
 				});
 
+		this.view.getEmailField().focusedProperty()
+				.addListener(new ChangeListener() {
+
+					@Override
+					public void changed(ObservableValue arg0, Object arg1,
+							Object arg2) {
+						TextField field = CustomerCreateControlGUI.this.view
+								.getEmailField();
+						if ((boolean) arg1 == true) {
+							if (!field.getText().isEmpty()) {
+								CustomerCreateControlGUI.this.model
+										.setEmail(field.getText());
+							}
+						}
+					}
+				});
+
 		this.view.getSendButton().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
@@ -122,16 +190,12 @@ public class CustomerCreateControlGUI implements Control {
 				try {
 					Customer customer = new Customer(
 							dummyId,
-							CustomerCreateControlGUI.this.view
-									.getLastNameField().getText(),
-							CustomerCreateControlGUI.this.view
-									.getFirstNameField().getText(),
+							CustomerCreateControlGUI.this.model.getLastname(),
+							CustomerCreateControlGUI.this.model.getFirstname(),
 							CustomerCreateControlGUI.this.model.getAge(),
-							CustomerCreateControlGUI.this.view.getAdressField()
-									.getText(),
+							CustomerCreateControlGUI.this.model.getAdress(),
 							CustomerCreateControlGUI.this.model.getPostalcode(),
-							CustomerCreateControlGUI.this.view.getEmailField()
-									.getText());
+							CustomerCreateControlGUI.this.model.getEmail());
 
 					Dao.getDAO().create(customer);
 
