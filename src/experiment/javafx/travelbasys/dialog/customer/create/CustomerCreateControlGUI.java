@@ -20,13 +20,8 @@ public class CustomerCreateControlGUI implements Control {
 	public CustomerCreateControlGUI() {
 	}
 
-	// TODO: Aufruf eines Feldes über den View (nicht Model)
 			// TODO: HandleFocus, wenn ein Feld verlassen wird z.B. Validate-Prüfung
 			// & Set im Model.
-			// TODO: Namen der Felder eindeutiger machen z.B. getFirstNameField oder
-			// SendButton etc.
-			// statt getTxt_firstname
-			// TODO: Root an View Constructor
 			// TODO: Falsche Eingaben verbieten z.B. durch Feldeigenschaften/anderer
 			// FeldTyp
 			// TODO: Boolean im Model, ob alle Daten validiert eingegeben wurden.
