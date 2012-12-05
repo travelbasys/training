@@ -12,6 +12,7 @@ import de.travelbasys.training.framework.View;
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class CustomerListViewGUI implements View {
 
+	@SuppressWarnings("unused")
 	private CustomerListModelGUI model;
 	private BorderPane root;
 	private VBox vbox;

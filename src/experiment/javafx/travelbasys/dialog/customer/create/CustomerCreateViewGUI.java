@@ -12,6 +12,7 @@ import de.travelbasys.training.framework.View;
 
 public class CustomerCreateViewGUI implements View {
 
+	@SuppressWarnings("unused")
 	private CustomerCreateModelGUI model;
 	private Button sendButton;
 	private TextField lastNameField;

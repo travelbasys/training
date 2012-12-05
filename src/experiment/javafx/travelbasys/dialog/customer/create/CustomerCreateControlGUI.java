@@ -13,6 +13,7 @@ import de.travelbasys.training.framework.View;
 
 public class CustomerCreateControlGUI implements Control {
 
+	@SuppressWarnings("unused")
 	private CustomerCreateModelGUI model;
 	private CustomerCreateViewGUI view;
 

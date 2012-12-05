@@ -11,6 +11,7 @@ import de.travelbasys.training.framework.View;
 
 public class CustomerDeleteViewGUI implements View {
 
+	@SuppressWarnings("unused")
 	private CustomerDeleteModelGUI model;
 	private Button searchButton;
 	private TextField customerIDField;

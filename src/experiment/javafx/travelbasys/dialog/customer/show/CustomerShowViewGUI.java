@@ -14,8 +14,6 @@ import de.travelbasys.training.framework.View;
 
 public class CustomerShowViewGUI implements View {
 
-	
-
 	public void setSearchButton(Button searchButton) {
 		this.searchButton = searchButton;
 	}
@@ -53,7 +51,7 @@ public class CustomerShowViewGUI implements View {
 		GridPane.setConstraints(searchButton, 10, 10);
 		grid.getChildren().addAll(lbl_menu, lbl_customerid,
 				customeridTextField, searchButton);
-		
+
 	}
 
 	public void show() {
@@ -64,29 +62,20 @@ public class CustomerShowViewGUI implements View {
 		return root;
 	}
 
-
 	public GridPane getWindow() {
 		return grid;
 	}
-
-	
 
 	public TextField getCustomeridTextField() {
 		return customeridTextField;
 	}
 
-	
-
 	public ObservableList<Customer> getData() {
 		return data;
 	}
 
-	
-
 	public Button getSearchButton() {
 		return searchButton;
 	}
-
-	
 
 }

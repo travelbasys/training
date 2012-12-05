@@ -6,8 +6,10 @@ import de.travelbasys.training.util.Console;
 
 public class ScanTest {
 
+	private static Scanner in;
+
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
+		in = new Scanner(System.in);
 		do {
 			if (in.hasNextInt()) {
 				int a = in.nextInt();
