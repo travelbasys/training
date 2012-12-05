@@ -24,7 +24,8 @@ public class CustomerListControlGUI implements Control {
 		this.view = (CustomerListViewGUI) view;
 		data = FXCollections.observableArrayList(Dao.getDAO().findAll());
 		CustomerListControlGUI.this.model.setData(data);
-		CustomerListControlGUI.this.view.getTable().setItems(data);
+		CustomerListControlGUI.this.view.getTable().setItems(
+				CustomerListControlGUI.this.model.getData());
 	}
 
 	@Override
