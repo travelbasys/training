@@ -11,23 +11,24 @@ import de.travelbasys.training.framework.View;
 public class CustomerListControlGUI implements Control {
 
 	private CustomerListModelGUI model;
+	private ObservableList<Customer> data;
+	private CustomerListViewGUI view;
 
-	public CustomerListControlGUI(Model model) {
-		this.model = (CustomerListModelGUI) model;
+	public CustomerListControlGUI() {
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void init(Model model, View view) {
-
+		this.model = (CustomerListModelGUI) model;
+		this.view = (CustomerListViewGUI) view;
+		data = FXCollections.observableArrayList(Dao.getDAO().findAll());
+		CustomerListControlGUI.this.model.setData(data);
+		CustomerListControlGUI.this.view.getTable().setItems(data);
 	}
 
 	@Override
 	public void handleInput(Object value) throws Exception {
 
-	}
-
-	public void buildEventHandler() {
-		ObservableList<Customer> data = FXCollections.observableArrayList(Dao.getDAO().findAll());
-		model.setData(data);
 	}
 }

@@ -9,15 +9,15 @@ public class CustomerListDialogGUI implements Dialog {
 	private CustomerListControlGUI control;
 
 	public CustomerListDialogGUI(BorderPane root) {
-		model = new CustomerListModelGUI(root);
-		view = new CustomerListViewGUI(model);
-		control = new CustomerListControlGUI(model);
+		model = new CustomerListModelGUI();
+		view = new CustomerListViewGUI(model, root);
+		control = new CustomerListControlGUI();
 	}
 
 	@Override
 	public void run() {
 		view.run();
-		control.buildEventHandler();
+		control.init(model, view);
 		view.show();
 	}
 

@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.View;
@@ -12,15 +13,19 @@ import de.travelbasys.training.framework.View;
 public class CustomerListViewGUI implements View {
 
 	private CustomerListModelGUI model;
+	private BorderPane root;
+	private VBox vbox;
+	private TableView table;
 
-	public CustomerListViewGUI(CustomerListModelGUI model) {
+	public CustomerListViewGUI(CustomerListModelGUI model, BorderPane root) {
 		this.model = (CustomerListModelGUI) model;
+		this.root = root;
 	}
 
 	@Override
 	public void run() {
 
-		TableView table = new TableView<Customer>();
+		table = new TableView<Customer>();
 
 		TableColumn customerIDCol = new TableColumn("CustomerID");
 		customerIDCol.setMinWidth(100);
@@ -67,17 +72,26 @@ public class CustomerListViewGUI implements View {
 
 		// Erstelle Referenz zu Tabelle und fülle mit Daten
 		// Erstellen Node (VBox) für Platzierung der Tabelle
-		VBox vbox = new VBox();
+		vbox = new VBox();
 		vbox.setSpacing(5);
 		vbox.setPadding(new Insets(10, 10, 10, 10));
 		// Platziere Tabelle in der VBox
 		vbox.getChildren().addAll(table);
-		model.setTable(table);
-		model.setWindow(vbox);
 	}
 
 	public void show() {
-		model.getTable().setItems(model.getData());
-		model.getRoot().setCenter(model.getWindow());
+		root.setCenter(vbox);
+	}
+
+	public BorderPane getRoot() {
+		return root;
+	}
+
+	public VBox getVbox() {
+		return vbox;
+	}
+
+	public TableView getTable() {
+		return table;
 	}
 }

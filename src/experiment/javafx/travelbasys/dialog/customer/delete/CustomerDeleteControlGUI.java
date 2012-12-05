@@ -43,10 +43,13 @@ public class CustomerDeleteControlGUI implements Control {
 													.getCustomerIDField()
 													.getText())));
 
+							CustomerDeleteControlGUI.this.model.setData(data);
+
 							// Erzeuge Dialog-Options-Objekt
 
 							DialogOptions options = DialogOptions.YES_NO;
-							if (data.get(0) != null) {
+							if (CustomerDeleteControlGUI.this.model.getData()
+									.get(0) != null) {
 
 								// Übergebe Rückgabewert des
 								// ConfirmDialoges an
