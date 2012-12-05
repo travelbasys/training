@@ -10,15 +10,15 @@ public class CustomerUpdateDialogGUI implements Dialog {
 	private CustomerUpdateControlGUI control;
 
 	public CustomerUpdateDialogGUI(BorderPane root) {
-		model = new CustomerUpdateModelGUI(root);
-		view = new CustomerUpdateViewGUI(model);
-		control = new CustomerUpdateControlGUI(model);
+		model = new CustomerUpdateModelGUI();
+		view = new CustomerUpdateViewGUI(model, root);
+		control = new CustomerUpdateControlGUI();
 	}
 
 	@Override
 	public void run() {
 		view.run();
-		control.buildEventHandler();
+		control.init(model, view);
 		view.show();
 	}
 
