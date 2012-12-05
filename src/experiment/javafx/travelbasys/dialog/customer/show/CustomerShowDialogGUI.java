@@ -10,15 +10,15 @@ public class CustomerShowDialogGUI implements Dialog {
 	private CustomerShowControlGUI control;
 
 	public CustomerShowDialogGUI(BorderPane root) {
-		model = new CustomerShowModelGUI(root);
-		view = new CustomerShowViewGUI(model);
-		control = new CustomerShowControlGUI(model);
+		model = new CustomerShowModelGUI();
+		view = new CustomerShowViewGUI(model, root);
+		control = new CustomerShowControlGUI();
 	}
 
 	@Override
 	public void run() {
 		view.run();
-		control.buildEventHandler();
+		control.init(model, view);
 		view.show();
 	}
 
