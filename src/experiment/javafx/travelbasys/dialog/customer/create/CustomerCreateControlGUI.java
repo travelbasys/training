@@ -23,30 +23,18 @@ public class CustomerCreateControlGUI implements Control {
 
 	private CustomerCreateModelGUI model;
 	private CustomerCreateViewGUI view;
-	
-//	private class FirstnameLastnameAddressEMailListener implements ChangeListener<String> {
-//		@Override
-//		public void changed(ObservableValue<? extends String> observable,
-//				String oldValue, String newValue) {
-//		}
-//	}
-//
-//		new ChangeListener<String>() {
-//
-//			@Override
-//			public void changed(
-//					ObservableValue<? extends String> observable,
-//					String oldValue, String newValue) {
-		
-//				CustomerCreateControlGUI.this.model
-//						.setLastname(CustomerCreateControlGUI.this.view
-//								.getLastNameField().getText().trim());
-//				
-//				CustomerCreateControlGUI.this.view.update();
-//			}
-//		}
 
-	public CustomerCreateControlGUI() {
+	private abstract class FirstnameLastnameAddressEMailListener implements
+			ChangeListener<String> {
+		@Override
+		public void changed(ObservableValue<? extends String> observable,
+				String oldValue, String newValue) {
+
+			updateModelWith(newValue.trim());
+			view.update();
+		}
+
+		protected abstract void updateModelWith(String newValue);
 	}
 
 	@Override
@@ -54,18 +42,13 @@ public class CustomerCreateControlGUI implements Control {
 		this.model = (CustomerCreateModelGUI) model;
 		this.view = (CustomerCreateViewGUI) view;
 
-		this.view.getLastNameField().textProperty()
-				.addListener(new ChangeListener<String>() {
+		final CustomerCreateModelGUI myModel = this.model;
 
+		this.view.getLastNameField().textProperty()
+				.addListener(new FirstnameLastnameAddressEMailListener() {
 					@Override
-					public void changed(
-							ObservableValue<? extends String> observable,
-							String oldValue, String newValue) {
-						CustomerCreateControlGUI.this.model
-								.setLastname(CustomerCreateControlGUI.this.view
-										.getLastNameField().getText().trim());
-						
-						CustomerCreateControlGUI.this.view.update();
+					public void updateModelWith(String value) {
+						myModel.setLastname(value);
 					}
 				});
 
@@ -79,7 +62,7 @@ public class CustomerCreateControlGUI implements Control {
 						CustomerCreateControlGUI.this.model
 								.setFirstname(CustomerCreateControlGUI.this.view
 										.getFirstNameField().getText().trim());
-						
+
 						CustomerCreateControlGUI.this.view.update();
 					}
 				});
@@ -129,7 +112,7 @@ public class CustomerCreateControlGUI implements Control {
 						CustomerCreateControlGUI.this.model
 								.setAdress(CustomerCreateControlGUI.this.view
 										.getAdressField().getText().trim());
-						
+
 						CustomerCreateControlGUI.this.view.update();
 					}
 				});
@@ -165,7 +148,7 @@ public class CustomerCreateControlGUI implements Control {
 							CustomerCreateControlGUI.this.model
 									.setPostalcode("");
 						}
-						
+
 						CustomerCreateControlGUI.this.view.update();
 					}
 				});
@@ -180,7 +163,7 @@ public class CustomerCreateControlGUI implements Control {
 						CustomerCreateControlGUI.this.model
 								.setEmail(CustomerCreateControlGUI.this.view
 										.getEmailField().getText().trim());
-						
+
 						CustomerCreateControlGUI.this.view.update();
 					}
 				});

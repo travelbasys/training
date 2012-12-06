@@ -6,7 +6,6 @@ import de.travelbasys.training.framework.Model;
 
 public class CustomerCreateModelGUI implements Model {
 
-	private int customerid;
 	private String lastname = "";
 	private String firstname = "";
 	private int age = 0;
@@ -15,14 +14,6 @@ public class CustomerCreateModelGUI implements Model {
 	private String email = "";
 
 	public CustomerCreateModelGUI() {
-	}
-
-	public int getCustomerID() {
-		return customerid;
-	}
-
-	public void setCustomerID(int customerid) {
-		this.customerid = customerid;
 	}
 
 	public String getLastname() {
@@ -73,7 +64,7 @@ public class CustomerCreateModelGUI implements Model {
 		this.email = email;
 	}
 	public boolean isInvalid() {
-		return lastname.isEmpty() || firstname.isEmpty() || (age == 0)
+		return lastname.isEmpty() || firstname.isEmpty() || age == 0
 				|| adress.isEmpty() || postalcode.isEmpty() || email.isEmpty();
 	}
 

@@ -13,7 +13,6 @@ import de.travelbasys.training.util.AppContext;
 
 public class CustomerUpdateViewGUI implements View {
 
-	@SuppressWarnings("unused")
 	private CustomerUpdateModelGUI model;
 	private Button searchButton;
 	private Button newSearchButton;
@@ -27,10 +26,21 @@ public class CustomerUpdateViewGUI implements View {
 	private TextField emailField;
 	private BorderPane root;
 	private GridPane grid;
+	private Label lbl_age_hint;
+	private Label lbl_postalcode_hint;
 
 	public CustomerUpdateViewGUI(Model model, BorderPane root) {
 		this.model = (CustomerUpdateModelGUI) model;
 		this.root = root;
+	}
+
+	public void updateSearchButton() {
+		searchButton.setDisable(model.searchIsInvalid());
+	}
+
+	public void updateSendButton() {
+		sendButton.setDisable(model.sendIsInvalid() || model.hasNotChanged());
+	
 	}
 
 	public void run() {
@@ -64,14 +74,15 @@ public class CustomerUpdateViewGUI implements View {
 		Label lbl_adress = new Label(AppContext.getMessage("Adress"));
 		Label lbl_postalcode = new Label(AppContext.getMessage("Postalcode"));
 		Label lbl_email = new Label(AppContext.getMessage("Email"));
-		Label lbl_age_hint = new Label(AppContext.getMessage("ValidAge"));
-		Label lbl_postalcode_hint = new Label(
+		lbl_age_hint = new Label(AppContext.getMessage("ValidAge"));
+		lbl_postalcode_hint = new Label(
 				AppContext.getMessage("ValidPostalcode"));
 
 		grid = new GridPane();
 		sendButton = new Button(AppContext.getMessage("Send"));
 		sendButton.setDisable(true);
 		searchButton = new Button(AppContext.getMessage("Search"));
+		searchButton.setDisable(true);
 		newSearchButton = new Button(AppContext.getMessage("NewSearch"));
 		newSearchButton.setDisable(true);
 
@@ -108,6 +119,14 @@ public class CustomerUpdateViewGUI implements View {
 
 	public void show() {
 		root.setCenter(grid);
+	}
+
+	public Label getAgeHintLabel() {
+		return lbl_age_hint;
+	}
+
+	public Label getPostalcodeHintLabel() {
+		return lbl_postalcode_hint;
 	}
 
 	public Button getSearchButton() {
