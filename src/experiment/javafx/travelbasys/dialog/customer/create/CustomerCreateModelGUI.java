@@ -9,7 +9,7 @@ public class CustomerCreateModelGUI implements Model {
 	private int customerid;
 	private String lastname = "";
 	private String firstname = "";
-	private int age;
+	private int age = 0;
 	private String adress = "";
 	private String postalcode = "";
 	private String email = "";
@@ -72,7 +72,6 @@ public class CustomerCreateModelGUI implements Model {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-//TODO wann wird geprüft?(Key Press/Type/Release???
 	public boolean isInvalid() {
 		return lastname.isEmpty() || firstname.isEmpty() || (age == 0)
 				|| adress.isEmpty() || postalcode.isEmpty() || email.isEmpty();

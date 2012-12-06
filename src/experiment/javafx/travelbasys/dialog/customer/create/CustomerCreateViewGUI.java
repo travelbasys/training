@@ -59,6 +59,7 @@ public class CustomerCreateViewGUI implements View {
 
 		grid = new GridPane();
 		sendButton = new Button("Send");
+		sendButton.setDisable(true);
 
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.setVgap(5);

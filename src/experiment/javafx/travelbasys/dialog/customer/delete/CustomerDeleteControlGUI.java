@@ -1,5 +1,7 @@
 package experiment.javafx.travelbasys.dialog.customer.delete;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
 import javafx.scene.control.Dialogs.DialogOptions;
 import javafx.scene.control.Dialogs.DialogResponse;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.Dao;
@@ -29,6 +32,30 @@ public class CustomerDeleteControlGUI implements Control {
 
 		this.model = (CustomerDeleteModelGUI) model;
 		this.view = (CustomerDeleteViewGUI) view;
+
+		this.view.getCustomerIDField().textProperty()
+				.addListener(new ChangeListener<String>() {
+
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						TextField field = CustomerDeleteControlGUI.this.view
+								.getCustomerIDField();
+						if (oldValue != newValue) {
+							try {
+								int id = Integer.parseInt(field.getText()
+										.trim());
+								CustomerDeleteControlGUI.this.model
+										.setCustomerid(id);
+							} catch (NumberFormatException e) {
+								CustomerDeleteControlGUI.this.model
+										.setCustomerid(0);
+							}
+						}
+						CustomerDeleteControlGUI.this.view.update();
+					}
+				});
+
 		CustomerDeleteControlGUI.this.view.getSearchButton().setOnAction(
 				new EventHandler<ActionEvent>() {
 
@@ -160,7 +187,8 @@ public class CustomerDeleteControlGUI implements Control {
 												+ CustomerDeleteControlGUI.this.view
 														.getCustomerIDField()
 														.getText()
-												+" "+ AppContext
+												+ " "
+												+ AppContext
 														.getMessage("NotFound"),
 										AppContext.getMessage("Error"),
 										AppContext

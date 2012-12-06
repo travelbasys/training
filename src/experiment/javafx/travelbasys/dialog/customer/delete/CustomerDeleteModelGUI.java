@@ -29,4 +29,12 @@ public class CustomerDeleteModelGUI implements Model {
 		return data;
 	}
 
+	public boolean isInvalid() {
+		return customerid == 0;
+	}
+
+	public boolean isValid() {
+		return !isInvalid();
+	}
+
 }

@@ -12,7 +12,6 @@ import de.travelbasys.training.util.AppContext;
 
 public class CustomerDeleteViewGUI implements View {
 
-	@SuppressWarnings("unused")
 	private CustomerDeleteModelGUI model;
 	private Button searchButton;
 	private TextField customerIDField;
@@ -32,6 +31,7 @@ public class CustomerDeleteViewGUI implements View {
 
 		grid = new GridPane();
 		searchButton = new Button(AppContext.getMessage("Search"));
+		searchButton.setDisable(true);
 
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.setVgap(5);
@@ -58,6 +58,10 @@ public class CustomerDeleteViewGUI implements View {
 
 	public BorderPane getRoot() {
 		return root;
+	}
+
+	public void update() {
+		searchButton.setDisable(model.isInvalid());
 	}
 	
 	

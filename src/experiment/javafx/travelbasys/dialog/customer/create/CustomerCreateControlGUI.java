@@ -39,14 +39,10 @@ public class CustomerCreateControlGUI implements Control {
 					public void changed(
 							ObservableValue<? extends String> observable,
 							String oldValue, String newValue) {
-						if (oldValue != newValue) {
-							CustomerCreateControlGUI.this.model
-									.setLastname(CustomerCreateControlGUI.this.view
-											.getLastNameField().getText()
-											.trim());
-							CustomerCreateControlGUI.this.view.update();
-						}
-
+						CustomerCreateControlGUI.this.model
+								.setLastname(CustomerCreateControlGUI.this.view
+										.getLastNameField().getText().trim());
+						CustomerCreateControlGUI.this.view.update();
 					}
 				});
 
@@ -57,14 +53,10 @@ public class CustomerCreateControlGUI implements Control {
 					public void changed(
 							ObservableValue<? extends String> observable,
 							String oldValue, String newValue) {
-						if (oldValue != newValue) {
-							CustomerCreateControlGUI.this.model
-									.setFirstname(CustomerCreateControlGUI.this.view
-											.getFirstNameField().getText()
-											.trim());
-							CustomerCreateControlGUI.this.view.update();
-						}
-
+						CustomerCreateControlGUI.this.model
+								.setFirstname(CustomerCreateControlGUI.this.view
+										.getFirstNameField().getText().trim());
+						CustomerCreateControlGUI.this.view.update();
 					}
 				});
 
@@ -78,30 +70,27 @@ public class CustomerCreateControlGUI implements Control {
 								.getAgeField();
 						Label hint = CustomerCreateControlGUI.this.view
 								.getAgeHintLabel();
-						if (oldValue != newValue) {
-							try {
-								int age = Integer.parseInt(field.getText()
-										.trim());
-								if (age > 0 && age <= 150) {
-									CustomerCreateControlGUI.this.model
-											.setAge(age);
-									hint.setGraphic(new ImageView(new Image("./resources./haken.png")));
-									if (hint.getTextFill() != (Color
-											.web("#00AA00"))) {
-										hint.setTextFill(Color.web("#00AA00"));
-									}
-								} else {
-									throw new NumberFormatException();
+						try {
+							int age = Integer.parseInt(field.getText().trim());
+							if (age > 0 && age <= 150) {
+								CustomerCreateControlGUI.this.model.setAge(age);
+								hint.setGraphic(new ImageView(new Image(
+										"./resources./haken.png")));
+								if (hint.getTextFill() != (Color.web("#00AA00"))) {
+									hint.setTextFill(Color.web("#00AA00"));
 								}
-							} catch (NumberFormatException e) {
-								hint.setGraphic(new ImageView(new Image("./resources./kreuz.png")));
-								if (hint.getTextFill() != (Color.web("#FF0000"))) {
-									hint.setTextFill(Color.web("#FF0000"));
-								}
-
+							} else {
+								throw new NumberFormatException();
 							}
-
+						} catch (NumberFormatException e) {
+							hint.setGraphic(new ImageView(new Image(
+									"./resources./kreuz.png")));
+							if (hint.getTextFill() != (Color.web("#FF0000"))) {
+								hint.setTextFill(Color.web("#FF0000"));
+							}
+							CustomerCreateControlGUI.this.model.setAge(0);
 						}
+
 						CustomerCreateControlGUI.this.view.update();
 					}
 				});
@@ -113,13 +102,10 @@ public class CustomerCreateControlGUI implements Control {
 					public void changed(
 							ObservableValue<? extends String> observable,
 							String oldValue, String newValue) {
-						if (oldValue != newValue) {
-							CustomerCreateControlGUI.this.model
-									.setAdress(CustomerCreateControlGUI.this.view
-											.getAdressField().getText().trim());
-							CustomerCreateControlGUI.this.view.update();
-						}
-
+						CustomerCreateControlGUI.this.model
+								.setAdress(CustomerCreateControlGUI.this.view
+										.getAdressField().getText().trim());
+						CustomerCreateControlGUI.this.view.update();
 					}
 				});
 
@@ -133,22 +119,23 @@ public class CustomerCreateControlGUI implements Control {
 								.getPostalcodeField();
 						Label hint = CustomerCreateControlGUI.this.view
 								.getPostalcodeHintLabel();
-						if (oldValue != newValue) {
-							try {
-								if (Integer.parseInt(field.getText().trim()) > 0
-										&& field.getText().trim().length() == 5) {
-									CustomerCreateControlGUI.this.model
-											.setPostalcode(field.getText());
-									if (hint.getTextFill() != (Color
-											.web("#00AA00"))) {
-										hint.setTextFill(Color.web("#00AA00"));
-									}
-								} else
-									throw new NumberFormatException();
-							} catch (NumberFormatException e) {
-								if (hint.getTextFill() != (Color.web("FF0000"))) {
-									hint.setTextFill(Color.web("#FF0000"));
+						try {
+							if (Integer.parseInt(field.getText().trim()) > 0
+									&& field.getText().trim().length() == 5) {
+								CustomerCreateControlGUI.this.model
+										.setPostalcode(field.getText());
+								hint.setGraphic(new ImageView(new Image(
+										"./resources./haken.png")));
+								if (hint.getTextFill() != (Color.web("#00AA00"))) {
+									hint.setTextFill(Color.web("#00AA00"));
 								}
+							} else
+								throw new NumberFormatException();
+						} catch (NumberFormatException e) {
+							hint.setGraphic(new ImageView(new Image(
+									"./resources./kreuz.png")));
+							if (hint.getTextFill() != (Color.web("FF0000"))) {
+								hint.setTextFill(Color.web("#FF0000"));
 							}
 						}
 						CustomerCreateControlGUI.this.view.update();
@@ -162,13 +149,10 @@ public class CustomerCreateControlGUI implements Control {
 					public void changed(
 							ObservableValue<? extends String> observable,
 							String oldValue, String newValue) {
-						if (oldValue != newValue) {
-							CustomerCreateControlGUI.this.model
-									.setEmail(CustomerCreateControlGUI.this.view
-											.getEmailField().getText().trim());
-							CustomerCreateControlGUI.this.view.update();
-						}
-
+						CustomerCreateControlGUI.this.model
+								.setEmail(CustomerCreateControlGUI.this.view
+										.getEmailField().getText().trim());
+						CustomerCreateControlGUI.this.view.update();
 					}
 				});
 
