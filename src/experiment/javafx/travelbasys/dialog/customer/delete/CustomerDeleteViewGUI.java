@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AppContext;
 
 public class CustomerDeleteViewGUI implements View {
 
@@ -25,12 +26,12 @@ public class CustomerDeleteViewGUI implements View {
 
 	public void run() {
 		customerIDField = new TextField();
-		Label lbl_customerid = new Label("CustomerID:");
-		Label lbl_menu = new Label("Customer Delete");
+		Label lbl_customerid = new Label (AppContext.getMessage("CustomerID"));
+		Label lbl_menu = new Label(AppContext.getMessage("CustomerDelete"));
 		lbl_menu.setFont(new Font("Arial", 30));
 
 		grid = new GridPane();
-		searchButton = new Button("Search");
+		searchButton = new Button(AppContext.getMessage("Search"));
 
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.setVgap(5);

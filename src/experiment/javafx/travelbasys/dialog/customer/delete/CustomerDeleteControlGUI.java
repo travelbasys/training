@@ -109,7 +109,7 @@ public class CustomerDeleteControlGUI implements Control {
 
 								// Anhand des Responses vom Dialog wird
 								// eine Aktion ausgeführt
-//TODO internationalisierung
+								// TODO internationalisierung
 								switch (response) {
 								case YES:
 									try {
@@ -118,25 +118,35 @@ public class CustomerDeleteControlGUI implements Control {
 												(Stage) CustomerDeleteControlGUI.this.view
 														.getRoot().getScene()
 														.getWindow(),
-												"",
-												"Process successfully completed",
-												"Travelbasys Customer Manager");
+												AppContext
+														.getMessage("DeleteSuccess"),
+												AppContext
+														.getMessage("ProcessSuccess"),
+												AppContext
+														.getMessage("TravelbasysManager"));
 									} catch (Exception f) {
 										Dialogs.showErrorDialog(
 												(Stage) CustomerDeleteControlGUI.this.view
 														.getRoot().getScene()
 														.getWindow(),
-												"Unknown Error", "Error",
-												"Travelbasys Customer Manager");
+												AppContext
+														.getMessage("UnknownError"),
+												AppContext.getMessage("Error"),
+												AppContext
+														.getMessage("TravelbasysManager"));
 									}
 									break;
 								case NO:
 									Dialogs.showInformationDialog(
 											(Stage) CustomerDeleteControlGUI.this.view
 													.getRoot().getScene()
-													.getWindow(), "",
-											"Process terminated.",
-											"Travelbasys Customer Manager");
+													.getWindow(),
+											AppContext
+													.getMessage("CustomerNotDeleted"),
+											AppContext
+													.getMessage("DeleteAbort"),
+											AppContext
+													.getMessage("TravelbasysManager"));
 									break;
 								default:
 									break;
@@ -146,21 +156,29 @@ public class CustomerDeleteControlGUI implements Control {
 										(Stage) CustomerDeleteControlGUI.this.view
 												.getRoot().getScene()
 												.getWindow(),
-										"Customer not found: "
+										"CustomerWithID"
 												+ CustomerDeleteControlGUI.this.view
 														.getCustomerIDField()
-														.getText(), "Error",
-										"Travelbasys Customer Manager");
+														.getText()
+												+ AppContext
+														.getMessage("NotFound"),
+										AppContext.getMessage("Error"),
+										AppContext
+												.getMessage("TravelbasysManager"));
 							}
 						} catch (NumberFormatException d) {
 							Dialogs.showErrorDialog(
 									(Stage) CustomerDeleteControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-									"Wrong syntax: "
+											AppContext.getMessage("SyntaxError")
 											+ CustomerDeleteControlGUI.this.view
 													.getCustomerIDField()
-													.getText(), "Error",
-									"Travelbasys Customer Manager");
+													.getText()
+											+ "\n"
+											+ AppContext
+													.getMessage("CustomerIDError"),
+									AppContext.getMessage("Error"),
+									AppContext.getMessage("TravelbasysManager"));
 						}
 					}
 				});

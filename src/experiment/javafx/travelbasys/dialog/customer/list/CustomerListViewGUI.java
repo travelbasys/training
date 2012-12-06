@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AppContext;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class CustomerListViewGUI implements View {
@@ -28,42 +29,42 @@ public class CustomerListViewGUI implements View {
 
 		table = new TableView<Customer>();
 
-		TableColumn customerIDCol = new TableColumn("CustomerID");
+		TableColumn customerIDCol = new TableColumn(AppContext.getMessage("CustomerIDTable"));
 		customerIDCol.setMinWidth(100);
 		customerIDCol
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 						"id"));
 
-		TableColumn lastNameCol = new TableColumn("Lastname");
+		TableColumn lastNameCol = new TableColumn(AppContext.getMessage("LastnameTable"));
 		lastNameCol.setMinWidth(100);
 		lastNameCol
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 						"lastName"));
 
-		TableColumn firstNameCol = new TableColumn("Firstname");
+		TableColumn firstNameCol = new TableColumn(AppContext.getMessage("FirstnameTable"));
 		firstNameCol.setMinWidth(100);
 		firstNameCol
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 						"firstName"));
 
-		TableColumn ageCol = new TableColumn("Age");
+		TableColumn ageCol = new TableColumn(AppContext.getMessage("AgeTable"));
 		ageCol.setMinWidth(100);
 		ageCol.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 				"age"));
 
-		TableColumn adressCol = new TableColumn("Adress");
+		TableColumn adressCol = new TableColumn(AppContext.getMessage("AdressTable"));
 		adressCol.setMinWidth(100);
 		adressCol
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 						"adress"));
 
-		TableColumn postalcodeCol = new TableColumn("Postalcode");
+		TableColumn postalcodeCol = new TableColumn(AppContext.getMessage("PostalcodeTable"));
 		postalcodeCol.setMinWidth(100);
 		postalcodeCol
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 						"postalcode"));
 
-		TableColumn emailCol = new TableColumn("Email");
+		TableColumn emailCol = new TableColumn(AppContext.getMessage("EmailTable"));
 		emailCol.setMinWidth(100);
 		emailCol.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 				"email"));
