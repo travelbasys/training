@@ -214,11 +214,11 @@ public class CustomerUpdateControlGUI implements Control {
 							Dialogs.showInformationDialog(
 									(Stage) CustomerUpdateControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-									// TODO gvreg
 									AppContext.getMessage("UpdateSuccess"),
 									AppContext.getMessage("TransactionSuccess"),
 									AppContext.getMessage("TravelbasysManager"));
 							deactivateSend();
+							deactivateEdit();
 						} catch (NumberFormatException d) {
 							Dialogs.showErrorDialog(
 									(Stage) CustomerUpdateControlGUI.this.view
@@ -241,11 +241,6 @@ public class CustomerUpdateControlGUI implements Control {
 									AppContext.getMessage("Error"),
 									AppContext.getMessage("TravelbasysManager"));
 						}
-					}
-
-					private void deactivateSend() {
-						CustomerUpdateControlGUI.this.view.getSendButton()
-								.setDisable(true);
 					}
 
 				});
@@ -369,68 +364,6 @@ public class CustomerUpdateControlGUI implements Control {
 						}
 
 					}
-
-					private void activateNewSearch() {
-						CustomerUpdateControlGUI.this.view.getNewSearchButton()
-								.setDisable(false);
-					}
-
-					private void deactivateSearch() {
-						CustomerUpdateControlGUI.this.view.getCustomerIDField()
-								.setEditable(false);
-						CustomerUpdateControlGUI.this.view.getSearchButton()
-								.setDisable(true);
-					}
-
-					private void activateEdit() {
-
-						CustomerUpdateControlGUI.this.view.getLastNameField()
-								.setEditable(true);
-						CustomerUpdateControlGUI.this.view
-								.getLastNameField()
-								.setText(
-										CustomerUpdateControlGUI.this.model
-												.getData().get(0).getLastName());
-
-						CustomerUpdateControlGUI.this.view.getFirstNameField()
-								.setEditable(true);
-						CustomerUpdateControlGUI.this.view.getFirstNameField()
-								.setText(
-										CustomerUpdateControlGUI.this.model
-												.getData().get(0)
-												.getFirstName());
-
-						CustomerUpdateControlGUI.this.view.getAgeField()
-								.setEditable(true);
-						CustomerUpdateControlGUI.this.view
-								.getAgeField()
-								.setText(
-										String.valueOf(CustomerUpdateControlGUI.this.model
-												.getData().get(0).getAge()));
-
-						CustomerUpdateControlGUI.this.view.getAdressField()
-								.setEditable(true);
-						CustomerUpdateControlGUI.this.view.getAdressField()
-								.setText(
-										CustomerUpdateControlGUI.this.model
-												.getData().get(0).getAdress());
-
-						CustomerUpdateControlGUI.this.view.getPostalcodeField()
-								.setEditable(true);
-						CustomerUpdateControlGUI.this.view.getPostalcodeField()
-								.setText(
-										CustomerUpdateControlGUI.this.model
-												.getData().get(0)
-												.getPostalcode());
-
-						CustomerUpdateControlGUI.this.view.getEmailField()
-								.setEditable(true);
-						CustomerUpdateControlGUI.this.view.getEmailField()
-								.setText(
-										CustomerUpdateControlGUI.this.model
-												.getData().get(0).getEmail());
-					}
-
 				});
 
 		CustomerUpdateControlGUI.this.view.getNewSearchButton().setOnAction(
@@ -446,50 +379,6 @@ public class CustomerUpdateControlGUI implements Control {
 								.requestFocus();
 					}
 
-					private void deactivateNewSearch() {
-						CustomerUpdateControlGUI.this.view.getNewSearchButton()
-								.setDisable(true);
-					}
-
-					private void deactivateEdit() {
-						CustomerUpdateControlGUI.this.view.getLastNameField()
-								.setEditable(false);
-						CustomerUpdateControlGUI.this.view.getFirstNameField()
-								.setEditable(false);
-						CustomerUpdateControlGUI.this.view.getAgeField()
-								.setEditable(false);
-						CustomerUpdateControlGUI.this.view.getAdressField()
-								.setEditable(false);
-						CustomerUpdateControlGUI.this.view.getPostalcodeField()
-								.setEditable(false);
-						CustomerUpdateControlGUI.this.view.getEmailField()
-								.setEditable(false);
-						CustomerUpdateControlGUI.this.view.getSendButton()
-								.setDisable(true);
-					}
-
-					private void activateSearch() {
-						CustomerUpdateControlGUI.this.view.getCustomerIDField()
-								.setEditable(true);
-						CustomerUpdateControlGUI.this.view.getCustomerIDField()
-								.clear();
-					}
-
-					private void clear() {
-						CustomerUpdateControlGUI.this.view.getLastNameField()
-								.clear();
-						CustomerUpdateControlGUI.this.view.getFirstNameField()
-								.clear();
-						CustomerUpdateControlGUI.this.view.getAgeField()
-								.clear();
-						CustomerUpdateControlGUI.this.view.getAdressField()
-								.clear();
-						CustomerUpdateControlGUI.this.view.getPostalcodeField()
-								.clear();
-						CustomerUpdateControlGUI.this.view.getEmailField()
-								.clear();
-					}
-
 				});
 
 	}
@@ -497,4 +386,89 @@ public class CustomerUpdateControlGUI implements Control {
 	@Override
 	public void handleInput(Object value) throws Exception {
 	}
+
+	private void deactivateNewSearch() {
+		CustomerUpdateControlGUI.this.view.getNewSearchButton()
+				.setDisable(true);
+	}
+
+	private void deactivateEdit() {
+		CustomerUpdateControlGUI.this.view.getLastNameField()
+				.setEditable(false);
+		CustomerUpdateControlGUI.this.view.getFirstNameField().setEditable(
+				false);
+		CustomerUpdateControlGUI.this.view.getAgeField().setEditable(false);
+		CustomerUpdateControlGUI.this.view.getAdressField().setEditable(false);
+		CustomerUpdateControlGUI.this.view.getPostalcodeField().setEditable(
+				false);
+		CustomerUpdateControlGUI.this.view.getEmailField().setEditable(false);
+		CustomerUpdateControlGUI.this.view.getSendButton().setDisable(true);
+	}
+
+	private void activateSearch() {
+		CustomerUpdateControlGUI.this.view.getCustomerIDField().setEditable(
+				true);
+		CustomerUpdateControlGUI.this.view.getCustomerIDField().clear();
+	}
+
+	private void activateNewSearch() {
+		CustomerUpdateControlGUI.this.view.getNewSearchButton().setDisable(
+				false);
+	}
+
+	private void deactivateSearch() {
+		CustomerUpdateControlGUI.this.view.getCustomerIDField().setEditable(
+				false);
+		CustomerUpdateControlGUI.this.view.getSearchButton().setDisable(true);
+	}
+
+	private void clear() {
+		CustomerUpdateControlGUI.this.view.getLastNameField().clear();
+		CustomerUpdateControlGUI.this.view.getFirstNameField().clear();
+		CustomerUpdateControlGUI.this.view.getAgeField().clear();
+		CustomerUpdateControlGUI.this.view.getAdressField().clear();
+		CustomerUpdateControlGUI.this.view.getPostalcodeField().clear();
+		CustomerUpdateControlGUI.this.view.getEmailField().clear();
+	}
+
+	private void activateEdit() {
+
+		CustomerUpdateControlGUI.this.view.getLastNameField().setEditable(true);
+		CustomerUpdateControlGUI.this.view.getLastNameField().setText(
+				CustomerUpdateControlGUI.this.model.getData().get(0)
+						.getLastName());
+
+		CustomerUpdateControlGUI.this.view.getFirstNameField()
+				.setEditable(true);
+		CustomerUpdateControlGUI.this.view.getFirstNameField().setText(
+				CustomerUpdateControlGUI.this.model.getData().get(0)
+						.getFirstName());
+
+		CustomerUpdateControlGUI.this.view.getAgeField().setEditable(true);
+		CustomerUpdateControlGUI.this.view.getAgeField().setText(
+				String.valueOf(CustomerUpdateControlGUI.this.model.getData()
+						.get(0).getAge()));
+
+		CustomerUpdateControlGUI.this.view.getAdressField().setEditable(true);
+		CustomerUpdateControlGUI.this.view.getAdressField().setText(
+				CustomerUpdateControlGUI.this.model.getData().get(0)
+						.getAdress());
+
+		CustomerUpdateControlGUI.this.view.getPostalcodeField().setEditable(
+				true);
+		CustomerUpdateControlGUI.this.view.getPostalcodeField().setText(
+				CustomerUpdateControlGUI.this.model.getData().get(0)
+						.getPostalcode());
+
+		CustomerUpdateControlGUI.this.view.getEmailField().setEditable(true);
+		CustomerUpdateControlGUI.this.view.getEmailField()
+				.setText(
+						CustomerUpdateControlGUI.this.model.getData().get(0)
+								.getEmail());
+	}
+
+	private void deactivateSend() {
+		CustomerUpdateControlGUI.this.view.getSendButton().setDisable(true);
+	}
+
 }
