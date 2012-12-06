@@ -72,7 +72,7 @@ public class CustomerUpdateViewGUI implements View {
 		sendButton = new Button(AppContext.getMessage("Send"));
 		sendButton.setDisable(true);
 		searchButton = new Button(AppContext.getMessage("Search"));
-		newSearchButton = new Button(AppContext.getMessage("New Search"));
+		newSearchButton = new Button(AppContext.getMessage("NewSearch"));
 		newSearchButton.setDisable(true);
 
 		grid.setPadding(new Insets(10, 10, 10, 10));
