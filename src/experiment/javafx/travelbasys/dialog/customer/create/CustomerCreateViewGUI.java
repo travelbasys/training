@@ -13,7 +13,6 @@ import de.travelbasys.training.util.AppContext;
 
 public class CustomerCreateViewGUI implements View {
 
-
 	private CustomerCreateModelGUI model;
 	private Button sendButton;
 	private TextField lastNameField;
@@ -24,13 +23,15 @@ public class CustomerCreateViewGUI implements View {
 	private TextField emailField;
 	private BorderPane root;
 	private GridPane grid;
+	private Label lbl_age_hint;
+	private Label lbl_postalcode_hint;
 
 	public CustomerCreateViewGUI(Model model, BorderPane root) {
 		this.model = (CustomerCreateModelGUI) model;
 		this.root = root;
 	}
-	
-	public void update(){
+
+	public void update() {
 		sendButton.setDisable(model.isInvalid());
 	}
 
@@ -52,8 +53,8 @@ public class CustomerCreateViewGUI implements View {
 		Label lbl_adress = new Label(AppContext.getMessage("Adress"));
 		Label lbl_postalcode = new Label(AppContext.getMessage("Postalcode"));
 		Label lbl_email = new Label(AppContext.getMessage("Email"));
-		Label lbl_age_hint = new Label(AppContext.getMessage("ValidAge"));
-		Label lbl_postalcode_hint = new Label(
+		lbl_age_hint = new Label(AppContext.getMessage("ValidAge"));
+		lbl_postalcode_hint = new Label(
 				AppContext.getMessage("ValidPostalcode"));
 
 		grid = new GridPane();
@@ -89,14 +90,22 @@ public class CustomerCreateViewGUI implements View {
 		root.setCenter(grid);
 		// Wenn alles gesetzt ist, dann SendButton an(Schleife Listener??)
 		// Experimentell
-//		while (!(model.getLastname() == null)
-//				&& !(model.getFirstname() == null) && model.getAge() != 0
-//				&& !(model.getAdress() == null)
-//				&& !(model.getPostalcode() == null)
-//				&& !(model.getEmail() == null)) {
-//			System.out.println("Keks");
-//
-//		}
+		// while (!(model.getLastname() == null)
+		// && !(model.getFirstname() == null) && model.getAge() != 0
+		// && !(model.getAdress() == null)
+		// && !(model.getPostalcode() == null)
+		// && !(model.getEmail() == null)) {
+		// System.out.println("Keks");
+		//
+		// }
+	}
+
+	public Label getAgeHintLabel() {
+		return lbl_age_hint;
+	}
+
+	public Label getPostalcodeHintLabel() {
+		return lbl_postalcode_hint;
 	}
 
 	public Button getSendButton() {

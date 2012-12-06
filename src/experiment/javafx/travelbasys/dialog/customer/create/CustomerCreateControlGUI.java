@@ -5,7 +5,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDaoException;
@@ -23,171 +27,148 @@ public class CustomerCreateControlGUI implements Control {
 	public CustomerCreateControlGUI() {
 	}
 
-	// TODO: HandleFocus, wenn ein Feld verlassen wird z.B. Validate-Prüfung
-	// & Set im Model.
-	// TODO: Falsche Eingaben verbieten z.B. durch Feldeigenschaften/anderer
-	// FeldTyp
-	// TODO: Boolean im Model, ob alle Daten validiert eingegeben wurden.
-	// TODO: Grafisch darstellen ob ein Inhalt korrekt ist z.B. Haken/Kreuz
-	// oder rote/gründe Umrandung.
-	// TODO: Vielleicht User im Feld fangen (unsicher) solange Wert
-	// inkorrekt.
-
-	// view.getFirstnameField().setOnFocus(new FocusHandler<FocusEvent>() {
-	// @Override
-	// public void handleFocusLost(FocusEvent arg0) {
-	// String value = arg0.getSource().getText();
-	// if( validate( value ) ){
-	// model.setFirstname( value );
-	// }
-	// else {
-	// //
-	// }
-	// }
-	// });
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void init(Model model, View view) {
 		this.model = (CustomerCreateModelGUI) model;
 		this.view = (CustomerCreateViewGUI) view;
 
-		this.view.getLastNameField().focusedProperty()
-				.addListener(new ChangeListener() {
-
-					@Override
-					public void changed(ObservableValue arg0, Object arg1,
-							Object arg2) {
-						TextField field = CustomerCreateControlGUI.this.view
-								.getLastNameField();
-						if ((boolean) arg1 == true) {
-							CustomerCreateControlGUI.this.model
-									.setLastname(field.getText());
-							CustomerCreateControlGUI.this.view.update();
-						}
-					}
-				});
-
-		this.view.getFirstNameField().focusedProperty()
-				.addListener(new ChangeListener() {
-
-					@Override
-					public void changed(ObservableValue arg0, Object arg1,
-							Object arg2) {
-						TextField field = CustomerCreateControlGUI.this.view
-								.getFirstNameField();
-						if ((boolean) arg1 == true) {
-							CustomerCreateControlGUI.this.model
-									.setFirstname(field.getText());
-							CustomerCreateControlGUI.this.view.update();
-						}
-					}
-				});
-
-		this.view.getAgeField().focusedProperty()
-				.addListener(new ChangeListener<Boolean>() {
+		this.view.getLastNameField().textProperty()
+				.addListener(new ChangeListener<String>() {
 
 					@Override
 					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						TextField field = CustomerCreateControlGUI.this.view
-								.getAgeField();
-
-						// Wenn Cursor das Feld verlässt...
-						if (oldValue) {
-							String input = field.getText();
-							if (!field.getText().isEmpty()) {
-								try {
-									int age = Integer.parseInt(field.getText());
-									if (age > 0 && age <= 150) {
-										CustomerCreateControlGUI.this.model
-												.setAge(age);
-									} else
-										throw new NumberFormatException();
-								} catch (NumberFormatException e) {
-									field.clear();
-									Dialogs.showErrorDialog(
-											(Stage) CustomerCreateControlGUI.this.view
-													.getRoot().getScene()
-													.getWindow(),
-											AppContext.getMessage("InvalidAge")
-													+ input,
-											AppContext.getMessage("Error"),
-											AppContext
-													.getMessage("TravelbasysManager"));
-								}
-							}
-						}
-					}
-				});
-
-		this.view.getAdressField().focusedProperty()
-				.addListener(new ChangeListener() {
-
-					@Override
-					public void changed(ObservableValue arg0, Object arg1,
-							Object arg2) {
-						TextField field = CustomerCreateControlGUI.this.view
-								.getAdressField();
-						if ((boolean) arg1 == true) {
-							if (!field.getText().isEmpty()) {
-								CustomerCreateControlGUI.this.model
-										.setAdress(field.getText());
-							}
-						}
-					}
-				});
-
-		this.view.getPostalcodeField().focusedProperty()
-				.addListener(new ChangeListener() {
-
-					@Override
-					public void changed(ObservableValue arg0, Object arg1,
-							Object arg2) {
-						TextField field = CustomerCreateControlGUI.this.view
-								.getPostalcodeField();
-						if ((boolean) arg1 == true) {
-							String input = field.getText();
-							if (!field.getText().isEmpty()) {
-								try {
-									if (Integer.parseInt(field.getText()) > 0
-											&& field.getText().length() == 5) {
-										CustomerCreateControlGUI.this.model
-												.setPostalcode(field.getText());
-									} else
-										throw new NumberFormatException();
-								} catch (NumberFormatException e) {
-									field.clear();
-									Dialogs.showErrorDialog(
-											(Stage) CustomerCreateControlGUI.this.view
-													.getRoot().getScene()
-													.getWindow(),
-											AppContext
-													.getMessage("InvalidPostalcode")
-													+ input,
-											AppContext.getMessage("Error"),
-											AppContext
-													.getMessage("TravelbasysManager"));
-								}
-							}
-						}
-					}
-				});
-
-		this.view.getEmailField().focusedProperty()
-				.addListener(new ChangeListener() {
-
-					@Override
-					public void changed(ObservableValue arg0, Object arg1,
-							Object arg2) {
-						TextField field = CustomerCreateControlGUI.this.view
-								.getEmailField();
-						if ((boolean) arg1 == true) {
-							CustomerCreateControlGUI.this.model.setEmail(field
-									.getText());
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (oldValue != newValue) {
+							CustomerCreateControlGUI.this.model
+									.setLastname(CustomerCreateControlGUI.this.view
+											.getLastNameField().getText()
+											.trim());
 							CustomerCreateControlGUI.this.view.update();
 						}
+
+					}
+				});
+
+		this.view.getFirstNameField().textProperty()
+				.addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (oldValue != newValue) {
+							CustomerCreateControlGUI.this.model
+									.setFirstname(CustomerCreateControlGUI.this.view
+											.getFirstNameField().getText()
+											.trim());
+							CustomerCreateControlGUI.this.view.update();
+						}
+
+					}
+				});
+
+		this.view.getAgeField().textProperty()
+				.addListener(new ChangeListener<String>() {
+
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						TextField field = CustomerCreateControlGUI.this.view
+								.getAgeField();
+						Label hint = CustomerCreateControlGUI.this.view
+								.getAgeHintLabel();
+						if (oldValue != newValue) {
+							try {
+								int age = Integer.parseInt(field.getText()
+										.trim());
+								if (age > 0 && age <= 150) {
+									CustomerCreateControlGUI.this.model
+											.setAge(age);
+									hint.setGraphic(new ImageView(new Image("./resources./haken.png")));
+									if (hint.getTextFill() != (Color
+											.web("#00AA00"))) {
+										hint.setTextFill(Color.web("#00AA00"));
+									}
+								} else {
+									throw new NumberFormatException();
+								}
+							} catch (NumberFormatException e) {
+								hint.setGraphic(new ImageView(new Image("./resources./kreuz.png")));
+								if (hint.getTextFill() != (Color.web("#FF0000"))) {
+									hint.setTextFill(Color.web("#FF0000"));
+								}
+
+							}
+
+						}
+						CustomerCreateControlGUI.this.view.update();
+					}
+				});
+
+		this.view.getAdressField().textProperty()
+				.addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (oldValue != newValue) {
+							CustomerCreateControlGUI.this.model
+									.setAdress(CustomerCreateControlGUI.this.view
+											.getAdressField().getText().trim());
+							CustomerCreateControlGUI.this.view.update();
+						}
+
+					}
+				});
+
+		this.view.getPostalcodeField().textProperty()
+				.addListener(new ChangeListener<String>() {
+
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						TextField field = CustomerCreateControlGUI.this.view
+								.getPostalcodeField();
+						Label hint = CustomerCreateControlGUI.this.view
+								.getPostalcodeHintLabel();
+						if (oldValue != newValue) {
+							try {
+								if (Integer.parseInt(field.getText().trim()) > 0
+										&& field.getText().trim().length() == 5) {
+									CustomerCreateControlGUI.this.model
+											.setPostalcode(field.getText());
+									if (hint.getTextFill() != (Color
+											.web("#00AA00"))) {
+										hint.setTextFill(Color.web("#00AA00"));
+									}
+								} else
+									throw new NumberFormatException();
+							} catch (NumberFormatException e) {
+								if (hint.getTextFill() != (Color.web("FF0000"))) {
+									hint.setTextFill(Color.web("#FF0000"));
+								}
+							}
+						}
+						CustomerCreateControlGUI.this.view.update();
+					}
+				});
+
+		this.view.getEmailField().textProperty()
+				.addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						if (oldValue != newValue) {
+							CustomerCreateControlGUI.this.model
+									.setEmail(CustomerCreateControlGUI.this.view
+											.getEmailField().getText().trim());
+							CustomerCreateControlGUI.this.view.update();
+						}
+
 					}
 				});
 
