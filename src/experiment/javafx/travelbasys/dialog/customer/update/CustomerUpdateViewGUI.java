@@ -36,6 +36,7 @@ public class CustomerUpdateViewGUI implements View {
 
 	public void updateSearchButton() {
 		searchButton.setDisable(model.searchIsInvalid());
+		
 	}
 
 	public void updateSendButton() {

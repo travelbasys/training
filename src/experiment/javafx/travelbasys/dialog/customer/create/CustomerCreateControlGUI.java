@@ -53,19 +53,12 @@ public class CustomerCreateControlGUI implements Control {
 				});
 
 		this.view.getFirstNameField().textProperty()
-				.addListener(new ChangeListener<String>() {
-
-					@Override
-					public void changed(
-							ObservableValue<? extends String> observable,
-							String oldValue, String newValue) {
-						CustomerCreateControlGUI.this.model
-								.setFirstname(CustomerCreateControlGUI.this.view
-										.getFirstNameField().getText().trim());
-
-						CustomerCreateControlGUI.this.view.update();
-					}
-				});
+		.addListener(new FirstnameLastnameAddressEMailListener() {
+			@Override
+			public void updateModelWith(String value) {
+				myModel.setFirstname(value);
+			}
+		});
 
 		this.view.getAgeField().textProperty()
 				.addListener(new ChangeListener<String>() {
@@ -103,19 +96,12 @@ public class CustomerCreateControlGUI implements Control {
 				});
 
 		this.view.getAdressField().textProperty()
-				.addListener(new ChangeListener<String>() {
-
-					@Override
-					public void changed(
-							ObservableValue<? extends String> observable,
-							String oldValue, String newValue) {
-						CustomerCreateControlGUI.this.model
-								.setAdress(CustomerCreateControlGUI.this.view
-										.getAdressField().getText().trim());
-
-						CustomerCreateControlGUI.this.view.update();
-					}
-				});
+		.addListener(new FirstnameLastnameAddressEMailListener() {
+			@Override
+			public void updateModelWith(String value) {
+				myModel.setAdress(value);
+			}
+		});
 
 		this.view.getPostalcodeField().textProperty()
 				.addListener(new ChangeListener<String>() {
@@ -154,19 +140,12 @@ public class CustomerCreateControlGUI implements Control {
 				});
 
 		this.view.getEmailField().textProperty()
-				.addListener(new ChangeListener<String>() {
-
-					@Override
-					public void changed(
-							ObservableValue<? extends String> observable,
-							String oldValue, String newValue) {
-						CustomerCreateControlGUI.this.model
-								.setEmail(CustomerCreateControlGUI.this.view
-										.getEmailField().getText().trim());
-
-						CustomerCreateControlGUI.this.view.update();
-					}
-				});
+		.addListener(new FirstnameLastnameAddressEMailListener() {
+			@Override
+			public void updateModelWith(String value) {
+				myModel.setEmail(value);
+			}
+		});
 
 		this.view.getSendButton().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
