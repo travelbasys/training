@@ -23,6 +23,28 @@ public class CustomerCreateControlGUI implements Control {
 
 	private CustomerCreateModelGUI model;
 	private CustomerCreateViewGUI view;
+	
+//	private class FirstnameLastnameAddressEMailListener implements ChangeListener<String> {
+//		@Override
+//		public void changed(ObservableValue<? extends String> observable,
+//				String oldValue, String newValue) {
+//		}
+//	}
+//
+//		new ChangeListener<String>() {
+//
+//			@Override
+//			public void changed(
+//					ObservableValue<? extends String> observable,
+//					String oldValue, String newValue) {
+		
+//				CustomerCreateControlGUI.this.model
+//						.setLastname(CustomerCreateControlGUI.this.view
+//								.getLastNameField().getText().trim());
+//				
+//				CustomerCreateControlGUI.this.view.update();
+//			}
+//		}
 
 	public CustomerCreateControlGUI() {
 	}
@@ -42,6 +64,7 @@ public class CustomerCreateControlGUI implements Control {
 						CustomerCreateControlGUI.this.model
 								.setLastname(CustomerCreateControlGUI.this.view
 										.getLastNameField().getText().trim());
+						
 						CustomerCreateControlGUI.this.view.update();
 					}
 				});
@@ -56,6 +79,7 @@ public class CustomerCreateControlGUI implements Control {
 						CustomerCreateControlGUI.this.model
 								.setFirstname(CustomerCreateControlGUI.this.view
 										.getFirstNameField().getText().trim());
+						
 						CustomerCreateControlGUI.this.view.update();
 					}
 				});
@@ -105,6 +129,7 @@ public class CustomerCreateControlGUI implements Control {
 						CustomerCreateControlGUI.this.model
 								.setAdress(CustomerCreateControlGUI.this.view
 										.getAdressField().getText().trim());
+						
 						CustomerCreateControlGUI.this.view.update();
 					}
 				});
@@ -140,6 +165,7 @@ public class CustomerCreateControlGUI implements Control {
 							CustomerCreateControlGUI.this.model
 									.setPostalcode("");
 						}
+						
 						CustomerCreateControlGUI.this.view.update();
 					}
 				});
@@ -154,6 +180,7 @@ public class CustomerCreateControlGUI implements Control {
 						CustomerCreateControlGUI.this.model
 								.setEmail(CustomerCreateControlGUI.this.view
 										.getEmailField().getText().trim());
+						
 						CustomerCreateControlGUI.this.view.update();
 					}
 				});

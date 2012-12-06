@@ -158,7 +158,7 @@ public class CustomerUpdateControlGUI implements Control {
 																.getEmail()
 														+ "\n\n"
 														+ AppContext
-														.getMessage("UpdateQuestion"),
+																.getMessage("UpdateQuestion"),
 												AppContext
 														.getMessage("CustomerWithID")
 														+ CustomerUpdateControlGUI.this.view
