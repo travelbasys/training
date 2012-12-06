@@ -137,6 +137,8 @@ public class CustomerCreateControlGUI implements Control {
 							if (hint.getTextFill() != (Color.web("FF0000"))) {
 								hint.setTextFill(Color.web("#FF0000"));
 							}
+							CustomerCreateControlGUI.this.model
+									.setPostalcode("");
 						}
 						CustomerCreateControlGUI.this.view.update();
 					}

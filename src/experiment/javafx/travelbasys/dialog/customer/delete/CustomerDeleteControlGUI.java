@@ -29,7 +29,6 @@ public class CustomerDeleteControlGUI implements Control {
 
 	@Override
 	public void init(Model model, View view) {
-
 		this.model = (CustomerDeleteModelGUI) model;
 		this.view = (CustomerDeleteViewGUI) view;
 
@@ -41,7 +40,6 @@ public class CustomerDeleteControlGUI implements Control {
 							String oldValue, String newValue) {
 						TextField field = CustomerDeleteControlGUI.this.view
 								.getCustomerIDField();
-						if (oldValue != newValue) {
 							try {
 								int id = Integer.parseInt(field.getText()
 										.trim());
@@ -51,7 +49,6 @@ public class CustomerDeleteControlGUI implements Control {
 								CustomerDeleteControlGUI.this.model
 										.setCustomerid(0);
 							}
-						}
 						CustomerDeleteControlGUI.this.view.update();
 					}
 				});

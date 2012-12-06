@@ -89,16 +89,7 @@ public class CustomerCreateViewGUI implements View {
 
 	public void show() {
 		root.setCenter(grid);
-		// Wenn alles gesetzt ist, dann SendButton an(Schleife Listener??)
-		// Experimentell
-		// while (!(model.getLastname() == null)
-		// && !(model.getFirstname() == null) && model.getAge() != 0
-		// && !(model.getAdress() == null)
-		// && !(model.getPostalcode() == null)
-		// && !(model.getEmail() == null)) {
-		// System.out.println("Keks");
-		//
-		// }
+
 	}
 
 	public Label getAgeHintLabel() {

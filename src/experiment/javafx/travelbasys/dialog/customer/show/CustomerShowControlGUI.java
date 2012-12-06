@@ -1,10 +1,13 @@
 package experiment.javafx.travelbasys.dialog.customer.show;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.Dao;
@@ -26,6 +29,27 @@ public class CustomerShowControlGUI implements Control {
 	public void init(Model model, View view) {
 		this.model = (CustomerShowModelGUI) model;
 		this.view = (CustomerShowViewGUI) view;
+
+		this.view.getCustomerIDField().textProperty()
+				.addListener(new ChangeListener<String>() {
+
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						TextField field = CustomerShowControlGUI.this.view
+								.getCustomerIDField();
+							try {
+								int id = Integer.parseInt(field.getText()
+										.trim());
+								CustomerShowControlGUI.this.model
+										.setCustomerid(id);
+							} catch (NumberFormatException e) {
+								CustomerShowControlGUI.this.model
+										.setCustomerid(0);
+							}
+						CustomerShowControlGUI.this.view.update();
+					}
+				});
 
 		this.view.getSearchButton().setOnAction(
 				new EventHandler<ActionEvent>() {
@@ -114,8 +138,7 @@ public class CustomerShowControlGUI implements Control {
 							Dialogs.showErrorDialog(
 									(Stage) CustomerShowControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-											AppContext
-											.getMessage("SyntaxError")
+									AppContext.getMessage("SyntaxError")
 											+ CustomerShowControlGUI.this.view
 													.getCustomerIDField()
 													.getText()

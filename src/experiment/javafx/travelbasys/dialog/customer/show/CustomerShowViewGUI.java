@@ -17,7 +17,6 @@ public class CustomerShowViewGUI implements View {
 		this.searchButton = searchButton;
 	}
 
-	@SuppressWarnings("unused")
 	private CustomerShowModelGUI model;
 
 	public CustomerShowViewGUI(Model model, BorderPane root) {
@@ -29,6 +28,11 @@ public class CustomerShowViewGUI implements View {
 	private GridPane grid;
 	private TextField customerIDField;
 	private Button searchButton;
+	
+	public void update() {
+		searchButton.setDisable(model.isInvalid());
+	}
+
 
 	public void run() {
 
@@ -39,6 +43,7 @@ public class CustomerShowViewGUI implements View {
 
 		grid = new GridPane();
 		searchButton = new Button(AppContext.getMessage("Search"));
+		searchButton.setDisable(true);
 
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.setVgap(5);
@@ -73,5 +78,4 @@ public class CustomerShowViewGUI implements View {
 	public Button getSearchButton() {
 		return searchButton;
 	}
-
 }
