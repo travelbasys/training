@@ -156,11 +156,11 @@ public class CustomerDeleteControlGUI implements Control {
 										(Stage) CustomerDeleteControlGUI.this.view
 												.getRoot().getScene()
 												.getWindow(),
-										"CustomerWithID"
+										AppContext.getMessage("CustomerWithID")
 												+ CustomerDeleteControlGUI.this.view
 														.getCustomerIDField()
 														.getText()
-												+ AppContext
+												+" "+ AppContext
 														.getMessage("NotFound"),
 										AppContext.getMessage("Error"),
 										AppContext
@@ -170,15 +170,15 @@ public class CustomerDeleteControlGUI implements Control {
 							Dialogs.showErrorDialog(
 									(Stage) CustomerDeleteControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-											AppContext.getMessage("SyntaxError")
+									AppContext.getMessage("SyntaxError")
 											+ CustomerDeleteControlGUI.this.view
 													.getCustomerIDField()
 													.getText()
 											+ "\n"
 											+ AppContext
 													.getMessage("CustomerIDError"),
-									AppContext.getMessage("Error"),
-									AppContext.getMessage("TravelbasysManager"));
+									AppContext.getMessage("Error"), AppContext
+											.getMessage("TravelbasysManager"));
 						}
 					}
 				});

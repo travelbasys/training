@@ -56,28 +56,32 @@ public class CustomerUpdateControlGUI implements Control {
 							Dialogs.showInformationDialog(
 									(Stage) CustomerUpdateControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-											//TODO gvreg
-									"Transaction successful.", AppContext.getMessage("TransactionSuccess"),
-									"Travelbasys Customer Manager");
+									// TODO gvreg
+									AppContext.getMessage("UpdateSuccess"),
+									AppContext.getMessage("TransactionSuccess"),
+									AppContext.getMessage("TravelbasysManager"));
 							deactivateSend();
 						} catch (NumberFormatException d) {
 							Dialogs.showErrorDialog(
 									(Stage) CustomerUpdateControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-									"Wrong syntax.", "Error",
-									"Travelbasys Customer Manager");
+									AppContext.getMessage("WrongSyntax"),
+									AppContext.getMessage("Error"),
+									AppContext.getMessage("TravelbasysManager"));
 						} catch (IllegalArgumentException d) {
 							Dialogs.showErrorDialog(
 									(Stage) CustomerUpdateControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-									"Wrong syntax.", "Error",
-									"Travelbasys Customer Manager");
+									AppContext.getMessage("WrongSyntax."),
+									AppContext.getMessage("Error"),
+									AppContext.getMessage("TravelbasysManager"));
 						} catch (CustomerDaoException d) {
 							Dialogs.showErrorDialog(
 									(Stage) CustomerUpdateControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-									"Customer already exists.", "Error",
-									"Travelbasys Customer Manager");
+									AppContext.getMessage("CustomerExist"),
+									AppContext.getMessage("Error"),
+									AppContext.getMessage("TravelbasysManager"));
 						}
 					}
 
@@ -111,42 +115,60 @@ public class CustomerUpdateControlGUI implements Control {
 												(Stage) CustomerUpdateControlGUI.this.view
 														.getRoot().getScene()
 														.getWindow(),
-												"Lastname: "
+												AppContext
+														.getMessage("Lastname")
 														+ CustomerUpdateControlGUI.this.model
 																.getData()
 																.get(0)
 																.getLastName()
-														+ "\nFirstname: "
+														+ "\n"
+														+ AppContext
+																.getMessage("Firstname")
 														+ CustomerUpdateControlGUI.this.model
 																.getData()
 																.get(0)
 																.getFirstName()
-														+ "\nAge: "
+														+ "\n"
+														+ AppContext
+																.getMessage("Age")
 														+ CustomerUpdateControlGUI.this.model
 																.getData()
 																.get(0)
 																.getAge()
-														+ "\nAdress: "
+														+ "\n"
+														+ AppContext
+																.getMessage("Adress")
 														+ CustomerUpdateControlGUI.this.model
 																.getData()
 																.get(0)
 																.getAdress()
-														+ "\nPostalcode: "
+														+ "\n"
+														+ AppContext
+																.getMessage("Postalcode")
 														+ CustomerUpdateControlGUI.this.model
 																.getData()
 																.get(0)
 																.getPostalcode()
-														+ "\neMail: "
+														+ "\n"
+														+ AppContext
+																.getMessage("Email")
 														+ CustomerUpdateControlGUI.this.model
 																.getData()
 																.get(0)
 																.getEmail()
-														+ "\nBearbeiten? ",
-												"Customer found: "
+														+ "\n\n"
+														+ AppContext
+														.getMessage("UpdateQuestion"),
+												AppContext
+														.getMessage("CustomerWithID")
 														+ CustomerUpdateControlGUI.this.view
 																.getCustomerIDField()
-																.getText(),
-												"Travelbasys Customer Manager",
+																.getText()
+														+ " "
+														+ AppContext
+																.getMessage("Found"),
+												AppContext
+														.getMessage("TravelbasysManager"),
 												options);
 								switch (response) {
 								case YES:
@@ -163,21 +185,30 @@ public class CustomerUpdateControlGUI implements Control {
 										(Stage) CustomerUpdateControlGUI.this.view
 												.getRoot().getScene()
 												.getWindow(),
-										"Customer not found: "
+										AppContext.getMessage("CustomerWithID")
 												+ CustomerUpdateControlGUI.this.view
 														.getCustomerIDField()
-														.getText(), "Error",
-										"Travelbasys Customer Manager");
+														.getText()
+												+ " "
+												+ AppContext
+														.getMessage("NotFound"),
+										AppContext.getMessage("Error"),
+										AppContext
+												.getMessage("TravelbasysManager"));
 							}
 						} catch (NumberFormatException d) {
 							Dialogs.showErrorDialog(
 									(Stage) CustomerUpdateControlGUI.this.view
 											.getRoot().getScene().getWindow(),
-									"Wrong syntax: "
+									AppContext.getMessage("SyntaxError")
 											+ CustomerUpdateControlGUI.this.view
 													.getCustomerIDField()
-													.getText(), "Error",
-									"Travelbasys Customer Manager");
+													.getText()
+											+ "\n"
+											+ AppContext
+													.getMessage("CustomerIDError"),
+									AppContext.getMessage("Error"), AppContext
+											.getMessage("TravelbasysManager"));
 						}
 
 					}
@@ -195,10 +226,7 @@ public class CustomerUpdateControlGUI implements Control {
 					}
 
 					private void activateEdit() {
-						
-						
-						
-						
+
 						CustomerUpdateControlGUI.this.view.getLastNameField()
 								.setEditable(true);
 						CustomerUpdateControlGUI.this.view

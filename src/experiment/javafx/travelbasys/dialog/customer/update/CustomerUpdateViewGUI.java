@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AppContext;
 
 public class CustomerUpdateViewGUI implements View {
 
@@ -54,24 +55,24 @@ public class CustomerUpdateViewGUI implements View {
 		emailField = new TextField();
 		emailField.setEditable(false);
 
-		Label lbl_menu = new Label("Customer Edit");
+		Label lbl_menu = new Label(AppContext.getMessage("CustomerEdit"));
 		lbl_menu.setFont(new Font("Arial", 30));
-		Label lbl_customerid = new Label("CustomerID:");
-		Label lbl_lastname = new Label("Lastname:");
-		Label lbl_firstname = new Label("Firstname:");
-		Label lbl_age = new Label("Age:");
-		Label lbl_adress = new Label("Adress:");
-		Label lbl_postalcode = new Label("Postalcode:");
-		Label lbl_email = new Label("EMail:");
-		Label lbl_age_hint = new Label("Valid age: 1-150");
+		Label lbl_customerid = new Label(AppContext.getMessage("CustomerID"));
+		Label lbl_lastname = new Label(AppContext.getMessage("Lastname"));
+		Label lbl_firstname = new Label(AppContext.getMessage("Firstname"));
+		Label lbl_age = new Label(AppContext.getMessage("Age"));
+		Label lbl_adress = new Label(AppContext.getMessage("Adress"));
+		Label lbl_postalcode = new Label(AppContext.getMessage("Postalcode"));
+		Label lbl_email = new Label(AppContext.getMessage("Email"));
+		Label lbl_age_hint = new Label(AppContext.getMessage("ValidAge"));
 		Label lbl_postalcode_hint = new Label(
-				"Valid Postalcode: Must contain 5 digits");
+				AppContext.getMessage("ValidPostalcode"));
 
 		grid = new GridPane();
-		sendButton = new Button("Send");
+		sendButton = new Button(AppContext.getMessage("Send"));
 		sendButton.setDisable(true);
-		searchButton = new Button("Search");
-		newSearchButton = new Button("New Search");
+		searchButton = new Button(AppContext.getMessage("Search"));
+		newSearchButton = new Button(AppContext.getMessage("NewSearch"));
 		newSearchButton.setDisable(true);
 
 		grid.setPadding(new Insets(10, 10, 10, 10));
