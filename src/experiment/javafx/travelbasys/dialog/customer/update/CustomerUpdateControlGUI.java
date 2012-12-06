@@ -442,7 +442,8 @@ public class CustomerUpdateControlGUI implements Control {
 						deactivateEdit();
 						deactivateNewSearch();
 						activateSearch();
-
+						CustomerUpdateControlGUI.this.view.getCustomerIDField()
+								.requestFocus();
 					}
 
 					private void deactivateNewSearch() {
