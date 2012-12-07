@@ -118,7 +118,8 @@ public class MainView implements View {
 		final Menu menu4 = new Menu(AppContext.getMessage("Options"));
 		final Menu menu5 = new Menu(AppContext.getMessage("Extras"));
 		final Menu menu6 = new Menu(AppContext.getMessage("Help"));
-
+		
+		
 		// Submenü
 
 		final Menu changeDB = new Menu(AppContext.getMessage("ChangeDatabase"));
@@ -128,6 +129,7 @@ public class MainView implements View {
 		// Erstelle Menu-Items
 
 		exportingItem = new MenuItem(AppContext.getMessage("ExportTo"));
+		exportingItem.setId("export-item");
 		importingItem = new MenuItem(AppContext.getMessage("ImportFrom"));
 		exitItem = new MenuItem(AppContext.getMessage("Exit"));
 		customerCreateItem = new MenuItem(AppContext.getMessage("NewCustomer"));
@@ -168,6 +170,7 @@ public class MainView implements View {
 
 		// MenuBar erstellen
 		MenuBar menuBar = new MenuBar();
+		
 
 		// Der MenuBar eine Collection von Menu-Objekten hinzufügen
 		menuBar.getMenus().addAll(menu1, menu2, menu3, menu4, menu5, menu6);
@@ -177,18 +180,15 @@ public class MainView implements View {
 
 		// Label mit Willkommensnachricht anlegen
 		Label welcome = new Label(AppContext.getMessage("Welcome"));
-
+		welcome.getStyleClass().add("header1");
+		
 		// Dem Hauptpanel die Elemente hinzufügen
 		root.setTop(menuBar);
 		root.setCenter(welcome);
+		root.getStylesheets().add("./resources/stylesheet.css");
 
 		// Größe des Hauptfensters festlegen
 		mainframe = new Scene(root, 800, 600);
-		root.getStylesheets().add("./resources/stylesheet.css");
-		welcome.setId("welcome");
-
-		// root.setStyle("-fx-background-image: url('./resources/TB_Logo_Querformat.jpg');-fx-background-position: 550 50; -fx-background-size: 200 50;");
-
 		primaryStage.setScene(mainframe);
 
 		// Größe der MenuBar auf die Länge des Hauptfensters anpassen

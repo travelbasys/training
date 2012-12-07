@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
@@ -67,7 +66,7 @@ public class CustomerUpdateViewGUI implements View {
 		emailField.setEditable(false);
 
 		Label lbl_menu = new Label(AppContext.getMessage("CustomerEdit"));
-		lbl_menu.setFont(new Font("Arial", 30));
+
 		Label lbl_customerid = new Label(AppContext.getMessage("CustomerID"));
 		Label lbl_lastname = new Label(AppContext.getMessage("Lastname"));
 		Label lbl_firstname = new Label(AppContext.getMessage("Firstname"));
@@ -83,6 +82,7 @@ public class CustomerUpdateViewGUI implements View {
 		sendButton = new Button(AppContext.getMessage("Send"));
 		sendButton.setDisable(true);
 		searchButton = new Button(AppContext.getMessage("Search"));
+		searchButton.setId("search-button");
 		searchButton.setDisable(true);
 		newSearchButton = new Button(AppContext.getMessage("NewSearch"));
 		newSearchButton.setDisable(true);

@@ -1,46 +1,35 @@
 .root{
 
     -fx-font: 12pt "DaxlineOT-Medium";
-    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
-    -fx-background-image: url('./TB_Logo_Querformat.jpg');
-    -fx-background-position: center center; 
-    -fx-background-size: 800 600;
-
+    -fx-background-image: url('./travelbasys_logo.JPG');
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: right top;
 
     
     
-}
-
-.button{
-    -fx-text-fill: rgb(255, 89, 23);
-    -fx-border-color: rgb(49, 89, 23);
-    -fx-border-radius: 4;
-    -fx-padding: 3 6 6 6;
 }
 
 #search-button{
-    -fx-border-color: rgb(49, 89, 23);
+    -fx-font: 12pt "DaxlineOT-Medium";
+    -fx-background-color: rgb(242,148,2);
+    -fx-border-color: rgb(255, 89, 23);
     -fx-border-radius: 4;
     -fx-padding: 3 6 6 6;
     -fx-font: 20pt "DaxlineOT-Medium";
     -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
 }
 
-#welcome{
--fx-font: 30pt "DaxlineOT-Medium";
-}   
+.header1{
+    -fx-font: 30pt "DaxlineOT-Medium";
+}
 
+.text-field { 
+    -fx-border-color: rgb(242,148,2); 
 
+}
 
+.menu-bar{  
+   -fx-background-color: rgb(226,0,46);  
+}
 
-
-
-
-
-    #pane{
-        -fx-background-image: url('./TB_Logo_Querformat.jpg');   
-        -fx-background-size: 800 600;
-        -fx-background-position: center center;
-        -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
-    }
 

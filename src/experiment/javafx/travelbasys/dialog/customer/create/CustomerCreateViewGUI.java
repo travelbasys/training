@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
@@ -46,7 +45,7 @@ public class CustomerCreateViewGUI implements View {
 		emailField = new TextField();
 
 		Label lbl_menu = new Label(AppContext.getMessage("CustomerCreate"));
-		lbl_menu.setFont(new Font("Arial", 30));
+
 		Label lbl_lastname = new Label(AppContext.getMessage("Lastname"));
 		Label lbl_firstname = new Label(AppContext.getMessage("Firstname"));
 		Label lbl_age = new Label(AppContext.getMessage("Age"));
