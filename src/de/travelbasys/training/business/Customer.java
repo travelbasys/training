@@ -81,7 +81,8 @@ public class Customer implements Serializable, Cloneable {
 		setEMail(email);
 	}
 
-	public void setPostalcode(String postalcode) throws IllegalArgumentException {
+	public void setPostalcode(String postalcode)
+			throws IllegalArgumentException {
 
 		if ((Integer.parseInt(postalcode) > 0 && postalcode.length() == 5)) {
 			this.postalcode = postalcode;
@@ -246,6 +247,11 @@ public class Customer implements Serializable, Cloneable {
 			if (other.postalcode != null)
 				return false;
 		} else if (!postalcode.equals(other.postalcode))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
 			return false;
 		return true;
 	}
