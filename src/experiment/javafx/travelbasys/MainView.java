@@ -185,6 +185,10 @@ public class MainView implements View {
 		// Größe des Hauptfensters festlegen
 		mainframe = new Scene(root, 800, 600);
 		root.getStylesheets().add("./resources/stylesheet.css");
+		welcome.setId("welcome");
+
+		// root.setStyle("-fx-background-image: url('./resources/TB_Logo_Querformat.jpg');-fx-background-position: 550 50; -fx-background-size: 200 50;");
+
 		primaryStage.setScene(mainframe);
 
 		// Größe der MenuBar auf die Länge des Hauptfensters anpassen

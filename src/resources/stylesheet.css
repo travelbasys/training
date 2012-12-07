@@ -1,9 +1,14 @@
 .root{
-    -fx-font-size: 16pt;
-    -fx-font-family: "DaxlineOT-Medium";
-    -fx-base: rgb(226, 0, 46);
-    -fx-background: rgb(225, 228, 203);
-    -fx-background-color: rgb(255, 255, 255);
+
+    -fx-font: 12pt "DaxlineOT-Medium";
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+    -fx-background-image: url('./TB_Logo_Querformat.jpg');
+    -fx-background-position: center center; 
+    -fx-background-size: 800 600;
+
+
+    
+    
 }
 
 .button{
@@ -13,10 +18,29 @@
     -fx-padding: 3 6 6 6;
 }
 
-.button1{
+#search-button{
     -fx-border-color: rgb(49, 89, 23);
     -fx-border-radius: 4;
     -fx-padding: 3 6 6 6;
- -fx-font: 20pt "DaxlineOT-Medium";
+    -fx-font: 20pt "DaxlineOT-Medium";
     -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
 }
+
+#welcome{
+-fx-font: 30pt "DaxlineOT-Medium";
+}   
+
+
+
+
+
+
+
+
+    #pane{
+        -fx-background-image: url('./TB_Logo_Querformat.jpg');   
+        -fx-background-size: 800 600;
+        -fx-background-position: center center;
+        -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+    }
+
