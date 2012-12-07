@@ -7,16 +7,17 @@ public class MainDialog implements Dialog {
 
 	private MainModel model;
 	private MainView view;
-	@SuppressWarnings("unused")
 	private MainControl control;
 
 	public MainDialog(Stage stage) {
 		model = new MainModel();
 		view = new MainView(model, stage);
-		control = new MainControl(model, view);
+		control = new MainControl(model);
 	}
 
 	public void run() {
+		view.init();
+		control.init(view);
 		view.run();
 	}
 }

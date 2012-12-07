@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
 
@@ -36,6 +35,12 @@ public class MainView implements View {
 	private MenuItem changeLanguage1Item;
 	private MenuItem changeLanguage2Item;
 	private MenuItem lotteryItem;
+	private Scene mainframe;
+
+	public MainView(MainModel model, Stage stage) {
+		this.model = (MainModel) model;
+		primaryStage = stage;
+	}
 
 	public MenuItem getChangeLanguage1Item() {
 		return changeLanguage1Item;
@@ -101,13 +106,10 @@ public class MainView implements View {
 		return aboutItem;
 	}
 
-	public MainView(Model model, Stage stage) {
-		this.model = (MainModel) model;
-		primaryStage = stage;
+	public void init() {
 
 		// Titel festlegen
-		primaryStage.setTitle(AppContext
-				.getMessage("TravelbasysManager"));
+		primaryStage.setTitle(AppContext.getMessage("TravelbasysManager"));
 
 		// Erstelle einzelne Menüs
 		final Menu menu1 = new Menu(AppContext.getMessage("File"));
@@ -120,7 +122,8 @@ public class MainView implements View {
 		// Submenü
 
 		final Menu changeDB = new Menu(AppContext.getMessage("ChangeDatabase"));
-		final Menu changeLanguage = new Menu(AppContext.getMessage("ChangeLanguage"));
+		final Menu changeLanguage = new Menu(
+				AppContext.getMessage("ChangeLanguage"));
 
 		// Erstelle Menu-Items
 
@@ -130,12 +133,15 @@ public class MainView implements View {
 		customerCreateItem = new MenuItem(AppContext.getMessage("NewCustomer"));
 		customerShowItem = new MenuItem(AppContext.getMessage("ShowCustomer"));
 		customerEditItem = new MenuItem(AppContext.getMessage("EditCustomer"));
-		customerDeleteItem = new MenuItem(AppContext.getMessage("DeleteCustomer"));
-		customerShowAllItem = new MenuItem(AppContext.getMessage("ShowAllCustomers"));
+		customerDeleteItem = new MenuItem(
+				AppContext.getMessage("DeleteCustomer"));
+		customerShowAllItem = new MenuItem(
+				AppContext.getMessage("ShowAllCustomers"));
 		configurationItem = new MenuItem(AppContext.getMessage("Configuration"));
-		lotteryItem = new MenuItem(AppContext.getMessage("DetermineLotteryNumbers"));
+		lotteryItem = new MenuItem(
+				AppContext.getMessage("DetermineLotteryNumbers"));
 		aboutItem = new MenuItem(AppContext.getMessage("About"));
-		
+
 		changeDB1Item = new MenuItem(AppContext.getMessage("DatabaseType1"));
 		changeDB2Item = new MenuItem(AppContext.getMessage("DatabaseType2"));
 		changeDB3Item = new MenuItem(AppContext.getMessage("DatabaseType3"));
@@ -179,7 +185,7 @@ public class MainView implements View {
 		root.setCenter(welcome);
 
 		// Größe des Hauptfensters festlegen
-		Scene mainframe = new Scene(root, 800, 600);
+		mainframe = new Scene(root, 800, 600);
 		primaryStage.setScene(mainframe);
 
 		// Größe der MenuBar auf die Länge des Hauptfensters anpassen

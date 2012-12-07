@@ -1,5 +1,7 @@
 package experiment.javafx.travelbasys;
 
+import java.util.Locale;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import de.travelbasys.training.dao.Dao;
@@ -9,6 +11,7 @@ import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.CommandLine;
+import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Configuration;
 import experiment.javafx.travelbasys.dialog.about.AboutDialogGUI;
 import experiment.javafx.travelbasys.dialog.customer.create.CustomerCreateDialogGUI;
@@ -23,10 +26,13 @@ public class MainControl implements Control {
 	@SuppressWarnings("unused")
 	private MainModel model;
 
-	public MainControl(Model model, View view) {
+	public MainControl(MainModel model) {
 		this.model = (MainModel) model;
+	}
+
+	public void init(View view) {
 		this.view = (MainView) view;
-		
+
 		// Initialisiere MySQl Verbindung(& Funktionen)
 		Dao.setDAO(new MySQLCustomerDAO());
 		Configuration.init(CommandLine.getOptions());
@@ -110,6 +116,31 @@ public class MainControl implements Control {
 						d.run();
 					}
 				});
+
+		this.view.getChangeLanguage1Item().setOnAction(
+				new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent e) {
+						Config.updateLanguage(new Locale("de"));
+						MainControl.this.view.init();
+						init(MainControl.this.view);
+					}
+
+				});
+
+		this.view.getChangeLanguage2Item().setOnAction(
+				new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent e) {
+						Config.updateLanguage(new Locale("en"));
+						MainControl.this.view.init();
+						init(MainControl.this.view);
+					}
+
+				});
+
 	}
 
 	@Override
