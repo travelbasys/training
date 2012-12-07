@@ -1,8 +1,5 @@
 package de.travelbasys.training.dialog.menu.dbtype;
 
-import de.travelbasys.training.dao.access.AccessCustomerDAO;
-import de.travelbasys.training.dao.mysql.MySQLCustomerDAO;
-import de.travelbasys.training.dao.text.TxtCustomerDAO;
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
@@ -40,16 +37,13 @@ public class ChooseDatabaseTypeControl {
 				case 0:
 					return;
 				case 1:
-					ChooseDatabaseTypeControl.this.model
-							.setDAO(new AccessCustomerDAO());
+					ChooseDatabaseTypeControl.this.model.setDAO("access");
 					break;
 				case 2:
-					ChooseDatabaseTypeControl.this.model
-							.setDAO(new MySQLCustomerDAO());
+					ChooseDatabaseTypeControl.this.model.setDAO("mysql");
 					break;
 				case 3:
-					ChooseDatabaseTypeControl.this.model
-							.setDAO(new TxtCustomerDAO());
+					ChooseDatabaseTypeControl.this.model.setDAO("txt");
 					break;
 				default:
 					throw new Exception("ChooseErrComp");

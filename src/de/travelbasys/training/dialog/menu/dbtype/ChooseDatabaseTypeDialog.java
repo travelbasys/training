@@ -1,6 +1,5 @@
 package de.travelbasys.training.dialog.menu.dbtype;
 
-import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.framework.Dialog;
 
 /**
@@ -10,11 +9,11 @@ public class ChooseDatabaseTypeDialog implements Dialog {
 
 	private ChooseDatabaseTypeModel model;
 	private ChooseDatabaseTypeView view;
-	
+
 	public ChooseDatabaseTypeDialog() {
 		model = new ChooseDatabaseTypeModel();
 		view = new ChooseDatabaseTypeView(model);
-		
+
 		// Wir rufen den Konstruktor nur wegen seiner Seiteneffekte.
 		// TODO: Eventuell wieder parameterlosen Konstruktur und
 		// init(Model model, View, view) benutzen.
@@ -32,7 +31,8 @@ public class ChooseDatabaseTypeDialog implements Dialog {
 	public void run() {
 		view.run();
 	}
-	public CustomerDAO getDAO() {
+
+	public String getDAO() {
 		return model.getDAO();
 	}
 }

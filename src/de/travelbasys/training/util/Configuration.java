@@ -15,9 +15,11 @@ import java.util.Properties;
 public class Configuration {
 
 	private static final String DEFAULT_LANGUAGE = "en";
-	private static final String DEFAULT_DATABASE = "test.db";
+	private static final String DEFAULT_DATABASE = "testdb";
+	private static String DEFAULT_DATABASE_TYPE = "";
 	private static final String LANG_KEY = "lang";
 	private static final String DATABASE_KEY = "database";
+	private static String DATABASE_TYPE_KEY = "database_type";
 	private static final String ERR_FILENOTFOUND = (Config.CONFIG_FILENAME + " existiert nicht.");
 	private static final int EXIT_ERR_STATUS = 1;
 
@@ -49,18 +51,27 @@ public class Configuration {
 		// gewählt.
 		try {
 			String lang = (String) CommandLine.getOptions().get("lang");
-			Locale.setDefault(new Locale(lang));
+			Locale.setDefault(new Locale(lang.trim()));
 		} catch (Exception e) {
 			String lang = config.getProperty(LANG_KEY, DEFAULT_LANGUAGE);
-			Locale.setDefault(new Locale(lang));
+			Locale.setDefault(new Locale(lang.trim()));
 		}
 		// Wir kümmern uns jetzt um die DATABASE.
+
+		String dbtype;
+		dbtype = (String) CommandLine.getOptions().get("database_type");
+		if (dbtype == null) {
+			dbtype = config.getProperty(DATABASE_TYPE_KEY,
+					DEFAULT_DATABASE_TYPE);
+		}
+		DATA.put("dbtype", dbtype.trim());
+
 		String db;
-		db = (String) CommandLine.getOptions().get("db");
+		db = (String) CommandLine.getOptions().get("database");
 		if (db == null) {
 			db = config.getProperty(DATABASE_KEY, DEFAULT_DATABASE);
 		}
-		DATA.put("db", db);
+		DATA.put("db", db.trim());
 	}
 
 	public static Object get(String key) {

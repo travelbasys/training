@@ -5,12 +5,10 @@ import java.util.Locale;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import de.travelbasys.training.dao.Dao;
-import de.travelbasys.training.dao.mysql.MySQLCustomerDAO;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
-import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Configuration;
 import experiment.javafx.travelbasys.dialog.about.AboutDialogGUI;
@@ -33,15 +31,11 @@ public class MainControl implements Control {
 	public void init(View view) {
 		this.view = (MainView) view;
 
-		// Initialisiere MySQl Verbindung(& Funktionen)
-		Dao.setDAO(new MySQLCustomerDAO());
-		Configuration.init(CommandLine.getOptions());
-		Dao.getDAO().init((String) Configuration.get("db"));
-
 		// Setze EventHandler für Exit-Menüpunkt
 		this.view.getExitItem().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
+				Dao.getDAO().terminate();
 				System.exit(0);
 			}
 		});
@@ -139,6 +133,53 @@ public class MainControl implements Control {
 						init(MainControl.this.view);
 					}
 
+				});
+
+		this.view.getChangeDB1Item().setOnAction(
+				new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent event) {
+						try {
+							String dbtype = "access";
+							Dao.setDAO(dbtype);
+							MainControl.this.view.dbtypeswitch(dbtype);
+							Dao.getDAO().init((String) Configuration.get("db"));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+
+				});
+		this.view.getChangeDB2Item().setOnAction(
+				new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent event) {
+						try {
+							String dbtype = "mysql";
+							Dao.setDAO(dbtype);
+							MainControl.this.view.dbtypeswitch(dbtype);
+							Dao.getDAO().init((String) Configuration.get("db"));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+		this.view.getChangeDB3Item().setOnAction(
+				new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent event) {
+						try {
+							String dbtype = "txt";
+							Dao.setDAO(dbtype);
+							MainControl.this.view.dbtypeswitch(dbtype);
+							Dao.getDAO().init((String) Configuration.get("db"));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
 				});
 
 	}

@@ -149,8 +149,6 @@ public class MainView implements View {
 		changeLanguage1Item = new MenuItem(AppContext.getMessage("German"));
 		changeLanguage2Item = new MenuItem(AppContext.getMessage("English"));
 
-		// Dem Exit-Menüpunkt wird eine Grafik zugewiesen
-
 		exitItem.setGraphic(new ImageView(new Image("./resources./exit.png")));
 
 		// Dem Submenü Items hinzufügen
@@ -202,4 +200,41 @@ public class MainView implements View {
 	public BorderPane getRoot() {
 		return root;
 	}
+
+	public void dbtypeswitch(String dbtype) {
+		String dbtype1 = "txt";
+		String dbtype2 = "access";
+		String dbtype3 = "mysql";
+		if (dbtype.equals(dbtype1)) {
+			changeDB3Item.setGraphic(new ImageView(new Image(
+					"./resources./haken.png")));
+			changeDB1Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
+			changeDB2Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
+		} else if (dbtype.equals(dbtype2)) {
+			changeDB1Item.setGraphic(new ImageView(new Image(
+					"./resources./haken.png")));
+			changeDB2Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
+			changeDB3Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
+
+		} else if (dbtype.equals(dbtype3)) {
+			changeDB2Item.setGraphic(new ImageView(new Image(
+					"./resources./haken.png")));
+			changeDB1Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
+			changeDB3Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
+		} else {
+			changeDB3Item.setGraphic(new ImageView(new Image(
+					"./resources./haken.png")));
+			changeDB1Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
+			changeDB2Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
+		}
+	}
+
 }

@@ -3,7 +3,6 @@ package de.travelbasys.training.dialog.menu.dbtype;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
@@ -17,7 +16,7 @@ public class ChooseDatabaseTypeModel extends ArrayList<String> implements Model 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private CustomerDAO d;
+	private String d;
 	private Locale lang;
 
 	/**
@@ -46,7 +45,7 @@ public class ChooseDatabaseTypeModel extends ArrayList<String> implements Model 
 		return lang;
 	}
 
-	public void setDAO(CustomerDAO d) {
+	public void setDAO(String d) {
 		this.d = d;
 	}
 
@@ -58,7 +57,7 @@ public class ChooseDatabaseTypeModel extends ArrayList<String> implements Model 
 		return true;
 	}
 
-	public CustomerDAO getDAO() {
+	public String getDAO() {
 		return d;
 	}
 
