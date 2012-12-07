@@ -10,14 +10,18 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class HelloWorld extends Application {
+
+
 	public static void main(String[] args) {
 		launch(args);
+
 	}
 
 	@Override
 	public void start(final Stage primaryStage) {
-
+		
 		primaryStage.setTitle("Hello World!");
+		
 		Button btn = new Button();
 		btn.setText("Say 'Hello World'");
 		btn.setOnAction(new EventHandler<ActionEvent>() {

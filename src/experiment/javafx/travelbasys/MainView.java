@@ -186,6 +186,7 @@ public class MainView implements View {
 
 		// Größe des Hauptfensters festlegen
 		mainframe = new Scene(root, 800, 600);
+		root.getStylesheets().add("./resources/stylesheet.css");
 		primaryStage.setScene(mainframe);
 
 		// Größe der MenuBar auf die Länge des Hauptfensters anpassen

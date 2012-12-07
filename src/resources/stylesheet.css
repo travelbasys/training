@@ -1,0 +1,22 @@
+.root{
+    -fx-font-size: 16pt;
+    -fx-font-family: "DaxlineOT-Medium";
+    -fx-base: rgb(226, 0, 46);
+    -fx-background: rgb(225, 228, 203);
+    -fx-background-color: rgb(255, 255, 255);
+}
+
+.button{
+    -fx-text-fill: rgb(255, 89, 23);
+    -fx-border-color: rgb(49, 89, 23);
+    -fx-border-radius: 4;
+    -fx-padding: 3 6 6 6;
+}
+
+.button1{
+    -fx-border-color: rgb(49, 89, 23);
+    -fx-border-radius: 4;
+    -fx-padding: 3 6 6 6;
+ -fx-font: 20pt "DaxlineOT-Medium";
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+}

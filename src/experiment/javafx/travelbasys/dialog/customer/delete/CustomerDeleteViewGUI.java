@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
 
@@ -27,10 +26,11 @@ public class CustomerDeleteViewGUI implements View {
 		customerIDField = new TextField();
 		Label lbl_customerid = new Label (AppContext.getMessage("CustomerID"));
 		Label lbl_menu = new Label(AppContext.getMessage("CustomerDelete"));
-		lbl_menu.setFont(new Font("Arial", 30));
 
 		grid = new GridPane();
 		searchButton = new Button(AppContext.getMessage("Search"));
+		searchButton.setId("search-button");
+		// searchButton.getStyleClass().add("button1");
 		searchButton.setDisable(true);
 
 		grid.setPadding(new Insets(10, 10, 10, 10));
