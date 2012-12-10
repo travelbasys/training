@@ -17,7 +17,7 @@ public class CustomerUpdateDialogGUI implements Dialog {
 
 	@Override
 	public void run() {
-		view.run();
+		view.init();
 		control.init(model, view);
 		view.show();
 	}

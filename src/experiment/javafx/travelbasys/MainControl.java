@@ -4,6 +4,8 @@ import java.util.Locale;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Dialogs;
+import javafx.stage.Stage;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Dialog;
@@ -145,6 +147,10 @@ public class MainControl implements Control {
 							Dao.setDAO(dbtype);
 							MainControl.this.view.dbtypeswitch(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
+							Dialogs.showInformationDialog(
+									(Stage) MainControl.this.view.getRoot()
+											.getScene().getWindow(),
+									"Datenbank gewechselt.");
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -161,6 +167,10 @@ public class MainControl implements Control {
 							Dao.setDAO(dbtype);
 							MainControl.this.view.dbtypeswitch(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
+							Dialogs.showInformationDialog(
+									(Stage) MainControl.this.view.getRoot()
+											.getScene().getWindow(),
+									"Datenbank gewechselt.");
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -176,6 +186,10 @@ public class MainControl implements Control {
 							Dao.setDAO(dbtype);
 							MainControl.this.view.dbtypeswitch(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
+							Dialogs.showInformationDialog(
+									(Stage) MainControl.this.view.getRoot()
+											.getScene().getWindow(),
+									"Datenbank gewechselt.");
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

@@ -34,8 +34,7 @@ public class CustomerCreateViewGUI implements View {
 		sendButton.setDisable(model.isInvalid());
 	}
 
-	@Override
-	public void run() {
+	public void init() {
 
 		lastNameField = new TextField();
 		firstNameField = new TextField();
@@ -129,6 +128,12 @@ public class CustomerCreateViewGUI implements View {
 
 	public BorderPane getRoot() {
 		return root;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

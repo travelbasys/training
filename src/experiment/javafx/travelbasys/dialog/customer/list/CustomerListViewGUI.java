@@ -24,8 +24,7 @@ public class CustomerListViewGUI implements View {
 		this.root = root;
 	}
 
-	@Override
-	public void run() {
+	public void init() {
 
 		table = new TableView<Customer>();
 
@@ -95,5 +94,11 @@ public class CustomerListViewGUI implements View {
 
 	public TableView getTable() {
 		return table;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }

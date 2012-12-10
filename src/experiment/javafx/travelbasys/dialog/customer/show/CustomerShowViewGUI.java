@@ -33,7 +33,7 @@ public class CustomerShowViewGUI implements View {
 	}
 
 
-	public void run() {
+	public void init() {
 
 		customerIDField = new TextField();
 		Label lbl_customerid = new Label(AppContext.getMessage("CustomerID"));
@@ -77,5 +77,12 @@ public class CustomerShowViewGUI implements View {
 
 	public Button getSearchButton() {
 		return searchButton;
+	}
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }

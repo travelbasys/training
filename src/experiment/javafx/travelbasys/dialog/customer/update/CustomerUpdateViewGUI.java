@@ -43,7 +43,7 @@ public class CustomerUpdateViewGUI implements View {
 	
 	}
 
-	public void run() {
+	public void init() {
 
 		customerIDField = new TextField();
 
@@ -172,6 +172,12 @@ public class CustomerUpdateViewGUI implements View {
 
 	public BorderPane getRoot() {
 		return root;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
