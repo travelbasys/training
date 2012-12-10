@@ -17,8 +17,8 @@ public class AboutDialogGUI implements Dialog {
 
 	@Override
 	public void run() {
+		view.init();
 		view.run();
-		view.show();
 	}
 
 }

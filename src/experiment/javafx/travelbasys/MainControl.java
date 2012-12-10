@@ -19,6 +19,7 @@ import experiment.javafx.travelbasys.dialog.customer.delete.CustomerDeleteDialog
 import experiment.javafx.travelbasys.dialog.customer.list.CustomerListDialogGUI;
 import experiment.javafx.travelbasys.dialog.customer.show.CustomerShowDialogGUI;
 import experiment.javafx.travelbasys.dialog.customer.update.CustomerUpdateDialogGUI;
+import experiment.javafx.travelbasys.dialog.other.ChangeConfiguration.ChangeConfigurationDialogGUI;
 
 public class MainControl implements Control {
 
@@ -196,6 +197,16 @@ public class MainControl implements Control {
 					}
 				});
 
+		this.view.getConfigurationItem().setOnAction(
+				new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent e) {
+						Dialog d = new ChangeConfigurationDialogGUI();
+						d.run();
+					}
+
+				});
 	}
 
 	@Override

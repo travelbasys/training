@@ -15,7 +15,7 @@ public class AboutViewGUI {
 		this.model = (AboutModelGUI) model;
 	}
 
-	public void run() {
+	public void init() {
 		Stage aboutwindow = new Stage();
 		aboutwindow.setTitle("About");
 
@@ -42,7 +42,7 @@ public class AboutViewGUI {
 		model.setWindow(aboutwindow);
 	}
 
-	public void show() {
+	public void run() {
 		model.getWindow().show();
 	}
 
