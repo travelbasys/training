@@ -16,7 +16,7 @@ public class Configuration {
 
 	private static final String DEFAULT_LANGUAGE = "en";
 	private static final String DEFAULT_DATABASE = "testdb";
-	private static String DEFAULT_DATABASE_TYPE = "";
+	private static String DEFAULT_DATABASE_TYPE = "default";
 	private static final String LANG_KEY = "lang";
 	private static final String DATABASE_KEY = "database";
 	private static String DATABASE_TYPE_KEY = "database_type";
@@ -59,12 +59,23 @@ public class Configuration {
 		// Wir kümmern uns jetzt um die DATABASE.
 
 		String dbtype;
+		String dbtype1 = "txt";
+		String dbtype2 = "mysql";
+		String dbtype3 = "access";
 		dbtype = (String) CommandLine.getOptions().get("database_type");
 		if (dbtype == null) {
 			dbtype = config.getProperty(DATABASE_TYPE_KEY,
 					DEFAULT_DATABASE_TYPE);
 		}
-		DATA.put("dbtype", dbtype.trim());
+		if (dbtype.equals(dbtype1)) {
+			DATA.put("dbtype", "1");
+		} else if (dbtype.equals(dbtype2)) {
+			DATA.put("dbtype", "2");
+		} else if (dbtype.equals(dbtype3)) {
+			DATA.put("dbtype", "3");
+		} else {
+			DATA.put("dbtype", "default");
+		}
 
 		String db;
 		db = (String) CommandLine.getOptions().get("database");

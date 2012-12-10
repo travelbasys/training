@@ -16,7 +16,7 @@ public class ChooseDatabaseTypeModel extends ArrayList<String> implements Model 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String d;
+	private int d;
 	private Locale lang;
 
 	/**
@@ -45,7 +45,7 @@ public class ChooseDatabaseTypeModel extends ArrayList<String> implements Model 
 		return lang;
 	}
 
-	public void setDAO(String d) {
+	public void setDAO(int d) {
 		this.d = d;
 	}
 
@@ -57,7 +57,7 @@ public class ChooseDatabaseTypeModel extends ArrayList<String> implements Model 
 		return true;
 	}
 
-	public String getDAO() {
+	public int getDAO() {
 		return d;
 	}
 

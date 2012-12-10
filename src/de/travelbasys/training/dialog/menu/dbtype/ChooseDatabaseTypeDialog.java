@@ -32,7 +32,7 @@ public class ChooseDatabaseTypeDialog implements Dialog {
 		view.run();
 	}
 
-	public String getDAO() {
+	public int getDAO() {
 		return model.getDAO();
 	}
 }

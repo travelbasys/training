@@ -18,7 +18,12 @@ public class MainDialog implements Dialog {
 	}
 
 	public void run() {
-		String dbtype = (String) Configuration.get("dbtype");
+		int dbtype;
+		try {
+			dbtype = Integer.parseInt((String) Configuration.get("dbtype"));
+		} catch (NumberFormatException e) {
+			dbtype = 0;
+		}
 		String db = (String) Configuration.get("db");
 		Dao.setDAO(dbtype);
 		Dao.getDAO().init(db);

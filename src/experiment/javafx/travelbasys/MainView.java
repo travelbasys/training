@@ -118,8 +118,7 @@ public class MainView implements View {
 		final Menu menu4 = new Menu(AppContext.getMessage("Options"));
 		final Menu menu5 = new Menu(AppContext.getMessage("Extras"));
 		final Menu menu6 = new Menu(AppContext.getMessage("Help"));
-		
-		
+
 		// Submenü
 
 		final Menu changeDB = new Menu(AppContext.getMessage("ChangeDatabase"));
@@ -170,7 +169,6 @@ public class MainView implements View {
 
 		// MenuBar erstellen
 		MenuBar menuBar = new MenuBar();
-		
 
 		// Der MenuBar eine Collection von Menu-Objekten hinzufügen
 		menuBar.getMenus().addAll(menu1, menu2, menu3, menu4, menu5, menu6);
@@ -181,7 +179,7 @@ public class MainView implements View {
 		// Label mit Willkommensnachricht anlegen
 		Label welcome = new Label(AppContext.getMessage("Welcome"));
 		welcome.getStyleClass().add("header1");
-		
+
 		// Dem Hauptpanel die Elemente hinzufügen
 		root.setTop(menuBar);
 		root.setCenter(welcome);
@@ -205,40 +203,40 @@ public class MainView implements View {
 		return root;
 	}
 
-	public void dbtypeswitch(String dbtype) {
-		String dbtype1 = "txt";
-		String dbtype2 = "access";
-		String dbtype3 = "mysql";
-		if (dbtype.equals(dbtype1)) {
-			changeDB3Item.setGraphic(new ImageView(new Image(
-					"./resources./haken.png")));
-			changeDB1Item.setGraphic(new ImageView(new Image(
-					"./resources./kreuz.png")));
-			changeDB2Item.setGraphic(new ImageView(new Image(
-					"./resources./kreuz.png")));
-		} else if (dbtype.equals(dbtype2)) {
+	public void dbtypeswitch(int dbtype) {
+		switch (dbtype) {
+		case 1:
 			changeDB1Item.setGraphic(new ImageView(new Image(
 					"./resources./haken.png")));
 			changeDB2Item.setGraphic(new ImageView(new Image(
 					"./resources./kreuz.png")));
 			changeDB3Item.setGraphic(new ImageView(new Image(
 					"./resources./kreuz.png")));
-
-		} else if (dbtype.equals(dbtype3)) {
+			break;
+		case 2:
 			changeDB2Item.setGraphic(new ImageView(new Image(
 					"./resources./haken.png")));
+			changeDB3Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
 			changeDB1Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
+			break;
+		case 3:
+			changeDB3Item.setGraphic(new ImageView(new Image(
+					"./resources./haken.png")));
+			changeDB2Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
+			changeDB1Item.setGraphic(new ImageView(new Image(
+					"./resources./kreuz.png")));
+			break;
+		default:
+			changeDB1Item.setGraphic(new ImageView(new Image(
+					"./resources./haken.png")));
+			changeDB2Item.setGraphic(new ImageView(new Image(
 					"./resources./kreuz.png")));
 			changeDB3Item.setGraphic(new ImageView(new Image(
 					"./resources./kreuz.png")));
-		} else {
-			changeDB3Item.setGraphic(new ImageView(new Image(
-					"./resources./haken.png")));
-			changeDB1Item.setGraphic(new ImageView(new Image(
-					"./resources./kreuz.png")));
-			changeDB2Item.setGraphic(new ImageView(new Image(
-					"./resources./kreuz.png")));
+			break;
 		}
 	}
-
 }

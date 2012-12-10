@@ -7,22 +7,22 @@ import de.travelbasys.training.dao.text.TxtCustomerDAO;
 public class Dao {
 
 	private static CustomerDAO dao;
-	private static String dbtype1 = "txt";
-	private static String dbtype2 = "access";
-	private static String dbtype3 = "mysql";
 
-	public static void setDAO(String dbtype) {
+	public static void setDAO(int dbtype) {
 		dao = null;
-		if (dbtype.equals(dbtype1)) {
+		switch (dbtype) {
+		case 1:
 			dao = new TxtCustomerDAO();
-		} else if (dbtype.equals(dbtype2)) {
-			dao = new AccessCustomerDAO();
-		} else if (dbtype.equals(dbtype3)) {
+			break;
+		case 2:
 			dao = new MySQLCustomerDAO();
-		} else {
-			System.err
-					.println("Datenbanktyp nicht angegeben, setze auf Default.");
+			break;
+		case 3:
+			dao = new AccessCustomerDAO();
+			break;
+		default:
 			dao = new TxtCustomerDAO();
+			break;
 		}
 	}
 
