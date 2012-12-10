@@ -1,35 +1,100 @@
 .root{
-
+    -fx-base:rgb(242,148,2);
     -fx-font: 12pt "DaxlineOT-Medium";
     -fx-background-image: url('./travelbasys_logo.JPG');
-	-fx-background-repeat: no-repeat;
-	-fx-background-position: right top;
-
-    
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right top;
     
 }
 
+.button:hover{
+    -fx-background-color: 
+      linear-gradient(
+            rgb(255,255,255) 0%,
+            orange,
+            rgb(242,148,2) 100%);
+    -fx-border-color: rgb(252,197,72);
+}
+
 #search-button{
-    -fx-font: 12pt "DaxlineOT-Medium";
-    -fx-background-color: rgb(242,148,2);
-    -fx-border-color: rgb(255, 89, 23);
+    -fx-background-color: 
+      linear-gradient(
+            rgb(240,240,240) 0%,
+            rgb(223,223,223) 100%);
     -fx-border-radius: 4;
     -fx-padding: 3 6 6 6;
-    -fx-font: 20pt "DaxlineOT-Medium";
-    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+    -fx-font: 20pt "DaxlineOT-Medium"; 
+}
+
+#search-button:hover{
+    -fx-background-color: 
+     linear-gradient(
+            rgb(255,255,255) 0%,
+            orange,
+            rgb(242,148,2) 100%);
+    -fx-border-color: rgb(252,197,72);
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 2 );
 }
 
 .header1{
     -fx-font: 30pt "DaxlineOT-Medium";
 }
 
-.text-field { 
+.header2{
+
+    -fx-font:24pt "DaxlineOT-Medium";
+}
+
+.text-field:hover { 
     -fx-border-color: rgb(242,148,2); 
+    -fx-background-insets: 1,1, 1;
+}
+
+.text-field { 
+    -fx-border-color: grey; 
+    -fx-background-insets: 1,1, 1;
+
+
+}
+
+.text-field:focused {
+    -fx-border-color: rgb(242,148,2);
+    -fx-effect: dropshadow( one-pass-box , rgb(242,148,2) , 5 , 0.3 , 3 , 3 );
+    -fx-background-insets: 0,0, 0;
 
 }
 
 .menu-bar{  
-   -fx-background-color: rgb(226,0,46);  
+    -fx-background-color: rgb(226,0,46);  
 }
 
+.menu-button{
+    -fx-font:14pt "DaxlineOT-Medium";
+    -fx-background-insets: 3,4,5,5;
+    -fx-background-radius: 3,2,2,2;
+}
+
+.menu-button:hover {
+    -fx-background-color: rgb(242,148,2);
+    -fx-text-fill: red;
+}
+
+.menu-button:showing{
+    -fx-background-insets: 3,4,5,5;
+    -fx-background-radius: 3,2,2,2;
+
+    -fx-background-color: rgb(242,148,2);
+}
+
+.table-view:focused{
+    -fx-background-color: orange;
+}
+
+.table-row-cell:hover{
+    -fx-background-color: rgb(223,223,223);
+}
+
+.table-row-cell:selected{
+    -fx-background-color: rgb(242,148,2);
+}
 
