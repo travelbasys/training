@@ -1,10 +1,15 @@
 package experiment.javafx.travelbasys.dialog.other.ChangeConfiguration;
 
+import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.framework.View;
+
 public class ChangeConfigurationControlGUI {
 
-	public void init(ChangeConfigurationModelGUI model,
-			ChangeConfigurationViewGUI view) {
-		
-	}
+	private ChangeConfigurationViewGUI view;
+	private ChangeConfigurationModelGUI model;
 
+	public void init(Model model, View view) {
+		this.view = (ChangeConfigurationViewGUI) view;
+		this.model = (ChangeConfigurationModelGUI) model;
+	}
 }
