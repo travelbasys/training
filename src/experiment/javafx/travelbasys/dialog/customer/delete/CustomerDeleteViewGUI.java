@@ -44,7 +44,7 @@ public class CustomerDeleteViewGUI implements View {
 				searchButton);
 	}
 
-	public void show() {
+	public void run() {
 		root.setCenter(grid);
 	}
 
@@ -63,12 +63,4 @@ public class CustomerDeleteViewGUI implements View {
 	public void update() {
 		searchButton.setDisable(model.isInvalid());
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
 }

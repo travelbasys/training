@@ -19,7 +19,7 @@ public class CustomerShowDialogGUI implements Dialog {
 	public void run() {
 		view.init();
 		control.init(model, view);
-		view.show();
+		view.run();
 	}
 
 }

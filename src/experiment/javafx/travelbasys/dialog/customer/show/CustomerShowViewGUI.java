@@ -59,7 +59,7 @@ public class CustomerShowViewGUI implements View {
 	protected void clear() {
 		customerIDField
 				.clear();}
-	public void show() {
+	public void run() {
 		root.setCenter(grid);
 	}
 
@@ -77,12 +77,5 @@ public class CustomerShowViewGUI implements View {
 
 	public Button getSearchButton() {
 		return searchButton;
-	}
-
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 }

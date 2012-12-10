@@ -85,7 +85,7 @@ public class CustomerCreateViewGUI implements View {
 				adressField, postalcodeField, emailField, sendButton);
 	}
 
-	public void show() {
+	public void run() {
 		root.setCenter(grid);
 
 	}
@@ -129,11 +129,4 @@ public class CustomerCreateViewGUI implements View {
 	public BorderPane getRoot() {
 		return root;
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

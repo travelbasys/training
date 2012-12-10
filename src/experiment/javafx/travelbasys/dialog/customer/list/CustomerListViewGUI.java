@@ -80,7 +80,7 @@ public class CustomerListViewGUI implements View {
 		vbox.getChildren().addAll(table);
 	}
 
-	public void show() {
+	public void run() {
 		root.setCenter(vbox);
 	}
 
@@ -94,11 +94,5 @@ public class CustomerListViewGUI implements View {
 
 	public TableView getTable() {
 		return table;
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 }

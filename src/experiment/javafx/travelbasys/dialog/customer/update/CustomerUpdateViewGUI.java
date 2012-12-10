@@ -118,7 +118,7 @@ public class CustomerUpdateViewGUI implements View {
 				newSearchButton);
 	}
 
-	public void show() {
+	public void run() {
 		root.setCenter(grid);
 	}
 
@@ -173,11 +173,4 @@ public class CustomerUpdateViewGUI implements View {
 	public BorderPane getRoot() {
 		return root;
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
