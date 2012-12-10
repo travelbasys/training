@@ -2,7 +2,6 @@ package experiment.javafx.travelbasys.dialog.other.ChangeConfiguration;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,7 +12,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
@@ -35,8 +33,9 @@ public class ChangeConfigurationViewGUI implements View {
 	private BorderPane root;
 	private TabPane tabPane;
 	private Scene scene;
-	private StackPane stackPane;
+	private BorderPane bottomPane;
 	private Button saveButton;
+	private Button abortButton;
 
 	public ChangeConfigurationViewGUI(Model model) {
 		this.model = (ChangeConfigurationModelGUI) model;
@@ -44,18 +43,23 @@ public class ChangeConfigurationViewGUI implements View {
 
 	public void init() {
 
+		abortButton = new Button("Abbrechen");
 		saveButton = new Button("Speichern");
-		stackPane = new StackPane();
-		stackPane.setPadding(new Insets(10, 10, 10, 10));
-		stackPane.getChildren().add(saveButton);
-		stackPane.alignmentProperty().set(Pos.CENTER_RIGHT);
+		saveButton.setDisable(true);
+		bottomPane = new BorderPane();
+		bottomPane.setPadding(new Insets(10, 10, 10, 10));
+		bottomPane.setCenter(abortButton);
+		bottomPane.setRight(saveButton);
 
 		databaseTypeComboBox = new ComboBox();
-		databaseTypeComboBox.getItems().addAll(AppContext.getMessage("DatabaseType1"),
-				AppContext.getMessage("DatabaseType2"), AppContext.getMessage("DatabaseType3"));
+		databaseTypeComboBox.getItems().addAll(
+				AppContext.getMessage("DatabaseType1"),
+				AppContext.getMessage("DatabaseType2"),
+				AppContext.getMessage("DatabaseType3"));
 
 		languageComboBox = new ComboBox();
-		languageComboBox.getItems().addAll("Englisch", "Deutsch");
+		languageComboBox.getItems().addAll(AppContext.getMessage("English"),
+				AppContext.getMessage("German"));
 
 		databaseNameField = new TextField();
 
@@ -110,9 +114,21 @@ public class ChangeConfigurationViewGUI implements View {
 		languageTab.setContent(languageTabContent);
 		tabPane.getTabs().addAll(databaseTab, languageTab);
 		root.setCenter(tabPane);
-		root.setBottom(stackPane);
+		root.setBottom(bottomPane);
 		scene = new Scene(root, 400, 400);
 		ChangeConfigurationWindow.setScene(scene);
+	}
+
+	public Stage getStage() {
+		return ChangeConfigurationWindow;
+	}
+
+	public Button getAbortButton() {
+		return abortButton;
+	}
+
+	public Button getSaveButton() {
+		return saveButton;
 	}
 
 	public TextField getDatabaseNameField() {
@@ -129,6 +145,10 @@ public class ChangeConfigurationViewGUI implements View {
 
 	public void run() {
 		ChangeConfigurationWindow.show();
+	}
+
+	public void updateSaveButton() {
+		saveButton.setDisable(model.saveIsInvalid());
 	}
 
 }

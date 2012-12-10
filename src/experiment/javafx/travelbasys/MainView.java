@@ -198,7 +198,7 @@ public class MainView implements View {
 	public void run() {
 		primaryStage.show();
 	}
-
+	
 	public BorderPane getRoot() {
 		return root;
 	}

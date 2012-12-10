@@ -1,28 +1,168 @@
 package experiment.javafx.travelbasys.dialog.other.ChangeConfiguration;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Locale;
+import java.util.Properties;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Dialogs;
+import de.travelbasys.training.dao.Dao;
+import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Configuration;
 
-public class ChangeConfigurationControlGUI {
+public class ChangeConfigurationControlGUI implements Control {
 
 	private ChangeConfigurationViewGUI view;
 	private ChangeConfigurationModelGUI model;
+	protected static final String DATABASE_KEY = "database";
+	protected static final String LANGUAGE_KEY = "lang";
+	protected static final String DATABASE_TYPE_KEY = "database_type";
+	protected static File ini = new File(Config.CONFIG_FILENAME);
 
 	@SuppressWarnings("unchecked")
 	public void init(Model model, View view) {
 		this.view = (ChangeConfigurationViewGUI) view;
 		this.model = (ChangeConfigurationModelGUI) model;
-		
-		this.view.getDatabaseNameField().setText((String) Configuration.get("db"));
-		
-		
+		this.view.getAbortButton().setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				ChangeConfigurationControlGUI.this.view.getStage().close();
+			}
+		});
+
+		this.view.getDatabaseNameField().textProperty()
+				.addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+
+						ChangeConfigurationControlGUI.this.model
+								.setDatabaseName(ChangeConfigurationControlGUI.this.view
+										.getDatabaseNameField().getText()
+										.trim());
+
+						ChangeConfigurationControlGUI.this.view
+								.updateSaveButton();
+
+					}
+				});
+
+		this.view.getDatabaseTypeComboBox().valueProperty()
+				.addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						String dbtypestr = newValue;
+						if (dbtypestr.equals(AppContext
+								.getMessage("DatabaseType1"))) {
+							ChangeConfigurationControlGUI.this.model
+									.setDatabaseTypeStr("txt");
+							ChangeConfigurationControlGUI.this.model
+									.setDatabaseType(1);
+						} else if (dbtypestr.equals(AppContext
+								.getMessage("DatabaseType2"))) {
+							ChangeConfigurationControlGUI.this.model
+									.setDatabaseTypeStr("mysql");
+							ChangeConfigurationControlGUI.this.model
+									.setDatabaseType(2);
+						} else if (dbtypestr.equals(AppContext
+								.getMessage("DatabaseType3"))) {
+							ChangeConfigurationControlGUI.this.model
+									.setDatabaseTypeStr("access");
+							ChangeConfigurationControlGUI.this.model
+									.setDatabaseType(3);
+						} else {
+							ChangeConfigurationControlGUI.this.model
+									.setDatabaseTypeStr("default");
+							ChangeConfigurationControlGUI.this.model
+									.setDatabaseType(0);
+
+						}
+
+						ChangeConfigurationControlGUI.this.view
+								.updateSaveButton();
+					}
+				});
+
+		this.view.getLanguageComboBox().valueProperty()
+				.addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+
+						ChangeConfigurationControlGUI.this.model
+								.setLanguage(newValue);
+
+						ChangeConfigurationControlGUI.this.view
+								.updateSaveButton();
+					}
+				});
+
+		this.view.getSaveButton().setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+
+					String lang = ChangeConfigurationControlGUI.this.model
+							.getLang();
+					if (lang.equals(AppContext.getMessage("German"))) {
+						lang = "de";
+						Config.updateLanguage(new Locale("de"));
+					} else if (lang.equals(AppContext.getMessage("English"))) {
+						lang = "en";
+						Config.updateLanguage(new Locale("en"));
+					} else {
+						lang = "default";
+						Config.updateLanguage(new Locale("en"));
+					}
+
+					Properties config = new Properties();
+					config.load(new FileInputStream(ini));
+					config.setProperty(DATABASE_KEY,
+							ChangeConfigurationControlGUI.this.model
+									.getDatabaseName());
+					config.setProperty(DATABASE_TYPE_KEY,
+							ChangeConfigurationControlGUI.this.model
+									.getDatabaseTypeStr());
+					config.setProperty(LANGUAGE_KEY, lang);
+					config.store(new FileOutputStream(ini),
+							"Travelbasys User Manager - Properties");
+
+					Dao.setDAO(ChangeConfigurationControlGUI.this.model
+							.getDatabaseType());
+					Dao.getDAO().init((String) Configuration.get("db"));
+
+					Dialogs.showInformationDialog(
+							ChangeConfigurationControlGUI.this.view.getStage(),
+							"Konfiguration gespeichert.", "Information",
+							AppContext.getMessage("TravelbasysManager"));
+				} catch (Exception e) {
+				}
+			}
+		});
+
+		this.view.getDatabaseNameField().setText(
+				(String) Configuration.get("db"));
 		this.view.getDatabaseTypeComboBox().setValue(getDBTypeString());
-		
 		this.view.getLanguageComboBox().setValue(getLanguageString());
+
 	}
 
 	private String getLanguageString() {
@@ -61,5 +201,9 @@ public class ChangeConfigurationControlGUI {
 			break;
 		}
 		return dbtypestr;
+	}
+
+	@Override
+	public void handleInput(Object value) throws Exception {
 	}
 }
