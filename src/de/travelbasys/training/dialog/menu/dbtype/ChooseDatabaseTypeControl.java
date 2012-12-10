@@ -31,19 +31,19 @@ public class ChooseDatabaseTypeControl {
 			public void handleInput(Object value) throws Exception {
 
 				int intValue = (Integer) value;
-				ChooseDatabaseTypeControl.this.model.setDAO(null);
+				ChooseDatabaseTypeControl.this.model.setDAO(0);
 
 				switch (intValue) {
 				case 0:
 					return;
 				case 1:
-					ChooseDatabaseTypeControl.this.model.setDAO("access");
+					ChooseDatabaseTypeControl.this.model.setDAO(1);
 					break;
 				case 2:
-					ChooseDatabaseTypeControl.this.model.setDAO("mysql");
+					ChooseDatabaseTypeControl.this.model.setDAO(2);
 					break;
 				case 3:
-					ChooseDatabaseTypeControl.this.model.setDAO("txt");
+					ChooseDatabaseTypeControl.this.model.setDAO(3);
 					break;
 				default:
 					throw new Exception("ChooseErrComp");

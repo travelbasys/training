@@ -11,6 +11,7 @@ import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Configuration;
 import experiment.javafx.travelbasys.dialog.about.AboutDialogGUI;
@@ -144,14 +145,15 @@ public class MainControl implements Control {
 					@Override
 					public void handle(ActionEvent event) {
 						try {
-							String dbtype = "access";
+							int dbtype = 1;
 							Dao.setDAO(dbtype);
 							MainControl.this.view.dbtypeswitch(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
 									(Stage) MainControl.this.view.getRoot()
 											.getScene().getWindow(),
-									"Datenbank gewechselt.");
+									"Datenbank gewechselt.", "Information",
+									AppContext.getMessage("TravelbasysManager"));
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -164,14 +166,15 @@ public class MainControl implements Control {
 					@Override
 					public void handle(ActionEvent event) {
 						try {
-							String dbtype = "mysql";
+							int dbtype = 2;
 							Dao.setDAO(dbtype);
 							MainControl.this.view.dbtypeswitch(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
 									(Stage) MainControl.this.view.getRoot()
 											.getScene().getWindow(),
-									"Datenbank gewechselt.");
+									"Datenbank gewechselt.", "Information",
+									AppContext.getMessage("TravelbasysManager"));
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -183,14 +186,15 @@ public class MainControl implements Control {
 					@Override
 					public void handle(ActionEvent event) {
 						try {
-							String dbtype = "txt";
+							int dbtype = 3;
 							Dao.setDAO(dbtype);
 							MainControl.this.view.dbtypeswitch(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
 									(Stage) MainControl.this.view.getRoot()
 											.getScene().getWindow(),
-									"Datenbank gewechselt.");
+									"Datenbank gewechselt.", "Information",
+									AppContext.getMessage("TravelbasysManager"));
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

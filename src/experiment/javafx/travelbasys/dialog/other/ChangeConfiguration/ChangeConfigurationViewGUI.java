@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AppContext;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class ChangeConfigurationViewGUI implements View {
@@ -42,6 +43,7 @@ public class ChangeConfigurationViewGUI implements View {
 	}
 
 	public void init() {
+
 		saveButton = new Button("Speichern");
 		stackPane = new StackPane();
 		stackPane.setPadding(new Insets(10, 10, 10, 10));
@@ -49,8 +51,8 @@ public class ChangeConfigurationViewGUI implements View {
 		stackPane.alignmentProperty().set(Pos.CENTER_RIGHT);
 
 		databaseTypeComboBox = new ComboBox();
-		databaseTypeComboBox.getItems().addAll("Textbasiert",
-				"MySQL Datenbank", "Access Datenbank");
+		databaseTypeComboBox.getItems().addAll(AppContext.getMessage("DatabaseType1"),
+				AppContext.getMessage("DatabaseType2"), AppContext.getMessage("DatabaseType3"));
 
 		languageComboBox = new ComboBox();
 		languageComboBox.getItems().addAll("Englisch", "Deutsch");
@@ -100,10 +102,10 @@ public class ChangeConfigurationViewGUI implements View {
 		tabPane = new TabPane();
 		databaseTab = new Tab("Database");
 		languageTab = new Tab("Language");
-		
+
 		databaseTab.setClosable(false);
 		languageTab.setClosable(false);
-		
+
 		databaseTab.setContent(databaseTabContent);
 		languageTab.setContent(languageTabContent);
 		tabPane.getTabs().addAll(databaseTab, languageTab);
@@ -111,6 +113,18 @@ public class ChangeConfigurationViewGUI implements View {
 		root.setBottom(stackPane);
 		scene = new Scene(root, 400, 400);
 		ChangeConfigurationWindow.setScene(scene);
+	}
+
+	public TextField getDatabaseNameField() {
+		return databaseNameField;
+	}
+
+	public ComboBox getDatabaseTypeComboBox() {
+		return databaseTypeComboBox;
+	}
+
+	public ComboBox getLanguageComboBox() {
+		return languageComboBox;
 	}
 
 	public void run() {
