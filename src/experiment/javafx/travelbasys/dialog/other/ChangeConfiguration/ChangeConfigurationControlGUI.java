@@ -130,7 +130,7 @@ public class ChangeConfigurationControlGUI implements Control {
 							Text oldValue, Text newValue) {
 
 						System.out.println(newValue.getText());
-						
+
 						if (!newValue.getText().isEmpty()) {
 							ChangeConfigurationControlGUI.this.model
 									.setLanguage(newValue.getText());
@@ -167,16 +167,24 @@ public class ChangeConfigurationControlGUI implements Control {
 
 				String lang = ChangeConfigurationControlGUI.this.model
 						.getLang();
-				if (lang.equals(AppContext.getMessage("German"))) {
+				int t = 0;
+				t = ChangeConfigurationControlGUI.this.view
+						.getLanguageComboBox().getSelectionModel()
+						.getSelectedIndex();
+
+				switch (t) {
+				case 0:
 					lang = "de";
-					Config.updateLanguage(new Locale("de"));
-				} else if (lang.equals(AppContext.getMessage("English"))) {
+					break;
+				case 1:
 					lang = "en";
-					Config.updateLanguage(new Locale("en"));
-				} else {
-					lang = "default";
-					Config.updateLanguage(new Locale("en"));
+					break;
+				default:
+					lang = "en";
+					break;
 				}
+
+				Config.updateLanguage(new Locale(lang));
 
 				config.setProperty(DATABASE_KEY,
 						ChangeConfigurationControlGUI.this.model
