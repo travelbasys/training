@@ -6,7 +6,7 @@ import de.travelbasys.training.util.AppContext;
 public class MyMenuItem extends MenuItem {
 
 	public MyMenuItem(String string) {
-		setStyle("");
+		setStyle("-fx-text-fill:red;");
 		setText(AppContext.getErrString(string));
 	}
 }

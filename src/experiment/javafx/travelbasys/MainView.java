@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.util.Configuration;
 
 public class MainView implements View {
 
@@ -185,7 +186,8 @@ public class MainView implements View {
 		// Dem Hauptpanel die Elemente hinzufügen
 		root.setTop(menuBar);
 		root.setCenter(welcome);
-		root.getStylesheets().add("./resources/test.css");
+		// root.getStylesheets().add("./resources/Windows7.css");
+		root.getStylesheets().add((String)Configuration.get("stylesheet"));
 
 		// Größe des Hauptfensters festlegen
 		mainframe = new Scene(root, 800, 600);

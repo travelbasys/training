@@ -14,6 +14,7 @@
             orange,
             rgb(242,148,2) 100%);
     -fx-border-color: rgb(252,197,72);
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 2 );
 }
 
 #search-button{
