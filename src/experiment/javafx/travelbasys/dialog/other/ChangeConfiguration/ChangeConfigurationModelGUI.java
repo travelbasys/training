@@ -1,6 +1,7 @@
 package experiment.javafx.travelbasys.dialog.other.ChangeConfiguration;
 
 import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.util.AppContext;
 
 public class ChangeConfigurationModelGUI implements Model {
 
@@ -14,10 +15,6 @@ public class ChangeConfigurationModelGUI implements Model {
 		this.stylesheet = stylesheet;
 	}
 
-	public void setDatabaseTypeStr(String dbtypestr) {
-		this.dbtypestr = dbtypestr;
-	}
-
 	public void setLanguage(String lang) {
 		this.lang = lang;
 	}
@@ -27,7 +24,8 @@ public class ChangeConfigurationModelGUI implements Model {
 	}
 
 	public boolean saveIsInvalid() {
-		return db.isEmpty() || dbtypestr.isEmpty() || lang.isEmpty() || stylesheet.isEmpty();
+		return db.isEmpty() || dbtype == 0 || lang.isEmpty()
+				|| stylesheet.isEmpty();
 	}
 
 	public String getDatabaseName() {
@@ -47,6 +45,20 @@ public class ChangeConfigurationModelGUI implements Model {
 	}
 
 	public String getDatabaseTypeStr() {
+		switch (dbtype) {
+		case 1:
+			dbtypestr = AppContext.getMessage("DatabaseType1");
+			break;
+		case 2:
+			dbtypestr = AppContext.getMessage("DatabaseType2");
+			break;
+		case 3:
+			dbtypestr = AppContext.getMessage("DatabaseType3");
+			break;
+		default:
+			dbtypestr = "default";
+			break;
+		}
 		return dbtypestr;
 	}
 

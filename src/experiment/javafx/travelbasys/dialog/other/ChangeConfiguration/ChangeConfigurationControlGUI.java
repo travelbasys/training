@@ -33,7 +33,6 @@ public class ChangeConfigurationControlGUI implements Control {
 	protected static File ini = new File(Config.CONFIG_FILENAME);
 	private Properties config;
 	private Text languagestr;
-	private Text dbtypestr;
 
 	@SuppressWarnings("unchecked")
 	public void init(Model model, View view) {
@@ -50,7 +49,6 @@ public class ChangeConfigurationControlGUI implements Control {
 		}
 
 		languagestr = new Text();
-		dbtypestr = new Text();
 
 		this.view.getAbortButton().setOnAction(new EventHandler<ActionEvent>() {
 
@@ -87,32 +85,13 @@ public class ChangeConfigurationControlGUI implements Control {
 							ObservableValue<? extends Text> observable,
 							Text oldValue, Text newValue) {
 
-						if (!newValue.getText().isEmpty()) {
+						int dbtype = (ChangeConfigurationControlGUI.this.view
+								.getDatabaseTypeComboBox().getSelectionModel()
+								.getSelectedIndex() + 1);
 
-							if (newValue.getText().equals(
-									AppContext.getMessage("DatabaseType1"))) {
-								ChangeConfigurationControlGUI.this.model
-										.setDatabaseTypeStr("txt");
-								ChangeConfigurationControlGUI.this.model
-										.setDatabaseType(1);
-							} else if (newValue.getText().equals(
-									AppContext.getMessage("DatabaseType2"))) {
-								ChangeConfigurationControlGUI.this.model
-										.setDatabaseTypeStr("mysql");
-								ChangeConfigurationControlGUI.this.model
-										.setDatabaseType(2);
-							} else if (newValue.getText().equals(
-									AppContext.getMessage("DatabaseType3"))) {
-								ChangeConfigurationControlGUI.this.model
-										.setDatabaseTypeStr("access");
-								ChangeConfigurationControlGUI.this.model
-										.setDatabaseType(3);
-							} else {
-								ChangeConfigurationControlGUI.this.model
-										.setDatabaseTypeStr("default");
-								ChangeConfigurationControlGUI.this.model
-										.setDatabaseType(0);
-							}
+						if (!newValue.getText().isEmpty()) {
+							ChangeConfigurationControlGUI.this.model
+									.setDatabaseType(dbtype);
 						}
 
 						ChangeConfigurationControlGUI.this.view
@@ -128,8 +107,6 @@ public class ChangeConfigurationControlGUI implements Control {
 					public void changed(
 							ObservableValue<? extends Text> observable,
 							Text oldValue, Text newValue) {
-
-						System.out.println(newValue.getText());
 
 						if (!newValue.getText().isEmpty()) {
 							ChangeConfigurationControlGUI.this.model
@@ -167,7 +144,7 @@ public class ChangeConfigurationControlGUI implements Control {
 
 				String lang = ChangeConfigurationControlGUI.this.model
 						.getLang();
-				
+
 				int t = 0;
 				t = ChangeConfigurationControlGUI.this.view
 						.getLanguageComboBox().getSelectionModel()
@@ -219,7 +196,7 @@ public class ChangeConfigurationControlGUI implements Control {
 
 		this.view.getDatabaseNameField().setText(
 				(String) Configuration.get("db"));
-		this.view.getDatabaseTypeComboBox().setValue(getDBTypeString());
+		setConfigDBTypeString();
 		this.view.getLanguageComboBox().setValue(getLanguageString());
 		this.view.getStylesheetComboBox().setValue(config.get("stylesheet"));
 
@@ -236,7 +213,7 @@ public class ChangeConfigurationControlGUI implements Control {
 		return languagestr;
 	}
 
-	private Text getDBTypeString() {
+	private void setConfigDBTypeString() {
 		int dbtype;
 		try {
 			dbtype = Integer.parseInt((String) Configuration.get("dbtype"));
@@ -246,19 +223,22 @@ public class ChangeConfigurationControlGUI implements Control {
 
 		switch (dbtype) {
 		case 1:
-			dbtypestr.setText(AppContext.getMessage("DatabaseType1"));
+			ChangeConfigurationControlGUI.this.view.getDatabaseTypeComboBox()
+					.getSelectionModel().select(0);
 			break;
 		case 2:
-			dbtypestr.setText(AppContext.getMessage("DatabaseType2"));
+			ChangeConfigurationControlGUI.this.view.getDatabaseTypeComboBox()
+					.getSelectionModel().select(1);
 			break;
 		case 3:
-			dbtypestr.setText(AppContext.getMessage("DatabaseType3"));
+			ChangeConfigurationControlGUI.this.view.getDatabaseTypeComboBox()
+					.getSelectionModel().select(2);
 			break;
 		default:
-			dbtypestr.setText("default");
+			ChangeConfigurationControlGUI.this.view.getDatabaseTypeComboBox()
+					.getSelectionModel().select(0);
 			break;
 		}
-		return dbtypestr;
 	}
 
 	@Override
