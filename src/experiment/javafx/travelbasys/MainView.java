@@ -35,6 +35,7 @@ public class MainView implements View {
 	private MenuItem changeLanguage1Item;
 	private MenuItem changeLanguage2Item;
 	private MenuItem lotteryItem;
+	private MyMenuItem testItem;
 	private Scene mainframe;
 
 	public MainView(MainModel model, Stage stage) {
@@ -129,6 +130,7 @@ public class MainView implements View {
 
 		exportingItem = new MenuItem(AppContext.getMessage("ExportTo"));
 		exportingItem.setId("export-item");
+		testItem = new MyMenuItem("English");
 		importingItem = new MenuItem(AppContext.getMessage("ImportFrom"));
 		exitItem = new MenuItem(AppContext.getMessage("Exit"));
 		customerCreateItem = new MenuItem(AppContext.getMessage("NewCustomer"));
@@ -160,7 +162,7 @@ public class MainView implements View {
 
 		// Füge Items (auch Submenüs) den Menüpunkten hinzu.
 
-		menu1.getItems().addAll(exportingItem, importingItem, exitItem);
+		menu1.getItems().addAll(exportingItem, importingItem, testItem, exitItem);
 		menu3.getItems().addAll(customerCreateItem, customerShowItem,
 				customerEditItem, customerDeleteItem, customerShowAllItem);
 		menu4.getItems().addAll(changeLanguage, changeDB, configurationItem);
@@ -183,7 +185,7 @@ public class MainView implements View {
 		// Dem Hauptpanel die Elemente hinzufügen
 		root.setTop(menuBar);
 		root.setCenter(welcome);
-		root.getStylesheets().add("./resources/stylesheet.css");
+		root.getStylesheets().add("./resources/test.css");
 
 		// Größe des Hauptfensters festlegen
 		mainframe = new Scene(root, 800, 600);
