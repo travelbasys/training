@@ -167,6 +167,7 @@ public class ChangeConfigurationControlGUI implements Control {
 
 				String lang = ChangeConfigurationControlGUI.this.model
 						.getLang();
+				
 				int t = 0;
 				t = ChangeConfigurationControlGUI.this.view
 						.getLanguageComboBox().getSelectionModel()
@@ -174,10 +175,10 @@ public class ChangeConfigurationControlGUI implements Control {
 
 				switch (t) {
 				case 0:
-					lang = "de";
+					lang = "en";
 					break;
 				case 1:
-					lang = "en";
+					lang = "de";
 					break;
 				default:
 					lang = "en";
