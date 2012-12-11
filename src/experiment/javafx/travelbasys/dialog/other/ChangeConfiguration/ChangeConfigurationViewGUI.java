@@ -24,12 +24,15 @@ public class ChangeConfigurationViewGUI implements View {
 	private Stage ChangeConfigurationWindow;
 	private Tab databaseTab;
 	private Tab languageTab;
+	private Tab stylesheetTab;
 	private ComboBox databaseTypeComboBox;
 	private ComboBox languageComboBox;
+	private ComboBox stylesheetComboBox;
 	private TextField databaseNameField;
 	private Label databaseTypeLabel;
 	private Label databaseNameLabel;
 	private Label languageLabel;
+	private Label stylesheetLabel;
 	private BorderPane root;
 	private TabPane tabPane;
 	private Scene scene;
@@ -61,15 +64,26 @@ public class ChangeConfigurationViewGUI implements View {
 		languageComboBox.getItems().addAll(AppContext.getMessage("English"),
 				AppContext.getMessage("German"));
 
+		stylesheetComboBox = new ComboBox();
+		stylesheetComboBox.setPrefWidth(100);
+		stylesheetComboBox.getItems().addAll();
+
 		databaseNameField = new TextField();
 
 		databaseTypeLabel = new Label("Datenbanktyp:");
 		databaseNameLabel = new Label("Datenbankname:");
 		languageLabel = new Label("Sprache:");
+		stylesheetLabel = new Label("Stylesheet:");
 
 		// Create Language & Database -Tabs
 		GridPane databaseTabContent = new GridPane();
 		GridPane languageTabContent = new GridPane();
+		GridPane stylesheetTabContent = new GridPane();
+
+		// Stylesheet-Tab
+		stylesheetTabContent.setPadding(new Insets(10, 10, 10, 10));
+		stylesheetTabContent.setVgap(5);
+		stylesheetTabContent.setHgap(5);
 
 		// Database-Tab
 		databaseTabContent.setPadding(new Insets(10, 10, 10, 10));
@@ -80,6 +94,12 @@ public class ChangeConfigurationViewGUI implements View {
 		languageTabContent.setPadding(new Insets(10, 10, 10, 10));
 		languageTabContent.setVgap(5);
 		languageTabContent.setHgap(5);
+
+		// Stylesheet-Tab
+		GridPane.setConstraints(stylesheetLabel, 0, 0);
+		GridPane.setValignment(stylesheetLabel, VPos.CENTER);
+		GridPane.setHalignment(stylesheetLabel, HPos.RIGHT);
+		GridPane.setConstraints(stylesheetComboBox, 1, 0);
 
 		// Database-Tab
 		GridPane.setConstraints(databaseTypeLabel, 0, 0);
@@ -99,6 +119,8 @@ public class ChangeConfigurationViewGUI implements View {
 				databaseNameField, databaseTypeLabel, databaseTypeComboBox);
 		languageTabContent.getChildren()
 				.addAll(languageLabel, languageComboBox);
+		stylesheetTabContent.getChildren().addAll(stylesheetLabel,
+				stylesheetComboBox);
 
 		ChangeConfigurationWindow = new Stage();
 		ChangeConfigurationWindow.setTitle("ChangeConfiguration");
@@ -106,13 +128,16 @@ public class ChangeConfigurationViewGUI implements View {
 		tabPane = new TabPane();
 		databaseTab = new Tab("Database");
 		languageTab = new Tab("Language");
+		stylesheetTab = new Tab("Stylesheet");
 
 		databaseTab.setClosable(false);
 		languageTab.setClosable(false);
+		stylesheetTab.setClosable(false);
 
 		databaseTab.setContent(databaseTabContent);
 		languageTab.setContent(languageTabContent);
-		tabPane.getTabs().addAll(databaseTab, languageTab);
+		stylesheetTab.setContent(stylesheetTabContent);
+		tabPane.getTabs().addAll(databaseTab, languageTab, stylesheetTab);
 		root.setCenter(tabPane);
 		root.setBottom(bottomPane);
 		scene = new Scene(root, 400, 400);
@@ -149,6 +174,10 @@ public class ChangeConfigurationViewGUI implements View {
 
 	public void updateSaveButton() {
 		saveButton.setDisable(model.saveIsInvalid());
+	}
+
+	public ComboBox getStylesheetComboBox() {
+		return stylesheetComboBox;
 	}
 
 }

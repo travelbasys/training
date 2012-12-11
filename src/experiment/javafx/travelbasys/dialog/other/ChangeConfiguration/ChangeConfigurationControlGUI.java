@@ -2,7 +2,9 @@ package experiment.javafx.travelbasys.dialog.other.ChangeConfiguration;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -25,6 +27,7 @@ public class ChangeConfigurationControlGUI implements Control {
 	private ChangeConfigurationModelGUI model;
 	protected static final String DATABASE_KEY = "database";
 	protected static final String LANGUAGE_KEY = "lang";
+	protected static final String STYLESHEET_KEY = "stylesheet";
 	protected static final String DATABASE_TYPE_KEY = "database_type";
 	protected static File ini = new File(Config.CONFIG_FILENAME);
 
@@ -32,6 +35,16 @@ public class ChangeConfigurationControlGUI implements Control {
 	public void init(Model model, View view) {
 		this.view = (ChangeConfigurationViewGUI) view;
 		this.model = (ChangeConfigurationModelGUI) model;
+
+		final Properties config = new Properties();
+		try {
+			config.load(new FileInputStream(ini));
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
 		this.view.getAbortButton().setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -114,47 +127,67 @@ public class ChangeConfigurationControlGUI implements Control {
 					}
 				});
 
+		this.view.getStylesheetComboBox().valueProperty()
+				.addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+
+						ChangeConfigurationControlGUI.this.model
+								.setStylesheet(newValue);
+
+						ChangeConfigurationControlGUI.this.view
+								.updateSaveButton();
+					}
+				});
+
 		this.view.getSaveButton().setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
+
+				String lang = ChangeConfigurationControlGUI.this.model
+						.getLang();
+				if (lang.equals(AppContext.getMessage("German"))) {
+					lang = "de";
+					Config.updateLanguage(new Locale("de"));
+				} else if (lang.equals(AppContext.getMessage("English"))) {
+					lang = "en";
+					Config.updateLanguage(new Locale("en"));
+				} else {
+					lang = "default";
+					Config.updateLanguage(new Locale("en"));
+				}
+
+				config.setProperty(DATABASE_KEY,
+						ChangeConfigurationControlGUI.this.model
+								.getDatabaseName());
+				config.setProperty(DATABASE_TYPE_KEY,
+						ChangeConfigurationControlGUI.this.model
+								.getDatabaseTypeStr());
+				config.setProperty(LANGUAGE_KEY, lang);
+				config.setProperty(STYLESHEET_KEY,
+						ChangeConfigurationControlGUI.this.model
+								.getStylesheet());
 				try {
-
-					String lang = ChangeConfigurationControlGUI.this.model
-							.getLang();
-					if (lang.equals(AppContext.getMessage("German"))) {
-						lang = "de";
-						Config.updateLanguage(new Locale("de"));
-					} else if (lang.equals(AppContext.getMessage("English"))) {
-						lang = "en";
-						Config.updateLanguage(new Locale("en"));
-					} else {
-						lang = "default";
-						Config.updateLanguage(new Locale("en"));
-					}
-
-					Properties config = new Properties();
-					config.load(new FileInputStream(ini));
-					config.setProperty(DATABASE_KEY,
-							ChangeConfigurationControlGUI.this.model
-									.getDatabaseName());
-					config.setProperty(DATABASE_TYPE_KEY,
-							ChangeConfigurationControlGUI.this.model
-									.getDatabaseTypeStr());
-					config.setProperty(LANGUAGE_KEY, lang);
 					config.store(new FileOutputStream(ini),
 							"Travelbasys User Manager - Properties");
-
-					Dao.setDAO(ChangeConfigurationControlGUI.this.model
-							.getDatabaseType());
-					Dao.getDAO().init((String) Configuration.get("db"));
-
-					Dialogs.showInformationDialog(
-							ChangeConfigurationControlGUI.this.view.getStage(),
-							"Konfiguration gespeichert.", "Information",
-							AppContext.getMessage("TravelbasysManager"));
-				} catch (Exception e) {
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
+
+				Dao.setDAO(ChangeConfigurationControlGUI.this.model
+						.getDatabaseType());
+				Dao.getDAO().init((String) Configuration.get("db"));
+
+				Dialogs.showInformationDialog(
+						ChangeConfigurationControlGUI.this.view.getStage(),
+						"Konfiguration gespeichert.", "Information",
+						AppContext.getMessage("TravelbasysManager"));
 			}
 		});
 
@@ -162,6 +195,7 @@ public class ChangeConfigurationControlGUI implements Control {
 				(String) Configuration.get("db"));
 		this.view.getDatabaseTypeComboBox().setValue(getDBTypeString());
 		this.view.getLanguageComboBox().setValue(getLanguageString());
+		this.view.getStylesheetComboBox().setValue(config.get("stylesheet"));
 
 	}
 

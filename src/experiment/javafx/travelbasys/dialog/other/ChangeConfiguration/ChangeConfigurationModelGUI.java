@@ -7,7 +7,12 @@ public class ChangeConfigurationModelGUI implements Model {
 	private String db = "";
 	private String dbtypestr = "";
 	private String lang = "";
-	private int dbtype;
+	private int dbtype = 0;
+	private String stylesheet = "";
+
+	public void setStylesheet(String stylesheet) {
+		this.stylesheet = stylesheet;
+	}
 
 	public void setDatabaseTypeStr(String dbtypestr) {
 		this.dbtypestr = dbtypestr;
@@ -22,7 +27,7 @@ public class ChangeConfigurationModelGUI implements Model {
 	}
 
 	public boolean saveIsInvalid() {
-		return db.isEmpty() || dbtypestr.isEmpty() || lang.isEmpty();
+		return db.isEmpty() || dbtypestr.isEmpty() || lang.isEmpty() || stylesheet.isEmpty();
 	}
 
 	public String getDatabaseName() {
@@ -43,5 +48,9 @@ public class ChangeConfigurationModelGUI implements Model {
 
 	public String getDatabaseTypeStr() {
 		return dbtypestr;
+	}
+
+	public String getStylesheet() {
+		return stylesheet;
 	}
 }
