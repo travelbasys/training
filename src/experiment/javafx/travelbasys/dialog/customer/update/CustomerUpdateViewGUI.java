@@ -9,8 +9,11 @@ import javafx.scene.layout.GridPane;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.util.Configuration;
+import de.travelbasys.training.util.ConfigurationEvent;
+import de.travelbasys.training.util.ConfigurationListener;
 
-public class CustomerUpdateViewGUI implements View {
+public class CustomerUpdateViewGUI implements View, ConfigurationListener {
 
 	private CustomerUpdateModelGUI model;
 	private Button searchButton;
@@ -27,6 +30,14 @@ public class CustomerUpdateViewGUI implements View {
 	private GridPane grid;
 	private Label lbl_age_hint;
 	private Label lbl_postalcode_hint;
+	private Label lbl_customerid;
+	private Label lbl_lastname;
+	private Label lbl_firstname;
+	private Label lbl_age;
+	private Label lbl_adress;
+	private Label lbl_postalcode;
+	private Label lbl_email;
+	private Label lbl_menu;
 
 	public CustomerUpdateViewGUI(Model model, BorderPane root) {
 		this.model = (CustomerUpdateModelGUI) model;
@@ -44,6 +55,8 @@ public class CustomerUpdateViewGUI implements View {
 	}
 
 	public void init() {
+		
+		Configuration.addConfigurationListener(this);
 
 		customerIDField = new TextField();
 
@@ -65,28 +78,25 @@ public class CustomerUpdateViewGUI implements View {
 		emailField = new TextField();
 		emailField.setEditable(false);
 
-		Label lbl_menu = new Label(AppContext.getMessage("CustomerEdit"));
-
-		Label lbl_customerid = new Label(AppContext.getMessage("CustomerID"));
-		Label lbl_lastname = new Label(AppContext.getMessage("Lastname"));
-		Label lbl_firstname = new Label(AppContext.getMessage("Firstname"));
-		Label lbl_age = new Label(AppContext.getMessage("Age"));
-		Label lbl_adress = new Label(AppContext.getMessage("Adress"));
-		Label lbl_postalcode = new Label(AppContext.getMessage("Postalcode"));
-		Label lbl_email = new Label(AppContext.getMessage("Email"));
-		lbl_age_hint = new Label(AppContext.getMessage("ValidAge"));
-		lbl_postalcode_hint = new Label(
-				AppContext.getMessage("ValidPostalcode"));
+		lbl_menu = new Label();
+lbl_menu.setId("header2");
+		lbl_customerid = new Label();
+		lbl_lastname = new Label();
+		lbl_firstname = new Label();
+		lbl_age = new Label();
+		lbl_adress = new Label();
+		lbl_postalcode = new Label();
+		lbl_email = new Label();
+		lbl_age_hint = new Label();
+		lbl_postalcode_hint = new Label();
 
 		grid = new GridPane();
-		sendButton = new Button(AppContext.getMessage("Send"));
+		sendButton = new Button();
 		sendButton.setDisable(true);
-		searchButton = new Button(AppContext.getMessage("Search"));
-		searchButton.setId("search-button");
+		searchButton = new Button();
 		searchButton.setDisable(true);
-		newSearchButton = new Button(AppContext.getMessage("NewSearch"));
+		newSearchButton = new Button();
 		newSearchButton.setDisable(true);
-
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.setVgap(5);
 		grid.setHgap(5);
@@ -116,6 +126,9 @@ public class CustomerUpdateViewGUI implements View {
 				lastNameField, firstNameField, ageField, adressField,
 				postalcodeField, emailField, sendButton, searchButton,
 				newSearchButton);
+		
+		handleConfigurationEvent(null);
+
 	}
 
 	public void run() {
@@ -172,5 +185,22 @@ public class CustomerUpdateViewGUI implements View {
 
 	public BorderPane getRoot() {
 		return root;
+	}
+
+	@Override
+	public void handleConfigurationEvent(ConfigurationEvent e) {
+		lbl_menu.setText(AppContext.getMessage("CustomerEdit"));
+		lbl_customerid.setText(AppContext.getMessage("CustomerID"));
+		lbl_lastname.setText(AppContext.getMessage("Lastname"));
+		lbl_firstname.setText(AppContext.getMessage("Firstname"));
+		lbl_age.setText(AppContext.getMessage("Age"));
+		lbl_adress.setText(AppContext.getMessage("Adress"));
+		lbl_postalcode.setText(AppContext.getMessage("Postalcode"));
+		lbl_email.setText(AppContext.getMessage("Email"));
+		lbl_age_hint.setText(AppContext.getMessage("ValidAge"));
+		lbl_postalcode_hint.setText(AppContext.getMessage("ValidPostalcode"));
+		sendButton.setText(AppContext.getMessage("Send"));
+		searchButton.setText(AppContext.getMessage("Search"));
+		newSearchButton.setText(AppContext.getMessage("NewSearch"));
 	}
 }

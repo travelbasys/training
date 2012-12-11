@@ -28,7 +28,6 @@ public class MainDialog implements Dialog {
 		Dao.setDAO(dbtype);
 		Dao.getDAO().init(db);
 		view.init();
-		view.dbtypeswitch(dbtype);
 		control.init(view);
 		view.run();
 	}

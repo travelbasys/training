@@ -9,8 +9,11 @@ import javafx.scene.layout.GridPane;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.util.Configuration;
+import de.travelbasys.training.util.ConfigurationEvent;
+import de.travelbasys.training.util.ConfigurationListener;
 
-public class CustomerCreateViewGUI implements View {
+public class CustomerCreateViewGUI implements View, ConfigurationListener {
 
 	private CustomerCreateModelGUI model;
 	private Button sendButton;
@@ -25,6 +28,14 @@ public class CustomerCreateViewGUI implements View {
 	private Label lbl_age_hint;
 	private Label lbl_postalcode_hint;
 
+	private Label lbl_menu;
+	private Label lbl_lastname;
+	private Label lbl_firstname;
+	private Label lbl_age;
+	private Label lbl_adress;
+	private Label lbl_postalcode;
+	private Label lbl_email;
+
 	public CustomerCreateViewGUI(Model model, BorderPane root) {
 		this.model = (CustomerCreateModelGUI) model;
 		this.root = root;
@@ -36,6 +47,8 @@ public class CustomerCreateViewGUI implements View {
 
 	public void init() {
 
+		Configuration.addConfigurationListener(this);
+
 		lastNameField = new TextField();
 		firstNameField = new TextField();
 		ageField = new TextField();
@@ -43,20 +56,20 @@ public class CustomerCreateViewGUI implements View {
 		postalcodeField = new TextField();
 		emailField = new TextField();
 
-		Label lbl_menu = new Label(AppContext.getMessage("CustomerCreate"));
-
-		Label lbl_lastname = new Label(AppContext.getMessage("Lastname"));
-		Label lbl_firstname = new Label(AppContext.getMessage("Firstname"));
-		Label lbl_age = new Label(AppContext.getMessage("Age"));
-		Label lbl_adress = new Label(AppContext.getMessage("Adress"));
-		Label lbl_postalcode = new Label(AppContext.getMessage("Postalcode"));
-		Label lbl_email = new Label(AppContext.getMessage("Email"));
-		lbl_age_hint = new Label(AppContext.getMessage("ValidAge"));
-		lbl_postalcode_hint = new Label(
-				AppContext.getMessage("ValidPostalcode"));
+		lbl_menu = new Label();
+		lbl_menu.setId("header2");
+		
+		lbl_lastname = new Label();
+		lbl_firstname = new Label();
+		lbl_age = new Label();
+		lbl_adress = new Label();
+		lbl_postalcode = new Label();
+		lbl_email = new Label();
+		lbl_age_hint = new Label();
+		lbl_postalcode_hint = new Label();
 
 		grid = new GridPane();
-		sendButton = new Button("Send");
+		sendButton = new Button();
 		sendButton.setDisable(true);
 
 		grid.setPadding(new Insets(10, 10, 10, 10));
@@ -83,6 +96,10 @@ public class CustomerCreateViewGUI implements View {
 				lbl_age, lbl_adress, lbl_postalcode, lbl_email, lbl_age_hint,
 				lbl_postalcode_hint, lastNameField, firstNameField, ageField,
 				adressField, postalcodeField, emailField, sendButton);
+
+		handleConfigurationEvent(null);
+
+	
 	}
 
 	public void run() {
@@ -129,4 +146,18 @@ public class CustomerCreateViewGUI implements View {
 	public BorderPane getRoot() {
 		return root;
 	}
+
+	public void handleConfigurationEvent(ConfigurationEvent e) {
+		lbl_menu.setText(AppContext.getMessage("CustomerCreate"));
+		lbl_lastname.setText(AppContext.getMessage("Lastname"));
+		lbl_firstname.setText(AppContext.getMessage("Firstname"));
+		lbl_age.setText(AppContext.getMessage("Age"));
+		lbl_adress.setText(AppContext.getMessage("Adress"));
+		lbl_postalcode.setText(AppContext.getMessage("Postalcode"));
+		lbl_email.setText(AppContext.getMessage("Email"));
+		lbl_age_hint.setText(AppContext.getMessage("ValidAge"));
+		lbl_postalcode_hint.setText(AppContext.getMessage("ValidPostalcode"));
+		sendButton.setText("Send");
+	}
+
 }

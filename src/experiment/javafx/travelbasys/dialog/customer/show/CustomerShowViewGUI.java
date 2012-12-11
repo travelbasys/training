@@ -3,14 +3,18 @@ package experiment.javafx.travelbasys.dialog.customer.show;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.util.Configuration;
+import de.travelbasys.training.util.ConfigurationEvent;
+import de.travelbasys.training.util.ConfigurationListener;
 
-public class CustomerShowViewGUI implements View {
+public class CustomerShowViewGUI implements View, ConfigurationListener {
 
 	public void setSearchButton(Button searchButton) {
 		this.searchButton = searchButton;
@@ -27,6 +31,8 @@ public class CustomerShowViewGUI implements View {
 	private GridPane grid;
 	private TextField customerIDField;
 	private Button searchButton;
+	private Labeled lbl_customerid;
+	private Labeled lbl_menu;
 	
 	public void update() {
 		searchButton.setDisable(model.isInvalid());
@@ -35,16 +41,16 @@ public class CustomerShowViewGUI implements View {
 
 	public void init() {
 
+		Configuration.addConfigurationListener(this);
+		
 		customerIDField = new TextField();
-		Label lbl_customerid = new Label(AppContext.getMessage("CustomerID"));
-		Label lbl_menu = new Label(AppContext.getMessage("CustomerShow"));
-
-
+		lbl_customerid = new Label();
+		lbl_menu = new Label();
+		lbl_menu.setId("header2");
+		
 		grid = new GridPane();
-		searchButton = new Button(AppContext.getMessage("Search"));
-		searchButton.setId("search-button");
+		searchButton = new Button();
 		searchButton.setDisable(true);
-
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.setVgap(5);
 		grid.setHgap(5);
@@ -55,6 +61,9 @@ public class CustomerShowViewGUI implements View {
 		grid.getChildren().addAll(lbl_menu, lbl_customerid, customerIDField,
 				searchButton);
 
+		handleConfigurationEvent(null);
+
+		
 	}
 	protected void clear() {
 		customerIDField
@@ -78,4 +87,15 @@ public class CustomerShowViewGUI implements View {
 	public Button getSearchButton() {
 		return searchButton;
 	}
+	
+	
+
+
+	@Override
+	public void handleConfigurationEvent(ConfigurationEvent e) {
+		lbl_customerid.setText(AppContext.getMessage("CustomerID"));
+		lbl_menu.setText(AppContext.getMessage("CustomerShow"));
+		searchButton.setText(AppContext.getMessage("Search"));
+	}
+	
 }

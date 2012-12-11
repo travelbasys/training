@@ -3,7 +3,9 @@ package de.travelbasys.training.util;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
@@ -23,10 +25,13 @@ public class Configuration {
 	private static final String STYLESHEET_KEY = "stylesheet";
 	private static final String STYLESHEET_PATH = "./resources/";
 	private static final String DEFAULT_STYLESHEET = "rbsjava.css";
+	
 	private static final String ERR_FILENOTFOUND = (Config.CONFIG_FILENAME + " existiert nicht.");
 	private static final int EXIT_ERR_STATUS = 1;
 
 	private static final Map<String, String> DATA = new HashMap<String, String>();
+	
+	private static List<ConfigurationListener> listeners = new ArrayList<ConfigurationListener>();
 
 	public static void init(Map<?, ?> options) {
 		/**
@@ -100,4 +105,17 @@ public class Configuration {
 		return DATA.get(key);
 	}
 
+	public static void addConfigurationListener(ConfigurationListener listener){
+		listeners.add(listener);
+	}
+	
+	public static void removeConfigurationListener(ConfigurationListener listener){
+		listeners.remove(listener);
+	}
+
+	public static void fireConfigurationEvent(ConfigurationEvent e) {
+		for (ConfigurationListener listener : listeners) {
+			listener.handleConfigurationEvent(e);
+		}
+	}
 }

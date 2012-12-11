@@ -9,9 +9,10 @@ public class Config {
 	public static ResourceBundle BUNDLE = ResourceBundle.getBundle(baseName);
 
 	public static void updateLanguage(Locale locale) {
-
+		
 		Locale.setDefault(locale);
 		BUNDLE = ResourceBundle.getBundle(baseName);
 
+		Configuration.fireConfigurationEvent( ConfigurationEvent.LOCALE );
 	}
 }

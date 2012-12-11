@@ -121,8 +121,8 @@ public class MainControl implements Control {
 					@Override
 					public void handle(ActionEvent e) {
 						Config.updateLanguage(new Locale("de"));
-						MainControl.this.view.init();
-						init(MainControl.this.view);
+//						MainControl.this.view.init();
+//						init(MainControl.this.view);
 					}
 
 				});
@@ -133,8 +133,8 @@ public class MainControl implements Control {
 					@Override
 					public void handle(ActionEvent e) {
 						Config.updateLanguage(new Locale("en"));
-						MainControl.this.view.init();
-						init(MainControl.this.view);
+//						MainControl.this.view.init();
+//						init(MainControl.this.view);
 					}
 
 				});
@@ -147,7 +147,6 @@ public class MainControl implements Control {
 						try {
 							int dbtype = 1;
 							Dao.setDAO(dbtype);
-							MainControl.this.view.dbtypeswitch(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
 									(Stage) MainControl.this.view.getRoot()
@@ -168,7 +167,6 @@ public class MainControl implements Control {
 						try {
 							int dbtype = 2;
 							Dao.setDAO(dbtype);
-							MainControl.this.view.dbtypeswitch(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
 									(Stage) MainControl.this.view.getRoot()
@@ -188,7 +186,6 @@ public class MainControl implements Control {
 						try {
 							int dbtype = 3;
 							Dao.setDAO(dbtype);
-							MainControl.this.view.dbtypeswitch(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
 									(Stage) MainControl.this.view.getRoot()

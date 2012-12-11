@@ -13,6 +13,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
+import javafx.scene.text.Text;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
@@ -30,13 +31,16 @@ public class ChangeConfigurationControlGUI implements Control {
 	protected static final String STYLESHEET_KEY = "stylesheet";
 	protected static final String DATABASE_TYPE_KEY = "database_type";
 	protected static File ini = new File(Config.CONFIG_FILENAME);
+	private Properties config;
+	private Text languagestr;
+	private Text dbtypestr;
 
 	@SuppressWarnings("unchecked")
 	public void init(Model model, View view) {
 		this.view = (ChangeConfigurationViewGUI) view;
 		this.model = (ChangeConfigurationModelGUI) model;
 
-		final Properties config = new Properties();
+		config = new Properties();
 		try {
 			config.load(new FileInputStream(ini));
 		} catch (FileNotFoundException e1) {
@@ -44,6 +48,9 @@ public class ChangeConfigurationControlGUI implements Control {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+
+		languagestr = new Text();
+		dbtypestr = new Text();
 
 		this.view.getAbortButton().setOnAction(new EventHandler<ActionEvent>() {
 
@@ -73,54 +80,61 @@ public class ChangeConfigurationControlGUI implements Control {
 				});
 
 		this.view.getDatabaseTypeComboBox().valueProperty()
-				.addListener(new ChangeListener<String>() {
+				.addListener(new ChangeListener<Text>() {
 
 					@Override
 					public void changed(
-							ObservableValue<? extends String> observable,
-							String oldValue, String newValue) {
-						String dbtypestr = newValue;
-						if (dbtypestr.equals(AppContext
-								.getMessage("DatabaseType1"))) {
-							ChangeConfigurationControlGUI.this.model
-									.setDatabaseTypeStr("txt");
-							ChangeConfigurationControlGUI.this.model
-									.setDatabaseType(1);
-						} else if (dbtypestr.equals(AppContext
-								.getMessage("DatabaseType2"))) {
-							ChangeConfigurationControlGUI.this.model
-									.setDatabaseTypeStr("mysql");
-							ChangeConfigurationControlGUI.this.model
-									.setDatabaseType(2);
-						} else if (dbtypestr.equals(AppContext
-								.getMessage("DatabaseType3"))) {
-							ChangeConfigurationControlGUI.this.model
-									.setDatabaseTypeStr("access");
-							ChangeConfigurationControlGUI.this.model
-									.setDatabaseType(3);
-						} else {
-							ChangeConfigurationControlGUI.this.model
-									.setDatabaseTypeStr("default");
-							ChangeConfigurationControlGUI.this.model
-									.setDatabaseType(0);
+							ObservableValue<? extends Text> observable,
+							Text oldValue, Text newValue) {
 
+						if (!newValue.getText().isEmpty()) {
+
+							if (newValue.getText().equals(
+									AppContext.getMessage("DatabaseType1"))) {
+								ChangeConfigurationControlGUI.this.model
+										.setDatabaseTypeStr("txt");
+								ChangeConfigurationControlGUI.this.model
+										.setDatabaseType(1);
+							} else if (newValue.getText().equals(
+									AppContext.getMessage("DatabaseType2"))) {
+								ChangeConfigurationControlGUI.this.model
+										.setDatabaseTypeStr("mysql");
+								ChangeConfigurationControlGUI.this.model
+										.setDatabaseType(2);
+							} else if (newValue.getText().equals(
+									AppContext.getMessage("DatabaseType3"))) {
+								ChangeConfigurationControlGUI.this.model
+										.setDatabaseTypeStr("access");
+								ChangeConfigurationControlGUI.this.model
+										.setDatabaseType(3);
+							} else {
+								ChangeConfigurationControlGUI.this.model
+										.setDatabaseTypeStr("default");
+								ChangeConfigurationControlGUI.this.model
+										.setDatabaseType(0);
+							}
 						}
 
 						ChangeConfigurationControlGUI.this.view
 								.updateSaveButton();
 					}
+
 				});
 
 		this.view.getLanguageComboBox().valueProperty()
-				.addListener(new ChangeListener<String>() {
+				.addListener(new ChangeListener<Text>() {
 
 					@Override
 					public void changed(
-							ObservableValue<? extends String> observable,
-							String oldValue, String newValue) {
+							ObservableValue<? extends Text> observable,
+							Text oldValue, Text newValue) {
 
-						ChangeConfigurationControlGUI.this.model
-								.setLanguage(newValue);
+						System.out.println(newValue.getText());
+						
+						if (!newValue.getText().isEmpty()) {
+							ChangeConfigurationControlGUI.this.model
+									.setLanguage(newValue.getText());
+						}
 
 						ChangeConfigurationControlGUI.this.view
 								.updateSaveButton();
@@ -135,12 +149,15 @@ public class ChangeConfigurationControlGUI implements Control {
 							ObservableValue<? extends String> observable,
 							String oldValue, String newValue) {
 
-						ChangeConfigurationControlGUI.this.model
-								.setStylesheet(newValue);
+						if (!newValue.isEmpty()) {
+							ChangeConfigurationControlGUI.this.model
+									.setStylesheet(newValue);
 
-						ChangeConfigurationControlGUI.this.view
-								.updateSaveButton();
+							ChangeConfigurationControlGUI.this.view
+									.updateSaveButton();
+						}
 					}
+
 				});
 
 		this.view.getSaveButton().setOnAction(new EventHandler<ActionEvent>() {
@@ -199,21 +216,19 @@ public class ChangeConfigurationControlGUI implements Control {
 
 	}
 
-	private String getLanguageString() {
-		String languagestr;
-		if (Locale.getDefault().toString().equals("en")) {
-			languagestr = AppContext.getMessage("English");
-		} else if (Locale.getDefault().toString().equals("de")) {
-			languagestr = AppContext.getMessage("German");
+	private Text getLanguageString() {
+		if (config.get("lang").equals("en")) {
+			languagestr.setText(AppContext.getMessage("English"));
+		} else if (config.get("lang").equals("de")) {
+			languagestr.setText(AppContext.getMessage("German"));
 		} else {
-			languagestr = "default";
+			languagestr.setText("default");
 		}
 		return languagestr;
 	}
 
-	private String getDBTypeString() {
+	private Text getDBTypeString() {
 		int dbtype;
-		String dbtypestr;
 		try {
 			dbtype = Integer.parseInt((String) Configuration.get("dbtype"));
 		} catch (NumberFormatException e) {
@@ -222,16 +237,16 @@ public class ChangeConfigurationControlGUI implements Control {
 
 		switch (dbtype) {
 		case 1:
-			dbtypestr = AppContext.getMessage("DatabaseType1");
+			dbtypestr.setText(AppContext.getMessage("DatabaseType1"));
 			break;
 		case 2:
-			dbtypestr = AppContext.getMessage("DatabaseType2");
+			dbtypestr.setText(AppContext.getMessage("DatabaseType2"));
 			break;
 		case 3:
-			dbtypestr = AppContext.getMessage("DatabaseType3");
+			dbtypestr.setText(AppContext.getMessage("DatabaseType3"));
 			break;
 		default:
-			dbtypestr = "default";
+			dbtypestr.setText("default");
 			break;
 		}
 		return dbtypestr;

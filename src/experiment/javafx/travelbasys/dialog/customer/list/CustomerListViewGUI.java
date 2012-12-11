@@ -9,15 +9,25 @@ import javafx.scene.layout.VBox;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.util.Configuration;
+import de.travelbasys.training.util.ConfigurationEvent;
+import de.travelbasys.training.util.ConfigurationListener;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
-public class CustomerListViewGUI implements View {
+public class CustomerListViewGUI implements View, ConfigurationListener {
 
 	@SuppressWarnings("unused")
 	private CustomerListModelGUI model;
 	private BorderPane root;
 	private VBox vbox;
 	private TableView table;
+	private TableColumn customerIDCol;
+	private TableColumn lastNameCol;
+	private TableColumn firstNameCol;
+	private TableColumn ageCol;
+	private TableColumn adressCol;
+	private TableColumn postalcodeCol;
+	private TableColumn emailCol;
 
 	public CustomerListViewGUI(CustomerListModelGUI model, BorderPane root) {
 		this.model = (CustomerListModelGUI) model;
@@ -26,51 +36,52 @@ public class CustomerListViewGUI implements View {
 
 	public void init() {
 
+		Configuration.addConfigurationListener(this);
+
 		table = new TableView<Customer>();
 
-		TableColumn customerIDCol = new TableColumn(AppContext.getMessage("CustomerIDTable"));
+		customerIDCol = new TableColumn();
 		customerIDCol.setMinWidth(100);
 		customerIDCol
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 						"id"));
 
-		TableColumn lastNameCol = new TableColumn(AppContext.getMessage("LastnameTable"));
+		lastNameCol = new TableColumn();
 		lastNameCol.setMinWidth(100);
 		lastNameCol
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 						"lastName"));
 
-		TableColumn firstNameCol = new TableColumn(AppContext.getMessage("FirstnameTable"));
+		firstNameCol = new TableColumn();
 		firstNameCol.setMinWidth(100);
 		firstNameCol
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 						"firstName"));
 
-		TableColumn ageCol = new TableColumn(AppContext.getMessage("AgeTable"));
+		ageCol = new TableColumn();
 		ageCol.setMinWidth(100);
 		ageCol.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 				"age"));
 
-		TableColumn adressCol = new TableColumn(AppContext.getMessage("AdressTable"));
+		adressCol = new TableColumn();
 		adressCol.setMinWidth(100);
 		adressCol
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 						"adress"));
 
-		TableColumn postalcodeCol = new TableColumn(AppContext.getMessage("PostalcodeTable"));
+		postalcodeCol = new TableColumn();
 		postalcodeCol.setMinWidth(100);
 		postalcodeCol
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 						"postalcode"));
 
-		TableColumn emailCol = new TableColumn(AppContext.getMessage("EmailTable"));
+		emailCol = new TableColumn();
 		emailCol.setMinWidth(100);
 		emailCol.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 				"email"));
 
 		table.getColumns().addAll(customerIDCol, lastNameCol, firstNameCol,
 				ageCol, adressCol, postalcodeCol, emailCol);
-
 		// Erstelle Referenz zu Tabelle und fülle mit Daten
 		// Erstellen Node (VBox) für Platzierung der Tabelle
 		vbox = new VBox();
@@ -78,6 +89,9 @@ public class CustomerListViewGUI implements View {
 		vbox.setPadding(new Insets(10, 10, 10, 10));
 		// Platziere Tabelle in der VBox
 		vbox.getChildren().addAll(table);
+
+		handleConfigurationEvent(null);
+
 	}
 
 	public void run() {
@@ -95,4 +109,16 @@ public class CustomerListViewGUI implements View {
 	public TableView getTable() {
 		return table;
 	}
+
+	@Override
+	public void handleConfigurationEvent(ConfigurationEvent e) {
+		customerIDCol.setText(AppContext.getMessage("CustomerIDTable"));
+		lastNameCol.setText(AppContext.getMessage("LastnameTable"));
+		firstNameCol.setText(AppContext.getMessage("FirstnameTable"));
+		ageCol.setText(AppContext.getMessage("AgeTable"));
+		adressCol.setText(AppContext.getMessage("AdressTable"));
+		postalcodeCol.setText(AppContext.getMessage("PostalcodeTable"));
+		emailCol.setText(AppContext.getMessage("EmailTable"));
+	}
+
 }

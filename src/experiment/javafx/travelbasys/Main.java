@@ -6,8 +6,6 @@ import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Configuration;
 
-
-
 /**
  * Hat die Aufgabe eine grafische Oberfläche bereitzustellen, welche Zugriff auf
  * Datenbankfunktionen bietet, um ein Customer-Objekt zu verwalten.
@@ -29,13 +27,13 @@ public class Main extends Application {
 	 */
 
 	public static void main(String[] args) {
-		//lädt Konfiguration
+		// lädt Konfiguration
 		CommandLine.parse(args);
 		Configuration.init(CommandLine.getOptions());
-		
+
 		// Starte die grafische Oberfläche
 		launch(args);
-		
+
 	}
 
 	// Startmethode der GUI.
@@ -47,6 +45,6 @@ public class Main extends Application {
 		main.run();
 
 		// Zeigt das Fenster
-		//primaryStage.show();
+		// primaryStage.show();
 	}
 }
