@@ -141,6 +141,8 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 
 		ChangeConfigurationWindow = new Stage();
 		root = new BorderPane();
+		root.getStylesheets().add((String) Configuration.get("stylesheet"));
+
 		tabPane = new TabPane();
 		databaseTab = new Tab();
 		languageTab = new Tab();
@@ -156,6 +158,10 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 		root.setCenter(tabPane);
 		root.setBottom(bottomPane);
 		scene = new Scene(root, 400, 400);
+		
+		
+
+		
 		ChangeConfigurationWindow.setScene(scene);
 
 		handleConfigurationEvent(null);
@@ -199,16 +205,16 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 
 	@Override
 	public void handleConfigurationEvent(ConfigurationEvent e) {
-		abortButton.setText("Abort");
-		saveButton.setText("Save");
-		databaseTab.setText("Database");
-		languageTab.setText("Language");
-		stylesheetTab.setText("Stylesheet");
-		ChangeConfigurationWindow.setTitle("ChangeConfiguration");
-		databaseTypeLabel.setText("Datenbanktyp:");
-		databaseNameLabel.setText("Datenbankname:");
-		languageLabel.setText("Sprache:");
-		stylesheetLabel.setText("Stylesheeet:");
+		abortButton.setText(AppContext.getMessage("AbortButton"));
+		saveButton.setText(AppContext.getMessage("SaveButton"));
+		databaseTab.setText(AppContext.getMessage("Database"));
+		languageTab.setText(AppContext.getMessage("Language"));
+		stylesheetTab.setText(AppContext.getMessage("Theme"));
+		ChangeConfigurationWindow.setTitle(AppContext.getMessage("Configuration"));
+		databaseTypeLabel.setText(AppContext.getMessage("DatabaseType"));
+		databaseNameLabel.setText(AppContext.getMessage("DatenbaseName"));
+		languageLabel.setText(AppContext.getMessage("Language"));
+		stylesheetLabel.setText(AppContext.getMessage("Theme"));
 		german.setText(AppContext.getMessage("German"));
 		english.setText(AppContext.getMessage("English"));
 		dbtype1.setText(AppContext.getMessage("DatabaseType1"));
