@@ -189,7 +189,7 @@ public class ChangeConfigurationControlGUI implements Control {
 
 				Dialogs.showInformationDialog(
 						ChangeConfigurationControlGUI.this.view.getStage(),
-						"Konfiguration gespeichert.", "Information",
+						AppContext.getMessage("ConfigurationSaved"), "Information",
 						AppContext.getMessage("TravelbasysManager"));
 			}
 		});
