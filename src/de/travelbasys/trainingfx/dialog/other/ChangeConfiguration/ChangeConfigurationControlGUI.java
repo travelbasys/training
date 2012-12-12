@@ -197,18 +197,21 @@ public class ChangeConfigurationControlGUI implements Control {
 		this.view.getDatabaseNameField().setText(
 				(String) Configuration.get("db"));
 		setConfigDBTypeString();
-		this.view.getLanguageComboBox().setValue(getLanguageString());
+		getLanguageString();
 		this.view.getStylesheetComboBox().setValue(config.get("stylesheet"));
 
 	}
 
 	private Text getLanguageString() {
 		if (config.get("lang").equals("en")) {
-			languagestr.setText(AppContext.getMessage("English"));
+			ChangeConfigurationControlGUI.this.view.getLanguageComboBox()
+					.getSelectionModel().select(0);
 		} else if (config.get("lang").equals("de")) {
-			languagestr.setText(AppContext.getMessage("German"));
+			ChangeConfigurationControlGUI.this.view.getLanguageComboBox()
+					.getSelectionModel().select(1);
 		} else {
-			languagestr.setText("default");
+			ChangeConfigurationControlGUI.this.view.getLanguageComboBox()
+					.getSelectionModel().select(0);
 		}
 		return languagestr;
 	}

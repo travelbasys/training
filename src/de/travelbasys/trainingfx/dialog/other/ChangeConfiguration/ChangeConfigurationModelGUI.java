@@ -47,13 +47,13 @@ public class ChangeConfigurationModelGUI implements Model {
 	public String getDatabaseTypeStr() {
 		switch (dbtype) {
 		case 1:
-			dbtypestr = AppContext.getMessage("DatabaseType1");
+			dbtypestr = ("txt");
 			break;
 		case 2:
-			dbtypestr = AppContext.getMessage("DatabaseType2");
+			dbtypestr = ("mysql");
 			break;
 		case 3:
-			dbtypestr = AppContext.getMessage("DatabaseType3");
+			dbtypestr = ("access");
 			break;
 		default:
 			dbtypestr = "default";
