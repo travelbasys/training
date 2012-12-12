@@ -79,7 +79,6 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 
 		languageComboBox = new ComboBox();
 		languageComboBox.getItems().addAll(english, german);
-		
 
 		stylesheetComboBox = new ComboBox();
 		stylesheetComboBox.setPrefWidth(100);
@@ -158,10 +157,7 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 		root.setCenter(tabPane);
 		root.setBottom(bottomPane);
 		scene = new Scene(root, 400, 400);
-		
-		
 
-		
 		ChangeConfigurationWindow.setScene(scene);
 
 		handleConfigurationEvent(null);
@@ -210,7 +206,8 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 		databaseTab.setText(AppContext.getMessage("Database"));
 		languageTab.setText(AppContext.getMessage("Language"));
 		stylesheetTab.setText(AppContext.getMessage("Theme"));
-		ChangeConfigurationWindow.setTitle(AppContext.getMessage("Configuration"));
+		ChangeConfigurationWindow.setTitle(AppContext
+				.getMessage("Configuration"));
 		databaseTypeLabel.setText(AppContext.getMessage("DatabaseType"));
 		databaseNameLabel.setText(AppContext.getMessage("DatenbaseName"));
 		languageLabel.setText(AppContext.getMessage("Language"));
@@ -220,28 +217,53 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 		dbtype1.setText(AppContext.getMessage("DatabaseType1"));
 		dbtype2.setText(AppContext.getMessage("DatabaseType2"));
 		dbtype3.setText(AppContext.getMessage("DatabaseType3"));
-		
-		languageComboBox.setCellFactory(new Callback<ListView<Text>, ListCell<Text>>() {
-            @Override public ListCell<Text> call(ListView<Text> param) {
-                final ListCell<Text> cell = new ListCell<Text>() {
-                    {
-                        super.setPrefWidth(100);
-                    }    
-                    @Override public void updateItem(Text item, 
-                        boolean empty) {
-                            super.updateItem(item, empty);
-                            if (item != null) {
-                                setText(item.getText());    
-                            }
-                            else {
-                                setText(null);
-                            }
-                        }
-            };
-            return cell;
-        }
-    });
-		
+
+		languageComboBox
+				.setCellFactory(new Callback<ListView<Text>, ListCell<Text>>() {
+					@Override
+					public ListCell<Text> call(ListView<Text> param) {
+						final ListCell<Text> cell = new ListCell<Text>() {
+							{
+								super.setPrefWidth(100);
+							}
+
+							@Override
+							public void updateItem(Text item, boolean empty) {
+								super.updateItem(item, empty);
+								if (item != null) {
+									setText(item.getText());
+								} else {
+									setText(null);
+								}
+							}
+						};
+						return cell;
+					}
+				});
+
+		databaseTypeComboBox
+				.setCellFactory(new Callback<ListView<Text>, ListCell<Text>>() {
+					@Override
+					public ListCell<Text> call(ListView<Text> param) {
+						final ListCell<Text> cell = new ListCell<Text>() {
+							{
+								super.setPrefWidth(100);
+							}
+
+							@Override
+							public void updateItem(Text item, boolean empty) {
+								super.updateItem(item, empty);
+								if (item != null) {
+									setText(item.getText());
+								} else {
+									setText(null);
+								}
+							}
+						};
+						return cell;
+					}
+				});
+
 	}
 
 }

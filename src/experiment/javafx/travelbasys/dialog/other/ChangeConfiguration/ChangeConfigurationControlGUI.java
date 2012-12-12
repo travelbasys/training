@@ -54,7 +54,6 @@ public class ChangeConfigurationControlGUI implements Control {
 
 			@Override
 			public void handle(ActionEvent event) {
-	
 				ChangeConfigurationControlGUI.this.view.getStage().close();
 			}
 		});
