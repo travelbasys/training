@@ -50,6 +50,7 @@ public class MainView implements View, ConfigurationListener {
 
 	private Scene mainframe;
 	private Label welcome;
+	private MenuBar menuBar;
 
 	public MainView(MainModel model, Stage stage) {
 		this.model = (MainModel) model;
@@ -124,6 +125,12 @@ public class MainView implements View, ConfigurationListener {
 
 		Configuration.addConfigurationListener(this);
 
+		// Erstelle Hauptpanel
+		root = new BorderPane();
+
+		// MenuBar erstellen
+		menuBar = new MenuBar();
+
 		// Erstelle einzelne Menüs
 		menu1 = new Menu();
 		menu2 = new Menu();
@@ -157,12 +164,12 @@ public class MainView implements View, ConfigurationListener {
 
 		changeLanguage1Item = new MenuItem();
 		changeLanguage2Item = new MenuItem();
-		
+
 		welcome = new Label();
 
-		handleConfigurationEvent(null);
-
 		exitItem.setGraphic(new ImageView(new Image("./resources./exit.png")));
+
+		handleConfigurationEvent(null);
 
 		// Dem Submenü Items hinzufügen
 
@@ -179,14 +186,8 @@ public class MainView implements View, ConfigurationListener {
 		menu5.getItems().addAll(lotteryItem);
 		menu6.getItems().addAll(aboutItem);
 
-		// MenuBar erstellen
-		MenuBar menuBar = new MenuBar();
-
 		// Der MenuBar eine Collection von Menu-Objekten hinzufügen
 		menuBar.getMenus().addAll(menu1, menu2, menu3, menu4, menu5, menu6);
-
-		// Hauptpanel erstellen
-		root = new BorderPane();
 
 		// Label mit Willkommensnachricht anlegen
 		welcome.getStyleClass().add("header1");
@@ -195,7 +196,6 @@ public class MainView implements View, ConfigurationListener {
 		root.setTop(menuBar);
 		root.setCenter(welcome);
 		// root.getStylesheets().add("./resources/Windows7.css");
-		root.getStylesheets().add((String) Configuration.get("stylesheet"));
 
 		// Größe des Hauptfensters festlegen
 		mainframe = new Scene(root, 800, 600);
@@ -217,6 +217,9 @@ public class MainView implements View, ConfigurationListener {
 
 	@Override
 	public void handleConfigurationEvent(ConfigurationEvent e) {
+
+		root.getStylesheets()
+				.setAll(((String) Configuration.get("stylesheet")));
 
 		primaryStage.setTitle(AppContext.getMessage("TravelbasysManager"));
 		welcome.setText(AppContext.getMessage("Welcome"));

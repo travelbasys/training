@@ -19,6 +19,7 @@ import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
+import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Configuration;
 
@@ -126,13 +127,11 @@ public class ChangeConfigurationControlGUI implements Control {
 							ObservableValue<? extends String> observable,
 							String oldValue, String newValue) {
 
-						if (!newValue.isEmpty()) {
-							ChangeConfigurationControlGUI.this.model
-									.setStylesheet(newValue);
+						ChangeConfigurationControlGUI.this.model
+								.setStylesheet(newValue);
 
-							ChangeConfigurationControlGUI.this.view
-									.updateSaveButton();
-						}
+						ChangeConfigurationControlGUI.this.view
+								.updateSaveButton();
 					}
 
 				});
@@ -162,8 +161,6 @@ public class ChangeConfigurationControlGUI implements Control {
 					break;
 				}
 
-				Config.updateLanguage(new Locale(lang));
-
 				config.setProperty(DATABASE_KEY,
 						ChangeConfigurationControlGUI.this.model
 								.getDatabaseName());
@@ -174,6 +171,7 @@ public class ChangeConfigurationControlGUI implements Control {
 				config.setProperty(STYLESHEET_KEY,
 						ChangeConfigurationControlGUI.this.model
 								.getStylesheet());
+
 				try {
 					config.store(new FileOutputStream(ini),
 							"Travelbasys User Manager - Properties");
@@ -182,6 +180,9 @@ public class ChangeConfigurationControlGUI implements Control {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				
+				Configuration.init(CommandLine.getOptions());
+				Config.updateLanguage(new Locale(lang));
 
 				Dao.setDAO(ChangeConfigurationControlGUI.this.model
 						.getDatabaseType());
@@ -189,7 +190,8 @@ public class ChangeConfigurationControlGUI implements Control {
 
 				Dialogs.showInformationDialog(
 						ChangeConfigurationControlGUI.this.view.getStage(),
-						AppContext.getMessage("ConfigurationSaved"), "Information",
+						AppContext.getMessage("ConfigurationSaved"),
+						"Information",
 						AppContext.getMessage("TravelbasysManager"));
 			}
 		});

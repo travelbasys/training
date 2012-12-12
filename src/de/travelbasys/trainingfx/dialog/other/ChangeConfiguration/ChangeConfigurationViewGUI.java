@@ -1,5 +1,8 @@
 package de.travelbasys.trainingfx.dialog.other.ChangeConfiguration;
 
+import java.io.File;
+import java.io.FilenameFilter;
+
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -47,6 +50,8 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 	private Button abortButton;
 	private Text german;
 	private Text english;
+	private File file;
+	private File[] files;
 	private Text dbtype1;
 	private Text dbtype2;
 	private Text dbtype3;
@@ -73,6 +78,13 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 		dbtype2 = new Text();
 		dbtype3 = new Text();
 
+		file = new File("src/resources/");
+		files = file.listFiles(new FilenameFilter() {
+			public boolean accept(File d, String name) {
+				return name.endsWith(".css");
+			}
+		});
+
 		databaseTypeComboBox = new ComboBox();
 		databaseTypeComboBox.getItems().addAll(dbtype1, dbtype2, dbtype3);
 
@@ -81,7 +93,10 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 
 		stylesheetComboBox = new ComboBox();
 		stylesheetComboBox.setPrefWidth(100);
-		stylesheetComboBox.getItems().addAll();
+
+		for (File f : files) {
+			stylesheetComboBox.getItems().add(f.getName());
+		}
 
 		databaseNameField = new TextField();
 
@@ -139,7 +154,6 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 
 		ChangeConfigurationWindow = new Stage();
 		root = new BorderPane();
-		root.getStylesheets().add((String) Configuration.get("stylesheet"));
 
 		tabPane = new TabPane();
 		databaseTab = new Tab();
@@ -200,6 +214,8 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 
 	@Override
 	public void handleConfigurationEvent(ConfigurationEvent e) {
+		
+		root.getStylesheets().setAll((String) Configuration.get("stylesheet"));
 		abortButton.setText(AppContext.getMessage("AbortButton"));
 		saveButton.setText(AppContext.getMessage("SaveButton"));
 		databaseTab.setText(AppContext.getMessage("Database"));
@@ -218,7 +234,6 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 		dbtype3.setText(AppContext.getMessage("DatabaseType3"));
 
 		languageComboBox.setCellFactory(new MyCellFactory());
-
 		databaseTypeComboBox.setCellFactory(new MyCellFactory());
 
 	}
