@@ -30,32 +30,22 @@
 }
 
 .combo-box-base {
-    -fx-background-color: rgb(242,148,2) 100%;
+    -fx-base: rgb(242,148,2);
 }
 
-.combo-box-base:showing {
-    -fx-background-color: linear-gradient(
-            rgb(255,255,255) 0%,
-            orange,
-            rgb(242,148,2) 100%);
+.list-cell:filled:selected:hover {
+    -fx-background:rgb(242,148,2);
+
 }
 
 
 
 .combo-box{
 -fx-base: rgb(242,148,2);
--fx-border-color:black;
-}
-
-
-
-.combo-box-base .arrow-button:hover {
-    -fx-background-color: linear-gradient(
-            rgb(255,255,255) 0%,
-            orange,
-            rgb(242,148,2) 100%);
 
 }
+
+
 
 
 

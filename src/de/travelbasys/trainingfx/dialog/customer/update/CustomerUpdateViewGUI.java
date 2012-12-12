@@ -199,7 +199,7 @@ lbl_menu.setId("header2");
 		lbl_email.setText(AppContext.getMessage("Email"));
 		lbl_age_hint.setText(AppContext.getMessage("ValidAge"));
 		lbl_postalcode_hint.setText(AppContext.getMessage("ValidPostalcode"));
-		sendButton.setText(AppContext.getMessage("Send"));
+		sendButton.setText(AppContext.getMessage("SendButton"));
 		searchButton.setText(AppContext.getMessage("Search"));
 		newSearchButton.setText(AppContext.getMessage("NewSearch"));
 	}
