@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
@@ -14,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
@@ -76,6 +79,7 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 
 		languageComboBox = new ComboBox();
 		languageComboBox.getItems().addAll(english, german);
+		
 
 		stylesheetComboBox = new ComboBox();
 		stylesheetComboBox.setPrefWidth(100);
@@ -210,6 +214,28 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 		dbtype1.setText(AppContext.getMessage("DatabaseType1"));
 		dbtype2.setText(AppContext.getMessage("DatabaseType2"));
 		dbtype3.setText(AppContext.getMessage("DatabaseType3"));
+		
+		languageComboBox.setCellFactory(new Callback<ListView<Text>, ListCell<Text>>() {
+            @Override public ListCell<Text> call(ListView<Text> param) {
+                final ListCell<Text> cell = new ListCell<Text>() {
+                    {
+                        super.setPrefWidth(100);
+                    }    
+                    @Override public void updateItem(Text item, 
+                        boolean empty) {
+                            super.updateItem(item, empty);
+                            if (item != null) {
+                                setText(item.getText());    
+                            }
+                            else {
+                                setText(null);
+                            }
+                        }
+            };
+            return cell;
+        }
+    });
+		
 	}
 
 }
