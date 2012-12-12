@@ -1,10 +1,11 @@
-package de.travelbasys.trainingfx.MainWindow;
+package de.travelbasys.trainingfx.rbsjavafx.main;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Configuration;
+import de.travelbasys.trainingfx.MainWindow.MainWindowDialog;
 
 /**
  * Hat die Aufgabe eine grafische Oberfläche bereitzustellen, welche Zugriff auf
@@ -41,7 +42,7 @@ public class Main extends Application {
 	public void start(final Stage primaryStage) {
 
 		// Hauptmenü erzeugen...
-		Dialog main = new MainDialog(primaryStage);
+		Dialog main = new MainWindowDialog(primaryStage);
 		main.run();
 
 		// Zeigt das Fenster

@@ -5,16 +5,16 @@ import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.Configuration;
 
-public class MainDialog implements Dialog {
+public class MainWindowDialog implements Dialog {
 
-	private MainModel model;
-	private MainView view;
-	private MainControl control;
+	private MainWindowModel model;
+	private MainWindowView view;
+	private MainWindowControl control;
 
-	public MainDialog(Stage stage) {
-		model = new MainModel();
-		view = new MainView(model, stage);
-		control = new MainControl(model);
+	public MainWindowDialog(Stage stage) {
+		model = new MainWindowModel();
+		view = new MainWindowView(model, stage);
+		control = new MainWindowControl(model);
 	}
 
 	public void run() {

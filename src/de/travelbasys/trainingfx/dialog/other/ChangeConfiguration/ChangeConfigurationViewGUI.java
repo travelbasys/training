@@ -50,7 +50,7 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 	private Button abortButton;
 	private Text german;
 	private Text english;
-	private File file;
+	private File dir;
 	private File[] files;
 	private Text dbtype1;
 	private Text dbtype2;
@@ -78,8 +78,8 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 		dbtype2 = new Text();
 		dbtype3 = new Text();
 
-		file = new File("src/resources/");
-		files = file.listFiles(new FilenameFilter() {
+		dir = new File("src/resources/");
+		files = dir.listFiles(new FilenameFilter() {
 			public boolean accept(File d, String name) {
 				return name.endsWith(".css");
 			}
@@ -216,6 +216,7 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 	public void handleConfigurationEvent(ConfigurationEvent e) {
 		
 		root.getStylesheets().setAll((String) Configuration.get("stylesheet"));
+		
 		abortButton.setText(AppContext.getMessage("AbortButton"));
 		saveButton.setText(AppContext.getMessage("SaveButton"));
 		databaseTab.setText(AppContext.getMessage("Database"));

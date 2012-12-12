@@ -15,12 +15,12 @@ import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
 
-public class MainView implements View, ConfigurationListener {
+public class MainWindowView implements View, ConfigurationListener {
 
 	private Stage primaryStage;
 	private BorderPane root;
 	@SuppressWarnings("unused")
-	private MainModel model;
+	private MainWindowModel model;
 
 	private Menu changeDB;
 	private Menu changeLanguage;
@@ -52,8 +52,8 @@ public class MainView implements View, ConfigurationListener {
 	private Label welcome;
 	private MenuBar menuBar;
 
-	public MainView(MainModel model, Stage stage) {
-		this.model = (MainModel) model;
+	public MainWindowView(MainWindowModel model, Stage stage) {
+		this.model = (MainWindowModel) model;
 		primaryStage = stage;
 	}
 

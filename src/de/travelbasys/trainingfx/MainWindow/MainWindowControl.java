@@ -22,18 +22,18 @@ import de.travelbasys.trainingfx.dialog.customer.show.CustomerShowDialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.update.CustomerUpdateDialogGUI;
 import de.travelbasys.trainingfx.dialog.other.ChangeConfiguration.ChangeConfigurationDialogGUI;
 
-public class MainControl implements Control {
+public class MainWindowControl implements Control {
 
-	private MainView view;
+	private MainWindowView view;
 	@SuppressWarnings("unused")
-	private MainModel model;
+	private MainWindowModel model;
 
-	public MainControl(MainModel model) {
-		this.model = (MainModel) model;
+	public MainWindowControl(MainWindowModel model) {
+		this.model = (MainWindowModel) model;
 	}
 
 	public void init(View view) {
-		this.view = (MainView) view;
+		this.view = (MainWindowView) view;
 
 		// Setze EventHandler für Exit-Menüpunkt
 		this.view.getExitItem().setOnAction(new EventHandler<ActionEvent>() {
@@ -49,7 +49,7 @@ public class MainControl implements Control {
 					@Override
 					public void handle(ActionEvent e) {
 						Dialog d = new CustomerCreateDialogGUI(
-								MainControl.this.view.getRoot());
+								MainWindowControl.this.view.getRoot());
 						d.run();
 					}
 				});
@@ -61,7 +61,7 @@ public class MainControl implements Control {
 					public void handle(ActionEvent e) {
 
 						Dialog d = new CustomerShowDialogGUI(
-								MainControl.this.view.getRoot());
+								MainWindowControl.this.view.getRoot());
 						d.run();
 
 					}
@@ -72,7 +72,7 @@ public class MainControl implements Control {
 					@Override
 					public void handle(ActionEvent e) {
 						Dialog d = new CustomerUpdateDialogGUI(
-								MainControl.this.view.getRoot());
+								MainWindowControl.this.view.getRoot());
 						d.run();
 					}
 				});
@@ -83,7 +83,7 @@ public class MainControl implements Control {
 					@Override
 					public void handle(ActionEvent e) {
 						Dialog d = new CustomerDeleteDialogGUI(
-								MainControl.this.view.getRoot());
+								MainWindowControl.this.view.getRoot());
 						d.run();
 					}
 				});
@@ -110,7 +110,7 @@ public class MainControl implements Control {
 					@Override
 					public void handle(ActionEvent e) {
 						Dialog d = new CustomerListDialogGUI(
-								MainControl.this.view.getRoot());
+								MainWindowControl.this.view.getRoot());
 						d.run();
 					}
 				});
@@ -149,7 +149,7 @@ public class MainControl implements Control {
 							Dao.setDAO(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
-									(Stage) MainControl.this.view.getRoot()
+									(Stage) MainWindowControl.this.view.getRoot()
 											.getScene().getWindow(),
 									"Datenbank gewechselt.", "Information",
 									AppContext.getMessage("TravelbasysManager"));
@@ -169,7 +169,7 @@ public class MainControl implements Control {
 							Dao.setDAO(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
-									(Stage) MainControl.this.view.getRoot()
+									(Stage) MainWindowControl.this.view.getRoot()
 											.getScene().getWindow(),
 									"Datenbank gewechselt.", "Information",
 									AppContext.getMessage("TravelbasysManager"));
@@ -188,7 +188,7 @@ public class MainControl implements Control {
 							Dao.setDAO(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
-									(Stage) MainControl.this.view.getRoot()
+									(Stage) MainWindowControl.this.view.getRoot()
 											.getScene().getWindow(),
 									"Datenbank gewechselt.", "Information",
 									AppContext.getMessage("TravelbasysManager"));
