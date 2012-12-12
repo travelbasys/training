@@ -1,7 +1,6 @@
 package de.travelbasys.trainingfx.dialog.other.ChangeConfiguration;
 
 import de.travelbasys.training.framework.Model;
-import de.travelbasys.training.util.AppContext;
 
 public class ChangeConfigurationModelGUI implements Model {
 
