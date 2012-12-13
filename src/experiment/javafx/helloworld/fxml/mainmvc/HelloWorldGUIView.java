@@ -15,6 +15,8 @@ public class HelloWorldGUIView implements View {
 	private Stage stage;
 	private Scene scene;
 	private HelloWorldGUIModel model;
+	private String PATH = "/experiment/javafx/helloworld/fxml/main/";
+	private String FXML = "Sample.fxml";
 
 	public HelloWorldGUIView(Model model, Stage stage) {
 		this.model = (HelloWorldGUIModel) model;
@@ -29,7 +31,7 @@ public class HelloWorldGUIView implements View {
 	public void init() {
 		try {
 			AnchorPane root = FXMLLoader.load(getClass().getResource(
-					"/helloworld/main/Sample.fxml"));
+					PATH + FXML));
 			scene = new Scene(root);
 			((Button) getNode("#changeButton")).setDisable(true);
 			((Button) getNode("#changeButton")).setDefaultButton(true);
