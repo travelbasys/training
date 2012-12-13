@@ -547,7 +547,7 @@
             center 65% 65%, 
             radius 100%, 
             rgba(255,255,255,0.85), 
-        rgba(255,255,255,0))
+        rgba(255,255,255,0));
 }
 
 .radio-button:hover .radio {
@@ -560,7 +560,7 @@
             center 65% 65%, 
             radius 100%, 
             rgba(255,255,255,0.85), 
-        rgba(255,255,255,0))
+        rgba(255,255,255,0));
 }
 
 .radio-button:armed .radio {
