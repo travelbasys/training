@@ -51,7 +51,7 @@ public class HelloWorldGUIControl implements Control {
 					}
 				});
 
-		((TextField) this.view.getNode("#textField")).textProperty()
+		this.view.getTextField().textProperty()
 				.addListener(new ChangeListener<String>() {
 
 					@Override

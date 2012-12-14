@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import de.travelbasys.training.framework.Model;
@@ -24,6 +25,7 @@ public class HelloWorldGUIView implements View {
 	private HelloWorldGUIModel model;
 	private String PATH = "/experiment/javafx/helloworld/fxml/main/";
 	private String FXML = "Sample.fxml";
+	private TextField textField;
 
 	public HelloWorldGUIView(Model model, Stage stage) {
 		this.model = (HelloWorldGUIModel) model;
@@ -43,6 +45,7 @@ public class HelloWorldGUIView implements View {
 			((Button) getNode("#changeButton")).setDisable(true);
 			((Button) getNode("#changeButton")).setDefaultButton(true);
 			stage.setScene(scene);
+			textField = (TextField) getNode("textField");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -51,6 +54,10 @@ public class HelloWorldGUIView implements View {
 
 	public Node getNode(String cssRef) {
 		return scene.lookup(cssRef);
+	}
+	
+	public TextField getTextField(){
+		return textField;
 	}
 
 	public void update() {
