@@ -10,6 +10,11 @@ import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 
+/*
+ * Hat die Aufgabe den View unserer HelloWorld-Applikation zu verwalten & EventListener/Handler dieser zur Verfügung zu stellen.
+ * 
+ */
+
 public class HelloWorldGUIControl implements Control {
 
 	private HelloWorldGUIModel model;

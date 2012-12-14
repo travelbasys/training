@@ -11,6 +11,13 @@ import javafx.stage.Stage;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 
+/*
+ * Ist dafür verantwortlich dem Benutzer ein Hauptmenü (Hauptfenster) zur Verfügung zu stellen,
+ * welches weitere Komponenten aufrufen kann.
+ * Die aktuelle Implementierung liest eine .fxml Datei ein und generiert mithilfe dieser ein Layout, wessen eindeutige fx:id's in der Scene gespeichert werden.
+ * Wir lesen diese Elemente anhand von Scene.lookup() aus & erstellen eine Referenz. 
+ */
+
 public class HelloWorldGUIView implements View {
 	private Stage stage;
 	private Scene scene;
