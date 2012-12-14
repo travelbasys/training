@@ -63,19 +63,13 @@ public class HelloWorldGUIControl implements Control {
 					}
 				});
 
-		// Prüft auf Enter, zurzeit nicht nützlich, da changedButton
-		// defaultButton ist. (Standardmäßige Ausführung bei Key_ENTER Events);
+		this.view.getCloseItem().setOnAction(new EventHandler<ActionEvent>() {
 
-		// ((TextField) this.view.getNode("#textField"))
-		// .setOnKeyReleased(new EventHandler<KeyEvent>() {
-		//
-		// @Override
-		// public void handle(KeyEvent key) {
-		// if (key.getCode().toString().equals("ENTER")) {
-		// }
-		// }
-		// });
-
+			@Override
+			public void handle(ActionEvent event) {
+				System.exit(0);
+			}
+		});
 	}
 
 	@Override

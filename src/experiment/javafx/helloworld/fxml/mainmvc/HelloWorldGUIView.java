@@ -6,6 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -26,6 +29,8 @@ public class HelloWorldGUIView implements View {
 	private String PATH = "/experiment/javafx/helloworld/fxml/main/";
 	private String FXML = "Sample.fxml";
 	private TextField textField;
+	private MenuBar menuBar;
+	private MenuItem closeItem;
 
 	public HelloWorldGUIView(Model model, Stage stage) {
 		this.model = (HelloWorldGUIModel) model;
@@ -45,8 +50,9 @@ public class HelloWorldGUIView implements View {
 			((Button) getNode("#changeButton")).setDisable(true);
 			((Button) getNode("#changeButton")).setDefaultButton(true);
 			stage.setScene(scene);
-			textField = (TextField) getNode("textField");
-
+			textField = (TextField) getNode("#textField");
+			menuBar = (MenuBar) getNode("#menuBar");
+			closeItem = getMenuItem("closeItem");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -55,13 +61,28 @@ public class HelloWorldGUIView implements View {
 	public Node getNode(String cssRef) {
 		return scene.lookup(cssRef);
 	}
-	
-	public TextField getTextField(){
+
+	public MenuItem getMenuItem(String id) {
+		for (Menu m : menuBar.getMenus()) {
+			for (MenuItem item : m.getItems()) {
+				if (item.getId().equals(id)) {
+					return item;
+				}
+			}
+		}
+		return null;
+	}
+
+	public TextField getTextField() {
 		return textField;
 	}
 
 	public void update() {
 		((Button) getNode("#changeButton")).setDisable(model.isInvalid());
+	}
+
+	public MenuItem getCloseItem() {
+		return closeItem;
 	}
 
 }
