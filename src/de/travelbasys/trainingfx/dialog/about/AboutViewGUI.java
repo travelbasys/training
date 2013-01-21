@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.util.AppContext;
 
 public class AboutViewGUI {
 
@@ -19,9 +20,10 @@ public class AboutViewGUI {
 		Stage aboutwindow = new Stage();
 		aboutwindow.setTitle("About");
 
-		Label name = new Label("Name: Daniel Rowlin");
-		Label year = new Label("Year: 2012");
-
+		Label about1 = new Label(AppContext.getMessage("About1"));
+		Label about2 = new Label(AppContext.getMessage("About2"));
+		Label about3 = new Label(AppContext.getMessage("About3"));
+		
 		// Erzeugt ein TabellenPanel.
 		GridPane grid = new GridPane();
 		// Setzt alle Ränder auf 10 Pixel.
@@ -31,10 +33,10 @@ public class AboutViewGUI {
 		grid.setHgap(5);
 		// Setzt Zeilen/Spaltenposition der Elemente fest.
 		// (Objekt, Spalte, Zeile)
-		GridPane.setConstraints(name, 0, 0);
-		GridPane.setConstraints(year, 0, 1);
-
-		grid.getChildren().addAll(name, year);
+		GridPane.setConstraints(about1, 0, 0);
+		GridPane.setConstraints(about2, 0, 1);
+		GridPane.setConstraints(about3, 0, 2);
+		grid.getChildren().addAll(about1, about2, about3);
 
 		aboutwindow.setScene(new Scene(grid, 320, 240));
 		aboutwindow.setResizable(false);
