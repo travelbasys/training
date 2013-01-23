@@ -21,7 +21,8 @@ public class RBSTestGUIDialog implements Dialog {
 
 	private Stage stage;
 	private Scene scene;
-	private String PATH = "/experiment/javafx/helloworld/fxml/main/Sample.fxml";
+	private String PATH = "/experiment/javafx/fxml/main/";
+	private String FILE = "MainFrame.fxml";
 
 	public RBSTestGUIDialog(Stage stage) {
 		model = new RBSTestGUIModel();
@@ -32,7 +33,7 @@ public class RBSTestGUIDialog implements Dialog {
 	@Override
 	public void run() {
 		try {
-			AnchorPane root = FXMLLoader.load(getClass().getResource(PATH));
+			AnchorPane root = FXMLLoader.load(getClass().getResource(PATH + FILE));
 			scene = new Scene(root);
 			stage.setScene(scene);
 		} catch (IOException e) {

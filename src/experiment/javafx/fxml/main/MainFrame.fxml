@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="353.0" prefWidth="416.0" xmlns:fx="http://javafx.com/fxml" fx:controller="experiment.javafx.helloworld.fxml.mainmvc.RBSTestGUIView">
+<AnchorPane prefHeight="353.0" prefWidth="416.0" xmlns:fx="http://javafx.com/fxml" fx:controller="experiment.javafx.fxml.main.RBSTestGUIView">
   <!-- TODO Add Nodes -->
   <children>
     <BorderPane fx:id="bp" prefHeight="353.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
