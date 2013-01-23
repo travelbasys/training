@@ -1,4 +1,4 @@
-package experiment.javafx.helloworld.fxml.mainmvc;
+package experiment.javafx.fxml.main;
 
 import de.travelbasys.training.framework.Model;
 
@@ -7,7 +7,7 @@ import de.travelbasys.training.framework.Model;
  * Stellt ein Model für den HelloWorldGUIDialog zur Vefügung.
  * Die aktuelle Implementierung enthält alle Textfelder, die unsere Anwendung anzeigt.
  */
-public class HelloWorldGUIModel implements Model {
+public class RBSTestGUIModel implements Model {
 
 	private String text;
 
