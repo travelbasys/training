@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="329.0" prefWidth="323.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.travelbasys.trainingfx.dialog.customer.update2.CustomerUpdate2ControlGUI">
+  <!-- TODO Add Nodes -->
+  <center>
+    <GridPane>
+      <children>
+        <GridPane GridPane.columnIndex="0" GridPane.rowIndex="1">
+          <children>
+            <Label text="%Lastname" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
+            <Label text="%Firstname" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Label text="%Age" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Label text="%Adress" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Label text="%Postalcode" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Label text="%Email" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+            <TextField prefWidth="200.0" promptText="%Lastnamefield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
+            <TextField prefWidth="200.0" promptText="%Firstnamefield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <TextField prefWidth="200.0" promptText="%Agefield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <TextField prefWidth="200.0" promptText="%Adressfield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <TextField prefWidth="200.0" promptText="%Postalcodefield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <TextField prefWidth="200.0" promptText="%Emailfield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" text="%SendButton" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+        <GridPane GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <children>
+            <Label text="%CustomerID" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
+              <GridPane.margin>
+                <Insets bottom="20.0" fx:id="x1" />
+              </GridPane.margin>
+            </Label>
+            <TextField prefWidth="200.0" promptText="%Customeridfield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM" />
+            <Button mnemonicParsing="false" onAction="#handleButtonAction" text="%Search" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM" />
+            <Button mnemonicParsing="false" text="%NewSearch" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM" />
+            <Label fx:id="header" text="%CustomerEdit" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+              <GridPane.margin>
+                <Insets />
+              </GridPane.margin>
+            </Label>
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+  </center>
+</BorderPane>

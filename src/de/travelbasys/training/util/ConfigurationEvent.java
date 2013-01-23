@@ -1,6 +1,7 @@
 package de.travelbasys.training.util;
 
 import java.util.EventObject;
+import java.util.ResourceBundle;
 
 public class ConfigurationEvent extends EventObject {
 
@@ -17,6 +18,10 @@ public class ConfigurationEvent extends EventObject {
 	
 	public String getType() {
 		return type;
+	}
+
+	public ResourceBundle getResources() {
+		return Config.BUNDLE;
 	}
 
 }

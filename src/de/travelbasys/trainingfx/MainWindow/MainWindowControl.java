@@ -19,7 +19,7 @@ import de.travelbasys.trainingfx.dialog.customer.create.CustomerCreateDialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.delete.CustomerDeleteDialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.list.CustomerListDialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.show.CustomerShowDialogGUI;
-import de.travelbasys.trainingfx.dialog.customer.update.CustomerUpdateDialogGUI;
+import de.travelbasys.trainingfx.dialog.customer.update2.CustomerUpdate2DialogGUI;
 import de.travelbasys.trainingfx.dialog.other.ChangeConfiguration.ChangeConfigurationDialogGUI;
 
 public class MainWindowControl implements Control {
@@ -71,7 +71,12 @@ public class MainWindowControl implements Control {
 				new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent e) {
-						Dialog d = new CustomerUpdateDialogGUI(
+						// "Standard"
+						// Dialog d = new CustomerUpdate2DialogGUI(
+						// MainWindowControl.this.view.getRoot());
+						//
+						// FXML
+						Dialog d = new CustomerUpdate2DialogGUI(
 								MainWindowControl.this.view.getRoot());
 						d.run();
 					}
@@ -121,8 +126,8 @@ public class MainWindowControl implements Control {
 					@Override
 					public void handle(ActionEvent e) {
 						Config.updateLanguage(new Locale("de"));
-//						MainControl.this.view.init();
-//						init(MainControl.this.view);
+						// MainControl.this.view.init();
+						// init(MainControl.this.view);
 					}
 
 				});
@@ -133,8 +138,8 @@ public class MainWindowControl implements Control {
 					@Override
 					public void handle(ActionEvent e) {
 						Config.updateLanguage(new Locale("en"));
-//						MainControl.this.view.init();
-//						init(MainControl.this.view);
+						// MainControl.this.view.init();
+						// init(MainControl.this.view);
 					}
 
 				});
@@ -149,8 +154,8 @@ public class MainWindowControl implements Control {
 							Dao.setDAO(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
-									(Stage) MainWindowControl.this.view.getRoot()
-											.getScene().getWindow(),
+									(Stage) MainWindowControl.this.view
+											.getRoot().getScene().getWindow(),
 									"Datenbank gewechselt.", "Information",
 									AppContext.getMessage("TravelbasysManager"));
 						} catch (Exception e) {
@@ -169,8 +174,8 @@ public class MainWindowControl implements Control {
 							Dao.setDAO(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
-									(Stage) MainWindowControl.this.view.getRoot()
-											.getScene().getWindow(),
+									(Stage) MainWindowControl.this.view
+											.getRoot().getScene().getWindow(),
 									"Datenbank gewechselt.", "Information",
 									AppContext.getMessage("TravelbasysManager"));
 						} catch (Exception e) {
@@ -188,8 +193,8 @@ public class MainWindowControl implements Control {
 							Dao.setDAO(dbtype);
 							Dao.getDAO().init((String) Configuration.get("db"));
 							Dialogs.showInformationDialog(
-									(Stage) MainWindowControl.this.view.getRoot()
-											.getScene().getWindow(),
+									(Stage) MainWindowControl.this.view
+											.getRoot().getScene().getWindow(),
 									"Datenbank gewechselt.", "Information",
 									AppContext.getMessage("TravelbasysManager"));
 						} catch (Exception e) {
