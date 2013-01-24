@@ -12,6 +12,7 @@ import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
+import de.travelbasys.training.util.Datum;
 
 public class CustomerCreateViewGUI implements View, ConfigurationListener {
 
@@ -19,6 +20,7 @@ public class CustomerCreateViewGUI implements View, ConfigurationListener {
 	private Button sendButton;
 	private TextField lastNameField;
 	private TextField firstNameField;
+	private TextField birthdateField;
 	private TextField ageField;
 	private TextField adressField;
 	private TextField postalcodeField;
@@ -31,6 +33,7 @@ public class CustomerCreateViewGUI implements View, ConfigurationListener {
 	private Label lbl_menu;
 	private Label lbl_lastname;
 	private Label lbl_firstname;
+	private Label lbl_birthdate;
 	private Label lbl_age;
 	private Label lbl_adress;
 	private Label lbl_postalcode;
@@ -46,11 +49,12 @@ public class CustomerCreateViewGUI implements View, ConfigurationListener {
 	}
 
 	public void init() {
-
+Datum.getDate();
 		Configuration.addConfigurationListener(this);
 
 		lastNameField = new TextField();
 		firstNameField = new TextField();
+		birthdateField = new TextField();
 		ageField = new TextField();
 		adressField = new TextField();
 		postalcodeField = new TextField();
@@ -61,6 +65,7 @@ public class CustomerCreateViewGUI implements View, ConfigurationListener {
 		
 		lbl_lastname = new Label();
 		lbl_firstname = new Label();
+		lbl_birthdate = new Label();
 		lbl_age = new Label();
 		lbl_adress = new Label();
 		lbl_postalcode = new Label();
@@ -78,23 +83,25 @@ public class CustomerCreateViewGUI implements View, ConfigurationListener {
 		GridPane.setConstraints(lbl_menu, 0, 0);
 		GridPane.setConstraints(lbl_lastname, 1, 1);
 		GridPane.setConstraints(lbl_firstname, 1, 2);
-		GridPane.setConstraints(lbl_age, 1, 3);
-		GridPane.setConstraints(lbl_adress, 1, 4);
-		GridPane.setConstraints(lbl_postalcode, 1, 5);
-		GridPane.setConstraints(lbl_email, 1, 6);
+		GridPane.setConstraints(lbl_birthdate, 1, 3);
+		GridPane.setConstraints(lbl_age, 1, 4);
+		GridPane.setConstraints(lbl_adress, 1, 5);
+		GridPane.setConstraints(lbl_postalcode, 1, 6);
+		GridPane.setConstraints(lbl_email, 1, 7);
 		GridPane.setConstraints(lastNameField, 2, 1);
 		GridPane.setConstraints(firstNameField, 2, 2);
-		GridPane.setConstraints(ageField, 2, 3);
-		GridPane.setConstraints(adressField, 2, 4);
-		GridPane.setConstraints(postalcodeField, 2, 5);
-		GridPane.setConstraints(emailField, 2, 6);
-		GridPane.setConstraints(lbl_age_hint, 3, 3);
-		GridPane.setConstraints(lbl_postalcode_hint, 3, 5);
+		GridPane.setConstraints(birthdateField, 2, 3);
+		GridPane.setConstraints(ageField, 2, 4);
+		GridPane.setConstraints(adressField, 2, 5);
+		GridPane.setConstraints(postalcodeField, 2, 6);
+		GridPane.setConstraints(emailField, 2, 7);
+		GridPane.setConstraints(lbl_age_hint, 3, 4);
+		GridPane.setConstraints(lbl_postalcode_hint, 3, 6);
 		GridPane.setConstraints(sendButton, 3, 10);
 
-		grid.getChildren().addAll(lbl_menu, lbl_lastname, lbl_firstname,
+		grid.getChildren().addAll(lbl_menu, lbl_lastname, lbl_firstname, lbl_birthdate,
 				lbl_age, lbl_adress, lbl_postalcode, lbl_email, lbl_age_hint,
-				lbl_postalcode_hint, lastNameField, firstNameField, ageField,
+				lbl_postalcode_hint, lastNameField, firstNameField, birthdateField, ageField,
 				adressField, postalcodeField, emailField, sendButton);
 
 		handleConfigurationEvent(null);
@@ -126,6 +133,10 @@ public class CustomerCreateViewGUI implements View, ConfigurationListener {
 	public TextField getFirstNameField() {
 		return firstNameField;
 	}
+	
+	public TextField getBirthdateField() {
+		return birthdateField;
+	}
 
 	public TextField getAgeField() {
 		return ageField;
@@ -151,6 +162,7 @@ public class CustomerCreateViewGUI implements View, ConfigurationListener {
 		lbl_menu.setText(AppContext.getMessage("CustomerCreate"));
 		lbl_lastname.setText(AppContext.getMessage("Lastname"));
 		lbl_firstname.setText(AppContext.getMessage("Firstname"));
+		lbl_birthdate.setText(AppContext.getMessage("Birthdate"));
 		lbl_age.setText(AppContext.getMessage("Age"));
 		lbl_adress.setText(AppContext.getMessage("Adress"));
 		lbl_postalcode.setText(AppContext.getMessage("Postalcode"));

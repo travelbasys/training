@@ -22,6 +22,7 @@ public class CustomerUpdateViewGUI implements View, ConfigurationListener {
 	private Button sendButton;
 	private TextField lastNameField;
 	private TextField firstNameField;
+	private TextField birthdateField;
 	private TextField ageField;
 	private TextField adressField;
 	private TextField postalcodeField;
@@ -33,6 +34,7 @@ public class CustomerUpdateViewGUI implements View, ConfigurationListener {
 	private Label lbl_customerid;
 	private Label lbl_lastname;
 	private Label lbl_firstname;
+	private Label lbl_birthdate;
 	private Label lbl_age;
 	private Label lbl_adress;
 	private Label lbl_postalcode;
@@ -46,16 +48,16 @@ public class CustomerUpdateViewGUI implements View, ConfigurationListener {
 
 	public void updateSearchButton() {
 		searchButton.setDisable(model.searchIsInvalid());
-		
+
 	}
 
 	public void updateSendButton() {
 		sendButton.setDisable(model.sendIsInvalid() || model.hasNotChanged());
-	
+
 	}
 
 	public void init() {
-		
+
 		Configuration.addConfigurationListener(this);
 
 		customerIDField = new TextField();
@@ -65,6 +67,9 @@ public class CustomerUpdateViewGUI implements View, ConfigurationListener {
 
 		firstNameField = new TextField();
 		firstNameField.setEditable(false);
+
+		birthdateField = new TextField();
+		birthdateField.setEditable(false);
 
 		ageField = new TextField();
 		ageField.setEditable(false);
@@ -79,10 +84,11 @@ public class CustomerUpdateViewGUI implements View, ConfigurationListener {
 		emailField.setEditable(false);
 
 		lbl_menu = new Label();
-lbl_menu.setId("header2");
+		lbl_menu.setId("header2");
 		lbl_customerid = new Label();
 		lbl_lastname = new Label();
 		lbl_firstname = new Label();
+		lbl_birthdate = new Label();
 		lbl_age = new Label();
 		lbl_adress = new Label();
 		lbl_postalcode = new Label();
@@ -104,29 +110,31 @@ lbl_menu.setId("header2");
 		GridPane.setConstraints(lbl_customerid, 0, 1);
 		GridPane.setConstraints(lbl_lastname, 0, 3);
 		GridPane.setConstraints(lbl_firstname, 0, 4);
-		GridPane.setConstraints(lbl_age, 0, 5);
-		GridPane.setConstraints(lbl_adress, 0, 6);
-		GridPane.setConstraints(lbl_postalcode, 0, 7);
-		GridPane.setConstraints(lbl_email, 0, 8);
+		GridPane.setConstraints(lbl_birthdate, 0, 5);
+		GridPane.setConstraints(lbl_age, 0, 6);
+		GridPane.setConstraints(lbl_adress, 0, 7);
+		GridPane.setConstraints(lbl_postalcode, 0, 8);
+		GridPane.setConstraints(lbl_email, 0, 9);
 		GridPane.setConstraints(customerIDField, 1, 1);
 		GridPane.setConstraints(lastNameField, 1, 3);
 		GridPane.setConstraints(firstNameField, 1, 4);
-		GridPane.setConstraints(ageField, 1, 5);
-		GridPane.setConstraints(adressField, 1, 6);
-		GridPane.setConstraints(postalcodeField, 1, 7);
-		GridPane.setConstraints(emailField, 1, 8);
-		GridPane.setConstraints(lbl_age_hint, 3, 5);
-		GridPane.setConstraints(lbl_postalcode_hint, 3, 7);
+		GridPane.setConstraints(birthdateField, 1, 5);
+		GridPane.setConstraints(ageField, 1, 6);
+		GridPane.setConstraints(adressField, 1, 7);
+		GridPane.setConstraints(postalcodeField, 1, 8);
+		GridPane.setConstraints(emailField, 1, 9);
+		GridPane.setConstraints(lbl_age_hint, 3, 6);
+		GridPane.setConstraints(lbl_postalcode_hint, 3, 8);
 		GridPane.setConstraints(sendButton, 3, 10);
 		GridPane.setConstraints(searchButton, 3, 1);
 		GridPane.setConstraints(newSearchButton, 4, 1);
 		grid.getChildren().addAll(lbl_menu, lbl_customerid, lbl_lastname,
-				lbl_firstname, lbl_age, lbl_adress, lbl_postalcode, lbl_email,
-				lbl_age_hint, lbl_postalcode_hint, customerIDField,
-				lastNameField, firstNameField, ageField, adressField,
-				postalcodeField, emailField, sendButton, searchButton,
-				newSearchButton);
-		
+				lbl_firstname, lbl_birthdate, lbl_age, lbl_adress,
+				lbl_postalcode, lbl_email, lbl_age_hint, lbl_postalcode_hint,
+				customerIDField, lastNameField, firstNameField, birthdateField,
+				ageField, adressField, postalcodeField, emailField, sendButton,
+				searchButton, newSearchButton);
+
 		handleConfigurationEvent(null);
 
 	}
@@ -166,6 +174,10 @@ lbl_menu.setId("header2");
 	public TextField getFirstNameField() {
 		return firstNameField;
 	}
+	
+	public TextField getBirthdateField() {
+		return birthdateField;
+	}
 
 	public TextField getAgeField() {
 		return ageField;
@@ -193,6 +205,7 @@ lbl_menu.setId("header2");
 		lbl_customerid.setText(AppContext.getMessage("CustomerID"));
 		lbl_lastname.setText(AppContext.getMessage("Lastname"));
 		lbl_firstname.setText(AppContext.getMessage("Firstname"));
+		lbl_birthdate.setText(AppContext.getMessage("Birthdate"));
 		lbl_age.setText(AppContext.getMessage("Age"));
 		lbl_adress.setText(AppContext.getMessage("Adress"));
 		lbl_postalcode.setText(AppContext.getMessage("Postalcode"));
