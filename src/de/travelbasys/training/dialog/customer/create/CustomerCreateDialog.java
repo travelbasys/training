@@ -1,5 +1,7 @@
 package de.travelbasys.training.dialog.customer.create;
 
+import java.util.Date;
+
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dao.Dao;
@@ -31,8 +33,9 @@ public class CustomerCreateDialog implements Dialog {
 		view.run();
 		try {
 			int dummyId = 0;
+			//TODO: Implementierung des Geburtstag.
 			Customer customer = new Customer(dummyId, model.getLastname(),
-					model.getFirstname(), model.getAge(), model.getAdress(),
+					model.getFirstname(), new Date(), model.getAge(), model.getAdress(),
 					model.getPostalcode(), model.getEMail());
 			Dao.getDAO().create(customer);
 		} catch (CustomerDaoException e) {

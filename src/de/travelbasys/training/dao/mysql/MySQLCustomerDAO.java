@@ -47,10 +47,10 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	private static ResultSet resultSet = null;
 	private static int localupdateid = 0;
 	private final String INSERT = "INSERT INTO ";
-	private final String VALUES = " VALUES (default, ?, ?, ?, ? , ?, ?, default);";
+	private final String VALUES = " VALUES (default, ?, ?, ? , ?, ? , ?, ?, default);";
 	private final String SELECT = "SELECT * FROM ";
 	private final String WHERECUSTOMERID = " WHERE customerid = ";
-	private final String UPDATEATTRIBUTES = " SET lastname = ?, firstname = ?, age = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;";
+	private final String UPDATEATTRIBUTES = " SET lastname = ?, firstname = ?, birthdate = ?, age = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;";
 	private final String DELETE = "DELETE FROM ";
 
 	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
@@ -104,11 +104,14 @@ public class MySQLCustomerDAO implements CustomerDAO {
 			while (resultSet.next()) {
 				Customer c = new Customer(resultSet.getInt(1),
 						resultSet.getString(2), resultSet.getString(3),
-						resultSet.getInt(4), resultSet.getString(5),
-						resultSet.getString(6), resultSet.getString(7));
+						resultSet.getDate(4), resultSet.getInt(5),
+						resultSet.getString(6), resultSet.getString(7),
+						resultSet.getString(8));
 				internalCustomers.add(c);
+				System.out.println(c);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		CloseCurrentConnection();
 	}
@@ -157,7 +160,9 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		List<Customer> result = new ArrayList<Customer>();
 		for (Customer customer : internalCustomers) {
 			result.add(customer.clone());
+			System.out.println(customer);
 		}
+		System.out.println(result);
 		return result;
 	}
 
@@ -189,16 +194,18 @@ public class MySQLCustomerDAO implements CustomerDAO {
 					+ TABLE + VALUES);
 			preparedStatement.setString(1, customer.getLastName());
 			preparedStatement.setString(2, customer.getFirstName());
-			preparedStatement.setInt(3, customer.getAge());
-			preparedStatement.setString(4, customer.getAdress());
-			preparedStatement.setString(5, customer.getPostalcode());
-			preparedStatement.setString(6, customer.getEmail());
+			preparedStatement.setDate(3, new java.sql.Date(customer
+					.getBirthdate().getTime()));
+			preparedStatement.setInt(4, customer.getAge());
+			preparedStatement.setString(5, customer.getAdress());
+			preparedStatement.setString(6, customer.getPostalcode());
+			preparedStatement.setString(7, customer.getEmail());
 			preparedStatement.executeUpdate();
 			customerid = createNewId();
 			Customer c = new Customer(customerid, customer.getLastName(),
-					customer.getFirstName(), customer.getAge(),
-					customer.getAdress(), customer.getPostalcode(),
-					customer.getEmail());
+					customer.getFirstName(), customer.getBirthdate(),
+					customer.getAge(), customer.getAdress(),
+					customer.getPostalcode(), customer.getEmail());
 			internalCustomers.add(c);
 
 		} catch (SQLException e) {
@@ -240,7 +247,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 			resultSet = statement.executeQuery(SELECT + TABLE + WHERECUSTOMERID
 					+ id + ";");
 			resultSet.next();
-			localupdateid = resultSet.getInt(8);
+			localupdateid = resultSet.getInt(9);
 		} catch (SQLException e) {
 		}
 		CloseCurrentConnection();
@@ -274,7 +281,8 @@ public class MySQLCustomerDAO implements CustomerDAO {
 					+ customer.getId() + ";");
 			resultSet.next();
 			if (resultSet.getRow() == 0) {
-				System.err.println("Customer has been deleted by another user.");
+				System.err
+						.println("Customer has been deleted by another user.");
 				return;
 			}
 			if (resultSet.getInt(8) == localupdateid) {
@@ -290,7 +298,8 @@ public class MySQLCustomerDAO implements CustomerDAO {
 				preparedStatement.setInt(8, customer.getId());
 				preparedStatement.executeUpdate();
 			} else {
-				System.err.println("Customer has been changed by another user.");
+				System.err
+						.println("Customer has been changed by another user.");
 				CloseCurrentConnection();
 				return;
 			}
@@ -338,7 +347,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	 * true zurückgegeben, wenn nicht false
 	 * 
 	 * @param customer
-	 * @return 
+	 * @return
 	 * 
 	 * @throws CustomerDaoException
 	 */

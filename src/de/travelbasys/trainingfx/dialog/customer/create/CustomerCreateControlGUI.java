@@ -1,5 +1,7 @@
 package de.travelbasys.trainingfx.dialog.customer.create;
 
+import java.util.Date;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -156,6 +158,8 @@ public class CustomerCreateControlGUI implements Control {
 							dummyId,
 							CustomerCreateControlGUI.this.model.getLastname(),
 							CustomerCreateControlGUI.this.model.getFirstname(),
+							//TODO: Implementierung des Geburtstag.
+							new Date(),
 							CustomerCreateControlGUI.this.model.getAge(),
 							CustomerCreateControlGUI.this.model.getAdress(),
 							CustomerCreateControlGUI.this.model.getPostalcode(),

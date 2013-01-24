@@ -4,6 +4,9 @@
 package de.travelbasys.training.business;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,6 +26,7 @@ public class Customer implements Serializable, Cloneable {
 	private int customerid;
 	private int age;
 	private String postalcode;
+	private Date birthdate;
 
 	private static final String DEFAULT_LASTNAME = "default";
 	private static final String DEFAULT_FIRSTNAME = "default";
@@ -30,6 +34,9 @@ public class Customer implements Serializable, Cloneable {
 	private static final String DEFAULT_EMAIL = "default";
 	private static final int DEFAULT_AGE = 1;
 	private static final String DEFAULT_POSTALCODE = "default";
+	private static final SimpleDateFormat DEFAULT_BIRTHDATE_FORMAT = new SimpleDateFormat(
+			"YYYY-MM-DD");
+	private static final Date DEFAULT_BIRTHDATE = new Date(1970 - 01 - 01);
 
 	/*
 	 * Customer [name=xxx, age=nnn] oder: Customer[ name = xxx , age = nnn ]
@@ -40,17 +47,16 @@ public class Customer implements Serializable, Cloneable {
 	 * Spaces, dann "=", dann Spaces, dann Gruppe aus mindestens einer Ziffer,
 	 * dann Spaces, dann "]". Fertig.
 	 */
-	private static final String U = "\\s*Customer[(\\d+)]\\s*\\[\\s*lastname\\s*=\\s*(.+?)\\s*,\\s*firstname\\s*=\\s*(.+?)\\s*,\\s*age\\s*=\\s*(\\d+)\\s*\\,\\s*adress\\s*=\\s*(.+?)\\s*\\,\\s*postalcode\\s*=\\s*(.+?)\\s*\\,\\s*email\\s*=\\s*(.+?)\\s*\\]";
-	private static final String C = "(\\d+);(.+?);(.+?);(\\d+);(.+?);(.+?);(.+?)";
+	private static final String U = "\\s*Customer[(\\d+)]\\s*\\[\\s*lastname\\s*=\\s*(.+?)\\s*,\\s*firstname\\s*=\\s*(.+?)\\s*,\\s*birthdate\\s*=\\s*(.+?)\\s*\\,\\s*\\s*age\\s*=\\s*(\\d+)\\s*\\,\\s*adress\\s*=\\s*(.+?)\\s*\\,\\s*postalcode\\s*=\\s*(.+?)\\s*\\,\\s*email\\s*=\\s*(.+?)\\s*\\]";
+	private static final String C = "(\\d+);(.+?);(.+?);(.+?);(\\d+);(.+?);(.+?);(.+?)";
 	private static final Pattern CUSTOMERPATTERN = Pattern.compile(U,
 			Pattern.CASE_INSENSITIVE);
 	private static final Pattern CUSTOMERPATTERNCSV = Pattern.compile(C,
 			Pattern.CASE_INSENSITIVE);
 
-	private static final String WRONG_SYNTAX = "Wrong syntax: ";
-
+	private static final String WRONG_SYNTAX_ERROR = "Wrong syntax: ";
+	private static final String INVALID_DATE_ERROR = "Invalid Date: ";
 	private static final String POSTAL_CODE_ERROR = "Postal code not in range: ";
-
 	private static final String AGE_ERROR = "Wrong age: ";
 
 	/**
@@ -69,9 +75,9 @@ public class Customer implements Serializable, Cloneable {
 	 * @param adress
 	 * @throws Exception
 	 */
-	public Customer(int customerid, String lastname, String firstname, int age,
-			String adress, String postalcode, String email)
-			throws IllegalArgumentException {
+	public Customer(int customerid, String lastname, String firstname,
+			Date birthdate, int age, String adress, String postalcode,
+			String email) throws IllegalArgumentException {
 		this.customerid = customerid;
 		setLastName(lastname);
 		setFirstName(firstname);
@@ -79,6 +85,11 @@ public class Customer implements Serializable, Cloneable {
 		setAdress(adress);
 		setPostalcode(postalcode);
 		setEMail(email);
+		setBirthdate(birthdate);
+	}
+
+	private void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
 	}
 
 	public void setPostalcode(String postalcode)
@@ -101,8 +112,9 @@ public class Customer implements Serializable, Cloneable {
 	 * @throws IllegalArgumentException
 	 */
 	public Customer(int customerid) throws IllegalArgumentException {
-		this(customerid, DEFAULT_LASTNAME, DEFAULT_FIRSTNAME, DEFAULT_AGE,
-				DEFAULT_ADRESS, DEFAULT_POSTALCODE, DEFAULT_EMAIL);
+		this(customerid, DEFAULT_LASTNAME, DEFAULT_FIRSTNAME,
+				DEFAULT_BIRTHDATE, DEFAULT_AGE, DEFAULT_ADRESS,
+				DEFAULT_POSTALCODE, DEFAULT_EMAIL);
 	}
 
 	/**
@@ -231,6 +243,13 @@ public class Customer implements Serializable, Cloneable {
 				return false;
 		} else if (!adress.equals(other.adress))
 			return false;
+		if (birthdate == null) {
+			if (other.birthdate != null) {
+				return false;
+			}
+		} else if (!birthdate.equals(other.birthdate)) {
+			return false;
+		}
 		if (age != other.age)
 			return false;
 		if (firstname == null) {
@@ -272,12 +291,18 @@ public class Customer implements Serializable, Cloneable {
 
 		Matcher m = CUSTOMERPATTERN.matcher(s);
 		if (m.matches()) {
-			customer = new Customer(Integer.parseInt(m.group(1)), m.group(2),
-					m.group(3), Integer.parseInt(m.group(4)), m.group(5),
-					m.group(6), m.group(7));
+			try {
+				customer = new Customer(Integer.parseInt(m.group(1)),
+						m.group(2), m.group(3),
+						DEFAULT_BIRTHDATE_FORMAT.parse(m.group(4)),
+						Integer.parseInt(m.group(5)), m.group(6), m.group(7),
+						m.group(8));
+			} catch (ParseException e) {
+				System.out.println(INVALID_DATE_ERROR);
+			}
 		} else {
 			// Falsche Syntax: kein Customer.
-			throw new IllegalArgumentException(Customer.WRONG_SYNTAX + s);
+			throw new IllegalArgumentException(Customer.WRONG_SYNTAX_ERROR + s);
 		}
 
 		return customer;
@@ -287,19 +312,29 @@ public class Customer implements Serializable, Cloneable {
 		Customer customer = null;
 		Matcher m = CUSTOMERPATTERNCSV.matcher(s);
 		if (m.matches()) {
-			customer = new Customer(Integer.parseInt(m.group(1)), m.group(2),
-					m.group(3), Integer.parseInt(m.group(4)), m.group(5),
-					m.group(6), m.group(7));
+			try {
+				customer = new Customer(Integer.parseInt(m.group(1)),
+						m.group(2), m.group(3),
+						DEFAULT_BIRTHDATE_FORMAT.parse(m.group(4)),
+						Integer.parseInt(m.group(5)), m.group(6), m.group(7),
+						m.group(8));
+			} catch (ParseException e) {
+				System.out.println(INVALID_DATE_ERROR);
+			}
 		} else {
 			// Falsche Syntax: kein Customer.
-			throw new IllegalArgumentException(Customer.WRONG_SYNTAX + s);
+			throw new IllegalArgumentException(Customer.WRONG_SYNTAX_ERROR + s);
 		}
 
 		return customer;
 	}
 
 	public Customer clone() {
-		return new Customer(customerid, lastname, firstname, age, adress,
-				postalcode, email);
+		return new Customer(customerid, lastname, firstname, birthdate, age,
+				adress, postalcode, email);
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
 	}
 }

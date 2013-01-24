@@ -1,6 +1,7 @@
 package de.travelbasys.trainingfx.dialog.customer.update2;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -33,10 +34,10 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 
 	private CustomerUpdate2ModelGUI model;
 	private ResourceBundle resources;
-	
+
 	@FXML
 	private BorderPane root;
-	
+
 	@FXML
 	private static Label headerLabel;
 	@FXML
@@ -235,12 +236,17 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	@FXML
 	private void handleSendButton(ActionEvent e) {
 		try {
-			Customer customer = new Customer(Integer.parseInt(CustomerIDField
-					.getText()),
+			Customer customer = new Customer(
+
+			Integer.parseInt(CustomerIDField.getText()),
 
 			LastnameField.getText(),
 
-			FirstnameField.getText(), Integer.parseInt(AgeField.getText()),
+			FirstnameField.getText(),
+			//TODO: Implementierung des Geburtstag.
+			new Date(),
+
+			Integer.parseInt(AgeField.getText()),
 
 			AdressField.getText(),
 

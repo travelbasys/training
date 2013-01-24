@@ -1,5 +1,7 @@
 package de.travelbasys.trainingfx.dialog.customer.create;
 
+import java.util.Date;
+
 import de.travelbasys.training.framework.Model;
 
 //Soll nur gültige/validierte Daten enthalten.
@@ -12,6 +14,7 @@ public class CustomerCreateModelGUI implements Model {
 	private String adress = "";
 	private String postalcode = "";
 	private String email = "";
+	private Date birthdate = new Date();
 
 	public CustomerCreateModelGUI() {
 	}
@@ -31,6 +34,10 @@ public class CustomerCreateModelGUI implements Model {
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
+	
+	public void setBirthdate(Date birthdate){
+		this.birthdate = birthdate;
+	}
 
 	public int getAge() {
 		return age;
@@ -39,7 +46,7 @@ public class CustomerCreateModelGUI implements Model {
 	public void setAge(int age) {
 		this.age = age;
 	}
-
+	
 	public String getAdress() {
 		return adress;
 	}
@@ -70,5 +77,9 @@ public class CustomerCreateModelGUI implements Model {
 
 	public boolean isValid() {
 		return !isInvalid();
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
 	}
 }

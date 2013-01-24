@@ -1,5 +1,7 @@
 package de.travelbasys.trainingfx.dialog.customer.update;
 
+import java.util.Date;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -201,6 +203,8 @@ public class CustomerUpdateControlGUI implements Control {
 											.getLastNameField().getText(),
 									CustomerUpdateControlGUI.this.view
 											.getFirstNameField().getText(),
+											//TODO: Implementierung des Geburtstag.
+											new Date(),
 									Integer.parseInt(CustomerUpdateControlGUI.this.view
 											.getAgeField().getText()),
 									CustomerUpdateControlGUI.this.view
