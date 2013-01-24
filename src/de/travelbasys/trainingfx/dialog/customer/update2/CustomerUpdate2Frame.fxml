@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="329.0" prefWidth="323.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.travelbasys.trainingfx.dialog.customer.update2.CustomerUpdate2ControlGUI">
+<BorderPane fx:id="root" prefHeight="329.0" prefWidth="323.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.travelbasys.trainingfx.dialog.customer.update2.CustomerUpdate2ControlGUI">
   <!-- TODO Add Nodes -->
   <center>
     <GridPane>
@@ -26,7 +26,13 @@
             <TextField fx:id="AdressField" prefWidth="200.0" promptText="%Adressfield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <TextField fx:id="PostalcodeField" prefWidth="200.0" promptText="%Postalcodefield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <TextField fx:id="EmailField" prefWidth="200.0" promptText="%Emailfield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-            <Button fx:id="sendButton" mnemonicParsing="false" text="%SendButton" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+            <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleSendButton" text="%SendButton" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+            <Label fx:id="ValidAgeLabel" text="%ValidAge" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+              <GridPane.margin>
+                <Insets left="10.0" fx:id="x2" />
+              </GridPane.margin>
+            </Label>
+            <Label fx:id="ValidPostalcodeLabel" text="%ValidPostalcode" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.margin="$x2" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -51,8 +57,8 @@
               </GridPane.margin>
             </Label>
             <TextField fx:id="CustomerIDField" prefWidth="200.0" promptText="%Customeridfield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM" />
-            <Button fx:id="searchButton" mnemonicParsing="false" text="%Search" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM" />
-            <Button fx:id="newSearchButton" mnemonicParsing="false" text="%NewSearch" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM" />
+            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleSearchButton" text="%Search" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM" />
+            <Button fx:id="newSearchButton" mnemonicParsing="false" onAction="#handleNewSearchButton" text="%NewSearch" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.margin="$x1" GridPane.rowIndex="0" GridPane.valignment="BOTTOM" />
             <Label fx:id="headerLabel" text="%CustomerEdit" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
               <font>
                 <Font name="System Bold" size="20.0" />
