@@ -232,7 +232,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 		});
 	}
 
-	@SuppressWarnings("unused")
+
 	@FXML
 	private void handleSendButton(ActionEvent e) {
 		try {
@@ -291,7 +291,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 		}
 	}
 
-	@SuppressWarnings("unused")
+
 	@FXML
 	private void handleSearchButton(ActionEvent e) {
 		try {
@@ -384,7 +384,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 
 	}
 
-	@SuppressWarnings("unused")
+
 	@FXML
 	private void handleNewSearchButton(ActionEvent e) {
 		clear();
