@@ -96,16 +96,4 @@ public class CustomerCreate2ModelGUI implements Model {
 		return !sendIsInvalid();
 	}
 
-	public boolean hasNotChanged() {
-		return (lastname.equals(data.get(0).getLastName())
-				&& firstname.equals(data.get(0).getFirstName())
-				&& age == data.get(0).getAge()
-				&& adress.equals(data.get(0).getAdress())
-				&& postalcode.equals(data.get(0).getPostalcode()) && email
-					.equals(data.get(0).getEmail()));
-	}
-
-	public boolean hasChanged() {
-		return !hasNotChanged();
-	}
 }
