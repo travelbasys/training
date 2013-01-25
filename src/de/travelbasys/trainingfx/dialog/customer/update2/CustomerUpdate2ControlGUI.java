@@ -41,37 +41,37 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	@FXML
 	private static Label headerLabel;
 	@FXML
-	private static Label CustomerIDLabel;
+	private static Label customerIDLabel;
 	@FXML
-	private static Label LastnameLabel;
+	private static Label lastnameLabel;
 	@FXML
-	private static Label FirstnameLabel;
+	private static Label firstnameLabel;
 	@FXML
-	private static Label AgeLabel;
+	private static Label ageLabel;
 	@FXML
-	private static Label AdressLabel;
+	private static Label adressLabel;
 	@FXML
-	private static Label PostalcodeLabel;
+	private static Label postalcodeLabel;
 	@FXML
-	private static Label EmailLabel;
+	private static Label emailLabel;
 	@FXML
-	private static Label ValidAgeLabel;
+	private static Label validAgeLabel;
 	@FXML
-	private static Label ValidPostalcodeLabel;
+	private static Label validPostalcodeLabel;
 	@FXML
-	private static TextField CustomerIDField;
+	private static TextField customerIDField;
 	@FXML
-	private static TextField LastnameField;
+	private static TextField lastnameField;
 	@FXML
-	private static TextField FirstnameField;
+	private static TextField firstnameField;
 	@FXML
-	private static TextField AgeField;
+	private static TextField ageField;
 	@FXML
-	private static TextField AdressField;
+	private static TextField adressField;
 	@FXML
-	private static TextField PostalcodeField;
+	private static TextField postalcodeField;
 	@FXML
-	private static TextField EmailField;
+	private static TextField emailField;
 	@FXML
 	private static Button sendButton;
 	@FXML
@@ -88,24 +88,24 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 
 		Configuration.addConfigurationListener(this);
 
-		LastnameField.setEditable(false);
-		FirstnameField.setEditable(false);
-		AgeField.setEditable(false);
-		AdressField.setEditable(false);
-		PostalcodeField.setEditable(false);
-		EmailField.setEditable(false);
+		lastnameField.setEditable(false);
+		firstnameField.setEditable(false);
+		ageField.setEditable(false);
+		adressField.setEditable(false);
+		postalcodeField.setEditable(false);
+		emailField.setEditable(false);
 
 		sendButton.setDisable(true);
 		searchButton.setDisable(true);
 		newSearchButton.setDisable(true);
 
-		CustomerIDField.textProperty().addListener(
+		customerIDField.textProperty().addListener(
 				new ChangeListener<String>() {
 
 					public void changed(
 							ObservableValue<? extends String> observable,
 							String oldValue, String newValue) {
-						TextField field = CustomerIDField;
+						TextField field = customerIDField;
 						try {
 							int id = Integer.parseInt(field.getText().trim());
 							CustomerUpdate2ControlGUI.this.model
@@ -118,36 +118,36 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 					}
 				});
 
-		LastnameField.textProperty().addListener(new ChangeListener<String>() {
+		lastnameField.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
-				CustomerUpdate2ControlGUI.this.model.setLastname(LastnameField
+				CustomerUpdate2ControlGUI.this.model.setLastname(lastnameField
 						.getText().trim());
 
 				updateSendButton();
 			}
 		});
 
-		FirstnameField.textProperty().addListener(new ChangeListener<String>() {
+		firstnameField.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
 				CustomerUpdate2ControlGUI.this.model
-						.setFirstname(FirstnameField.getText().trim());
+						.setFirstname(firstnameField.getText().trim());
 
 				updateSendButton();
 			}
 		});
 
-		AgeField.textProperty().addListener(new ChangeListener<String>() {
+		ageField.textProperty().addListener(new ChangeListener<String>() {
 
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
-				TextField field = AgeField;
-				Label hint = ValidAgeLabel;
+				TextField field = ageField;
+				Label hint = validAgeLabel;
 				try {
 					int age = Integer.parseInt(field.getText().trim());
 					if (age > 0 && age <= 150) {
@@ -173,26 +173,26 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 			}
 		});
 
-		AdressField.textProperty().addListener(new ChangeListener<String>() {
+		adressField.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
-				CustomerUpdate2ControlGUI.this.model.setAdress(AdressField
+				CustomerUpdate2ControlGUI.this.model.setAdress(adressField
 						.getText().trim());
 
 				updateSendButton();
 			}
 		});
 
-		PostalcodeField.textProperty().addListener(
+		postalcodeField.textProperty().addListener(
 				new ChangeListener<String>() {
 
 					public void changed(
 							ObservableValue<? extends String> observable,
 							String oldValue, String newValue) {
-						TextField field = PostalcodeField;
-						Label hint = ValidPostalcodeLabel;
+						TextField field = postalcodeField;
+						Label hint = validPostalcodeLabel;
 						try {
 							if (Integer.parseInt(field.getText().trim()) > 0
 									&& field.getText().trim().length() == 5) {
@@ -219,12 +219,12 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 					}
 				});
 
-		EmailField.textProperty().addListener(new ChangeListener<String>() {
+		emailField.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
-				CustomerUpdate2ControlGUI.this.model.setEmail(EmailField
+				CustomerUpdate2ControlGUI.this.model.setEmail(emailField
 						.getText().trim());
 
 				updateSendButton();
@@ -232,27 +232,26 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 		});
 	}
 
-
 	@FXML
 	private void handleSendButton(ActionEvent e) {
 		try {
 			Customer customer = new Customer(
 
-			Integer.parseInt(CustomerIDField.getText()),
+			Integer.parseInt(customerIDField.getText()),
 
-			LastnameField.getText(),
+			lastnameField.getText(),
 
-			FirstnameField.getText(),
-			//TODO: Implementierung des Geburtstag.
-			new Date(),
+			firstnameField.getText(),
+			// TODO: Implementierung des Geburtstag.
+					new Date(),
 
-			Integer.parseInt(AgeField.getText()),
+					Integer.parseInt(ageField.getText()),
 
-			AdressField.getText(),
+					adressField.getText(),
 
-			PostalcodeField.getText(),
+					postalcodeField.getText(),
 
-			EmailField.getText());
+					emailField.getText());
 			Dao.getDAO().getExisting(customer);
 			Dao.getDAO().update(customer);
 			Dialogs.showInformationDialog((Stage) root.getScene().getWindow(),
@@ -291,13 +290,12 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 		}
 	}
 
-
 	@FXML
 	private void handleSearchButton(ActionEvent e) {
 		try {
 			ObservableList<Customer> data = FXCollections
 					.observableArrayList(Dao.getDAO().findById(
-							Integer.parseInt(CustomerIDField.getText())));
+							Integer.parseInt(customerIDField.getText())));
 			CustomerUpdate2ControlGUI.this.model.setData(data);
 
 			if (CustomerUpdate2ControlGUI.this.model.getData().get(0) != null) {
@@ -338,7 +336,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 										.getString("UpdateQuestion"),
 						CustomerUpdate2ControlGUI.this.resources
 								.getString("CustomerWithID")
-								+ CustomerIDField.getText()
+								+ customerIDField.getText()
 								+ " "
 								+ CustomerUpdate2ControlGUI.this.resources
 										.getString("Found"),
@@ -359,7 +357,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 						(Stage) root.getScene().getWindow(),
 						CustomerUpdate2ControlGUI.this.resources
 								.getString("CustomerWithID")
-								+ CustomerIDField.getText()
+								+ customerIDField.getText()
 								+ " "
 								+ CustomerUpdate2ControlGUI.this.resources
 										.getString("NotFound"),
@@ -373,7 +371,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 					(Stage) root.getScene().getWindow(),
 					CustomerUpdate2ControlGUI.this.resources
 							.getString("SyntaxError")
-							+ CustomerIDField.getText()
+							+ customerIDField.getText()
 							+ "\n"
 							+ CustomerUpdate2ControlGUI.this.resources
 									.getString("CustomerIDError"),
@@ -384,14 +382,13 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 
 	}
 
-
 	@FXML
 	private void handleNewSearchButton(ActionEvent e) {
 		clear();
 		deactivateEdit();
 		deactivateNewSearch();
 		activateSearch();
-		CustomerIDField.requestFocus();
+		customerIDField.requestFocus();
 	}
 
 	@FXML
@@ -400,18 +397,18 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	}
 
 	private void deactivateEdit() {
-		LastnameField.setEditable(false);
-		FirstnameField.setEditable(false);
-		AgeField.setEditable(false);
-		AdressField.setEditable(false);
-		PostalcodeField.setEditable(false);
-		EmailField.setEditable(false);
+		lastnameField.setEditable(false);
+		firstnameField.setEditable(false);
+		ageField.setEditable(false);
+		adressField.setEditable(false);
+		postalcodeField.setEditable(false);
+		emailField.setEditable(false);
 		sendButton.setDisable(true);
 	}
 
 	private void activateSearch() {
-		CustomerIDField.setEditable(true);
-		CustomerIDField.clear();
+		customerIDField.setEditable(true);
+		customerIDField.clear();
 	}
 
 	private void activateNewSearch() {
@@ -419,43 +416,43 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	}
 
 	private void deactivateSearch() {
-		CustomerIDField.setEditable(false);
+		customerIDField.setEditable(false);
 		searchButton.setDisable(true);
 	}
 
 	private void clear() {
-		LastnameField.clear();
-		FirstnameField.clear();
-		AgeField.clear();
-		AdressField.clear();
-		PostalcodeField.clear();
-		EmailField.clear();
+		lastnameField.clear();
+		firstnameField.clear();
+		ageField.clear();
+		adressField.clear();
+		postalcodeField.clear();
+		emailField.clear();
 	}
 
 	private void activateEdit() {
 
-		LastnameField.setEditable(true);
-		LastnameField.setText(CustomerUpdate2ControlGUI.this.model.getData()
+		lastnameField.setEditable(true);
+		lastnameField.setText(CustomerUpdate2ControlGUI.this.model.getData()
 				.get(0).getLastName());
 
-		FirstnameField.setEditable(true);
-		FirstnameField.setText(CustomerUpdate2ControlGUI.this.model.getData()
+		firstnameField.setEditable(true);
+		firstnameField.setText(CustomerUpdate2ControlGUI.this.model.getData()
 				.get(0).getFirstName());
 
-		AgeField.setEditable(true);
-		AgeField.setText(String.valueOf(CustomerUpdate2ControlGUI.this.model
+		ageField.setEditable(true);
+		ageField.setText(String.valueOf(CustomerUpdate2ControlGUI.this.model
 				.getData().get(0).getAge()));
 
-		AdressField.setEditable(true);
-		AdressField.setText(CustomerUpdate2ControlGUI.this.model.getData()
+		adressField.setEditable(true);
+		adressField.setText(CustomerUpdate2ControlGUI.this.model.getData()
 				.get(0).getAdress());
 
-		PostalcodeField.setEditable(true);
-		PostalcodeField.setText(CustomerUpdate2ControlGUI.this.model.getData()
+		postalcodeField.setEditable(true);
+		postalcodeField.setText(CustomerUpdate2ControlGUI.this.model.getData()
 				.get(0).getPostalcode());
 
-		EmailField.setEditable(true);
-		EmailField.setText(CustomerUpdate2ControlGUI.this.model.getData()
+		emailField.setEditable(true);
+		emailField.setText(CustomerUpdate2ControlGUI.this.model.getData()
 				.get(0).getEmail());
 	}
 
@@ -479,23 +476,23 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 		resources = e.getResources();
 
 		headerLabel.setText(resources.getString("CustomerEdit"));
-		CustomerIDLabel.setText(resources.getString("CustomerID"));
-		LastnameLabel.setText(resources.getString("Lastname"));
-		FirstnameLabel.setText(resources.getString("Firstname"));
-		AgeLabel.setText(resources.getString("Age"));
-		AdressLabel.setText(resources.getString("Adress"));
-		PostalcodeLabel.setText(resources.getString("Postalcode"));
-		EmailLabel.setText(resources.getString("Email"));
-		ValidAgeLabel.setText(resources.getString("ValidAge"));
-		ValidPostalcodeLabel.setText(resources.getString("ValidPostalcode"));
+		customerIDLabel.setText(resources.getString("CustomerID"));
+		lastnameLabel.setText(resources.getString("Lastname"));
+		firstnameLabel.setText(resources.getString("Firstname"));
+		ageLabel.setText(resources.getString("Age"));
+		adressLabel.setText(resources.getString("Adress"));
+		postalcodeLabel.setText(resources.getString("Postalcode"));
+		emailLabel.setText(resources.getString("Email"));
+		validAgeLabel.setText(resources.getString("ValidAge"));
+		validPostalcodeLabel.setText(resources.getString("ValidPostalcode"));
 
-		CustomerIDField.setPromptText(resources.getString("Customeridfield"));
-		LastnameField.setPromptText(resources.getString("Lastnamefield"));
-		FirstnameField.setPromptText(resources.getString("Firstnamefield"));
-		AgeField.setPromptText(resources.getString("Agefield"));
-		AdressField.setPromptText(resources.getString("Adressfield"));
-		PostalcodeField.setPromptText(resources.getString("Postalcodefield"));
-		EmailField.setPromptText(resources.getString("Emailfield"));
+		customerIDField.setPromptText(resources.getString("Customeridfield"));
+		lastnameField.setPromptText(resources.getString("Lastnamefield"));
+		firstnameField.setPromptText(resources.getString("Firstnamefield"));
+		ageField.setPromptText(resources.getString("Agefield"));
+		adressField.setPromptText(resources.getString("Adressfield"));
+		postalcodeField.setPromptText(resources.getString("Postalcodefield"));
+		emailField.setPromptText(resources.getString("Emailfield"));
 
 		searchButton.setText(resources.getString("Search"));
 		sendButton.setText(resources.getString("SendButton"));
