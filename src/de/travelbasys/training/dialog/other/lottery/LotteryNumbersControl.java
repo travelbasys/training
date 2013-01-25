@@ -12,8 +12,9 @@ import de.travelbasys.training.service.ProgressEventListener;
  * 
  * Die aktuelle Implementierung startet einen neuen Thread, die mit
  * Dienstklassen eines anderes Packages arbeitet. Unser Controller implementiert
- * ein ProgressEventListener Interface, und überschreibt dessen Listener-Methoden.
- * (Der Controller lauscht, ob eine Dienstklasse ein Event abgefeuert hat.)
+ * ein ProgressEventListener Interface, und überschreibt dessen
+ * Listener-Methoden. (Der Controller lauscht, ob eine Dienstklasse ein Event
+ * abgefeuert hat.)
  * 
  * @author tba
  * 

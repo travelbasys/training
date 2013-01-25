@@ -11,7 +11,6 @@ import de.travelbasys.training.framework.AbstractUiComponent;
  */
 public class ChangeDBControl {
 
-
 	public void check(Object value) throws Exception {
 		if (((String) value).isEmpty())
 			throw new Exception("EmptyFieldErr");

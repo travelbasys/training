@@ -214,9 +214,9 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 
 	@Override
 	public void handleConfigurationEvent(ConfigurationEvent e) {
-		
+
 		root.getStylesheets().setAll((String) Configuration.get("stylesheet"));
-		
+
 		abortButton.setText(AppContext.getMessage("AbortButton"));
 		saveButton.setText(AppContext.getMessage("SaveButton"));
 		databaseTab.setText(AppContext.getMessage("Database"));

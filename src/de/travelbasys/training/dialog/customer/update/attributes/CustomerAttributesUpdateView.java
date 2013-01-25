@@ -13,7 +13,7 @@ import de.travelbasys.training.util.AppContext;
 @SuppressWarnings("serial")
 public class CustomerAttributesUpdateView extends ArrayList<UiComponent>
 		implements View {
-	
+
 	private CustomerAttributesUpdateModel model;
 
 	private static final String LASTNAME = "LastName";
@@ -33,7 +33,6 @@ public class CustomerAttributesUpdateView extends ArrayList<UiComponent>
 
 	private static final String EMAIL = "EMail";
 	private UiComponent eMailComponent;
-
 
 	public UiComponent getLastnameComponent() {
 		return lastnameComponent;
@@ -66,7 +65,7 @@ public class CustomerAttributesUpdateView extends ArrayList<UiComponent>
 	 */
 	public CustomerAttributesUpdateView(Model model1) {
 		model = (CustomerAttributesUpdateModel) model1;
-		
+
 		firstnameComponent = new UiComponent();
 		firstnameComponent.setName(FIRSTNAME);
 		firstnameComponent.setValue(model.getFirstName());

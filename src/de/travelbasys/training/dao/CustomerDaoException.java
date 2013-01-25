@@ -28,14 +28,15 @@ public class CustomerDaoException extends Exception {
 
 	public void printcustomeriderr() {
 		if (error != null && customer != null) {
-			System.err.println(AppContext.getMessage(error) + "" + customer.getId());
+			System.err.println(AppContext.getMessage(error) + ""
+					+ customer.getId());
 		} else {
 			System.err.println(AppContext.getMessage("CriticalErr"));
 		}
 	}
 
 	public void printerr() {
-		System.err.println(AppContext.getMessage(error));		
+		System.err.println(AppContext.getMessage(error));
 	}
 
 }

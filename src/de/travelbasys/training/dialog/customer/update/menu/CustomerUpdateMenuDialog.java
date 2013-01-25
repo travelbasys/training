@@ -11,14 +11,15 @@ public class CustomerUpdateMenuDialog implements Dialog {
 	private CustomerUpdateMenuView view;
 	@SuppressWarnings("unused")
 	private CustomerUpdateMenuControl control;
-	
+
 	/**
-	 * Erzeugt interne Model, View und Control Instanzen und initialisiert diese.
+	 * Erzeugt interne Model, View und Control Instanzen und initialisiert
+	 * diese.
 	 */
 	public CustomerUpdateMenuDialog() {
 		model = new CustomerUpdateMenuModel();
 		view = new CustomerUpdateMenuView(model);
-		control = new CustomerUpdateMenuControl(model,view);
+		control = new CustomerUpdateMenuControl(model, view);
 	}
 
 	/**
@@ -31,15 +32,14 @@ public class CustomerUpdateMenuDialog implements Dialog {
 	}
 
 	/**
-	 * Gibt den Index des vom Benutzer gewünschten Menüpunktes zurück.
-	 * Vorher muss die {@see #run} Methode ausgeführt werden, damit der
-	 * Benutzer einen Menüpunkt auswählen kann.
+	 * Gibt den Index des vom Benutzer gewünschten Menüpunktes zurück. Vorher
+	 * muss die {@see #run} Methode ausgeführt werden, damit der Benutzer einen
+	 * Menüpunkt auswählen kann.
 	 * 
 	 * @return der Index.
 	 */
 	public int getSelectedIndex() {
 		return model.getIndex();
 	}
-
 
 }

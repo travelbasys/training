@@ -87,8 +87,8 @@ public class CustomerListViewGUI implements View, ConfigurationListener {
 		emailCol.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 				"email"));
 
-		table.getColumns().addAll(customerIDCol, lastNameCol, firstNameCol, birthDateCol,
-				ageCol, adressCol, postalcodeCol, emailCol);
+		table.getColumns().addAll(customerIDCol, lastNameCol, firstNameCol,
+				birthDateCol, ageCol, adressCol, postalcodeCol, emailCol);
 		// Erstelle Referenz zu Tabelle und fülle mit Daten
 		// Erstellen Node (VBox) für Platzierung der Tabelle
 		vbox = new VBox();

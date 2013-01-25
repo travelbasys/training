@@ -174,7 +174,7 @@ public class CustomerUpdateViewGUI implements View, ConfigurationListener {
 	public TextField getFirstNameField() {
 		return firstNameField;
 	}
-	
+
 	public TextField getBirthdateField() {
 		return birthdateField;
 	}

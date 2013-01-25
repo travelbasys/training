@@ -12,7 +12,7 @@ public class CustomerFindDialog implements Dialog {
 	private CustomerFindView view;
 	@SuppressWarnings("unused")
 	private CustomerFindControl control;
-	
+
 	/**
 	 * Initalisiert die MVC-Komponenten des Find-Dialoges.
 	 * 
@@ -23,6 +23,7 @@ public class CustomerFindDialog implements Dialog {
 		control = new CustomerFindControl(model, view);
 
 	}
+
 	/**
 	 * Führt den initalisierten View aus.
 	 */
@@ -30,6 +31,7 @@ public class CustomerFindDialog implements Dialog {
 	public void run() {
 		view.run();
 	}
+
 	/**
 	 * Holt den gefundenen Customer aus dem Model.
 	 * 
@@ -38,12 +40,13 @@ public class CustomerFindDialog implements Dialog {
 	public Customer getCustomer() {
 		return model.getCustomer();
 	}
+
 	/**
 	 * Holt die gefundene CustomerID aus dem Model.
 	 * 
 	 * @return Die gefundene ID.
 	 */
-	public int getCustomerID(){
+	public int getCustomerID() {
 		return model.getCustomerId();
 	}
 }

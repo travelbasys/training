@@ -33,21 +33,20 @@ public class CustomerShowViewGUI implements View, ConfigurationListener {
 	private Button searchButton;
 	private Labeled lbl_customerid;
 	private Labeled lbl_menu;
-	
+
 	public void update() {
 		searchButton.setDisable(model.isInvalid());
 	}
 
-
 	public void init() {
 
 		Configuration.addConfigurationListener(this);
-		
+
 		customerIDField = new TextField();
 		lbl_customerid = new Label();
 		lbl_menu = new Label();
 		lbl_menu.setId("header2");
-		
+
 		grid = new GridPane();
 		searchButton = new Button();
 		searchButton.setDisable(true);
@@ -63,11 +62,12 @@ public class CustomerShowViewGUI implements View, ConfigurationListener {
 
 		handleConfigurationEvent(null);
 
-		
 	}
+
 	protected void clear() {
-		customerIDField
-				.clear();}
+		customerIDField.clear();
+	}
+
 	public void run() {
 		root.setCenter(grid);
 	}
@@ -87,9 +87,6 @@ public class CustomerShowViewGUI implements View, ConfigurationListener {
 	public Button getSearchButton() {
 		return searchButton;
 	}
-	
-	
-
 
 	@Override
 	public void handleConfigurationEvent(ConfigurationEvent e) {
@@ -97,5 +94,5 @@ public class CustomerShowViewGUI implements View, ConfigurationListener {
 		lbl_menu.setText(AppContext.getMessage("CustomerShow"));
 		searchButton.setText(AppContext.getMessage("Search"));
 	}
-	
+
 }

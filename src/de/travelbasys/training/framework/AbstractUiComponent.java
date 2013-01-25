@@ -41,7 +41,7 @@ public abstract class AbstractUiComponent {
 
 	public void setValue(Object value) {
 		this.value = value;
-		
+
 		if (null == value) {
 			setType(null);
 		} else {

@@ -153,9 +153,9 @@ public class TxtCustomerDAO implements CustomerDAO {
 
 		int customerid = createNewId();
 		Customer c = new Customer(customerid, customer.getLastName(),
-				customer.getFirstName(), customer.getBirthdate(), customer.getAge(),
-				customer.getAdress(), customer.getPostalcode(),
-				customer.getEmail());
+				customer.getFirstName(), customer.getBirthdate(),
+				customer.getAge(), customer.getAdress(),
+				customer.getPostalcode(), customer.getEmail());
 		internalCustomers.add(c);
 	}
 
@@ -247,7 +247,7 @@ public class TxtCustomerDAO implements CustomerDAO {
 	 * true zurückgegeben, wenn nicht false
 	 * 
 	 * @param customer
-	 *            
+	 * 
 	 * @throws CustomerDaoException
 	 */
 	// TODO: Besseren Namen finden!!!

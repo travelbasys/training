@@ -36,11 +36,11 @@ public class MySQLAccess {
 
 	public static void main(String[] args) throws Exception {
 		MySQLAccess dao = new MySQLAccess();
-		
+
 		dao.readDataBase();
 	}
 
-	//@SuppressWarnings("deprecation")
+	// @SuppressWarnings("deprecation")
 	public void readDataBase() throws Exception {
 		try {
 			// This will load the MySQL driver, each DB has its own driver
@@ -79,7 +79,8 @@ public class MySQLAccess {
 			preparedStatement.setString(1, input[0]);
 			preparedStatement.setString(2, input[1]);
 			preparedStatement.setString(3, input[2]);
-			preparedStatement.setDate(4,new java.sql.Date(new Date().getTime()));
+			preparedStatement.setDate(4,
+					new java.sql.Date(new Date().getTime()));
 			preparedStatement.setString(5, input[3]);
 			preparedStatement.setString(6, input[4]);
 			preparedStatement.executeUpdate();

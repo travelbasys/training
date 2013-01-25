@@ -34,8 +34,8 @@ public class CustomerCreateModelGUI implements Model {
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
-	
-	public void setBirthdate(Date birthdate){
+
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 
@@ -46,7 +46,7 @@ public class CustomerCreateModelGUI implements Model {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
+
 	public String getAdress() {
 		return adress;
 	}
@@ -70,6 +70,7 @@ public class CustomerCreateModelGUI implements Model {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public boolean isInvalid() {
 		return lastname.isEmpty() || firstname.isEmpty() || age == 0
 				|| adress.isEmpty() || postalcode.isEmpty() || email.isEmpty();

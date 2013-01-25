@@ -8,9 +8,9 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 
 /**
- * Diese Klasse Kontrolliert Benutzereingaben.
- * Die aktuelle Implementierung führt anhand der Benutzereingabe den gewählten Menüpunkt aus.
- * (Erzeugt ein neues Dialogobjekt).
+ * Diese Klasse Kontrolliert Benutzereingaben. Die aktuelle Implementierung
+ * führt anhand der Benutzereingabe den gewählten Menüpunkt aus. (Erzeugt ein
+ * neues Dialogobjekt).
  * 
  * @author tba
  * 

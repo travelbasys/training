@@ -105,9 +105,10 @@ public class AccessCustomerDAO implements CustomerDAO {
 			internalCustomers = new ArrayList<Customer>();
 			while (resultSet.next()) {
 				Customer c = new Customer(resultSet.getInt(1),
-						resultSet.getString(2), resultSet.getString(3),resultSet.getDate(4),
-						resultSet.getInt(5), resultSet.getString(6),
-						resultSet.getString(7), resultSet.getString(8));
+						resultSet.getString(2), resultSet.getString(3),
+						resultSet.getDate(4), resultSet.getInt(5),
+						resultSet.getString(6), resultSet.getString(7),
+						resultSet.getString(8));
 				internalCustomers.add(c);
 			}
 		} catch (Exception e) {
@@ -194,9 +195,9 @@ public class AccessCustomerDAO implements CustomerDAO {
 			preparedStatement.executeUpdate();
 			customerid = createNewId();
 			Customer c = new Customer(customerid, customer.getLastName(),
-					customer.getFirstName(),customer.getBirthdate(), customer.getAge(),
-					customer.getAdress(), customer.getPostalcode(),
-					customer.getEmail());
+					customer.getFirstName(), customer.getBirthdate(),
+					customer.getAge(), customer.getAdress(),
+					customer.getPostalcode(), customer.getEmail());
 			internalCustomers.add(c);
 
 		} catch (SQLException e) {

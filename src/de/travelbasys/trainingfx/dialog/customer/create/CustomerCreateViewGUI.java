@@ -49,7 +49,7 @@ public class CustomerCreateViewGUI implements View, ConfigurationListener {
 	}
 
 	public void init() {
-Datum.getDate();
+		Datum.getDate();
 		Configuration.addConfigurationListener(this);
 
 		lastNameField = new TextField();
@@ -62,7 +62,7 @@ Datum.getDate();
 
 		lbl_menu = new Label();
 		lbl_menu.setId("header2");
-		
+
 		lbl_lastname = new Label();
 		lbl_firstname = new Label();
 		lbl_birthdate = new Label();
@@ -99,14 +99,14 @@ Datum.getDate();
 		GridPane.setConstraints(lbl_postalcode_hint, 3, 6);
 		GridPane.setConstraints(sendButton, 3, 10);
 
-		grid.getChildren().addAll(lbl_menu, lbl_lastname, lbl_firstname, lbl_birthdate,
-				lbl_age, lbl_adress, lbl_postalcode, lbl_email, lbl_age_hint,
-				lbl_postalcode_hint, lastNameField, firstNameField, birthdateField, ageField,
-				adressField, postalcodeField, emailField, sendButton);
+		grid.getChildren().addAll(lbl_menu, lbl_lastname, lbl_firstname,
+				lbl_birthdate, lbl_age, lbl_adress, lbl_postalcode, lbl_email,
+				lbl_age_hint, lbl_postalcode_hint, lastNameField,
+				firstNameField, birthdateField, ageField, adressField,
+				postalcodeField, emailField, sendButton);
 
 		handleConfigurationEvent(null);
 
-	
 	}
 
 	public void run() {
@@ -133,7 +133,7 @@ Datum.getDate();
 	public TextField getFirstNameField() {
 		return firstNameField;
 	}
-	
+
 	public TextField getBirthdateField() {
 		return birthdateField;
 	}

@@ -25,13 +25,13 @@ public class SimpleController implements Initializable {
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		assert myButton != null : "fx:id=\"myButton\" was not injected: check your FXML file 'simple.fxml'.";
 
-		 myButton.setOnAction(new EventHandler<ActionEvent>() {
+		myButton.setOnAction(new EventHandler<ActionEvent>() {
 
-	            @Override
-	            public void handle(ActionEvent event) {
-	                System.out.println("That was easy, wasn't it?");
-	            }
-	        });
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("That was easy, wasn't it?");
+			}
+		});
 
 	}
 

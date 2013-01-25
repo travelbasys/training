@@ -26,7 +26,7 @@ public class ChangeParamDialog implements Dialog {
 		if (model.getDialog() == null) {
 			return;
 		}
-			Dialog d = model.getDialog();
-			d.run();
+		Dialog d = model.getDialog();
+		d.run();
 	}
 }

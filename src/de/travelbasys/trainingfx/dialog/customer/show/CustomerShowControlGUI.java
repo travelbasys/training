@@ -38,15 +38,12 @@ public class CustomerShowControlGUI implements Control {
 							String oldValue, String newValue) {
 						TextField field = CustomerShowControlGUI.this.view
 								.getCustomerIDField();
-							try {
-								int id = Integer.parseInt(field.getText()
-										.trim());
-								CustomerShowControlGUI.this.model
-										.setCustomerid(id);
-							} catch (NumberFormatException e) {
-								CustomerShowControlGUI.this.model
-										.setCustomerid(0);
-							}
+						try {
+							int id = Integer.parseInt(field.getText().trim());
+							CustomerShowControlGUI.this.model.setCustomerid(id);
+						} catch (NumberFormatException e) {
+							CustomerShowControlGUI.this.model.setCustomerid(0);
+						}
 						CustomerShowControlGUI.this.view.update();
 					}
 				});

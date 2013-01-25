@@ -12,7 +12,7 @@ import de.travelbasys.training.util.AppContext;
  */
 public class YesNoModel extends ArrayList<String> implements Model {
 	private static final long serialVersionUID = 1L;
-	
+
 	private boolean yes;
 
 	/**

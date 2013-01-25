@@ -71,7 +71,7 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 				return;
 			}
 
-			//model.initDirtyFlag();
+			// model.initDirtyFlag();
 
 			// Ausgewähltes Attribut ändern.
 			// Der Wert von Index ist 0 für "Beenden" und 1 bis 6 für
@@ -91,7 +91,8 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 			customer.setEMail(model.getEMail());
 		} while (true);
 	}
-	public boolean getDirtyFlag(){
+
+	public boolean getDirtyFlag() {
 		return model.getDirtyFlag();
 	}
 }

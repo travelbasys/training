@@ -69,8 +69,8 @@ public class Lottery {
 
 	/**
 	 * Feuert ein Event über den Abschluss des Dienstes. Die aktuelle
-	 * Implementierung ruft dazu eine Liste gegebener Listener auf, die Fortschritt
-	 * Events behandeln können.
+	 * Implementierung ruft dazu eine Liste gegebener Listener auf, die
+	 * Fortschritt Events behandeln können.
 	 */
 	private void fireOperationFinished() {
 		ProgressEvent pe = new ProgressEvent(this);
@@ -78,10 +78,13 @@ public class Lottery {
 			listener.handleOperationFinished(pe);
 		}
 	}
-/**
- * Fügt einer Liste einen gegebenen Listener hinzu.
- * @param listener Das Listener Objekt.
- */
+
+	/**
+	 * Fügt einer Liste einen gegebenen Listener hinzu.
+	 * 
+	 * @param listener
+	 *            Das Listener Objekt.
+	 */
 	public void addProgressListener(ProgressEventListener listener) {
 		listeners.add(listener);
 	}

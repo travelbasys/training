@@ -203,8 +203,8 @@ public class CustomerUpdateControlGUI implements Control {
 											.getLastNameField().getText(),
 									CustomerUpdateControlGUI.this.view
 											.getFirstNameField().getText(),
-											//TODO: Implementierung des Geburtstag.
-											new Date(),
+									// TODO: Implementierung des Geburtstag.
+									new Date(),
 									Integer.parseInt(CustomerUpdateControlGUI.this.view
 											.getAgeField().getText()),
 									CustomerUpdateControlGUI.this.view

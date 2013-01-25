@@ -7,8 +7,8 @@ import java.util.Properties;
 import de.travelbasys.training.dialog.other.parameters.database.ChangeDBDialog;
 
 /**
- * ist verantwortlich für das ändern der Datenbank. Führt ihre Superklasse aus
- * & erweitert diese um eine Speichern-Funktion.
+ * ist verantwortlich für das ändern der Datenbank. Führt ihre Superklasse aus &
+ * erweitert diese um eine Speichern-Funktion.
  * 
  * @author tba
  */

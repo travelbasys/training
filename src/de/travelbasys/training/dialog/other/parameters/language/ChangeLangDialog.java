@@ -28,7 +28,7 @@ public class ChangeLangDialog implements Dialog {
 
 		// Here plays the music!
 		view.run();
-		if(model.getLocale() == Locale.getDefault()){
+		if (model.getLocale() == Locale.getDefault()) {
 			return;
 		}
 		Config.updateLanguage(model.getLocale());
@@ -37,5 +37,5 @@ public class ChangeLangDialog implements Dialog {
 	public String getLangKey() {
 		return model.getLangKey();
 	}
-	
+
 }

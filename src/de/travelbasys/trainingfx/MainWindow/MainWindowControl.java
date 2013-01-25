@@ -15,7 +15,7 @@ import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Configuration;
 import de.travelbasys.trainingfx.dialog.about.AboutDialogGUI;
-import de.travelbasys.trainingfx.dialog.customer.create.CustomerCreateDialogGUI;
+import de.travelbasys.trainingfx.dialog.customer.create2.CustomerCreate2DialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.delete2.CustomerDelete2DialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.list.CustomerListDialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.show2.CustomerShow2DialogGUI;
@@ -48,7 +48,7 @@ public class MainWindowControl implements Control {
 				new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent e) {
-						Dialog d = new CustomerCreateDialogGUI(
+						Dialog d = new CustomerCreate2DialogGUI(
 								MainWindowControl.this.view.getRoot());
 						d.run();
 					}

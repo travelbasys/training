@@ -58,6 +58,7 @@ public class CustomerCreateView extends ArrayList<UiComponent> implements View {
 	public AbstractUiComponent getCustomerEMailComponent() {
 		return customerEMailComponent;
 	}
+
 	/**
 	 * Initialisiert den aktuellen View.
 	 * 
@@ -91,8 +92,7 @@ public class CustomerCreateView extends ArrayList<UiComponent> implements View {
 
 		customerPostalcodeComponent = new UiComponent();
 		customerPostalcodeComponent.setName(CUSTOMERPOSTALCODE);
-		customerPostalcodeComponent
-				.setValue(this.model.getPostalcode());
+		customerPostalcodeComponent.setValue(this.model.getPostalcode());
 		add(customerPostalcodeComponent);
 
 		customerEMailComponent = new UiComponent();

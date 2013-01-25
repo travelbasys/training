@@ -25,12 +25,12 @@ public class Configuration {
 	private static final String STYLESHEET_KEY = "stylesheet";
 	private static final String STYLESHEET_PATH = "./resources/";
 	private static final String DEFAULT_STYLESHEET = "rbsjava.css";
-	
+
 	private static final String ERR_FILENOTFOUND = (Config.CONFIG_FILENAME + " existiert nicht.");
 	private static final int EXIT_ERR_STATUS = 1;
 
 	private static final Map<String, String> DATA = new HashMap<String, String>();
-	
+
 	private static List<ConfigurationListener> listeners = new ArrayList<ConfigurationListener>();
 
 	public static void init(Map<?, ?> options) {
@@ -91,25 +91,27 @@ public class Configuration {
 			db = config.getProperty(DATABASE_KEY, DEFAULT_DATABASE);
 		}
 		DATA.put("db", db.trim());
-		
+
 		String stylesheet;
 		stylesheet = (String) CommandLine.getOptions().get("stylesheet");
 		if (stylesheet == null) {
-			stylesheet = config.getProperty(STYLESHEET_KEY, STYLESHEET_PATH + DEFAULT_STYLESHEET);
+			stylesheet = config.getProperty(STYLESHEET_KEY, STYLESHEET_PATH
+					+ DEFAULT_STYLESHEET);
 		}
-		DATA.put("stylesheet",STYLESHEET_PATH + stylesheet.trim());
-		
+		DATA.put("stylesheet", STYLESHEET_PATH + stylesheet.trim());
+
 	}
 
 	public static Object get(String key) {
 		return DATA.get(key);
 	}
 
-	public static void addConfigurationListener(ConfigurationListener listener){
+	public static void addConfigurationListener(ConfigurationListener listener) {
 		listeners.add(listener);
 	}
-	
-	public static void removeConfigurationListener(ConfigurationListener listener){
+
+	public static void removeConfigurationListener(
+			ConfigurationListener listener) {
 		listeners.remove(listener);
 	}
 

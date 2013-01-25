@@ -11,7 +11,7 @@ import de.travelbasys.training.framework.View;
  * 
  */
 public class RBSTestGUIControl implements Control {
-	
+
 	@SuppressWarnings("unused")
 	private RBSTestGUIModel model;
 	@SuppressWarnings("unused")
@@ -22,14 +22,13 @@ public class RBSTestGUIControl implements Control {
 
 	public void init() {
 
-		RBSTestGUIView.getButton().setOnAction(
-				new EventHandler<ActionEvent>() {
+		RBSTestGUIView.getButton().setOnAction(new EventHandler<ActionEvent>() {
 
-					@Override
-					public void handle(ActionEvent event) {
-						System.out.println("Test");
-					}
-				});
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Test");
+			}
+		});
 
 	}
 

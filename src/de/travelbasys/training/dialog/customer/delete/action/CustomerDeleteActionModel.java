@@ -18,6 +18,4 @@ public class CustomerDeleteActionModel implements Model {
 		this.success = success;
 	}
 
-	
-
 }

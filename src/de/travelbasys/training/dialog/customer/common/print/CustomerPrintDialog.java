@@ -30,7 +30,8 @@ public class CustomerPrintDialog implements Dialog {
 	 * Erzeugt interne Model, View und Control Instanzen und initialisiert
 	 * diese. Das Model erhält bei der Initialisierung Werte eines Customer
 	 * Objekts.
-	 * @param customer 
+	 * 
+	 * @param customer
 	 */
 	public CustomerPrintDialog(Customer customer) {
 		model = new CustomerPrintModel();

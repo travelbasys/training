@@ -9,11 +9,11 @@ public class MainMenuDialog implements Dialog {
 
 	private MainMenuModel model;
 	private MainMenuView view;
-	
+
 	public MainMenuDialog() {
 		model = new MainMenuModel();
 		view = new MainMenuView(model);
-		
+
 		// Wir rufen den Konstruktor nur wegen seiner Seiteneffekte.
 		// TODO: Eventuell wieder parameterlosen Konstruktur und
 		// init(Model model, View, view) benutzen.
@@ -31,8 +31,8 @@ public class MainMenuDialog implements Dialog {
 	public void run() {
 		view.run();
 	}
-	
-	public Dialog getDialog(){
+
+	public Dialog getDialog() {
 		return model.getDialog();
 	}
 

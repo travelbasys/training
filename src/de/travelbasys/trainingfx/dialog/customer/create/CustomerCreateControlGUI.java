@@ -55,12 +55,12 @@ public class CustomerCreateControlGUI implements Control {
 				});
 
 		this.view.getFirstNameField().textProperty()
-		.addListener(new FirstnameLastnameAddressEMailListener() {
-			@Override
-			public void updateModelWith(String value) {
-				myModel.setFirstname(value);
-			}
-		});
+				.addListener(new FirstnameLastnameAddressEMailListener() {
+					@Override
+					public void updateModelWith(String value) {
+						myModel.setFirstname(value);
+					}
+				});
 
 		this.view.getAgeField().textProperty()
 				.addListener(new ChangeListener<String>() {
@@ -98,12 +98,12 @@ public class CustomerCreateControlGUI implements Control {
 				});
 
 		this.view.getAdressField().textProperty()
-		.addListener(new FirstnameLastnameAddressEMailListener() {
-			@Override
-			public void updateModelWith(String value) {
-				myModel.setAdress(value);
-			}
-		});
+				.addListener(new FirstnameLastnameAddressEMailListener() {
+					@Override
+					public void updateModelWith(String value) {
+						myModel.setAdress(value);
+					}
+				});
 
 		this.view.getPostalcodeField().textProperty()
 				.addListener(new ChangeListener<String>() {
@@ -142,12 +142,12 @@ public class CustomerCreateControlGUI implements Control {
 				});
 
 		this.view.getEmailField().textProperty()
-		.addListener(new FirstnameLastnameAddressEMailListener() {
-			@Override
-			public void updateModelWith(String value) {
-				myModel.setEmail(value);
-			}
-		});
+				.addListener(new FirstnameLastnameAddressEMailListener() {
+					@Override
+					public void updateModelWith(String value) {
+						myModel.setEmail(value);
+					}
+				});
 
 		this.view.getSendButton().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -158,7 +158,7 @@ public class CustomerCreateControlGUI implements Control {
 							dummyId,
 							CustomerCreateControlGUI.this.model.getLastname(),
 							CustomerCreateControlGUI.this.model.getFirstname(),
-							//TODO: Implementierung des Geburtstag.
+							// TODO: Implementierung des Geburtstag.
 							new Date(),
 							CustomerCreateControlGUI.this.model.getAge(),
 							CustomerCreateControlGUI.this.model.getAdress(),

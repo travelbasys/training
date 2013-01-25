@@ -6,8 +6,7 @@ public class IntegerFormatter implements Formatter {
 	public Object parse(String s) throws Exception {
 		try {
 			return Integer.parseInt(s);
-		}
-		catch(Exception e ){
+		} catch (Exception e) {
 			throw new NumberFormatException("IllegalNumberFormat");
 		}
 	}

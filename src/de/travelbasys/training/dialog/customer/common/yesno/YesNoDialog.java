@@ -11,17 +11,16 @@ public class YesNoDialog implements Dialog {
 	private YesNoView view;
 	@SuppressWarnings("unused")
 	private YesNoControl control;
-	
-	
+
 	/**
 	 * Constructor
 	 * 
 	 * @param key
 	 */
-	public YesNoDialog(String key){
+	public YesNoDialog(String key) {
 		model = new YesNoModel(key);
 		view = new YesNoView(model);
-		control = new YesNoControl(model,view);
+		control = new YesNoControl(model, view);
 	}
 
 	/**

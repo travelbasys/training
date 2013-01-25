@@ -55,15 +55,15 @@ public class MainMenuControl {
 			// Nebeneffekt: Wenn Value==10, dann wird das Feld lotteryDialog
 			// verändert.
 			public void handleInput(Object value) throws Exception {
-				
+
 				int intValue;
 				try {
 					intValue = (Integer) value;
+				} catch (Exception e) {
+					throw new IllegalArgumentException(
+							"Input value not numeric");
 				}
-				catch( Exception e){
-					throw new IllegalArgumentException( "Input value not numeric" );
-				}
-				
+
 				MainMenuControl.this.model.setDialog(null);
 
 				// Es ist garantiert, dass der Eingabewert tatsächlich
@@ -106,7 +106,7 @@ public class MainMenuControl {
 					MainMenuControl.this.model
 							.setDialog(new ChangeParamDialog());
 				case 10:
-					// Wir müssen das Dialogobjekt lokal speichern, 
+					// Wir müssen das Dialogobjekt lokal speichern,
 					// d.h. nicht nur im Model,
 					// weil wir es u. U. später einmal canceln wollen.
 					lotteryDialog = new LotteryNumbersDialog();

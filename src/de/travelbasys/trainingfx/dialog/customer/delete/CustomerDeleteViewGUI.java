@@ -28,14 +28,14 @@ public class CustomerDeleteViewGUI implements View, ConfigurationListener {
 	}
 
 	public void init() {
-		
+
 		Configuration.addConfigurationListener(this);
-		
+
 		customerIDField = new TextField();
 		lbl_customerid = new Label();
 		lbl_menu = new Label();
 		lbl_menu.setId("header2");
-		
+
 		grid = new GridPane();
 		searchButton = new Button();
 		searchButton.setDisable(true);
@@ -49,7 +49,7 @@ public class CustomerDeleteViewGUI implements View, ConfigurationListener {
 		GridPane.setConstraints(searchButton, 10, 10);
 		grid.getChildren().addAll(lbl_menu, lbl_customerid, customerIDField,
 				searchButton);
-		
+
 		handleConfigurationEvent(null);
 
 	}

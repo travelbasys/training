@@ -7,10 +7,11 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * erzeugt eine Instanz der Klasse ChangeConfigurationDialog und verwaltet Strings für
- * Ausgaben.
+ * erzeugt eine Instanz der Klasse ChangeConfigurationDialog und verwaltet
+ * Strings für Ausgaben.
  */
-public class ChangeConfigurationModel extends ArrayList<String> implements Model {
+public class ChangeConfigurationModel extends ArrayList<String> implements
+		Model {
 
 	/**
 	 * 

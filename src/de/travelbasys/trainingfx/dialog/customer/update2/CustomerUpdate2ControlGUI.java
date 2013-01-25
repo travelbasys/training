@@ -37,7 +37,6 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 
 	@FXML
 	private BorderPane root;
-
 	@FXML
 	private static Label headerLabel;
 	@FXML

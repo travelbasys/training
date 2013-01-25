@@ -40,15 +40,14 @@ public class CustomerDeleteControlGUI implements Control {
 							String oldValue, String newValue) {
 						TextField field = CustomerDeleteControlGUI.this.view
 								.getCustomerIDField();
-							try {
-								int id = Integer.parseInt(field.getText()
-										.trim());
-								CustomerDeleteControlGUI.this.model
-										.setCustomerid(id);
-							} catch (NumberFormatException e) {
-								CustomerDeleteControlGUI.this.model
-										.setCustomerid(0);
-							}
+						try {
+							int id = Integer.parseInt(field.getText().trim());
+							CustomerDeleteControlGUI.this.model
+									.setCustomerid(id);
+						} catch (NumberFormatException e) {
+							CustomerDeleteControlGUI.this.model
+									.setCustomerid(0);
+						}
 						CustomerDeleteControlGUI.this.view.update();
 					}
 				});

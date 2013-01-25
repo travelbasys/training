@@ -23,7 +23,7 @@ public class AboutViewGUI {
 		Label about1 = new Label(AppContext.getMessage("About1"));
 		Label about2 = new Label(AppContext.getMessage("About2"));
 		Label about3 = new Label(AppContext.getMessage("About3"));
-		
+
 		// Erzeugt ein TabellenPanel.
 		GridPane grid = new GridPane();
 		// Setzt alle Ränder auf 10 Pixel.

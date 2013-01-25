@@ -14,7 +14,7 @@ import de.travelbasys.training.framework.Dialog;
  * 
  */
 public class RBSTestGUIDialog implements Dialog {
-	
+
 	@SuppressWarnings("unused")
 	private RBSTestGUIModel model;
 	private RBSTestGUIControl control;
@@ -33,7 +33,8 @@ public class RBSTestGUIDialog implements Dialog {
 	@Override
 	public void run() {
 		try {
-			AnchorPane root = FXMLLoader.load(getClass().getResource(PATH + FILE));
+			AnchorPane root = FXMLLoader.load(getClass().getResource(
+					PATH + FILE));
 			scene = new Scene(root);
 			stage.setScene(scene);
 		} catch (IOException e) {

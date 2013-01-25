@@ -46,14 +46,14 @@ public class MainMenuModel extends ArrayList<String> implements Model {
 		setLang();
 	}
 
-	public void setLang(){
+	public void setLang() {
 		lang = Locale.getDefault();
 	}
-	
-	public Locale getLang(){
+
+	public Locale getLang() {
 		return lang;
 	}
-	
+
 	public Dialog getDialog() {
 		return d;
 	}
@@ -61,15 +61,15 @@ public class MainMenuModel extends ArrayList<String> implements Model {
 	public void setDialog(Dialog d) {
 		this.d = d;
 	}
-	
-	public boolean isFinished(){
-return isFinished;
+
+	public boolean isFinished() {
+		return isFinished;
 	}
 
-	public void setFinished(boolean flag){
+	public void setFinished(boolean flag) {
 		isFinished = flag;
 	}
-	
+
 	public boolean isLanguageChanged() {
 		if (Locale.getDefault() == getLang()) {
 			return false;

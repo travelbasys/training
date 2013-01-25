@@ -180,7 +180,7 @@ public class ChangeConfigurationControlGUI implements Control {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				
+
 				Configuration.init(CommandLine.getOptions());
 				Config.updateLanguage(new Locale(lang));
 

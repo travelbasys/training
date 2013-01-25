@@ -1,4 +1,5 @@
 package de.travelbasys.trainingfx.dialog.customer.show2;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import de.travelbasys.training.framework.Dialog;

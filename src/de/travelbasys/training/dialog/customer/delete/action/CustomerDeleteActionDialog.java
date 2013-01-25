@@ -14,7 +14,6 @@ public class CustomerDeleteActionDialog implements Dialog {
 
 	public CustomerDeleteActionDialog() {
 		model = new CustomerDeleteActionModel();
-		
 
 		view = new CustomerDeleteActionView(model);
 	}
