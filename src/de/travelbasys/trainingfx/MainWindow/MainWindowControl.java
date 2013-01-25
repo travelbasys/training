@@ -16,9 +16,9 @@ import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Configuration;
 import de.travelbasys.trainingfx.dialog.about.AboutDialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.create.CustomerCreateDialogGUI;
-import de.travelbasys.trainingfx.dialog.customer.delete.CustomerDeleteDialogGUI;
+import de.travelbasys.trainingfx.dialog.customer.delete2.CustomerDelete2DialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.list.CustomerListDialogGUI;
-import de.travelbasys.trainingfx.dialog.customer.show.CustomerShowDialogGUI;
+import de.travelbasys.trainingfx.dialog.customer.show2.CustomerShow2DialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.update2.CustomerUpdate2DialogGUI;
 import de.travelbasys.trainingfx.dialog.other.ChangeConfiguration.ChangeConfigurationDialogGUI;
 
@@ -60,7 +60,7 @@ public class MainWindowControl implements Control {
 					@Override
 					public void handle(ActionEvent e) {
 
-						Dialog d = new CustomerShowDialogGUI(
+						Dialog d = new CustomerShow2DialogGUI(
 								MainWindowControl.this.view.getRoot());
 						d.run();
 
@@ -87,7 +87,7 @@ public class MainWindowControl implements Control {
 
 					@Override
 					public void handle(ActionEvent e) {
-						Dialog d = new CustomerDeleteDialogGUI(
+						Dialog d = new CustomerDelete2DialogGUI(
 								MainWindowControl.this.view.getRoot());
 						d.run();
 					}
