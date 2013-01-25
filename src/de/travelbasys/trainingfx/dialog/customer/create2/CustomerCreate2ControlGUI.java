@@ -41,6 +41,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	@FXML
 	private static Label firstnameLabel;
 	@FXML
+	private static Label birthdateLabel;
+	@FXML
 	private static Label ageLabel;
 	@FXML
 	private static Label adressLabel;
@@ -56,6 +58,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private static TextField lastnameField;
 	@FXML
 	private static TextField firstnameField;
+	@FXML
+	private static TextField birthdateField;
 	@FXML
 	private static TextField ageField;
 	@FXML
