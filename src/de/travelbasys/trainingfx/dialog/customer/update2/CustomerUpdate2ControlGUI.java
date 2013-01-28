@@ -66,7 +66,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	@FXML
 	private static TextField firstnameField;
 	@FXML
-	private static Label birthdateField;
+	private static TextField birthdateField;
 	@FXML
 	private static TextField ageField;
 	@FXML
