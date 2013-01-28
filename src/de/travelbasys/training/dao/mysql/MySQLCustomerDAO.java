@@ -248,6 +248,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 					+ id + ";");
 			resultSet.next();
 			localupdateid = resultSet.getInt(9);
+			System.out.println(localupdateid);
 		} catch (SQLException e) {
 		}
 		CloseCurrentConnection();
@@ -285,17 +286,19 @@ public class MySQLCustomerDAO implements CustomerDAO {
 						.println("Customer has been deleted by another user.");
 				return;
 			}
-			if (resultSet.getInt(8) == localupdateid) {
+			if (resultSet.getInt(9) == localupdateid) {
 				preparedStatement = connect.prepareStatement("UPDATE " + TABLE
 						+ UPDATEATTRIBUTES);
 				preparedStatement.setString(1, customer.getLastName());
 				preparedStatement.setString(2, customer.getFirstName());
-				preparedStatement.setInt(3, customer.getAge());
-				preparedStatement.setString(4, customer.getAdress());
-				preparedStatement.setString(5, customer.getPostalcode());
-				preparedStatement.setString(6, customer.getEmail());
-				preparedStatement.setInt(7, (resultSet.getInt(8) + 1));
-				preparedStatement.setInt(8, customer.getId());
+				preparedStatement.setDate(3, new java.sql.Date(customer
+						.getBirthdate().getTime()));
+				preparedStatement.setInt(4, customer.getAge());
+				preparedStatement.setString(5, customer.getAdress());
+				preparedStatement.setString(6, customer.getPostalcode());
+				preparedStatement.setString(7, customer.getEmail());
+				preparedStatement.setInt(8, (resultSet.getInt(9) + 1));
+				preparedStatement.setInt(9, customer.getId());
 				preparedStatement.executeUpdate();
 			} else {
 				System.err
