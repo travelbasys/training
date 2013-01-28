@@ -76,7 +76,6 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		model = new CustomerCreate2ModelGUI();
 
 		this.resources = resources;
-		// this.root = (BorderPane)location.getClass();
 
 		Configuration.addConfigurationListener(this);
 
