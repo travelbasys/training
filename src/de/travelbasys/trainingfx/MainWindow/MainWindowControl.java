@@ -213,6 +213,7 @@ public class MainWindowControl implements Control {
 					}
 
 				});
+		
 	}
 
 	@Override

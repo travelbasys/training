@@ -1,7 +1,8 @@
 package de.travelbasys.trainingfx.dialog.customer.create2;
 
 import java.net.URL;
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -199,6 +200,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private void handleSendButton(ActionEvent e) {
 		try {
 			int dummyid = 0;
+			SimpleDateFormat sdf = new SimpleDateFormat();
 			Customer customer = new Customer(
 
 			dummyid,
@@ -207,7 +209,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 
 			firstnameField.getText(),
 			// TODO: Implementierung des Geburtstag.
-					new Date(),
+					sdf.parse(birthdateField.getText()),
 
 					Integer.parseInt(ageField.getText()),
 
@@ -243,6 +245,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 			AppContext.getMessage("WrongInput"),
 					AppContext.getMessage("Error"),
 					AppContext.getMessage("TravelbasysManager"));
+		} catch (ParseException f) {
+			f.printStackTrace();
 		}
 
 	};
