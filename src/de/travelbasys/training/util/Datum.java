@@ -1,7 +1,13 @@
 package de.travelbasys.training.util;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Diese Klasse ist für die Datumsformatierung in andere Sprachen zuständig.
@@ -25,7 +31,42 @@ public class Datum {
 	}
 
 	public void init() {
+	}
 
+	public static Date getFormattedDate(String value) {
+		Matcher matcher;
+		Date date = null;
+		SimpleDateFormat gerDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		if (Locale.getDefault().getLanguage() == ("de")) {
+			Pattern gerPattern = Pattern
+					.compile("([0-2]?[0-9]|30|31)\\.([0]?[0-9]|10|11|12)\\.[0-9][0-9][0-9][0-9]");
+			matcher = gerPattern.matcher(value);
+			System.out.println(matcher);
+			if (matcher.matches()) {
+				try {
+					date = gerDateFormat.parse(value);
+					System.out.println(date);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+		} else {
+			Pattern isoPattern = Pattern
+					.compile("([0-9][0-9][0-9][0-9]\\-([0]?[0-9]|10|11|12)\\-[0-2]?[0-9]|30|31)");
+			matcher = isoPattern.matcher(value);
+			System.out.println(matcher);
+			if (matcher.matches()) {
+				try {
+					date = isoDateFormat.parse(value);
+					System.out.println(date);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+		return date;
 	}
 
 	/**

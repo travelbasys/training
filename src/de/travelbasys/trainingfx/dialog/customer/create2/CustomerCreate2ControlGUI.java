@@ -1,8 +1,6 @@
 package de.travelbasys.trainingfx.dialog.customer.create2;
 
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -26,6 +24,7 @@ import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
+import de.travelbasys.training.util.Datum;
 
 public class CustomerCreate2ControlGUI implements Initializable,
 		ConfigurationListener {
@@ -200,7 +199,6 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private void handleSendButton(ActionEvent e) {
 		try {
 			int dummyid = 0;
-			SimpleDateFormat sdf = new SimpleDateFormat();
 			Customer customer = new Customer(
 
 			dummyid,
@@ -209,7 +207,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 
 			firstnameField.getText(),
 			// TODO: Implementierung des Geburtstag.
-					sdf.parse(birthdateField.getText()),
+					Datum.getFormattedDate(birthdateField.getText()),
 
 					Integer.parseInt(ageField.getText()),
 
@@ -218,6 +216,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 					postalcodeField.getText(),
 
 					emailField.getText());
+
 			Dao.getDAO().getExisting(customer);
 			Dao.getDAO().create(customer);
 			clear();
@@ -245,11 +244,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 			AppContext.getMessage("WrongInput"),
 					AppContext.getMessage("Error"),
 					AppContext.getMessage("TravelbasysManager"));
-		} catch (ParseException f) {
-			f.printStackTrace();
 		}
-
-	};
+	}
 
 	private void clear() {
 		lastnameField.clear();
