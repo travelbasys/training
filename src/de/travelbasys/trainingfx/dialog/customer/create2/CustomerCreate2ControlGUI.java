@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,6 +26,8 @@ import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
 import de.travelbasys.training.util.Datum;
+import de.travelbasys.training.util.widgets.SimpleCalendar;
+import experiment.javafx.fxml.main.RBSTestGUIView;
 
 public class CustomerCreate2ControlGUI implements Initializable,
 		ConfigurationListener {
@@ -70,6 +73,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private static TextField emailField;
 	@FXML
 	private static Button sendButton;
+	@FXML
+	private static Button calenderButton;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -193,6 +198,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 				updateSendButton();
 			}
 		});
+		
 	}
 
 	@FXML
@@ -245,6 +251,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 					AppContext.getMessage("Error"),
 					AppContext.getMessage("TravelbasysManager"));
 		}
+		
 	}
 
 	private void clear() {

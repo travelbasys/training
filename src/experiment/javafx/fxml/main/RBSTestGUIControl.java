@@ -1,10 +1,17 @@
 package experiment.javafx.fxml.main;
 
+import java.util.Date;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.widgets.DatePicker;
 import de.travelbasys.training.util.widgets.SimpleCalendar;
 
 /*
@@ -17,7 +24,12 @@ public class RBSTestGUIControl implements Control {
 	private RBSTestGUIModel model;
 	@SuppressWarnings("unused")
 	private RBSTestGUIView view;
-
+	@FXML
+	private static TextField dateField;
+	private Date birthdate;
+ 
+	public SimpleCalendar simple;
+	
 	public RBSTestGUIControl() {
 	}
 
@@ -29,13 +41,27 @@ public class RBSTestGUIControl implements Control {
 			public void handle(ActionEvent event) {
 				System.out.println("Test");
 				SimpleCalendar simple = new SimpleCalendar();
-				simple.setPrefHeight(100);
-				simple.setPrefWidth(100);
+				simple.setPrefHeight(200);
+				simple.setPrefWidth(200);
 				simple.requestFocus();
-				RBSTestGUIView.getBP().setCenter(simple);
+
+				RBSTestGUIView.getCalbp().setCenter(simple);
+				simple.dateProperty().addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						System.out.println(newValue);
+						
+						RBSTestGUIView.getDateField().setText(newValue);
+					}
+				});
+
 			}
 		});
 
+		
+		
 	}
 
 	@Override
@@ -47,5 +73,7 @@ public class RBSTestGUIControl implements Control {
 		// TODO Auto-generated method stub
 
 	}
+
+
 
 }

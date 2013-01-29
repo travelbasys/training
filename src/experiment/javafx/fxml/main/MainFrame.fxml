@@ -17,6 +17,7 @@
         <GridPane>
           <children>
             <Button fx:id="changeButton" mnemonicParsing="false" text="Change" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <TextField fx:id="dateField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -36,6 +37,9 @@
           </BorderPane.margin>
         </TextField>
       </center>
+      <left>
+        <BorderPane fx:id="calbp" prefHeight="200.0" prefWidth="200.0" />
+      </left>
       <top>
         <MenuBar fx:id="menuBar">
           <menus>
