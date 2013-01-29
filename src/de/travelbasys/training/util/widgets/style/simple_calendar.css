@@ -65,7 +65,7 @@
     -fx-text-fill: gray;
 	-fx-font-size: 12px;
 }
-#CalenderButton {
+#calenderButton {
     -fx-font-size: 14px;
 	-fx-background-image: url("calender_icon.png");
 	-fx-background-color: null;

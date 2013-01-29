@@ -75,6 +75,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private static Button sendButton;
 	@FXML
 	private static Button calenderButton;
+	@FXML
+	private static BorderPane calenderPane;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -85,6 +87,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		Configuration.addConfigurationListener(this);
 
 		sendButton.setDisable(true);
+		
 
 		lastnameField.textProperty().addListener(new ChangeListener<String>() {
 
@@ -198,8 +201,27 @@ public class CustomerCreate2ControlGUI implements Initializable,
 				updateSendButton();
 			}
 		});
-		
-	}
+
+				System.out.println("Test");
+				SimpleCalendar simple = new SimpleCalendar();
+				simple.setPrefHeight(200);
+				simple.setPrefWidth(200);
+				simple.requestFocus();
+
+				calenderPane.setCenter(simple);
+				simple.dateProperty().addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(ObservableValue<? extends String> observable,
+							String oldValue, String newValue) {
+						System.out.println(newValue);
+						
+						birthdateField.setText(newValue);
+					}
+				});
+
+			}
+
 
 	@FXML
 	private void handleSendButton(ActionEvent e) {

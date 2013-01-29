@@ -58,7 +58,7 @@ public class SimpleCalendar extends VBox{
 		popup.getContent().add(datePicker);
 
 		final Button calenderButton = new Button();
-		calenderButton.setId("CalenderButton");
+		calenderButton.setId("calenderButton");
 		calenderButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override

@@ -13,6 +13,7 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.widgets.DatePicker;
 import de.travelbasys.training.util.widgets.SimpleCalendar;
+import de.travelbasys.training.util.widgets.SimpleCalendarDemo;
 
 /*
  * Hat die Aufgabe den View unserer HelloWorld-Applikation zu verwalten & EventListener/Handler dieser zur Verfügung zu stellen.
@@ -34,7 +35,6 @@ public class RBSTestGUIControl implements Control {
 	}
 
 	public void init() {
-
 		RBSTestGUIView.getButton().setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -46,6 +46,7 @@ public class RBSTestGUIControl implements Control {
 				simple.requestFocus();
 
 				RBSTestGUIView.getCalbp().setCenter(simple);
+				
 				simple.dateProperty().addListener(new ChangeListener<String>() {
 
 					@Override
