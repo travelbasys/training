@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+	prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.travelbasys.package1.MainController">
+	<children>
+		<BorderPane prefHeight="400.0" prefWidth="600.0"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<bottom>
+				<Button fx:id="button" mnemonicParsing="false" onAction="#handleButton"
+					text="Show" BorderPane.alignment="CENTER_RIGHT">
+					<BorderPane.margin>
+						<Insets bottom="10.0" right="20.0" />
+					</BorderPane.margin>
+				</Button>
+			</bottom>
+			<center>
+				<LineChart fx:id="lineChart" prefHeight="150.0" prefWidth="200.0">
+					<xAxis>
+						<CategoryAxis fx:id="categoryAxis" side="BOTTOM" />
+					</xAxis>
+					<yAxis>
+						<NumberAxis fx:id="numberAxis" side="LEFT" />
+					</yAxis>
+				</LineChart>
+			</center>
+		</BorderPane>
+ 		<Button fx:id="fileButton" layoutX="300.0" mnemonicParsing="false"
+			onAction="#openFile" scaleX="1.0" text="Open"
+			AnchorPane.topAnchor="750.0" /> 
+	</children>
+</AnchorPane>
