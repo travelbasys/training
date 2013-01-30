@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,7 +26,6 @@ import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
 import de.travelbasys.training.util.Datum;
 import de.travelbasys.training.util.widgets.SimpleCalendar;
-import experiment.javafx.fxml.main.RBSTestGUIView;
 
 public class CustomerCreate2ControlGUI implements Initializable,
 		ConfigurationListener {
@@ -201,8 +199,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 				updateSendButton();
 			}
 		});
-
-				System.out.println("Test");
+//calender button
 				SimpleCalendar simple = new SimpleCalendar();
 				simple.setPrefHeight(200);
 				simple.setPrefWidth(200);
