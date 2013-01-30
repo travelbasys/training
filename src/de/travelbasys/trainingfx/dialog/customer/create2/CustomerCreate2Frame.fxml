@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -34,7 +35,7 @@
             <TextField fx:id="emailField" prefWidth="200.0" promptText="%Emailfield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
             <Label fx:id="emailLabel" text="%Email" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
             <Label fx:id="validPostalcodeLabel" text="%ValidPostalcode" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.margin="$x2" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-            <BorderPane fx:id="calenderPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <BorderPane id="calendarPane" fx:id="calendarPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

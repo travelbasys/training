@@ -1,19 +1,19 @@
 /**   
-*  This file is part of SimpleCalendar.
+ *  This file is part of SimpleCalendar.
     
-*  SimpleCalendar is free software: you can redistribute it and/or modify   
-*  it under the terms of the GNU General Public License as published by   
-*  the Free Software Foundation, either version 3 of the License, or   
-*  (at your option) any later version.
+ *  SimpleCalendar is free software: you can redistribute it and/or modify   
+ *  it under the terms of the GNU General Public License as published by   
+ *  the Free Software Foundation, either version 3 of the License, or   
+ *  (at your option) any later version.
      
-*  SimpleCalendar is distributed in the hope that it will be useful,   
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of   
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the   
-*  GNU General Public License for more details.
+ *  SimpleCalendar is distributed in the hope that it will be useful,   
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of   
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the   
+ *  GNU General Public License for more details.
 
-*  <http://www.gnu.org/licenses/>.
+ *  <http://www.gnu.org/licenses/>.
      
-*/  
+ */
 package de.travelbasys.training.util.widgets;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -29,13 +29,14 @@ import javafx.stage.Popup;
 
 /**
  * A simple calendar to pick up a date.
- *
+ * 
  */
-public class SimpleCalendar extends VBox{
+public class SimpleCalendar extends VBox {
 
 	private Popup popup;
 	private SimpleStringProperty dateProperty;
-	
+	private static DatePicker datePicker;
+
 	public SimpleCalendar() {
 		popup = new Popup();
 		popup.setAutoHide(true);
@@ -43,8 +44,8 @@ public class SimpleCalendar extends VBox{
 		popup.setHideOnEscape(true);
 
 		dateProperty = new SimpleStringProperty("");
-		
-		final DatePicker datePicker = new DatePicker();
+
+		datePicker = new DatePicker();
 		datePicker.DateProperty().addListener(new ChangeListener<String>() {
 
 			@Override
@@ -66,21 +67,28 @@ public class SimpleCalendar extends VBox{
 				Parent parent = SimpleCalendar.this.getParent();
 				// Popup will be shown at upper left corner of calenderbutton
 				Point2D point = calenderButton.localToScene(0, 0);
-				final double layoutX = parent.getScene().getWindow().getX() + parent.getScene().getX() + point.getX();
-				final double layoutY = parent.getScene().getWindow().getY() + parent.getScene().getY() + point.getY();
+				final double layoutX = parent.getScene().getWindow().getX()
+						+ parent.getScene().getX() + point.getX();
+				final double layoutY = parent.getScene().getWindow().getY()
+						+ parent.getScene().getY() + point.getY();
 				popup.show(SimpleCalendar.this, layoutX, layoutY);
 
 			}
 		});
-		
+
 		getChildren().add(calenderButton);
 	}
-	
+
 	/**
-	 * @return a string bean property to bind the date information to a desired node
+	 * @return a string bean property to bind the date information to a desired
+	 *         node
 	 */
 	public SimpleStringProperty dateProperty() {
 		return dateProperty;
 	}
-	
+
+	public DatePicker getCurrentDatePicker() {
+		return datePicker;
+	}
+
 }

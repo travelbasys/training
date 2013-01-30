@@ -72,20 +72,14 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	@FXML
 	private static Button sendButton;
 	@FXML
-	private static Button calenderButton;
-	@FXML
-	private static BorderPane calenderPane;
+	private static BorderPane calendarPane;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		model = new CustomerCreate2ModelGUI();
-
 		this.resources = resources;
-
 		Configuration.addConfigurationListener(this);
-
 		sendButton.setDisable(true);
-		
 
 		lastnameField.textProperty().addListener(new ChangeListener<String>() {
 
@@ -199,26 +193,31 @@ public class CustomerCreate2ControlGUI implements Initializable,
 				updateSendButton();
 			}
 		});
-//calender button
-				SimpleCalendar simple = new SimpleCalendar();
-				simple.setPrefHeight(200);
-				simple.setPrefWidth(200);
-				simple.requestFocus();
+		// calender button
+		SimpleCalendar simple = new SimpleCalendar();
+		simple.getCurrentDatePicker()
+				.getStylesheets()
+				.addAll(CustomerCreate2ControlGUI.class
+						.getResource(
+								"/de/travelbasys/training/util/widgets/style/simple_calendar.css")
+						.toExternalForm());
+		simple.setPrefHeight(200);
+		simple.setPrefWidth(200);
+		simple.requestFocus();
 
-				calenderPane.setCenter(simple);
-				simple.dateProperty().addListener(new ChangeListener<String>() {
+		calendarPane.setCenter(simple);
+		simple.dateProperty().addListener(new ChangeListener<String>() {
 
-					@Override
-					public void changed(ObservableValue<? extends String> observable,
-							String oldValue, String newValue) {
-						System.out.println(newValue);
-						
-						birthdateField.setText(newValue);
-					}
-				});
+			@Override
+			public void changed(ObservableValue<? extends String> observable,
+					String oldValue, String newValue) {
+				System.out.println(newValue);
 
+				birthdateField.setText(newValue);
 			}
+		});
 
+	}
 
 	@FXML
 	private void handleSendButton(ActionEvent e) {
@@ -270,7 +269,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 					AppContext.getMessage("Error"),
 					AppContext.getMessage("TravelbasysManager"));
 		}
-		
+
 	}
 
 	private void clear() {
