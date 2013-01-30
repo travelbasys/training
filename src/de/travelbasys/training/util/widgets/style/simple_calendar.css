@@ -65,11 +65,21 @@
     -fx-text-fill: gray;
 	-fx-font-size: 12px;
 }
-#calenderButton {
+#calendarButton {
     -fx-font-size: 14px;
 	-fx-background-image: url("calender_icon.png");
 	-fx-background-color: null;
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: center;
+}
+
+#calendarButton:hover {
+	-fx-font-size: 14px;
+	-fx-background-image: url("calender_icon.png");
+	-fx-background-color: null;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center;
+    -fx-border-color: null;
+    -fx-effect: null;
 }
 

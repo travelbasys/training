@@ -6,7 +6,6 @@
     -fx-background-position: right top;
     
 }
-
 .tab:selected {
  -fx-background-color: 
       linear-gradient(
@@ -46,8 +45,15 @@
 }
 
 
-
-
+.button:hover{
+    -fx-background-color: 
+      linear-gradient(
+            rgb(255,255,255) 0%,
+            orange,
+            rgb(242,148,2) 100%);
+    -fx-border-color: rgb(252,197,72);
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 2 );
+}
 
 .button{
     -fx-background-color: 
@@ -57,16 +63,6 @@
     -fx-border-radius: 4;
     -fx-padding: 3 6 6 6;
     -fx-font: 20pt "DaxlineOT-Medium"; 
-}
-
-.button:hover{
-    -fx-background-color: 
-      linear-gradient(
-            rgb(255,255,255) 0%,
-            orange,
-            rgb(242,148,2) 100%);
-    -fx-border-color: rgb(252,197,72);
-    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 2 );
 }
 
 #search-button{
@@ -149,62 +145,4 @@
 
 .table-row-cell:selected{
     -fx-background-color: rgb(242,148,2);
-}
-#DemoLabel {
-	-fx-font-size: 36px;
-	-fx-text-fill: salmon;
-}
-#DatepickerArrow {
-	-fx-fill: gray;
-	-fx-stroke: gray;
-}
-#DatepickerArrow:hover {
-	-fx-fill: black;
-	-fx-stroke: black;
-}
-#DatePicker {
-	-fx-background-color: linear-gradient(to bottom, white, wheat);
-    -fx-border-color: black;
-}
-#DatepickerDayCell {
-	-fx-background-color: transparent;
-	-fx-border-radius: 4;
-	-fx-spacing: 0;
-}
-#DatepickerDayCell:hover {
-	-fx-background-color: azure;
-	-fx-border-color: royalblue;
-	-fx-border-radius: 3;
-	-fx-text-fill: royalblue;
-}
-#DatepickerDayCell .datepicker-today-cell {
-    -fx-background-color: lightsteelblue;
-   	-fx-border-radius: 3;
-   	-fx-border-style: segments(2,2);
-   	-fx-border-color: royalblue;
-    -fx-text-fill: royalblue;
-	-fx-font-size: 12px;
-}
-.datepicker-weekday-row {
-    -fx-background-color: linear-gradient(to bottom, gray, lightgray, lightgray, lightgray, gray);
-    -fx-text-fill: black;
-	-fx-font-size: 12px;
-}
-.datepicker-monthyear-row {
-	-fx-background-color: linear-gradient(to bottom, beige, lightsalmon, beige); 
-	-fx-text-fill: black;
-	-fx-font-size: 12px;
-}
-
-.datepicker-othermonth-cell {
-   	-fx-border-radius: 4;
-    -fx-text-fill: gray;
-	-fx-font-size: 12px;
-}
-#calenderButton {
-    -fx-font-size: 14px;
-	-fx-background-image: url("calender_icon.png");
-	-fx-background-color: null;
-	-fx-background-repeat: no-repeat;
-	-fx-background-position: center;
 }

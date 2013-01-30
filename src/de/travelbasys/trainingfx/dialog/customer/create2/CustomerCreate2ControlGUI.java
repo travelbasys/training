@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import de.travelbasys.training.business.Customer;
@@ -72,10 +73,16 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	@FXML
 	private static Button sendButton;
 	@FXML
-	private static BorderPane calendarPane;
+	private static GridPane calendarPane;
+
+	private static String calendarCSS = CustomerCreate2ControlGUI.class
+			.getResource(
+					"/de/travelbasys/training/util/widgets/style/simple_calendar.css")
+			.toExternalForm();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
 		model = new CustomerCreate2ModelGUI();
 		this.resources = resources;
 		Configuration.addConfigurationListener(this);
@@ -195,17 +202,14 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		});
 		// calender button
 		SimpleCalendar simple = new SimpleCalendar();
-		simple.getCurrentDatePicker()
-				.getStylesheets()
-				.addAll(CustomerCreate2ControlGUI.class
-						.getResource(
-								"/de/travelbasys/training/util/widgets/style/simple_calendar.css")
-						.toExternalForm());
+		simple.getCurrentCalendarButton().getStylesheets().clear();
+		simple.getCurrentDatePicker().getStylesheets().addAll(calendarCSS);
+		simple.getCurrentCalendarButton().getStylesheets().addAll(calendarCSS);
 		simple.setPrefHeight(200);
 		simple.setPrefWidth(200);
 		simple.requestFocus();
 
-		calendarPane.setCenter(simple);
+		calendarPane.add(simple, 1, 0);
 		simple.dateProperty().addListener(new ChangeListener<String>() {
 
 			@Override

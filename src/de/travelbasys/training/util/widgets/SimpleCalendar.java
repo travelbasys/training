@@ -35,7 +35,8 @@ public class SimpleCalendar extends VBox {
 
 	private Popup popup;
 	private SimpleStringProperty dateProperty;
-	private static DatePicker datePicker;
+	private DatePicker datePicker;
+	private Button calendarButton;
 
 	public SimpleCalendar() {
 		popup = new Popup();
@@ -58,15 +59,15 @@ public class SimpleCalendar extends VBox {
 		});
 		popup.getContent().add(datePicker);
 
-		final Button calenderButton = new Button();
-		calenderButton.setId("calenderButton");
-		calenderButton.setOnAction(new EventHandler<ActionEvent>() {
+		calendarButton = new Button();
+		calendarButton.setId("calendarButton");
+		calendarButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent ae) {
 				Parent parent = SimpleCalendar.this.getParent();
 				// Popup will be shown at upper left corner of calenderbutton
-				Point2D point = calenderButton.localToScene(0, 0);
+				Point2D point = calendarButton.localToScene(0, 0);
 				final double layoutX = parent.getScene().getWindow().getX()
 						+ parent.getScene().getX() + point.getX();
 				final double layoutY = parent.getScene().getWindow().getY()
@@ -76,7 +77,7 @@ public class SimpleCalendar extends VBox {
 			}
 		});
 
-		getChildren().add(calenderButton);
+		getChildren().add(calendarButton);
 	}
 
 	/**
@@ -89,6 +90,10 @@ public class SimpleCalendar extends VBox {
 
 	public DatePicker getCurrentDatePicker() {
 		return datePicker;
+	}
+
+	public Button getCurrentCalendarButton() {
+		return calendarButton;
 	}
 
 }
