@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.EventHandler;
@@ -349,8 +350,13 @@ public class DatePicker extends StackPane {
 	 * @return a string including the date information separated by "/"
 	 */
 	private String dateBuilder(int day, int month, int year) {
-		return String.valueOf(day) + "/" + String.valueOf(month + 1) + "/"
-				+ String.valueOf(year);
+		if (Locale.getDefault().getLanguage() == "de") {
+			return String.valueOf(day) + "." + String.valueOf(month + 1) + "."
+					+ String.valueOf(year);
+		} else {
+			return String.valueOf(year) + "/" + String.valueOf(month + 1) + "/"
+					+ String.valueOf(day);
+		}
 	}
 
 	/**
