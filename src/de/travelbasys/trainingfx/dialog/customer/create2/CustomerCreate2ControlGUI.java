@@ -25,7 +25,7 @@ import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
-import de.travelbasys.training.util.Datum;
+import de.travelbasys.training.util.widgets.DatePicker;
 import de.travelbasys.training.util.widgets.FXCalendar;
 
 public class CustomerCreate2ControlGUI implements Initializable,
@@ -60,8 +60,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private static TextField lastnameField;
 	@FXML
 	private static TextField firstnameField;
-	@FXML
-	private static TextField birthdateField;
+	// @FXML
+	// private static TextField birthdateField;
 	@FXML
 	private static TextField ageField;
 	@FXML
@@ -73,12 +73,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	@FXML
 	private static Button sendButton;
 	@FXML
-	private static GridPane calendarPane;
-
-	private static String calendarCSS = CustomerCreate2ControlGUI.class
-			.getResource(
-					"/de/travelbasys/training/util/widgets/style/simple_calendar.css")
-			.toExternalForm();
+	private static GridPane centerGridPane;
+	private static FXCalendar calendar;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -87,6 +83,9 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		this.resources = resources;
 		Configuration.addConfigurationListener(this);
 		sendButton.setDisable(true);
+
+		calendar = new FXCalendar();
+		centerGridPane.add(calendar, 1, 2);
 
 		lastnameField.textProperty().addListener(new ChangeListener<String>() {
 
@@ -200,21 +199,6 @@ public class CustomerCreate2ControlGUI implements Initializable,
 				updateSendButton();
 			}
 		});
-		// calender button
-		FXCalendar calendar = new FXCalendar();
-
-		calendarPane.add(calendar, 1, 0);
-		calendar.styleProperty().addListener(new ChangeListener<String>() {
-
-			@Override
-			public void changed(ObservableValue<? extends String> observable,
-					String oldValue, String newValue) {
-				System.out.println(newValue);
-
-				birthdateField.setText(newValue);
-			}
-		});
-
 	}
 
 	@FXML
@@ -229,7 +213,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 
 			firstnameField.getText(),
 			// TODO: Implementierung des Geburtstag.
-					Datum.getFormattedDate(birthdateField.getText()),
+			// Datum.getFormattedDate(birthdateField.getText()),
+					calendar.getValue(),
 
 					Integer.parseInt(ageField.getText()),
 

@@ -36,6 +36,9 @@
     -fx-alignment: CENTER;
     -fx-graphic-vpos: CENTER;
     -fx-cursor:hand;
+    -fx-effect: null;
+    -fx-padding: null;
+    -fx-font: null;
 }
 
 .calendarButton:focused {
@@ -47,6 +50,9 @@
 
 .calendarButton:hover {
     -fx-color: -fx-hover-base;
+     -fx-effect: null;
+    -fx-padding: null;
+    -fx-font: null;
 }
 
 .calendar-image{
@@ -252,4 +258,3 @@
 .fx-calendar-year-navigator-btnGrp:hover {
 	-fx-opacity:1;
 }
-

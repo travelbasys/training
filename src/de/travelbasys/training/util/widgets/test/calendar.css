@@ -1,0 +1,68 @@
+.date-chooser {
+    -fx-skin: "de.travelbasys.training.util.widgets.test.DateChooserSkin";
+}
+
+.weekday-cell { 
+    -fx-background-color: lightgray;
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-insets: 2 2 2 2 ;
+    -fx-text-fill: darkgray;
+    -fx-text-alignment: left;
+    -fx-font: 12pt "Tahoma Bold";
+}
+
+.week-of-year-cell { 
+    -fx-background-color: lightgray;
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-insets: 2 2 2 2 ;
+    -fx-text-fill: white;
+    -fx-text-alignment: left;
+    -fx-font: 12pt "Tahoma Bold";
+}
+
+.calendar-cell { 
+    -fx-background-color: skyblue, derive(skyblue, 25%), derive(skyblue, 50%), derive(skyblue, 75%);
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-insets: 2 2 2 2 ;
+    -fx-text-fill: skyblue;
+    -fx-text-alignment: left;
+    -fx-font: 12pt "Tahoma Bold";
+}
+
+.calendar-cell:hover { 
+    -fx-background-color: skyblue; 
+    -fx-text-fill: white;   
+}
+
+.calendar-cell:pressed { 
+    -fx-background-color: darkblue;  
+    -fx-text-fill: green;   
+}
+
+.calendar-cell-selected { 
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-insets: 2 2 2 2 ;
+    -fx-text-alignment: left;
+    -fx-font: 12pt "Tahoma Bold";
+    -fx-background-color: darkblue;  
+    -fx-text-fill: white;   
+}
+
+.calendar-cell-inactive { 
+    -fx-background-color: derive(lightgray, 75%);
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-insets: 2 2 2 2 ;
+    -fx-text-fill: darkgray;
+    -fx-text-alignment: left;
+    -fx-font: 12pt "Tahoma Bold";
+}
+
+.calendar-cell-today { 
+    -fx-background-color: yellow;  
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-insets: 2 2 2 2 ;
+    -fx-text-fill: skyblue;
+    -fx-text-alignment: left;
+    -fx-font: 12pt "Tahoma Bold";
+}
+
