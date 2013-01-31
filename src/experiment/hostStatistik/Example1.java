@@ -20,7 +20,7 @@ public class Example1 extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			URL url = FXMLLoader.getDefaultClassLoader().getResource("de/travelbasys/package1/MainFrame.fxml");
+			URL url = FXMLLoader.getDefaultClassLoader().getResource("experiment/hostStatistik/MainFrame.fxml");
 			root = FXMLLoader.load(url);
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import de.travelbasys.training.framework.Dialog;
-import de.travelbasys.training.util.widgets.SimpleCalendarDemo;
 
 /*
  * Ist verantwortlich für das Anzeigen des Hauptmenüs (Hauptfenster mit Menüleiste).

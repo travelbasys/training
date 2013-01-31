@@ -26,7 +26,7 @@ import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
 import de.travelbasys.training.util.Datum;
-import de.travelbasys.training.util.widgets.SimpleCalendar;
+import de.travelbasys.training.util.widgets.FXCalendar;
 
 public class CustomerCreate2ControlGUI implements Initializable,
 		ConfigurationListener {
@@ -201,16 +201,10 @@ public class CustomerCreate2ControlGUI implements Initializable,
 			}
 		});
 		// calender button
-		SimpleCalendar simple = new SimpleCalendar();
-		simple.getCurrentCalendarButton().getStylesheets().clear();
-		simple.getCurrentDatePicker().getStylesheets().addAll(calendarCSS);
-		simple.getCurrentCalendarButton().getStylesheets().addAll(calendarCSS);
-		simple.setPrefHeight(200);
-		simple.setPrefWidth(200);
-		simple.requestFocus();
+		FXCalendar calendar = new FXCalendar();
 
-		calendarPane.add(simple, 1, 0);
-		simple.dateProperty().addListener(new ChangeListener<String>() {
+		calendarPane.add(calendar, 1, 0);
+		calendar.styleProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
