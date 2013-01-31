@@ -73,7 +73,7 @@ public class FXCalendarDemo extends Application {
 	}
 
 	private final void loadStyleSheet(Scene scene){
-		scene.getStylesheets().add(FXCalendarDemo.class.getResource("/com/sai/javafx/calendar/styles/calendar_styles.css").toExternalForm());
+		scene.getStylesheets().add(FXCalendarDemo.class.getResource("/de/travelbasys/training/util/widgets/styles/calendar_styles.css").toExternalForm());
 	}
 	
 	private void configureHeader(){
