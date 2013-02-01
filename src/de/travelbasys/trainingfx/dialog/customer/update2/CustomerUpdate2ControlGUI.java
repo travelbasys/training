@@ -156,38 +156,28 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 				updateSendButton();
 			}
 		});
-		
+
 		birthdateField.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
+
 				CustomerUpdate2ControlGUI.this.model
 						.setBirthdate(birthdateField.getText().trim());
+
+				try {
+					ageField.setText(String.valueOf(((new Date().getTime() - Datum
+							.getFormattedDate(birthdateField.getText())
+							.getTime())
+							/ 1000 / 60 / 60 / 24 / 365)));
+				} catch (Exception e) {
+					ageField.setText("");
+				}
 
 				updateSendButton();
 			}
 		});
-
-		birthdateField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
-
-					@Override
-					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						if (!birthdateField.isFocused()) {
-							try {
-								ageField.setText(String.valueOf(((new Date()
-										.getTime() - Datum.getFormattedDate(
-										birthdateField.getText()).getTime())
-										/ 1000 / 60 / 60 / 24 / 365)));
-							} catch (Exception e) {
-								ageField.setText("");
-							}
-						}
-					}
-				});
 
 		ageField.textProperty().addListener(new ChangeListener<String>() {
 

@@ -3,6 +3,7 @@ package de.travelbasys.trainingfx.dialog.customer.update2;
 import javafx.collections.ObservableList;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Model;
+import de.travelbasys.training.util.Datum;
 
 public class CustomerUpdate2ModelGUI implements Model {
 
@@ -109,7 +110,8 @@ public class CustomerUpdate2ModelGUI implements Model {
 	public boolean hasNotChanged() {
 		return (lastname.equals(data.get(0).getLastName())
 				&& firstname.equals(data.get(0).getFirstName())
-				&& birthdate.equals(data.get(0).getBirthdate())
+				&& birthdate.equals(Datum.getFormattedString(data.get(0)
+						.getBirthdate()))
 				&& adress.equals(data.get(0).getAdress())
 				&& postalcode.equals(data.get(0).getPostalcode()) && email
 					.equals(data.get(0).getEmail()));

@@ -68,7 +68,6 @@ public class Datum {
 			if (matcher.matches()) {
 				try {
 					date = isoDateFormat.parse(value);
-					System.out.println(date);
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
