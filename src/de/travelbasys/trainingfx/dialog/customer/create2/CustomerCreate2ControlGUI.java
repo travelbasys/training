@@ -48,6 +48,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	@FXML
 	private static Label firstnameLabel;
 	@FXML
+	private static Label birthdateLabel;
+	@FXML
 	private static Label ageLabel;
 	@FXML
 	private static Label adressLabel;
@@ -113,25 +115,40 @@ public class CustomerCreate2ControlGUI implements Initializable,
 			}
 		});
 
-		birthdateField.focusedProperty().addListener(
-				new ChangeListener<Boolean>() {
+		birthdateField.textProperty().addListener(new ChangeListener<String>() {
 
-					@Override
-					public void changed(
-							ObservableValue<? extends Boolean> observable,
-							Boolean oldValue, Boolean newValue) {
-						if (!birthdateField.isFocused()) {
-							try {
-								ageField.setText(String.valueOf(((new Date()
-										.getTime() - Datum.getFormattedDate(
-										birthdateField.getText()).getTime())
-										/ 1000 / 60 / 60 / 24 / 365)));
-							} catch (Exception e) {
-								ageField.setText("");
-							}
-						}
+			Date arg1;
+			String arg2;
+			String arg3;
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable,
+					String oldValue, String newValue) {
+
+				CustomerCreate2ControlGUI.this.model
+						.setBirthdate(birthdateField.getText());
+
+				try {
+					arg1 = Datum.getFormattedDate(newValue);
+					arg2 = newValue;
+					arg3 = Datum.getFormattedString(arg1);
+
+					if (arg2.equals(arg3)) {
+						ageField.setText(String.valueOf(((new Date().getTime() - Datum
+								.getFormattedDate(birthdateField.getText())
+								.getTime())
+								/ 1000 / 60 / 60 / 24 / 365)));
+					} else {
+						ageField.setText("");
 					}
-				});
+
+				} catch (Exception e) {
+					ageField.setText("");
+				}
+
+				updateSendButton();
+			}
+		});
 
 		ageField.textProperty().addListener(new ChangeListener<String>() {
 
@@ -306,6 +323,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private void clear() {
 		lastnameField.clear();
 		firstnameField.clear();
+		birthdateField.clear();
 		ageField.clear();
 		adressField.clear();
 		postalcodeField.clear();
@@ -326,6 +344,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 
 		lastnameLabel.setText(resources.getString("Lastname"));
 		firstnameLabel.setText(resources.getString("Firstname"));
+		birthdateLabel.setText(resources.getString("Birthdate"));
 		ageLabel.setText(resources.getString("Age"));
 		adressLabel.setText(resources.getString("Adress"));
 		postalcodeLabel.setText(resources.getString("Postalcode"));

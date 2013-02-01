@@ -365,6 +365,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 			if (CustomerUpdate2ControlGUI.this.model.getData().get(0) != null) {
 				DialogOptions options = DialogOptions.YES_NO;
 				DialogResponse response = Dialogs.showConfirmDialog(
+
 						(Stage) root.getScene().getWindow(),
 						CustomerUpdate2ControlGUI.this.resources
 								.getString("Lastname")
@@ -375,6 +376,11 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 										.getString("Firstname")
 								+ CustomerUpdate2ControlGUI.this.model
 										.getData().get(0).getFirstName()
+								+ "\n"
+								+ CustomerUpdate2ControlGUI.this.resources
+										.getString("Birthdate")
+								+ CustomerUpdate2ControlGUI.this.model
+										.getData().get(0).getBirthdate()
 								+ "\n"
 								+ CustomerUpdate2ControlGUI.this.resources
 										.getString("Age")
@@ -394,10 +400,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 								+ CustomerUpdate2ControlGUI.this.resources
 										.getString("Email")
 								+ CustomerUpdate2ControlGUI.this.model
-										.getData().get(0).getEmail()
-								+ "\n\n"
-								+ CustomerUpdate2ControlGUI.this.resources
-										.getString("UpdateQuestion"),
+										.getData().get(0).getEmail() + "\n\n",
 						CustomerUpdate2ControlGUI.this.resources
 								.getString("CustomerWithID")
 								+ customerIDField.getText()
@@ -569,7 +572,9 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 		adressField.setPromptText(resources.getString("Adressfield"));
 		postalcodeField.setPromptText(resources.getString("Postalcodefield"));
 		emailField.setPromptText(resources.getString("Emailfield"));
+		birthdateField.setPromptText(resources.getString("Birthdatefield"));
 
+		calendarButton.setText(resources.getString("CalendarButton"));
 		searchButton.setText(resources.getString("Search"));
 		sendButton.setText(resources.getString("SendButton"));
 		newSearchButton.setText(resources.getString("NewSearch"));

@@ -14,6 +14,7 @@ public class CustomerCreate2ModelGUI implements Model {
 	private String adress = "";
 	private String postalcode = "";
 	private String email = "";
+	private String birthdate = "";
 
 	public void setData(ObservableList<Customer> data) {
 		this.data = data;
@@ -49,6 +50,14 @@ public class CustomerCreate2ModelGUI implements Model {
 
 	public int getAge() {
 		return age;
+	}
+
+	public String getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(String birthdate) {
+		this.birthdate = birthdate;
 	}
 
 	public void setAge(int age) {
@@ -88,8 +97,9 @@ public class CustomerCreate2ModelGUI implements Model {
 	}
 
 	public boolean sendIsInvalid() {
-		return lastname.isEmpty() || firstname.isEmpty() || age == 0
-				|| adress.isEmpty() || postalcode.isEmpty() || email.isEmpty();
+		return lastname.isEmpty() || firstname.isEmpty() || birthdate.isEmpty()
+				|| age == 0 || adress.isEmpty() || postalcode.isEmpty()
+				|| email.isEmpty();
 	}
 
 	public boolean sendIsValid() {
