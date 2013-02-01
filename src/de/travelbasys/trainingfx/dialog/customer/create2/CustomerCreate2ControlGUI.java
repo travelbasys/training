@@ -2,6 +2,7 @@ package de.travelbasys.trainingfx.dialog.customer.create2;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -75,6 +76,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private static TextField emailField;
 	@FXML
 	private static Button sendButton;
+	@FXML
+	private static Button calendarButton;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -211,7 +214,12 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		popup.setOnHiding(new EventHandler<WindowEvent>() {
 
 			public void handle(WindowEvent event) {
-				SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy");
+				SimpleDateFormat sdf;
+				if (Locale.getDefault().getLanguage() == ("de")) {
+					sdf = new SimpleDateFormat("dd.MM.yyyy");
+				} else {
+					sdf = new SimpleDateFormat("yyyy-MM-dd");
+				}
 				birthdateField.setText(sdf.format(dateChooser.getDate()));
 			}
 		});
@@ -300,6 +308,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		emailLabel.setText(resources.getString("Email"));
 		validAgeLabel.setText(resources.getString("ValidAge"));
 		validPostalcodeLabel.setText(resources.getString("ValidPostalcode"));
+		birthdateField.setText(null);
 
 		lastnameField.setPromptText(resources.getString("Lastnamefield"));
 		firstnameField.setPromptText(resources.getString("Firstnamefield"));
@@ -307,8 +316,10 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		adressField.setPromptText(resources.getString("Adressfield"));
 		postalcodeField.setPromptText(resources.getString("Postalcodefield"));
 		emailField.setPromptText(resources.getString("Emailfield"));
+		birthdateField.setPromptText(resources.getString("Birthdatefield"));
 
 		sendButton.setText(resources.getString("SendButton"));
+		calendarButton.setText(resources.getString("CalendarButton"));
 
 	}
 }
