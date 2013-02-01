@@ -2,6 +2,7 @@ package de.travelbasys.trainingfx.dialog.customer.create2;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -47,8 +48,6 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	@FXML
 	private static Label firstnameLabel;
 	@FXML
-	private static Label birthdateLabel;
-	@FXML
 	private static Label ageLabel;
 	@FXML
 	private static Label adressLabel;
@@ -56,6 +55,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private static Label postalcodeLabel;
 	@FXML
 	private static Label emailLabel;
+	@FXML
+	private static Label validBirthdateLabel;
 	@FXML
 	private static Label validAgeLabel;
 	@FXML
@@ -78,6 +79,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private static Button sendButton;
 	@FXML
 	private static Button calendarButton;
+	private static DateChooser dateChooser;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -110,6 +112,26 @@ public class CustomerCreate2ControlGUI implements Initializable,
 				updateSendButton();
 			}
 		});
+
+		birthdateField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						if (!birthdateField.isFocused()) {
+							try {
+								ageField.setText(String.valueOf(((new Date()
+										.getTime() - Datum.getFormattedDate(
+										birthdateField.getText()).getTime())
+										/ 1000 / 60 / 60 / 24 / 365)));
+							} catch (Exception e) {
+
+							}
+						}
+					}
+				});
 
 		ageField.textProperty().addListener(new ChangeListener<String>() {
 
@@ -207,7 +229,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		popup.setAutoHide(true);
 		popup.setAutoFix(true);
 		popup.setHideOnEscape(true);
-		final DateChooser dateChooser = new DateChooser();
+		dateChooser = new DateChooser();
 		popup.getContent().add(dateChooser);
 		popup.setX(300);
 		popup.setY(250);
@@ -221,6 +243,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 					sdf = new SimpleDateFormat("yyyy-MM-dd");
 				}
 				birthdateField.setText(sdf.format(dateChooser.getDate()));
+				ageField.setText(String.valueOf((new Date().getTime() - dateChooser
+						.getDate().getTime()) / 1000 / 60 / 60 / 24 / 365));
 			}
 		});
 		popup.show(root.getScene().getWindow());
@@ -306,9 +330,11 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		adressLabel.setText(resources.getString("Adress"));
 		postalcodeLabel.setText(resources.getString("Postalcode"));
 		emailLabel.setText(resources.getString("Email"));
+		validBirthdateLabel.setText(resources.getString("ValidBirthdate"));
 		validAgeLabel.setText(resources.getString("ValidAge"));
 		validPostalcodeLabel.setText(resources.getString("ValidPostalcode"));
-		birthdateField.setText(null);
+		birthdateField.setText("");
+		ageField.setText("");
 
 		lastnameField.setPromptText(resources.getString("Lastnamefield"));
 		firstnameField.setPromptText(resources.getString("Firstnamefield"));
