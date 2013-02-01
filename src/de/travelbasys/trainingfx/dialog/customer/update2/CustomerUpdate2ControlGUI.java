@@ -1,7 +1,9 @@
 package de.travelbasys.trainingfx.dialog.customer.update2;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -9,6 +11,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -21,13 +24,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
+import de.travelbasys.training.util.Datum;
+import de.travelbasys.training.util.widgets.DateChooser;
 
 public class CustomerUpdate2ControlGUI implements Initializable,
 		ConfigurationListener {
@@ -38,9 +45,9 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	@FXML
 	private BorderPane root;
 	@FXML
-	private static Label headerLabel;
-	@FXML
 	private static Label customerIDLabel;
+	@FXML
+	private static Label headerLabel;
 	@FXML
 	private static Label lastnameLabel;
 	@FXML
@@ -55,6 +62,8 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	private static Label postalcodeLabel;
 	@FXML
 	private static Label emailLabel;
+	@FXML
+	private static Label validBirthdateLabel;
 	@FXML
 	private static Label validAgeLabel;
 	@FXML
@@ -78,26 +87,29 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	@FXML
 	private static Button sendButton;
 	@FXML
+	private static Button calendarButton;
+	@FXML
 	private static Button searchButton;
 	@FXML
 	private static Button newSearchButton;
+	private static DateChooser dateChooser;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		model = new CustomerUpdate2ModelGUI();
 
 		this.resources = resources;
-		// this.root = (BorderPane)location.getClass();
 
 		Configuration.addConfigurationListener(this);
 
 		lastnameField.setEditable(false);
 		firstnameField.setEditable(false);
-		ageField.setEditable(false);
+		birthdateField.setEditable(false);
 		adressField.setEditable(false);
 		postalcodeField.setEditable(false);
 		emailField.setEditable(false);
 
+		calendarButton.setDisable(true);
 		sendButton.setDisable(true);
 		searchButton.setDisable(true);
 		newSearchButton.setDisable(true);
@@ -144,6 +156,38 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 				updateSendButton();
 			}
 		});
+		
+		birthdateField.textProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable,
+					String oldValue, String newValue) {
+				CustomerUpdate2ControlGUI.this.model
+						.setBirthdate(birthdateField.getText().trim());
+
+				updateSendButton();
+			}
+		});
+
+		birthdateField.focusedProperty().addListener(
+				new ChangeListener<Boolean>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> observable,
+							Boolean oldValue, Boolean newValue) {
+						if (!birthdateField.isFocused()) {
+							try {
+								ageField.setText(String.valueOf(((new Date()
+										.getTime() - Datum.getFormattedDate(
+										birthdateField.getText()).getTime())
+										/ 1000 / 60 / 60 / 24 / 365)));
+							} catch (Exception e) {
+								ageField.setText("");
+							}
+						}
+					}
+				});
 
 		ageField.textProperty().addListener(new ChangeListener<String>() {
 
@@ -236,6 +280,33 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	}
 
 	@FXML
+	private void handleCalendarButton(ActionEvent e) {
+		Popup popup = new Popup();
+		popup.setAutoHide(true);
+		popup.setAutoFix(true);
+		popup.setHideOnEscape(true);
+		dateChooser = new DateChooser();
+		popup.getContent().add(dateChooser);
+		popup.setX(300);
+		popup.setY(250);
+		popup.setOnHiding(new EventHandler<WindowEvent>() {
+
+			public void handle(WindowEvent event) {
+				SimpleDateFormat sdf;
+				if (Locale.getDefault().getLanguage() == ("de")) {
+					sdf = new SimpleDateFormat("dd.MM.yyyy");
+				} else {
+					sdf = new SimpleDateFormat("yyyy-MM-dd");
+				}
+				birthdateField.setText(sdf.format(dateChooser.getDate()));
+				ageField.setText(String.valueOf((new Date().getTime() - dateChooser
+						.getDate().getTime()) / 1000 / 60 / 60 / 24 / 365));
+			}
+		});
+		popup.show(root.getScene().getWindow());
+	}
+
+	@FXML
 	private void handleSendButton(ActionEvent e) {
 		try {
 			Customer customer = new Customer(
@@ -246,7 +317,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 
 			firstnameField.getText(),
 			// TODO: Implementierung des Geburtstag.
-					new Date(),
+					Datum.getFormattedDate(birthdateField.getText()),
 
 					Integer.parseInt(ageField.getText()),
 
@@ -402,11 +473,12 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	private void deactivateEdit() {
 		lastnameField.setEditable(false);
 		firstnameField.setEditable(false);
-		ageField.setEditable(false);
+		birthdateField.setEditable(false);
 		adressField.setEditable(false);
 		postalcodeField.setEditable(false);
 		emailField.setEditable(false);
 		sendButton.setDisable(true);
+		calendarButton.setDisable(true);
 	}
 
 	private void activateSearch() {
@@ -442,7 +514,16 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 		firstnameField.setText(CustomerUpdate2ControlGUI.this.model.getData()
 				.get(0).getFirstName());
 
-		ageField.setEditable(true);
+		calendarButton.setDisable(false);
+		birthdateField.setEditable(true);
+
+		birthdateField.setText(String.valueOf(Datum
+				.getFormattedString((CustomerUpdate2ControlGUI.this.model
+						.getData().get(0).getBirthdate()))));
+
+		System.out.println(CustomerUpdate2ControlGUI.this.model.getData()
+				.get(0));
+
 		ageField.setText(String.valueOf(CustomerUpdate2ControlGUI.this.model
 				.getData().get(0).getAge()));
 
@@ -482,10 +563,12 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 		customerIDLabel.setText(resources.getString("CustomerID"));
 		lastnameLabel.setText(resources.getString("Lastname"));
 		firstnameLabel.setText(resources.getString("Firstname"));
+		birthdateLabel.setText(resources.getString("Birthdate"));
 		ageLabel.setText(resources.getString("Age"));
 		adressLabel.setText(resources.getString("Adress"));
 		postalcodeLabel.setText(resources.getString("Postalcode"));
 		emailLabel.setText(resources.getString("Email"));
+		validBirthdateLabel.setText(resources.getString("ValidBirthdate"));
 		validAgeLabel.setText(resources.getString("ValidAge"));
 		validPostalcodeLabel.setText(resources.getString("ValidPostalcode"));
 

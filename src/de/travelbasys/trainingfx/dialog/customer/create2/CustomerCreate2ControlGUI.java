@@ -127,7 +127,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 										birthdateField.getText()).getTime())
 										/ 1000 / 60 / 60 / 24 / 365)));
 							} catch (Exception e) {
-
+								ageField.setText("");
 							}
 						}
 					}
