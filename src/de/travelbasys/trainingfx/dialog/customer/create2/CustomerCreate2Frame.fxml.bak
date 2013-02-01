@@ -24,7 +24,7 @@
             <TextField fx:id="ageField" prefWidth="200.0" promptText="%Agefield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <Label fx:id="validAgeLabel" text="%ValidAge" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
               <GridPane.margin>
-                <Insets left="10.0" fx:id="x2" />
+                <Insets left="10.0" />
               </GridPane.margin>
             </Label>
             <Label fx:id="adressLabel" text="%Adress" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
@@ -34,6 +34,32 @@
             <TextField fx:id="emailField" prefWidth="200.0" promptText="%Emailfield" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
             <Label fx:id="emailLabel" text="%Email" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
             <Label fx:id="validPostalcodeLabel" text="%ValidPostalcode" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.margin="$x2" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <children>
+                <TextField fx:id="birthdateField" prefWidth="200.0" promptText="%Birthdatefield" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Button id="calendarButton" mnemonicParsing="false" onAction="#handleCalendarButton" text="%CalendarButton" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

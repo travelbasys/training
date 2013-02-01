@@ -1,11 +1,13 @@
 package de.travelbasys.trainingfx.dialog.customer.create2;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,9 +17,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dao.Dao;
@@ -25,8 +28,8 @@ import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
-import de.travelbasys.training.util.widgets.DatePicker;
-import de.travelbasys.training.util.widgets.FXCalendar;
+import de.travelbasys.training.util.Datum;
+import de.travelbasys.training.util.widgets.DateChooser;
 
 public class CustomerCreate2ControlGUI implements Initializable,
 		ConfigurationListener {
@@ -60,8 +63,8 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private static TextField lastnameField;
 	@FXML
 	private static TextField firstnameField;
-	// @FXML
-	// private static TextField birthdateField;
+	@FXML
+	private static TextField birthdateField;
 	@FXML
 	private static TextField ageField;
 	@FXML
@@ -72,9 +75,6 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private static TextField emailField;
 	@FXML
 	private static Button sendButton;
-	@FXML
-	private static GridPane centerGridPane;
-	private static FXCalendar calendar;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -83,9 +83,6 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		this.resources = resources;
 		Configuration.addConfigurationListener(this);
 		sendButton.setDisable(true);
-
-		calendar = new FXCalendar();
-		centerGridPane.add(calendar, 1, 2);
 
 		lastnameField.textProperty().addListener(new ChangeListener<String>() {
 
@@ -202,6 +199,27 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	}
 
 	@FXML
+	private void handleCalendarButton(ActionEvent e) {
+		Popup popup = new Popup();
+		popup.setAutoHide(true);
+		popup.setAutoFix(true);
+		popup.setHideOnEscape(true);
+		final DateChooser dateChooser = new DateChooser();
+		popup.getContent().add(dateChooser);
+		popup.setX(300);
+		popup.setY(250);
+		popup.setOnHiding(new EventHandler<WindowEvent>() {
+
+			public void handle(WindowEvent event) {
+				SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy");
+				birthdateField.setText(sdf.format(dateChooser.getDate()));
+				System.out.println(sdf.toPattern());
+			}
+		});
+		popup.show(root.getScene().getWindow());
+	}
+
+	@FXML
 	private void handleSendButton(ActionEvent e) {
 		try {
 			int dummyid = 0;
@@ -213,8 +231,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 
 			firstnameField.getText(),
 			// TODO: Implementierung des Geburtstag.
-			// Datum.getFormattedDate(birthdateField.getText()),
-					calendar.getValue(),
+					Datum.getFormattedDate(birthdateField.getText()),
 
 					Integer.parseInt(ageField.getText()),
 

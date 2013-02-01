@@ -1,4 +1,4 @@
-package de.travelbasys.training.util.widgets.test;
+package de.travelbasys.training.util.widgets;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;

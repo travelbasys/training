@@ -1,4 +1,4 @@
-package de.travelbasys.training.util.widgets.test;
+package de.travelbasys.training.util.widgets;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
