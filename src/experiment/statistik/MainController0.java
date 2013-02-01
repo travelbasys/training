@@ -1,4 +1,4 @@
-package experiment.hostStatistik;
+package experiment.statistik;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.CategoryAxis;
