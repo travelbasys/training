@@ -108,7 +108,6 @@ public class MySQLCustomerDAO implements CustomerDAO {
 						resultSet.getString(6), resultSet.getString(7),
 						resultSet.getString(8));
 				internalCustomers.add(c);
-				System.out.println(c);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -160,9 +159,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		List<Customer> result = new ArrayList<Customer>();
 		for (Customer customer : internalCustomers) {
 			result.add(customer.clone());
-			System.out.println(customer);
 		}
-		System.out.println(result);
 		return result;
 	}
 
@@ -248,7 +245,6 @@ public class MySQLCustomerDAO implements CustomerDAO {
 					+ id + ";");
 			resultSet.next();
 			localupdateid = resultSet.getInt(9);
-			System.out.println(localupdateid);
 		} catch (SQLException e) {
 		}
 		CloseCurrentConnection();

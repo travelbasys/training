@@ -159,18 +159,30 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 
 		birthdateField.textProperty().addListener(new ChangeListener<String>() {
 
-			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
 
+				Date arg1;
+				String arg2;
+				String arg3;
+
 				CustomerUpdate2ControlGUI.this.model
-						.setBirthdate(birthdateField.getText().trim());
+						.setBirthdate(birthdateField.getText());
 
 				try {
-					ageField.setText(String.valueOf(((new Date().getTime() - Datum
-							.getFormattedDate(birthdateField.getText())
-							.getTime())
-							/ 1000 / 60 / 60 / 24 / 365)));
+					arg1 = Datum.getFormattedDate(newValue);
+					arg2 = newValue;
+					arg3 = Datum.getFormattedString(arg1);
+
+					if (arg2.equals(arg3)) {
+						ageField.setText(String.valueOf(((new Date().getTime() - Datum
+								.getFormattedDate(birthdateField.getText())
+								.getTime())
+								/ 1000 / 60 / 60 / 24 / 365)));
+					} else {
+						ageField.setText("");
+					}
+
 				} catch (Exception e) {
 					ageField.setText("");
 				}
@@ -491,6 +503,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	private void clear() {
 		lastnameField.clear();
 		firstnameField.clear();
+		birthdateField.clear();
 		ageField.clear();
 		adressField.clear();
 		postalcodeField.clear();

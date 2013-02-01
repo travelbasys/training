@@ -117,13 +117,13 @@ public class CustomerCreate2ControlGUI implements Initializable,
 
 		birthdateField.textProperty().addListener(new ChangeListener<String>() {
 
-			Date arg1;
-			String arg2;
-			String arg3;
-
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
+				
+				Date arg1;
+				String arg2;
+				String arg3;
 
 				CustomerCreate2ControlGUI.this.model
 						.setBirthdate(birthdateField.getText());

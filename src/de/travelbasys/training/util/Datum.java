@@ -55,7 +55,6 @@ public class Datum {
 			if (matcher.matches()) {
 				try {
 					date = gerDateFormat.parse(value);
-					System.out.println(date);
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
@@ -64,7 +63,6 @@ public class Datum {
 			Pattern isoPattern = Pattern
 					.compile("([0-9][0-9][0-9][0-9]\\-([0]?[0-9]|10|11|12)\\-[0-2]?[0-9]|30|31)");
 			matcher = isoPattern.matcher(value);
-			System.out.println(matcher);
 			if (matcher.matches()) {
 				try {
 					date = isoDateFormat.parse(value);
