@@ -20,7 +20,7 @@ public class DateChooser extends Control {
 
 	@Override
 	protected String getUserAgentStylesheet() {
-		return "/de/travelbasys/training/util/widgets/test/calendar.css";
+		return "/de/travelbasys/training/util/widgets/calendar.css";
 	}
 
 	public Date getDate() {

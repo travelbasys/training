@@ -213,7 +213,6 @@ public class CustomerCreate2ControlGUI implements Initializable,
 			public void handle(WindowEvent event) {
 				SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy");
 				birthdateField.setText(sdf.format(dateChooser.getDate()));
-				System.out.println(sdf.toPattern());
 			}
 		});
 		popup.show(root.getScene().getWindow());

@@ -1,5 +1,5 @@
 .date-chooser {
-    -fx-skin: "de.travelbasys.training.util.widgets.test.DateChooserSkin";
+    -fx-skin: "de.travelbasys.training.util.widgets.DateChooserSkin";
 }
 
 .weekday-cell { 

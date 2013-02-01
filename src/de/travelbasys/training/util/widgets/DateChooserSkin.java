@@ -35,7 +35,6 @@ public class DateChooserSkin extends
 	final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMMM yyyy");
 
 	private static class CalendarCell extends StackPane {
-
 		private final Date date;
 
 		public CalendarCell(Date day, String text) {
