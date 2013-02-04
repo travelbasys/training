@@ -26,6 +26,7 @@ import javafx.stage.WindowEvent;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dao.Dao;
+import de.travelbasys.training.util.AgeCalc;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
@@ -120,7 +121,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
-				
+
 				Date arg1;
 				String arg2;
 				String arg3;
@@ -134,10 +135,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 					arg3 = Datum.getFormattedString(arg1);
 
 					if (arg2.equals(arg3)) {
-						ageField.setText(String.valueOf(((new Date().getTime() - Datum
-								.getFormattedDate(birthdateField.getText())
-								.getTime())
-								/ 1000 / 60 / 60 / 24 / 365)));
+						ageField.setText(String.valueOf(AgeCalc.getAge(arg1)));
 					} else {
 						ageField.setText("");
 					}
