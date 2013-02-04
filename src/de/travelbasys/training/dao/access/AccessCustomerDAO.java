@@ -48,7 +48,7 @@ public class AccessCustomerDAO implements CustomerDAO {
 	private static ResultSet resultSet = null;
 	private static int localupdateid = 0;
 	private final String INSERT = "INSERT INTO ";
-	private final String VALUES = " VALUES (default, ?, ?, ?, ?, ?, ?, default);";
+	private final String VALUES = " VALUES (?, ?, ?, ?, ?, ?);";
 	private final String SELECT = "SELECT * FROM ";
 	private final String WHERECUSTOMERID = " WHERE customerid = ";
 	private final String UPDATEATTRIBUTES = " SET lastname = ?, firstname = ?, birthdate = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;";
