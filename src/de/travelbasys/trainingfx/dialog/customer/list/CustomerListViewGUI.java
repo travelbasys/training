@@ -25,7 +25,6 @@ public class CustomerListViewGUI implements View, ConfigurationListener {
 	private TableColumn lastNameCol;
 	private TableColumn firstNameCol;
 	private TableColumn birthDateCol;
-	private TableColumn ageCol;
 	private TableColumn adressCol;
 	private TableColumn postalcodeCol;
 	private TableColumn emailCol;
@@ -65,11 +64,6 @@ public class CustomerListViewGUI implements View, ConfigurationListener {
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>(
 						"birthdate"));
 
-		ageCol = new TableColumn();
-		ageCol.setMinWidth(100);
-		ageCol.setCellValueFactory(new PropertyValueFactory<Customer, String>(
-				"age"));
-
 		adressCol = new TableColumn();
 		adressCol.setMinWidth(100);
 		adressCol
@@ -88,7 +82,7 @@ public class CustomerListViewGUI implements View, ConfigurationListener {
 				"email"));
 
 		table.getColumns().addAll(customerIDCol, lastNameCol, firstNameCol,
-				birthDateCol, ageCol, adressCol, postalcodeCol, emailCol);
+				birthDateCol, adressCol, postalcodeCol, emailCol);
 		// Erstelle Referenz zu Tabelle und fülle mit Daten
 		// Erstellen Node (VBox) für Platzierung der Tabelle
 		vbox = new VBox();
@@ -123,7 +117,6 @@ public class CustomerListViewGUI implements View, ConfigurationListener {
 		lastNameCol.setText(AppContext.getMessage("LastnameTable"));
 		firstNameCol.setText(AppContext.getMessage("FirstnameTable"));
 		birthDateCol.setText(AppContext.getMessage("BirthdateTable"));
-		ageCol.setText(AppContext.getMessage("AgeTable"));
 		adressCol.setText(AppContext.getMessage("AdressTable"));
 		postalcodeCol.setText(AppContext.getMessage("PostalcodeTable"));
 		emailCol.setText(AppContext.getMessage("EmailTable"));

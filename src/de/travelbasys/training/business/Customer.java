@@ -24,7 +24,6 @@ public class Customer implements Serializable, Cloneable {
 	private String adress;
 	private String email;
 	private int customerid;
-	private int age;
 	private String postalcode;
 	private Date birthdate;
 
@@ -32,7 +31,6 @@ public class Customer implements Serializable, Cloneable {
 	private static final String DEFAULT_FIRSTNAME = "default";
 	private static final String DEFAULT_ADRESS = "default";
 	private static final String DEFAULT_EMAIL = "default";
-	private static final int DEFAULT_AGE = 1;
 	private static final String DEFAULT_POSTALCODE = "default";
 	private static final SimpleDateFormat DEFAULT_BIRTHDATE_FORMAT = new SimpleDateFormat(
 			"YYYY-MM-DD");
@@ -47,7 +45,7 @@ public class Customer implements Serializable, Cloneable {
 	 * Spaces, dann "=", dann Spaces, dann Gruppe aus mindestens einer Ziffer,
 	 * dann Spaces, dann "]". Fertig.
 	 */
-	private static final String U = "\\s*Customer[(\\d+)]\\s*\\[\\s*lastname\\s*=\\s*(.+?)\\s*,\\s*firstname\\s*=\\s*(.+?)\\s*,\\s*birthdate\\s*=\\s*(.+?)\\s*\\,\\s*\\s*age\\s*=\\s*(\\d+)\\s*\\,\\s*adress\\s*=\\s*(.+?)\\s*\\,\\s*postalcode\\s*=\\s*(.+?)\\s*\\,\\s*email\\s*=\\s*(.+?)\\s*\\]";
+	private static final String U = "\\s*Customer[(\\d+)]\\s*\\[\\s*lastname\\s*=\\s*(.+?)\\s*,\\s*firstname\\s*=\\s*(.+?)\\s*,\\s*birthdate\\s*=\\s*(.+?)\\s*\\,\\s*adress\\s*=\\s*(.+?)\\s*\\,\\s*postalcode\\s*=\\s*(.+?)\\s*\\,\\s*email\\s*=\\s*(.+?)\\s*\\]";
 	private static final String C = "(\\d+);(.+?);(.+?);(.+?);(\\d+);(.+?);(.+?);(.+?)";
 	private static final Pattern CUSTOMERPATTERN = Pattern.compile(U,
 			Pattern.CASE_INSENSITIVE);
@@ -57,7 +55,6 @@ public class Customer implements Serializable, Cloneable {
 	private static final String WRONG_SYNTAX_ERROR = "Wrong syntax: ";
 	private static final String INVALID_DATE_ERROR = "Invalid Date: ";
 	private static final String POSTAL_CODE_ERROR = "Postal code not in range: ";
-	private static final String AGE_ERROR = "Wrong age: ";
 
 	/**
 	 * Erzeugt ein neues Customer Objekt mit dem angegebenen Namen und dem
@@ -68,27 +65,24 @@ public class Customer implements Serializable, Cloneable {
 	 * @param name
 	 *            Name des Customers.
 	 * @param firstname
-	 * @param age
-	 *            Alter des Customers.
 	 * @param email
 	 * @param postalcode
 	 * @param adress
 	 * @throws Exception
 	 */
 	public Customer(int customerid, String lastname, String firstname,
-			Date birthdate, int age, String adress, String postalcode,
-			String email) throws IllegalArgumentException {
+			Date birthdate, String adress, String postalcode, String email)
+			throws IllegalArgumentException {
 		this.customerid = customerid;
 		setLastName(lastname);
 		setFirstName(firstname);
-		setAge(age);
+		setBirthdate(birthdate);
 		setAdress(adress);
 		setPostalcode(postalcode);
 		setEMail(email);
-		setBirthdate(birthdate);
 	}
 
-	private void setBirthdate(Date birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 
@@ -113,8 +107,8 @@ public class Customer implements Serializable, Cloneable {
 	 */
 	public Customer(int customerid) throws IllegalArgumentException {
 		this(customerid, DEFAULT_LASTNAME, DEFAULT_FIRSTNAME,
-				DEFAULT_BIRTHDATE, DEFAULT_AGE, DEFAULT_ADRESS,
-				DEFAULT_POSTALCODE, DEFAULT_EMAIL);
+				DEFAULT_BIRTHDATE, DEFAULT_ADRESS, DEFAULT_POSTALCODE,
+				DEFAULT_EMAIL);
 	}
 
 	/**
@@ -172,40 +166,18 @@ public class Customer implements Serializable, Cloneable {
 		return email;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
-	/**
-	 * Setzt das Alter des Kunden. Wenn der Wert negativ oder größer als 150
-	 * ist, wird eine Exception geworfen.
-	 * 
-	 * @param age
-	 *            das Alter.
-	 * @throws IllegalArgumentException
-	 *             wenn Alter negativ oder größer als 150.
-	 */
-	public void setAge(int age) throws IllegalArgumentException {
-		if (age > 0 && age <= 150) {
-			this.age = age;
-		} else {
-			throw new IllegalArgumentException(AGE_ERROR + age);
-		}
-
-	}
-
 	@Override
 	public String toString() {
 		return "Customer[" + customerid + "] " + "[lastname=" + lastname
-				+ ", firstname=" + firstname + ", age=" + age + ", adress="
-				+ adress + ", postalcode=" + postalcode + ", email=" + email
-				+ "]";
+				+ ", firstname=" + firstname + ", birthdate=" + birthdate
+				+ ", adress=" + adress + ", postalcode=" + postalcode
+				+ ", email=" + email + "]";
 	}
 
 	public String toFormat(String Format) {
 		if (Format == "CSV") {
-			return customerid + ";" + lastname + ";" + firstname + ";" + age
-					+ ";" + adress + ";" + postalcode + ";" + email;
+			return customerid + ";" + lastname + ";" + firstname + ";"
+					+ birthdate + ";" + adress + ";" + postalcode + ";" + email;
 
 		}
 		if (Format == "ACCESS") {
@@ -218,7 +190,6 @@ public class Customer implements Serializable, Cloneable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((adress == null) ? 0 : adress.hashCode());
-		result = prime * result + age;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result
 				+ ((firstname == null) ? 0 : firstname.hashCode());
@@ -226,6 +197,8 @@ public class Customer implements Serializable, Cloneable {
 				+ ((lastname == null) ? 0 : lastname.hashCode());
 		result = prime * result
 				+ ((postalcode == null) ? 0 : postalcode.hashCode());
+		result = prime * result
+				+ ((birthdate == null) ? 0 : birthdate.hashCode());
 		return result;
 	}
 
@@ -250,8 +223,6 @@ public class Customer implements Serializable, Cloneable {
 		} else if (!birthdate.equals(other.birthdate)) {
 			return false;
 		}
-		if (age != other.age)
-			return false;
 		if (firstname == null) {
 			if (other.firstname != null)
 				return false;
@@ -294,9 +265,8 @@ public class Customer implements Serializable, Cloneable {
 			try {
 				customer = new Customer(Integer.parseInt(m.group(1)),
 						m.group(2), m.group(3),
-						DEFAULT_BIRTHDATE_FORMAT.parse(m.group(4)),
-						Integer.parseInt(m.group(5)), m.group(6), m.group(7),
-						m.group(8));
+						DEFAULT_BIRTHDATE_FORMAT.parse(m.group(4)), m.group(5),
+						m.group(6), m.group(7));
 			} catch (ParseException e) {
 				System.out.println(INVALID_DATE_ERROR);
 			}
@@ -315,9 +285,8 @@ public class Customer implements Serializable, Cloneable {
 			try {
 				customer = new Customer(Integer.parseInt(m.group(1)),
 						m.group(2), m.group(3),
-						DEFAULT_BIRTHDATE_FORMAT.parse(m.group(4)),
-						Integer.parseInt(m.group(5)), m.group(6), m.group(7),
-						m.group(8));
+						DEFAULT_BIRTHDATE_FORMAT.parse(m.group(4)), m.group(5),
+						m.group(6), m.group(7));
 			} catch (ParseException e) {
 				System.out.println(INVALID_DATE_ERROR);
 			}
@@ -330,8 +299,8 @@ public class Customer implements Serializable, Cloneable {
 	}
 
 	public Customer clone() {
-		return new Customer(customerid, lastname, firstname, birthdate, age,
-				adress, postalcode, email);
+		return new Customer(customerid, lastname, firstname, birthdate, adress,
+				postalcode, email);
 	}
 
 	public Date getBirthdate() {

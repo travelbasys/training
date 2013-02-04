@@ -14,6 +14,7 @@ public class CustomerAttributesUpdateModel implements Model {
 	private String adress;
 	private String postalcode;
 	private String eMail;
+	private String birthdate;
 	private boolean dirtyflag = false;
 
 	private int componentIndex;
@@ -32,14 +33,6 @@ public class CustomerAttributesUpdateModel implements Model {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
 	}
 
 	public String getAdress() {
@@ -80,6 +73,14 @@ public class CustomerAttributesUpdateModel implements Model {
 
 	public boolean getDirtyFlag() {
 		return dirtyflag;
+	}
+
+	public void setBirthdate(String birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public String getBirthdate() {
+		return birthdate;
 	}
 
 }

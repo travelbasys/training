@@ -258,8 +258,6 @@ public class CustomerCreate2ControlGUI implements Initializable,
 					sdf = new SimpleDateFormat("yyyy-MM-dd");
 				}
 				birthdateField.setText(sdf.format(dateChooser.getDate()));
-				ageField.setText(String.valueOf((new Date().getTime() - dateChooser
-						.getDate().getTime()) / 1000 / 60 / 60 / 24 / 365));
 			}
 		});
 		popup.show(root.getScene().getWindow());
@@ -278,8 +276,6 @@ public class CustomerCreate2ControlGUI implements Initializable,
 			firstnameField.getText(),
 			// TODO: Implementierung des Geburtstag.
 					Datum.getFormattedDate(birthdateField.getText()),
-
-					Integer.parseInt(ageField.getText()),
 
 					adressField.getText(),
 

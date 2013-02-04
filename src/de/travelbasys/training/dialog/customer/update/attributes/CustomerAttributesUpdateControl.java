@@ -47,13 +47,13 @@ public class CustomerAttributesUpdateControl extends AbstractControl {
 			}
 		});
 
-		uic = this.view.getAgeComponent();
+		uic = this.view.getBirthdateComponent();
 		uic.setControl(new AbstractControl() {
-			// Speichert den gegebenen Wert als Age im Model.
+			// Speichert den gegebenen Wert als Birthdate im Model.
 			public void handleInput(Object value) throws Exception {
-				checkAge(value);
+				checkString(value);
 				CustomerAttributesUpdateControl.this.model
-						.setAge((Integer) value);
+						.setBirthdate(((String) value));
 			}
 		});
 

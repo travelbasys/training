@@ -101,11 +101,6 @@ public class CustomerDelete2ControlGUI implements Initializable,
 										.getData().get(0).getBirthdate()
 								+ "\n"
 								+ CustomerDelete2ControlGUI.this.resources
-										.getString("Age")
-								+ CustomerDelete2ControlGUI.this.model
-										.getData().get(0).getAge()
-								+ "\n"
-								+ CustomerDelete2ControlGUI.this.resources
 										.getString("Adress")
 								+ CustomerDelete2ControlGUI.this.model
 										.getData().get(0).getAdress()

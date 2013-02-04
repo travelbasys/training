@@ -205,8 +205,6 @@ public class CustomerUpdateControlGUI implements Control {
 											.getFirstNameField().getText(),
 									// TODO: Implementierung des Geburtstag.
 									new Date(),
-									Integer.parseInt(CustomerUpdateControlGUI.this.view
-											.getAgeField().getText()),
 									CustomerUpdateControlGUI.this.view
 											.getAdressField().getText(),
 									CustomerUpdateControlGUI.this.view
@@ -284,13 +282,6 @@ public class CustomerUpdateControlGUI implements Control {
 																.getData()
 																.get(0)
 																.getFirstName()
-														+ "\n"
-														+ AppContext
-																.getMessage("Age")
-														+ CustomerUpdateControlGUI.this.model
-																.getData()
-																.get(0)
-																.getAge()
 														+ "\n"
 														+ AppContext
 																.getMessage("Adress")
@@ -447,11 +438,6 @@ public class CustomerUpdateControlGUI implements Control {
 		CustomerUpdateControlGUI.this.view.getFirstNameField().setText(
 				CustomerUpdateControlGUI.this.model.getData().get(0)
 						.getFirstName());
-
-		CustomerUpdateControlGUI.this.view.getAgeField().setEditable(true);
-		CustomerUpdateControlGUI.this.view.getAgeField().setText(
-				String.valueOf(CustomerUpdateControlGUI.this.model.getData()
-						.get(0).getAge()));
 
 		CustomerUpdateControlGUI.this.view.getAdressField().setEditable(true);
 		CustomerUpdateControlGUI.this.view.getAdressField().setText(

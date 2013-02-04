@@ -153,8 +153,7 @@ public class TxtCustomerDAO implements CustomerDAO {
 
 		int customerid = createNewId();
 		Customer c = new Customer(customerid, customer.getLastName(),
-				customer.getFirstName(), customer.getBirthdate(),
-				customer.getAge(), customer.getAdress(),
+				customer.getFirstName(), customer.getBirthdate(), customer.getAdress(),
 				customer.getPostalcode(), customer.getEmail());
 		internalCustomers.add(c);
 	}

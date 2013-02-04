@@ -4,6 +4,7 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dialog.customer.common.print.CustomerPrintDialog;
 import de.travelbasys.training.dialog.customer.update.menu.CustomerUpdateMenuDialog;
 import de.travelbasys.training.framework.Dialog;
+import de.travelbasys.training.util.Datum;
 
 /**
  * zeigt ein {@see Customer} Objekt an und erlaubt dem Benutzer anschlieﬂend,
@@ -43,7 +44,7 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 		model = new CustomerAttributesUpdateModel();
 		// Model mit den Customerattributen initialisieren.
 		model.setAdress(customer.getAdress());
-		model.setAge(customer.getAge());
+		model.setBirthdate(Datum.getFormattedString(customer.getBirthdate()));
 		model.setFirstName(customer.getFirstName());
 		model.setLastName(customer.getLastName());
 		model.setPostalcode(customer.getPostalcode());
@@ -84,7 +85,7 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 
 			// Customer mit den aktuellen Modelattributen aktualisieren.
 			customer.setAdress(model.getAdress());
-			customer.setAge(model.getAge());
+			customer.setBirthdate(Datum.getFormattedDate(model.getBirthdate()));
 			customer.setFirstName(model.getFirstName());
 			customer.setLastName(model.getLastName());
 			customer.setPostalcode(model.getPostalcode());

@@ -22,8 +22,8 @@ public class CustomerAttributesUpdateView extends ArrayList<UiComponent>
 	private static final String FIRSTNAME = "FirstName";
 	private UiComponent firstnameComponent;
 
-	private static final String AGE = "Age";
-	private UiComponent ageComponent;
+	private static final String BIRTHDATE = "Birthdate";
+	private UiComponent birthdateComponent;
 
 	private static final String ADRESS = "Adress";
 	private UiComponent adressComponent;
@@ -42,8 +42,8 @@ public class CustomerAttributesUpdateView extends ArrayList<UiComponent>
 		return firstnameComponent;
 	}
 
-	public UiComponent getAgeComponent() {
-		return ageComponent;
+	public UiComponent getBirthdateComponent() {
+		return birthdateComponent;
 	}
 
 	public UiComponent getAdressComponent() {
@@ -76,10 +76,10 @@ public class CustomerAttributesUpdateView extends ArrayList<UiComponent>
 		lastnameComponent.setValue(model.getLastName());
 		add(lastnameComponent);
 
-		ageComponent = new UiComponent();
-		ageComponent.setName(AGE);
-		ageComponent.setValue(model.getAge());
-		add(ageComponent);
+		birthdateComponent = new UiComponent();
+		birthdateComponent.setName(BIRTHDATE);
+		birthdateComponent.setValue(model.getBirthdate());
+		add(birthdateComponent);
 
 		adressComponent = new UiComponent();
 		adressComponent.setName(ADRESS);

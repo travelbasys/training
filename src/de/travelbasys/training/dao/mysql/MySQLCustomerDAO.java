@@ -47,10 +47,10 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	private static ResultSet resultSet = null;
 	private static int localupdateid = 0;
 	private final String INSERT = "INSERT INTO ";
-	private final String VALUES = " VALUES (default, ?, ?, ? , ?, ? , ?, ?, default);";
+	private final String VALUES = " VALUES (default, ?, ?, ?, ?, ?, ?, default);";
 	private final String SELECT = "SELECT * FROM ";
 	private final String WHERECUSTOMERID = " WHERE customerid = ";
-	private final String UPDATEATTRIBUTES = " SET lastname = ?, firstname = ?, birthdate = ?, age = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;";
+	private final String UPDATEATTRIBUTES = " SET lastname = ?, firstname = ?, birthdate = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;";
 	private final String DELETE = "DELETE FROM ";
 
 	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
@@ -104,9 +104,9 @@ public class MySQLCustomerDAO implements CustomerDAO {
 			while (resultSet.next()) {
 				Customer c = new Customer(resultSet.getInt(1),
 						resultSet.getString(2), resultSet.getString(3),
-						resultSet.getDate(4), resultSet.getInt(5),
-						resultSet.getString(6), resultSet.getString(7),
-						resultSet.getString(8));
+						resultSet.getDate(4),
+						resultSet.getString(5), resultSet.getString(6),
+						resultSet.getString(7));
 				internalCustomers.add(c);
 			}
 		} catch (Exception e) {
@@ -193,15 +193,13 @@ public class MySQLCustomerDAO implements CustomerDAO {
 			preparedStatement.setString(2, customer.getFirstName());
 			preparedStatement.setDate(3, new java.sql.Date(customer
 					.getBirthdate().getTime()));
-			preparedStatement.setInt(4, customer.getAge());
-			preparedStatement.setString(5, customer.getAdress());
-			preparedStatement.setString(6, customer.getPostalcode());
-			preparedStatement.setString(7, customer.getEmail());
+			preparedStatement.setString(4, customer.getAdress());
+			preparedStatement.setString(5, customer.getPostalcode());
+			preparedStatement.setString(6, customer.getEmail());
 			preparedStatement.executeUpdate();
 			customerid = createNewId();
 			Customer c = new Customer(customerid, customer.getLastName(),
-					customer.getFirstName(), customer.getBirthdate(),
-					customer.getAge(), customer.getAdress(),
+					customer.getFirstName(), customer.getBirthdate(), customer.getAdress(),
 					customer.getPostalcode(), customer.getEmail());
 			internalCustomers.add(c);
 
@@ -244,7 +242,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 			resultSet = statement.executeQuery(SELECT + TABLE + WHERECUSTOMERID
 					+ id + ";");
 			resultSet.next();
-			localupdateid = resultSet.getInt(9);
+			localupdateid = resultSet.getInt(8);
 		} catch (SQLException e) {
 		}
 		CloseCurrentConnection();
@@ -282,19 +280,18 @@ public class MySQLCustomerDAO implements CustomerDAO {
 						.println("Customer has been deleted by another user.");
 				return;
 			}
-			if (resultSet.getInt(9) == localupdateid) {
+			if (resultSet.getInt(8) == localupdateid) {
 				preparedStatement = connect.prepareStatement("UPDATE " + TABLE
 						+ UPDATEATTRIBUTES);
 				preparedStatement.setString(1, customer.getLastName());
 				preparedStatement.setString(2, customer.getFirstName());
 				preparedStatement.setDate(3, new java.sql.Date(customer
 						.getBirthdate().getTime()));
-				preparedStatement.setInt(4, customer.getAge());
-				preparedStatement.setString(5, customer.getAdress());
-				preparedStatement.setString(6, customer.getPostalcode());
-				preparedStatement.setString(7, customer.getEmail());
-				preparedStatement.setInt(8, (resultSet.getInt(9) + 1));
-				preparedStatement.setInt(9, customer.getId());
+				preparedStatement.setString(4, customer.getAdress());
+				preparedStatement.setString(5, customer.getPostalcode());
+				preparedStatement.setString(6, customer.getEmail());
+				preparedStatement.setInt(7, (resultSet.getInt(8) + 1));
+				preparedStatement.setInt(8, customer.getId());
 				preparedStatement.executeUpdate();
 			} else {
 				System.err

@@ -30,6 +30,7 @@ import javafx.stage.WindowEvent;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dao.Dao;
+import de.travelbasys.training.util.AgeCalc;
 import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
@@ -159,6 +160,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 
 		birthdateField.textProperty().addListener(new ChangeListener<String>() {
 
+			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
 
@@ -175,10 +177,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 					arg3 = Datum.getFormattedString(arg1);
 
 					if (arg2.equals(arg3)) {
-						ageField.setText(String.valueOf(((new Date().getTime() - Datum
-								.getFormattedDate(birthdateField.getText())
-								.getTime())
-								/ 1000 / 60 / 60 / 24 / 365)));
+						ageField.setText(String.valueOf(AgeCalc.getAge(arg1)));
 					} else {
 						ageField.setText("");
 					}
@@ -301,8 +300,6 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 					sdf = new SimpleDateFormat("yyyy-MM-dd");
 				}
 				birthdateField.setText(sdf.format(dateChooser.getDate()));
-				ageField.setText(String.valueOf((new Date().getTime() - dateChooser
-						.getDate().getTime()) / 1000 / 60 / 60 / 24 / 365));
 			}
 		});
 		popup.show(root.getScene().getWindow());
@@ -317,17 +314,16 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 
 			lastnameField.getText(),
 
-			firstnameField.getText(),
-			// TODO: Implementierung des Geburtstag.
-					Datum.getFormattedDate(birthdateField.getText()),
+			firstnameField.getText(), 
+			
+			Datum.getFormattedDate(birthdateField
+					.getText()),
 
-					Integer.parseInt(ageField.getText()),
+			adressField.getText(),
 
-					adressField.getText(),
+			postalcodeField.getText(),
 
-					postalcodeField.getText(),
-
-					emailField.getText());
+			emailField.getText());
 			Dao.getDAO().getExisting(customer);
 			Dao.getDAO().update(customer);
 			Dialogs.showInformationDialog((Stage) root.getScene().getWindow(),
@@ -393,11 +389,6 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 										.getString("Birthdate")
 								+ CustomerUpdate2ControlGUI.this.model
 										.getData().get(0).getBirthdate()
-								+ "\n"
-								+ CustomerUpdate2ControlGUI.this.resources
-										.getString("Age")
-								+ CustomerUpdate2ControlGUI.this.model
-										.getData().get(0).getAge()
 								+ "\n"
 								+ CustomerUpdate2ControlGUI.this.resources
 										.getString("Adress")
@@ -526,12 +517,6 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 		birthdateField.setText(String.valueOf(Datum
 				.getFormattedString((CustomerUpdate2ControlGUI.this.model
 						.getData().get(0).getBirthdate()))));
-
-		System.out.println(CustomerUpdate2ControlGUI.this.model.getData()
-				.get(0));
-
-		ageField.setText(String.valueOf(CustomerUpdate2ControlGUI.this.model
-				.getData().get(0).getAge()));
 
 		adressField.setEditable(true);
 		adressField.setText(CustomerUpdate2ControlGUI.this.model.getData()

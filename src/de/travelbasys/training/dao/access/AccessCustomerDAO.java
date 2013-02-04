@@ -48,12 +48,12 @@ public class AccessCustomerDAO implements CustomerDAO {
 	private static ResultSet resultSet = null;
 	private static int localupdateid = 0;
 	private final String INSERT = "INSERT INTO ";
-	private final String VALUES = " VALUES (?, ?, ?, ?, ?, ?);";
+	private final String VALUES = " VALUES (default, ?, ?, ?, ?, ?, ?, default);";
 	private final String SELECT = "SELECT * FROM ";
 	private final String WHERECUSTOMERID = " WHERE customerid = ";
-	private final String UPDATEATTRIBUTES = " SET lastname = ?, firstname = ?, age = ?, adress = ?, postalcode = ?, email = ?, updateid = ?";
+	private final String UPDATEATTRIBUTES = " SET lastname = ?, firstname = ?, birthdate = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;";
 	private final String DELETE = "DELETE FROM ";
-	private final String FIELDS = "(lastname, firstname, age, adress, postalcode, email)";
+	private final String FIELDS = "(lastname, firstname, birthdate, adress, postalcode, email)";
 
 	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
 	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
@@ -106,9 +106,8 @@ public class AccessCustomerDAO implements CustomerDAO {
 			while (resultSet.next()) {
 				Customer c = new Customer(resultSet.getInt(1),
 						resultSet.getString(2), resultSet.getString(3),
-						resultSet.getDate(4), resultSet.getInt(5),
-						resultSet.getString(6), resultSet.getString(7),
-						resultSet.getString(8));
+						resultSet.getDate(4), resultSet.getString(5),
+						resultSet.getString(6), resultSet.getString(7));
 				internalCustomers.add(c);
 			}
 		} catch (Exception e) {
@@ -188,7 +187,8 @@ public class AccessCustomerDAO implements CustomerDAO {
 					+ TABLE + FIELDS + VALUES);
 			preparedStatement.setString(1, customer.getLastName());
 			preparedStatement.setString(2, customer.getFirstName());
-			preparedStatement.setInt(3, customer.getAge());
+			preparedStatement.setDate(3, new java.sql.Date(customer
+					.getBirthdate().getTime()));
 			preparedStatement.setString(4, customer.getAdress());
 			preparedStatement.setString(5, customer.getPostalcode());
 			preparedStatement.setString(6, customer.getEmail());
@@ -196,8 +196,8 @@ public class AccessCustomerDAO implements CustomerDAO {
 			customerid = createNewId();
 			Customer c = new Customer(customerid, customer.getLastName(),
 					customer.getFirstName(), customer.getBirthdate(),
-					customer.getAge(), customer.getAdress(),
-					customer.getPostalcode(), customer.getEmail());
+					customer.getAdress(), customer.getPostalcode(),
+					customer.getEmail());
 			internalCustomers.add(c);
 
 		} catch (SQLException e) {
@@ -236,8 +236,8 @@ public class AccessCustomerDAO implements CustomerDAO {
 		OpenConnection();
 		try {
 			statement = connect.createStatement();
-			resultSet = statement.executeQuery(SELECT + TABLE + WHERECUSTOMERID
-					+ id + ";");
+			resultSet = statement.executeQuery(SELECT + FILE + "." + TABLE
+					+ WHERECUSTOMERID + id + ";");
 			resultSet.next();
 			localupdateid = resultSet.getInt(8);
 		} catch (SQLException e) {
@@ -269,29 +269,30 @@ public class AccessCustomerDAO implements CustomerDAO {
 		OpenConnection();
 		try {
 			statement = connect.createStatement();
-			resultSet = statement.executeQuery(SELECT + FILE + "." + TABLE
-					+ WHERECUSTOMERID + customer.getId() + ";");
+			resultSet = statement.executeQuery(SELECT + TABLE + WHERECUSTOMERID
+					+ customer.getId() + ";");
 			resultSet.next();
 			if (resultSet.getRow() == 0) {
-				System.err.println("Customer had been killed.");
+				System.err
+						.println("Customer has been deleted by another user.");
 				return;
 			}
-			int updateid = resultSet.getInt(8);
-			if (updateid == localupdateid) {
-				preparedStatement = connect.prepareStatement("UPDATE " + FILE
-						+ "." + TABLE + UPDATEATTRIBUTES + WHERECUSTOMERID
-						+ "?;");
+			if (resultSet.getInt(8) == localupdateid) {
+				preparedStatement = connect.prepareStatement("UPDATE " + TABLE
+						+ UPDATEATTRIBUTES);
 				preparedStatement.setString(1, customer.getLastName());
 				preparedStatement.setString(2, customer.getFirstName());
-				preparedStatement.setInt(3, customer.getAge());
+				preparedStatement.setDate(3, new java.sql.Date(customer
+						.getBirthdate().getTime()));
 				preparedStatement.setString(4, customer.getAdress());
 				preparedStatement.setString(5, customer.getPostalcode());
 				preparedStatement.setString(6, customer.getEmail());
-				preparedStatement.setInt(7, updateid++);
+				preparedStatement.setInt(7, (resultSet.getInt(8) + 1));
 				preparedStatement.setInt(8, customer.getId());
 				preparedStatement.executeUpdate();
 			} else {
-				System.err.println("Customer has been changed another user.");
+				System.err
+						.println("Customer has been changed by another user.");
 				CloseCurrentConnection();
 				return;
 			}

@@ -98,10 +98,6 @@ public class CustomerDeleteControlGUI implements Control {
 																.getFirstName()
 														+ "\n"
 														+ AppContext
-																.getMessage("Age")
-														+ data.get(0).getAge()
-														+ "\n"
-														+ AppContext
 																.getMessage("Adress")
 														+ data.get(0)
 																.getAdress()

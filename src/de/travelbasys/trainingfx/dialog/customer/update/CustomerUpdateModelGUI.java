@@ -8,12 +8,13 @@ public class CustomerUpdateModelGUI implements Model {
 
 	private ObservableList<Customer> data;
 	private int customerid;
+	private int age;
 	private String lastname = "";
 	private String firstname = "";
-	private int age = 0;
 	private String adress = "";
 	private String postalcode = "";
 	private String email = "";
+	private String birthdate = "";
 
 	public void setData(ObservableList<Customer> data) {
 		this.data = data;
@@ -47,12 +48,20 @@ public class CustomerUpdateModelGUI implements Model {
 		this.firstname = firstname;
 	}
 
-	public int getAge() {
-		return age;
+	public String getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(String birthdate) {
+		this.birthdate = birthdate;
 	}
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public int getAge() {
+		return age;
 	}
 
 	public String getAdress() {
@@ -99,7 +108,7 @@ public class CustomerUpdateModelGUI implements Model {
 	public boolean hasNotChanged() {
 		return (lastname.equals(data.get(0).getLastName())
 				&& firstname.equals(data.get(0).getFirstName())
-				&& age == data.get(0).getAge()
+				&& birthdate.equals(data.get(0).getBirthdate())
 				&& adress.equals(data.get(0).getAdress())
 				&& postalcode.equals(data.get(0).getPostalcode()) && email
 					.equals(data.get(0).getEmail()));

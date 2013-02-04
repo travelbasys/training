@@ -95,11 +95,6 @@ public class CustomerShow2ControlGUI implements Initializable,
 										.get(0).getBirthdate()
 								+ "\n"
 								+ CustomerShow2ControlGUI.this.resources
-										.getString("Age")
-								+ CustomerShow2ControlGUI.this.model.getData()
-										.get(0).getAge()
-								+ "\n"
-								+ CustomerShow2ControlGUI.this.resources
 										.getString("Adress")
 								+ CustomerShow2ControlGUI.this.model.getData()
 										.get(0).getAdress()

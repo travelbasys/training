@@ -79,11 +79,6 @@ public class CustomerShowControlGUI implements Control {
 														.getData().get(0)
 														.getFirstName()
 												+ "\n"
-												+ AppContext.getMessage("Age")
-												+ CustomerShowControlGUI.this.model
-														.getData().get(0)
-														.getAge()
-												+ " \n"
 												+ AppContext
 														.getMessage("Adress")
 												+ CustomerShowControlGUI.this.model

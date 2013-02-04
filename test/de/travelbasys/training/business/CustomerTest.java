@@ -17,21 +17,21 @@ public class CustomerTest {
 
 	@Test
 	public void testGetName() {
-		Customer u = new Customer(0, "Bob", null, null, 15, null, null, null);
+		Customer u = new Customer(0, "Bob", null, null, null, null, null);
 		assertNotNull(u);
 		assertEquals("Bob", u.getLastName());
 	}
 
 	@Test
 	public void testGetAge() {
-		Customer u = new Customer(0, "Bob", null, null, 15, null, null, null);
-		assertEquals(15, u.getAge());
+		Customer u = new Customer(0, "Bob", null, null, null, null, null);
+		assertEquals(15, u.getBirthdate());
 	}
 
 	@Test
 	public void testGetAgeDefault() {
-		Customer u = new Customer(0, "Bob", null, null, 0, null, null, null);
-		assertEquals(15, u.getAge());
+		Customer u = new Customer(0, "Bob", null, null, null, null, null);
+		assertEquals(15, u.getBirthdate());
 	}
 
 	@Test
@@ -48,30 +48,10 @@ public class CustomerTest {
 	}
 
 	@Test
-	public void testSetAge() {
-		Customer u = new Customer(0);
-		u.setAge(100);
-		assertEquals(100, u.getAge());
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testSetAgeNegative() {
-		Customer u = new Customer(0);
-		u.setAge(-1);
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testSetAgeZero() {
-		Customer u = new Customer(0);
-		u.setAge(0);
-	}
-
-	@Test
 	public void testEquals() {
-		Customer bill1 = new Customer(0, "Bill", null, null, 15, null, null,
+		Customer bill1 = new Customer(0, "Bill", null, null, null, null,
 				null);
-		Customer bill2 = new Customer(0, "Bill", null, null, 15, null, null,
-				null);
+		Customer bill2 = new Customer(0, "Bill", null, null, null, null, null);
 		assertTrue(bill1.equals(bill2));
 		// assertEquals(bill1, bill2);
 	}

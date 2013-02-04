@@ -160,7 +160,6 @@ public class CustomerCreateControlGUI implements Control {
 							CustomerCreateControlGUI.this.model.getFirstname(),
 							// TODO: Implementierung des Geburtstag.
 							new Date(),
-							CustomerCreateControlGUI.this.model.getAge(),
 							CustomerCreateControlGUI.this.model.getAdress(),
 							CustomerCreateControlGUI.this.model.getPostalcode(),
 							CustomerCreateControlGUI.this.model.getEmail());
