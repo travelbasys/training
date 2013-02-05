@@ -1,10 +1,12 @@
 package de.travelbasys.trainingfx.MainWindow;
 
+import java.io.File;
 import java.util.Locale;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
@@ -43,6 +45,38 @@ public class MainWindowControl implements Control {
 				System.exit(0);
 			}
 		});
+
+		this.view.getImportingItem().setOnAction(
+				new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent arg0) {
+						FileChooser fileChooser = new FileChooser();
+						fileChooser.getExtensionFilters().addAll(
+								new FileChooser.ExtensionFilter(AppContext
+										.getMessage("CSVFiles"), "*.csv"),
+								new FileChooser.ExtensionFilter(AppContext
+										.getMessage("MDBFiles"), "*.mdb"));
+						File inputFile = fileChooser.showOpenDialog(null);
+						System.out.println(inputFile);
+					}
+				});
+
+		this.view.getExportingItem().setOnAction(
+				new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent arg0) {
+						FileChooser fileChooser = new FileChooser();
+						fileChooser.getExtensionFilters().addAll(
+								new FileChooser.ExtensionFilter(AppContext
+										.getMessage("CSVFiles"), "*.csv"),
+								new FileChooser.ExtensionFilter(AppContext
+										.getMessage("MDBFiles"), "*.mdb"));
+						File inputFile = fileChooser.showOpenDialog(null);
+						System.out.println(inputFile);
+					}
+				});
 
 		this.view.getCustomerCreateItem().setOnAction(
 				new EventHandler<ActionEvent>() {
@@ -213,7 +247,7 @@ public class MainWindowControl implements Control {
 					}
 
 				});
-		
+
 	}
 
 	@Override
