@@ -91,22 +91,22 @@ public class MySQLCustomerDAO implements CustomerDAO {
 			// Es ist noch nicht exakt bedacht worden (Konzept) ob die Tabelle
 			// von einem Admin angelegt werden muss, oder die Anwendung darüber
 			// entscheidet.
-			
-//			 preparedStatement = connect .prepareStatement("CREATE TABLE " +
-//			 TABLE +
-//			 " (customerid INT NOT NULL AUTO_INCREMENT, lastname VARCHAR(30) NOT NULL, firstname VARCHAR(30), birthdate Date NOT NULL, adress VARCHAR(30) , postalcode VARCHAR(30), email VARCHAR(30), updateid BIGINT UNSIGNED NOT NULL DEFAULT '0' ,PRIMARY KEY (customerid));"
-//			 ); try { preparedStatement.executeUpdate(); } catch (Exception e){
-//		}
-			 
+
+			// preparedStatement = connect .prepareStatement("CREATE TABLE " +
+			// TABLE +
+			// " (customerid INT NOT NULL AUTO_INCREMENT, lastname VARCHAR(30) NOT NULL, firstname VARCHAR(30), birthdate Date NOT NULL, adress VARCHAR(30) , postalcode VARCHAR(30), email VARCHAR(30), updateid BIGINT UNSIGNED NOT NULL DEFAULT '0' ,PRIMARY KEY (customerid));"
+			// ); try { preparedStatement.executeUpdate(); } catch (Exception
+			// e){
+			// }
+
 			// Result set get the result of the SQL query
 			resultSet = statement.executeQuery(SELECT + TABLE + ";");
 			internalCustomers = new ArrayList<Customer>();
 			while (resultSet.next()) {
 				Customer c = new Customer(resultSet.getInt(1),
 						resultSet.getString(2), resultSet.getString(3),
-						resultSet.getDate(4),
-						resultSet.getString(5), resultSet.getString(6),
-						resultSet.getString(7));
+						resultSet.getDate(4), resultSet.getString(5),
+						resultSet.getString(6), resultSet.getString(7));
 				internalCustomers.add(c);
 			}
 		} catch (Exception e) {
@@ -199,8 +199,9 @@ public class MySQLCustomerDAO implements CustomerDAO {
 			preparedStatement.executeUpdate();
 			customerid = createNewId();
 			Customer c = new Customer(customerid, customer.getLastName(),
-					customer.getFirstName(), customer.getBirthdate(), customer.getAdress(),
-					customer.getPostalcode(), customer.getEmail());
+					customer.getFirstName(), customer.getBirthdate(),
+					customer.getAdress(), customer.getPostalcode(),
+					customer.getEmail());
 			internalCustomers.add(c);
 
 		} catch (SQLException e) {
@@ -268,7 +269,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
-	public void update(Customer customer) {
+	public void update(Customer customer) throws CustomerDaoException {
 		OpenConnection();
 		try {
 			statement = connect.createStatement();
@@ -294,10 +295,9 @@ public class MySQLCustomerDAO implements CustomerDAO {
 				preparedStatement.setInt(8, customer.getId());
 				preparedStatement.executeUpdate();
 			} else {
-				System.err
-						.println("Customer has been changed by another user.");
 				CloseCurrentConnection();
-				return;
+				throw new CustomerDaoException(
+						"Customer has been changed by another user.");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

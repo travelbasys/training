@@ -6,10 +6,6 @@ import java.sql.DriverManager;
 public class AccessConnection {
 
 	public static Connection conn = null;
-	@SuppressWarnings("unused")
-	private static String dbUser = "sqluser";
-	@SuppressWarnings("unused")
-	private static String dbPassword = "sqluserpw";
 	private static String dbName = "testdb";
 
 	private AccessConnection() {

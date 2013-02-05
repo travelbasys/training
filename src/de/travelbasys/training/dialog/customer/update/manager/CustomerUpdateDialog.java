@@ -58,8 +58,11 @@ public class CustomerUpdateDialog implements Dialog {
 		d3 = new YesNoDialog(KEY);
 		d3.run();
 		if (d3.isYes()) {
-			Dao.getDAO().update(customer);
+			try {
+				Dao.getDAO().update(customer);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
-
 }

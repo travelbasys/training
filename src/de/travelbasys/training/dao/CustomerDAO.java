@@ -20,7 +20,7 @@ public interface CustomerDAO {
 
 	public Customer findById(int id);
 
-	public void update(Customer customer);
+	public void update(Customer customer) throws CustomerDaoException;
 
 	public void delete(Customer customer);
 

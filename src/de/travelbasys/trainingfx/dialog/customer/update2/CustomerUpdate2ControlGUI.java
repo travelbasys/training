@@ -314,10 +314,9 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 
 			lastnameField.getText(),
 
-			firstnameField.getText(), 
-			
-			Datum.getFormattedDate(birthdateField
-					.getText()),
+			firstnameField.getText(),
+
+			Datum.getFormattedDate(birthdateField.getText()),
 
 			adressField.getText(),
 
@@ -352,11 +351,9 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 					CustomerUpdate2ControlGUI.this.resources
 							.getString("TravelbasysManager"));
 		} catch (CustomerDaoException d) {
-			Dialogs.showErrorDialog(
-					(Stage) root.getScene().getWindow(),
-					CustomerUpdate2ControlGUI.this.resources
-							.getString("CustomerExist"),
-					CustomerUpdate2ControlGUI.this.resources.getString("Error"),
+			Dialogs.showErrorDialog((Stage) root.getScene().getWindow(), d
+					.getMessage(), CustomerUpdate2ControlGUI.this.resources
+					.getString("Error"),
 					CustomerUpdate2ControlGUI.this.resources
 							.getString("TravelbasysManager"));
 		}

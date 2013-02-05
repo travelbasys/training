@@ -265,7 +265,7 @@ public class AccessCustomerDAO implements CustomerDAO {
 	 * @throws <tt>CustomerDaoException</tt> wenn das gegebene <tt>Customer</tt>
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
-	public void update(Customer customer) {
+	public void update(Customer customer) throws CustomerDaoException {
 		OpenConnection();
 		try {
 			statement = connect.createStatement();
@@ -291,10 +291,9 @@ public class AccessCustomerDAO implements CustomerDAO {
 				preparedStatement.setInt(8, customer.getId());
 				preparedStatement.executeUpdate();
 			} else {
-				System.err
-						.println("Customer has been changed by another user.");
 				CloseCurrentConnection();
-				return;
+				throw new CustomerDaoException(
+						"Customer has been changed by another user.");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
