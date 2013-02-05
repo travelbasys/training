@@ -1,6 +1,7 @@
 package de.travelbasys.trainingfx.MainWindow;
 
-import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Locale;
 
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Dialog;
@@ -16,6 +18,7 @@ import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Configuration;
+import de.travelbasys.training.util.File;
 import de.travelbasys.trainingfx.dialog.about.AboutDialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.create2.CustomerCreate2DialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.delete2.CustomerDelete2DialogGUI;
@@ -57,7 +60,7 @@ public class MainWindowControl implements Control {
 										.getMessage("CSVFiles"), "*.csv"),
 								new FileChooser.ExtensionFilter(AppContext
 										.getMessage("MDBFiles"), "*.mdb"));
-						File inputFile = fileChooser.showOpenDialog(null);
+						File inputFile = (File) fileChooser.showOpenDialog(null);
 						System.out.println(inputFile);
 					}
 				});
@@ -67,17 +70,28 @@ public class MainWindowControl implements Control {
 
 					@Override
 					public void handle(ActionEvent arg0) {
+						String pattern = "CustomerID;LastName;FirstName;Age;Adress;Postalcode;eMail";
 						FileChooser fileChooser = new FileChooser();
 						fileChooser.getExtensionFilters().addAll(
 								new FileChooser.ExtensionFilter(AppContext
 										.getMessage("CSVFiles"), "*.csv"),
 								new FileChooser.ExtensionFilter(AppContext
 										.getMessage("MDBFiles"), "*.mdb"));
-						File inputFile = fileChooser.showOpenDialog(null);
-						System.out.println(inputFile);
+						File outputFile = (File) fileChooser.showSaveDialog(null).getAbsoluteFile();
+						try {
+							FileWriter fw = new FileWriter(outputFile);
+							PrintWriter pw = new PrintWriter(fw);
+							pw.println(pattern);
+							for (Customer customer : Dao.getDAO().findAll()) {
+								AppContext.println(customer);
+								pw.println(customer.toFormat("x"));
+							}
+							pw.close();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
 				});
-
 		this.view.getCustomerCreateItem().setOnAction(
 				new EventHandler<ActionEvent>() {
 					@Override
