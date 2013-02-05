@@ -91,13 +91,13 @@ public class MySQLCustomerDAO implements CustomerDAO {
 			// Es ist noch nicht exakt bedacht worden (Konzept) ob die Tabelle
 			// von einem Admin angelegt werden muss, oder die Anwendung darüber
 			// entscheidet.
-			/*
-			 * preparedStatement = connect .prepareStatement("CREATE TABLE " +
-			 * TABLE +
-			 * " (customerid INT NOT NULL AUTO_INCREMENT, lastname VARCHAR(30) NOT NULL, firstname VARCHAR(30), age INT NOT NULL, adress VARCHAR(30) , postalcode VARCHAR(30), email VARCHAR(30), updateid BIGINT UNSIGNED NOT NULL DEFAULT '0' ,PRIMARY KEY (customerid));"
-			 * ); try { preparedStatement.executeUpdate(); } catch (Exception e)
-			 * { }
-			 */
+			
+//			 preparedStatement = connect .prepareStatement("CREATE TABLE " +
+//			 TABLE +
+//			 " (customerid INT NOT NULL AUTO_INCREMENT, lastname VARCHAR(30) NOT NULL, firstname VARCHAR(30), birthdate Date NOT NULL, adress VARCHAR(30) , postalcode VARCHAR(30), email VARCHAR(30), updateid BIGINT UNSIGNED NOT NULL DEFAULT '0' ,PRIMARY KEY (customerid));"
+//			 ); try { preparedStatement.executeUpdate(); } catch (Exception e){
+//		}
+			 
 			// Result set get the result of the SQL query
 			resultSet = statement.executeQuery(SELECT + TABLE + ";");
 			internalCustomers = new ArrayList<Customer>();
