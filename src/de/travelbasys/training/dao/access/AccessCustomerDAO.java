@@ -236,8 +236,8 @@ public class AccessCustomerDAO implements CustomerDAO {
 		OpenConnection();
 		try {
 			statement = connect.createStatement();
-			resultSet = statement.executeQuery(SELECT + FILE + "." + TABLE
-					+ WHERECUSTOMERID + id + ";");
+			resultSet = statement.executeQuery(SELECT + TABLE + WHERECUSTOMERID
+					+ id + ";");
 			resultSet.next();
 			localupdateid = resultSet.getInt(8);
 		} catch (SQLException e) {
@@ -269,17 +269,18 @@ public class AccessCustomerDAO implements CustomerDAO {
 		OpenConnection();
 		try {
 			statement = connect.createStatement();
-			resultSet = statement.executeQuery(SELECT + TABLE + WHERECUSTOMERID
-					+ customer.getId() + ";");
+			resultSet = statement.executeQuery(SELECT + FILE + "." + TABLE
+					+ WHERECUSTOMERID + customer.getId() + ";");
 			resultSet.next();
 			if (resultSet.getRow() == 0) {
 				System.err
 						.println("Customer has been deleted by another user.");
 				return;
 			}
-			if (resultSet.getInt(8) == localupdateid) {
-				preparedStatement = connect.prepareStatement("UPDATE " + TABLE
-						+ UPDATEATTRIBUTES);
+			int updateid = resultSet.getInt(8);
+			if (updateid == localupdateid) {
+				preparedStatement = connect.prepareStatement("UPDATE " + FILE
+						+ "." + TABLE + UPDATEATTRIBUTES);
 				preparedStatement.setString(1, customer.getLastName());
 				preparedStatement.setString(2, customer.getFirstName());
 				preparedStatement.setDate(3, new java.sql.Date(customer
@@ -287,7 +288,7 @@ public class AccessCustomerDAO implements CustomerDAO {
 				preparedStatement.setString(4, customer.getAdress());
 				preparedStatement.setString(5, customer.getPostalcode());
 				preparedStatement.setString(6, customer.getEmail());
-				preparedStatement.setInt(7, (resultSet.getInt(8) + 1));
+				preparedStatement.setInt(7, updateid++);
 				preparedStatement.setInt(8, customer.getId());
 				preparedStatement.executeUpdate();
 			} else {
