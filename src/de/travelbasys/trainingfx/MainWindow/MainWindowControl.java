@@ -70,7 +70,7 @@ public class MainWindowControl implements Control {
 
 					@Override
 					public void handle(ActionEvent arg0) {
-						String pattern = AppContext.getMessage("Csvpattern");
+						String pattern = AppContext.getMessage("CSVPattern");
 						FileChooser fileChooser = new FileChooser();
 						fileChooser.getExtensionFilters().addAll(
 								new FileChooser.ExtensionFilter(AppContext
