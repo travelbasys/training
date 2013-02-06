@@ -77,14 +77,14 @@ public class MainWindowControl implements Control {
 										.getMessage("CSVFiles"), "*.csv"),
 								new FileChooser.ExtensionFilter(AppContext
 										.getMessage("MDBFiles"), "*.mdb"));
-						File outputFile = (File) fileChooser.showSaveDialog(null).getAbsoluteFile();
+						java.io.File outputFile =   fileChooser.showSaveDialog(null).getAbsoluteFile();
 						try {
 							FileWriter fw = new FileWriter(outputFile);
 							PrintWriter pw = new PrintWriter(fw);
 							pw.println(pattern);
 							for (Customer customer : Dao.getDAO().findAll()) {
 								AppContext.println(customer);
-								pw.println(customer.toFormat("x"));
+								pw.println(customer.toFormat("CSV"));
 							}
 							pw.close();
 						} catch (Exception e) {
