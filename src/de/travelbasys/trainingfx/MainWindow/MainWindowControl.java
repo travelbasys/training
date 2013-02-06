@@ -8,8 +8,12 @@ import java.util.Locale;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
@@ -54,14 +58,18 @@ public class MainWindowControl implements Control {
 
 					@Override
 					public void handle(ActionEvent arg0) {
-						FileChooser fileChooser = new FileChooser();
-						fileChooser.getExtensionFilters().addAll(
-								new FileChooser.ExtensionFilter(AppContext
-										.getMessage("CSVFiles"), "*.csv"),
-								new FileChooser.ExtensionFilter(AppContext
-										.getMessage("MDBFiles"), "*.mdb"));
-						File inputFile = fileChooser.showOpenDialog(null);
-						
+						JFileChooser fileChooser = new JFileChooser();
+						FileFilter fileFilter1 = new FileNameExtensionFilter(
+								AppContext.getMessage("CSVFiles"), "csv");
+						FileFilter fileFilter2 = new FileNameExtensionFilter(
+								AppContext.getMessage("MDBFiles"), "mdb");
+						fileChooser.addChoosableFileFilter(fileFilter1);
+						fileChooser.addChoosableFileFilter(fileFilter2);
+
+						fileChooser.showOpenDialog(null);
+
+						File inputFile = fileChooser.getSelectedFile();
+
 						String ext = null;
 						String s = inputFile.getName();
 						int i = s.lastIndexOf('.');
@@ -72,10 +80,9 @@ public class MainWindowControl implements Control {
 						if (ext == null) {
 							ext = "";
 						}
-						
-						System.out.println(inputFile.getAbsolutePath());
-						System.out.println(ext);
-						
+
+						System.out.println(inputFile.getName());
+
 					}
 				});
 
@@ -85,21 +92,28 @@ public class MainWindowControl implements Control {
 					@Override
 					public void handle(ActionEvent arg0) {
 						String pattern = AppContext.getMessage("CSVPattern");
-						FileChooser fileChooser = new FileChooser();
-						fileChooser.getExtensionFilters().addAll(
-								new FileChooser.ExtensionFilter(AppContext
-										.getMessage("CSVFiles"), "*.csv"),
-								new FileChooser.ExtensionFilter(AppContext
-										.getMessage("MDBFiles"), "*.mdb"));
-						java.io.File outputFile = fileChooser.showSaveDialog(null).getAbsoluteFile();
-					try{
+						JFileChooser fileChooser = new JFileChooser();
+						FileFilter fileFilter1 = new FileNameExtensionFilter(
+								AppContext.getMessage("CSVFiles"), ".csv");
+						FileFilter fileFilter2 = new FileNameExtensionFilter(
+								AppContext.getMessage("MDBFiles"), ".mdb");
+						fileChooser.addChoosableFileFilter(fileFilter1);
+						fileChooser.addChoosableFileFilter(fileFilter2);
 
-							FileWriter fw = new FileWriter(outputFile);
+						fileChooser.showSaveDialog(null);
+						File outputFile = fileChooser.getSelectedFile();
+
+						try {
+
+							String ext = ((FileNameExtensionFilter) (fileChooser
+									.getFileFilter())).getExtensions()[0];
+
+							FileWriter fw = new FileWriter(outputFile + ext);
 							PrintWriter pw = new PrintWriter(fw);
 							pw.println(pattern);
 							for (Customer customer : Dao.getDAO().findAll()) {
 								AppContext.println(customer);
-								pw.println(customer.toFormat("csv"));
+								pw.println(customer.toFormat(ext));
 							}
 							pw.close();
 						} catch (Exception e) {
