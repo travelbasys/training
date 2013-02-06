@@ -134,13 +134,8 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	}
 
 	/**
-	 * schreibt alle intern gespeicherten Datensätze zurück in die Textdatei,
-	 * aus der sie ursprünglich stammen.
+	 * schließt die aktuelle Datenbankverbindung
 	 * 
-	 * <p>
-	 * Der Name der Textdatei ist derjenige, der von der {@see #init(String)}
-	 * Methode gespeichert wurde.
-	 * </p>
 	 */
 	public void terminate() {
 		internalCustomers.clear();
@@ -370,32 +365,20 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	 * @throws IOException
 	 *             Dieser Fehler tritt auf, wenn die Datei nicht vorhanden oder
 	 *             schreibgeschützt ist.
+	 * @throws CustomerDaoException
 	 */
-	public void importCSV(String name) throws IOException {
-		terminate();
-		// Import ersetzt aktuell nur die vorhandene CustomerListe, nicht jedoch
-		// die Tabelle der Datenbank aus Sicherheitsgründen.
-		// Implementierung von Import ist im Konzept (Umstellung auf MySQL) z.Z.
-		// nicht berücksichtig.
-		System.out.println("Hinweis: Ersetzt nur die lokale Liste.");
-
+	public void importCSV(String name) throws IOException, CustomerDaoException {
+		System.out.println(name);
 		FileReader fr = new FileReader(name);
 		BufferedReader br = new BufferedReader(fr);
-
-		// Erste Zeile überspringen, in der die Spaltennamen stehen.
 		br.readLine();
 		String s;
 		while ((s = br.readLine()) != null) {
-			internalCustomers.add(Customer.parseCSV(s));
+			create(Customer.parseCSV(s));
 		}
-
-		int id = 0;
-		for (Customer customer : internalCustomers) {
-			if (customer.getId() > id) {
-				id = customer.getId();
-			}
-		}
+		br.close();
 		fr.close();
+		terminate();
 	}
 
 }

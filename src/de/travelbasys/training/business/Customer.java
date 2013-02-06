@@ -46,7 +46,7 @@ public class Customer implements Serializable, Cloneable {
 	 * dann Spaces, dann "]". Fertig.
 	 */
 	private static final String U = "\\s*Customer[(\\d+)]\\s*\\[\\s*lastname\\s*=\\s*(.+?)\\s*,\\s*firstname\\s*=\\s*(.+?)\\s*,\\s*birthdate\\s*=\\s*(.+?)\\s*\\,\\s*adress\\s*=\\s*(.+?)\\s*\\,\\s*postalcode\\s*=\\s*(.+?)\\s*\\,\\s*email\\s*=\\s*(.+?)\\s*\\]";
-	private static final String C = "(\\d+);(.+?);(.+?);(.+?);(\\d+);(.+?);(.+?);(.+?)";
+	private static final String C = "(\\d+);(.+?);(.+?);(.+?);(.+?);(.+?);(.+?)";
 	private static final Pattern CUSTOMERPATTERN = Pattern.compile(U,
 			Pattern.CASE_INSENSITIVE);
 	private static final Pattern CUSTOMERPATTERNCSV = Pattern.compile(C,

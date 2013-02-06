@@ -28,6 +28,6 @@ public interface CustomerDAO {
 
 	public Customer getExisting(Customer customer) throws CustomerDaoException;
 
-	public void importCSV(String name) throws IOException;
+	public void importCSV(String name) throws IOException, CustomerDaoException;
 
 }

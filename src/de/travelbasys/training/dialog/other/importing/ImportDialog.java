@@ -2,6 +2,7 @@ package de.travelbasys.training.dialog.other.importing;
 
 import java.io.IOException;
 
+import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
@@ -51,6 +52,8 @@ public class ImportDialog implements Dialog {
 				 * CustomerDAO.importMDB(model.getImportName() + "." +
 				 * model.getImportType()); AppContext.println("ImportOK");
 				 */}
+		} catch (CustomerDaoException c) {
+			Console.printerr(c.getMessage());
 		} catch (IOException e) {
 			Console.printerr(AppContext.getMessage("FileNotFoundException"));
 		}

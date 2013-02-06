@@ -2,6 +2,7 @@ package de.travelbasys.trainingfx.MainWindow;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
 
@@ -15,6 +16,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import de.travelbasys.training.business.Customer;
+import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Dialog;
@@ -63,6 +65,7 @@ public class MainWindowControl implements Control {
 								AppContext.getMessage("CSVFiles"), "csv");
 						FileFilter fileFilter2 = new FileNameExtensionFilter(
 								AppContext.getMessage("MDBFiles"), "mdb");
+						fileChooser.setAcceptAllFileFilterUsed(false);
 						fileChooser.addChoosableFileFilter(fileFilter1);
 						fileChooser.addChoosableFileFilter(fileFilter2);
 
@@ -81,9 +84,26 @@ public class MainWindowControl implements Control {
 							ext = "";
 						}
 
-						System.out.println(inputFile.getName());
+						System.out.println(ext);
 
+						// TODO: ImportCSV erhält Pfad statt FileObjekt. Ändern.
+
+						if (ext.equals("csv")) {
+							try {
+								Dao.getDAO().importCSV(
+										inputFile.getAbsolutePath());
+							} catch (IOException e) {
+								Dialogs.showErrorDialog(null, e.getMessage());
+							} catch (CustomerDaoException e) {
+								Dialogs.showErrorDialog(null, e.getMessage());
+							}
+						} else if (ext.equals("mdb")) {
+
+						} else {
+
+						}
 					}
+
 				});
 
 		this.view.getExportingItem().setOnAction(
@@ -97,9 +117,9 @@ public class MainWindowControl implements Control {
 								AppContext.getMessage("CSVFiles"), ".csv");
 						FileFilter fileFilter2 = new FileNameExtensionFilter(
 								AppContext.getMessage("MDBFiles"), ".mdb");
+						fileChooser.setAcceptAllFileFilterUsed(false);
 						fileChooser.addChoosableFileFilter(fileFilter1);
 						fileChooser.addChoosableFileFilter(fileFilter2);
-
 						fileChooser.showSaveDialog(null);
 						File outputFile = fileChooser.getSelectedFile();
 
@@ -108,7 +128,8 @@ public class MainWindowControl implements Control {
 							String ext = ((FileNameExtensionFilter) (fileChooser
 									.getFileFilter())).getExtensions()[0];
 
-							FileWriter fw = new FileWriter(outputFile + ext);
+							FileWriter fw = new FileWriter((outputFile + ext)
+									.trim());
 							PrintWriter pw = new PrintWriter(fw);
 							pw.println(pattern);
 							for (Customer customer : Dao.getDAO().findAll()) {
