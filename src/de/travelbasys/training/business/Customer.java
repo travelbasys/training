@@ -175,12 +175,12 @@ public class Customer implements Serializable, Cloneable {
 	}
 
 	public String toFormat(String Format) {
-		if (Format == "CSV") {
+		if (Format == "csv") {
 			return customerid + ";" + lastname + ";" + firstname + ";"
 					+ birthdate + ";" + adress + ";" + postalcode + ";" + email;
 
 		}
-		if (Format == "ACCESS") {
+		if (Format == "access") {
 		}
 		return null;
 	}

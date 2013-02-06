@@ -1,5 +1,6 @@
 package de.travelbasys.trainingfx.MainWindow;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Locale;
@@ -18,7 +19,6 @@ import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Configuration;
-import de.travelbasys.training.util.File;
 import de.travelbasys.trainingfx.dialog.about.AboutDialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.create2.CustomerCreate2DialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.delete2.CustomerDelete2DialogGUI;
@@ -60,8 +60,22 @@ public class MainWindowControl implements Control {
 										.getMessage("CSVFiles"), "*.csv"),
 								new FileChooser.ExtensionFilter(AppContext
 										.getMessage("MDBFiles"), "*.mdb"));
-						File inputFile = (File) fileChooser.showOpenDialog(null);
-						System.out.println(inputFile);
+						File inputFile = fileChooser.showOpenDialog(null);
+						
+						String ext = null;
+						String s = inputFile.getName();
+						int i = s.lastIndexOf('.');
+
+						if (i > 0 && i < s.length() - 1)
+							ext = s.substring(i + 1).toLowerCase();
+
+						if (ext == null) {
+							ext = "";
+						}
+						
+						System.out.println(inputFile.getAbsolutePath());
+						System.out.println(ext);
+						
 					}
 				});
 
@@ -78,7 +92,6 @@ public class MainWindowControl implements Control {
 								new FileChooser.ExtensionFilter(AppContext
 										.getMessage("MDBFiles"), "*.mdb"));
 						java.io.File outputFile = fileChooser.showSaveDialog(null).getAbsoluteFile();
-						
 					try{
 
 							FileWriter fw = new FileWriter(outputFile);
@@ -86,7 +99,7 @@ public class MainWindowControl implements Control {
 							pw.println(pattern);
 							for (Customer customer : Dao.getDAO().findAll()) {
 								AppContext.println(customer);
-								pw.println(customer.toFormat("CSV"));
+								pw.println(customer.toFormat("csv"));
 							}
 							pw.close();
 						} catch (Exception e) {
