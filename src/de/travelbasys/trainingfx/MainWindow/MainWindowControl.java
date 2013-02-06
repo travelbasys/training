@@ -70,15 +70,17 @@ public class MainWindowControl implements Control {
 
 					@Override
 					public void handle(ActionEvent arg0) {
-						String pattern = "CustomerID;LastName;FirstName;Age;Adress;Postalcode;eMail";
+						String pattern = AppContext.getMessage("Csvpattern");
 						FileChooser fileChooser = new FileChooser();
 						fileChooser.getExtensionFilters().addAll(
 								new FileChooser.ExtensionFilter(AppContext
 										.getMessage("CSVFiles"), "*.csv"),
 								new FileChooser.ExtensionFilter(AppContext
 										.getMessage("MDBFiles"), "*.mdb"));
-						java.io.File outputFile =   fileChooser.showSaveDialog(null).getAbsoluteFile();
-						try {
+						java.io.File outputFile = fileChooser.showSaveDialog(null).getAbsoluteFile();
+						
+					try{
+
 							FileWriter fw = new FileWriter(outputFile);
 							PrintWriter pw = new PrintWriter(fw);
 							pw.println(pattern);
