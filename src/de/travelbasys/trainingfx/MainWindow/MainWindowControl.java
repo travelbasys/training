@@ -74,45 +74,47 @@ public class MainWindowControl implements Control {
 						File inputFile = fileChooser.getSelectedFile();
 
 						String ext = null;
-						String s = inputFile.getName();
-						int i = s.lastIndexOf('.');
+						try {
+							String s = inputFile.getName();
+							int i = s.lastIndexOf('.');
 
-						if (i > 0 && i < s.length() - 1)
-							ext = s.substring(i + 1).toLowerCase();
+							if (i > 0 && i < s.length() - 1)
+								ext = s.substring(i + 1).toLowerCase();
 
-						if (ext == null) {
-							ext = "";
-						}
+							if (ext == null) {
+								ext = "";
+							}
 
-						System.out.println(ext);
+							System.out.println(ext);
 
-						// TODO: ImportCSV erhält Pfad statt FileObjekt. Ändern.
+							// TODO: ImportCSV erhält Pfad statt FileObjekt.
+							// Ändern.
 
-						if (ext.equals("csv")) {
-							try {
+							if (ext.equals("csv")) {
 								Dao.getDAO().importCSV(
 										inputFile.getAbsolutePath());
-							} catch (IOException e) {
-								Dialogs.showErrorDialog(null, e.getMessage());
-							} catch (CustomerDaoException e) {
-								Dialogs.showErrorDialog(null, e.getMessage());
-							}
-						} else if (ext.equals("mdb")) {
-							try {
+
+							} else if (ext.equals("mdb")) {
 								Dao.getDAO().importMDB(
 										inputFile.getAbsolutePath());
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (CustomerDaoException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						} else {
 
+							}
+						} catch (IOException e) {
+							Dialogs.showErrorDialog(
+									null,
+									AppContext.getMessage("CriticalError")
+											+ e.getStackTrace());
+						} catch (CustomerDaoException e) {
+							Dialogs.showErrorDialog(
+									null,
+									AppContext.getMessage("NotBatched"),
+									AppContext.getMessage("Error")
+											+ AppContext
+													.getMessage("TransactionFail"),
+									AppContext.getMessage("TravelbasysManager"));
+						}catch(NullPointerException n){
 						}
 					}
-
 				});
 
 		this.view.getExportingItem().setOnAction(
