@@ -306,4 +306,9 @@ public class Customer implements Serializable, Cloneable {
 	public Date getBirthdate() {
 		return birthdate;
 	}
+
+	public static Customer parseMDB(String s) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

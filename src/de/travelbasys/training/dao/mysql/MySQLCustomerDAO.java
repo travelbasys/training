@@ -380,5 +380,19 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		fr.close();
 		terminate();
 	}
+	
+	public void importMDB(String name) throws IOException, CustomerDaoException {
+		System.out.println(name);
+		FileReader fr = new FileReader(name);
+		BufferedReader br = new BufferedReader(fr);
+		br.readLine();
+		String s;
+		while ((s = br.readLine()) != null) {
+			create(Customer.parseMDB(s));
+		}
+		br.close();
+		fr.close();
+		terminate();
+	}
 
 }

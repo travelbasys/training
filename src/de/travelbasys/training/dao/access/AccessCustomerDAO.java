@@ -394,4 +394,11 @@ public class AccessCustomerDAO implements CustomerDAO {
 		fr.close();
 	}
 
+	@Override
+	public void importMDB(String absolutePath) throws IOException,
+			CustomerDaoException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

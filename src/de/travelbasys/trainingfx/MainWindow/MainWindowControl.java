@@ -98,7 +98,16 @@ public class MainWindowControl implements Control {
 								Dialogs.showErrorDialog(null, e.getMessage());
 							}
 						} else if (ext.equals("mdb")) {
-
+							try {
+								Dao.getDAO().importMDB(
+										inputFile.getAbsolutePath());
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (CustomerDaoException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						} else {
 
 						}

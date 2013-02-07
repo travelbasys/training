@@ -308,4 +308,11 @@ public class TxtCustomerDAO implements CustomerDAO {
 	public void OpenConnection() {
 	}
 
+	@Override
+	public void importMDB(String absolutePath) throws IOException,
+			CustomerDaoException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
