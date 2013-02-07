@@ -8,6 +8,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -153,8 +156,9 @@ public class TxtCustomerDAO implements CustomerDAO {
 
 		int customerid = createNewId();
 		Customer c = new Customer(customerid, customer.getLastName(),
-				customer.getFirstName(), customer.getBirthdate(), customer.getAdress(),
-				customer.getPostalcode(), customer.getEmail());
+				customer.getFirstName(), customer.getBirthdate(),
+				customer.getAdress(), customer.getPostalcode(),
+				customer.getEmail());
 		internalCustomers.add(c);
 	}
 
@@ -311,8 +315,19 @@ public class TxtCustomerDAO implements CustomerDAO {
 	@Override
 	public void importMDB(String absolutePath) throws IOException,
 			CustomerDaoException {
-		// TODO Auto-generated method stub
-		
+		try {
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+			Connection con = DriverManager.getConnection(
+					"jdbc:odbc:-)river={MicroSoft Access Driver (*.mdb)};DBQ="
+							+ absolutePath, "Administrator", "");
+			System.out.println(con);
+
+			con.close();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e2) {
+			e2.printStackTrace();
+		}
 	}
 
 }

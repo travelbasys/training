@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -397,8 +399,46 @@ public class AccessCustomerDAO implements CustomerDAO {
 	@Override
 	public void importMDB(String absolutePath) throws IOException,
 			CustomerDaoException {
-		// TODO Auto-generated method stub
-		
+		try {
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+			Connection con = DriverManager.getConnection(
+					"jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
+							+ absolutePath, "Administrator", "");
+
+			
+			Statement statement = con.createStatement();
+			
+			
+			
+			DatabaseMetaData md = con.getMetaData();
+			ResultSet rs = md.getTables( null, null,"%",  null);
+			while (rs.next()) {
+			  System.out.println(rs.getString(3));
+			}
+			
+			
+			
+			
+			ResultSet resultSet = statement.executeQuery(SELECT + TABLE + ";");
+			List<Customer> internalCustomers = new ArrayList<Customer>();
+			while (resultSet.next()) {
+				Customer c = new Customer(resultSet.getInt(1),
+						resultSet.getString(2), resultSet.getString(3),
+						resultSet.getDate(4), resultSet.getString(5),
+						resultSet.getString(6), resultSet.getString(7));
+				internalCustomers.add(c);
+			}
+
+			for (Customer c : internalCustomers) {
+				System.out.println(c);
+			}
+
+			con.close();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e2) {
+			e2.printStackTrace();
+		}
 	}
 
 }

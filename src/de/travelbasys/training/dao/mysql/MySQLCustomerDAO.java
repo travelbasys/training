@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -380,19 +381,23 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		fr.close();
 		terminate();
 	}
-	
-	public void importMDB(String name) throws IOException, CustomerDaoException {
-		System.out.println(name);
-		FileReader fr = new FileReader(name);
-		BufferedReader br = new BufferedReader(fr);
-		br.readLine();
-		String s;
-		while ((s = br.readLine()) != null) {
-			create(Customer.parseMDB(s));
+
+	@Override
+	public void importMDB(String absolutePath) throws IOException,
+			CustomerDaoException {
+		try {
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+			Connection con = DriverManager.getConnection(
+					"jdbc:odbc:-)river={MicroSoft Access Driver (*.mdb)};DBQ="
+							+ absolutePath, "Administrator", "");
+			System.out.println(con);
+
+			con.close();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e2) {
+			e2.printStackTrace();
 		}
-		br.close();
-		fr.close();
-		terminate();
 	}
 
 }
