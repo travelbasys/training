@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Dialogs;
@@ -32,6 +33,7 @@ import de.travelbasys.trainingfx.dialog.customer.list.CustomerListDialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.show2.CustomerShow2DialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.update2.CustomerUpdate2DialogGUI;
 import de.travelbasys.trainingfx.dialog.other.ChangeConfiguration.ChangeConfigurationDialogGUI;
+import de.travelbasys.trainingfx.dialog.other.Import.mdb.ImportTablesDialog;
 
 public class MainWindowControl implements Control {
 
@@ -85,18 +87,17 @@ public class MainWindowControl implements Control {
 								ext = "";
 							}
 
-							System.out.println(ext);
-
-							// TODO: ImportCSV erhält Pfad statt FileObjekt.
-							// Ändern.
-
 							if (ext.equals("csv")) {
 								Dao.getDAO().importCSV(
 										inputFile.getAbsolutePath());
 
 							} else if (ext.equals("mdb")) {
-								Dao.getDAO().importMDB(
-										inputFile.getAbsolutePath());
+								ObservableList<String> tables = Dao.getDAO()
+										.importMDB(inputFile.getAbsolutePath());
+
+								ImportTablesDialog d = new ImportTablesDialog(
+										tables);
+								d.run();
 
 							}
 						} catch (IOException e) {
@@ -112,7 +113,8 @@ public class MainWindowControl implements Control {
 											+ AppContext
 													.getMessage("TransactionFail"),
 									AppContext.getMessage("TravelbasysManager"));
-						}catch(NullPointerException n){
+						} catch (NullPointerException n) {
+							n.printStackTrace();
 						}
 					}
 				});
@@ -247,8 +249,6 @@ public class MainWindowControl implements Control {
 					@Override
 					public void handle(ActionEvent e) {
 						Config.updateLanguage(new Locale("en"));
-						// MainControl.this.view.init();
-						// init(MainControl.this.view);
 					}
 
 				});

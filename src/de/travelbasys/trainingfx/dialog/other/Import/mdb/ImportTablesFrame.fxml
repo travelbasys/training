@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="de.travelbasys.trainingfx.dialog.other.Import.mdb.ImportTablesController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <bottom>
+        <Button fx:id="importButton" mnemonicParsing="false" text="%ImportButton" BorderPane.alignment="CENTER_RIGHT">
+          <BorderPane.margin>
+            <Insets bottom="10.0" right="10.0" />
+          </BorderPane.margin>
+        </Button>
+      </bottom>
+      <center>
+        <ListView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" />
+      </center>
+      <top>
+        <Label fx:id="tableHeader" text="%tableHeader" BorderPane.alignment="CENTER" />
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>

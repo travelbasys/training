@@ -13,8 +13,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.dao.CustomerDaoException;
@@ -399,53 +399,31 @@ public class AccessCustomerDAO implements CustomerDAO {
 	}
 
 	@Override
-	public void importMDB(String absolutePath) throws IOException,
-			CustomerDaoException {
+	public ObservableList<String> importMDB(String absolutePath)
+			throws IOException, CustomerDaoException {
+		ArrayList<String> tables = new ArrayList<String>();
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 			Connection con = DriverManager.getConnection(
 					"jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
 							+ absolutePath, "Administrator", "");
 
-			Statement statement = con.createStatement();
-
 			DatabaseMetaData meta = con.getMetaData();
 			ResultSet res = meta.getTables(null, null, null,
 					new String[] { "TABLE" });
 			System.out.println("List of tables: ");
-			ArrayList<String> tabellen = new ArrayList<String>();
 			while (res.next()) {
-				String TabellenName = res.getString("TABLE_NAME");
-				System.out.println(TabellenName);
+				String tableName = res.getString("TABLE_NAME");
+				System.out.println(tableName);
 
-				tabellen.add(TabellenName);
+				tables.add(tableName);
 			}
 			res.close();
-
-			//TODO: Verlagern in Klasse, die diese Funktion aufruft (MainWindowControl)
-			ScrollPane sp = new ScrollPane();
-			sp.setContent(new TextArea("Hello"));
-			
-			ResultSet resultSet = statement.executeQuery(SELECT + TABLE + ";");
-			List<Customer> internalCustomers = new ArrayList<Customer>();
-			while (resultSet.next()) {
-				Customer c = new Customer(resultSet.getInt(1),
-						resultSet.getString(2), resultSet.getString(3),
-						resultSet.getDate(4), resultSet.getString(5),
-						resultSet.getString(6), resultSet.getString(7));
-				internalCustomers.add(c);
-			}
-
-			for (Customer c : internalCustomers) {
-				System.out.println(c);
-			}
-
-			con.close();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} catch (ClassNotFoundException e2) {
 			e2.printStackTrace();
 		}
+		return FXCollections.observableArrayList(tables);
 	}
-
 }

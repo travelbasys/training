@@ -3,6 +3,8 @@ package de.travelbasys.training.dao;
 import java.io.IOException;
 import java.util.List;
 
+import javafx.collections.ObservableList;
+
 import de.travelbasys.training.business.Customer;
 
 public interface CustomerDAO {
@@ -30,6 +32,6 @@ public interface CustomerDAO {
 
 	public void importCSV(String name) throws IOException, CustomerDaoException;
 
-	public void importMDB(String absolutePath) throws IOException, CustomerDaoException;
+	public ObservableList<String> importMDB(String absolutePath) throws IOException, CustomerDaoException;
 
 }
