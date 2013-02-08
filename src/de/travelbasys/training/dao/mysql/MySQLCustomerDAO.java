@@ -388,7 +388,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 			Connection con = DriverManager.getConnection(
-					"jdbc:odbc:-)river={MicroSoft Access Driver (*.mdb)};DBQ="
+					"jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
 							+ absolutePath, "Administrator", "");
 			System.out.println(con);
 

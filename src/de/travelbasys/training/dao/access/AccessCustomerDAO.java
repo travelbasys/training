@@ -3,6 +3,7 @@ package de.travelbasys.training.dao.access;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -12,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.sun.xml.internal.fastinfoset.util.StringArray;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDAO;
@@ -409,15 +412,24 @@ public class AccessCustomerDAO implements CustomerDAO {
 			Statement statement = con.createStatement();
 			
 			
+			  DatabaseMetaData meta = con.getMetaData();
+	            ResultSet res = meta.getTables(null, null, null, 
+	                    new String[] {"TABLE"});
+	                 System.out.println("List of tables: ");
+	                 ArrayList<String> tabellen = new ArrayList<String>();
+	                 while (res.next()) {
+	                     String TabellenName = res.getString("TABLE_NAME");
+	                     System.out.println(TabellenName );
+	                     
+	                  tabellen.add(TabellenName);
+	                  }
+	                  res.close();
+
 			
-			DatabaseMetaData md = con.getMetaData();
-			ResultSet rs = md.getTables( null, null,"%",  null);
-			while (rs.next()) {
-			  System.out.println(rs.getString(3));
-			}
-			
-			
-			
+
+
+
+	
 			
 			ResultSet resultSet = statement.executeQuery(SELECT + TABLE + ";");
 			List<Customer> internalCustomers = new ArrayList<Customer>();
