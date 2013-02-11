@@ -32,6 +32,7 @@ public interface CustomerDAO {
 
 	public void importCSV(String name) throws IOException, CustomerDaoException;
 
-	public ObservableList<String> importMDB(String absolutePath) throws IOException, CustomerDaoException;
+	public void importMDB(String absolutePath) throws IOException, CustomerDaoException;
 
+	public ObservableList<String> getSelectedImportMDBTables();
 }

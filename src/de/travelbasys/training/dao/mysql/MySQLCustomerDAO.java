@@ -44,6 +44,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	private static String FILE;
 	private static String TABLE = "tb_customer";
 	private static List<Customer> internalCustomers;
+	private static List<String> tables;
 
 	private static Connection connect = null;
 	private static Statement statement = null;
@@ -386,9 +387,9 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	}
 
 	@Override
-	public ObservableList<String> importMDB(String absolutePath)
-			throws IOException, CustomerDaoException {
-		ArrayList<String> tables = new ArrayList<String>();
+	public void importMDB(String absolutePath) throws IOException,
+			CustomerDaoException {
+		tables = new ArrayList<String>();
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 			Connection con = DriverManager.getConnection(
@@ -411,6 +412,10 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		} catch (ClassNotFoundException e2) {
 			e2.printStackTrace();
 		}
+	}
+
+	@Override
+	public ObservableList<String> getSelectedImportMDBTables() {
 		return FXCollections.observableArrayList(tables);
 	}
 

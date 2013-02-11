@@ -47,6 +47,7 @@ public class TxtCustomerDAO implements CustomerDAO {
 
 	private static String FILE;
 	private static List<Customer> internalCustomers;
+	private static List<String> tables;
 
 	private static Map<String, Object> internalDB;
 
@@ -317,9 +318,9 @@ public class TxtCustomerDAO implements CustomerDAO {
 	}
 
 	@Override
-	public ObservableList<String> importMDB(String absolutePath)
-			throws IOException, CustomerDaoException {
-		ArrayList<String> tables = new ArrayList<String>();
+	public void importMDB(String absolutePath) throws IOException,
+			CustomerDaoException {
+		tables = new ArrayList<String>();
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 			Connection con = DriverManager.getConnection(
@@ -342,6 +343,10 @@ public class TxtCustomerDAO implements CustomerDAO {
 		} catch (ClassNotFoundException e2) {
 			e2.printStackTrace();
 		}
+	}
+
+	@Override
+	public ObservableList<String> getSelectedImportMDBTables() {
 		return FXCollections.observableArrayList(tables);
 	}
 }
