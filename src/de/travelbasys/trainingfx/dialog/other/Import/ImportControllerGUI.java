@@ -1,4 +1,4 @@
-package de.travelbasys.trainingfx.dialog.other.Import.mdb;
+package de.travelbasys.trainingfx.dialog.other.Import;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,10 +12,8 @@ import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
 
-public class ImportTablesController implements Initializable,
+public class ImportControllerGUI implements Initializable,
 		ConfigurationListener {
-
-	private ImportTablesModel model;
 
 	private ResourceBundle resources;
 	@FXML
@@ -31,7 +29,6 @@ public class ImportTablesController implements Initializable,
 		// TODO: NullPointerException beheben / siehe ImportTablesDialog
 
 		this.resources = resources;
-		tableView.setItems(model.getCurrentDialog().getTables());
 		Configuration.addConfigurationListener(this);
 
 	}

@@ -1,4 +1,4 @@
-package de.travelbasys.trainingfx.dialog.other.Import.mdb;
+package de.travelbasys.trainingfx.dialog.other.Import;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -8,22 +8,21 @@ import javafx.stage.Stage;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.Config;
 
-public class ImportTablesDialog implements Dialog {
+public class ImportDialogGUI implements Dialog {
 
-	private String PATH = "/de/travelbasys/trainingfx/dialog/other/Import/mdb/";
-	private String FILE = "ImportTablesFrame.fxml";
+	private String PATH = "/de/travelbasys/trainingfx/dialog/other/Import/";
+	private String FILE = "ImportFrame.fxml";
 
-	private ImportTablesModel model;
 	private ObservableList<String> tables;
 
-	public ImportTablesDialog(ObservableList<String> tables) {
+	public ImportDialogGUI(ObservableList<String> tables) {
 		this.tables = tables;
 	}
 
 	@Override
 	public void run() {
 		try {
-			
+
 			// TODO: NullPointerException beheben.
 			// Grund: Model wird nicht korrekt initialisiert.
 			// Model wartet auf Initialisierung durch ImportTablesController,
@@ -31,14 +30,13 @@ public class ImportTablesDialog implements Dialog {
 			// Überlegung: Abgucken bei den anderen Klassen, vielleicht
 			// Controller Instanz aufrufen und Parameter abfragen? Siehe Update
 			// o.ä.
-			
+
 			AnchorPane showPane = FXMLLoader.load(
 					getClass().getResource(PATH + FILE), Config.BUNDLE);
 			Stage stage = new Stage();
 			Scene scene = new Scene(showPane);
 			stage.setScene(scene);
 			stage.show();
-			model.setCurrentDialog(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

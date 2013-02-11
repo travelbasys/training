@@ -33,7 +33,7 @@ import de.travelbasys.trainingfx.dialog.customer.list.CustomerListDialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.show2.CustomerShow2DialogGUI;
 import de.travelbasys.trainingfx.dialog.customer.update2.CustomerUpdate2DialogGUI;
 import de.travelbasys.trainingfx.dialog.other.ChangeConfiguration.ChangeConfigurationDialogGUI;
-import de.travelbasys.trainingfx.dialog.other.Import.mdb.ImportTablesDialog;
+import de.travelbasys.trainingfx.dialog.other.Import.ImportDialogGUI;
 
 public class MainWindowControl implements Control {
 
@@ -95,7 +95,7 @@ public class MainWindowControl implements Control {
 								ObservableList<String> tables = Dao.getDAO()
 										.importMDB(inputFile.getAbsolutePath());
 
-								ImportTablesDialog d = new ImportTablesDialog(
+								ImportDialogGUI d = new ImportDialogGUI(
 										tables);
 								d.run();
 

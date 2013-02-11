@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="de.travelbasys.trainingfx.dialog.other.Import.mdb.ImportTablesController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="de.travelbasys.trainingfx.dialog.other.Import.ImportControllerGUI">
   <!-- TODO Add Nodes -->
   <children>
     <BorderPane prefHeight="200.0" prefWidth="200.0">
