@@ -419,4 +419,8 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		return FXCollections.observableArrayList(tables);
 	}
 
+	@Override
+	public void batchUpdateSelectedMDBTable(String table) {
+	}
+
 }

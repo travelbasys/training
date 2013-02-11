@@ -349,4 +349,8 @@ public class TxtCustomerDAO implements CustomerDAO {
 	public ObservableList<String> getSelectedImportMDBTables() {
 		return FXCollections.observableArrayList(tables);
 	}
+
+	@Override
+	public void batchUpdateSelectedMDBTable(String table) {
+	}
 }

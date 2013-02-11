@@ -35,4 +35,6 @@ public interface CustomerDAO {
 	public void importMDB(String absolutePath) throws IOException, CustomerDaoException;
 
 	public ObservableList<String> getSelectedImportMDBTables();
+
+public	void batchUpdateSelectedMDBTable(String table);
 }

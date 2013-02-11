@@ -66,8 +66,8 @@ public class ImportControllerGUI implements Initializable,
 
 	@FXML
 	public void handleImportButton() {
-		//TODO: Etwas mit der selektierten Tabelle tun. (Daten in aktuelle DB batchen).
-		System.out.println(tableView.getSelectionModel().getSelectedItem());
+		Dao.getDAO().batchUpdateSelectedMDBTable(
+				tableView.getSelectionModel().getSelectedItem());
 		Stage stage = (Stage) root.getScene().getWindow();
 		stage.close();
 	}

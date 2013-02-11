@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +18,7 @@ import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.db.AccessConnection;
+import de.travelbasys.training.db.MDBConnection;
 
 /**
  * Diese Klasse repräsentiert eine "Datenbank" von {@see Customer} Objekten.
@@ -48,6 +48,8 @@ public class AccessCustomerDAO implements CustomerDAO {
 	private static List<String> tables;
 
 	private static Connection connect = null;
+	private static Connection importCon = null;
+	private static String importAbsolutePath = null;
 	private static Statement statement = null;
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
@@ -402,16 +404,15 @@ public class AccessCustomerDAO implements CustomerDAO {
 	@Override
 	public void importMDB(String absolutePath) throws IOException,
 			CustomerDaoException {
+		importAbsolutePath = absolutePath;
+		importCon = MDBConnection.getInstance(importAbsolutePath);
 		tables = new ArrayList<String>();
+		ResultSet res;
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-			Connection con = DriverManager.getConnection(
-					"jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
-							+ absolutePath, "Administrator", "");
 
-			DatabaseMetaData meta = con.getMetaData();
-			ResultSet res = meta.getTables(null, null, null,
-					new String[] { "TABLE" });
+			DatabaseMetaData meta = importCon.getMetaData();
+			res = meta.getTables(null, null, null, new String[] { "TABLE" });
 			System.out.println("List of tables: ");
 			while (res.next()) {
 				String tableName = res.getString("TABLE_NAME");
@@ -420,6 +421,7 @@ public class AccessCustomerDAO implements CustomerDAO {
 				tables.add(tableName);
 			}
 			res.close();
+			importCon.close();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} catch (ClassNotFoundException e2) {
@@ -430,5 +432,26 @@ public class AccessCustomerDAO implements CustomerDAO {
 	@Override
 	public ObservableList<String> getSelectedImportMDBTables() {
 		return FXCollections.observableArrayList(tables);
+	}
+
+	@Override
+	public void batchUpdateSelectedMDBTable(String table) {
+		importCon = MDBConnection.getInstance(importAbsolutePath);
+		ResultSet res;
+		try {
+			statement = importCon.createStatement();
+			res = statement.executeQuery(SELECT + table + ";");
+			while (res.next()) {
+				Customer c = new Customer(res.getInt(1), res.getString(2),
+						res.getString(3), res.getDate(4), res.getString(5),
+						res.getString(6), res.getString(7));
+				System.out.println(c);
+				create(c);
+			}
+			res.close();
+			importCon.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
