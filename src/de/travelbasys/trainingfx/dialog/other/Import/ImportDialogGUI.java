@@ -61,10 +61,10 @@ public class ImportDialogGUI implements Dialog {
 			} else if (ext.equals("mdb")) {
 				Dao.getDAO().importMDB(inputFile.getAbsolutePath());
 
-				AnchorPane showPane = FXMLLoader.load(
-						getClass().getResource(PATH + FILE), Config.BUNDLE);
+				AnchorPane importTablesPane = FXMLLoader.load(getClass()
+						.getResource(PATH + FILE), Config.BUNDLE);
 				Stage stage = new Stage();
-				Scene scene = new Scene(showPane);
+				Scene scene = new Scene(importTablesPane);
 				stage.setScene(scene);
 				stage.show();
 
