@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Configuration;
@@ -66,8 +67,17 @@ public class ImportControllerGUI implements Initializable,
 
 	@FXML
 	public void handleImportButton() {
-		Dao.getDAO().batchUpdateSelectedMDBTable(
-				tableView.getSelectionModel().getSelectedItem());
+		try {
+			Dao.getDAO().batchUpdateSelectedMDBTable(
+					tableView.getSelectionModel().getSelectedItem());
+		} catch (CustomerDaoException e) {
+			Dialogs.showErrorDialog(
+					null,
+					AppContext.getMessage("CustomerNotCreated"),
+					AppContext.getMessage("Error")
+							+ AppContext.getMessage("TransactionFail"),
+					AppContext.getMessage("TravelbasysManager"));
+		}
 		Stage stage = (Stage) root.getScene().getWindow();
 		stage.close();
 	}

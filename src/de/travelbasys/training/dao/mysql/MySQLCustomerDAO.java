@@ -420,7 +420,8 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	}
 
 	@Override
-	public void batchUpdateSelectedMDBTable(String table) {
+	public void batchUpdateSelectedMDBTable(String table)
+			throws CustomerDaoException {
 	}
 
 }

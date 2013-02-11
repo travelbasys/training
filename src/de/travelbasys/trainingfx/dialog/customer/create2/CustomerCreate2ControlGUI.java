@@ -283,7 +283,6 @@ public class CustomerCreate2ControlGUI implements Initializable,
 
 					emailField.getText());
 
-			Dao.getDAO().getExisting(customer);
 			Dao.getDAO().create(customer);
 			clear();
 			Dialogs.showInformationDialog((Stage) root.getScene().getWindow(),

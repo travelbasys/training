@@ -351,6 +351,7 @@ public class TxtCustomerDAO implements CustomerDAO {
 	}
 
 	@Override
-	public void batchUpdateSelectedMDBTable(String table) {
+	public void batchUpdateSelectedMDBTable(String table)
+			throws CustomerDaoException {
 	}
 }

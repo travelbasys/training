@@ -435,7 +435,8 @@ public class AccessCustomerDAO implements CustomerDAO {
 	}
 
 	@Override
-	public void batchUpdateSelectedMDBTable(String table) {
+	public void batchUpdateSelectedMDBTable(String table)
+			throws CustomerDaoException {
 		importCon = MDBConnection.getInstance(importAbsolutePath);
 		ResultSet res;
 		try {
@@ -445,12 +446,11 @@ public class AccessCustomerDAO implements CustomerDAO {
 				Customer c = new Customer(res.getInt(1), res.getString(2),
 						res.getString(3), res.getDate(4), res.getString(5),
 						res.getString(6), res.getString(7));
-				System.out.println(c);
 				create(c);
 			}
 			res.close();
 			importCon.close();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
