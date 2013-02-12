@@ -1,6 +1,7 @@
 package de.travelbasys.trainingfx.dialog.other.Import;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -65,18 +66,30 @@ public class ImportControllerGUI implements Initializable,
 		Configuration.addConfigurationListener(this);
 	}
 
+	
+	//TODO: Sinnvolle Fehlermeldungen.
 	@FXML
 	public void handleImportButton() {
 		try {
 			Dao.getDAO().batchUpdateSelectedMDBTable(
 					tableView.getSelectionModel().getSelectedItem());
+			int importedCustomers = Dao.getDAO().getImportedCustomersNumber();
+			if (importedCustomers >= 0) {
+				Dialogs.showInformationDialog(null, importedCustomers + " "
+						+ resources.getString("CustomerImport"),
+						resources.getString("ImportOK"),
+						resources.getString("TravelbasysManager"));
+			}
 		} catch (CustomerDaoException e) {
-			Dialogs.showErrorDialog(
-					null,
-					AppContext.getMessage("CustomerNotCreated"),
-					AppContext.getMessage("Error")
-							+ AppContext.getMessage("TransactionFail"),
-					AppContext.getMessage("TravelbasysManager"));
+			Dialogs.showErrorDialog(null, "Tabelle ist leer.");
+		} catch (IllegalArgumentException e) {
+			try {
+				Dialogs.showErrorDialog(null, "Datensatz "
+						+ Dao.getDAO().getImportResultSet().getRow()
+						+ " ist im Eimer.");
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 		Stage stage = (Stage) root.getScene().getWindow();
 		stage.close();

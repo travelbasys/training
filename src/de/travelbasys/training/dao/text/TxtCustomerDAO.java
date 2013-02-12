@@ -48,6 +48,7 @@ public class TxtCustomerDAO implements CustomerDAO {
 	private static String FILE;
 	private static List<Customer> internalCustomers;
 	private static List<String> tables;
+	private static int localimportid = 0;
 
 	private static Map<String, Object> internalDB;
 
@@ -157,8 +158,8 @@ public class TxtCustomerDAO implements CustomerDAO {
 	 */
 	@Override
 	public void create(Customer customer) throws CustomerDaoException {
+		init(FILE);
 		getExisting(customer);
-
 		int customerid = createNewId();
 		Customer c = new Customer(customerid, customer.getLastName(),
 				customer.getFirstName(), customer.getBirthdate(),
@@ -348,6 +349,16 @@ public class TxtCustomerDAO implements CustomerDAO {
 	@Override
 	public ObservableList<String> getSelectedImportMDBTables() {
 		return FXCollections.observableArrayList(tables);
+	}
+
+	@Override
+	public int getImportedCustomersNumber() {
+		return localimportid;
+	}
+
+	@Override
+	public ResultSet getImportResultSet() {
+		return null;
 	}
 
 	@Override

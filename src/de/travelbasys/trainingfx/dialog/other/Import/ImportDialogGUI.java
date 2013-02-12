@@ -79,6 +79,8 @@ public class ImportDialogGUI implements Dialog {
 					AppContext.getMessage("Error")
 							+ AppContext.getMessage("TransactionFail"),
 					AppContext.getMessage("TravelbasysManager"));
+		} catch (NullPointerException e) {
+			//Do nothing.
 		}
 	}
 }

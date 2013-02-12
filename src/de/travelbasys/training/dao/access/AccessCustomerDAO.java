@@ -53,7 +53,9 @@ public class AccessCustomerDAO implements CustomerDAO {
 	private static Statement statement = null;
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
+	private static ResultSet importResultSet = null;
 	private static int localupdateid = 0;
+	private static int localimportcounter = 0;
 	private final String INSERT = "INSERT INTO ";
 	private final String VALUES = " VALUES (?, ?, ?, ?, ?, ?);";
 	private final String SELECT = "SELECT * FROM ";
@@ -185,6 +187,7 @@ public class AccessCustomerDAO implements CustomerDAO {
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
 	public void create(Customer customer) throws CustomerDaoException {
+		init(FILE);
 		OpenConnection();
 		getExisting(customer);
 		try {
@@ -206,7 +209,6 @@ public class AccessCustomerDAO implements CustomerDAO {
 					customer.getAdress(), customer.getPostalcode(),
 					customer.getEmail());
 			internalCustomers.add(c);
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -353,7 +355,6 @@ public class AccessCustomerDAO implements CustomerDAO {
 
 	// TODO: Besseren Namen finden!!!
 	public Customer getExisting(Customer customer) throws CustomerDaoException {
-
 		for (Customer c : internalCustomers) {
 			if (c.equals(customer)) {
 				throw new CustomerDaoException("ExistErr", c);
@@ -438,20 +439,43 @@ public class AccessCustomerDAO implements CustomerDAO {
 	public void batchUpdateSelectedMDBTable(String table)
 			throws CustomerDaoException {
 		importCon = MDBConnection.getInstance(importAbsolutePath);
-		ResultSet res;
+		localimportcounter = 0;
 		try {
 			statement = importCon.createStatement();
-			res = statement.executeQuery(SELECT + table + ";");
-			while (res.next()) {
-				Customer c = new Customer(res.getInt(1), res.getString(2),
-						res.getString(3), res.getDate(4), res.getString(5),
-						res.getString(6), res.getString(7));
-				create(c);
+			importResultSet = statement.executeQuery(SELECT + table + ";");
+			if (importResultSet.next()) {
+				do {
+					try {
+						Customer c = new Customer(importResultSet.getInt(1),
+								importResultSet.getString(2),
+								importResultSet.getString(3),
+								importResultSet.getDate(4),
+								importResultSet.getString(5),
+								importResultSet.getString(6),
+								importResultSet.getString(7));
+						create(c);
+						localimportcounter++;
+					} catch (CustomerDaoException e) {
+						continue;
+					}
+				} while (importResultSet.next());
+			} else {
+				throw new CustomerDaoException("");
 			}
-			res.close();
+			importResultSet.close();
 			importCon.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int getImportedCustomersNumber() {
+		return localimportcounter;
+	}
+
+	@Override
+	public ResultSet getImportResultSet() {
+		return importResultSet;
 	}
 }

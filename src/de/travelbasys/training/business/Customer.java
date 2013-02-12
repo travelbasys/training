@@ -92,7 +92,7 @@ public class Customer implements Serializable, Cloneable {
 		if ((Integer.parseInt(postalcode) > 0 && postalcode.length() == 5)) {
 			this.postalcode = postalcode;
 		} else {
-			throw new IllegalArgumentException(POSTAL_CODE_ERROR);
+			throw new IllegalArgumentException(POSTAL_CODE_ERROR + postalcode);
 		}
 
 	}

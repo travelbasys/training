@@ -51,6 +51,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
 	private static int localupdateid = 0;
+	private static int localimportid = 0;
 	private final String INSERT = "INSERT INTO ";
 	private final String VALUES = " VALUES (default, ?, ?, ?, ?, ?, ?, default);";
 	private final String SELECT = "SELECT * FROM ";
@@ -178,8 +179,8 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	 *         Objekt schon in der Datenbank vorhanden ist.
 	 */
 	public void create(Customer customer) throws CustomerDaoException {
+		init(FILE);
 		OpenConnection();
-
 		// prüft ob das Customer-Objekt schon vorhanden ist und reagiert
 		// entsprechend
 		getExisting(customer);
@@ -417,6 +418,16 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	@Override
 	public ObservableList<String> getSelectedImportMDBTables() {
 		return FXCollections.observableArrayList(tables);
+	}
+
+	@Override
+	public int getImportedCustomersNumber() {
+		return localimportid;
+	}
+
+	@Override
+	public ResultSet getImportResultSet() {
+		return null;
 	}
 
 	@Override
