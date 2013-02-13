@@ -98,9 +98,7 @@ public class MainWindowControl implements Control {
 								}
 								pw.close();
 							} else if (ext == ".mdb") {
-								System.out.println(Database
-										.open(new File("my.mdb"))
-										.getTable("MyTable").display());
+								Database.create(outputFile);
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
