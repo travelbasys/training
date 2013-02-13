@@ -11,5 +11,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="javafx-dialogs-0.0.1.jar"/>
+	<classpathentry kind="lib" path="jackcess-1.2.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
