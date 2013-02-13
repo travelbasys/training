@@ -374,15 +374,10 @@ public class AccessCustomerDAO implements CustomerDAO {
 	 * @throws IOException
 	 *             Dieser Fehler tritt auf, wenn die Datei nicht vorhanden oder
 	 *             schreibgeschützt ist.
+	 * @throws CustomerDaoException
 	 */
-	public void importCSV(String name) throws IOException {
-		terminate();
-		// Import ersetzt aktuell nur die vorhandene CustomerListe, nicht jedoch
-		// die Tabelle der Datenbank aus Sicherheitsgründen.
-		// Implementierung von Import ist im Konzept (Umstellung auf MySQL) z.Z.
-		// nicht berücksichtig.
-		System.out.println("Hinweis: Ersetzt nur die lokale Liste.");
-
+	public void importCSV(String name) throws IOException, CustomerDaoException {
+		localimportcounter = 0;
 		FileReader fr = new FileReader(name);
 		BufferedReader br = new BufferedReader(fr);
 
@@ -390,13 +385,11 @@ public class AccessCustomerDAO implements CustomerDAO {
 		br.readLine();
 		String s;
 		while ((s = br.readLine()) != null) {
-			internalCustomers.add(Customer.parseCSV(s));
-		}
-
-		int id = 0;
-		for (Customer customer : internalCustomers) {
-			if (customer.getId() > id) {
-				id = customer.getId();
+			try {
+				create(Customer.parse(s));
+				localimportcounter++;
+			} catch (CustomerDaoException e) {
+				continue;
 			}
 		}
 		fr.close();
@@ -411,14 +404,11 @@ public class AccessCustomerDAO implements CustomerDAO {
 		ResultSet res;
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-
 			DatabaseMetaData meta = importCon.getMetaData();
 			res = meta.getTables(null, null, null, new String[] { "TABLE" });
 			System.out.println("List of tables: ");
 			while (res.next()) {
 				String tableName = res.getString("TABLE_NAME");
-				System.out.println(tableName);
-
 				tables.add(tableName);
 			}
 			res.close();

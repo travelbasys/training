@@ -4,11 +4,11 @@
 package de.travelbasys.training.business;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import de.travelbasys.training.util.Datum;
 
 /**
  * Repräsentiert einen Kunden, der mit der Anwendung verwaltet wird.
@@ -32,8 +32,6 @@ public class Customer implements Serializable, Cloneable {
 	private static final String DEFAULT_ADRESS = "default";
 	private static final String DEFAULT_EMAIL = "default";
 	private static final String DEFAULT_POSTALCODE = "default";
-	private static final SimpleDateFormat DEFAULT_BIRTHDATE_FORMAT = new SimpleDateFormat(
-			"YYYY-MM-DD");
 	private static final Date DEFAULT_BIRTHDATE = new Date(1970 - 01 - 01);
 
 	/*
@@ -53,7 +51,6 @@ public class Customer implements Serializable, Cloneable {
 			Pattern.CASE_INSENSITIVE);
 
 	private static final String WRONG_SYNTAX_ERROR = "Wrong syntax: ";
-	private static final String INVALID_DATE_ERROR = "Invalid Date: ";
 	private static final String POSTAL_CODE_ERROR = "Postal code not in range: ";
 
 	/**
@@ -254,17 +251,11 @@ public class Customer implements Serializable, Cloneable {
 
 	public static Customer parse(String s) {
 		Customer customer = null;
-
 		Matcher m = CUSTOMERPATTERN.matcher(s);
 		if (m.matches()) {
-			try {
-				customer = new Customer(Integer.parseInt(m.group(1)),
-						m.group(2), m.group(3),
-						DEFAULT_BIRTHDATE_FORMAT.parse(m.group(4)), m.group(5),
-						m.group(6), m.group(7));
-			} catch (ParseException e) {
-				System.out.println(INVALID_DATE_ERROR);
-			}
+			customer = new Customer(Integer.parseInt(m.group(1)), m.group(2),
+					m.group(3), Datum.getFormattedDate(m.group(4)), m.group(5),
+					m.group(6), m.group(7));
 		} else {
 			// Falsche Syntax: kein Customer.
 			throw new IllegalArgumentException(Customer.WRONG_SYNTAX_ERROR + s);
@@ -274,17 +265,15 @@ public class Customer implements Serializable, Cloneable {
 	}
 
 	public static Customer parseCSV(String s) {
+		// TODO: Matcher matcht nicht richtig. Das Pattern muss ein Dateobjekt
+		// erfassen können?! Oder String später zu Date parsen??
+
 		Customer customer = null;
 		Matcher m = CUSTOMERPATTERNCSV.matcher(s);
 		if (m.matches()) {
-			try {
-				customer = new Customer(Integer.parseInt(m.group(1)),
-						m.group(2), m.group(3),
-						DEFAULT_BIRTHDATE_FORMAT.parse(m.group(4)), m.group(5),
-						m.group(6), m.group(7));
-			} catch (ParseException e) {
-				System.out.println(INVALID_DATE_ERROR);
-			}
+			customer = new Customer(Integer.parseInt(m.group(1)), m.group(2),
+					m.group(3), Datum.getFormattedDate(m.group(4)), m.group(5),
+					m.group(6), m.group(7));
 		} else {
 			// Falsche Syntax: kein Customer.
 			throw new IllegalArgumentException(Customer.WRONG_SYNTAX_ERROR + s);

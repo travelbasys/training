@@ -3,6 +3,7 @@ package de.travelbasys.trainingfx.MainWindow;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.sql.Types;
 import java.util.Locale;
 
 import javafx.event.ActionEvent;
@@ -14,7 +15,10 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import com.healthmarketscience.jackcess.ColumnBuilder;
 import com.healthmarketscience.jackcess.Database;
+import com.healthmarketscience.jackcess.Table;
+import com.healthmarketscience.jackcess.TableBuilder;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.Dao;
@@ -98,7 +102,54 @@ public class MainWindowControl implements Control {
 								}
 								pw.close();
 							} else if (ext == ".mdb") {
-								Database.create(outputFile);
+								outputFile = new File(outputFile
+										.getAbsolutePath() + ext);
+								Database db = Database.create(outputFile);
+								Table newTable = new TableBuilder("tb_customer")
+										.addColumn(
+												new ColumnBuilder("customerid")
+														.setSQLType(
+																Types.INTEGER)
+														.toColumn())
+										.addColumn(
+												new ColumnBuilder("lastname")
+														.setSQLType(
+																Types.VARCHAR)
+														.toColumn())
+										.addColumn(
+												new ColumnBuilder("firstname")
+														.setSQLType(
+																Types.VARCHAR)
+														.toColumn())
+										.addColumn(
+												new ColumnBuilder("birthdate")
+														.setSQLType(Types.DATE)
+														.toColumn())
+										.addColumn(
+												new ColumnBuilder("adress")
+														.setSQLType(
+																Types.VARCHAR)
+														.toColumn())
+										.addColumn(
+												new ColumnBuilder("postalcode")
+														.setSQLType(
+																Types.VARCHAR)
+														.toColumn())
+										.addColumn(
+												new ColumnBuilder("email")
+														.setSQLType(
+																Types.VARCHAR)
+														.toColumn())
+										.toTable(db);
+								for (Customer customer : Dao.getDAO().findAll()) {
+									newTable.addRow(customer.getId(),
+											customer.getLastName(),
+											customer.getFirstName(),
+											customer.getBirthdate(),
+											customer.getAdress(),
+											customer.getPostalcode(),
+											customer.getEmail());
+								}
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
