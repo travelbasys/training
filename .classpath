@@ -12,5 +12,11 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="javafx-dialogs-0.0.1.jar"/>
 	<classpathentry kind="lib" path="jackcess-1.2.9.jar"/>
+	<classpathentry kind="lib" path="commons-logging-1.1.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="commons-logging-1.1.1-sources.jar"/>
+	<classpathentry kind="lib" path="commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="commons-logging-adapters-1.1.1.jar"/>
+	<classpathentry kind="lib" path="commons-logging-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="commons-logging-tests.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

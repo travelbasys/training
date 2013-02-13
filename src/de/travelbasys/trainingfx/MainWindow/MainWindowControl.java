@@ -14,6 +14,8 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import com.healthmarketscience.jackcess.Database;
+
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Control;
@@ -85,16 +87,21 @@ public class MainWindowControl implements Control {
 
 							String ext = ((FileNameExtensionFilter) (fileChooser
 									.getFileFilter())).getExtensions()[0];
-
-							FileWriter fw = new FileWriter((outputFile + ext)
-									.trim());
-							PrintWriter pw = new PrintWriter(fw);
-							pw.println(pattern);
-							for (Customer customer : Dao.getDAO().findAll()) {
-								AppContext.println(customer);
-								pw.println(customer.toFormat(ext));
+							if (ext == ".csv") {
+								FileWriter fw = new FileWriter(
+										(outputFile + ext).trim());
+								PrintWriter pw = new PrintWriter(fw);
+								pw.println(pattern);
+								for (Customer customer : Dao.getDAO().findAll()) {
+									AppContext.println(customer);
+									pw.println(customer.toCSV());
+								}
+								pw.close();
+							} else if (ext == ".mdb") {
+								System.out.println(Database
+										.open(new File("my.mdb"))
+										.getTable("MyTable").display());
 							}
-							pw.close();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

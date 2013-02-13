@@ -35,16 +35,20 @@ public class ExportDialog implements Dialog {
 			return;
 		}
 		try {
-			FileWriter fw = new FileWriter(model.getExportName() + "."
-					+ model.getExportType());
-			PrintWriter pw = new PrintWriter(fw);
-			pw.println(model.getHeader());
-			for (Customer customer : Dao.getDAO().findAll()) {
-				AppContext.println(customer);
-				pw.println(customer.toFormat(model.getExportType()));
+			if (model.getExportType() == ".csv") {
+				FileWriter fw = new FileWriter(model.getExportName() + "."
+						+ model.getExportType());
+				PrintWriter pw = new PrintWriter(fw);
+				pw.println(model.getHeader());
+				for (Customer customer : Dao.getDAO().findAll()) {
+					AppContext.println(customer);
+					pw.println(customer.toCSV());
+				}
+				AppContext.printMessage("ExportOK");
+				pw.close();
+			} else if (model.getExportType() == ".mdb") {
+				return;
 			}
-			AppContext.printMessage("ExportOK");
-			pw.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

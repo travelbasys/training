@@ -174,15 +174,10 @@ public class Customer implements Serializable, Cloneable {
 				+ ", email=" + email + "]";
 	}
 
-	public String toFormat(String Format) {
-		if (Format == ".csv") {
-			return customerid + ";" + lastname + ";" + firstname + ";"
-					+ birthdate + ";" + adress + ";" + postalcode + ";" + email;
+	public String toCSV() {
+		return customerid + ";" + lastname + ";" + firstname + ";" + birthdate
+				+ ";" + adress + ";" + postalcode + ";" + email;
 
-		}
-		if (Format == ".access") {
-		}
-		return null;
 	}
 
 	@Override
