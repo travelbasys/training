@@ -15,6 +15,6 @@
 	<classpathentry kind="lib" path="commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="commons-logging-adapters-1.1.1.jar"/>
 	<classpathentry kind="lib" path="commons-logging-api-1.1.1.jar"/>
-	<classpathentry kind="lib" path="commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="commons-lang-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
