@@ -84,84 +84,89 @@ public class MainWindowControl implements Control {
 						fileChooser.setAcceptAllFileFilterUsed(false);
 						fileChooser.addChoosableFileFilter(fileFilter1);
 						fileChooser.addChoosableFileFilter(fileFilter2);
-						fileChooser.showSaveDialog(null);
-						File outputFile = fileChooser.getSelectedFile();
-						if (outputFile != null) {
-							try {
+						int result = fileChooser.showSaveDialog(null);
+						if (result == JFileChooser.APPROVE_OPTION) {
+							File outputFile = fileChooser.getSelectedFile();
+							if (outputFile != null) {
+								try {
 
-								String ext = ((FileNameExtensionFilter) (fileChooser
-										.getFileFilter())).getExtensions()[0];
-								if (ext == ".csv") {
-									FileWriter fw = new FileWriter(
-											(outputFile + ext).trim());
-									PrintWriter pw = new PrintWriter(fw);
-									pw.println(pattern);
-									for (Customer customer : Dao.getDAO()
-											.findAll()) {
-										AppContext.println(customer);
-										pw.println(customer.toCSV());
+									String ext = ((FileNameExtensionFilter) (fileChooser
+											.getFileFilter())).getExtensions()[0];
+									if (ext == ".csv") {
+										FileWriter fw = new FileWriter(
+												(outputFile + ext).trim());
+										PrintWriter pw = new PrintWriter(fw);
+										pw.println(pattern);
+										for (Customer customer : Dao.getDAO()
+												.findAll()) {
+											AppContext.println(customer);
+											pw.println(customer.toCSV());
+										}
+										pw.close();
+									} else if (ext == ".mdb") {
+										outputFile = new File(outputFile
+												.getAbsolutePath() + ext);
+										Database db = Database
+												.create(outputFile);
+										Table newTable = new TableBuilder(
+												"tb_customer")
+												.addColumn(
+														new ColumnBuilder(
+																"customerid")
+																.setSQLType(
+																		Types.INTEGER)
+																.toColumn())
+												.addColumn(
+														new ColumnBuilder(
+																"lastname")
+																.setSQLType(
+																		Types.VARCHAR)
+																.toColumn())
+												.addColumn(
+														new ColumnBuilder(
+																"firstname")
+																.setSQLType(
+																		Types.VARCHAR)
+																.toColumn())
+												.addColumn(
+														new ColumnBuilder(
+																"birthdate")
+																.setSQLType(
+																		Types.DATE)
+																.toColumn())
+												.addColumn(
+														new ColumnBuilder(
+																"adress")
+																.setSQLType(
+																		Types.VARCHAR)
+																.toColumn())
+												.addColumn(
+														new ColumnBuilder(
+																"postalcode")
+																.setSQLType(
+																		Types.VARCHAR)
+																.toColumn())
+												.addColumn(
+														new ColumnBuilder(
+																"email")
+																.setSQLType(
+																		Types.VARCHAR)
+																.toColumn())
+												.toTable(db);
+										for (Customer customer : Dao.getDAO()
+												.findAll()) {
+											newTable.addRow(customer.getId(),
+													customer.getLastName(),
+													customer.getFirstName(),
+													customer.getBirthdate(),
+													customer.getAdress(),
+													customer.getPostalcode(),
+													customer.getEmail());
+										}
 									}
-									pw.close();
-								} else if (ext == ".mdb") {
-									outputFile = new File(outputFile
-											.getAbsolutePath() + ext);
-									Database db = Database.create(outputFile);
-									Table newTable = new TableBuilder(
-											"tb_customer")
-											.addColumn(
-													new ColumnBuilder(
-															"customerid")
-															.setSQLType(
-																	Types.INTEGER)
-															.toColumn())
-											.addColumn(
-													new ColumnBuilder(
-															"lastname")
-															.setSQLType(
-																	Types.VARCHAR)
-															.toColumn())
-											.addColumn(
-													new ColumnBuilder(
-															"firstname")
-															.setSQLType(
-																	Types.VARCHAR)
-															.toColumn())
-											.addColumn(
-													new ColumnBuilder(
-															"birthdate")
-															.setSQLType(
-																	Types.DATE)
-															.toColumn())
-											.addColumn(
-													new ColumnBuilder("adress")
-															.setSQLType(
-																	Types.VARCHAR)
-															.toColumn())
-											.addColumn(
-													new ColumnBuilder(
-															"postalcode")
-															.setSQLType(
-																	Types.VARCHAR)
-															.toColumn())
-											.addColumn(
-													new ColumnBuilder("email")
-															.setSQLType(
-																	Types.VARCHAR)
-															.toColumn())
-											.toTable(db);
-									for (Customer customer : Dao.getDAO()
-											.findAll()) {
-										newTable.addRow(customer.getId(),
-												customer.getLastName(),
-												customer.getFirstName(),
-												customer.getBirthdate(),
-												customer.getAdress(),
-												customer.getPostalcode(),
-												customer.getEmail());
-									}
+								} catch (Exception e) {
+									e.printStackTrace();
 								}
-							} catch (Exception e) {
-								e.printStackTrace();
 							}
 						}
 					}
