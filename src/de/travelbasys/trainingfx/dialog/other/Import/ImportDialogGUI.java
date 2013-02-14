@@ -42,7 +42,6 @@ public class ImportDialogGUI implements Dialog {
 		fileChooser.showOpenDialog(null);
 
 		File inputFile = fileChooser.getSelectedFile();
-
 		String ext = null;
 		try {
 			String s = inputFile.getName();
@@ -57,7 +56,17 @@ public class ImportDialogGUI implements Dialog {
 
 			if (ext.equals("csv")) {
 				Dao.getDAO().importCSV(inputFile.getAbsolutePath());
-
+				int importedCustomers = Dao.getDAO()
+						.getImportedCustomersNumber();
+				if (importedCustomers >= 1) {
+					Dialogs.showInformationDialog(null, importedCustomers + " "
+							+ AppContext.getMessage("CustomerImport"),
+							AppContext.getMessage("ImportOK"),
+							AppContext.getMessage("TravelbasysManager"));
+				} else {
+					Dialogs.showInformationDialog(null,
+							"Keine neuen Daten gefunden.");
+				}
 			} else if (ext.equals("mdb")) {
 				Dao.getDAO().importMDB(inputFile.getAbsolutePath());
 
@@ -80,7 +89,7 @@ public class ImportDialogGUI implements Dialog {
 							+ AppContext.getMessage("TransactionFail"),
 					AppContext.getMessage("TravelbasysManager"));
 		} catch (NullPointerException e) {
-			//Do nothing.
+			e.printStackTrace();
 		}
 	}
 }

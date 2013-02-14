@@ -384,7 +384,7 @@ public class AccessCustomerDAO implements CustomerDAO {
 		String s;
 		while ((s = br.readLine()) != null) {
 			try {
-				create(Customer.parse(s));
+				create(Customer.parseCSV(s));
 				localimportcounter++;
 			} catch (CustomerDaoException e) {
 				continue;

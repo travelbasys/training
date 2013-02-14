@@ -66,19 +66,21 @@ public class ImportControllerGUI implements Initializable,
 		Configuration.addConfigurationListener(this);
 	}
 
-	
-	//TODO: Sinnvolle Fehlermeldungen.
+	// TODO: Sinnvolle Fehlermeldungen.
 	@FXML
 	public void handleImportButton() {
 		try {
 			Dao.getDAO().batchUpdateSelectedMDBTable(
 					tableView.getSelectionModel().getSelectedItem());
 			int importedCustomers = Dao.getDAO().getImportedCustomersNumber();
-			if (importedCustomers >= 0) {
+			if (importedCustomers >= 1) {
 				Dialogs.showInformationDialog(null, importedCustomers + " "
 						+ resources.getString("CustomerImport"),
 						resources.getString("ImportOK"),
 						resources.getString("TravelbasysManager"));
+			} else {
+				Dialogs.showInformationDialog(null,
+						"Keine neuen Daten gefunden.");
 			}
 		} catch (CustomerDaoException e) {
 			Dialogs.showErrorDialog(null, "Tabelle ist leer.");

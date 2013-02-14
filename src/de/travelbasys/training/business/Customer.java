@@ -278,9 +278,6 @@ public class Customer implements Serializable, Cloneable {
 	}
 
 	public static Customer parseCSV(String s) {
-		// TODO: Matcher matcht nicht richtig. Das Pattern muss ein Dateobjekt
-		// erfassen können?! Oder String später zu Date parsen??
-
 		Customer customer = null;
 		Matcher m = CUSTOMERPATTERNCSV.matcher(s);
 		if (m.matches()) {
@@ -291,7 +288,7 @@ public class Customer implements Serializable, Cloneable {
 			// Falsche Syntax: kein Customer.
 			throw new IllegalArgumentException(Customer.WRONG_SYNTAX_ERROR + s);
 		}
-
+System.out.println(customer.toString());
 		return customer;
 	}
 
