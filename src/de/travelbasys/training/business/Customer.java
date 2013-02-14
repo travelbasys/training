@@ -86,6 +86,10 @@ public class Customer implements Serializable, Cloneable {
 	public void setPostalcode(String postalcode)
 			throws IllegalArgumentException {
 
+		/**
+		 * Prüfung der Postleitzahl auf einen gültigen Wert (geanu 5 Ziffern
+		 * lang).
+		 */
 		if ((Integer.parseInt(postalcode) > 0 && postalcode.length() == 5)) {
 			this.postalcode = postalcode;
 		} else {
@@ -95,8 +99,8 @@ public class Customer implements Serializable, Cloneable {
 	}
 
 	/**
-	 * Erzeugt ein neues Customer Objekt mit dem angegebenen Namen und einem
-	 * default Alter (derzeit 15).
+	 * Erzeugt ein neues Customer Objekt mit default Werten Strings = "default"
+	 * Date = "1970 - 01 - 01".
 	 * 
 	 * @param name
 	 *            Name des Customers.
@@ -107,13 +111,6 @@ public class Customer implements Serializable, Cloneable {
 				DEFAULT_BIRTHDATE, DEFAULT_ADRESS, DEFAULT_POSTALCODE,
 				DEFAULT_EMAIL);
 	}
-
-	/**
-	 * Erzeugt ein neues Customer Objekt mit einem default Namen und dem default
-	 * Alter.
-	 * 
-	 * @throws IllegalArgumentException
-	 */
 
 	/**
 	 * 
@@ -163,6 +160,11 @@ public class Customer implements Serializable, Cloneable {
 		return email;
 	}
 
+	/**
+	 * Diese Methode formatiert ein Customer Objekt in einen String um. Customer
+	 * [customerid] [lastname=lastname firstname=firstname birthdate=birthdate
+	 * adress=adress postalcode=postalcode email=email].
+	 */
 	@Override
 	public String toString() {
 		return "Customer[" + customerid + "] " + "[lastname=" + lastname
@@ -171,12 +173,19 @@ public class Customer implements Serializable, Cloneable {
 				+ ", email=" + email + "]";
 	}
 
+	/**
+	 * Formatiert ein Customer Objekt zu einem String der für die Verwendung in
+	 * einer CSV-Datei (.csv).
+	 * 
+	 * @return
+	 */
 	public String toCSV() {
 		return customerid + ";" + lastname + ";" + firstname + ";" + birthdate
 				+ ";" + adress + ";" + postalcode + ";" + email;
 
 	}
 
+	// wird momentan nicht verwendet.
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -194,6 +203,10 @@ public class Customer implements Serializable, Cloneable {
 		return result;
 	}
 
+	/**
+	 * Diese Methode überprüft ob zwei Customer Objekte die gleichen Attribute
+	 * haben.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -239,10 +252,10 @@ public class Customer implements Serializable, Cloneable {
 	}
 
 	/**
-	 * Liest einen String ein und zerlegt ihn in Name und Alter-Gruppe.
-	 * Anschließend werden die Daten in ein Customer-Objekt geschrieben. Bei
-	 * falscher Syntax wird eine Exception ausgeworfen. Die Syntax ist als
-	 * globale Variable festgelegt.
+	 * Liest einen String ein und zerlegt ihn in Die einzelnen Attribute eines
+	 * Customer Objektes. Anschließend werden die Daten in ein Customer-Objekt
+	 * geschrieben. Bei falscher Syntax wird eine Exception ausgeworfen. Die
+	 * Syntax ist als globale Variable festgelegt.
 	 * 
 	 * @param s
 	 *            der Wert des eingelesenen Strings
@@ -282,6 +295,9 @@ public class Customer implements Serializable, Cloneable {
 		return customer;
 	}
 
+	/**
+	 * Diese Methode Produziert eine Kopie eines Customer Objekts.
+	 */
 	public Customer clone() {
 		return new Customer(customerid, lastname, firstname, birthdate, adress,
 				postalcode, email);

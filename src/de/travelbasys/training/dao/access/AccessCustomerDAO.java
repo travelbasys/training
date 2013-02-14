@@ -64,9 +64,6 @@ public class AccessCustomerDAO implements CustomerDAO {
 	private final String DELETE = "DELETE FROM ";
 	private final String FIELDS = "(lastname, firstname, birthdate, adress, postalcode, email)";
 
-	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
-	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
-	// erscheint.
 	public AccessCustomerDAO() {
 	}
 
@@ -74,18 +71,14 @@ public class AccessCustomerDAO implements CustomerDAO {
 	 * initialisiert den internen Zustand von <tt>CustomerDao</tt>.
 	 * 
 	 * <p>
-	 * Diese Implementierung benutzt eine Textdatei als Datenbank. Sie liest
-	 * sämtliche Datensätze der Datenbank aus der Datei und speichert sie intern
-	 * ab. Der Name der Datei wird als Parameter angegeben und ebenfalls
+	 * Diese Implementierung benutzt eine MDB-Datei(.mdb) als Datenbank. Sie
+	 * liest sämtliche Datensätze der Datenbank aus der Datei und speichert sie
+	 * intern ab. Der Name der Datei wird als Parameter angegeben und ebenfalls
 	 * gespeichert.
 	 * </p>
 	 * 
-	 * <p>
-	 * Beim Programmende muss die {@see #terminate()} Methode aufgerufen werden,
-	 * um die Daten in die Datei zurückzuschreiben; sonst gehen sie verloren.
-	 * 
 	 * @param db
-	 *            Name der Datenbank, momentan der Name der Textdatei, in dem
+	 *            Name der Datenbank, momentan der Name der MDB-Datei, in dem
 	 *            die Datensätze gespeichert sind.
 	 */
 	public void init(String db) {
@@ -124,6 +117,10 @@ public class AccessCustomerDAO implements CustomerDAO {
 		CloseCurrentConnection();
 	}
 
+	/**
+	 * Diese Methode ist für das schließen der Verbindung zur MDB-Datei
+	 * zuständig.
+	 */
 	public void CloseCurrentConnection() {
 		try {
 			if (resultSet != null) {
@@ -143,13 +140,8 @@ public class AccessCustomerDAO implements CustomerDAO {
 	}
 
 	/**
-	 * schreibt alle intern gespeicherten Datensätze zurück in die Textdatei,
-	 * aus der sie ursprünglich stammen.
-	 * 
-	 * <p>
-	 * Der Name der Textdatei ist derjenige, der von der {@see #init(String)}
-	 * Methode gespeichert wurde.
-	 * </p>
+	 * Diese Methode leert die Interne Liste vom Typ Customer und schließt die
+	 * Verbindung mit der MDB-Datei.
 	 */
 	public void terminate() {
 		internalCustomers.clear();
@@ -215,6 +207,10 @@ public class AccessCustomerDAO implements CustomerDAO {
 		CloseCurrentConnection();
 	}
 
+	/**
+	 * Diese Methode erzeut eine neue Customer ID indem der letzte Datensatz der
+	 * Datenbank gesucht wird und dessen ID zurück gegeben wird.
+	 */
 	public int createNewId() {
 		int id = 0;
 		try {
@@ -339,6 +335,9 @@ public class AccessCustomerDAO implements CustomerDAO {
 		}
 	}
 
+	/**
+	 * Diese Methode stellt die Verbindung zur MDB-Datei her.
+	 */
 	public void OpenConnection() {
 		connect = AccessConnection.getInstance();
 	}
@@ -364,10 +363,9 @@ public class AccessCustomerDAO implements CustomerDAO {
 	}
 
 	/**
-	 * Diese Methode ist dafür verantwortlich, die alte Datenbank speichern und
-	 * leeren zu lassen, um dann zeilenweise eine CSV Datei einzulesen und jedes
-	 * geparste Customerobjekt durch die Methode {@see parseCSV} der internen
-	 * Datenbank hinzuzufügen.
+	 * Diese Methode ließt zeilenweise eine CSV Datei ein und parst den Inhalt
+	 * zu Customerobjekten, durch die Methode {@see create} werden diese der
+	 * Datenbank hinzugefügt.
 	 * 
 	 * @param name
 	 *            Name der Datei.
@@ -394,7 +392,9 @@ public class AccessCustomerDAO implements CustomerDAO {
 		}
 		fr.close();
 	}
-
+/**
+ * Ist für das einlesen einer MDB-Datei (.mdb), anhand des Absoluten Pfads verantwortlich und 
+ */
 	@Override
 	public void importMDB(String absolutePath) throws IOException,
 			CustomerDaoException {
