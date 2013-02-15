@@ -8,6 +8,18 @@ public class Dao {
 
 	private static CustomerDAO dao;
 
+	/**
+	 * Diese Methode entscheidet anhand einer integer Variable welche Art von
+	 * Datenbank verwendet wird. Es gibt die möglichkeiten:
+	 * 
+	 * <ol>
+	 * <li>Text-Datei (.txt)</li>
+	 * <li>Access-Datenbank (.mdb)</li>
+	 * <li>MySQL-Datenbank</li>
+	 * </ol>
+	 * 
+	 * @param dbtype
+	 */
 	public static void setDAO(int dbtype) {
 		dao = null;
 		switch (dbtype) {

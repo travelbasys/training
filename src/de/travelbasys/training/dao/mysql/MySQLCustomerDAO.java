@@ -59,9 +59,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	private final String UPDATEATTRIBUTES = " SET lastname = ?, firstname = ?, birthdate = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;";
 	private final String DELETE = "DELETE FROM ";
 
-	// Der Konstruktor ist privat. Somit wird verhindert, dass eine Instanz
-	// der Klasse erzeugt wird und dass der Konstruktor in der JavaDoc
-	// erscheint.
+
 	public MySQLCustomerDAO() {
 	}
 
@@ -69,8 +67,8 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	 * initialisiert den internen Zustand von <tt>CustomerDao</tt>.
 	 * 
 	 * <p>
-	 * Diese Implementierung benutzt eine Textdatei als Datenbank. Sie liest
-	 * sämtliche Datensätze der Datenbank aus der Datei und speichert sie intern
+	 * Diese Implementierung benutzt eine MySQL-Datenbank. Sie liest
+	 * sämtliche Datensätze der Datenbank aus der Datenbank und speichert sie intern
 	 * ab. Der Name der Datei wird als Parameter angegeben und ebenfalls
 	 * gespeichert.
 	 * </p>

@@ -19,6 +19,11 @@ public class AccessConnection {
 		}
 	}
 
+	/**
+	 * Diese Klasse erzeugt eine Verbindung zu einer Access-Datenbank.
+	 * 
+	 * @return
+	 */
 	public static Connection getInstance() {
 		new AccessConnection();
 		return conn;

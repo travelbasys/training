@@ -277,6 +277,14 @@ public class Customer implements Serializable, Cloneable {
 		return customer;
 	}
 
+	/**
+	 * Diese Methode ist für das Parsen von Strings in der CSV-Syntax
+	 * verantwortlich, wenn die Kriterien für ein Customer Objekt erfüllt sind,
+	 * wird dieses erstellt und zurückgegeben ansonsten "Exception".
+	 * 
+	 * @param s Der String aus dem ein Customer Objekt erstellt werden soll
+	 * @return Das fertige Customer Objekt
+	 */
 	public static Customer parseCSV(String s) {
 		Customer customer = null;
 		Matcher m = CUSTOMERPATTERNCSV.matcher(s);
@@ -288,7 +296,7 @@ public class Customer implements Serializable, Cloneable {
 			// Falsche Syntax: kein Customer.
 			throw new IllegalArgumentException(Customer.WRONG_SYNTAX_ERROR + s);
 		}
-System.out.println(customer.toString());
+
 		return customer;
 	}
 
@@ -304,7 +312,8 @@ System.out.println(customer.toString());
 		return birthdate;
 	}
 
-	public static Customer parseMDB(String s) {
+	@SuppressWarnings("unused")
+	private static Customer parseMDB(String s) {
 		// TODO Auto-generated method stub
 		return null;
 	}

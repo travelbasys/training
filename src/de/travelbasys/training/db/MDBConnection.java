@@ -11,8 +11,8 @@ public class MDBConnection {
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 
-			conn = DriverManager.getConnection(
-					"jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
+			conn = DriverManager
+					.getConnection("jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
 							+ path);
 
 		} catch (Exception e) {
@@ -20,6 +20,14 @@ public class MDBConnection {
 		}
 	}
 
+	/**
+	 * Diese Methode erzeugt eine Verbindung zu einer MDB-Datei (.mdb), anhand
+	 * des absoluten Pfads der Datei.
+	 * 
+	 * @param path
+	 *            Der absolute Dateipfad
+	 * @return
+	 */
 	public static Connection getInstance(String path) {
 		new MDBConnection(path);
 		return conn;

@@ -38,7 +38,6 @@ import de.travelbasys.training.db.MDBConnection;
  * <p>
  * Damit besitzt sie den Standard CRUD Funktionsumfang für Datenbanken.
  * </p>
- * 
  */
 public class AccessCustomerDAO implements CustomerDAO {
 
@@ -392,9 +391,11 @@ public class AccessCustomerDAO implements CustomerDAO {
 		}
 		fr.close();
 	}
-/**
- * Ist für das einlesen einer MDB-Datei (.mdb), anhand des Absoluten Pfads verantwortlich und 
- */
+
+	/**
+	 * Diese Methode ist für das einlesen der Tabellennamen einer MDB-Datei
+	 * (.mdb), anhand des Absoluten Pfads verantwortlich und
+	 */
 	@Override
 	public void importMDB(String absolutePath) throws IOException,
 			CustomerDaoException {
@@ -425,6 +426,11 @@ public class AccessCustomerDAO implements CustomerDAO {
 		return FXCollections.observableArrayList(tables);
 	}
 
+	/**
+	 * Diese Methode ist verantwortlich für das einlesen von Customer Objekten
+	 * in einer Tabelle aus einer MDB-Datei (.mdb) und fügt die noch nicht
+	 * vorhandenen Customer Objekte zur Datenbank hinzu.
+	 */
 	@Override
 	public void batchUpdateSelectedMDBTable(String table)
 			throws CustomerDaoException {
