@@ -103,6 +103,14 @@ public class MainWindowControl implements Control {
 											pw.println(customer.toCSV());
 										}
 										pw.close();
+										Dialogs.showInformationDialog(
+												null,
+												AppContext
+														.getMessage("ExportOK"),
+												AppContext
+														.getMessage("ExportOK"),
+												AppContext
+														.getMessage("TravelbasysManager"));
 									} else if (ext == ".mdb") {
 										outputFile = new File(outputFile
 												.getAbsolutePath() + ext);
@@ -163,6 +171,14 @@ public class MainWindowControl implements Control {
 													customer.getPostalcode(),
 													customer.getEmail());
 										}
+										Dialogs.showInformationDialog(
+												null,
+												AppContext
+														.getMessage("ExportOK"),
+												AppContext
+														.getMessage("ExportOK"),
+												AppContext
+														.getMessage("TravelbasysManager"));
 									}
 								} catch (Exception e) {
 									e.printStackTrace();

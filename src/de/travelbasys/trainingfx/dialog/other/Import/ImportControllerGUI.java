@@ -80,15 +80,15 @@ public class ImportControllerGUI implements Initializable,
 						resources.getString("TravelbasysManager"));
 			} else {
 				Dialogs.showInformationDialog(null,
-						"Keine neuen Daten gefunden.");
+						AppContext.getMessage("NoNewData"));
 			}
 		} catch (CustomerDaoException e) {
-			Dialogs.showErrorDialog(null, "Tabelle ist leer.");
+			Dialogs.showErrorDialog(null, AppContext.getMessage("TableIsEmpty"));
 		} catch (IllegalArgumentException e) {
 			try {
-				Dialogs.showErrorDialog(null, "Datensatz "
-						+ Dao.getDAO().getImportResultSet().getRow()
-						+ " ist im Eimer.");
+				Dialogs.showErrorDialog(null, AppContext.getMessage("Record")
+						+ " " + Dao.getDAO().getImportResultSet().getRow()
+						+ AppContext.getMessage("Damage") + ".");
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
