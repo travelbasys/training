@@ -36,6 +36,11 @@ public class ImportControllerGUI implements Initializable,
 	private static AnchorPane root;
 	private static List<String> tables;
 
+	/**
+	 * Diese Methode Initialisiert den Controller der Import Klasse, indem Sie
+	 * listener für die Informationen, die für das Importieren einer csv-Datei
+	 * oder mdb-Datei(Access Datenbank) benötigt werden.
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {

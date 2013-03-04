@@ -15,6 +15,12 @@ import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
 
+/**
+ * Diese Klasse repräsentiert den View des MainWindow's(Des Haupt Fenster's)
+ * 
+ * @author tba
+ * 
+ */
 public class MainWindowView implements View, ConfigurationListener {
 
 	private Stage primaryStage;
@@ -121,6 +127,10 @@ public class MainWindowView implements View, ConfigurationListener {
 		return aboutItem;
 	}
 
+	/**
+	 * Diese Methode erzeugt alle nötigen Elemente, die für das Hauptfenster der
+	 * Anwendung benötigt werden
+	 */
 	public void init() {
 
 		Configuration.addConfigurationListener(this);
@@ -206,6 +216,10 @@ public class MainWindowView implements View, ConfigurationListener {
 				.setValue(primaryStage.getScene().getWidth());
 	}
 
+	/**
+	 * Diese Methode zeigt Das Hauptfenster, welches nun dem Benutzer zur
+	 * verfügung steht
+	 */
 	@Override
 	public void run() {
 		primaryStage.show();
@@ -215,6 +229,10 @@ public class MainWindowView implements View, ConfigurationListener {
 		return root;
 	}
 
+	/**
+	 * Diese Methode ist für das setzen der Internationalen Ausgabe Texte
+	 * zuständig wenn der Benutzer die Sprache ändert.
+	 */
 	@Override
 	public void handleConfigurationEvent(ConfigurationEvent e) {
 

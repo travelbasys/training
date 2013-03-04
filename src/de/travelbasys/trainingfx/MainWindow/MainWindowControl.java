@@ -38,6 +38,13 @@ import de.travelbasys.trainingfx.dialog.customer.update2.CustomerUpdate2DialogGU
 import de.travelbasys.trainingfx.dialog.other.ChangeConfiguration.ChangeConfigurationDialogGUI;
 import de.travelbasys.trainingfx.dialog.other.Import.ImportDialogGUI;
 
+/**
+ * Diese Klasse repräsentiert die oberste instanz der gesamten
+ * Benutzeroberfläche.
+ * 
+ * @author tba
+ * 
+ */
 public class MainWindowControl implements Control {
 
 	private MainWindowView view;
@@ -48,18 +55,31 @@ public class MainWindowControl implements Control {
 		this.model = (MainWindowModel) model;
 	}
 
+	/**
+	 * Diese Methode Initialisiert den Controller der MainWindow Klasse, indem
+	 * Sie listener für jede mögliche Menü interaktion anlegt. Mit hilfe dieser
+	 * Methode wird die Benutzeroberfläche nutzbar.
+	 */
 	public void init(View view) {
 		this.view = (MainWindowView) view;
 
 		// Setze EventHandler für Exit-Menüpunkt
 		this.view.getExitItem().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
+			/**
+			 * Der Eventhandler des "ExitItems" welcher die Anwendung beendet.
+			 * 
+			 */
 			public void handle(ActionEvent e) {
 				Dao.getDAO().terminate();
 				System.exit(0);
 			}
 		});
-
+		/**
+		 * Der Eventhandler des "ImportingItems" welcher den ImportDialog
+		 * aufruft.
+		 * 
+		 */
 		this.view.getImportingItem().setOnAction(
 				new EventHandler<ActionEvent>() {
 
@@ -72,7 +92,11 @@ public class MainWindowControl implements Control {
 
 		this.view.getExportingItem().setOnAction(
 				new EventHandler<ActionEvent>() {
-
+					/**
+					 * Der Eventhandler des "ExportingItems" welcher den
+					 * ExportDialog aufruft.
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent arg0) {
 						String pattern = AppContext.getMessage("CSVPattern");
@@ -189,6 +213,11 @@ public class MainWindowControl implements Control {
 				});
 		this.view.getCustomerCreateItem().setOnAction(
 				new EventHandler<ActionEvent>() {
+					/**
+					 * Der Eventhandler des "CustomerCreateItems" welcher den
+					 * CustomerCreateDialog aufruft.
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent e) {
 						Dialog d = new CustomerCreate2DialogGUI(
@@ -199,7 +228,11 @@ public class MainWindowControl implements Control {
 
 		this.view.getCustomerShowItem().setOnAction(
 				new EventHandler<ActionEvent>() {
-
+					/**
+					 * Der Eventhandler des "CustomerShowItems" welcher den
+					 * CustomerShowDialog aufruft.
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent e) {
 
@@ -212,6 +245,11 @@ public class MainWindowControl implements Control {
 
 		this.view.getCustomerEditItem().setOnAction(
 				new EventHandler<ActionEvent>() {
+					/**
+					 * Der Eventhandler des "CustomerEditItems" welcher den
+					 * CustomerEditDialog aufruft.
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent e) {
 						// "Standard"
@@ -227,7 +265,11 @@ public class MainWindowControl implements Control {
 
 		this.view.getCustomerDeleteItem().setOnAction(
 				new EventHandler<ActionEvent>() {
-
+					/**
+					 * Der Eventhandler des "CustomerDeleteItems" welcher den
+					 * CustomerDeleteDialog aufruft.
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent e) {
 						Dialog d = new CustomerDelete2DialogGUI(
@@ -237,14 +279,22 @@ public class MainWindowControl implements Control {
 				});
 
 		this.view.getLotteryItem().setOnAction(new EventHandler<ActionEvent>() {
-
+			/**
+			 * Der Eventhandler des "LotteryItems" welcher den LotteryDialog
+			 * aufruft.
+			 * 
+			 */
 			@Override
 			public void handle(ActionEvent e) {
 			}
 		});
 
 		this.view.getAboutItem().setOnAction(new EventHandler<ActionEvent>() {
-
+			/**
+			 * Der Eventhandler des "AboutItems" welcher den AboutDialog
+			 * aufruft.
+			 * 
+			 */
 			@Override
 			public void handle(ActionEvent e) {
 				Dialog d = new AboutDialogGUI();
@@ -254,7 +304,11 @@ public class MainWindowControl implements Control {
 
 		this.view.getCustomerListItem().setOnAction(
 				new EventHandler<ActionEvent>() {
-
+					/**
+					 * Der Eventhandler des "CustomerListItems" welcher den
+					 * CustomerListDialog aufruft.
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent e) {
 						Dialog d = new CustomerListDialogGUI(
@@ -265,7 +319,11 @@ public class MainWindowControl implements Control {
 
 		this.view.getChangeLanguage1Item().setOnAction(
 				new EventHandler<ActionEvent>() {
-
+					/**
+					 * Der Eventhandler des "ChangeLanguage1Items" welcher die
+					 * Sprache auf Deutsch ändert(nur während der Laufzeit).
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent e) {
 						Config.updateLanguage(new Locale("de"));
@@ -277,7 +335,11 @@ public class MainWindowControl implements Control {
 
 		this.view.getChangeLanguage2Item().setOnAction(
 				new EventHandler<ActionEvent>() {
-
+					/**
+					 * Der Eventhandler des "ChangeLanguage2Items" welcher die
+					 * Sprache auf Englisch ändert(nur während der Laufzeit).
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent e) {
 						Config.updateLanguage(new Locale("en"));
@@ -287,7 +349,12 @@ public class MainWindowControl implements Control {
 
 		this.view.getChangeDB1Item().setOnAction(
 				new EventHandler<ActionEvent>() {
-
+					/**
+					 * Der Eventhandler des "ChangeDB1Items" welcher den
+					 * Datenbanktyp auf txt-Datei ändert(nur während der
+					 * Laufzeit).
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent event) {
 						try {
@@ -307,7 +374,12 @@ public class MainWindowControl implements Control {
 				});
 		this.view.getChangeDB2Item().setOnAction(
 				new EventHandler<ActionEvent>() {
-
+					/**
+					 * Der Eventhandler des "ChangeDB2Items" welcher den
+					 * Datenbanktyp auf MySQL-Datenbank ändert(nur während der
+					 * Laufzeit).
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent event) {
 						try {
@@ -326,7 +398,12 @@ public class MainWindowControl implements Control {
 				});
 		this.view.getChangeDB3Item().setOnAction(
 				new EventHandler<ActionEvent>() {
-
+					/**
+					 * Der Eventhandler des "ChangeDB3Items" welcher den
+					 * Datenbanktyp auf mdb-Datei(Access-Datenbank) ändert(nur
+					 * während der Laufzeit).
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent event) {
 						try {
@@ -346,7 +423,11 @@ public class MainWindowControl implements Control {
 
 		this.view.getConfigurationItem().setOnAction(
 				new EventHandler<ActionEvent>() {
-
+					/**
+					 * Der Eventhandler des "ChangeConfigurationItems" welcher
+					 * den ChangeConfigurationDialog aufruft.
+					 * 
+					 */
 					@Override
 					public void handle(ActionEvent e) {
 						Dialog d = new ChangeConfigurationDialogGUI();

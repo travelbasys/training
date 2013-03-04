@@ -5,6 +5,13 @@ import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.Configuration;
 
+/**
+ * Diese Klasse repräsentiert den MainWindow Dialog, welcher für das
+ * initialisieren der Hauptoberfläche zuständig ist.
+ * 
+ * @author tba
+ * 
+ */
 public class MainWindowDialog implements Dialog {
 
 	private MainWindowModel model;
@@ -17,6 +24,9 @@ public class MainWindowDialog implements Dialog {
 		control = new MainWindowControl(model);
 	}
 
+	/**
+	 * Diese Methode repräsentiert den Dialog des MainWindow's
+	 */
 	public void run() {
 		int dbtype;
 		try {

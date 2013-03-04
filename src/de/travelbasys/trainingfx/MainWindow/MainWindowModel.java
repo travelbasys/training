@@ -7,6 +7,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import de.travelbasys.training.framework.Model;
 
+/**
+ * Diese Klasse repräsentiert das Model des MainWindow's.
+ * 
+ * @author tba
+ * 
+ */
 public class MainWindowModel implements Model {
 
 	private Stage primaryStage;

@@ -19,6 +19,14 @@ import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.AppContext;
 import de.travelbasys.training.util.Config;
 
+/**
+ * Diese Klasse ist für den Dialog mit dem Benutzer verantwortlich, anhand
+ * dessen eingaben, die mit Hilfe eines JFilechooser-Objekts erfasst werden eine
+ * csv-Datei oder eine mdb-Datei in die aktuelle Datenbank Importiert wird.
+ * 
+ * @author tba
+ * 
+ */
 public class ImportDialogGUI implements Dialog {
 
 	private String PATH = "/de/travelbasys/trainingfx/dialog/other/Import/";
@@ -27,6 +35,11 @@ public class ImportDialogGUI implements Dialog {
 	public ImportDialogGUI() {
 	}
 
+	/**
+	 * Diese Methode ist für das einlesen der Benutzereingaben und Importieren
+	 * der gewünschten Datei verantwortlich, derzeit möglich (csv-Datei &
+	 * mdb-Datei)
+	 */
 	@Override
 	public void run() {
 

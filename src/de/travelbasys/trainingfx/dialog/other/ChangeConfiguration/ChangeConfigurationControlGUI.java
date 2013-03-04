@@ -35,6 +35,9 @@ public class ChangeConfigurationControlGUI implements Control {
 	private Properties config;
 	private Text languagestr;
 
+	/**
+	 * Initialisiert den Controller des ChangeConfiguration Dialogs
+	 */
 	@SuppressWarnings("unchecked")
 	public void init(Model model, View view) {
 		this.view = (ChangeConfigurationViewGUI) view;
@@ -61,7 +64,12 @@ public class ChangeConfigurationControlGUI implements Control {
 
 		this.view.getDatabaseNameField().textProperty()
 				.addListener(new ChangeListener<String>() {
-
+					/**
+					 * Dies ist der listener für das Feld des Datenbanknamens
+					 * der prüft ob dieser sich ändert und setzt diesen im
+					 * Model.
+					 * 
+					 */
 					@Override
 					public void changed(
 							ObservableValue<? extends String> observable,
@@ -80,7 +88,11 @@ public class ChangeConfigurationControlGUI implements Control {
 
 		this.view.getDatabaseTypeComboBox().valueProperty()
 				.addListener(new ChangeListener<Text>() {
-
+					/**
+					 * Dies ist der listener für das Feld des Datenbanktyps der
+					 * prüft ob dieser sich ändert und setzt diesen im Model.
+					 * 
+					 */
 					@Override
 					public void changed(
 							ObservableValue<? extends Text> observable,
@@ -103,7 +115,11 @@ public class ChangeConfigurationControlGUI implements Control {
 
 		this.view.getLanguageComboBox().valueProperty()
 				.addListener(new ChangeListener<Text>() {
-
+					/**
+					 * Dies ist der listener für das Feld der Sprache der prüft
+					 * ob dieser sich ändert und setzt diesen im Model.
+					 * 
+					 */
 					@Override
 					public void changed(
 							ObservableValue<? extends Text> observable,
@@ -121,7 +137,11 @@ public class ChangeConfigurationControlGUI implements Control {
 
 		this.view.getStylesheetComboBox().valueProperty()
 				.addListener(new ChangeListener<String>() {
-
+					/**
+					 * Dies ist der listener für das Feld des Stylesheets der
+					 * prüft ob dieser sich ändert und setzt diesen im Model.
+					 * 
+					 */
 					@Override
 					public void changed(
 							ObservableValue<? extends String> observable,
@@ -137,7 +157,13 @@ public class ChangeConfigurationControlGUI implements Control {
 				});
 
 		this.view.getSaveButton().setOnAction(new EventHandler<ActionEvent>() {
-
+			/**
+			 * Dies ist der listener für den Save Button der prüft ob dieser
+			 * angeklickt wurde und dann alle im Konfigurationsfenster
+			 * getätigten Einstellungen übernimmt und in der rbsjava.ini
+			 * speichert.
+			 * 
+			 */
 			@Override
 			public void handle(ActionEvent event) {
 

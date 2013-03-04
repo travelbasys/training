@@ -26,6 +26,14 @@ import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
 
+/**
+ * Diese Klasse ist der View für den ChangeConfiguration Dialog der alle
+ * erforderlichen Elemente enthält um Ein Konfigurationsfenster Grafisch
+ * darzustellen.
+ * 
+ * @author tba
+ * 
+ */
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 
@@ -59,7 +67,9 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 	public ChangeConfigurationViewGUI(Model model) {
 		this.model = (ChangeConfigurationModelGUI) model;
 	}
-
+/**
+ * Diese Methode Initialisiert die Komponenten die Für das darstellen des Konfigurationsfensters benötigt werden.
+ */
 	public void init() {
 
 		Configuration.addConfigurationListener(this);
