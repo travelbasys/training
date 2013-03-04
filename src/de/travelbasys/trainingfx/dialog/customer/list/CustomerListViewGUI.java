@@ -34,6 +34,10 @@ public class CustomerListViewGUI implements View, ConfigurationListener {
 		this.root = root;
 	}
 
+	/**
+	 * Diese Methode erstellt eine Tabelle mit festgelegten Spatenüberschriften
+	 * die für das anzeigen Der Customer Objekte erforderlich sind.
+	 */
 	public void init() {
 
 		Configuration.addConfigurationListener(this);

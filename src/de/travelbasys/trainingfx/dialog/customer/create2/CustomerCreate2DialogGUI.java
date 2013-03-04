@@ -15,12 +15,16 @@ public class CustomerCreate2DialogGUI implements Dialog {
 		this.root = root;
 	}
 
+	/**
+	 * Diese Methode lädt eine FXML Datei die die Oberfläche enthält die für das
+	 * anlegen eines Nutzers erforderlich ist und setzt diese im Hauptfenseter.
+	 */
 	@Override
 	public void run() {
 		try {
-			BorderPane updatePane = FXMLLoader.load(
+			BorderPane createPane = FXMLLoader.load(
 					getClass().getResource(PATH + FILE), Config.BUNDLE);
-			root.setCenter(updatePane);
+			root.setCenter(createPane);
 		} catch (Exception e) {
 		}
 	}

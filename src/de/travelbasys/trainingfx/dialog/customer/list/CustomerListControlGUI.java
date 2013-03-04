@@ -17,6 +17,10 @@ public class CustomerListControlGUI implements Control {
 	public CustomerListControlGUI() {
 	}
 
+	/**
+	 * Diese Methode lädt alle Customer Objekte aus der Datenbank und setzt
+	 * diese ins Model und in einer Tabelle des Views.
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void init(Model model, View view) {

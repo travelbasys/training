@@ -4,6 +4,11 @@ import javafx.collections.ObservableList;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Model;
 
+/**
+ * Das Model des Create Dialogs welches Daten für die verarbeitung innerhalb des
+ * Create Dialogs enthält.
+ * 
+ */
 public class CustomerCreate2ModelGUI implements Model {
 
 	private ObservableList<Customer> data;
@@ -96,6 +101,12 @@ public class CustomerCreate2ModelGUI implements Model {
 		return !searchIsInvalid();
 	}
 
+	/**
+	 * Eine Methode die für die prüfung ob ein Attribut des Customers leer oder
+	 * 0 ist benötigt wird.
+	 * 
+	 * @return
+	 */
 	public boolean sendIsInvalid() {
 		return lastname.isEmpty() || firstname.isEmpty() || birthdate.isEmpty()
 				|| age == 0 || adress.isEmpty() || postalcode.isEmpty()

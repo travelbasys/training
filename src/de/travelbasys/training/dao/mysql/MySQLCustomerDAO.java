@@ -384,7 +384,10 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		fr.close();
 		terminate();
 	}
-
+	/**
+	 * Diese Methode ist für das einlesen der Tabellennamen einer MDB-Datei
+	 * (.mdb), anhand des Absoluten Pfads verantwortlich und
+	 */
 	@Override
 	public void importMDB(String absolutePath) throws IOException,
 			CustomerDaoException {

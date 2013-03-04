@@ -14,7 +14,10 @@ public class CustomerUpdate2DialogGUI implements Dialog {
 	public CustomerUpdate2DialogGUI(BorderPane root) {
 		this.root = root;
 	}
-
+	/**
+	 * Diese Methode lädt eine FXML Datei die die Oberfläche enthält die für das
+	 * ändern eines Customers erforderlich ist und setzt diese im Hauptfenseter.
+	 */
 	@Override
 	public void run() {
 		try {

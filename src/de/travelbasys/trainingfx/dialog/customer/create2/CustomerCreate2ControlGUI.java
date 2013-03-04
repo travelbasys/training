@@ -84,6 +84,10 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	private static Button calendarButton;
 	private static DateChooser dateChooser;
 
+	/**
+	 * Diese Methode Initialisiert den Controller der Create Klasse, indem Sie
+	 * listener für die Atribute eines Customer Objekts anlegt
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -93,7 +97,11 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		sendButton.setDisable(true);
 
 		lastnameField.textProperty().addListener(new ChangeListener<String>() {
-
+			/**
+			 * Dies ist der listener für das Feld des Nachnamens der prüft ob
+			 * dieser sich ändert und setzt diesen im Model.
+			 * 
+			 */
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
@@ -105,7 +113,11 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		});
 
 		firstnameField.textProperty().addListener(new ChangeListener<String>() {
-
+			/**
+			 * Dies ist der listener für das Feld des Vornamens der prüft ob
+			 * dieser sich ändert und setzt diesen im Model.
+			 * 
+			 */
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
@@ -117,7 +129,13 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		});
 
 		birthdateField.textProperty().addListener(new ChangeListener<String>() {
-
+			/**
+			 * Dies ist der listener für das Feld des Geburtsdatums der die
+			 * Eingabe eines Gültigen Datums Prüft und je nach eingegebenem
+			 * Geburtsdatum das Alter dieses Geburtsdatums in das dafür
+			 * vorhergesehene Feld einträgt
+			 * 
+			 */
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
@@ -149,7 +167,13 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		});
 
 		ageField.textProperty().addListener(new ChangeListener<String>() {
-
+			/**
+			 * Dies ist der listener für das Feld des Alters der prüft ob es
+			 * sich um einen gültigen wert handelt und setzt diesen im Model,
+			 * falls dieser Wert ungültig ist wird ein Hinweis neben dem
+			 * Text-feld eingeblendet.
+			 * 
+			 */
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
 				TextField field = ageField;
@@ -180,7 +204,11 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		});
 
 		adressField.textProperty().addListener(new ChangeListener<String>() {
-
+			/**
+			 * Dies ist der listener für das Feld der Adresse der prüft ob
+			 * dieser sich ändert und setzt diesen im Model.
+			 * 
+			 */
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
@@ -190,7 +218,13 @@ public class CustomerCreate2ControlGUI implements Initializable,
 				updateSendButton();
 			}
 		});
-
+		/**
+		 * Dies ist der listener für das Feld der Postleitzahl der prüft ob es
+		 * sich um einen gültigen wert handelt und setzt diesen im Model, falls
+		 * dieser Wert ungültig ist wird ein Hinweis neben dem Text-feld
+		 * eingeblendet.
+		 * 
+		 */
 		postalcodeField.textProperty().addListener(
 				new ChangeListener<String>() {
 
@@ -226,7 +260,11 @@ public class CustomerCreate2ControlGUI implements Initializable,
 				});
 
 		emailField.textProperty().addListener(new ChangeListener<String>() {
-
+			/**
+			 * Dies ist der listener für das Feld der E-Mail-Adresse der prüft
+			 * ob dieser sich ändert und setzt diesen im Model.
+			 * 
+			 */
 			@Override
 			public void changed(ObservableValue<? extends String> observable,
 					String oldValue, String newValue) {
@@ -323,11 +361,18 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		emailField.clear();
 	}
 
+	/**
+	 * Diese Methode ist für das Deaktivieren des Senden Buttons verantwortlich.
+	 */
 	public void updateSendButton() {
 		sendButton.setDisable(model.sendIsInvalid());
 
 	}
 
+	/**
+	 * Diese Methode ist für das setzen der Internationalen Ausgabe Texte
+	 * zuständig wenn der Benutzer die Sprache ändert.
+	 */
 	@Override
 	public void handleConfigurationEvent(ConfigurationEvent e) {
 

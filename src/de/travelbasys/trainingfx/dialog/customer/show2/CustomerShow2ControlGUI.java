@@ -39,7 +39,10 @@ public class CustomerShow2ControlGUI implements Initializable,
 	private static TextField customerIDField;
 	@FXML
 	private static Button searchButton;
-
+	/**
+	 * Diese Methode Initialisiert den Controller der Show Klasse, indem Sie
+	 * listener für die Atribute eines Customer Objekts anlegt
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		model = new CustomerShow2ModelGUI();
@@ -51,7 +54,12 @@ public class CustomerShow2ControlGUI implements Initializable,
 
 		customerIDField.textProperty().addListener(
 				new ChangeListener<String>() {
-
+					/**
+					 * Dies ist der listener für das Feld der Customer ID der
+					 * prüft ob dieser gültig ist, sich ändert und setzt diesen
+					 * im Model.
+					 * 
+					 */
 					public void changed(
 							ObservableValue<? extends String> observable,
 							String oldValue, String newValue) {
@@ -146,7 +154,10 @@ public class CustomerShow2ControlGUI implements Initializable,
 		}
 
 	}
-
+	/**
+	 * Diese Methode ist für das setzen der Internationalen Ausgabe Texte
+	 * zuständig wenn der Benutzer die Sprache ändert.
+	 */
 	@Override
 	public void handleConfigurationEvent(ConfigurationEvent e) {
 

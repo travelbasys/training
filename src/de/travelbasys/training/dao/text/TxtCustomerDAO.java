@@ -317,7 +317,11 @@ public class TxtCustomerDAO implements CustomerDAO {
 	@Override
 	public void OpenConnection() {
 	}
-
+	
+	/**
+	 * Diese Methode ist für das einlesen der Tabellennamen einer MDB-Datei
+	 * (.mdb), anhand des Absoluten Pfads verantwortlich und
+	 */
 	@Override
 	public void importMDB(String absolutePath) throws IOException,
 			CustomerDaoException {
