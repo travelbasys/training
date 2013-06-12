@@ -1,5 +1,7 @@
 package de.travelbasys.training.dialog.customer.create;
 
+import java.util.Date;
+
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
@@ -46,11 +48,11 @@ public class CustomerCreateControl extends AbstractControl {
 			}
 		});
 
-		uic = this.view.getCustomerAgeComponent();
+		uic = this.view.getCustomerBirthdateComponent();
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
-				checkAge(value);
-				CustomerCreateControl.this.model.setAge((Integer) value);
+				checkBirthdate(value);
+				CustomerCreateControl.this.model.setBirthdate((Date) value);
 			}
 
 		});
@@ -78,7 +80,11 @@ public class CustomerCreateControl extends AbstractControl {
 		});
 	}
 
-	private void checkAge(Object value) throws Exception {
+	@TODO
+	private void checkBirthdate(Object value) throws Exception {
+
+		// TODO: Formatterprüfung.
+
 		int age = (Integer) value;
 		if (age < 0 || age > 150) {
 			throw new Exception("AgeNotInRangeErr");

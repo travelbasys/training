@@ -23,8 +23,8 @@ public class CustomerCreateView extends ArrayList<UiComponent> implements View {
 	private static final String CUSTOMERFIRSTNAME = "FirstName";
 	private UiComponent customerFirstnameComponent;
 
-	private static final String CUSTOMERAGE = "Age";
-	private UiComponent customerAgeComponent;
+	private static final String CUSTOMERBIRTHDATE = "Birthdate";
+	private UiComponent customerBirthdateComponent;
 
 	private static final String CUSTOMERADRESS = "Adress";
 	private UiComponent customerAdressComponent;
@@ -43,8 +43,8 @@ public class CustomerCreateView extends ArrayList<UiComponent> implements View {
 		return customerFirstnameComponent;
 	}
 
-	public AbstractUiComponent getCustomerAgeComponent() {
-		return customerAgeComponent;
+	public AbstractUiComponent getCustomerBirthdateComponent() {
+		return customerBirthdateComponent;
 	}
 
 	public AbstractUiComponent getCustomerAdressComponent() {
@@ -80,10 +80,10 @@ public class CustomerCreateView extends ArrayList<UiComponent> implements View {
 		customerFirstnameComponent.setValue(this.model.getFirstname());
 		add(customerFirstnameComponent);
 
-		customerAgeComponent = new UiComponent();
-		customerAgeComponent.setName(CUSTOMERAGE);
-		customerAgeComponent.setValue(this.model.getAge());
-		add(customerAgeComponent);
+		customerBirthdateComponent = new UiComponent();
+		customerBirthdateComponent.setName(CUSTOMERBIRTHDATE);
+		customerBirthdateComponent.setValue(this.model.getBirthdate());
+		add(customerBirthdateComponent);
 
 		customerAdressComponent = new UiComponent();
 		customerAdressComponent.setName(CUSTOMERADRESS);
