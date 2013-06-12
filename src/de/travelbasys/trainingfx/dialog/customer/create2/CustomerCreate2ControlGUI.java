@@ -83,6 +83,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	@FXML
 	private static Button calendarButton;
 	private static DateChooser dateChooser;
+	private SimpleDateFormat sdf;
 
 	/**
 	 * Diese Methode Initialisiert den Controller der Create Klasse, indem Sie
@@ -95,6 +96,11 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		this.resources = resources;
 		Configuration.addConfigurationListener(this);
 		sendButton.setDisable(true);
+		if (Locale.getDefault().getLanguage() == ("de")) {
+			sdf = new SimpleDateFormat("dd.MM.yyyy");
+		} else {
+			sdf = new SimpleDateFormat("yyyy-MM-dd");
+		}
 
 		lastnameField.textProperty().addListener(new ChangeListener<String>() {
 			/**
@@ -148,6 +154,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 						.setBirthdate(birthdateField.getText());
 
 				try {
+					System.out.println(newValue);
 					arg1 = Datum.getFormattedDate(newValue);
 					arg2 = newValue;
 					arg3 = Datum.getFormattedString(arg1);
@@ -287,14 +294,7 @@ public class CustomerCreate2ControlGUI implements Initializable,
 		popup.setX(300);
 		popup.setY(250);
 		popup.setOnHiding(new EventHandler<WindowEvent>() {
-
 			public void handle(WindowEvent event) {
-				SimpleDateFormat sdf;
-				if (Locale.getDefault().getLanguage() == ("de")) {
-					sdf = new SimpleDateFormat("dd.MM.yyyy");
-				} else {
-					sdf = new SimpleDateFormat("yyyy-MM-dd");
-				}
 				birthdateField.setText(sdf.format(dateChooser.getDate()));
 			}
 		});
@@ -366,7 +366,6 @@ public class CustomerCreate2ControlGUI implements Initializable,
 	 */
 	public void updateSendButton() {
 		sendButton.setDisable(model.sendIsInvalid());
-
 	}
 
 	/**

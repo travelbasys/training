@@ -105,6 +105,7 @@ public class MainMenuControl {
 				case 9:
 					MainMenuControl.this.model
 							.setDialog(new ChangeParamDialog());
+					break;
 				case 10:
 					// Wir müssen das Dialogobjekt lokal speichern,
 					// d.h. nicht nur im Model,

@@ -59,8 +59,6 @@ public class Datum {
 				date = isoDateFormat.parse(value);
 			} else if (matcher2.matches()) {
 				date = gerDateFormat.parse(value);
-			} else {
-				throw new Exception("Invalid Date Input");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

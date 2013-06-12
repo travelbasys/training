@@ -121,7 +121,6 @@ public class TxtCustomerDAO implements CustomerDAO {
 			oos.writeObject(internalDB);
 			internalCustomers.clear();
 			internalDB.clear();
-
 			oos.close();
 		} catch (Exception e) {
 		}
@@ -158,7 +157,6 @@ public class TxtCustomerDAO implements CustomerDAO {
 	 */
 	@Override
 	public void create(Customer customer) throws CustomerDaoException {
-		init(FILE);
 		getExisting(customer);
 		int customerid = createNewId();
 		Customer c = new Customer(customerid, customer.getLastName(),
@@ -317,7 +315,7 @@ public class TxtCustomerDAO implements CustomerDAO {
 	@Override
 	public void OpenConnection() {
 	}
-	
+
 	/**
 	 * Diese Methode ist für das einlesen der Tabellennamen einer MDB-Datei
 	 * (.mdb), anhand des Absoluten Pfads verantwortlich und
