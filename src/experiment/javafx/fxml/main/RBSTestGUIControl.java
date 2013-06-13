@@ -1,7 +1,5 @@
 package experiment.javafx.fxml.main;
 
-import java.util.Date;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import de.travelbasys.training.framework.Control;
@@ -20,7 +18,7 @@ public class RBSTestGUIControl implements Control {
 	private RBSTestGUIView view;
 	@FXML
 	private static TextField dateField;
-	private Date birthdate;
+
  
 	
 	public RBSTestGUIControl() {

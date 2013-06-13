@@ -10,7 +10,6 @@ public class CustomerAttributesUpdateModel implements Model {
 
 	private String lastName;
 	private String firstName;
-	private int age;
 	private String adress;
 	private String postalcode;
 	private String eMail;

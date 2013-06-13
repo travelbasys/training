@@ -29,8 +29,8 @@ public class ComplexDateFormater {
 
 		String datestr = "2012-9-31";
 
-		Pattern gerPattern = Pattern
-				.compile("([0-2]?[0-9]|30|31)\\.([0]?[0-9]|10|11|12)\\.[0-9][0-9][0-9][0-9]");
+//		Pattern gerPattern = Pattern
+//				.compile("([0-2]?[0-9]|30|31)\\.([0]?[0-9]|10|11|12)\\.[0-9][0-9][0-9][0-9]");
 		Pattern isoPattern = Pattern
 				.compile("[0-9][0-9][0-9][0-9]\\-([0]?[0-9]|10|11|12)\\-([0-2]?[0-9]|30|31)");
 
