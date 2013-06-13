@@ -1,11 +1,10 @@
 package de.travelbasys.training.dialog.customer.create;
 
-import java.util.Date;
-
 import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AgeCalc;
 import de.travelbasys.training.util.Datum;
 
 /**
@@ -20,7 +19,7 @@ public class CustomerCreateControl extends AbstractControl {
 
 	private CustomerCreateModel model;
 	private CustomerCreateView view;
-	private Date birthdate;
+
 	/**
 	 * Initialisiert den Controller mit Model und View des Packages.
 	 * 
@@ -53,7 +52,7 @@ public class CustomerCreateControl extends AbstractControl {
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
 				checkBirthdate(value);
-				CustomerCreateControl.this.model.setBirthdate((Date) birthdate);
+				CustomerCreateControl.this.model.setBirthdate((String) value);
 			}
 
 		});
@@ -81,21 +80,25 @@ public class CustomerCreateControl extends AbstractControl {
 		});
 	}
 
-
 	private void checkBirthdate(Object value) throws Exception {
-
-		// TODO: Formatterprüfung.
-		birthdate = Datum.getFormattedDate((String) value);
-	
+		int age = 0;
+		try {
+			age = AgeCalc.getAge(Datum.getFormattedDate((String) value));
+			if (age < 1 || age > 150) {
+				throw new Exception("AgeNotInRangeErr");
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("IllegalBirthdateFormat");
+		}
 	}
 
 	private void checkPostalcode(Object value) throws Exception {
 		try {
 			String postalcode = (String) value;
 			int postalcodetemp = Integer.parseInt(postalcode);
-			if (postalcodetemp > 0 && (postalcode.length() == 5)) {
-			} else
+			if (postalcodetemp < 1 || (postalcode.length() != 5)) {
 				throw new Exception("PostalNotInRangeErr");
+			}
 		} catch (NumberFormatException e) {
 			throw new Exception("IllegalNumberFormat");
 		}
@@ -103,7 +106,6 @@ public class CustomerCreateControl extends AbstractControl {
 	}
 
 	private void checkString(Object value) throws Exception {
-
 		String s = (String) value;
 		if (s.isEmpty()) {
 			throw new Exception("EmptyFieldErr");

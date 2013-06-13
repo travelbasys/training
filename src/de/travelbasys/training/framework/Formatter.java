@@ -7,7 +7,5 @@ public interface Formatter {
 			return s;
 		}
 	};
-
 	Object parse(String nextLine) throws Exception;
-
 }

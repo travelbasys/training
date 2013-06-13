@@ -1,7 +1,5 @@
 package de.travelbasys.training.dialog.customer.create;
 
-import java.util.Date;
-
 import de.travelbasys.training.framework.Model;
 
 /**
@@ -14,7 +12,7 @@ public class CustomerCreateModel implements Model {
 
 	private String Lastname;
 	private String Firstname;
-	private Date Birthdate;
+	private String Birthdate;
 	private String Adress;
 	private String Postalcode;
 	private String EMail;
@@ -35,12 +33,12 @@ public class CustomerCreateModel implements Model {
 		this.Firstname = Firstname;
 	}
 
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return Birthdate;
 	}
 
-	public void setBirthdate(Date Birthdate) {
-		this.Birthdate = Birthdate;
+	public void setBirthdate(String value) {
+		this.Birthdate = value;
 	}
 
 	public String getAdress() {

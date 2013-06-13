@@ -4,6 +4,8 @@ import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.AgeCalc;
+import de.travelbasys.training.util.Datum;
 
 //TODO muss überarbeitet werden
 
@@ -51,9 +53,9 @@ public class CustomerAttributesUpdateControl extends AbstractControl {
 		uic.setControl(new AbstractControl() {
 			// Speichert den gegebenen Wert als Birthdate im Model.
 			public void handleInput(Object value) throws Exception {
-				checkString(value);
+				checkBirthdate(value);
 				CustomerAttributesUpdateControl.this.model
-						.setBirthdate(((String) value));
+						.setBirthdate((String) value);
 			}
 		});
 
@@ -88,10 +90,16 @@ public class CustomerAttributesUpdateControl extends AbstractControl {
 		});
 	}
 
-	private void checkAge(Object value) throws Exception {
-		int age = (Integer) value;
-		if (age < 0 || age > 150) {
-			throw new Exception("AgeNotInRangeErr");
+	private void checkBirthdate(Object value) throws Exception {
+		// TODO: Formatterprüfung.
+		int age = 0;
+		try {
+			age = AgeCalc.getAge(Datum.getFormattedDate((String) value));
+			if (age < 1 || age > 150) {
+				throw new Exception("AgeNotInRangeErr");
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("IllegalBirthdateFormat");
 		}
 	}
 
