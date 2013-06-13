@@ -6,6 +6,7 @@ import de.travelbasys.training.framework.AbstractControl;
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
+import de.travelbasys.training.util.Datum;
 
 /**
  * hat die Aufgabe, einen View innerhalb des ShowAndChange Dialoges zu steuern.
@@ -19,7 +20,7 @@ public class CustomerCreateControl extends AbstractControl {
 
 	private CustomerCreateModel model;
 	private CustomerCreateView view;
-
+	private Date birthdate;
 	/**
 	 * Initialisiert den Controller mit Model und View des Packages.
 	 * 
@@ -52,7 +53,7 @@ public class CustomerCreateControl extends AbstractControl {
 		uic.setControl(new AbstractControl() {
 			public void handleInput(Object value) throws Exception {
 				checkBirthdate(value);
-				CustomerCreateControl.this.model.setBirthdate((Date) value);
+				CustomerCreateControl.this.model.setBirthdate((Date) birthdate);
 			}
 
 		});
@@ -80,15 +81,12 @@ public class CustomerCreateControl extends AbstractControl {
 		});
 	}
 
-	@TODO
+
 	private void checkBirthdate(Object value) throws Exception {
 
 		// TODO: Formatterprüfung.
-
-		int age = (Integer) value;
-		if (age < 0 || age > 150) {
-			throw new Exception("AgeNotInRangeErr");
-		}
+		birthdate = Datum.getFormattedDate((String) value);
+	
 	}
 
 	private void checkPostalcode(Object value) throws Exception {

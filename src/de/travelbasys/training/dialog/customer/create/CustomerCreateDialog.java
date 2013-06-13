@@ -35,7 +35,7 @@ public class CustomerCreateDialog implements Dialog {
 			int dummyId = 0;
 			// TODO: Implementierung des Geburtstag.
 			Customer customer = new Customer(dummyId, model.getLastname(),
-					model.getFirstname(), new Date(), model.getAdress(), model.getPostalcode(), model.getEMail());
+					model.getFirstname(), model.getBirthdate(), model.getAdress(), model.getPostalcode(), model.getEMail());
 			Dao.getDAO().create(customer);
 		} catch (CustomerDaoException e) {
 			e.printcustomererr();
