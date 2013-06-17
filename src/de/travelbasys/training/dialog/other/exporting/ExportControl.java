@@ -31,13 +31,13 @@ public class ExportControl {
 				case 0:
 					return;
 				case 1:
-					Export = "CSV";
+					Export = ".csv";
 					ExportControl.this.model.setExportType(Export);
 					ExportControl.this.model
 							.setHeader("CustomerID;LastName;FirstName;Age;Adress;Postalcode;eMail");
 					break;
 				case 2:
-					Export = "ACCESS";
+					Export = ".mdb";
 					ExportControl.this.model.setExportType(Export);
 					ExportControl.this.model.setHeader("");
 					break;

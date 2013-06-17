@@ -10,9 +10,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +23,7 @@ import javafx.collections.ObservableList;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.dao.CustomerDaoException;
+import de.travelbasys.training.db.MDBConnection;
 
 /**
  * Diese Klasse repräsentiert eine "Datenbank" von {@see Customer} Objekten.
@@ -45,10 +46,15 @@ import de.travelbasys.training.dao.CustomerDaoException;
  */
 public class TxtCustomerDAO implements CustomerDAO {
 
+	private static Connection importCon = null;
+	private static String importAbsolutePath = null;
+	private static Statement statement = null;
+	private static ResultSet importResultSet = null;
+	private static int localimportcounter = 0;
 	private static String FILE;
 	private static List<Customer> internalCustomers;
 	private static List<String> tables;
-	private static int localimportid = 0;
+	private final String SELECT = "SELECT * FROM ";
 
 	private static Map<String, Object> internalDB;
 
@@ -323,24 +329,22 @@ public class TxtCustomerDAO implements CustomerDAO {
 	@Override
 	public void importMDB(String absolutePath) throws IOException,
 			CustomerDaoException {
+		importAbsolutePath = absolutePath;
+		importCon = MDBConnection.getInstance(importAbsolutePath);
 		tables = new ArrayList<String>();
+		ResultSet res;
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-			Connection con = DriverManager.getConnection(
-					"jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
-							+ absolutePath, "Administrator", "");
-
-			DatabaseMetaData meta = con.getMetaData();
-			ResultSet res = meta.getTables(null, null, null,
-					new String[] { "TABLE" });
+			DatabaseMetaData meta = importCon.getMetaData();
+			res = meta.getTables(null, null, null, new String[] { "TABLE" });
 			System.out.println("List of tables: ");
 			while (res.next()) {
 				String tableName = res.getString("TABLE_NAME");
-				System.out.println(tableName);
-
 				tables.add(tableName);
+				System.out.println(tableName);
 			}
 			res.close();
+			importCon.close();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} catch (ClassNotFoundException e2) {
@@ -355,7 +359,7 @@ public class TxtCustomerDAO implements CustomerDAO {
 
 	@Override
 	public int getImportedCustomersNumber() {
-		return localimportid;
+		return localimportcounter;
 	}
 
 	@Override
@@ -366,5 +370,34 @@ public class TxtCustomerDAO implements CustomerDAO {
 	@Override
 	public void batchUpdateSelectedMDBTable(String table)
 			throws CustomerDaoException {
+		importCon = MDBConnection.getInstance(importAbsolutePath);
+		localimportcounter = 0;
+		try {
+			statement = importCon.createStatement();
+			importResultSet = statement.executeQuery(SELECT + table + ";");
+			if (importResultSet.next()) {
+				do {
+					try {
+						Customer c = new Customer(importResultSet.getInt(1),
+								importResultSet.getString(2),
+								importResultSet.getString(3),
+								importResultSet.getDate(4),
+								importResultSet.getString(5),
+								importResultSet.getString(6),
+								importResultSet.getString(7));
+						create(c);
+						localimportcounter++;
+					} catch (CustomerDaoException e) {
+						continue;
+					}
+				} while (importResultSet.next());
+			} else {
+				throw new CustomerDaoException("");
+			}
+			importResultSet.close();
+			importCon.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

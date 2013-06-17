@@ -195,6 +195,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 
 				try {
 					arg1 = Datum.getFormattedDate(newValue);
+					System.out.println(arg1);
 					arg2 = newValue;
 					arg3 = Datum.getFormattedString(arg1);
 
