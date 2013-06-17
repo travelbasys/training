@@ -14,7 +14,7 @@ public class MDBConnection {
 					.getConnection("jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
 							+ path);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println("Could not connect to database.");
 		}
 	}
 

@@ -1,5 +1,6 @@
 package de.travelbasys.training.dialog.other.importing;
 
+import java.io.File;
 import java.io.IOException;
 
 import de.travelbasys.training.dao.CustomerDaoException;
@@ -35,7 +36,7 @@ public class ImportDialog implements Dialog {
 			return;
 		}
 		try {
-			if (model.getImportType() == "CSV") {
+			if (model.getImportType() == ".csv") {
 
 				Dao.getDAO().importCSV(
 						model.getImportName() + "." + model.getImportType());
@@ -47,11 +48,16 @@ public class ImportDialog implements Dialog {
 			// nicht implementiert
 			// da die Formatierung noch nicht geklärt ist (Header). Daher
 			// tue nichts.
-			if (model.getImportType() == "ACCESS") {
-				/*
-				 * CustomerDAO.importMDB(model.getImportName() + "." +
-				 * model.getImportType()); AppContext.println("ImportOK");
-				 */}
+			// if (model.getImportType() == ".mdb") {
+			// TODO: Fix import (SQLException / ConnectionError)
+			File inputFile = new File(model.getImportName()
+					+ model.getImportType());
+			try {
+				Dao.getDAO().importMDB(inputFile.getAbsolutePath());
+			} catch (Exception e) {
+				e.printStackTrace();
+				return;
+			}
 		} catch (CustomerDaoException c) {
 			Console.printerr(c.getMessage());
 		} catch (IOException e) {

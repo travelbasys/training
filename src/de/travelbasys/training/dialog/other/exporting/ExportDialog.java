@@ -1,7 +1,14 @@
 package de.travelbasys.training.dialog.other.exporting;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.sql.Types;
+
+import com.healthmarketscience.jackcess.ColumnBuilder;
+import com.healthmarketscience.jackcess.Database;
+import com.healthmarketscience.jackcess.Table;
+import com.healthmarketscience.jackcess.TableBuilder;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.Dao;
@@ -19,6 +26,7 @@ public class ExportDialog implements Dialog {
 	private ExportView view;
 	@SuppressWarnings("unused")
 	private ExportControl control;
+	private File outputFile = null;
 
 	public ExportDialog() {
 		model = new ExportModel();
@@ -41,13 +49,42 @@ public class ExportDialog implements Dialog {
 				PrintWriter pw = new PrintWriter(fw);
 				pw.println(model.getHeader());
 				for (Customer customer : Dao.getDAO().findAll()) {
-					AppContext.println(customer);
 					pw.println(customer.toCSV());
 				}
 				AppContext.printMessage("ExportOK");
 				pw.close();
 			} else if (model.getExportType() == ".mdb") {
-				return;
+				outputFile = new File(model.getExportName() + model.getExportType());
+				Database db = Database.create(outputFile);
+				Table newTable = new TableBuilder("tb_customer")
+						.addColumn(
+								new ColumnBuilder("customerid").setSQLType(
+										Types.INTEGER).toColumn())
+						.addColumn(
+								new ColumnBuilder("lastname").setSQLType(
+										Types.VARCHAR).toColumn())
+						.addColumn(
+								new ColumnBuilder("firstname").setSQLType(
+										Types.VARCHAR).toColumn())
+						.addColumn(
+								new ColumnBuilder("birthdate").setSQLType(
+										Types.DATE).toColumn())
+						.addColumn(
+								new ColumnBuilder("adress").setSQLType(
+										Types.VARCHAR).toColumn())
+						.addColumn(
+								new ColumnBuilder("postalcode").setSQLType(
+										Types.VARCHAR).toColumn())
+						.addColumn(
+								new ColumnBuilder("email").setSQLType(
+										Types.VARCHAR).toColumn()).toTable(db);
+				for (Customer customer : Dao.getDAO().findAll()) {
+					newTable.addRow(customer.getId(), customer.getLastName(),
+							customer.getFirstName(), customer.getBirthdate(),
+							customer.getAdress(), customer.getPostalcode(),
+							customer.getEmail());
+					AppContext.printMessage("ExportOK");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

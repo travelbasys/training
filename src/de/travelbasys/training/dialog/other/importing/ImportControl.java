@@ -31,13 +31,13 @@ public class ImportControl {
 				case 0:
 					return;
 				case 1:
-					Import = "Csvdatabase";
+					Import = ".csv";
 					ImportControl.this.model.setImportType(Import);
 					ImportControl.this.model
 							.setHeader("CustomerID;LastName;FirstName;birthdate;Age;Adress;Postalcode;eMail;updateID");
 					break;
 				case 2:
-					Import = "Accessdatabase";
+					Import = ".mdb";
 					ImportControl.this.model.setImportType(Import);
 					ImportControl.this.model.setHeader("");
 					break;
