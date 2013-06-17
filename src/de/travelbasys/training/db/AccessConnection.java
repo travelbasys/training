@@ -11,11 +11,10 @@ public class AccessConnection {
 	private AccessConnection() {
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-
 			conn = DriverManager.getConnection("jdbc:odbc:" + dbName);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println("Database not found. Please look into Help.txt");
 		}
 	}
 

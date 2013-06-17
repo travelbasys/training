@@ -1,0 +1,13 @@
+#HELP
+Welcome to the Travelbasys-Customer-Manager Help.
+#Database not found
+If the program throws an error, that it could not find the database, check if the database has been correctly assigned to your system environment.
+#Create a database
+- Under Windows open the "Run..." dialog, either via startmenu or via windowskey + R and type in "odbccp32.cpl". Then execute the command.
+- Now the ODBC-Datasource-Administration-Window should show up.
+- Press the Add... Button in the User-DSN view.
+- Choose the "Microsoft Access Driver (*.mdb)" and click Finish.
+- Type in a datasourcename (please make sure it's the same as in the rbsjava.ini)
+- Now under the tab database click the Create... Button and create the database in a location choosed by you.
+- Confirm all "OK" Dialogs.
+- You are done.

@@ -56,12 +56,12 @@ public class AccessCustomerDAO implements CustomerDAO {
 	private static int localupdateid = 0;
 	private static int localimportcounter = 0;
 	private final String INSERT = "INSERT INTO ";
-	private final String VALUES = " VALUES (?, ?, ?, ?, ?, ?);";
+	private final String VALUES = " VALUES (?, ?, ?, ?, ?, ?, ?);";
 	private final String SELECT = "SELECT * FROM ";
 	private final String WHERECUSTOMERID = " WHERE customerid = ";
 	private final String UPDATEATTRIBUTES = " SET lastname = ?, firstname = ?, birthdate = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;";
 	private final String DELETE = "DELETE FROM ";
-	private final String FIELDS = "(lastname, firstname, birthdate, adress, postalcode, email)";
+	private final String FIELDS = "(lastname, firstname, birthdate, adress, postalcode, email, updateid)";
 
 	public AccessCustomerDAO() {
 	}
@@ -94,13 +94,17 @@ public class AccessCustomerDAO implements CustomerDAO {
 			// Es ist noch nicht exakt bedacht worden (Konzept) ob die Tabelle
 			// von einem Admin angelegt werden muss, oder die Anwendung darüber
 			// entscheidet.
-			/*
-			 * preparedStatement = connect .prepareStatement("CREATE TABLE " +
-			 * TABLE +
-			 * " (customerid INT NOT NULL AUTO_INCREMENT, lastname VARCHAR(30) NOT NULL, firstname VARCHAR(30), age INT NOT NULL, adress VARCHAR(30) , postalcode VARCHAR(30), email VARCHAR(30), updateid BIGINT UNSIGNED NOT NULL DEFAULT '0' ,PRIMARY KEY (customerid));"
-			 * ); try { preparedStatement.executeUpdate(); } catch (Exception e)
-			 * { }
-			 */
+			try {
+				resultSet = statement.executeQuery(SELECT + TABLE + ";");
+			} catch (SQLException e) {
+				System.err.println("Table not found. Generating table: "
+						+ TABLE);
+				preparedStatement = connect
+						.prepareStatement("CREATE TABLE "
+								+ TABLE
+								+ " (customerid AUTOINCREMENT(1,1), lastname VARCHAR(30) NOT NULL, firstname VARCHAR(30), birthdate DATE NOT NULL, adress VARCHAR(30) , postalcode VARCHAR(30), email VARCHAR(30), updateid INT NOT NULL ,PRIMARY KEY (customerid));");
+				preparedStatement.executeUpdate();
+			}
 			// Result set get the result of the SQL query
 			resultSet = statement.executeQuery(SELECT + TABLE + ";");
 			internalCustomers = new ArrayList<Customer>();
@@ -111,7 +115,7 @@ public class AccessCustomerDAO implements CustomerDAO {
 						resultSet.getString(6), resultSet.getString(7));
 				internalCustomers.add(c);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 		}
 		CloseCurrentConnection();
 	}
@@ -143,7 +147,9 @@ public class AccessCustomerDAO implements CustomerDAO {
 	 * Verbindung mit der MDB-Datei.
 	 */
 	public void terminate() {
-		internalCustomers.clear();
+		if (internalCustomers != null) {
+			internalCustomers.clear();
+		}
 		CloseCurrentConnection();
 	}
 
@@ -157,8 +163,10 @@ public class AccessCustomerDAO implements CustomerDAO {
 		terminate();
 		init(FILE);
 		List<Customer> result = new ArrayList<Customer>();
-		for (Customer customer : internalCustomers) {
-			result.add(customer.clone());
+		if (internalCustomers != null) {
+			for (Customer customer : internalCustomers) {
+				result.add(customer.clone());
+			}
 		}
 		return result;
 	}
@@ -184,8 +192,8 @@ public class AccessCustomerDAO implements CustomerDAO {
 		try {
 			statement = connect.createStatement();
 			int customerid = 0;
-			preparedStatement = connect.prepareStatement(INSERT + FILE + "."
-					+ TABLE + FIELDS + VALUES);
+			preparedStatement = connect.prepareStatement(INSERT + TABLE
+					+ FIELDS + VALUES);
 			preparedStatement.setString(1, customer.getLastName());
 			preparedStatement.setString(2, customer.getFirstName());
 			preparedStatement.setDate(3, new java.sql.Date(customer
@@ -193,6 +201,7 @@ public class AccessCustomerDAO implements CustomerDAO {
 			preparedStatement.setString(4, customer.getAdress());
 			preparedStatement.setString(5, customer.getPostalcode());
 			preparedStatement.setString(6, customer.getEmail());
+			preparedStatement.setInt(7, 1);
 			preparedStatement.executeUpdate();
 			customerid = createNewId();
 			Customer c = new Customer(customerid, customer.getLastName(),
@@ -273,8 +282,8 @@ public class AccessCustomerDAO implements CustomerDAO {
 		OpenConnection();
 		try {
 			statement = connect.createStatement();
-			resultSet = statement.executeQuery(SELECT + FILE + "." + TABLE
-					+ WHERECUSTOMERID + customer.getId() + ";");
+			resultSet = statement.executeQuery(SELECT + TABLE + WHERECUSTOMERID
+					+ customer.getId() + ";");
 			resultSet.next();
 			if (resultSet.getRow() == 0) {
 				System.err
@@ -282,9 +291,12 @@ public class AccessCustomerDAO implements CustomerDAO {
 				return;
 			}
 			int updateid = resultSet.getInt(8);
+			System.out.println(updateid);
+			System.out.println(localupdateid);
 			if (updateid == localupdateid) {
-				preparedStatement = connect.prepareStatement("UPDATE " + FILE
-						+ "." + TABLE + UPDATEATTRIBUTES);
+				updateid++;
+				preparedStatement = connect.prepareStatement("UPDATE " + TABLE
+						+ UPDATEATTRIBUTES);
 				preparedStatement.setString(1, customer.getLastName());
 				preparedStatement.setString(2, customer.getFirstName());
 				preparedStatement.setDate(3, new java.sql.Date(customer
@@ -292,7 +304,7 @@ public class AccessCustomerDAO implements CustomerDAO {
 				preparedStatement.setString(4, customer.getAdress());
 				preparedStatement.setString(5, customer.getPostalcode());
 				preparedStatement.setString(6, customer.getEmail());
-				preparedStatement.setInt(7, updateid++);
+				preparedStatement.setInt(7, updateid);
 				preparedStatement.setInt(8, customer.getId());
 				preparedStatement.executeUpdate();
 			} else {
@@ -353,9 +365,11 @@ public class AccessCustomerDAO implements CustomerDAO {
 
 	// TODO: Besseren Namen finden!!!
 	public Customer getExisting(Customer customer) throws CustomerDaoException {
-		for (Customer c : internalCustomers) {
-			if (c.equals(customer)) {
-				throw new CustomerDaoException("ExistErr", c);
+		if (internalCustomers != null) {
+			for (Customer c : internalCustomers) {
+				if (c.equals(customer)) {
+					throw new CustomerDaoException("ExistErr", c);
+				}
 			}
 		}
 		return null;

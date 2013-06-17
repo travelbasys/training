@@ -10,11 +10,9 @@ public class MDBConnection {
 	private MDBConnection(String path) {
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-
 			conn = DriverManager
 					.getConnection("jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
 							+ path);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
