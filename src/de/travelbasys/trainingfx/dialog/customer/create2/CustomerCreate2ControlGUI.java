@@ -34,6 +34,14 @@ import de.travelbasys.training.util.ConfigurationListener;
 import de.travelbasys.training.util.Datum;
 import de.travelbasys.training.util.widgets.DateChooser;
 
+/**
+ * Diese Klasse ist für den Dialog auf dem Bildschirm verantwortlich um
+ * Benutzereingaben abzufragen (INPUT/OUTPUT) und um anhand der eingegebenen
+ * Daten ensprechende Funktionen aufzurufen.
+ * 
+ * @author haut
+ * 
+ */
 public class CustomerCreate2ControlGUI implements Initializable,
 		ConfigurationListener {
 

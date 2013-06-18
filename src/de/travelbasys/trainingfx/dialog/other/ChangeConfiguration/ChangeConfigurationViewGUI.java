@@ -67,9 +67,11 @@ public class ChangeConfigurationViewGUI implements View, ConfigurationListener {
 	public ChangeConfigurationViewGUI(Model model) {
 		this.model = (ChangeConfigurationModelGUI) model;
 	}
-/**
- * Diese Methode Initialisiert die Komponenten die Für das darstellen des Konfigurationsfensters benötigt werden.
- */
+
+	/**
+	 * Diese Methode Initialisiert die Komponenten die Für das darstellen des
+	 * Konfigurationsfensters benötigt werden.
+	 */
 	public void init() {
 
 		Configuration.addConfigurationListener(this);

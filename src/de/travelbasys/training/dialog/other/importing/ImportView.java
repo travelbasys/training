@@ -27,6 +27,12 @@ public class ImportView implements View {
 	private File dir = null;
 	private File[] files = null;
 
+	/**
+	 * Diese Methode ist für den Dialog mit dem Benutzer verantwortlich um alle
+	 * nötigen informationen für einen Import abzufragen.
+	 * 
+	 * @param model
+	 */
 	public ImportView(Model model) {
 		this.model = (ImportModel) model;
 		customerDecisionComponent = new UiComponent();
@@ -58,9 +64,6 @@ public class ImportView implements View {
 			Console.println(s);
 		}
 		customerDecisionComponent.run2();
-		// Die Importmethode für Access-Datenbanken ist geplant allerdings noch
-		// nicht implementiert
-		// da die Formatierung noch nicht geklärt ist (Header). Daher return.
 		if (model.getImportType() != null) {
 			if (model.getImportType() == ".mdb") {
 				dir = new File("./");

@@ -367,6 +367,11 @@ public class TxtCustomerDAO implements CustomerDAO {
 		return null;
 	}
 
+	/**
+	 * Diese Methode ist verantwortlich für das einlesen von Customer Objekten
+	 * in einer Tabelle aus einer MDB-Datei (.mdb) und fügt die noch nicht
+	 * vorhandenen Customer Objekte zur Datenbank hinzu.
+	 */
 	@Override
 	public void batchUpdateSelectedMDBTable(String table)
 			throws CustomerDaoException {

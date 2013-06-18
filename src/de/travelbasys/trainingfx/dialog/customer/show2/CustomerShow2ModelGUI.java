@@ -3,6 +3,7 @@ package de.travelbasys.trainingfx.dialog.customer.show2;
 import javafx.collections.ObservableList;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Model;
+
 /**
  * Das Model des Show Dialogs welches Daten für die verarbeitung innerhalb des
  * Show Dialogs enthält.

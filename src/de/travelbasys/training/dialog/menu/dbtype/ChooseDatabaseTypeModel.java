@@ -27,6 +27,9 @@ public class ChooseDatabaseTypeModel extends ArrayList<String> implements Model 
 		init();
 	}
 
+	/**
+	 * Diese Methode gibt ein Menü zur Auswahl des Datenbanktyps aus.
+	 */
 	public void init() {
 		clear();
 		add(AppContext.getMessage("Choose"));
@@ -49,6 +52,11 @@ public class ChooseDatabaseTypeModel extends ArrayList<String> implements Model 
 		this.d = d;
 	}
 
+	/**
+	 * Diese Methode prüft ob sich die Sprache geändert hat.
+	 * 
+	 * @return
+	 */
 	public boolean isLanguageChanged() {
 		if (Locale.getDefault() == getLang()) {
 			return false;

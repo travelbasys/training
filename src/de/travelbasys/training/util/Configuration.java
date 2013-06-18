@@ -10,9 +10,11 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
-//Initialisiert die Configuration für das Hauptprogramm.
-//Enthalten sind Sprache als auch Datenbank.
-//Verwendet dazu den Parser unserer CommandLine-Methode, welche ein Optionsobjekt ausgibt.
+/**
+ * Initialisiert die Configuration für das Hauptprogramm. Enthalten sind Sprache
+ * als auch Datenbank. Verwendet dazu den Parser unserer CommandLine-Methode,
+ * welche ein Optionsobjekt ausgibt.
+ **/
 
 public class Configuration {
 

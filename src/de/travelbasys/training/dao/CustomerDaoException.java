@@ -2,10 +2,13 @@ package de.travelbasys.training.dao;
 
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.util.AppContext;
+
 /**
- * Dies ist eine Exception-Klasse die speziell für die CustomerDAO klassen angelegt wurde.
+ * Dies ist eine Exception-Klasse die speziell für die CustomerDAO klassen
+ * angelegt wurde.
+ * 
  * @author tba
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class CustomerDaoException extends Exception {

@@ -17,6 +17,8 @@ public class ChooseDatabaseTypeControl {
 	private ChooseDatabaseTypeView view;
 
 	/**
+	 * Diese Methode setzt nach Benutzer eingabe den Datenbanktyp (MySQL , txt
+	 * oder mdb)
 	 * 
 	 * @param model
 	 * @param view

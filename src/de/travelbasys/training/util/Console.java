@@ -3,6 +3,12 @@ package de.travelbasys.training.util;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+/**
+ * Util klasse um mit der Console zu Operieren.
+ * 
+ * @author haut
+ * 
+ */
 public class Console {
 	public static final PrintStream err = System.err;
 	private static Scanner sCANNER_STR;

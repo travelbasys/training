@@ -37,6 +37,14 @@ import de.travelbasys.training.util.ConfigurationListener;
 import de.travelbasys.training.util.Datum;
 import de.travelbasys.training.util.widgets.DateChooser;
 
+/**
+ * Diese Klasse ist für den Dialog auf dem Bildschirm verantwortlich um
+ * Benutzereingaben abzufragen (INPUT/OUTPUT) und um anhand der eingegebenen
+ * Daten ensprechende Funktionen aufzurufen.
+ * 
+ * @author haut
+ * 
+ */
 public class CustomerUpdate2ControlGUI implements Initializable,
 		ConfigurationListener {
 
@@ -94,6 +102,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 	@FXML
 	private static Button newSearchButton;
 	private static DateChooser dateChooser;
+
 	/**
 	 * Diese Methode Initialisiert den Controller der Update Klasse, indem Sie
 	 * listener für die Atribute eines Customer Objekts anlegt
@@ -269,10 +278,10 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 		postalcodeField.textProperty().addListener(
 				new ChangeListener<String>() {
 					/**
-					 * Dies ist der listener für das Feld der Postleitzahl der prüft ob es
-					 * sich um einen gültigen wert handelt und setzt diesen im Model, falls
-					 * dieser Wert ungültig ist wird ein Hinweis neben dem Text-feld
-					 * eingeblendet.
+					 * Dies ist der listener für das Feld der Postleitzahl der
+					 * prüft ob es sich um einen gültigen wert handelt und setzt
+					 * diesen im Model, falls dieser Wert ungültig ist wird ein
+					 * Hinweis neben dem Text-feld eingeblendet.
 					 * 
 					 */
 					public void changed(
@@ -584,6 +593,7 @@ public class CustomerUpdate2ControlGUI implements Initializable,
 		sendButton.setDisable(model.sendIsInvalid() || model.hasNotChanged());
 
 	}
+
 	/**
 	 * Diese Methode ist für das setzen der Internationalen Ausgabe Texte
 	 * zuständig wenn der Benutzer die Sprache ändert.

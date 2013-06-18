@@ -18,6 +18,13 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
 
+/**
+ * Diese Klasse füht anhand der eingegebenen Daten des Benutzers ensprechende
+ * Funktionen aus.
+ * 
+ * @author haut
+ * 
+ */
 public class CustomerDeleteControlGUI implements Control {
 
 	private CustomerDeleteModelGUI model;

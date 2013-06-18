@@ -9,7 +9,7 @@ import java.io.Reader;
  * {@link skipLines} Methode.
  * 
  * @author isenbuegel
- *
+ * 
  */
 
 public class BetterBufferedReader extends BufferedReader {
@@ -20,21 +20,22 @@ public class BetterBufferedReader extends BufferedReader {
 	/**
 	 * erzeugt eine Instanz der Klasse.
 	 * 
-	 * @param in 
-	 * 	ein ...
+	 * @param in
+	 *            ein ...
 	 */
 	public BetterBufferedReader(Reader in) {
 		super(in);
 	}
 
 	/**
-	 * liest eine gegebene Anzahl von Zeilen aus dem Inputstrom und ignoriert diese.
+	 * liest eine gegebene Anzahl von Zeilen aus dem Inputstrom und ignoriert
+	 * diese.
 	 * 
 	 * @param count
-	 * 		Anzahl von zu lesenden Zeilen.
+	 *            Anzahl von zu lesenden Zeilen.
 	 * 
 	 * @throws IOException
-	 * 		wenn Lesefehler.
+	 *             wenn Lesefehler.
 	 */
 	public void skipLines(int count) throws IOException {
 		for (int i = 0; i < count; i++) {

@@ -20,6 +20,11 @@ public class ChangeDBView implements View {
 		return changeDBComponent;
 	}
 
+	/**
+	 * führt einen Dialog aus, der Benutzereingaben abfragt.
+	 * 
+	 * @param model
+	 */
 	public ChangeDBView(ChangeDBModel model) {
 
 		changeDBComponent = new UiComponent();

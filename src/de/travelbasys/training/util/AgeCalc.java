@@ -3,6 +3,13 @@ package de.travelbasys.training.util;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Diese Klasse ist für die berechnung des Alters eines Customer-Objekts anhand
+ * des Geburtsdatums verantwortlich.
+ * 
+ * @author haut
+ * 
+ */
 public class AgeCalc {
 
 	private static Calendar now = Calendar.getInstance();

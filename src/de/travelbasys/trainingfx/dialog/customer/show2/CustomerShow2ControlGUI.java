@@ -22,6 +22,14 @@ import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
 
+/**
+ * Diese Klasse ist für den Dialog auf dem Bildschirm verantwortlich um
+ * Benutzereingaben abzufragen (INPUT/OUTPUT) und um anhand der eingegebenen
+ * Daten ensprechende Funktionen aufzurufen.
+ * 
+ * @author haut
+ * 
+ */
 public class CustomerShow2ControlGUI implements Initializable,
 		ConfigurationListener {
 
@@ -39,6 +47,7 @@ public class CustomerShow2ControlGUI implements Initializable,
 	private static TextField customerIDField;
 	@FXML
 	private static Button searchButton;
+
 	/**
 	 * Diese Methode Initialisiert den Controller der Show Klasse, indem Sie
 	 * listener für die Atribute eines Customer Objekts anlegt
@@ -154,6 +163,7 @@ public class CustomerShow2ControlGUI implements Initializable,
 		}
 
 	}
+
 	/**
 	 * Diese Methode ist für das setzen der Internationalen Ausgabe Texte
 	 * zuständig wenn der Benutzer die Sprache ändert.

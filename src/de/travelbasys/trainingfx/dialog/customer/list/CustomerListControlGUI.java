@@ -8,6 +8,13 @@ import de.travelbasys.training.framework.Control;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 
+/**
+ * Diese Klasse zeigt eine Tabelle mit allen Customer-Objekten in der aktuellen
+ * Datenbank.
+ * 
+ * @author haut
+ * 
+ */
 public class CustomerListControlGUI implements Control {
 
 	private CustomerListModelGUI model;

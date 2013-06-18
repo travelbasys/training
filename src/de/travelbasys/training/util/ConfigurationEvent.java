@@ -3,6 +3,12 @@ package de.travelbasys.training.util;
 import java.util.EventObject;
 import java.util.ResourceBundle;
 
+/**
+ * Diese Klasse repräsentiert einen Eventhandler für Konfigurationes Events.
+ * 
+ * @author haut
+ * 
+ */
 public class ConfigurationEvent extends EventObject {
 
 	private static final long serialVersionUID = 1L;

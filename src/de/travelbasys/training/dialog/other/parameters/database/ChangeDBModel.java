@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import de.travelbasys.training.framework.Model;
 
 /**
- * erzeugt eine Instanz der Klasse CustomerDeleteDialog und verwaltet Daten
+ * erzeugt eine Instanz der Klasse ChangeDBModel und verwaltet Daten
  * 
  * @author
  */

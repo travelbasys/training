@@ -3,6 +3,9 @@ package de.travelbasys.training.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Diese Klasse erzeugt eine Verbindung zu einer Access-Datenbank.
+ */
 public class AccessConnection {
 
 	public static Connection conn = null;
@@ -18,11 +21,6 @@ public class AccessConnection {
 		}
 	}
 
-	/**
-	 * Diese Klasse erzeugt eine Verbindung zu einer Access-Datenbank.
-	 * 
-	 * @return
-	 */
 	public static Connection getInstance() {
 		new AccessConnection();
 		return conn;

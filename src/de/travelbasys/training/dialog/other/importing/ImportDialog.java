@@ -27,6 +27,10 @@ public class ImportDialog implements Dialog {
 		control = new ImportControl(model, view);
 	}
 
+	/**
+	 * Diese Methode führt den eigentlichen Import anhand vorher angegebener
+	 * Werte des Benutzers durch.
+	 */
 	@Override
 	public void run() {
 

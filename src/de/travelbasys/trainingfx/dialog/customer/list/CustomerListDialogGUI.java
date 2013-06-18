@@ -13,9 +13,10 @@ public class CustomerListDialogGUI implements Dialog {
 		view = new CustomerListViewGUI(model, root);
 		control = new CustomerListControlGUI();
 	}
-/**
- * Initialisiert die Komponenten des List-Dialoges
- */
+
+	/**
+	 * Initialisiert die Komponenten des List-Dialoges
+	 */
 	@Override
 	public void run() {
 		view.init();

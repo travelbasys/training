@@ -1,5 +1,11 @@
 package de.travelbasys.training.framework;
 
+/**
+ * Diese Klasse ist für Operationen mit dem Benutzer verantwortlich
+ * 
+ * @author haut
+ * 
+ */
 public abstract class AbstractUiComponent {
 
 	private Control control;

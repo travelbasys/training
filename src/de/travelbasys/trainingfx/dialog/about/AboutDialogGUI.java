@@ -2,6 +2,12 @@ package de.travelbasys.trainingfx.dialog.about;
 
 import de.travelbasys.training.framework.Dialog;
 
+/**
+ * Diese Klasse repräsentiert den Dialog des About Fensters.
+ * 
+ * @author haut
+ * 
+ */
 public class AboutDialogGUI implements Dialog {
 
 	private AboutModelGUI model;
