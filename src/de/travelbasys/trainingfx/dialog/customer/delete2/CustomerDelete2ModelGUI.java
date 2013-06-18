@@ -3,6 +3,7 @@ package de.travelbasys.trainingfx.dialog.customer.delete2;
 import javafx.collections.ObservableList;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Model;
+
 /**
  * Das Model des Delete Dialogs welches Daten für die verarbeitung innerhalb des
  * Delete Dialogs enthält.

@@ -1,5 +1,11 @@
 package de.travelbasys.training.util;
 
+/**
+ * util Klasse für die Ausgabe von dieversen Outputs in der Console.
+ * 
+ * @author haut
+ * 
+ */
 public class AppContext {
 
 	public static String nextLine() {

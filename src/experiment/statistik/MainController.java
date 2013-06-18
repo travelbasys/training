@@ -563,12 +563,12 @@ public class MainController {
 		series1.getData().addAll(obj1, obj2, obj3, obj4, obj5, obj6, obj7,
 				obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16,
 				obj17, obj18, obj19, obj20, obj21, obj22, obj23, obj24);
-		
+
 		Data<String, Integer> obj1a = new XYChart.Data<String, Integer>("1",
 				anz1a);
 		Data<String, Integer> obj2a = new XYChart.Data<String, Integer>("2",
 				anz2a);
-		Data<String, Integer> obj3a= new XYChart.Data<String, Integer>("3",
+		Data<String, Integer> obj3a = new XYChart.Data<String, Integer>("3",
 				anz3a);
 		Data<String, Integer> obj4a = new XYChart.Data<String, Integer>("4",
 				anz4a);
@@ -584,7 +584,7 @@ public class MainController {
 				anz9a);
 		Data<String, Integer> obj10a = new XYChart.Data<String, Integer>("10",
 				anz10a);
-		Data<String, Integer> obj11a= new XYChart.Data<String, Integer>("11",
+		Data<String, Integer> obj11a = new XYChart.Data<String, Integer>("11",
 				anz11a);
 		Data<String, Integer> obj12a = new XYChart.Data<String, Integer>("12",
 				anz12a);
@@ -613,10 +613,11 @@ public class MainController {
 		Data<String, Integer> obj24a = new XYChart.Data<String, Integer>("24",
 				anz24a);
 
-		series2.getData().addAll(obj1a, obj2a, obj3a, obj4a, obj5a, obj6a, obj7a,
-				obj8a, obj9a, obj10a, obj11a, obj12a, obj13a, obj14a, obj15a, obj16a,
-				obj17a, obj18a, obj19a, obj20a, obj21a, obj22a, obj23a, obj24a);
+		series2.getData().addAll(obj1a, obj2a, obj3a, obj4a, obj5a, obj6a,
+				obj7a, obj8a, obj9a, obj10a, obj11a, obj12a, obj13a, obj14a,
+				obj15a, obj16a, obj17a, obj18a, obj19a, obj20a, obj21a, obj22a,
+				obj23a, obj24a);
 		// grün ist RBSweb, gelb webService
-		barChart.getData().addAll(series1,series2);
+		barChart.getData().addAll(series1, series2);
 	}
 }

@@ -7,7 +7,7 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
 /**
- * erzeugt eine Instanz der Klasse ChangeParamDialog und verwaltet Strings für
+ * erzeugt eine Instanz der Klasse ChangeParamModel und verwaltet Strings für
  * Ausgaben.
  */
 public class ChangeParamModel extends ArrayList<String> implements Model {

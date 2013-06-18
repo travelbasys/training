@@ -20,14 +20,16 @@ public class ChangeConfigurationDialogGUI implements Dialog {
 	private ChangeConfigurationModelGUI model;
 	private ChangeConfigurationViewGUI view;
 	private ChangeConfigurationControlGUI control;
-/**
- * Der Konstruktor des ChangeConfiguration Dialogs
- */
+
+	/**
+	 * Der Konstruktor des ChangeConfiguration Dialogs
+	 */
 	public ChangeConfigurationDialogGUI() {
 		model = new ChangeConfigurationModelGUI();
 		view = new ChangeConfigurationViewGUI(model);
 		control = new ChangeConfigurationControlGUI();
 	}
+
 	/**
 	 * führt den ChangeConfiguratin Dialog aus.
 	 */

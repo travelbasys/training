@@ -211,6 +211,10 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		CloseCurrentConnection();
 	}
 
+	/**
+	 * Diese Methode erzeut eine neue Customer ID indem der letzte Datensatz der
+	 * Datenbank gesucht wird und dessen ID zurück gegeben wird.
+	 */
 	public int createNewId() {
 		int id = 0;
 		try {
@@ -432,6 +436,11 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		return null;
 	}
 
+	/**
+	 * Diese Methode ist verantwortlich für das einlesen von Customer Objekten
+	 * in einer Tabelle aus einer MDB-Datei (.mdb) und fügt die noch nicht
+	 * vorhandenen Customer Objekte zur Datenbank hinzu.
+	 */
 	@Override
 	public void batchUpdateSelectedMDBTable(String table)
 			throws CustomerDaoException {

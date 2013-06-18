@@ -19,12 +19,11 @@ public class RBSTestGUIControl implements Control {
 	@FXML
 	private static TextField dateField;
 
- 
-	
 	public RBSTestGUIControl() {
 	}
 
-	public void init() {}
+	public void init() {
+	}
 
 	@Override
 	public void handleInput(Object value) throws Exception {
@@ -35,6 +34,5 @@ public class RBSTestGUIControl implements Control {
 		// TODO Auto-generated method stub
 
 	}
-
 
 }

@@ -8,6 +8,12 @@ import javafx.stage.Stage;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.AppContext;
 
+/**
+ * Diese Klasse zeigt den About Dialog auf dem Bildschirm.
+ * 
+ * @author haut
+ * 
+ */
 public class AboutViewGUI {
 
 	private AboutModelGUI model;

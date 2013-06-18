@@ -13,6 +13,10 @@ import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
 
+/**
+ * Diese Klasse ist für den Dialog auf dem Bildschirm verantwortlich um
+ * Benutzereingaben abzufragen (INPUT/OUTPUT)
+ **/
 public class CustomerUpdateViewGUI implements View, ConfigurationListener {
 
 	private CustomerUpdateModelGUI model;

@@ -6,7 +6,8 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 
 /**
- * Diese Klasse Kontrolliert Benutzereingaben.
+ * Diese Klasse Kontrolliert Benutzereingaben und setzt demensprechend bestimmte
+ * Werte in das Model.
  * 
  * @author tba
  * 

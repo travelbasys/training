@@ -23,6 +23,13 @@ import de.travelbasys.training.util.CommandLine;
 import de.travelbasys.training.util.Config;
 import de.travelbasys.training.util.Configuration;
 
+/**
+ * Diese Klasse füht anhand der eingegebenen Daten des Benutzers ensprechende
+ * Funktionen aus.
+ * 
+ * @author haut
+ * 
+ */
 public class ChangeConfigurationControlGUI implements Control {
 
 	private ChangeConfigurationViewGUI view;

@@ -37,7 +37,8 @@ public interface CustomerDAO {
 
 	public ObservableList<String> getSelectedImportMDBTables();
 
-	public void batchUpdateSelectedMDBTable(String table) throws CustomerDaoException;
+	public void batchUpdateSelectedMDBTable(String table)
+			throws CustomerDaoException;
 
 	public int getImportedCustomersNumber();
 

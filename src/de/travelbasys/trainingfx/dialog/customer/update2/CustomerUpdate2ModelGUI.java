@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.util.Datum;
+
 /**
  * Das Model des Update Dialogs welches Daten für die verarbeitung innerhalb des
  * Update Dialogs enthält.
@@ -100,6 +101,7 @@ public class CustomerUpdate2ModelGUI implements Model {
 	public boolean searchIsValid() {
 		return !searchIsInvalid();
 	}
+
 	/**
 	 * Eine Methode die für die prüfung ob ein Attribut des Customers leer oder
 	 * 0 ist benötigt wird.
@@ -115,10 +117,11 @@ public class CustomerUpdate2ModelGUI implements Model {
 	public boolean sendIsValid() {
 		return !sendIsInvalid();
 	}
-/**
- * Eine Methode die Prüft ob das Customer Objekt sich nicht verändert hat.
- * 
- */
+
+	/**
+	 * Eine Methode die Prüft ob das Customer Objekt sich nicht verändert hat.
+	 * 
+	 */
 	public boolean hasNotChanged() {
 		return (lastname.equals(data.get(0).getLastName())
 				&& firstname.equals(data.get(0).getFirstName())

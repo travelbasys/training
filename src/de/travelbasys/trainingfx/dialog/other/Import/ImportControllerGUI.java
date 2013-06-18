@@ -22,6 +22,13 @@ import de.travelbasys.training.util.Configuration;
 import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
 
+/**
+ * Diese Klasse füht anhand der eingegebenen Daten des Benutzers ensprechendend
+ * den Import in die Datenbank aus.
+ * 
+ * @author haut
+ * 
+ */
 public class ImportControllerGUI implements Initializable,
 		ConfigurationListener {
 

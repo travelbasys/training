@@ -14,6 +14,13 @@ import de.travelbasys.training.util.ConfigurationEvent;
 import de.travelbasys.training.util.ConfigurationListener;
 import de.travelbasys.training.util.Datum;
 
+/**
+ * Diese Klasse ist für den Dialog auf dem Bildschirm verantwortlich
+ * (INPUT/OUTPUT)
+ * 
+ * @author haut
+ * 
+ */
 public class CustomerCreateViewGUI implements View, ConfigurationListener {
 
 	private CustomerCreateModelGUI model;

@@ -29,6 +29,9 @@ public class MainMenuModel extends ArrayList<String> implements Model {
 		init();
 	}
 
+	/**
+	 * Diese Methode zeigt das Hauptmenü.
+	 */
 	public void init() {
 		clear();
 		add(AppContext.getMessage("Choose"));

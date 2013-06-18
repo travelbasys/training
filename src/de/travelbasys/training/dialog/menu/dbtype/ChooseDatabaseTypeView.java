@@ -30,6 +30,9 @@ public class ChooseDatabaseTypeView implements View {
 		return customerDecisionComponent;
 	}
 
+	/**
+	 * Diese Methode startet den Dialog.
+	 */
 	public void run() {
 		if (model.isLanguageChanged()) {
 			model.init();

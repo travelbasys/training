@@ -14,9 +14,11 @@ public class CustomerDelete2DialogGUI implements Dialog {
 	public CustomerDelete2DialogGUI(BorderPane root) {
 		this.root = root;
 	}
+
 	/**
 	 * Diese Methode lädt eine FXML Datei die die Oberfläche enthält die für das
-	 * löschen eines Customers erforderlich ist und setzt diese im Hauptfenseter.
+	 * löschen eines Customers erforderlich ist und setzt diese im
+	 * Hauptfenseter.
 	 */
 	@Override
 	public void run() {

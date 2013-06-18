@@ -21,6 +21,13 @@ import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.View;
 import de.travelbasys.training.util.AppContext;
 
+/**
+ * Diese Klasse ist für den Dialog mit dem Benutzer verantwortlich um alle
+ * nötigen Informationen zum erstellen eines Customer-Objekts verantwortlich.
+ * 
+ * @author haut
+ * 
+ */
 public class CustomerCreateControlGUI implements Control {
 
 	private CustomerCreateModelGUI model;

@@ -35,13 +35,14 @@ public class Customer implements Serializable, Cloneable {
 	private static final Date DEFAULT_BIRTHDATE = new Date(1970 - 01 - 01);
 
 	/*
-	 * Customer [name=xxx, age=nnn] oder: Customer[ name = xxx , age = nnn ]
+	 * Customer [customerid = nnn , lastname = xxx , firstname = xxx birthdate =
+	 * nn.nn.nnnn , adress = xxx , postalcode = nnnnn , email = xxx]
 	 * 
-	 * Customer, dann Spaces, dann "[", dann Spaces, dann "name", dann Spaces,
-	 * dann "=", dann Spaces, dann Gruppe aus mindestens einem Zeichen
-	 * non-greedy, dann Spaces, dann Kommata, dann Spaces, dann age, dann
-	 * Spaces, dann "=", dann Spaces, dann Gruppe aus mindestens einer Ziffer,
-	 * dann Spaces, dann "]". Fertig.
+	 * Customer, [customerid] dann Spaces, dann "[", dann Spaces, dann
+	 * "lastname", dann Spaces, dann "=", dann Spaces, dann Gruppe aus
+	 * mindestens einem Zeichen non-greedy, dann Spaces, dann Kommata, dann
+	 * Spaces, dann age, dann Spaces, dann "=", dann Spaces, dann Gruppe aus
+	 * mindestens einer Ziffer, dann Spaces, dann "]". Fertig.
 	 */
 	private static final String U = "\\s*Customer[(\\d+)]\\s*\\[\\s*lastname\\s*=\\s*(.+?)\\s*,\\s*firstname\\s*=\\s*(.+?)\\s*,\\s*birthdate\\s*=\\s*(.+?)\\s*\\,\\s*adress\\s*=\\s*(.+?)\\s*\\,\\s*postalcode\\s*=\\s*(.+?)\\s*\\,\\s*email\\s*=\\s*(.+?)\\s*\\]";
 	private static final String C = "(\\d+);(.+?);(.+?);(.+?);(.+?);(.+?);(.+?)";
@@ -54,17 +55,21 @@ public class Customer implements Serializable, Cloneable {
 	private static final String POSTAL_CODE_ERROR = "Postal code not in range: ";
 
 	/**
-	 * Erzeugt ein neues Customer Objekt mit dem angegebenen Namen und dem
-	 * angegebenen Alter.
+	 * Erzeugt ein neues Customer Objekt mit den angegebenen Werten eines
+	 * Customer-Objekts.
 	 * 
 	 * @param customerid
-	 * 
-	 * @param name
-	 *            Name des Customers.
+	 *            Kundennummer des Customers.
+	 * @param lastname
+	 *            Nachname des Customers.
 	 * @param firstname
+	 *            Vorname des Customers.
 	 * @param email
+	 *            email-Adresse des Customers.
 	 * @param postalcode
+	 *            Postleitzahl des Customers.
 	 * @param adress
+	 *            Adresse des Customers.
 	 * @throws Exception
 	 */
 	public Customer(int customerid, String lastname, String firstname,
@@ -282,7 +287,8 @@ public class Customer implements Serializable, Cloneable {
 	 * verantwortlich, wenn die Kriterien für ein Customer Objekt erfüllt sind,
 	 * wird dieses erstellt und zurückgegeben ansonsten "Exception".
 	 * 
-	 * @param s Der String aus dem ein Customer Objekt erstellt werden soll
+	 * @param s
+	 *            Der String aus dem ein Customer Objekt erstellt werden soll
 	 * @return Das fertige Customer Objekt
 	 */
 	public static Customer parseCSV(String s) {

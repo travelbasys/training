@@ -14,9 +14,11 @@ public class CustomerShow2DialogGUI implements Dialog {
 	public CustomerShow2DialogGUI(BorderPane root) {
 		this.root = root;
 	}
+
 	/**
 	 * Diese Methode lädt eine FXML Datei die die Oberfläche enthält die für das
-	 * anzeigen eines Customers erforderlich ist und setzt diese im Hauptfenseter.
+	 * anzeigen eines Customers erforderlich ist und setzt diese im
+	 * Hauptfenseter.
 	 */
 	@Override
 	public void run() {

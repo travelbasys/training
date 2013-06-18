@@ -49,8 +49,7 @@ public class CustomerTest {
 
 	@Test
 	public void testEquals() {
-		Customer bill1 = new Customer(0, "Bill", null, null, null, null,
-				null);
+		Customer bill1 = new Customer(0, "Bill", null, null, null, null, null);
 		Customer bill2 = new Customer(0, "Bill", null, null, null, null, null);
 		assertTrue(bill1.equals(bill2));
 		// assertEquals(bill1, bill2);

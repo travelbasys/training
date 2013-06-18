@@ -34,6 +34,10 @@ public class ExportDialog implements Dialog {
 		control = new ExportControl(model, view);
 	}
 
+	/**
+	 * Diese Methode führt den eigentlichen Export anhand vorher angegebener
+	 * Werte des Benutzers durch.
+	 */
 	@Override
 	public void run() {
 
@@ -44,7 +48,8 @@ public class ExportDialog implements Dialog {
 		}
 		try {
 			if (model.getExportType() == ".csv") {
-				FileWriter fw = new FileWriter(model.getExportName() + model.getExportType());
+				FileWriter fw = new FileWriter(model.getExportName()
+						+ model.getExportType());
 				PrintWriter pw = new PrintWriter(fw);
 				pw.println(model.getHeader());
 				for (Customer customer : Dao.getDAO().findAll()) {
@@ -53,7 +58,8 @@ public class ExportDialog implements Dialog {
 				AppContext.printMessage("ExportOK");
 				pw.close();
 			} else if (model.getExportType() == ".mdb") {
-				outputFile = new File(model.getExportName() + model.getExportType());
+				outputFile = new File(model.getExportName()
+						+ model.getExportType());
 				Database db = Database.create(outputFile);
 				Table newTable = new TableBuilder("tb_customer")
 						.addColumn(
