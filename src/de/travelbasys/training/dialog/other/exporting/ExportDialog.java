@@ -44,8 +44,7 @@ public class ExportDialog implements Dialog {
 		}
 		try {
 			if (model.getExportType() == ".csv") {
-				FileWriter fw = new FileWriter(model.getExportName() + "."
-						+ model.getExportType());
+				FileWriter fw = new FileWriter(model.getExportName() + model.getExportType());
 				PrintWriter pw = new PrintWriter(fw);
 				pw.println(model.getHeader());
 				for (Customer customer : Dao.getDAO().findAll()) {
@@ -83,7 +82,6 @@ public class ExportDialog implements Dialog {
 							customer.getFirstName(), customer.getBirthdate(),
 							customer.getAdress(), customer.getPostalcode(),
 							customer.getEmail());
-					AppContext.printMessage("ExportOK");
 				}
 			}
 		} catch (Exception e) {

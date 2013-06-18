@@ -1,5 +1,8 @@
 package de.travelbasys.training.dialog.other.importing;
 
+import java.io.File;
+import java.io.FilenameFilter;
+
 import de.travelbasys.training.framework.AbstractUiComponent;
 import de.travelbasys.training.framework.Model;
 import de.travelbasys.training.framework.UiComponent;
@@ -21,6 +24,8 @@ public class ImportView implements View {
 	private UiComponent customerDecisionComponent;
 	private UiComponent importNameComponent;
 	private UiComponent importTableComponent;
+	private File dir = null;
+	private File[] files = null;
 
 	public ImportView(Model model) {
 		this.model = (ImportModel) model;
@@ -57,6 +62,29 @@ public class ImportView implements View {
 		// nicht implementiert
 		// da die Formatierung noch nicht geklärt ist (Header). Daher return.
 		if (model.getImportType() != null) {
+			if (model.getImportType() == ".mdb") {
+				dir = new File("./");
+				files = dir.listFiles(new FilenameFilter() {
+					public boolean accept(File d, String name) {
+						return name.endsWith(".mdb");
+					}
+				});
+			}
+			if (model.getImportType() == ".csv") {
+				dir = new File("./");
+				files = dir.listFiles(new FilenameFilter() {
+					public boolean accept(File d, String name) {
+						return name.endsWith(".csv");
+					}
+				});
+			}
+			model.setFiles(files);
+			if (model.getFiles().length == 0) {
+				return;
+			}
+			for (File f : files) {
+				System.out.println(f.getName());
+			}
 			importNameComponent.run();
 		}
 	}

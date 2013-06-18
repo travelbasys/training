@@ -3,7 +3,6 @@ package de.travelbasys.training.dialog.other.importing;
 import java.io.IOException;
 
 import javafx.scene.control.Dialogs;
-
 import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Dialog;
@@ -38,10 +37,20 @@ public class ImportDialog implements Dialog {
 		}
 		try {
 			if (model.getImportType() == ".csv") {
-
-				Dao.getDAO().importCSV(
-						model.getImportName() + "." + model.getImportType());
-				AppContext.println("ImportOK");
+				if (model.getFiles().length == 0) {
+					AppContext.printErrString("NoFilesFound");
+					return;
+				}
+				Dao.getDAO().importCSV(model.getImportName());
+				int importedCustomers = Dao.getDAO()
+						.getImportedCustomersNumber();
+				if (importedCustomers >= 1) {
+					System.out.println(importedCustomers + " "
+							+ AppContext.getMessage("CustomerImport"));
+					AppContext.printMessage("ImportOK");
+				} else {
+					AppContext.printErrString("NoNewData");
+				}
 			}
 		} catch (CustomerDaoException c) {
 			Console.printerr(c.getMessage());
@@ -51,8 +60,11 @@ public class ImportDialog implements Dialog {
 
 		try {
 			if (model.getImportType() == ".mdb") {
-				Dao.getDAO().importMDB(
-						model.getImportName() + model.getImportType());
+				if (model.getFiles().length == 0) {
+					AppContext.printErrString("NoFilesFound");
+					return;
+				}
+				Dao.getDAO().importMDB(model.getImportName());
 				view.run2();
 				Dao.getDAO()
 						.batchUpdateSelectedMDBTable(model.getImportTable());
@@ -63,7 +75,7 @@ public class ImportDialog implements Dialog {
 							+ AppContext.getMessage("CustomerImport"));
 					AppContext.printMessage("ImportOK");
 				} else {
-					AppContext.printMessage("NoNewData");
+					AppContext.printErrString("NoNewData");
 				}
 			}
 		} catch (CustomerDaoException e) {

@@ -1,5 +1,6 @@
 package de.travelbasys.training.dialog.other.importing;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import de.travelbasys.training.framework.Model;
@@ -19,6 +20,7 @@ public class ImportModel extends ArrayList<String> implements Model {
 	private String importName = "";
 	private String importTable = "";
 	private String header = "";
+	private File[] files = null;
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
@@ -61,6 +63,14 @@ public class ImportModel extends ArrayList<String> implements Model {
 
 	public String getImportTable() {
 		return importTable;
+	}
+
+	public void setFiles(File[] files) {
+		this.files = files;
+	}
+
+	public File[] getFiles() {
+		return files;
 	}
 
 }
