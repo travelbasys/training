@@ -15,9 +15,10 @@ public class ImportModel extends ArrayList<String> implements Model {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String ImportType = "";
-	private String ImportName = "";
-	private String Header = "";
+	private String importType = "";
+	private String importName = "";
+	private String importTable = "";
+	private String header = "";
 
 	/**
 	 * Erzeugt eine Instanz der Klasse...
@@ -31,27 +32,35 @@ public class ImportModel extends ArrayList<String> implements Model {
 	}
 
 	public String getImportType() {
-		return ImportType;
+		return importType;
 	}
 
 	public void setImportType(String type) {
-		ImportType = type;
+		importType = type;
 	}
 
 	public String getImportName() {
-		return ImportName;
+		return importName;
 	}
 
 	public void setImportName(String name) {
-		ImportName = name;
+		importName = name;
 	}
 
 	public String getHeader() {
-		return Header;
+		return header;
 	}
 
 	public void setHeader(String header) {
-		Header = header;
+		this.header = header;
+	}
+
+	public void setImportTable(String table) {
+		importTable = table;
+	}
+
+	public String getImportTable() {
+		return importTable;
 	}
 
 }

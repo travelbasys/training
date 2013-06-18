@@ -52,7 +52,12 @@ public class ImportControl {
 				ImportControl.this.model.setImportName((String) value);
 			}
 		});
-
+		uic = this.view.getimportTableComponent();
+		uic.setControl(new AbstractControl() {
+			public void handleInput(Object value) throws Exception {
+				ImportControl.this.model.setImportTable((String) value);
+			}
+		});
 	}
 
 }

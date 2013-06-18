@@ -397,7 +397,8 @@ public class TxtCustomerDAO implements CustomerDAO {
 			importResultSet.close();
 			importCon.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err
+					.println("Table not found. Please ask your local administrator for further information.");
 		}
 	}
 }

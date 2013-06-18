@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +17,7 @@ import javafx.collections.ObservableList;
 import de.travelbasys.training.business.Customer;
 import de.travelbasys.training.dao.CustomerDAO;
 import de.travelbasys.training.dao.CustomerDaoException;
+import de.travelbasys.training.db.MDBConnection;
 import de.travelbasys.training.db.MySqlConnection;
 
 /**
@@ -47,18 +47,20 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	private static List<String> tables;
 
 	private static Connection connect = null;
+	private static Connection importCon = null;
+	private static String importAbsolutePath = null;
 	private static Statement statement = null;
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
+	private static ResultSet importResultSet = null;
 	private static int localupdateid = 0;
-	private static int localimportid = 0;
+	private static int localimportcounter = 0;
 	private final String INSERT = "INSERT INTO ";
 	private final String VALUES = " VALUES (default, ?, ?, ?, ?, ?, ?, default);";
 	private final String SELECT = "SELECT * FROM ";
 	private final String WHERECUSTOMERID = " WHERE customerid = ";
 	private final String UPDATEATTRIBUTES = " SET lastname = ?, firstname = ?, birthdate = ?, adress = ?, postalcode = ?, email = ?, updateid = ? WHERE customerid = ?;";
 	private final String DELETE = "DELETE FROM ";
-
 
 	public MySQLCustomerDAO() {
 	}
@@ -67,9 +69,9 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	 * initialisiert den internen Zustand von <tt>CustomerDao</tt>.
 	 * 
 	 * <p>
-	 * Diese Implementierung benutzt eine MySQL-Datenbank. Sie liest
-	 * sämtliche Datensätze der Datenbank aus der Datenbank und speichert sie intern
-	 * ab. Der Name der Datei wird als Parameter angegeben und ebenfalls
+	 * Diese Implementierung benutzt eine MySQL-Datenbank. Sie liest sämtliche
+	 * Datensätze der Datenbank aus der Datenbank und speichert sie intern ab.
+	 * Der Name der Datei wird als Parameter angegeben und ebenfalls
 	 * gespeichert.
 	 * </p>
 	 * 
@@ -384,6 +386,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 		fr.close();
 		terminate();
 	}
+
 	/**
 	 * Diese Methode ist für das einlesen der Tabellennamen einer MDB-Datei
 	 * (.mdb), anhand des Absoluten Pfads verantwortlich und
@@ -391,24 +394,22 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	@Override
 	public void importMDB(String absolutePath) throws IOException,
 			CustomerDaoException {
+		importAbsolutePath = absolutePath;
+		importCon = MDBConnection.getInstance(importAbsolutePath);
 		tables = new ArrayList<String>();
+		ResultSet res;
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-			Connection con = DriverManager.getConnection(
-					"jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
-							+ absolutePath, "Administrator", "");
-
-			DatabaseMetaData meta = con.getMetaData();
-			ResultSet res = meta.getTables(null, null, null,
-					new String[] { "TABLE" });
+			DatabaseMetaData meta = importCon.getMetaData();
+			res = meta.getTables(null, null, null, new String[] { "TABLE" });
 			System.out.println("List of tables: ");
 			while (res.next()) {
 				String tableName = res.getString("TABLE_NAME");
-				System.out.println(tableName);
-
 				tables.add(tableName);
+				System.out.println(tableName);
 			}
 			res.close();
+			importCon.close();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} catch (ClassNotFoundException e2) {
@@ -423,7 +424,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 
 	@Override
 	public int getImportedCustomersNumber() {
-		return localimportid;
+		return localimportcounter;
 	}
 
 	@Override
@@ -434,6 +435,36 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	@Override
 	public void batchUpdateSelectedMDBTable(String table)
 			throws CustomerDaoException {
+		importCon = MDBConnection.getInstance(importAbsolutePath);
+		localimportcounter = 0;
+		try {
+			statement = importCon.createStatement();
+			importResultSet = statement.executeQuery(SELECT + table + ";");
+			if (importResultSet.next()) {
+				do {
+					try {
+						Customer c = new Customer(importResultSet.getInt(1),
+								importResultSet.getString(2),
+								importResultSet.getString(3),
+								importResultSet.getDate(4),
+								importResultSet.getString(5),
+								importResultSet.getString(6),
+								importResultSet.getString(7));
+						create(c);
+						localimportcounter++;
+					} catch (CustomerDaoException e) {
+						continue;
+					}
+				} while (importResultSet.next());
+			} else {
+				throw new CustomerDaoException("");
+			}
+			importResultSet.close();
+			importCon.close();
+		} catch (SQLException e) {
+			System.err
+					.println("Table not found. Please ask your local administrator for further information.");
+		}
 	}
 
 }

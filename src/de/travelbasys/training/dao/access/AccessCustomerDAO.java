@@ -425,6 +425,7 @@ public class AccessCustomerDAO implements CustomerDAO {
 			while (res.next()) {
 				String tableName = res.getString("TABLE_NAME");
 				tables.add(tableName);
+				System.out.println(tableName);
 			}
 			res.close();
 			importCon.close();
@@ -475,7 +476,8 @@ public class AccessCustomerDAO implements CustomerDAO {
 			importResultSet.close();
 			importCon.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err
+					.println("Table not found. Please ask your local administrator for further information.");
 		}
 	}
 

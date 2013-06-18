@@ -71,7 +71,6 @@ public class ImportControllerGUI implements Initializable,
 		Configuration.addConfigurationListener(this);
 	}
 
-	// TODO: Sinnvolle Fehlermeldungen.
 	@FXML
 	public void handleImportButton() {
 		try {

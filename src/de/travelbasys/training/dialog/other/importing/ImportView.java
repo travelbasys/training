@@ -20,6 +20,7 @@ public class ImportView implements View {
 	private ImportModel model;
 	private UiComponent customerDecisionComponent;
 	private UiComponent importNameComponent;
+	private UiComponent importTableComponent;
 
 	public ImportView(Model model) {
 		this.model = (ImportModel) model;
@@ -28,6 +29,10 @@ public class ImportView implements View {
 		importNameComponent = new UiComponent();
 		importNameComponent.setName("ImportName");
 		importNameComponent.setType(String.class);
+
+		importTableComponent = new UiComponent();
+		importTableComponent.setName("ImportTable");
+		importTableComponent.setType(String.class);
 	}
 
 	public AbstractUiComponent getcustomerDecisionComponent() {
@@ -36,6 +41,10 @@ public class ImportView implements View {
 
 	public AbstractUiComponent getimportNameComponent() {
 		return importNameComponent;
+	}
+
+	public AbstractUiComponent getimportTableComponent() {
+		return importTableComponent;
 	}
 
 	public void run() {
@@ -47,9 +56,13 @@ public class ImportView implements View {
 		// Die Importmethode für Access-Datenbanken ist geplant allerdings noch
 		// nicht implementiert
 		// da die Formatierung noch nicht geklärt ist (Header). Daher return.
-		if (model.getImportType() == null || model.getImportType() == "ACCESS") {
-			return;
+		if (model.getImportType() != null) {
+			importNameComponent.run();
 		}
-		importNameComponent.run();
 	}
+
+	public void run2() {
+		importTableComponent.run();
+	}
+
 }

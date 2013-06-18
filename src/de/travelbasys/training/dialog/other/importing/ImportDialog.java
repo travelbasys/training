@@ -1,7 +1,8 @@
 package de.travelbasys.training.dialog.other.importing;
 
-import java.io.File;
 import java.io.IOException;
+
+import javafx.scene.control.Dialogs;
 
 import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dao.Dao;
@@ -41,27 +42,34 @@ public class ImportDialog implements Dialog {
 				Dao.getDAO().importCSV(
 						model.getImportName() + "." + model.getImportType());
 				AppContext.println("ImportOK");
-
-			}
-			// Die Importmethode für Access-Datenbanken ist geplant allerdings
-			// noch
-			// nicht implementiert
-			// da die Formatierung noch nicht geklärt ist (Header). Daher
-			// tue nichts.
-			// if (model.getImportType() == ".mdb") {
-			// TODO: Fix import (SQLException / ConnectionError)
-			File inputFile = new File(model.getImportName()
-					+ model.getImportType());
-			try {
-				Dao.getDAO().importMDB(inputFile.getAbsolutePath());
-			} catch (Exception e) {
-				e.printStackTrace();
-				return;
 			}
 		} catch (CustomerDaoException c) {
 			Console.printerr(c.getMessage());
 		} catch (IOException e) {
 			Console.printerr(AppContext.getMessage("FileNotFoundException"));
+		}
+
+		try {
+			if (model.getImportType() == ".mdb") {
+				Dao.getDAO().importMDB(
+						model.getImportName() + model.getImportType());
+				view.run2();
+				Dao.getDAO()
+						.batchUpdateSelectedMDBTable(model.getImportTable());
+				int importedCustomers = Dao.getDAO()
+						.getImportedCustomersNumber();
+				if (importedCustomers >= 1) {
+					System.out.println(importedCustomers + " "
+							+ AppContext.getMessage("CustomerImport"));
+					AppContext.printMessage("ImportOK");
+				} else {
+					AppContext.printMessage("NoNewData");
+				}
+			}
+		} catch (CustomerDaoException e) {
+			Dialogs.showErrorDialog(null, AppContext.getMessage("TableIsEmpty"));
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
