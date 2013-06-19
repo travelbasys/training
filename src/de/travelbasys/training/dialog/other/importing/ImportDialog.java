@@ -2,7 +2,6 @@ package de.travelbasys.training.dialog.other.importing;
 
 import java.io.IOException;
 
-import javafx.scene.control.Dialogs;
 import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.dao.Dao;
 import de.travelbasys.training.framework.Dialog;
@@ -83,7 +82,7 @@ public class ImportDialog implements Dialog {
 				}
 			}
 		} catch (CustomerDaoException e) {
-			Dialogs.showErrorDialog(null, AppContext.getMessage("TableIsEmpty"));
+			AppContext.printErrString("TableIsEmpty");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
