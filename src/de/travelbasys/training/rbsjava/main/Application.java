@@ -40,6 +40,7 @@ public class Application {
 		menu.run();
 		Dao.setDAO(menu.getDAO());
 		if (Dao.getDAO() == null) {
+			stop();
 			System.exit(0);
 		}
 		Dao.getDAO().init((String) Configuration.get("db"));

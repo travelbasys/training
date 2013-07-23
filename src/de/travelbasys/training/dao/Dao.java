@@ -33,7 +33,6 @@ public class Dao {
 			dao = new AccessCustomerDAO();
 			break;
 		default:
-			dao = new TxtCustomerDAO();
 			break;
 		}
 	}
