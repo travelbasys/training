@@ -24,7 +24,7 @@ public class YesNoDialog implements Dialog {
 	}
 
 	/**
-	 * führt den Dialog aus. Am Ende kann durch die {@see #isYes} Methode
+	 * führt den Dialog aus. Am Ende kann durch die {@link #isYes} Methode
 	 * festgestellt werden, ob der Benutzer Ja oder Nein ausgewählt hat.
 	 */
 	@Override
@@ -34,7 +34,7 @@ public class YesNoDialog implements Dialog {
 
 	/**
 	 * Gibt die Entscheidung des vom Benutzer gewählten Menüpunktes zurück.
-	 * Vorher muss die {@see #run} Methode ausgeführt werden, damit die
+	 * Vorher muss die {@link #run} Methode ausgeführt werden, damit die
 	 * Entscheidung geprüft werden kann.
 	 * 
 	 * @return die Entscheidung des Benutzers.

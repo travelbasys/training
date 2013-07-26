@@ -7,7 +7,7 @@ import de.travelbasys.training.framework.Model;
 /**
  * erzeugt eine Instanz der Klasse ChangeDBModel und verwaltet Daten
  * 
- * @author
+ * @author tba
  */
 public class ChangeDBModel extends ArrayList<String> implements Model {
 

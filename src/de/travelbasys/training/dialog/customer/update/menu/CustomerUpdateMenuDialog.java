@@ -23,7 +23,7 @@ public class CustomerUpdateMenuDialog implements Dialog {
 	}
 
 	/**
-	 * führt den Dialog aus. Am Ende kann durch die {@see #getIndex} Methode
+	 * führt den Dialog aus. Am Ende kann durch die {@link #getSelectedIndex} Methode
 	 * festgestellt werden, welchen Menüpunkt der Benutzer ausgewählt hat.
 	 */
 	@Override
@@ -33,7 +33,7 @@ public class CustomerUpdateMenuDialog implements Dialog {
 
 	/**
 	 * Gibt den Index des vom Benutzer gewünschten Menüpunktes zurück. Vorher
-	 * muss die {@see #run} Methode ausgeführt werden, damit der Benutzer einen
+	 * muss die {@link #run} Methode ausgeführt werden, damit der Benutzer einen
 	 * Menüpunkt auswählen kann.
 	 * 
 	 * @return der Index.

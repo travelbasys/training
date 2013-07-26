@@ -107,8 +107,6 @@ public class Customer implements Serializable, Cloneable {
 	 * Erzeugt ein neues Customer Objekt mit default Werten Strings = "default"
 	 * Date = "1970 - 01 - 01".
 	 * 
-	 * @param name
-	 *            Name des Customers.
 	 * @throws IllegalArgumentException
 	 */
 	public Customer(int customerid) throws IllegalArgumentException {
@@ -117,18 +115,10 @@ public class Customer implements Serializable, Cloneable {
 				DEFAULT_EMAIL);
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public String getLastName() {
 		return lastname;
 	}
 
-	/**
-	 * 
-	 * @param name
-	 */
 	public void setLastName(String lastname) {
 		this.lastname = lastname;
 	}
@@ -182,7 +172,7 @@ public class Customer implements Serializable, Cloneable {
 	 * Formatiert ein Customer Objekt zu einem String der für die Verwendung in
 	 * einer CSV-Datei (.csv).
 	 * 
-	 * @return
+	 * @return String der in CSV-Datei geschrieben werden kann.
 	 */
 	public String toCSV() {
 		return customerid + ";" + lastname + ";" + firstname + ";" + birthdate

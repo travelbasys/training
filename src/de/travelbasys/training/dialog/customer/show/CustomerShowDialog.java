@@ -6,8 +6,8 @@ import de.travelbasys.training.dialog.customer.common.print.CustomerPrintDialog;
 import de.travelbasys.training.framework.Dialog;
 
 /**
- * hat die Aufgabe ein Customer Objekt anhand der Eingabe des Benutzers (@see
- * CustomerFindDialog) zu suchen und es, falls vorhanden, anzuzeigen..
+ * hat die Aufgabe ein Customer Objekt anhand der Eingabe des Benutzers ({@link
+ * CustomerFindDialog}) zu suchen und es, falls vorhanden, anzuzeigen..
  */
 public class CustomerShowDialog implements Dialog {
 	@Override

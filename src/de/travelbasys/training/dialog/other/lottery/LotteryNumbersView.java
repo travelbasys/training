@@ -8,7 +8,7 @@ import de.travelbasys.training.util.Console;
  * Ist verantwortlich dafür etwas visuell auf dem Bildschirm darzustellen, um
  * den Benutzer ggf. zu informieren.
  * 
- * @autor tba
+ * @author tba
  */
 public class LotteryNumbersView implements View {
 

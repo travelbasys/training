@@ -26,7 +26,7 @@ import de.travelbasys.training.dao.CustomerDaoException;
 import de.travelbasys.training.db.MDBConnection;
 
 /**
- * Diese Klasse repräsentiert eine "Datenbank" von {@see Customer} Objekten.
+ * Diese Klasse repräsentiert eine "Datenbank" von {@link Customer} Objekten.
  * 
  * <p>
  * Sie stellt Operation zum
@@ -38,7 +38,7 @@ import de.travelbasys.training.db.MDBConnection;
  * <li>Löschen (Delete)</li>
  * </ol>
  * <p>
- * von {@see Customer} Objekten bereit.
+ * von {@link Customer} Objekten bereit.
  * </p>
  * <p>
  * Damit besitzt sie den Standard CRUD Funktionsumfang für Datenbanken.
@@ -75,7 +75,7 @@ public class TxtCustomerDAO implements CustomerDAO {
 	 * </p>
 	 * 
 	 * <p>
-	 * Beim Programmende muss die {@see #terminate()} Methode aufgerufen werden,
+	 * Beim Programmende muss die {@link #terminate} Methode aufgerufen werden,
 	 * um die Daten in die Datei zurückzuschreiben; sonst gehen sie verloren.
 	 * 
 	 * @param db
@@ -112,7 +112,7 @@ public class TxtCustomerDAO implements CustomerDAO {
 	 * aus der sie ursprünglich stammen.
 	 * 
 	 * <p>
-	 * Der Name der Textdatei ist derjenige, der von der {@see #init(String)}
+	 * Der Name der Textdatei ist derjenige, der von der {@link #init(String)}
 	 * Methode gespeichert wurde.
 	 * </p>
 	 */
@@ -278,7 +278,7 @@ public class TxtCustomerDAO implements CustomerDAO {
 	/**
 	 * Diese Methode ist dafür verantwortlich, die alte Datenbank speichern und
 	 * leeren zu lassen, um dann zeilenweise eine CSV Datei einzulesen und jedes
-	 * geparste Customerobjekt durch die Methode {@see parseCSV} der internen
+	 * geparste Customerobjekt durch die Methode {@link Customer#parseCSV} der internen
 	 * Datenbank hinzuzufügen.
 	 * 
 	 * @param name

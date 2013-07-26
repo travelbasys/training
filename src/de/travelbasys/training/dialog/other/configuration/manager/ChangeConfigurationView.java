@@ -10,7 +10,7 @@ import de.travelbasys.training.util.Console;
  * ist verantwortlich für den Dialog mit dem Benutzer, um alle Daten für das
  * changeconfigurationieren der Datenbank abzufragen.
  * 
- * @autor tba
+ * @author tba
  */
 public class ChangeConfigurationView implements View {
 

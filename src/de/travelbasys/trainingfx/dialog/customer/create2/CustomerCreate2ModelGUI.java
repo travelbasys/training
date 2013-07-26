@@ -105,7 +105,7 @@ public class CustomerCreate2ModelGUI implements Model {
 	 * Eine Methode die für die prüfung ob ein Attribut des Customers leer oder
 	 * 0 ist benötigt wird.
 	 * 
-	 * @return
+	 * @return ob die Prüfung wahr oder falsch ist.
 	 */
 	public boolean sendIsInvalid() {
 		return lastname.isEmpty() || firstname.isEmpty() || birthdate.isEmpty()

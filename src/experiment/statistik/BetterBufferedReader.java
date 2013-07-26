@@ -6,7 +6,7 @@ import java.io.Reader;
 
 /**
  * eine Erweiterung des <code>BufferedReader</code> um eine bequeme
- * {@link skipLines} Methode.
+ * {@link #skipLines} Methode.
  * 
  * @author isenbuegel
  * 

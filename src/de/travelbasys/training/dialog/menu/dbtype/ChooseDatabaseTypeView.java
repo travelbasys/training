@@ -10,7 +10,7 @@ import de.travelbasys.training.util.Console;
  * Ist verantwortlich dem Benutzer ein Hauptmenü zur Verfügung zu stellen,
  * welches weitere Komponenten aufrufen kann.
  * 
- * @autor tba
+ * @author tba
  */
 public class ChooseDatabaseTypeView implements View {
 

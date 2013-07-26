@@ -17,16 +17,6 @@ import de.travelbasys.trainingfx.MainWindow.MainWindowDialog;
 
 public class Main extends Application {
 
-	/**
-	 * Dieses Objekt repräsentiert ein BorderPane Objekt (Panel), welches in der
-	 * aktuellen Implementierung von der Applikation beim Start gesetzt wird &
-	 * durch Menüpunkte verändert werden kann. TODO: Implementierung verändern,
-	 * auslagern in andere Methoden & Klassen. Zurzeit ein großer Haufen
-	 * zusammengewürfelter Aktionen. Absolut nicht zufriedenstellend.
-	 * 
-	 * @pane Ein BorderPane Objekt.
-	 */
-
 	public static void main(String[] args) {
 		// lädt Konfiguration
 		CommandLine.parse(args);

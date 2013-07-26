@@ -24,7 +24,7 @@ public class MDBConnection {
 	 * 
 	 * @param path
 	 *            Der absolute Dateipfad
-	 * @return
+	 * @return Eine Instanz der Verbindung
 	 */
 	public static Connection getInstance(String path) {
 		new MDBConnection(path);

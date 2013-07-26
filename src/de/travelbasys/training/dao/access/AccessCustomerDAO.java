@@ -21,7 +21,7 @@ import de.travelbasys.training.db.AccessConnection;
 import de.travelbasys.training.db.MDBConnection;
 
 /**
- * Diese Klasse repräsentiert eine "Datenbank" von {@see Customer} Objekten.
+ * Diese Klasse repräsentiert eine "Datenbank" von {@link Customer} Objekten.
  * 
  * <p>
  * Sie stellt Operation zum
@@ -33,7 +33,7 @@ import de.travelbasys.training.db.MDBConnection;
  * <li>Löschen (Delete)</li>
  * </ol>
  * <p>
- * von {@see Customer} Objekten bereit.
+ * von {@link Customer} Objekten bereit.
  * </p>
  * <p>
  * Damit besitzt sie den Standard CRUD Funktionsumfang für Datenbanken.
@@ -377,7 +377,7 @@ public class AccessCustomerDAO implements CustomerDAO {
 
 	/**
 	 * Diese Methode ließt zeilenweise eine CSV Datei ein und parst den Inhalt
-	 * zu Customerobjekten, durch die Methode {@see create} werden diese der
+	 * zu Customerobjekten, durch die Methode {@link #create} werden diese der
 	 * Datenbank hinzugefügt.
 	 * 
 	 * @param name

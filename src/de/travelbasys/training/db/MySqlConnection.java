@@ -27,7 +27,7 @@ public class MySqlConnection {
 	/**
 	 * Diese Methode erzeugt eine Verbindung zu einer MySQL-Datenbank.
 	 * 
-	 * @return
+	 * @return Eine Instanz der Verbindung
 	 */
 	public static Connection getNewInstance() {
 		new MySqlConnection();

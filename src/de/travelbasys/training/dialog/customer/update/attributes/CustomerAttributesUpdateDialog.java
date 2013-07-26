@@ -7,19 +7,8 @@ import de.travelbasys.training.framework.Dialog;
 import de.travelbasys.training.util.Datum;
 
 /**
- * zeigt ein {@see Customer} Objekt an und erlaubt dem Benutzer anschließend,
+ * zeigt ein {@link Customer} Objekt an und erlaubt dem Benutzer anschließend,
  * dessen Attribute zu ändern.
- * 
- * <p>
- * Die aktuelle Implementierung benutzt folgende Schritte:
- * </p>
- * 
- * <ol>
- * <li>{@see CustomerShow1Dialog} zeigt das {@see Customer} Objekt.
- * <li>{@see ShowAndChange1Dialog} zeigt ein Menü mit dem alle einzelnen
- * Attribute geändert werden können.
- * <li>...?
- * </ol>
  */
 public class CustomerAttributesUpdateDialog implements Dialog {
 
@@ -33,7 +22,7 @@ public class CustomerAttributesUpdateDialog implements Dialog {
 	private int index;
 
 	/**
-	 * erzeugt eine Instanz des Dialoges und speichert das gegebene {@see
+	 * erzeugt eine Instanz des Dialoges und speichert das gegebene {@link
 	 * Customer} Objekt.
 	 * 
 	 * @param customer

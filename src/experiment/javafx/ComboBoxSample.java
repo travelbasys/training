@@ -20,8 +20,8 @@ import javafx.stage.Stage;
 /**
  * A sample that shows both an un-editable and an editable ComboBox.
  * 
- * @see javafx.scene.control.ComboBox
- * @see javafx.scene.control.ComboBoxBuilder
+ * {@link javafx.scene.control.ComboBox}
+ * {@link javafx.scene.control.ComboBoxBuilder}
  */
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class ComboBoxSample extends Application {

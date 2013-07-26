@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="root" prefHeight="329.0" prefWidth="323.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.travelbasys.trainingfx.dialog.customer.create2.CustomerCreate2ControlGUI">
+<BorderPane fx:id="root" prefHeight="329.0" prefWidth="323.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.travelbasys.trainingfx.dialog.customer.create2.CustomerCreate2ControlGUI">
   <!-- TODO Add Nodes -->
   <center>
     <GridPane>
@@ -92,6 +92,11 @@
         <Button fx:id="sendButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleSendButton" text="%SendButton" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
           <GridPane.margin>
             <Insets right="20.0" top="10.0" />
+          </GridPane.margin>
+        </Button>
+        <Button mnemonicParsing="false" prefHeight="27.0" text="%AbortButton" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+          <GridPane.margin>
+            <Insets right="20.0" />
           </GridPane.margin>
         </Button>
       </children>

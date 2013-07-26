@@ -55,7 +55,7 @@ public class ChooseDatabaseTypeModel extends ArrayList<String> implements Model 
 	/**
 	 * Diese Methode prüft ob sich die Sprache geändert hat.
 	 * 
-	 * @return
+	 * @return ob die Prüfung wahr oder falsch ist.
 	 */
 	public boolean isLanguageChanged() {
 		if (Locale.getDefault() == getLang()) {

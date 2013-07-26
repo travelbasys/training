@@ -21,7 +21,7 @@ import de.travelbasys.training.db.MDBConnection;
 import de.travelbasys.training.db.MySqlConnection;
 
 /**
- * Diese Klasse repräsentiert eine "Datenbank" von {@see Customer} Objekten.
+ * Diese Klasse repräsentiert eine "Datenbank" von {@link Customer} Objekten.
  * 
  * <p>
  * Sie stellt Operation zum
@@ -33,7 +33,7 @@ import de.travelbasys.training.db.MySqlConnection;
  * <li>Löschen (Delete)</li>
  * </ol>
  * <p>
- * von {@see Customer} Objekten bereit.
+ * von {@link Customer} Objekten bereit.
  * </p>
  * <p>
  * Damit besitzt sie den Standard CRUD Funktionsumfang für Datenbanken.
@@ -76,7 +76,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	 * </p>
 	 * 
 	 * <p>
-	 * Beim Programmende muss die {@see #terminate()} Methode aufgerufen werden,
+	 * Beim Programmende muss die {@link #terminate} Methode aufgerufen werden,
 	 * um die Daten in die Datei zurückzuschreiben; sonst gehen sie verloren.
 	 * 
 	 * @param db
@@ -348,7 +348,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	 * true zurückgegeben, wenn nicht false
 	 * 
 	 * @param customer
-	 * @return
+	 * @return Customer-Objekt
 	 * 
 	 * @throws CustomerDaoException
 	 */
@@ -367,7 +367,7 @@ public class MySQLCustomerDAO implements CustomerDAO {
 	/**
 	 * Diese Methode ist dafür verantwortlich, die alte Datenbank speichern und
 	 * leeren zu lassen, um dann zeilenweise eine CSV Datei einzulesen und jedes
-	 * geparste Customerobjekt durch die Methode {@see parseCSV} der internen
+	 * geparste Customerobjekt durch die Methode {@link Customer#parseCSV} der internen
 	 * Datenbank hinzuzufügen.
 	 * 
 	 * @param name

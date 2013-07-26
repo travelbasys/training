@@ -13,10 +13,10 @@ import de.travelbasys.training.framework.Dialog;
  * Der Dialog kann optional auch ohne Änderung beendet werden.
  * 
  * <ol>
- * <li>{@see CustomerFindDialog} findet ein {@see Customer} Objekt.
- * <li>{@see ShowAndChangeDialog} gibt {@see Customer} Objekt aus und lässt
+ * <li>{@link CustomerFindDialog} findet ein {@link Customer} Objekt.
+ * <li>{@link CustomerAttributesUpdateDialog} gibt {@link Customer} Objekt aus und lässt
  * seine Attribute ändern.
- * <li>{@see YesNoDialog} fragt ob {@see Customer} in die Datenbank geschrieben
+ * <li>{@link YesNoDialog} fragt ob {@link Customer} in die Datenbank geschrieben
  * werden soll.
  * </ol>
  */
