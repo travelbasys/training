@@ -10,12 +10,11 @@ public class P401Run {
 	}
 
 	private static void runSIGMA2(long n) {
-		System.out.println("");
-		System.out.println(new Date());
+		Date d0 = new Date(), d1;
 		System.out.print("SIGMA2(" + n + ")=");
-
 		System.out.println(P401Big.SIGMA2(n));
-		System.out.println(new Date());
+		d1 = new Date();
+		System.out.println((d1.getTime() - d0.getTime()) + " ms");
 		return;
 	}
 
