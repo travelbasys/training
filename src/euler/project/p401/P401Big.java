@@ -4,7 +4,7 @@ import static euler.util.Math.sumsq;
 
 import java.math.BigInteger;
 
-public class P401BigA {
+public class P401Big {
 
 	public static BigInteger SIGMA2(long N) {
 		BigInteger sum = BigInteger.ZERO;

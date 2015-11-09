@@ -1,4 +1,4 @@
-package euler.project.p401;
+package euler.project.p401.bruteforce;
 
 import java.math.BigInteger;
 

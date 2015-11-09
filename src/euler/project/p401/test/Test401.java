@@ -1,4 +1,4 @@
-package euler.project.p401;
+package euler.project.p401.test;
 
 // Testcases computed using brute-force method.
 // SIGMA2(1)=1
@@ -18,6 +18,8 @@ import java.math.BigInteger;
 import org.junit.Assert;
 import org.junit.Test;
 
+import euler.project.p401.P401Big;
+
 public class Test401 {
 
 	private static final long[] INPUT = { 1, 2, 3, 4, 5, 6, 10, 100, 1000,
@@ -34,7 +36,7 @@ public class Test401 {
 	@Test
 	public void test() {
 		for (int i = 0; i < INPUT.length; i++) {
-			Assert.assertEquals("SIGMA2", RESULT[i], P401BigA.SIGMA2(INPUT[i]));
+			Assert.assertEquals("SIGMA2", RESULT[i], P401Big.SIGMA2(INPUT[i]));
 		}
 	}
 }
