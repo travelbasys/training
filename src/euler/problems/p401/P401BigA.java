@@ -12,10 +12,8 @@ public class P401BigA {
 
 		for (long d = 1; d <= sqrtN; d++) {
 			long q = N / d;
-			BigInteger bigD = BigInteger.valueOf(d);
-			BigInteger bigDD = bigD.multiply(bigD);
-
-			sum = sum.add(bigDD.multiply(BigInteger.valueOf(q - d)))
+			
+			sum = sum.add(BigInteger.valueOf(d*d).multiply(BigInteger.valueOf(q - d)))
 					.add(sumsq(q)).subtract(sumsq(d - 1));
 		}
 		return sum;
