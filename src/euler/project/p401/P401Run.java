@@ -1,4 +1,4 @@
-package euler.problems.p401;
+package euler.project.p401;
 
 import java.util.Date;
 

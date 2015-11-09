@@ -1,6 +1,6 @@
-package euler.problems.p401;
+package euler.project.p401;
 
-import static euler.utils.Math.sumsq;
+import static euler.util.Math.sumsq;
 
 import java.math.BigInteger;
 

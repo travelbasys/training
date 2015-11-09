@@ -1,4 +1,4 @@
-package euler.utils;
+package euler.util;
 
 import java.math.BigInteger;
 
