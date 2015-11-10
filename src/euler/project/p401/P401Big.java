@@ -10,6 +10,10 @@ public class P401Big {
 		BigInteger sum = BigInteger.ZERO;
 		long sqrtN = (long) Math.floor(Math.sqrt(N));
 
+		// Avoid some computations in the loop:
+		// dd = d*d
+		// bigDD = BigInteger.valueOf(d*d)
+		// ssq = sumsq(d-1)
 		long dd = 1; 
 		BigInteger bigDD = BigInteger.ONE;
 		BigInteger ssq = BigInteger.ZERO;
