@@ -48,4 +48,38 @@ public class Math {
 				.multiply(BigInteger.valueOf(n2));
 	}
 
+	public static long sumsq(long n, long modulus) {
+		long n1 = n + 1, n2 = n + n1;
+
+		// Divide early to keep numbers small.
+		switch ((int) (n % 6)) {
+		case 0:
+			n = n / 6;
+			break;
+		case 1:
+			n1 = n1 / 2;
+			n2 = n2 / 3;
+			break;
+		case 2:
+			n = n / 2;
+			n1 = n1 / 3;
+			break;
+		case 3:
+			n = n / 3;
+			n1 = n1 / 2;
+			break;
+		case 4:
+			n = n / 2;
+			n2 = n2 / 3;
+			break;
+		case 5:
+			n1 = n1 / 6;
+			break;
+		}
+		long result = n % modulus;
+		result = (result * (n1 % modulus) % modulus);
+		result = (result * (n2 % modulus) % modulus);
+		return result;
+	}
+
 }

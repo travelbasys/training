@@ -2,7 +2,7 @@ package euler.project.p401;
 
 import java.util.Date;
 
-public class P401Run {
+public class P401BigRun {
 
 	public static void main(String[] args) {
 		runSIGMA2(1_000_000_000_000_000L);

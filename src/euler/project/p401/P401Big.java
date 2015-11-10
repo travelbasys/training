@@ -11,13 +11,17 @@ public class P401Big {
 		long sqrtN = (long) Math.floor(Math.sqrt(N));
 
 		long dd = 1; 
+		BigInteger bigDD = BigInteger.ONE;
+		BigInteger ssq = BigInteger.ZERO;
 		for (long d = 1; d <= sqrtN; d++) {
 			long q = N / d;
 			
-			sum = sum.add(BigInteger.valueOf(dd).multiply(BigInteger.valueOf(q - d)))
-					.add(sumsq(q)).subtract(sumsq(d-1));
+			sum = sum.add(bigDD.multiply(BigInteger.valueOf(q - d)))
+					.add(sumsq(q)).subtract(ssq);
 			
+			ssq = ssq.add(bigDD);
 			dd = dd + d +d + 1;
+			bigDD = BigInteger.valueOf(dd);
 		}
 		return sum;
 	}

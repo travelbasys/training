@@ -20,7 +20,7 @@ import org.junit.Test;
 
 import euler.project.p401.P401Big;
 
-public class Test401 {
+public class Test401Big {
 
 	private static final long[] INPUT = { 1, 2, 3, 4, 5, 6, 10, 100, 1000,
 			10000, 100000 };
@@ -30,8 +30,7 @@ public class Test401 {
 			BigInteger.valueOf(113), BigInteger.valueOf(469),
 			BigInteger.valueOf(407819), BigInteger.valueOf(401382971),
 			BigInteger.valueOf(400757638164L),
-			BigInteger.valueOf(400692683389101L)
-	};
+			BigInteger.valueOf(400692683389101L) };
 
 	@Test
 	public void test() {

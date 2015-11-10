@@ -1,4 +1,4 @@
-package euler.project.p401.bruteforce;
+package euler.project.p401;
 
 import java.util.Date;
 
